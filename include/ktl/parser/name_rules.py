@@ -1,0 +1,72 @@
+from utils import first_diff_index, c_name_to_cpp
+from type_cast import cast_type, DEFAULT_NEGATIVE_TYPE, DEFAULT_POSITIVE_TYPE
+
+
+def make_version(_src: str) -> str | None:
+    match _src:
+        case "VK_VERSION_1_0":
+            return "ktl::api::version_1_0"
+        case "VK_VERSION_1_1":
+            return "ktl::api::version_1_1"
+        case "VK_VERSION_1_2":
+            return "ktl::api::version_1_2"
+        case "VK_VERSION_1_3":
+            return "ktl::api::version_1_3"
+        case "VK_VERSION_1_4":
+            return "ktl::api::version_1_4"
+    return None
+
+
+def make_cpp_name(src: str) -> str | None:
+    if src is None:
+        return None
+    if src.startswith("Vk") or src.startswith("vk"):
+        return c_name_to_cpp(src[2:])
+    if src.startswith("PFN_"):
+        return c_name_to_cpp(src[6:])
+    if src.startswith("VK_"):
+        return c_name_to_cpp(src[3:])
+    return c_name_to_cpp(src)
+
+
+def make_field_name(src: str, cmp: str) -> str | None:
+    if src is None or not src.startswith("VK_"):
+        return None
+    tmp = src.lower()[3:]
+    if cmp is not None:
+        tmp = tmp[first_diff_index(tmp, cmp):]
+    if tmp.startswith('_'):
+        tmp = tmp[1:]
+    return make_cpp_name(f"v_{tmp}")
+
+
+def make_underling_type(_src: str, _direction: bool) -> str | None:
+    if not _src:
+        return DEFAULT_POSITIVE_TYPE if _direction else DEFAULT_NEGATIVE_TYPE
+    return cast_type(_src) if _direction else cast_type(f"-{_src}")
+
+
+def make_type(_src: str) -> str | None:
+    if _src is None:
+        return None
+    return cast_type(_src)
+
+
+def make_bitpos(src: str, underling_type: str) -> str | None:
+    if src is None:
+        return None
+    if underling_type in ("ktl::u32", "ktl::i32"):
+        return f"(1U << {src})"
+    if underling_type in ("ktl::u64", "ktl::i64"):
+        return f"(1ULL << {src})"
+    return None # non valid for vulkan spec
+
+
+def make_constant(src: str) -> str | None:
+    if src is None or not src.startswith("VK_"):
+        return None
+    return "KTL_API" + src[2:]
+
+
+def make_handle(src: str) -> str | None:
+    pass
