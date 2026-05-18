@@ -46,7 +46,7 @@ load() noexcept
 {
     SetLastError(0);
 
-    handle_type ptr = LoadLibraryA(KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_NAME);
+    handle_type ptr = LoadLibraryA(KTL_DYLIB_PATH);
     if (!ptr) [[unlikely]]
     {
         return __get_last_error();
@@ -116,7 +116,7 @@ load() noexcept
 {
     ::dlerror();
 
-    handle_type ptr = ::dlopen(KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_NAME, RTLD_NOW | RTLD_LOCAL);
+    handle_type ptr = ::dlopen(KTL_DYLIB_PATH, RTLD_NOW | RTLD_LOCAL);
     if (!ptr) [[unlikely]]
     {
         return ktl::err(__get_last_error());
