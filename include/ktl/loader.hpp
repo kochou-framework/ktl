@@ -7,18 +7,18 @@
 #include <ktl/fixed_string.hpp>
 #include <ktl/result.hpp>
 
-#if defined(KOCHOU_PLATFORM_WIN32)
+#if defined(KTL_PLATFORM_WIN32)
 #include <windows.h>
 
-#define KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE 256
+#define KTL_LOADER_DYLIB_ERROR_SIZE 256
 
 namespace
 {
-inline ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE >
+inline ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE >
 __get_last_error() noexcept
 {
-    ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE > msg = {};
-    DWORD                                                            rc  = GetLastError();
+    ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE > msg = {};
+    DWORD                                            rc  = GetLastError();
     if (!rc) [[unlikely]]
     {
         std::abort();
@@ -41,7 +41,7 @@ namespace ktl::loader
 using handle_type = HMODULE;
 using proc_type   = FARPROC;
 
-inline ktl::result< handle_type, ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE > >
+inline ktl::result< handle_type, ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE > >
 load() noexcept
 {
     SetLastError(0);
@@ -54,7 +54,7 @@ load() noexcept
     return ptr;
 }
 
-inline ktl::result< proc_type, ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE > >
+inline ktl::result< proc_type, ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE > >
 proc(handle_type _handle, const char * _name) noexcept
 {
     SetLastError(0);
@@ -67,7 +67,7 @@ proc(handle_type _handle, const char * _name) noexcept
     return ptr;
 }
 
-inline ktl::result< void *, ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE > >
+inline ktl::result< void *, ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE > >
 free(handle_type _handle) noexcept
 {
     SetLastError(0);
@@ -81,18 +81,18 @@ free(handle_type _handle) noexcept
 }
 } // namespace ktl::loader
 
-#elif defined(KOCHOU_PLATFORM_MACOS) || defined(KOCHOU_PLATFORM_LINUX)
+#elif defined(KTL_PLATFORM_MACOS) || defined(KTL_PLATFORM_LINUX)
 #include <dlfcn.h>
 
 #if defined(KOCHOU_PLATFORM_LINUX)
-#define KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE 256
+#define KTL_LOADER_DYLIB_ERROR_SIZE 256
 #else
-#define KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE 256
+#define KTL_LOADER_DYLIB_ERROR_SIZE 256
 #endif
 
 namespace
 {
-inline ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE >
+inline ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE >
 __get_last_error() noexcept
 {
     char * err = ::dlerror();
@@ -101,7 +101,7 @@ __get_last_error() noexcept
         std::abort();
     }
 
-    return ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE >(err, ::strlen(err));
+    return ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE >(err, ::strlen(err));
 }
 } // namespace
 
@@ -111,7 +111,7 @@ using handle_type                = void *;
 using proc_type                  = void *;
 static const proc_type proc_null = nullptr;
 
-inline ktl::result< handle_type, ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE > >
+inline ktl::result< handle_type, ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE > >
 load() noexcept
 {
     ::dlerror();
@@ -124,7 +124,7 @@ load() noexcept
     return ptr;
 }
 
-inline ktl::result< proc_type, ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE > >
+inline ktl::result< proc_type, ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE > >
 proc(handle_type _handle, const char * _name) noexcept
 {
     ::dlerror();
@@ -137,7 +137,7 @@ proc(handle_type _handle, const char * _name) noexcept
     return ptr;
 }
 
-inline ktl::result< void *, ktl::fixed_string< KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_ERROR_SIZE > >
+inline ktl::result< void *, ktl::fixed_string< KTL_LOADER_DYLIB_ERROR_SIZE > >
 free(handle_type _handle) noexcept
 {
     ::dlerror();
