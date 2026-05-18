@@ -6,6 +6,10 @@ option("ktl_dylib_path")
     set_description("vulkan dynamic library path")
 option_end()
 
+option("ktl_platform")
+    set_description("target platform")
+option_end()
+
 target("ktl")
     set_kind("phony")
 
@@ -21,6 +25,9 @@ target("ktl")
             return val
         end
 
-        local dylib_path = get_required_config("kochou_dylib_path")
+        local dylib_path = get_required_config("ktl_dylib_path")
         target:add('defines', 'KTL_DYLIB_PATH="' .. dylib_path .. '"', {public=true})
+
+        local platform = get_required_config("ktl_platform")
+        target:add('defines', 'KTL_PLATFORM_' .. platform:upper(), {public=true})
     end)
