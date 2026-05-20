@@ -169,6 +169,10 @@ struct formatter< ktl::errc, char >
             return std::format_to(ctx.out(), "out_of_range");
         case ktl::errc::no_memory:
             return std::format_to(ctx.out(), "no_memory");
+        case ktl::errc::overflow:
+            return std::format_to(ctx.out(), "overflow");
+        case ktl::errc::underflow:
+            return std::format_to(ctx.out(), "underflow");
         case ktl::errc::unspecified_api_error:
             return std::format_to(ctx.out(), "unspecified_api_error");
         case ktl::errc::extension_wrong_value:
@@ -201,6 +205,10 @@ struct formatter< ktl::errc, char >
             return std::format_to(ctx.out(), "compute_failed");
         case ktl::errc::pfn_load_failed:
             return std::format_to(ctx.out(), "pfn_load_failed");
+        case ktl::errc::unsupported_format:
+            return std::format_to(ctx.out(), "unsupported_format");
+        case ktl::errc::unsupported_present_mode:
+            return std::format_to(ctx.out(), "unsupported_present_mode");
         }
         return std::format_to(ctx.out(), "FORMAT_ERROR");
     }
