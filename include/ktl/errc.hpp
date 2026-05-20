@@ -35,6 +35,8 @@ enum class errc
     invalid_argument = 20,
     out_of_range     = 21,
     no_memory        = 22,
+    overflow,
+    underflow,
 
     // kochou
     unspecified_api_error   = 23,
@@ -52,7 +54,9 @@ enum class errc
     layer_wrong_value       = 35,
     layer_not_provides      = 36,
     compute_failed          = 37,
-    pfn_load_failed         = 38
+    pfn_load_failed         = 38,
+    unsupported_format,
+    unsupported_present_mode
 };
 
 inline ktl::errc
