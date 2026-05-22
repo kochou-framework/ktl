@@ -5,7 +5,6 @@
 
 #include <ktl/api.hpp>
 
-
 namespace ktl::meta
 {
 inline std::string_view
@@ -13,1477 +12,1479 @@ raw_command(ktl::api::command _command) noexcept
 {
     switch (_command)
     {
-case ktl::api::command::create_instance:
-return "vkCreateInstance";
-case ktl::api::command::destroy_instance:
-return "vkDestroyInstance";
-case ktl::api::command::enumerate_physical_devices:
-return "vkEnumeratePhysicalDevices";
-case ktl::api::command::get_device_proc_addr:
-return "vkGetDeviceProcAddr";
-case ktl::api::command::get_instance_proc_addr:
-return "vkGetInstanceProcAddr";
-case ktl::api::command::get_physical_device_properties:
-return "vkGetPhysicalDeviceProperties";
-case ktl::api::command::get_physical_device_queue_family_properties:
-return "vkGetPhysicalDeviceQueueFamilyProperties";
-case ktl::api::command::get_physical_device_memory_properties:
-return "vkGetPhysicalDeviceMemoryProperties";
-case ktl::api::command::get_physical_device_features:
-return "vkGetPhysicalDeviceFeatures";
-case ktl::api::command::get_physical_device_format_properties:
-return "vkGetPhysicalDeviceFormatProperties";
-case ktl::api::command::get_physical_device_image_format_properties:
-return "vkGetPhysicalDeviceImageFormatProperties";
-case ktl::api::command::create_device:
-return "vkCreateDevice";
-case ktl::api::command::destroy_device:
-return "vkDestroyDevice";
-case ktl::api::command::enumerate_instance_version:
-return "vkEnumerateInstanceVersion";
-case ktl::api::command::enumerate_instance_layer_properties:
-return "vkEnumerateInstanceLayerProperties";
-case ktl::api::command::enumerate_instance_extension_properties:
-return "vkEnumerateInstanceExtensionProperties";
-case ktl::api::command::enumerate_device_layer_properties:
-return "vkEnumerateDeviceLayerProperties";
-case ktl::api::command::enumerate_device_extension_properties:
-return "vkEnumerateDeviceExtensionProperties";
-case ktl::api::command::get_device_queue:
-return "vkGetDeviceQueue";
-case ktl::api::command::queue_submit:
-return "vkQueueSubmit";
-case ktl::api::command::queue_wait_idle:
-return "vkQueueWaitIdle";
-case ktl::api::command::device_wait_idle:
-return "vkDeviceWaitIdle";
-case ktl::api::command::allocate_memory:
-return "vkAllocateMemory";
-case ktl::api::command::free_memory:
-return "vkFreeMemory";
-case ktl::api::command::map_memory:
-return "vkMapMemory";
-case ktl::api::command::unmap_memory:
-return "vkUnmapMemory";
-case ktl::api::command::flush_mapped_memory_ranges:
-return "vkFlushMappedMemoryRanges";
-case ktl::api::command::invalidate_mapped_memory_ranges:
-return "vkInvalidateMappedMemoryRanges";
-case ktl::api::command::get_device_memory_commitment:
-return "vkGetDeviceMemoryCommitment";
-case ktl::api::command::get_buffer_memory_requirements:
-return "vkGetBufferMemoryRequirements";
-case ktl::api::command::bind_buffer_memory:
-return "vkBindBufferMemory";
-case ktl::api::command::get_image_memory_requirements:
-return "vkGetImageMemoryRequirements";
-case ktl::api::command::bind_image_memory:
-return "vkBindImageMemory";
-case ktl::api::command::get_image_sparse_memory_requirements:
-return "vkGetImageSparseMemoryRequirements";
-case ktl::api::command::get_physical_device_sparse_image_format_properties:
-return "vkGetPhysicalDeviceSparseImageFormatProperties";
-case ktl::api::command::queue_bind_sparse:
-return "vkQueueBindSparse";
-case ktl::api::command::create_fence:
-return "vkCreateFence";
-case ktl::api::command::destroy_fence:
-return "vkDestroyFence";
-case ktl::api::command::reset_fences:
-return "vkResetFences";
-case ktl::api::command::get_fence_status:
-return "vkGetFenceStatus";
-case ktl::api::command::wait_for_fences:
-return "vkWaitForFences";
-case ktl::api::command::create_semaphore:
-return "vkCreateSemaphore";
-case ktl::api::command::destroy_semaphore:
-return "vkDestroySemaphore";
-case ktl::api::command::create_event:
-return "vkCreateEvent";
-case ktl::api::command::destroy_event:
-return "vkDestroyEvent";
-case ktl::api::command::get_event_status:
-return "vkGetEventStatus";
-case ktl::api::command::set_event:
-return "vkSetEvent";
-case ktl::api::command::reset_event:
-return "vkResetEvent";
-case ktl::api::command::create_query_pool:
-return "vkCreateQueryPool";
-case ktl::api::command::destroy_query_pool:
-return "vkDestroyQueryPool";
-case ktl::api::command::get_query_pool_results:
-return "vkGetQueryPoolResults";
-case ktl::api::command::reset_query_pool:
-return "vkResetQueryPool";
-case ktl::api::command::create_buffer:
-return "vkCreateBuffer";
-case ktl::api::command::destroy_buffer:
-return "vkDestroyBuffer";
-case ktl::api::command::create_buffer_view:
-return "vkCreateBufferView";
-case ktl::api::command::destroy_buffer_view:
-return "vkDestroyBufferView";
-case ktl::api::command::create_image:
-return "vkCreateImage";
-case ktl::api::command::destroy_image:
-return "vkDestroyImage";
-case ktl::api::command::get_image_subresource_layout:
-return "vkGetImageSubresourceLayout";
-case ktl::api::command::create_image_view:
-return "vkCreateImageView";
-case ktl::api::command::destroy_image_view:
-return "vkDestroyImageView";
-case ktl::api::command::create_shader_module:
-return "vkCreateShaderModule";
-case ktl::api::command::destroy_shader_module:
-return "vkDestroyShaderModule";
-case ktl::api::command::create_pipeline_cache:
-return "vkCreatePipelineCache";
-case ktl::api::command::destroy_pipeline_cache:
-return "vkDestroyPipelineCache";
-case ktl::api::command::get_pipeline_cache_data:
-return "vkGetPipelineCacheData";
-case ktl::api::command::merge_pipeline_caches:
-return "vkMergePipelineCaches";
-case ktl::api::command::create_pipeline_binaries_khr:
-return "vkCreatePipelineBinariesKHR";
-case ktl::api::command::destroy_pipeline_binary_khr:
-return "vkDestroyPipelineBinaryKHR";
-case ktl::api::command::get_pipeline_key_khr:
-return "vkGetPipelineKeyKHR";
-case ktl::api::command::get_pipeline_binary_data_khr:
-return "vkGetPipelineBinaryDataKHR";
-case ktl::api::command::release_captured_pipeline_data_khr:
-return "vkReleaseCapturedPipelineDataKHR";
-case ktl::api::command::create_graphics_pipelines:
-return "vkCreateGraphicsPipelines";
-case ktl::api::command::create_compute_pipelines:
-return "vkCreateComputePipelines";
-case ktl::api::command::get_device_subpass_shading_max_workgroup_size_huawei:
-return "vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI";
-case ktl::api::command::destroy_pipeline:
-return "vkDestroyPipeline";
-case ktl::api::command::create_pipeline_layout:
-return "vkCreatePipelineLayout";
-case ktl::api::command::destroy_pipeline_layout:
-return "vkDestroyPipelineLayout";
-case ktl::api::command::create_sampler:
-return "vkCreateSampler";
-case ktl::api::command::destroy_sampler:
-return "vkDestroySampler";
-case ktl::api::command::create_descriptor_set_layout:
-return "vkCreateDescriptorSetLayout";
-case ktl::api::command::destroy_descriptor_set_layout:
-return "vkDestroyDescriptorSetLayout";
-case ktl::api::command::create_descriptor_pool:
-return "vkCreateDescriptorPool";
-case ktl::api::command::destroy_descriptor_pool:
-return "vkDestroyDescriptorPool";
-case ktl::api::command::reset_descriptor_pool:
-return "vkResetDescriptorPool";
-case ktl::api::command::allocate_descriptor_sets:
-return "vkAllocateDescriptorSets";
-case ktl::api::command::free_descriptor_sets:
-return "vkFreeDescriptorSets";
-case ktl::api::command::update_descriptor_sets:
-return "vkUpdateDescriptorSets";
-case ktl::api::command::create_framebuffer:
-return "vkCreateFramebuffer";
-case ktl::api::command::destroy_framebuffer:
-return "vkDestroyFramebuffer";
-case ktl::api::command::create_render_pass:
-return "vkCreateRenderPass";
-case ktl::api::command::destroy_render_pass:
-return "vkDestroyRenderPass";
-case ktl::api::command::get_render_area_granularity:
-return "vkGetRenderAreaGranularity";
-case ktl::api::command::get_rendering_area_granularity:
-return "vkGetRenderingAreaGranularity";
-case ktl::api::command::create_command_pool:
-return "vkCreateCommandPool";
-case ktl::api::command::destroy_command_pool:
-return "vkDestroyCommandPool";
-case ktl::api::command::reset_command_pool:
-return "vkResetCommandPool";
-case ktl::api::command::allocate_command_buffers:
-return "vkAllocateCommandBuffers";
-case ktl::api::command::free_command_buffers:
-return "vkFreeCommandBuffers";
-case ktl::api::command::begin_command_buffer:
-return "vkBeginCommandBuffer";
-case ktl::api::command::end_command_buffer:
-return "vkEndCommandBuffer";
-case ktl::api::command::reset_command_buffer:
-return "vkResetCommandBuffer";
-case ktl::api::command::cmd_bind_pipeline:
-return "vkCmdBindPipeline";
-case ktl::api::command::cmd_set_primitive_restart_index_ext:
-return "vkCmdSetPrimitiveRestartIndexEXT";
-case ktl::api::command::cmd_set_attachment_feedback_loop_enable_ext:
-return "vkCmdSetAttachmentFeedbackLoopEnableEXT";
-case ktl::api::command::cmd_set_viewport:
-return "vkCmdSetViewport";
-case ktl::api::command::cmd_set_scissor:
-return "vkCmdSetScissor";
-case ktl::api::command::cmd_set_line_width:
-return "vkCmdSetLineWidth";
-case ktl::api::command::cmd_set_depth_bias:
-return "vkCmdSetDepthBias";
-case ktl::api::command::cmd_set_blend_constants:
-return "vkCmdSetBlendConstants";
-case ktl::api::command::cmd_set_depth_bounds:
-return "vkCmdSetDepthBounds";
-case ktl::api::command::cmd_set_stencil_compare_mask:
-return "vkCmdSetStencilCompareMask";
-case ktl::api::command::cmd_set_stencil_write_mask:
-return "vkCmdSetStencilWriteMask";
-case ktl::api::command::cmd_set_stencil_reference:
-return "vkCmdSetStencilReference";
-case ktl::api::command::cmd_bind_descriptor_sets:
-return "vkCmdBindDescriptorSets";
-case ktl::api::command::cmd_bind_index_buffer:
-return "vkCmdBindIndexBuffer";
-case ktl::api::command::cmd_bind_vertex_buffers:
-return "vkCmdBindVertexBuffers";
-case ktl::api::command::cmd_draw:
-return "vkCmdDraw";
-case ktl::api::command::cmd_draw_indexed:
-return "vkCmdDrawIndexed";
-case ktl::api::command::cmd_draw_multi_ext:
-return "vkCmdDrawMultiEXT";
-case ktl::api::command::cmd_draw_multi_indexed_ext:
-return "vkCmdDrawMultiIndexedEXT";
-case ktl::api::command::cmd_draw_indirect:
-return "vkCmdDrawIndirect";
-case ktl::api::command::cmd_draw_indexed_indirect:
-return "vkCmdDrawIndexedIndirect";
-case ktl::api::command::cmd_dispatch:
-return "vkCmdDispatch";
-case ktl::api::command::cmd_dispatch_indirect:
-return "vkCmdDispatchIndirect";
-case ktl::api::command::cmd_subpass_shading_huawei:
-return "vkCmdSubpassShadingHUAWEI";
-case ktl::api::command::cmd_draw_cluster_huawei:
-return "vkCmdDrawClusterHUAWEI";
-case ktl::api::command::cmd_draw_cluster_indirect_huawei:
-return "vkCmdDrawClusterIndirectHUAWEI";
-case ktl::api::command::cmd_update_pipeline_indirect_buffer_nv:
-return "vkCmdUpdatePipelineIndirectBufferNV";
-case ktl::api::command::cmd_copy_buffer:
-return "vkCmdCopyBuffer";
-case ktl::api::command::cmd_copy_image:
-return "vkCmdCopyImage";
-case ktl::api::command::cmd_blit_image:
-return "vkCmdBlitImage";
-case ktl::api::command::cmd_copy_buffer_to_image:
-return "vkCmdCopyBufferToImage";
-case ktl::api::command::cmd_copy_image_to_buffer:
-return "vkCmdCopyImageToBuffer";
-case ktl::api::command::cmd_copy_memory_indirect_nv:
-return "vkCmdCopyMemoryIndirectNV";
-case ktl::api::command::cmd_copy_memory_indirect_khr:
-return "vkCmdCopyMemoryIndirectKHR";
-case ktl::api::command::cmd_copy_memory_to_image_indirect_nv:
-return "vkCmdCopyMemoryToImageIndirectNV";
-case ktl::api::command::cmd_copy_memory_to_image_indirect_khr:
-return "vkCmdCopyMemoryToImageIndirectKHR";
-case ktl::api::command::cmd_update_buffer:
-return "vkCmdUpdateBuffer";
-case ktl::api::command::cmd_fill_buffer:
-return "vkCmdFillBuffer";
-case ktl::api::command::cmd_clear_color_image:
-return "vkCmdClearColorImage";
-case ktl::api::command::cmd_clear_depth_stencil_image:
-return "vkCmdClearDepthStencilImage";
-case ktl::api::command::cmd_clear_attachments:
-return "vkCmdClearAttachments";
-case ktl::api::command::cmd_resolve_image:
-return "vkCmdResolveImage";
-case ktl::api::command::cmd_set_event:
-return "vkCmdSetEvent";
-case ktl::api::command::cmd_reset_event:
-return "vkCmdResetEvent";
-case ktl::api::command::cmd_wait_events:
-return "vkCmdWaitEvents";
-case ktl::api::command::cmd_pipeline_barrier:
-return "vkCmdPipelineBarrier";
-case ktl::api::command::cmd_begin_query:
-return "vkCmdBeginQuery";
-case ktl::api::command::cmd_end_query:
-return "vkCmdEndQuery";
-case ktl::api::command::cmd_begin_conditional_rendering_ext:
-return "vkCmdBeginConditionalRenderingEXT";
-case ktl::api::command::cmd_end_conditional_rendering_ext:
-return "vkCmdEndConditionalRenderingEXT";
-case ktl::api::command::cmd_begin_custom_resolve_ext:
-return "vkCmdBeginCustomResolveEXT";
-case ktl::api::command::cmd_reset_query_pool:
-return "vkCmdResetQueryPool";
-case ktl::api::command::cmd_write_timestamp:
-return "vkCmdWriteTimestamp";
-case ktl::api::command::cmd_copy_query_pool_results:
-return "vkCmdCopyQueryPoolResults";
-case ktl::api::command::cmd_push_constants:
-return "vkCmdPushConstants";
-case ktl::api::command::cmd_begin_render_pass:
-return "vkCmdBeginRenderPass";
-case ktl::api::command::cmd_next_subpass:
-return "vkCmdNextSubpass";
-case ktl::api::command::cmd_end_render_pass:
-return "vkCmdEndRenderPass";
-case ktl::api::command::cmd_execute_commands:
-return "vkCmdExecuteCommands";
-case ktl::api::command::create_android_surface_khr:
-return "vkCreateAndroidSurfaceKHR";
-case ktl::api::command::create_surface_ohos:
-return "vkCreateSurfaceOHOS";
-case ktl::api::command::get_physical_device_display_properties_khr:
-return "vkGetPhysicalDeviceDisplayPropertiesKHR";
-case ktl::api::command::get_physical_device_display_plane_properties_khr:
-return "vkGetPhysicalDeviceDisplayPlanePropertiesKHR";
-case ktl::api::command::get_display_plane_supported_displays_khr:
-return "vkGetDisplayPlaneSupportedDisplaysKHR";
-case ktl::api::command::get_display_mode_properties_khr:
-return "vkGetDisplayModePropertiesKHR";
-case ktl::api::command::create_display_mode_khr:
-return "vkCreateDisplayModeKHR";
-case ktl::api::command::get_display_plane_capabilities_khr:
-return "vkGetDisplayPlaneCapabilitiesKHR";
-case ktl::api::command::create_display_plane_surface_khr:
-return "vkCreateDisplayPlaneSurfaceKHR";
-case ktl::api::command::create_shared_swapchains_khr:
-return "vkCreateSharedSwapchainsKHR";
-case ktl::api::command::destroy_surface_khr:
-return "vkDestroySurfaceKHR";
-case ktl::api::command::get_physical_device_surface_support_khr:
-return "vkGetPhysicalDeviceSurfaceSupportKHR";
-case ktl::api::command::get_physical_device_surface_capabilities_khr:
-return "vkGetPhysicalDeviceSurfaceCapabilitiesKHR";
-case ktl::api::command::get_physical_device_surface_formats_khr:
-return "vkGetPhysicalDeviceSurfaceFormatsKHR";
-case ktl::api::command::get_physical_device_surface_present_modes_khr:
-return "vkGetPhysicalDeviceSurfacePresentModesKHR";
-case ktl::api::command::create_swapchain_khr:
-return "vkCreateSwapchainKHR";
-case ktl::api::command::destroy_swapchain_khr:
-return "vkDestroySwapchainKHR";
-case ktl::api::command::get_swapchain_images_khr:
-return "vkGetSwapchainImagesKHR";
-case ktl::api::command::acquire_next_image_khr:
-return "vkAcquireNextImageKHR";
-case ktl::api::command::queue_present_khr:
-return "vkQueuePresentKHR";
-case ktl::api::command::create_vi_surface_nn:
-return "vkCreateViSurfaceNN";
-case ktl::api::command::create_wayland_surface_khr:
-return "vkCreateWaylandSurfaceKHR";
-case ktl::api::command::get_physical_device_wayland_presentation_support_khr:
-return "vkGetPhysicalDeviceWaylandPresentationSupportKHR";
-case ktl::api::command::create_ubm_surface_sec:
-return "vkCreateUbmSurfaceSEC";
-case ktl::api::command::get_physical_device_ubm_presentation_support_sec:
-return "vkGetPhysicalDeviceUbmPresentationSupportSEC";
-case ktl::api::command::create_win_32surface_khr:
-return "vkCreateWin32SurfaceKHR";
-case ktl::api::command::get_physical_device_win_32presentation_support_khr:
-return "vkGetPhysicalDeviceWin32PresentationSupportKHR";
-case ktl::api::command::create_xlib_surface_khr:
-return "vkCreateXlibSurfaceKHR";
-case ktl::api::command::get_physical_device_xlib_presentation_support_khr:
-return "vkGetPhysicalDeviceXlibPresentationSupportKHR";
-case ktl::api::command::create_xcb_surface_khr:
-return "vkCreateXcbSurfaceKHR";
-case ktl::api::command::get_physical_device_xcb_presentation_support_khr:
-return "vkGetPhysicalDeviceXcbPresentationSupportKHR";
-case ktl::api::command::create_direct_fb_surface_ext:
-return "vkCreateDirectFBSurfaceEXT";
-case ktl::api::command::get_physical_device_direct_fb_presentation_support_ext:
-return "vkGetPhysicalDeviceDirectFBPresentationSupportEXT";
-case ktl::api::command::create_image_pipe_surface_fuchsia:
-return "vkCreateImagePipeSurfaceFUCHSIA";
-case ktl::api::command::create_stream_descriptor_surface_ggp:
-return "vkCreateStreamDescriptorSurfaceGGP";
-case ktl::api::command::create_screen_surface_qnx:
-return "vkCreateScreenSurfaceQNX";
-case ktl::api::command::get_physical_device_screen_presentation_support_qnx:
-return "vkGetPhysicalDeviceScreenPresentationSupportQNX";
-case ktl::api::command::create_debug_report_callback_ext:
-return "vkCreateDebugReportCallbackEXT";
-case ktl::api::command::destroy_debug_report_callback_ext:
-return "vkDestroyDebugReportCallbackEXT";
-case ktl::api::command::debug_report_message_ext:
-return "vkDebugReportMessageEXT";
-case ktl::api::command::debug_marker_set_object_name_ext:
-return "vkDebugMarkerSetObjectNameEXT";
-case ktl::api::command::debug_marker_set_object_tag_ext:
-return "vkDebugMarkerSetObjectTagEXT";
-case ktl::api::command::cmd_debug_marker_begin_ext:
-return "vkCmdDebugMarkerBeginEXT";
-case ktl::api::command::cmd_debug_marker_end_ext:
-return "vkCmdDebugMarkerEndEXT";
-case ktl::api::command::cmd_debug_marker_insert_ext:
-return "vkCmdDebugMarkerInsertEXT";
-case ktl::api::command::get_physical_device_external_image_format_properties_nv:
-return "vkGetPhysicalDeviceExternalImageFormatPropertiesNV";
-case ktl::api::command::get_memory_win_32handle_nv:
-return "vkGetMemoryWin32HandleNV";
-case ktl::api::command::cmd_execute_generated_commands_nv:
-return "vkCmdExecuteGeneratedCommandsNV";
-case ktl::api::command::cmd_preprocess_generated_commands_nv:
-return "vkCmdPreprocessGeneratedCommandsNV";
-case ktl::api::command::cmd_bind_pipeline_shader_group_nv:
-return "vkCmdBindPipelineShaderGroupNV";
-case ktl::api::command::get_generated_commands_memory_requirements_nv:
-return "vkGetGeneratedCommandsMemoryRequirementsNV";
-case ktl::api::command::create_indirect_commands_layout_nv:
-return "vkCreateIndirectCommandsLayoutNV";
-case ktl::api::command::destroy_indirect_commands_layout_nv:
-return "vkDestroyIndirectCommandsLayoutNV";
-case ktl::api::command::cmd_execute_generated_commands_ext:
-return "vkCmdExecuteGeneratedCommandsEXT";
-case ktl::api::command::cmd_preprocess_generated_commands_ext:
-return "vkCmdPreprocessGeneratedCommandsEXT";
-case ktl::api::command::get_generated_commands_memory_requirements_ext:
-return "vkGetGeneratedCommandsMemoryRequirementsEXT";
-case ktl::api::command::create_indirect_commands_layout_ext:
-return "vkCreateIndirectCommandsLayoutEXT";
-case ktl::api::command::destroy_indirect_commands_layout_ext:
-return "vkDestroyIndirectCommandsLayoutEXT";
-case ktl::api::command::create_indirect_execution_set_ext:
-return "vkCreateIndirectExecutionSetEXT";
-case ktl::api::command::destroy_indirect_execution_set_ext:
-return "vkDestroyIndirectExecutionSetEXT";
-case ktl::api::command::update_indirect_execution_set_pipeline_ext:
-return "vkUpdateIndirectExecutionSetPipelineEXT";
-case ktl::api::command::update_indirect_execution_set_shader_ext:
-return "vkUpdateIndirectExecutionSetShaderEXT";
-case ktl::api::command::get_physical_device_features_2:
-return "vkGetPhysicalDeviceFeatures2";
-case ktl::api::command::get_physical_device_properties_2:
-return "vkGetPhysicalDeviceProperties2";
-case ktl::api::command::get_physical_device_format_properties_2:
-return "vkGetPhysicalDeviceFormatProperties2";
-case ktl::api::command::get_physical_device_image_format_properties_2:
-return "vkGetPhysicalDeviceImageFormatProperties2";
-case ktl::api::command::get_physical_device_queue_family_properties_2:
-return "vkGetPhysicalDeviceQueueFamilyProperties2";
-case ktl::api::command::get_physical_device_memory_properties_2:
-return "vkGetPhysicalDeviceMemoryProperties2";
-case ktl::api::command::get_physical_device_sparse_image_format_properties_2:
-return "vkGetPhysicalDeviceSparseImageFormatProperties2";
-case ktl::api::command::cmd_push_descriptor_set:
-return "vkCmdPushDescriptorSet";
-case ktl::api::command::trim_command_pool:
-return "vkTrimCommandPool";
-case ktl::api::command::get_physical_device_external_buffer_properties:
-return "vkGetPhysicalDeviceExternalBufferProperties";
-case ktl::api::command::get_memory_win_32handle_khr:
-return "vkGetMemoryWin32HandleKHR";
-case ktl::api::command::get_memory_win_32handle_properties_khr:
-return "vkGetMemoryWin32HandlePropertiesKHR";
-case ktl::api::command::get_memory_fd_khr:
-return "vkGetMemoryFdKHR";
-case ktl::api::command::get_memory_fd_properties_khr:
-return "vkGetMemoryFdPropertiesKHR";
-case ktl::api::command::get_memory_zircon_handle_fuchsia:
-return "vkGetMemoryZirconHandleFUCHSIA";
-case ktl::api::command::get_memory_zircon_handle_properties_fuchsia:
-return "vkGetMemoryZirconHandlePropertiesFUCHSIA";
-case ktl::api::command::get_memory_remote_address_nv:
-return "vkGetMemoryRemoteAddressNV";
-case ktl::api::command::get_memory_sci_buf_nv:
-return "vkGetMemorySciBufNV";
-case ktl::api::command::get_physical_device_external_memory_sci_buf_properties_nv:
-return "vkGetPhysicalDeviceExternalMemorySciBufPropertiesNV";
-case ktl::api::command::get_physical_device_sci_buf_attributes_nv:
-return "vkGetPhysicalDeviceSciBufAttributesNV";
-case ktl::api::command::get_physical_device_external_semaphore_properties:
-return "vkGetPhysicalDeviceExternalSemaphoreProperties";
-case ktl::api::command::get_semaphore_win_32handle_khr:
-return "vkGetSemaphoreWin32HandleKHR";
-case ktl::api::command::import_semaphore_win_32handle_khr:
-return "vkImportSemaphoreWin32HandleKHR";
-case ktl::api::command::get_semaphore_fd_khr:
-return "vkGetSemaphoreFdKHR";
-case ktl::api::command::import_semaphore_fd_khr:
-return "vkImportSemaphoreFdKHR";
-case ktl::api::command::get_semaphore_zircon_handle_fuchsia:
-return "vkGetSemaphoreZirconHandleFUCHSIA";
-case ktl::api::command::import_semaphore_zircon_handle_fuchsia:
-return "vkImportSemaphoreZirconHandleFUCHSIA";
-case ktl::api::command::get_physical_device_external_fence_properties:
-return "vkGetPhysicalDeviceExternalFenceProperties";
-case ktl::api::command::get_fence_win_32handle_khr:
-return "vkGetFenceWin32HandleKHR";
-case ktl::api::command::import_fence_win_32handle_khr:
-return "vkImportFenceWin32HandleKHR";
-case ktl::api::command::get_fence_fd_khr:
-return "vkGetFenceFdKHR";
-case ktl::api::command::import_fence_fd_khr:
-return "vkImportFenceFdKHR";
-case ktl::api::command::get_fence_sci_sync_fence_nv:
-return "vkGetFenceSciSyncFenceNV";
-case ktl::api::command::get_fence_sci_sync_obj_nv:
-return "vkGetFenceSciSyncObjNV";
-case ktl::api::command::import_fence_sci_sync_fence_nv:
-return "vkImportFenceSciSyncFenceNV";
-case ktl::api::command::import_fence_sci_sync_obj_nv:
-return "vkImportFenceSciSyncObjNV";
-case ktl::api::command::get_semaphore_sci_sync_obj_nv:
-return "vkGetSemaphoreSciSyncObjNV";
-case ktl::api::command::import_semaphore_sci_sync_obj_nv:
-return "vkImportSemaphoreSciSyncObjNV";
-case ktl::api::command::get_physical_device_sci_sync_attributes_nv:
-return "vkGetPhysicalDeviceSciSyncAttributesNV";
-case ktl::api::command::create_semaphore_sci_sync_pool_nv:
-return "vkCreateSemaphoreSciSyncPoolNV";
-case ktl::api::command::destroy_semaphore_sci_sync_pool_nv:
-return "vkDestroySemaphoreSciSyncPoolNV";
-case ktl::api::command::release_display_ext:
-return "vkReleaseDisplayEXT";
-case ktl::api::command::acquire_xlib_display_ext:
-return "vkAcquireXlibDisplayEXT";
-case ktl::api::command::get_rand_r_output_display_ext:
-return "vkGetRandROutputDisplayEXT";
-case ktl::api::command::acquire_winrt_display_nv:
-return "vkAcquireWinrtDisplayNV";
-case ktl::api::command::get_winrt_display_nv:
-return "vkGetWinrtDisplayNV";
-case ktl::api::command::display_power_control_ext:
-return "vkDisplayPowerControlEXT";
-case ktl::api::command::register_device_event_ext:
-return "vkRegisterDeviceEventEXT";
-case ktl::api::command::register_display_event_ext:
-return "vkRegisterDisplayEventEXT";
-case ktl::api::command::get_swapchain_counter_ext:
-return "vkGetSwapchainCounterEXT";
-case ktl::api::command::get_physical_device_surface_capabilities_2ext:
-return "vkGetPhysicalDeviceSurfaceCapabilities2EXT";
-case ktl::api::command::enumerate_physical_device_groups:
-return "vkEnumeratePhysicalDeviceGroups";
-case ktl::api::command::get_device_group_peer_memory_features:
-return "vkGetDeviceGroupPeerMemoryFeatures";
-case ktl::api::command::bind_buffer_memory_2:
-return "vkBindBufferMemory2";
-case ktl::api::command::bind_image_memory_2:
-return "vkBindImageMemory2";
-case ktl::api::command::cmd_set_device_mask:
-return "vkCmdSetDeviceMask";
-case ktl::api::command::get_device_group_present_capabilities_khr:
-return "vkGetDeviceGroupPresentCapabilitiesKHR";
-case ktl::api::command::get_device_group_surface_present_modes_khr:
-return "vkGetDeviceGroupSurfacePresentModesKHR";
-case ktl::api::command::acquire_next_image_2khr:
-return "vkAcquireNextImage2KHR";
-case ktl::api::command::cmd_dispatch_base:
-return "vkCmdDispatchBase";
-case ktl::api::command::get_physical_device_present_rectangles_khr:
-return "vkGetPhysicalDevicePresentRectanglesKHR";
-case ktl::api::command::create_descriptor_update_template:
-return "vkCreateDescriptorUpdateTemplate";
-case ktl::api::command::destroy_descriptor_update_template:
-return "vkDestroyDescriptorUpdateTemplate";
-case ktl::api::command::update_descriptor_set_with_template:
-return "vkUpdateDescriptorSetWithTemplate";
-case ktl::api::command::cmd_push_descriptor_set_with_template:
-return "vkCmdPushDescriptorSetWithTemplate";
-case ktl::api::command::set_hdr_metadata_ext:
-return "vkSetHdrMetadataEXT";
-case ktl::api::command::get_swapchain_status_khr:
-return "vkGetSwapchainStatusKHR";
-case ktl::api::command::get_refresh_cycle_duration_google:
-return "vkGetRefreshCycleDurationGOOGLE";
-case ktl::api::command::get_past_presentation_timing_google:
-return "vkGetPastPresentationTimingGOOGLE";
-case ktl::api::command::create_ios_surface_mvk:
-return "vkCreateIOSSurfaceMVK";
-case ktl::api::command::create_mac_os_surface_mvk:
-return "vkCreateMacOSSurfaceMVK";
-case ktl::api::command::create_metal_surface_ext:
-return "vkCreateMetalSurfaceEXT";
-case ktl::api::command::cmd_set_viewport_w_scaling_nv:
-return "vkCmdSetViewportWScalingNV";
-case ktl::api::command::cmd_set_discard_rectangle_ext:
-return "vkCmdSetDiscardRectangleEXT";
-case ktl::api::command::cmd_set_discard_rectangle_enable_ext:
-return "vkCmdSetDiscardRectangleEnableEXT";
-case ktl::api::command::cmd_set_discard_rectangle_mode_ext:
-return "vkCmdSetDiscardRectangleModeEXT";
-case ktl::api::command::cmd_set_sample_locations_ext:
-return "vkCmdSetSampleLocationsEXT";
-case ktl::api::command::get_physical_device_multisample_properties_ext:
-return "vkGetPhysicalDeviceMultisamplePropertiesEXT";
-case ktl::api::command::get_physical_device_surface_capabilities_2khr:
-return "vkGetPhysicalDeviceSurfaceCapabilities2KHR";
-case ktl::api::command::get_physical_device_surface_formats_2khr:
-return "vkGetPhysicalDeviceSurfaceFormats2KHR";
-case ktl::api::command::get_physical_device_display_properties_2khr:
-return "vkGetPhysicalDeviceDisplayProperties2KHR";
-case ktl::api::command::get_physical_device_display_plane_properties_2khr:
-return "vkGetPhysicalDeviceDisplayPlaneProperties2KHR";
-case ktl::api::command::get_display_mode_properties_2khr:
-return "vkGetDisplayModeProperties2KHR";
-case ktl::api::command::get_display_plane_capabilities_2khr:
-return "vkGetDisplayPlaneCapabilities2KHR";
-case ktl::api::command::get_buffer_memory_requirements_2:
-return "vkGetBufferMemoryRequirements2";
-case ktl::api::command::get_image_memory_requirements_2:
-return "vkGetImageMemoryRequirements2";
-case ktl::api::command::get_image_sparse_memory_requirements_2:
-return "vkGetImageSparseMemoryRequirements2";
-case ktl::api::command::get_device_buffer_memory_requirements:
-return "vkGetDeviceBufferMemoryRequirements";
-case ktl::api::command::get_device_image_memory_requirements:
-return "vkGetDeviceImageMemoryRequirements";
-case ktl::api::command::get_device_image_sparse_memory_requirements:
-return "vkGetDeviceImageSparseMemoryRequirements";
-case ktl::api::command::create_sampler_ycbcr_conversion:
-return "vkCreateSamplerYcbcrConversion";
-case ktl::api::command::destroy_sampler_ycbcr_conversion:
-return "vkDestroySamplerYcbcrConversion";
-case ktl::api::command::get_device_queue_2:
-return "vkGetDeviceQueue2";
-case ktl::api::command::create_validation_cache_ext:
-return "vkCreateValidationCacheEXT";
-case ktl::api::command::destroy_validation_cache_ext:
-return "vkDestroyValidationCacheEXT";
-case ktl::api::command::get_validation_cache_data_ext:
-return "vkGetValidationCacheDataEXT";
-case ktl::api::command::merge_validation_caches_ext:
-return "vkMergeValidationCachesEXT";
-case ktl::api::command::get_descriptor_set_layout_support:
-return "vkGetDescriptorSetLayoutSupport";
-case ktl::api::command::get_swapchain_gralloc_usage_android:
-return "vkGetSwapchainGrallocUsageANDROID";
-case ktl::api::command::get_swapchain_gralloc_usage_2android:
-return "vkGetSwapchainGrallocUsage2ANDROID";
-case ktl::api::command::acquire_image_android:
-return "vkAcquireImageANDROID";
-case ktl::api::command::queue_signal_release_image_android:
-return "vkQueueSignalReleaseImageANDROID";
-case ktl::api::command::get_shader_info_amd:
-return "vkGetShaderInfoAMD";
-case ktl::api::command::set_local_dimming_amd:
-return "vkSetLocalDimmingAMD";
-case ktl::api::command::get_physical_device_calibrateable_time_domains_khr:
-return "vkGetPhysicalDeviceCalibrateableTimeDomainsKHR";
-case ktl::api::command::get_calibrated_timestamps_khr:
-return "vkGetCalibratedTimestampsKHR";
-case ktl::api::command::set_debug_utils_object_name_ext:
-return "vkSetDebugUtilsObjectNameEXT";
-case ktl::api::command::set_debug_utils_object_tag_ext:
-return "vkSetDebugUtilsObjectTagEXT";
-case ktl::api::command::queue_begin_debug_utils_label_ext:
-return "vkQueueBeginDebugUtilsLabelEXT";
-case ktl::api::command::queue_end_debug_utils_label_ext:
-return "vkQueueEndDebugUtilsLabelEXT";
-case ktl::api::command::queue_insert_debug_utils_label_ext:
-return "vkQueueInsertDebugUtilsLabelEXT";
-case ktl::api::command::cmd_begin_debug_utils_label_ext:
-return "vkCmdBeginDebugUtilsLabelEXT";
-case ktl::api::command::cmd_end_debug_utils_label_ext:
-return "vkCmdEndDebugUtilsLabelEXT";
-case ktl::api::command::cmd_insert_debug_utils_label_ext:
-return "vkCmdInsertDebugUtilsLabelEXT";
-case ktl::api::command::create_debug_utils_messenger_ext:
-return "vkCreateDebugUtilsMessengerEXT";
-case ktl::api::command::destroy_debug_utils_messenger_ext:
-return "vkDestroyDebugUtilsMessengerEXT";
-case ktl::api::command::submit_debug_utils_message_ext:
-return "vkSubmitDebugUtilsMessageEXT";
-case ktl::api::command::get_memory_host_pointer_properties_ext:
-return "vkGetMemoryHostPointerPropertiesEXT";
-case ktl::api::command::cmd_write_buffer_marker_amd:
-return "vkCmdWriteBufferMarkerAMD";
-case ktl::api::command::create_render_pass_2:
-return "vkCreateRenderPass2";
-case ktl::api::command::cmd_begin_render_pass_2:
-return "vkCmdBeginRenderPass2";
-case ktl::api::command::cmd_next_subpass_2:
-return "vkCmdNextSubpass2";
-case ktl::api::command::cmd_end_render_pass_2:
-return "vkCmdEndRenderPass2";
-case ktl::api::command::get_semaphore_counter_value:
-return "vkGetSemaphoreCounterValue";
-case ktl::api::command::wait_semaphores:
-return "vkWaitSemaphores";
-case ktl::api::command::signal_semaphore:
-return "vkSignalSemaphore";
-case ktl::api::command::get_android_hardware_buffer_properties_android:
-return "vkGetAndroidHardwareBufferPropertiesANDROID";
-case ktl::api::command::get_memory_android_hardware_buffer_android:
-return "vkGetMemoryAndroidHardwareBufferANDROID";
-case ktl::api::command::cmd_draw_indirect_count:
-return "vkCmdDrawIndirectCount";
-case ktl::api::command::cmd_draw_indexed_indirect_count:
-return "vkCmdDrawIndexedIndirectCount";
-case ktl::api::command::cmd_set_checkpoint_nv:
-return "vkCmdSetCheckpointNV";
-case ktl::api::command::get_queue_checkpoint_data_nv:
-return "vkGetQueueCheckpointDataNV";
-case ktl::api::command::cmd_bind_transform_feedback_buffers_ext:
-return "vkCmdBindTransformFeedbackBuffersEXT";
-case ktl::api::command::cmd_begin_transform_feedback_ext:
-return "vkCmdBeginTransformFeedbackEXT";
-case ktl::api::command::cmd_end_transform_feedback_ext:
-return "vkCmdEndTransformFeedbackEXT";
-case ktl::api::command::cmd_begin_query_indexed_ext:
-return "vkCmdBeginQueryIndexedEXT";
-case ktl::api::command::cmd_end_query_indexed_ext:
-return "vkCmdEndQueryIndexedEXT";
-case ktl::api::command::cmd_draw_indirect_byte_count_ext:
-return "vkCmdDrawIndirectByteCountEXT";
-case ktl::api::command::cmd_set_exclusive_scissor_nv:
-return "vkCmdSetExclusiveScissorNV";
-case ktl::api::command::cmd_set_exclusive_scissor_enable_nv:
-return "vkCmdSetExclusiveScissorEnableNV";
-case ktl::api::command::cmd_bind_shading_rate_image_nv:
-return "vkCmdBindShadingRateImageNV";
-case ktl::api::command::cmd_set_viewport_shading_rate_palette_nv:
-return "vkCmdSetViewportShadingRatePaletteNV";
-case ktl::api::command::cmd_set_coarse_sample_order_nv:
-return "vkCmdSetCoarseSampleOrderNV";
-case ktl::api::command::cmd_draw_mesh_tasks_nv:
-return "vkCmdDrawMeshTasksNV";
-case ktl::api::command::cmd_draw_mesh_tasks_indirect_nv:
-return "vkCmdDrawMeshTasksIndirectNV";
-case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_nv:
-return "vkCmdDrawMeshTasksIndirectCountNV";
-case ktl::api::command::cmd_draw_mesh_tasks_ext:
-return "vkCmdDrawMeshTasksEXT";
-case ktl::api::command::cmd_draw_mesh_tasks_indirect_ext:
-return "vkCmdDrawMeshTasksIndirectEXT";
-case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_ext:
-return "vkCmdDrawMeshTasksIndirectCountEXT";
-case ktl::api::command::compile_deferred_nv:
-return "vkCompileDeferredNV";
-case ktl::api::command::create_acceleration_structure_nv:
-return "vkCreateAccelerationStructureNV";
-case ktl::api::command::cmd_bind_invocation_mask_huawei:
-return "vkCmdBindInvocationMaskHUAWEI";
-case ktl::api::command::destroy_acceleration_structure_khr:
-return "vkDestroyAccelerationStructureKHR";
-case ktl::api::command::destroy_acceleration_structure_nv:
-return "vkDestroyAccelerationStructureNV";
-case ktl::api::command::get_acceleration_structure_memory_requirements_nv:
-return "vkGetAccelerationStructureMemoryRequirementsNV";
-case ktl::api::command::bind_acceleration_structure_memory_nv:
-return "vkBindAccelerationStructureMemoryNV";
-case ktl::api::command::cmd_copy_acceleration_structure_nv:
-return "vkCmdCopyAccelerationStructureNV";
-case ktl::api::command::cmd_copy_acceleration_structure_khr:
-return "vkCmdCopyAccelerationStructureKHR";
-case ktl::api::command::copy_acceleration_structure_khr:
-return "vkCopyAccelerationStructureKHR";
-case ktl::api::command::cmd_copy_acceleration_structure_to_memory_khr:
-return "vkCmdCopyAccelerationStructureToMemoryKHR";
-case ktl::api::command::copy_acceleration_structure_to_memory_khr:
-return "vkCopyAccelerationStructureToMemoryKHR";
-case ktl::api::command::cmd_copy_memory_to_acceleration_structure_khr:
-return "vkCmdCopyMemoryToAccelerationStructureKHR";
-case ktl::api::command::copy_memory_to_acceleration_structure_khr:
-return "vkCopyMemoryToAccelerationStructureKHR";
-case ktl::api::command::cmd_write_acceleration_structures_properties_khr:
-return "vkCmdWriteAccelerationStructuresPropertiesKHR";
-case ktl::api::command::cmd_write_acceleration_structures_properties_nv:
-return "vkCmdWriteAccelerationStructuresPropertiesNV";
-case ktl::api::command::cmd_build_acceleration_structure_nv:
-return "vkCmdBuildAccelerationStructureNV";
-case ktl::api::command::write_acceleration_structures_properties_khr:
-return "vkWriteAccelerationStructuresPropertiesKHR";
-case ktl::api::command::cmd_trace_rays_khr:
-return "vkCmdTraceRaysKHR";
-case ktl::api::command::cmd_trace_rays_nv:
-return "vkCmdTraceRaysNV";
-case ktl::api::command::get_ray_tracing_shader_group_handles_khr:
-return "vkGetRayTracingShaderGroupHandlesKHR";
-case ktl::api::command::get_ray_tracing_capture_replay_shader_group_handles_khr:
-return "vkGetRayTracingCaptureReplayShaderGroupHandlesKHR";
-case ktl::api::command::get_acceleration_structure_handle_nv:
-return "vkGetAccelerationStructureHandleNV";
-case ktl::api::command::create_ray_tracing_pipelines_nv:
-return "vkCreateRayTracingPipelinesNV";
-case ktl::api::command::create_ray_tracing_pipelines_khr:
-return "vkCreateRayTracingPipelinesKHR";
-case ktl::api::command::get_physical_device_cooperative_matrix_properties_nv:
-return "vkGetPhysicalDeviceCooperativeMatrixPropertiesNV";
-case ktl::api::command::cmd_trace_rays_indirect_khr:
-return "vkCmdTraceRaysIndirectKHR";
-case ktl::api::command::cmd_trace_rays_indirect_2khr:
-return "vkCmdTraceRaysIndirect2KHR";
-case ktl::api::command::get_cluster_acceleration_structure_build_sizes_nv:
-return "vkGetClusterAccelerationStructureBuildSizesNV";
-case ktl::api::command::cmd_build_cluster_acceleration_structure_indirect_nv:
-return "vkCmdBuildClusterAccelerationStructureIndirectNV";
-case ktl::api::command::get_device_acceleration_structure_compatibility_khr:
-return "vkGetDeviceAccelerationStructureCompatibilityKHR";
-case ktl::api::command::get_ray_tracing_shader_group_stack_size_khr:
-return "vkGetRayTracingShaderGroupStackSizeKHR";
-case ktl::api::command::cmd_set_ray_tracing_pipeline_stack_size_khr:
-return "vkCmdSetRayTracingPipelineStackSizeKHR";
-case ktl::api::command::get_image_view_handle_nvx:
-return "vkGetImageViewHandleNVX";
-case ktl::api::command::get_image_view_handle_64nvx:
-return "vkGetImageViewHandle64NVX";
-case ktl::api::command::get_image_view_address_nvx:
-return "vkGetImageViewAddressNVX";
-case ktl::api::command::get_device_combined_image_sampler_index_nvx:
-return "vkGetDeviceCombinedImageSamplerIndexNVX";
-case ktl::api::command::get_physical_device_surface_present_modes_2ext:
-return "vkGetPhysicalDeviceSurfacePresentModes2EXT";
-case ktl::api::command::get_device_group_surface_present_modes_2ext:
-return "vkGetDeviceGroupSurfacePresentModes2EXT";
-case ktl::api::command::acquire_full_screen_exclusive_mode_ext:
-return "vkAcquireFullScreenExclusiveModeEXT";
-case ktl::api::command::release_full_screen_exclusive_mode_ext:
-return "vkReleaseFullScreenExclusiveModeEXT";
-case ktl::api::command::enumerate_physical_device_queue_family_performance_query_counters_khr:
-return "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR";
-case ktl::api::command::get_physical_device_queue_family_performance_query_passes_khr:
-return "vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR";
-case ktl::api::command::acquire_profiling_lock_khr:
-return "vkAcquireProfilingLockKHR";
-case ktl::api::command::release_profiling_lock_khr:
-return "vkReleaseProfilingLockKHR";
-case ktl::api::command::get_image_drm_format_modifier_properties_ext:
-return "vkGetImageDrmFormatModifierPropertiesEXT";
-case ktl::api::command::get_buffer_opaque_capture_address:
-return "vkGetBufferOpaqueCaptureAddress";
-case ktl::api::command::get_buffer_device_address:
-return "vkGetBufferDeviceAddress";
-case ktl::api::command::create_headless_surface_ext:
-return "vkCreateHeadlessSurfaceEXT";
-case ktl::api::command::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv:
-return "vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV";
-case ktl::api::command::initialize_performance_api_intel:
-return "vkInitializePerformanceApiINTEL";
-case ktl::api::command::uninitialize_performance_api_intel:
-return "vkUninitializePerformanceApiINTEL";
-case ktl::api::command::cmd_set_performance_marker_intel:
-return "vkCmdSetPerformanceMarkerINTEL";
-case ktl::api::command::cmd_set_performance_stream_marker_intel:
-return "vkCmdSetPerformanceStreamMarkerINTEL";
-case ktl::api::command::cmd_set_performance_override_intel:
-return "vkCmdSetPerformanceOverrideINTEL";
-case ktl::api::command::acquire_performance_configuration_intel:
-return "vkAcquirePerformanceConfigurationINTEL";
-case ktl::api::command::release_performance_configuration_intel:
-return "vkReleasePerformanceConfigurationINTEL";
-case ktl::api::command::queue_set_performance_configuration_intel:
-return "vkQueueSetPerformanceConfigurationINTEL";
-case ktl::api::command::get_performance_parameter_intel:
-return "vkGetPerformanceParameterINTEL";
-case ktl::api::command::get_device_memory_opaque_capture_address:
-return "vkGetDeviceMemoryOpaqueCaptureAddress";
-case ktl::api::command::get_pipeline_executable_properties_khr:
-return "vkGetPipelineExecutablePropertiesKHR";
-case ktl::api::command::get_pipeline_executable_statistics_khr:
-return "vkGetPipelineExecutableStatisticsKHR";
-case ktl::api::command::get_pipeline_executable_internal_representations_khr:
-return "vkGetPipelineExecutableInternalRepresentationsKHR";
-case ktl::api::command::cmd_set_line_stipple:
-return "vkCmdSetLineStipple";
-case ktl::api::command::get_fault_data:
-return "vkGetFaultData";
-case ktl::api::command::get_physical_device_tool_properties:
-return "vkGetPhysicalDeviceToolProperties";
-case ktl::api::command::create_acceleration_structure_khr:
-return "vkCreateAccelerationStructureKHR";
-case ktl::api::command::cmd_build_acceleration_structures_khr:
-return "vkCmdBuildAccelerationStructuresKHR";
-case ktl::api::command::cmd_build_acceleration_structures_indirect_khr:
-return "vkCmdBuildAccelerationStructuresIndirectKHR";
-case ktl::api::command::build_acceleration_structures_khr:
-return "vkBuildAccelerationStructuresKHR";
-case ktl::api::command::get_acceleration_structure_device_address_khr:
-return "vkGetAccelerationStructureDeviceAddressKHR";
-case ktl::api::command::create_deferred_operation_khr:
-return "vkCreateDeferredOperationKHR";
-case ktl::api::command::destroy_deferred_operation_khr:
-return "vkDestroyDeferredOperationKHR";
-case ktl::api::command::get_deferred_operation_max_concurrency_khr:
-return "vkGetDeferredOperationMaxConcurrencyKHR";
-case ktl::api::command::get_deferred_operation_result_khr:
-return "vkGetDeferredOperationResultKHR";
-case ktl::api::command::deferred_operation_join_khr:
-return "vkDeferredOperationJoinKHR";
-case ktl::api::command::get_pipeline_indirect_memory_requirements_nv:
-return "vkGetPipelineIndirectMemoryRequirementsNV";
-case ktl::api::command::get_pipeline_indirect_device_address_nv:
-return "vkGetPipelineIndirectDeviceAddressNV";
-case ktl::api::command::anti_lag_update_amd:
-return "vkAntiLagUpdateAMD";
-case ktl::api::command::cmd_set_cull_mode:
-return "vkCmdSetCullMode";
-case ktl::api::command::cmd_set_front_face:
-return "vkCmdSetFrontFace";
-case ktl::api::command::cmd_set_primitive_topology:
-return "vkCmdSetPrimitiveTopology";
-case ktl::api::command::cmd_set_viewport_with_count:
-return "vkCmdSetViewportWithCount";
-case ktl::api::command::cmd_set_scissor_with_count:
-return "vkCmdSetScissorWithCount";
-case ktl::api::command::cmd_bind_index_buffer_2:
-return "vkCmdBindIndexBuffer2";
-case ktl::api::command::cmd_bind_vertex_buffers_2:
-return "vkCmdBindVertexBuffers2";
-case ktl::api::command::cmd_set_depth_test_enable:
-return "vkCmdSetDepthTestEnable";
-case ktl::api::command::cmd_set_depth_write_enable:
-return "vkCmdSetDepthWriteEnable";
-case ktl::api::command::cmd_set_depth_compare_op:
-return "vkCmdSetDepthCompareOp";
-case ktl::api::command::cmd_set_depth_bounds_test_enable:
-return "vkCmdSetDepthBoundsTestEnable";
-case ktl::api::command::cmd_set_stencil_test_enable:
-return "vkCmdSetStencilTestEnable";
-case ktl::api::command::cmd_set_stencil_op:
-return "vkCmdSetStencilOp";
-case ktl::api::command::cmd_set_patch_control_points_ext:
-return "vkCmdSetPatchControlPointsEXT";
-case ktl::api::command::cmd_set_rasterizer_discard_enable:
-return "vkCmdSetRasterizerDiscardEnable";
-case ktl::api::command::cmd_set_depth_bias_enable:
-return "vkCmdSetDepthBiasEnable";
-case ktl::api::command::cmd_set_logic_op_ext:
-return "vkCmdSetLogicOpEXT";
-case ktl::api::command::cmd_set_primitive_restart_enable:
-return "vkCmdSetPrimitiveRestartEnable";
-case ktl::api::command::cmd_set_tessellation_domain_origin_ext:
-return "vkCmdSetTessellationDomainOriginEXT";
-case ktl::api::command::cmd_set_depth_clamp_enable_ext:
-return "vkCmdSetDepthClampEnableEXT";
-case ktl::api::command::cmd_set_polygon_mode_ext:
-return "vkCmdSetPolygonModeEXT";
-case ktl::api::command::cmd_set_rasterization_samples_ext:
-return "vkCmdSetRasterizationSamplesEXT";
-case ktl::api::command::cmd_set_sample_mask_ext:
-return "vkCmdSetSampleMaskEXT";
-case ktl::api::command::cmd_set_alpha_to_coverage_enable_ext:
-return "vkCmdSetAlphaToCoverageEnableEXT";
-case ktl::api::command::cmd_set_alpha_to_one_enable_ext:
-return "vkCmdSetAlphaToOneEnableEXT";
-case ktl::api::command::cmd_set_logic_op_enable_ext:
-return "vkCmdSetLogicOpEnableEXT";
-case ktl::api::command::cmd_set_color_blend_enable_ext:
-return "vkCmdSetColorBlendEnableEXT";
-case ktl::api::command::cmd_set_color_blend_equation_ext:
-return "vkCmdSetColorBlendEquationEXT";
-case ktl::api::command::cmd_set_color_write_mask_ext:
-return "vkCmdSetColorWriteMaskEXT";
-case ktl::api::command::cmd_set_rasterization_stream_ext:
-return "vkCmdSetRasterizationStreamEXT";
-case ktl::api::command::cmd_set_conservative_rasterization_mode_ext:
-return "vkCmdSetConservativeRasterizationModeEXT";
-case ktl::api::command::cmd_set_extra_primitive_overestimation_size_ext:
-return "vkCmdSetExtraPrimitiveOverestimationSizeEXT";
-case ktl::api::command::cmd_set_depth_clip_enable_ext:
-return "vkCmdSetDepthClipEnableEXT";
-case ktl::api::command::cmd_set_sample_locations_enable_ext:
-return "vkCmdSetSampleLocationsEnableEXT";
-case ktl::api::command::cmd_set_color_blend_advanced_ext:
-return "vkCmdSetColorBlendAdvancedEXT";
-case ktl::api::command::cmd_set_provoking_vertex_mode_ext:
-return "vkCmdSetProvokingVertexModeEXT";
-case ktl::api::command::cmd_set_line_rasterization_mode_ext:
-return "vkCmdSetLineRasterizationModeEXT";
-case ktl::api::command::cmd_set_line_stipple_enable_ext:
-return "vkCmdSetLineStippleEnableEXT";
-case ktl::api::command::cmd_set_depth_clip_negative_one_to_one_ext:
-return "vkCmdSetDepthClipNegativeOneToOneEXT";
-case ktl::api::command::cmd_set_viewport_w_scaling_enable_nv:
-return "vkCmdSetViewportWScalingEnableNV";
-case ktl::api::command::cmd_set_viewport_swizzle_nv:
-return "vkCmdSetViewportSwizzleNV";
-case ktl::api::command::cmd_set_coverage_to_color_enable_nv:
-return "vkCmdSetCoverageToColorEnableNV";
-case ktl::api::command::cmd_set_coverage_to_color_location_nv:
-return "vkCmdSetCoverageToColorLocationNV";
-case ktl::api::command::cmd_set_coverage_modulation_mode_nv:
-return "vkCmdSetCoverageModulationModeNV";
-case ktl::api::command::cmd_set_coverage_modulation_table_enable_nv:
-return "vkCmdSetCoverageModulationTableEnableNV";
-case ktl::api::command::cmd_set_coverage_modulation_table_nv:
-return "vkCmdSetCoverageModulationTableNV";
-case ktl::api::command::cmd_set_shading_rate_image_enable_nv:
-return "vkCmdSetShadingRateImageEnableNV";
-case ktl::api::command::cmd_set_coverage_reduction_mode_nv:
-return "vkCmdSetCoverageReductionModeNV";
-case ktl::api::command::cmd_set_representative_fragment_test_enable_nv:
-return "vkCmdSetRepresentativeFragmentTestEnableNV";
-case ktl::api::command::create_private_data_slot:
-return "vkCreatePrivateDataSlot";
-case ktl::api::command::destroy_private_data_slot:
-return "vkDestroyPrivateDataSlot";
-case ktl::api::command::set_private_data:
-return "vkSetPrivateData";
-case ktl::api::command::get_private_data:
-return "vkGetPrivateData";
-case ktl::api::command::cmd_copy_buffer_2:
-return "vkCmdCopyBuffer2";
-case ktl::api::command::cmd_copy_image_2:
-return "vkCmdCopyImage2";
-case ktl::api::command::cmd_blit_image_2:
-return "vkCmdBlitImage2";
-case ktl::api::command::cmd_copy_buffer_to_image_2:
-return "vkCmdCopyBufferToImage2";
-case ktl::api::command::cmd_copy_image_to_buffer_2:
-return "vkCmdCopyImageToBuffer2";
-case ktl::api::command::cmd_resolve_image_2:
-return "vkCmdResolveImage2";
-case ktl::api::command::cmd_refresh_objects_khr:
-return "vkCmdRefreshObjectsKHR";
-case ktl::api::command::get_physical_device_refreshable_object_types_khr:
-return "vkGetPhysicalDeviceRefreshableObjectTypesKHR";
-case ktl::api::command::cmd_set_fragment_shading_rate_khr:
-return "vkCmdSetFragmentShadingRateKHR";
-case ktl::api::command::get_physical_device_fragment_shading_rates_khr:
-return "vkGetPhysicalDeviceFragmentShadingRatesKHR";
-case ktl::api::command::cmd_set_fragment_shading_rate_enum_nv:
-return "vkCmdSetFragmentShadingRateEnumNV";
-case ktl::api::command::get_acceleration_structure_build_sizes_khr:
-return "vkGetAccelerationStructureBuildSizesKHR";
-case ktl::api::command::cmd_set_vertex_input_ext:
-return "vkCmdSetVertexInputEXT";
-case ktl::api::command::cmd_set_color_write_enable_ext:
-return "vkCmdSetColorWriteEnableEXT";
-case ktl::api::command::cmd_set_event_2:
-return "vkCmdSetEvent2";
-case ktl::api::command::cmd_reset_event_2:
-return "vkCmdResetEvent2";
-case ktl::api::command::cmd_wait_events_2:
-return "vkCmdWaitEvents2";
-case ktl::api::command::cmd_pipeline_barrier_2:
-return "vkCmdPipelineBarrier2";
-case ktl::api::command::queue_submit_2:
-return "vkQueueSubmit2";
-case ktl::api::command::cmd_write_timestamp_2:
-return "vkCmdWriteTimestamp2";
-case ktl::api::command::cmd_write_buffer_marker_2amd:
-return "vkCmdWriteBufferMarker2AMD";
-case ktl::api::command::get_queue_checkpoint_data_2nv:
-return "vkGetQueueCheckpointData2NV";
-case ktl::api::command::copy_memory_to_image:
-return "vkCopyMemoryToImage";
-case ktl::api::command::copy_image_to_memory:
-return "vkCopyImageToMemory";
-case ktl::api::command::copy_image_to_image:
-return "vkCopyImageToImage";
-case ktl::api::command::transition_image_layout:
-return "vkTransitionImageLayout";
-case ktl::api::command::get_command_pool_memory_consumption:
-return "vkGetCommandPoolMemoryConsumption";
-case ktl::api::command::cmd_decompress_memory_nv:
-return "vkCmdDecompressMemoryNV";
-case ktl::api::command::cmd_decompress_memory_indirect_count_nv:
-return "vkCmdDecompressMemoryIndirectCountNV";
-case ktl::api::command::get_partitioned_acceleration_structures_build_sizes_nv:
-return "vkGetPartitionedAccelerationStructuresBuildSizesNV";
-case ktl::api::command::cmd_build_partitioned_acceleration_structures_nv:
-return "vkCmdBuildPartitionedAccelerationStructuresNV";
-case ktl::api::command::cmd_decompress_memory_ext:
-return "vkCmdDecompressMemoryEXT";
-case ktl::api::command::cmd_decompress_memory_indirect_count_ext:
-return "vkCmdDecompressMemoryIndirectCountEXT";
-case ktl::api::command::create_cu_module_nvx:
-return "vkCreateCuModuleNVX";
-case ktl::api::command::create_cu_function_nvx:
-return "vkCreateCuFunctionNVX";
-case ktl::api::command::destroy_cu_module_nvx:
-return "vkDestroyCuModuleNVX";
-case ktl::api::command::destroy_cu_function_nvx:
-return "vkDestroyCuFunctionNVX";
-case ktl::api::command::cmd_cu_launch_kernel_nvx:
-return "vkCmdCuLaunchKernelNVX";
-case ktl::api::command::get_descriptor_set_layout_size_ext:
-return "vkGetDescriptorSetLayoutSizeEXT";
-case ktl::api::command::get_descriptor_set_layout_binding_offset_ext:
-return "vkGetDescriptorSetLayoutBindingOffsetEXT";
-case ktl::api::command::get_descriptor_ext:
-return "vkGetDescriptorEXT";
-case ktl::api::command::cmd_bind_descriptor_buffers_ext:
-return "vkCmdBindDescriptorBuffersEXT";
-case ktl::api::command::cmd_set_descriptor_buffer_offsets_ext:
-return "vkCmdSetDescriptorBufferOffsetsEXT";
-case ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_ext:
-return "vkCmdBindDescriptorBufferEmbeddedSamplersEXT";
-case ktl::api::command::get_buffer_opaque_capture_descriptor_data_ext:
-return "vkGetBufferOpaqueCaptureDescriptorDataEXT";
-case ktl::api::command::get_image_opaque_capture_descriptor_data_ext:
-return "vkGetImageOpaqueCaptureDescriptorDataEXT";
-case ktl::api::command::get_image_view_opaque_capture_descriptor_data_ext:
-return "vkGetImageViewOpaqueCaptureDescriptorDataEXT";
-case ktl::api::command::get_sampler_opaque_capture_descriptor_data_ext:
-return "vkGetSamplerOpaqueCaptureDescriptorDataEXT";
-case ktl::api::command::get_acceleration_structure_opaque_capture_descriptor_data_ext:
-return "vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT";
-case ktl::api::command::set_device_memory_priority_ext:
-return "vkSetDeviceMemoryPriorityEXT";
-case ktl::api::command::acquire_drm_display_ext:
-return "vkAcquireDrmDisplayEXT";
-case ktl::api::command::get_drm_display_ext:
-return "vkGetDrmDisplayEXT";
-case ktl::api::command::wait_for_present_2khr:
-return "vkWaitForPresent2KHR";
-case ktl::api::command::wait_for_present_khr:
-return "vkWaitForPresentKHR";
-case ktl::api::command::create_buffer_collection_fuchsia:
-return "vkCreateBufferCollectionFUCHSIA";
-case ktl::api::command::set_buffer_collection_buffer_constraints_fuchsia:
-return "vkSetBufferCollectionBufferConstraintsFUCHSIA";
-case ktl::api::command::set_buffer_collection_image_constraints_fuchsia:
-return "vkSetBufferCollectionImageConstraintsFUCHSIA";
-case ktl::api::command::destroy_buffer_collection_fuchsia:
-return "vkDestroyBufferCollectionFUCHSIA";
-case ktl::api::command::get_buffer_collection_properties_fuchsia:
-return "vkGetBufferCollectionPropertiesFUCHSIA";
-case ktl::api::command::create_cuda_module_nv:
-return "vkCreateCudaModuleNV";
-case ktl::api::command::get_cuda_module_cache_nv:
-return "vkGetCudaModuleCacheNV";
-case ktl::api::command::create_cuda_function_nv:
-return "vkCreateCudaFunctionNV";
-case ktl::api::command::destroy_cuda_module_nv:
-return "vkDestroyCudaModuleNV";
-case ktl::api::command::destroy_cuda_function_nv:
-return "vkDestroyCudaFunctionNV";
-case ktl::api::command::cmd_cuda_launch_kernel_nv:
-return "vkCmdCudaLaunchKernelNV";
-case ktl::api::command::cmd_begin_rendering:
-return "vkCmdBeginRendering";
-case ktl::api::command::cmd_end_rendering:
-return "vkCmdEndRendering";
-case ktl::api::command::cmd_end_rendering_2khr:
-return "vkCmdEndRendering2KHR";
-case ktl::api::command::get_descriptor_set_layout_host_mapping_info_valve:
-return "vkGetDescriptorSetLayoutHostMappingInfoVALVE";
-case ktl::api::command::get_descriptor_set_host_mapping_valve:
-return "vkGetDescriptorSetHostMappingVALVE";
-case ktl::api::command::create_micromap_ext:
-return "vkCreateMicromapEXT";
-case ktl::api::command::cmd_build_micromaps_ext:
-return "vkCmdBuildMicromapsEXT";
-case ktl::api::command::build_micromaps_ext:
-return "vkBuildMicromapsEXT";
-case ktl::api::command::destroy_micromap_ext:
-return "vkDestroyMicromapEXT";
-case ktl::api::command::cmd_copy_micromap_ext:
-return "vkCmdCopyMicromapEXT";
-case ktl::api::command::copy_micromap_ext:
-return "vkCopyMicromapEXT";
-case ktl::api::command::cmd_copy_micromap_to_memory_ext:
-return "vkCmdCopyMicromapToMemoryEXT";
-case ktl::api::command::copy_micromap_to_memory_ext:
-return "vkCopyMicromapToMemoryEXT";
-case ktl::api::command::cmd_copy_memory_to_micromap_ext:
-return "vkCmdCopyMemoryToMicromapEXT";
-case ktl::api::command::copy_memory_to_micromap_ext:
-return "vkCopyMemoryToMicromapEXT";
-case ktl::api::command::cmd_write_micromaps_properties_ext:
-return "vkCmdWriteMicromapsPropertiesEXT";
-case ktl::api::command::write_micromaps_properties_ext:
-return "vkWriteMicromapsPropertiesEXT";
-case ktl::api::command::get_device_micromap_compatibility_ext:
-return "vkGetDeviceMicromapCompatibilityEXT";
-case ktl::api::command::get_micromap_build_sizes_ext:
-return "vkGetMicromapBuildSizesEXT";
-case ktl::api::command::get_shader_module_identifier_ext:
-return "vkGetShaderModuleIdentifierEXT";
-case ktl::api::command::get_shader_module_create_info_identifier_ext:
-return "vkGetShaderModuleCreateInfoIdentifierEXT";
-case ktl::api::command::get_image_subresource_layout_2:
-return "vkGetImageSubresourceLayout2";
-case ktl::api::command::get_pipeline_properties_ext:
-return "vkGetPipelinePropertiesEXT";
-case ktl::api::command::export_metal_objects_ext:
-return "vkExportMetalObjectsEXT";
-case ktl::api::command::cmd_bind_tile_memory_qcom:
-return "vkCmdBindTileMemoryQCOM";
-case ktl::api::command::get_framebuffer_tile_properties_qcom:
-return "vkGetFramebufferTilePropertiesQCOM";
-case ktl::api::command::get_dynamic_rendering_tile_properties_qcom:
-return "vkGetDynamicRenderingTilePropertiesQCOM";
-case ktl::api::command::get_physical_device_optical_flow_image_formats_nv:
-return "vkGetPhysicalDeviceOpticalFlowImageFormatsNV";
-case ktl::api::command::create_optical_flow_session_nv:
-return "vkCreateOpticalFlowSessionNV";
-case ktl::api::command::destroy_optical_flow_session_nv:
-return "vkDestroyOpticalFlowSessionNV";
-case ktl::api::command::bind_optical_flow_session_image_nv:
-return "vkBindOpticalFlowSessionImageNV";
-case ktl::api::command::cmd_optical_flow_execute_nv:
-return "vkCmdOpticalFlowExecuteNV";
-case ktl::api::command::get_device_fault_info_ext:
-return "vkGetDeviceFaultInfoEXT";
-case ktl::api::command::get_device_fault_reports_khr:
-return "vkGetDeviceFaultReportsKHR";
-case ktl::api::command::get_device_fault_debug_info_khr:
-return "vkGetDeviceFaultDebugInfoKHR";
-case ktl::api::command::cmd_set_depth_bias_2ext:
-return "vkCmdSetDepthBias2EXT";
-case ktl::api::command::release_swapchain_images_khr:
-return "vkReleaseSwapchainImagesKHR";
-case ktl::api::command::get_device_image_subresource_layout:
-return "vkGetDeviceImageSubresourceLayout";
-case ktl::api::command::map_memory_2:
-return "vkMapMemory2";
-case ktl::api::command::unmap_memory_2:
-return "vkUnmapMemory2";
-case ktl::api::command::create_shaders_ext:
-return "vkCreateShadersEXT";
-case ktl::api::command::destroy_shader_ext:
-return "vkDestroyShaderEXT";
-case ktl::api::command::get_shader_binary_data_ext:
-return "vkGetShaderBinaryDataEXT";
-case ktl::api::command::cmd_bind_shaders_ext:
-return "vkCmdBindShadersEXT";
-case ktl::api::command::set_swapchain_present_timing_queue_size_ext:
-return "vkSetSwapchainPresentTimingQueueSizeEXT";
-case ktl::api::command::get_swapchain_timing_properties_ext:
-return "vkGetSwapchainTimingPropertiesEXT";
-case ktl::api::command::get_swapchain_time_domain_properties_ext:
-return "vkGetSwapchainTimeDomainPropertiesEXT";
-case ktl::api::command::get_past_presentation_timing_ext:
-return "vkGetPastPresentationTimingEXT";
-case ktl::api::command::get_screen_buffer_properties_qnx:
-return "vkGetScreenBufferPropertiesQNX";
-case ktl::api::command::get_physical_device_cooperative_matrix_properties_khr:
-return "vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR";
-case ktl::api::command::get_execution_graph_pipeline_scratch_size_amdx:
-return "vkGetExecutionGraphPipelineScratchSizeAMDX";
-case ktl::api::command::get_execution_graph_pipeline_node_index_amdx:
-return "vkGetExecutionGraphPipelineNodeIndexAMDX";
-case ktl::api::command::create_execution_graph_pipelines_amdx:
-return "vkCreateExecutionGraphPipelinesAMDX";
-case ktl::api::command::cmd_initialize_graph_scratch_memory_amdx:
-return "vkCmdInitializeGraphScratchMemoryAMDX";
-case ktl::api::command::cmd_dispatch_graph_amdx:
-return "vkCmdDispatchGraphAMDX";
-case ktl::api::command::cmd_dispatch_graph_indirect_amdx:
-return "vkCmdDispatchGraphIndirectAMDX";
-case ktl::api::command::cmd_dispatch_graph_indirect_count_amdx:
-return "vkCmdDispatchGraphIndirectCountAMDX";
-case ktl::api::command::create_gpa_session_amd:
-return "vkCreateGpaSessionAMD";
-case ktl::api::command::destroy_gpa_session_amd:
-return "vkDestroyGpaSessionAMD";
-case ktl::api::command::set_gpa_device_clock_mode_amd:
-return "vkSetGpaDeviceClockModeAMD";
-case ktl::api::command::get_gpa_device_clock_info_amd:
-return "vkGetGpaDeviceClockInfoAMD";
-case ktl::api::command::cmd_begin_gpa_session_amd:
-return "vkCmdBeginGpaSessionAMD";
-case ktl::api::command::cmd_end_gpa_session_amd:
-return "vkCmdEndGpaSessionAMD";
-case ktl::api::command::cmd_begin_gpa_sample_amd:
-return "vkCmdBeginGpaSampleAMD";
-case ktl::api::command::cmd_end_gpa_sample_amd:
-return "vkCmdEndGpaSampleAMD";
-case ktl::api::command::get_gpa_session_status_amd:
-return "vkGetGpaSessionStatusAMD";
-case ktl::api::command::get_gpa_session_results_amd:
-return "vkGetGpaSessionResultsAMD";
-case ktl::api::command::reset_gpa_session_amd:
-return "vkResetGpaSessionAMD";
-case ktl::api::command::cmd_copy_gpa_session_results_amd:
-return "vkCmdCopyGpaSessionResultsAMD";
-case ktl::api::command::cmd_bind_descriptor_sets_2:
-return "vkCmdBindDescriptorSets2";
-case ktl::api::command::cmd_push_constants_2:
-return "vkCmdPushConstants2";
-case ktl::api::command::cmd_push_descriptor_set_2:
-return "vkCmdPushDescriptorSet2";
-case ktl::api::command::cmd_push_descriptor_set_with_template_2:
-return "vkCmdPushDescriptorSetWithTemplate2";
-case ktl::api::command::cmd_set_descriptor_buffer_offsets_2ext:
-return "vkCmdSetDescriptorBufferOffsets2EXT";
-case ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2ext:
-return "vkCmdBindDescriptorBufferEmbeddedSamplers2EXT";
-case ktl::api::command::set_latency_sleep_mode_nv:
-return "vkSetLatencySleepModeNV";
-case ktl::api::command::latency_sleep_nv:
-return "vkLatencySleepNV";
-case ktl::api::command::set_latency_marker_nv:
-return "vkSetLatencyMarkerNV";
-case ktl::api::command::get_latency_timings_nv:
-return "vkGetLatencyTimingsNV";
-case ktl::api::command::queue_notify_out_of_band_nv:
-return "vkQueueNotifyOutOfBandNV";
-case ktl::api::command::cmd_set_rendering_attachment_locations:
-return "vkCmdSetRenderingAttachmentLocations";
-case ktl::api::command::cmd_set_rendering_input_attachment_indices:
-return "vkCmdSetRenderingInputAttachmentIndices";
-case ktl::api::command::cmd_set_depth_clamp_range_ext:
-return "vkCmdSetDepthClampRangeEXT";
-case ktl::api::command::get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv:
-return "vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV";
-case ktl::api::command::get_memory_metal_handle_ext:
-return "vkGetMemoryMetalHandleEXT";
-case ktl::api::command::get_memory_metal_handle_properties_ext:
-return "vkGetMemoryMetalHandlePropertiesEXT";
-case ktl::api::command::get_physical_device_cooperative_vector_properties_nv:
-return "vkGetPhysicalDeviceCooperativeVectorPropertiesNV";
-case ktl::api::command::convert_cooperative_vector_matrix_nv:
-return "vkConvertCooperativeVectorMatrixNV";
-case ktl::api::command::cmd_convert_cooperative_vector_matrix_nv:
-return "vkCmdConvertCooperativeVectorMatrixNV";
-case ktl::api::command::cmd_dispatch_tile_qcom:
-return "vkCmdDispatchTileQCOM";
-case ktl::api::command::cmd_begin_per_tile_execution_qcom:
-return "vkCmdBeginPerTileExecutionQCOM";
-case ktl::api::command::cmd_end_per_tile_execution_qcom:
-return "vkCmdEndPerTileExecutionQCOM";
-case ktl::api::command::create_external_compute_queue_nv:
-return "vkCreateExternalComputeQueueNV";
-case ktl::api::command::destroy_external_compute_queue_nv:
-return "vkDestroyExternalComputeQueueNV";
-case ktl::api::command::get_external_compute_queue_data_nv:
-return "vkGetExternalComputeQueueDataNV";
-case ktl::api::command::enumerate_physical_device_shader_instrumentation_metrics_arm:
-return "vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM";
-case ktl::api::command::create_shader_instrumentation_arm:
-return "vkCreateShaderInstrumentationARM";
-case ktl::api::command::destroy_shader_instrumentation_arm:
-return "vkDestroyShaderInstrumentationARM";
-case ktl::api::command::cmd_begin_shader_instrumentation_arm:
-return "vkCmdBeginShaderInstrumentationARM";
-case ktl::api::command::cmd_end_shader_instrumentation_arm:
-return "vkCmdEndShaderInstrumentationARM";
-case ktl::api::command::get_shader_instrumentation_values_arm:
-return "vkGetShaderInstrumentationValuesARM";
-case ktl::api::command::clear_shader_instrumentation_metrics_arm:
-return "vkClearShaderInstrumentationMetricsARM";
-case ktl::api::command::create_tensor_arm:
-return "vkCreateTensorARM";
-case ktl::api::command::destroy_tensor_arm:
-return "vkDestroyTensorARM";
-case ktl::api::command::create_tensor_view_arm:
-return "vkCreateTensorViewARM";
-case ktl::api::command::destroy_tensor_view_arm:
-return "vkDestroyTensorViewARM";
-case ktl::api::command::get_tensor_memory_requirements_arm:
-return "vkGetTensorMemoryRequirementsARM";
-case ktl::api::command::bind_tensor_memory_arm:
-return "vkBindTensorMemoryARM";
-case ktl::api::command::get_device_tensor_memory_requirements_arm:
-return "vkGetDeviceTensorMemoryRequirementsARM";
-case ktl::api::command::cmd_copy_tensor_arm:
-return "vkCmdCopyTensorARM";
-case ktl::api::command::get_tensor_opaque_capture_descriptor_data_arm:
-return "vkGetTensorOpaqueCaptureDescriptorDataARM";
-case ktl::api::command::get_tensor_view_opaque_capture_descriptor_data_arm:
-return "vkGetTensorViewOpaqueCaptureDescriptorDataARM";
-case ktl::api::command::get_physical_device_external_tensor_properties_arm:
-return "vkGetPhysicalDeviceExternalTensorPropertiesARM";
-case ktl::api::command::create_data_graph_pipelines_arm:
-return "vkCreateDataGraphPipelinesARM";
-case ktl::api::command::create_data_graph_pipeline_session_arm:
-return "vkCreateDataGraphPipelineSessionARM";
-case ktl::api::command::get_data_graph_pipeline_session_bind_point_requirements_arm:
-return "vkGetDataGraphPipelineSessionBindPointRequirementsARM";
-case ktl::api::command::get_data_graph_pipeline_session_memory_requirements_arm:
-return "vkGetDataGraphPipelineSessionMemoryRequirementsARM";
-case ktl::api::command::bind_data_graph_pipeline_session_memory_arm:
-return "vkBindDataGraphPipelineSessionMemoryARM";
-case ktl::api::command::destroy_data_graph_pipeline_session_arm:
-return "vkDestroyDataGraphPipelineSessionARM";
-case ktl::api::command::cmd_dispatch_data_graph_arm:
-return "vkCmdDispatchDataGraphARM";
-case ktl::api::command::get_data_graph_pipeline_available_properties_arm:
-return "vkGetDataGraphPipelineAvailablePropertiesARM";
-case ktl::api::command::get_data_graph_pipeline_properties_arm:
-return "vkGetDataGraphPipelinePropertiesARM";
-case ktl::api::command::get_physical_device_queue_family_data_graph_properties_arm:
-return "vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM";
-case ktl::api::command::get_physical_device_queue_family_data_graph_processing_engine_properties_arm:
-return "vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM";
-case ktl::api::command::get_native_buffer_properties_ohos:
-return "vkGetNativeBufferPropertiesOHOS";
-case ktl::api::command::get_memory_native_buffer_ohos:
-return "vkGetMemoryNativeBufferOHOS";
-case ktl::api::command::get_swapchain_gralloc_usage_ohos:
-return "vkGetSwapchainGrallocUsageOHOS";
-case ktl::api::command::acquire_image_ohos:
-return "vkAcquireImageOHOS";
-case ktl::api::command::queue_signal_release_image_ohos:
-return "vkQueueSignalReleaseImageOHOS";
-case ktl::api::command::queue_set_perf_hint_qcom:
-return "vkQueueSetPerfHintQCOM";
-case ktl::api::command::enumerate_physical_device_queue_family_performance_counters_by_region_arm:
-return "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM";
-case ktl::api::command::cmd_set_compute_occupancy_priority_nv:
-return "vkCmdSetComputeOccupancyPriorityNV";
-case ktl::api::command::write_sampler_descriptors_ext:
-return "vkWriteSamplerDescriptorsEXT";
-case ktl::api::command::write_resource_descriptors_ext:
-return "vkWriteResourceDescriptorsEXT";
-case ktl::api::command::cmd_bind_sampler_heap_ext:
-return "vkCmdBindSamplerHeapEXT";
-case ktl::api::command::cmd_bind_resource_heap_ext:
-return "vkCmdBindResourceHeapEXT";
-case ktl::api::command::cmd_push_data_ext:
-return "vkCmdPushDataEXT";
-case ktl::api::command::register_custom_border_color_ext:
-return "vkRegisterCustomBorderColorEXT";
-case ktl::api::command::unregister_custom_border_color_ext:
-return "vkUnregisterCustomBorderColorEXT";
-case ktl::api::command::get_image_opaque_capture_data_ext:
-return "vkGetImageOpaqueCaptureDataEXT";
-case ktl::api::command::get_physical_device_descriptor_size_ext:
-return "vkGetPhysicalDeviceDescriptorSizeEXT";
-case ktl::api::command::get_tensor_opaque_capture_data_arm:
-return "vkGetTensorOpaqueCaptureDataARM";
-case ktl::api::command::cmd_copy_memory_khr:
-return "vkCmdCopyMemoryKHR";
-case ktl::api::command::cmd_copy_memory_to_image_khr:
-return "vkCmdCopyMemoryToImageKHR";
-case ktl::api::command::cmd_copy_image_to_memory_khr:
-return "vkCmdCopyImageToMemoryKHR";
-case ktl::api::command::cmd_update_memory_khr:
-return "vkCmdUpdateMemoryKHR";
-case ktl::api::command::cmd_fill_memory_khr:
-return "vkCmdFillMemoryKHR";
-case ktl::api::command::cmd_copy_query_pool_results_to_memory_khr:
-return "vkCmdCopyQueryPoolResultsToMemoryKHR";
-case ktl::api::command::cmd_begin_conditional_rendering_2ext:
-return "vkCmdBeginConditionalRendering2EXT";
-case ktl::api::command::cmd_bind_transform_feedback_buffers_2ext:
-return "vkCmdBindTransformFeedbackBuffers2EXT";
-case ktl::api::command::cmd_begin_transform_feedback_2ext:
-return "vkCmdBeginTransformFeedback2EXT";
-case ktl::api::command::cmd_end_transform_feedback_2ext:
-return "vkCmdEndTransformFeedback2EXT";
-case ktl::api::command::cmd_draw_indirect_byte_count_2ext:
-return "vkCmdDrawIndirectByteCount2EXT";
-case ktl::api::command::cmd_write_marker_to_memory_amd:
-return "vkCmdWriteMarkerToMemoryAMD";
-case ktl::api::command::cmd_bind_index_buffer_3khr:
-return "vkCmdBindIndexBuffer3KHR";
-case ktl::api::command::cmd_bind_vertex_buffers_3khr:
-return "vkCmdBindVertexBuffers3KHR";
-case ktl::api::command::cmd_draw_indirect_2khr:
-return "vkCmdDrawIndirect2KHR";
-case ktl::api::command::cmd_draw_indexed_indirect_2khr:
-return "vkCmdDrawIndexedIndirect2KHR";
-case ktl::api::command::cmd_draw_indirect_count_2khr:
-return "vkCmdDrawIndirectCount2KHR";
-case ktl::api::command::cmd_draw_indexed_indirect_count_2khr:
-return "vkCmdDrawIndexedIndirectCount2KHR";
-case ktl::api::command::cmd_draw_mesh_tasks_indirect_2ext:
-return "vkCmdDrawMeshTasksIndirect2EXT";
-case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2ext:
-return "vkCmdDrawMeshTasksIndirectCount2EXT";
-case ktl::api::command::cmd_dispatch_indirect_2khr:
-return "vkCmdDispatchIndirect2KHR";
-case ktl::api::command::create_acceleration_structure_2khr:
-return "vkCreateAccelerationStructure2KHR";
-case ktl::api::command::get_physical_device_queue_family_data_graph_engine_operation_properties_arm:
-return "vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM";
-case ktl::api::command::cmd_set_dispatch_parameters_arm:
-return "vkCmdSetDispatchParametersARM";
-case ktl::api::command::get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm:
-return "vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM";
-}}}
+    case ktl::api::command::create_instance:
+        return "vkCreateInstance";
+    case ktl::api::command::destroy_instance:
+        return "vkDestroyInstance";
+    case ktl::api::command::enumerate_physical_devices:
+        return "vkEnumeratePhysicalDevices";
+    case ktl::api::command::get_device_proc_addr:
+        return "vkGetDeviceProcAddr";
+    case ktl::api::command::get_instance_proc_addr:
+        return "vkGetInstanceProcAddr";
+    case ktl::api::command::get_physical_device_properties:
+        return "vkGetPhysicalDeviceProperties";
+    case ktl::api::command::get_physical_device_queue_family_properties:
+        return "vkGetPhysicalDeviceQueueFamilyProperties";
+    case ktl::api::command::get_physical_device_memory_properties:
+        return "vkGetPhysicalDeviceMemoryProperties";
+    case ktl::api::command::get_physical_device_features:
+        return "vkGetPhysicalDeviceFeatures";
+    case ktl::api::command::get_physical_device_format_properties:
+        return "vkGetPhysicalDeviceFormatProperties";
+    case ktl::api::command::get_physical_device_image_format_properties:
+        return "vkGetPhysicalDeviceImageFormatProperties";
+    case ktl::api::command::create_device:
+        return "vkCreateDevice";
+    case ktl::api::command::destroy_device:
+        return "vkDestroyDevice";
+    case ktl::api::command::enumerate_instance_version:
+        return "vkEnumerateInstanceVersion";
+    case ktl::api::command::enumerate_instance_layer_properties:
+        return "vkEnumerateInstanceLayerProperties";
+    case ktl::api::command::enumerate_instance_extension_properties:
+        return "vkEnumerateInstanceExtensionProperties";
+    case ktl::api::command::enumerate_device_layer_properties:
+        return "vkEnumerateDeviceLayerProperties";
+    case ktl::api::command::enumerate_device_extension_properties:
+        return "vkEnumerateDeviceExtensionProperties";
+    case ktl::api::command::get_device_queue:
+        return "vkGetDeviceQueue";
+    case ktl::api::command::queue_submit:
+        return "vkQueueSubmit";
+    case ktl::api::command::queue_wait_idle:
+        return "vkQueueWaitIdle";
+    case ktl::api::command::device_wait_idle:
+        return "vkDeviceWaitIdle";
+    case ktl::api::command::allocate_memory:
+        return "vkAllocateMemory";
+    case ktl::api::command::free_memory:
+        return "vkFreeMemory";
+    case ktl::api::command::map_memory:
+        return "vkMapMemory";
+    case ktl::api::command::unmap_memory:
+        return "vkUnmapMemory";
+    case ktl::api::command::flush_mapped_memory_ranges:
+        return "vkFlushMappedMemoryRanges";
+    case ktl::api::command::invalidate_mapped_memory_ranges:
+        return "vkInvalidateMappedMemoryRanges";
+    case ktl::api::command::get_device_memory_commitment:
+        return "vkGetDeviceMemoryCommitment";
+    case ktl::api::command::get_buffer_memory_requirements:
+        return "vkGetBufferMemoryRequirements";
+    case ktl::api::command::bind_buffer_memory:
+        return "vkBindBufferMemory";
+    case ktl::api::command::get_image_memory_requirements:
+        return "vkGetImageMemoryRequirements";
+    case ktl::api::command::bind_image_memory:
+        return "vkBindImageMemory";
+    case ktl::api::command::get_image_sparse_memory_requirements:
+        return "vkGetImageSparseMemoryRequirements";
+    case ktl::api::command::get_physical_device_sparse_image_format_properties:
+        return "vkGetPhysicalDeviceSparseImageFormatProperties";
+    case ktl::api::command::queue_bind_sparse:
+        return "vkQueueBindSparse";
+    case ktl::api::command::create_fence:
+        return "vkCreateFence";
+    case ktl::api::command::destroy_fence:
+        return "vkDestroyFence";
+    case ktl::api::command::reset_fences:
+        return "vkResetFences";
+    case ktl::api::command::get_fence_status:
+        return "vkGetFenceStatus";
+    case ktl::api::command::wait_for_fences:
+        return "vkWaitForFences";
+    case ktl::api::command::create_semaphore:
+        return "vkCreateSemaphore";
+    case ktl::api::command::destroy_semaphore:
+        return "vkDestroySemaphore";
+    case ktl::api::command::create_event:
+        return "vkCreateEvent";
+    case ktl::api::command::destroy_event:
+        return "vkDestroyEvent";
+    case ktl::api::command::get_event_status:
+        return "vkGetEventStatus";
+    case ktl::api::command::set_event:
+        return "vkSetEvent";
+    case ktl::api::command::reset_event:
+        return "vkResetEvent";
+    case ktl::api::command::create_query_pool:
+        return "vkCreateQueryPool";
+    case ktl::api::command::destroy_query_pool:
+        return "vkDestroyQueryPool";
+    case ktl::api::command::get_query_pool_results:
+        return "vkGetQueryPoolResults";
+    case ktl::api::command::reset_query_pool:
+        return "vkResetQueryPool";
+    case ktl::api::command::create_buffer:
+        return "vkCreateBuffer";
+    case ktl::api::command::destroy_buffer:
+        return "vkDestroyBuffer";
+    case ktl::api::command::create_buffer_view:
+        return "vkCreateBufferView";
+    case ktl::api::command::destroy_buffer_view:
+        return "vkDestroyBufferView";
+    case ktl::api::command::create_image:
+        return "vkCreateImage";
+    case ktl::api::command::destroy_image:
+        return "vkDestroyImage";
+    case ktl::api::command::get_image_subresource_layout:
+        return "vkGetImageSubresourceLayout";
+    case ktl::api::command::create_image_view:
+        return "vkCreateImageView";
+    case ktl::api::command::destroy_image_view:
+        return "vkDestroyImageView";
+    case ktl::api::command::create_shader_module:
+        return "vkCreateShaderModule";
+    case ktl::api::command::destroy_shader_module:
+        return "vkDestroyShaderModule";
+    case ktl::api::command::create_pipeline_cache:
+        return "vkCreatePipelineCache";
+    case ktl::api::command::destroy_pipeline_cache:
+        return "vkDestroyPipelineCache";
+    case ktl::api::command::get_pipeline_cache_data:
+        return "vkGetPipelineCacheData";
+    case ktl::api::command::merge_pipeline_caches:
+        return "vkMergePipelineCaches";
+    case ktl::api::command::create_pipeline_binaries_khr:
+        return "vkCreatePipelineBinariesKHR";
+    case ktl::api::command::destroy_pipeline_binary_khr:
+        return "vkDestroyPipelineBinaryKHR";
+    case ktl::api::command::get_pipeline_key_khr:
+        return "vkGetPipelineKeyKHR";
+    case ktl::api::command::get_pipeline_binary_data_khr:
+        return "vkGetPipelineBinaryDataKHR";
+    case ktl::api::command::release_captured_pipeline_data_khr:
+        return "vkReleaseCapturedPipelineDataKHR";
+    case ktl::api::command::create_graphics_pipelines:
+        return "vkCreateGraphicsPipelines";
+    case ktl::api::command::create_compute_pipelines:
+        return "vkCreateComputePipelines";
+    case ktl::api::command::get_device_subpass_shading_max_workgroup_size_huawei:
+        return "vkGetDeviceSubpassShadingMaxWorkgroupSizeHUAWEI";
+    case ktl::api::command::destroy_pipeline:
+        return "vkDestroyPipeline";
+    case ktl::api::command::create_pipeline_layout:
+        return "vkCreatePipelineLayout";
+    case ktl::api::command::destroy_pipeline_layout:
+        return "vkDestroyPipelineLayout";
+    case ktl::api::command::create_sampler:
+        return "vkCreateSampler";
+    case ktl::api::command::destroy_sampler:
+        return "vkDestroySampler";
+    case ktl::api::command::create_descriptor_set_layout:
+        return "vkCreateDescriptorSetLayout";
+    case ktl::api::command::destroy_descriptor_set_layout:
+        return "vkDestroyDescriptorSetLayout";
+    case ktl::api::command::create_descriptor_pool:
+        return "vkCreateDescriptorPool";
+    case ktl::api::command::destroy_descriptor_pool:
+        return "vkDestroyDescriptorPool";
+    case ktl::api::command::reset_descriptor_pool:
+        return "vkResetDescriptorPool";
+    case ktl::api::command::allocate_descriptor_sets:
+        return "vkAllocateDescriptorSets";
+    case ktl::api::command::free_descriptor_sets:
+        return "vkFreeDescriptorSets";
+    case ktl::api::command::update_descriptor_sets:
+        return "vkUpdateDescriptorSets";
+    case ktl::api::command::create_framebuffer:
+        return "vkCreateFramebuffer";
+    case ktl::api::command::destroy_framebuffer:
+        return "vkDestroyFramebuffer";
+    case ktl::api::command::create_render_pass:
+        return "vkCreateRenderPass";
+    case ktl::api::command::destroy_render_pass:
+        return "vkDestroyRenderPass";
+    case ktl::api::command::get_render_area_granularity:
+        return "vkGetRenderAreaGranularity";
+    case ktl::api::command::get_rendering_area_granularity:
+        return "vkGetRenderingAreaGranularity";
+    case ktl::api::command::create_command_pool:
+        return "vkCreateCommandPool";
+    case ktl::api::command::destroy_command_pool:
+        return "vkDestroyCommandPool";
+    case ktl::api::command::reset_command_pool:
+        return "vkResetCommandPool";
+    case ktl::api::command::allocate_command_buffers:
+        return "vkAllocateCommandBuffers";
+    case ktl::api::command::free_command_buffers:
+        return "vkFreeCommandBuffers";
+    case ktl::api::command::begin_command_buffer:
+        return "vkBeginCommandBuffer";
+    case ktl::api::command::end_command_buffer:
+        return "vkEndCommandBuffer";
+    case ktl::api::command::reset_command_buffer:
+        return "vkResetCommandBuffer";
+    case ktl::api::command::cmd_bind_pipeline:
+        return "vkCmdBindPipeline";
+    case ktl::api::command::cmd_set_primitive_restart_index_ext:
+        return "vkCmdSetPrimitiveRestartIndexEXT";
+    case ktl::api::command::cmd_set_attachment_feedback_loop_enable_ext:
+        return "vkCmdSetAttachmentFeedbackLoopEnableEXT";
+    case ktl::api::command::cmd_set_viewport:
+        return "vkCmdSetViewport";
+    case ktl::api::command::cmd_set_scissor:
+        return "vkCmdSetScissor";
+    case ktl::api::command::cmd_set_line_width:
+        return "vkCmdSetLineWidth";
+    case ktl::api::command::cmd_set_depth_bias:
+        return "vkCmdSetDepthBias";
+    case ktl::api::command::cmd_set_blend_constants:
+        return "vkCmdSetBlendConstants";
+    case ktl::api::command::cmd_set_depth_bounds:
+        return "vkCmdSetDepthBounds";
+    case ktl::api::command::cmd_set_stencil_compare_mask:
+        return "vkCmdSetStencilCompareMask";
+    case ktl::api::command::cmd_set_stencil_write_mask:
+        return "vkCmdSetStencilWriteMask";
+    case ktl::api::command::cmd_set_stencil_reference:
+        return "vkCmdSetStencilReference";
+    case ktl::api::command::cmd_bind_descriptor_sets:
+        return "vkCmdBindDescriptorSets";
+    case ktl::api::command::cmd_bind_index_buffer:
+        return "vkCmdBindIndexBuffer";
+    case ktl::api::command::cmd_bind_vertex_buffers:
+        return "vkCmdBindVertexBuffers";
+    case ktl::api::command::cmd_draw:
+        return "vkCmdDraw";
+    case ktl::api::command::cmd_draw_indexed:
+        return "vkCmdDrawIndexed";
+    case ktl::api::command::cmd_draw_multi_ext:
+        return "vkCmdDrawMultiEXT";
+    case ktl::api::command::cmd_draw_multi_indexed_ext:
+        return "vkCmdDrawMultiIndexedEXT";
+    case ktl::api::command::cmd_draw_indirect:
+        return "vkCmdDrawIndirect";
+    case ktl::api::command::cmd_draw_indexed_indirect:
+        return "vkCmdDrawIndexedIndirect";
+    case ktl::api::command::cmd_dispatch:
+        return "vkCmdDispatch";
+    case ktl::api::command::cmd_dispatch_indirect:
+        return "vkCmdDispatchIndirect";
+    case ktl::api::command::cmd_subpass_shading_huawei:
+        return "vkCmdSubpassShadingHUAWEI";
+    case ktl::api::command::cmd_draw_cluster_huawei:
+        return "vkCmdDrawClusterHUAWEI";
+    case ktl::api::command::cmd_draw_cluster_indirect_huawei:
+        return "vkCmdDrawClusterIndirectHUAWEI";
+    case ktl::api::command::cmd_update_pipeline_indirect_buffer_nv:
+        return "vkCmdUpdatePipelineIndirectBufferNV";
+    case ktl::api::command::cmd_copy_buffer:
+        return "vkCmdCopyBuffer";
+    case ktl::api::command::cmd_copy_image:
+        return "vkCmdCopyImage";
+    case ktl::api::command::cmd_blit_image:
+        return "vkCmdBlitImage";
+    case ktl::api::command::cmd_copy_buffer_to_image:
+        return "vkCmdCopyBufferToImage";
+    case ktl::api::command::cmd_copy_image_to_buffer:
+        return "vkCmdCopyImageToBuffer";
+    case ktl::api::command::cmd_copy_memory_indirect_nv:
+        return "vkCmdCopyMemoryIndirectNV";
+    case ktl::api::command::cmd_copy_memory_indirect_khr:
+        return "vkCmdCopyMemoryIndirectKHR";
+    case ktl::api::command::cmd_copy_memory_to_image_indirect_nv:
+        return "vkCmdCopyMemoryToImageIndirectNV";
+    case ktl::api::command::cmd_copy_memory_to_image_indirect_khr:
+        return "vkCmdCopyMemoryToImageIndirectKHR";
+    case ktl::api::command::cmd_update_buffer:
+        return "vkCmdUpdateBuffer";
+    case ktl::api::command::cmd_fill_buffer:
+        return "vkCmdFillBuffer";
+    case ktl::api::command::cmd_clear_color_image:
+        return "vkCmdClearColorImage";
+    case ktl::api::command::cmd_clear_depth_stencil_image:
+        return "vkCmdClearDepthStencilImage";
+    case ktl::api::command::cmd_clear_attachments:
+        return "vkCmdClearAttachments";
+    case ktl::api::command::cmd_resolve_image:
+        return "vkCmdResolveImage";
+    case ktl::api::command::cmd_set_event:
+        return "vkCmdSetEvent";
+    case ktl::api::command::cmd_reset_event:
+        return "vkCmdResetEvent";
+    case ktl::api::command::cmd_wait_events:
+        return "vkCmdWaitEvents";
+    case ktl::api::command::cmd_pipeline_barrier:
+        return "vkCmdPipelineBarrier";
+    case ktl::api::command::cmd_begin_query:
+        return "vkCmdBeginQuery";
+    case ktl::api::command::cmd_end_query:
+        return "vkCmdEndQuery";
+    case ktl::api::command::cmd_begin_conditional_rendering_ext:
+        return "vkCmdBeginConditionalRenderingEXT";
+    case ktl::api::command::cmd_end_conditional_rendering_ext:
+        return "vkCmdEndConditionalRenderingEXT";
+    case ktl::api::command::cmd_begin_custom_resolve_ext:
+        return "vkCmdBeginCustomResolveEXT";
+    case ktl::api::command::cmd_reset_query_pool:
+        return "vkCmdResetQueryPool";
+    case ktl::api::command::cmd_write_timestamp:
+        return "vkCmdWriteTimestamp";
+    case ktl::api::command::cmd_copy_query_pool_results:
+        return "vkCmdCopyQueryPoolResults";
+    case ktl::api::command::cmd_push_constants:
+        return "vkCmdPushConstants";
+    case ktl::api::command::cmd_begin_render_pass:
+        return "vkCmdBeginRenderPass";
+    case ktl::api::command::cmd_next_subpass:
+        return "vkCmdNextSubpass";
+    case ktl::api::command::cmd_end_render_pass:
+        return "vkCmdEndRenderPass";
+    case ktl::api::command::cmd_execute_commands:
+        return "vkCmdExecuteCommands";
+    case ktl::api::command::create_android_surface_khr:
+        return "vkCreateAndroidSurfaceKHR";
+    case ktl::api::command::create_surface_ohos:
+        return "vkCreateSurfaceOHOS";
+    case ktl::api::command::get_physical_device_display_properties_khr:
+        return "vkGetPhysicalDeviceDisplayPropertiesKHR";
+    case ktl::api::command::get_physical_device_display_plane_properties_khr:
+        return "vkGetPhysicalDeviceDisplayPlanePropertiesKHR";
+    case ktl::api::command::get_display_plane_supported_displays_khr:
+        return "vkGetDisplayPlaneSupportedDisplaysKHR";
+    case ktl::api::command::get_display_mode_properties_khr:
+        return "vkGetDisplayModePropertiesKHR";
+    case ktl::api::command::create_display_mode_khr:
+        return "vkCreateDisplayModeKHR";
+    case ktl::api::command::get_display_plane_capabilities_khr:
+        return "vkGetDisplayPlaneCapabilitiesKHR";
+    case ktl::api::command::create_display_plane_surface_khr:
+        return "vkCreateDisplayPlaneSurfaceKHR";
+    case ktl::api::command::create_shared_swapchains_khr:
+        return "vkCreateSharedSwapchainsKHR";
+    case ktl::api::command::destroy_surface_khr:
+        return "vkDestroySurfaceKHR";
+    case ktl::api::command::get_physical_device_surface_support_khr:
+        return "vkGetPhysicalDeviceSurfaceSupportKHR";
+    case ktl::api::command::get_physical_device_surface_capabilities_khr:
+        return "vkGetPhysicalDeviceSurfaceCapabilitiesKHR";
+    case ktl::api::command::get_physical_device_surface_formats_khr:
+        return "vkGetPhysicalDeviceSurfaceFormatsKHR";
+    case ktl::api::command::get_physical_device_surface_present_modes_khr:
+        return "vkGetPhysicalDeviceSurfacePresentModesKHR";
+    case ktl::api::command::create_swapchain_khr:
+        return "vkCreateSwapchainKHR";
+    case ktl::api::command::destroy_swapchain_khr:
+        return "vkDestroySwapchainKHR";
+    case ktl::api::command::get_swapchain_images_khr:
+        return "vkGetSwapchainImagesKHR";
+    case ktl::api::command::acquire_next_image_khr:
+        return "vkAcquireNextImageKHR";
+    case ktl::api::command::queue_present_khr:
+        return "vkQueuePresentKHR";
+    case ktl::api::command::create_vi_surface_nn:
+        return "vkCreateViSurfaceNN";
+    case ktl::api::command::create_wayland_surface_khr:
+        return "vkCreateWaylandSurfaceKHR";
+    case ktl::api::command::get_physical_device_wayland_presentation_support_khr:
+        return "vkGetPhysicalDeviceWaylandPresentationSupportKHR";
+    case ktl::api::command::create_ubm_surface_sec:
+        return "vkCreateUbmSurfaceSEC";
+    case ktl::api::command::get_physical_device_ubm_presentation_support_sec:
+        return "vkGetPhysicalDeviceUbmPresentationSupportSEC";
+    case ktl::api::command::create_win_32surface_khr:
+        return "vkCreateWin32SurfaceKHR";
+    case ktl::api::command::get_physical_device_win_32presentation_support_khr:
+        return "vkGetPhysicalDeviceWin32PresentationSupportKHR";
+    case ktl::api::command::create_xlib_surface_khr:
+        return "vkCreateXlibSurfaceKHR";
+    case ktl::api::command::get_physical_device_xlib_presentation_support_khr:
+        return "vkGetPhysicalDeviceXlibPresentationSupportKHR";
+    case ktl::api::command::create_xcb_surface_khr:
+        return "vkCreateXcbSurfaceKHR";
+    case ktl::api::command::get_physical_device_xcb_presentation_support_khr:
+        return "vkGetPhysicalDeviceXcbPresentationSupportKHR";
+    case ktl::api::command::create_direct_fb_surface_ext:
+        return "vkCreateDirectFBSurfaceEXT";
+    case ktl::api::command::get_physical_device_direct_fb_presentation_support_ext:
+        return "vkGetPhysicalDeviceDirectFBPresentationSupportEXT";
+    case ktl::api::command::create_image_pipe_surface_fuchsia:
+        return "vkCreateImagePipeSurfaceFUCHSIA";
+    case ktl::api::command::create_stream_descriptor_surface_ggp:
+        return "vkCreateStreamDescriptorSurfaceGGP";
+    case ktl::api::command::create_screen_surface_qnx:
+        return "vkCreateScreenSurfaceQNX";
+    case ktl::api::command::get_physical_device_screen_presentation_support_qnx:
+        return "vkGetPhysicalDeviceScreenPresentationSupportQNX";
+    case ktl::api::command::create_debug_report_callback_ext:
+        return "vkCreateDebugReportCallbackEXT";
+    case ktl::api::command::destroy_debug_report_callback_ext:
+        return "vkDestroyDebugReportCallbackEXT";
+    case ktl::api::command::debug_report_message_ext:
+        return "vkDebugReportMessageEXT";
+    case ktl::api::command::debug_marker_set_object_name_ext:
+        return "vkDebugMarkerSetObjectNameEXT";
+    case ktl::api::command::debug_marker_set_object_tag_ext:
+        return "vkDebugMarkerSetObjectTagEXT";
+    case ktl::api::command::cmd_debug_marker_begin_ext:
+        return "vkCmdDebugMarkerBeginEXT";
+    case ktl::api::command::cmd_debug_marker_end_ext:
+        return "vkCmdDebugMarkerEndEXT";
+    case ktl::api::command::cmd_debug_marker_insert_ext:
+        return "vkCmdDebugMarkerInsertEXT";
+    case ktl::api::command::get_physical_device_external_image_format_properties_nv:
+        return "vkGetPhysicalDeviceExternalImageFormatPropertiesNV";
+    case ktl::api::command::get_memory_win_32handle_nv:
+        return "vkGetMemoryWin32HandleNV";
+    case ktl::api::command::cmd_execute_generated_commands_nv:
+        return "vkCmdExecuteGeneratedCommandsNV";
+    case ktl::api::command::cmd_preprocess_generated_commands_nv:
+        return "vkCmdPreprocessGeneratedCommandsNV";
+    case ktl::api::command::cmd_bind_pipeline_shader_group_nv:
+        return "vkCmdBindPipelineShaderGroupNV";
+    case ktl::api::command::get_generated_commands_memory_requirements_nv:
+        return "vkGetGeneratedCommandsMemoryRequirementsNV";
+    case ktl::api::command::create_indirect_commands_layout_nv:
+        return "vkCreateIndirectCommandsLayoutNV";
+    case ktl::api::command::destroy_indirect_commands_layout_nv:
+        return "vkDestroyIndirectCommandsLayoutNV";
+    case ktl::api::command::cmd_execute_generated_commands_ext:
+        return "vkCmdExecuteGeneratedCommandsEXT";
+    case ktl::api::command::cmd_preprocess_generated_commands_ext:
+        return "vkCmdPreprocessGeneratedCommandsEXT";
+    case ktl::api::command::get_generated_commands_memory_requirements_ext:
+        return "vkGetGeneratedCommandsMemoryRequirementsEXT";
+    case ktl::api::command::create_indirect_commands_layout_ext:
+        return "vkCreateIndirectCommandsLayoutEXT";
+    case ktl::api::command::destroy_indirect_commands_layout_ext:
+        return "vkDestroyIndirectCommandsLayoutEXT";
+    case ktl::api::command::create_indirect_execution_set_ext:
+        return "vkCreateIndirectExecutionSetEXT";
+    case ktl::api::command::destroy_indirect_execution_set_ext:
+        return "vkDestroyIndirectExecutionSetEXT";
+    case ktl::api::command::update_indirect_execution_set_pipeline_ext:
+        return "vkUpdateIndirectExecutionSetPipelineEXT";
+    case ktl::api::command::update_indirect_execution_set_shader_ext:
+        return "vkUpdateIndirectExecutionSetShaderEXT";
+    case ktl::api::command::get_physical_device_features_2:
+        return "vkGetPhysicalDeviceFeatures2";
+    case ktl::api::command::get_physical_device_properties_2:
+        return "vkGetPhysicalDeviceProperties2";
+    case ktl::api::command::get_physical_device_format_properties_2:
+        return "vkGetPhysicalDeviceFormatProperties2";
+    case ktl::api::command::get_physical_device_image_format_properties_2:
+        return "vkGetPhysicalDeviceImageFormatProperties2";
+    case ktl::api::command::get_physical_device_queue_family_properties_2:
+        return "vkGetPhysicalDeviceQueueFamilyProperties2";
+    case ktl::api::command::get_physical_device_memory_properties_2:
+        return "vkGetPhysicalDeviceMemoryProperties2";
+    case ktl::api::command::get_physical_device_sparse_image_format_properties_2:
+        return "vkGetPhysicalDeviceSparseImageFormatProperties2";
+    case ktl::api::command::cmd_push_descriptor_set:
+        return "vkCmdPushDescriptorSet";
+    case ktl::api::command::trim_command_pool:
+        return "vkTrimCommandPool";
+    case ktl::api::command::get_physical_device_external_buffer_properties:
+        return "vkGetPhysicalDeviceExternalBufferProperties";
+    case ktl::api::command::get_memory_win_32handle_khr:
+        return "vkGetMemoryWin32HandleKHR";
+    case ktl::api::command::get_memory_win_32handle_properties_khr:
+        return "vkGetMemoryWin32HandlePropertiesKHR";
+    case ktl::api::command::get_memory_fd_khr:
+        return "vkGetMemoryFdKHR";
+    case ktl::api::command::get_memory_fd_properties_khr:
+        return "vkGetMemoryFdPropertiesKHR";
+    case ktl::api::command::get_memory_zircon_handle_fuchsia:
+        return "vkGetMemoryZirconHandleFUCHSIA";
+    case ktl::api::command::get_memory_zircon_handle_properties_fuchsia:
+        return "vkGetMemoryZirconHandlePropertiesFUCHSIA";
+    case ktl::api::command::get_memory_remote_address_nv:
+        return "vkGetMemoryRemoteAddressNV";
+    case ktl::api::command::get_memory_sci_buf_nv:
+        return "vkGetMemorySciBufNV";
+    case ktl::api::command::get_physical_device_external_memory_sci_buf_properties_nv:
+        return "vkGetPhysicalDeviceExternalMemorySciBufPropertiesNV";
+    case ktl::api::command::get_physical_device_sci_buf_attributes_nv:
+        return "vkGetPhysicalDeviceSciBufAttributesNV";
+    case ktl::api::command::get_physical_device_external_semaphore_properties:
+        return "vkGetPhysicalDeviceExternalSemaphoreProperties";
+    case ktl::api::command::get_semaphore_win_32handle_khr:
+        return "vkGetSemaphoreWin32HandleKHR";
+    case ktl::api::command::import_semaphore_win_32handle_khr:
+        return "vkImportSemaphoreWin32HandleKHR";
+    case ktl::api::command::get_semaphore_fd_khr:
+        return "vkGetSemaphoreFdKHR";
+    case ktl::api::command::import_semaphore_fd_khr:
+        return "vkImportSemaphoreFdKHR";
+    case ktl::api::command::get_semaphore_zircon_handle_fuchsia:
+        return "vkGetSemaphoreZirconHandleFUCHSIA";
+    case ktl::api::command::import_semaphore_zircon_handle_fuchsia:
+        return "vkImportSemaphoreZirconHandleFUCHSIA";
+    case ktl::api::command::get_physical_device_external_fence_properties:
+        return "vkGetPhysicalDeviceExternalFenceProperties";
+    case ktl::api::command::get_fence_win_32handle_khr:
+        return "vkGetFenceWin32HandleKHR";
+    case ktl::api::command::import_fence_win_32handle_khr:
+        return "vkImportFenceWin32HandleKHR";
+    case ktl::api::command::get_fence_fd_khr:
+        return "vkGetFenceFdKHR";
+    case ktl::api::command::import_fence_fd_khr:
+        return "vkImportFenceFdKHR";
+    case ktl::api::command::get_fence_sci_sync_fence_nv:
+        return "vkGetFenceSciSyncFenceNV";
+    case ktl::api::command::get_fence_sci_sync_obj_nv:
+        return "vkGetFenceSciSyncObjNV";
+    case ktl::api::command::import_fence_sci_sync_fence_nv:
+        return "vkImportFenceSciSyncFenceNV";
+    case ktl::api::command::import_fence_sci_sync_obj_nv:
+        return "vkImportFenceSciSyncObjNV";
+    case ktl::api::command::get_semaphore_sci_sync_obj_nv:
+        return "vkGetSemaphoreSciSyncObjNV";
+    case ktl::api::command::import_semaphore_sci_sync_obj_nv:
+        return "vkImportSemaphoreSciSyncObjNV";
+    case ktl::api::command::get_physical_device_sci_sync_attributes_nv:
+        return "vkGetPhysicalDeviceSciSyncAttributesNV";
+    case ktl::api::command::create_semaphore_sci_sync_pool_nv:
+        return "vkCreateSemaphoreSciSyncPoolNV";
+    case ktl::api::command::destroy_semaphore_sci_sync_pool_nv:
+        return "vkDestroySemaphoreSciSyncPoolNV";
+    case ktl::api::command::release_display_ext:
+        return "vkReleaseDisplayEXT";
+    case ktl::api::command::acquire_xlib_display_ext:
+        return "vkAcquireXlibDisplayEXT";
+    case ktl::api::command::get_rand_r_output_display_ext:
+        return "vkGetRandROutputDisplayEXT";
+    case ktl::api::command::acquire_winrt_display_nv:
+        return "vkAcquireWinrtDisplayNV";
+    case ktl::api::command::get_winrt_display_nv:
+        return "vkGetWinrtDisplayNV";
+    case ktl::api::command::display_power_control_ext:
+        return "vkDisplayPowerControlEXT";
+    case ktl::api::command::register_device_event_ext:
+        return "vkRegisterDeviceEventEXT";
+    case ktl::api::command::register_display_event_ext:
+        return "vkRegisterDisplayEventEXT";
+    case ktl::api::command::get_swapchain_counter_ext:
+        return "vkGetSwapchainCounterEXT";
+    case ktl::api::command::get_physical_device_surface_capabilities_2ext:
+        return "vkGetPhysicalDeviceSurfaceCapabilities2EXT";
+    case ktl::api::command::enumerate_physical_device_groups:
+        return "vkEnumeratePhysicalDeviceGroups";
+    case ktl::api::command::get_device_group_peer_memory_features:
+        return "vkGetDeviceGroupPeerMemoryFeatures";
+    case ktl::api::command::bind_buffer_memory_2:
+        return "vkBindBufferMemory2";
+    case ktl::api::command::bind_image_memory_2:
+        return "vkBindImageMemory2";
+    case ktl::api::command::cmd_set_device_mask:
+        return "vkCmdSetDeviceMask";
+    case ktl::api::command::get_device_group_present_capabilities_khr:
+        return "vkGetDeviceGroupPresentCapabilitiesKHR";
+    case ktl::api::command::get_device_group_surface_present_modes_khr:
+        return "vkGetDeviceGroupSurfacePresentModesKHR";
+    case ktl::api::command::acquire_next_image_2khr:
+        return "vkAcquireNextImage2KHR";
+    case ktl::api::command::cmd_dispatch_base:
+        return "vkCmdDispatchBase";
+    case ktl::api::command::get_physical_device_present_rectangles_khr:
+        return "vkGetPhysicalDevicePresentRectanglesKHR";
+    case ktl::api::command::create_descriptor_update_template:
+        return "vkCreateDescriptorUpdateTemplate";
+    case ktl::api::command::destroy_descriptor_update_template:
+        return "vkDestroyDescriptorUpdateTemplate";
+    case ktl::api::command::update_descriptor_set_with_template:
+        return "vkUpdateDescriptorSetWithTemplate";
+    case ktl::api::command::cmd_push_descriptor_set_with_template:
+        return "vkCmdPushDescriptorSetWithTemplate";
+    case ktl::api::command::set_hdr_metadata_ext:
+        return "vkSetHdrMetadataEXT";
+    case ktl::api::command::get_swapchain_status_khr:
+        return "vkGetSwapchainStatusKHR";
+    case ktl::api::command::get_refresh_cycle_duration_google:
+        return "vkGetRefreshCycleDurationGOOGLE";
+    case ktl::api::command::get_past_presentation_timing_google:
+        return "vkGetPastPresentationTimingGOOGLE";
+    case ktl::api::command::create_ios_surface_mvk:
+        return "vkCreateIOSSurfaceMVK";
+    case ktl::api::command::create_mac_os_surface_mvk:
+        return "vkCreateMacOSSurfaceMVK";
+    case ktl::api::command::create_metal_surface_ext:
+        return "vkCreateMetalSurfaceEXT";
+    case ktl::api::command::cmd_set_viewport_w_scaling_nv:
+        return "vkCmdSetViewportWScalingNV";
+    case ktl::api::command::cmd_set_discard_rectangle_ext:
+        return "vkCmdSetDiscardRectangleEXT";
+    case ktl::api::command::cmd_set_discard_rectangle_enable_ext:
+        return "vkCmdSetDiscardRectangleEnableEXT";
+    case ktl::api::command::cmd_set_discard_rectangle_mode_ext:
+        return "vkCmdSetDiscardRectangleModeEXT";
+    case ktl::api::command::cmd_set_sample_locations_ext:
+        return "vkCmdSetSampleLocationsEXT";
+    case ktl::api::command::get_physical_device_multisample_properties_ext:
+        return "vkGetPhysicalDeviceMultisamplePropertiesEXT";
+    case ktl::api::command::get_physical_device_surface_capabilities_2khr:
+        return "vkGetPhysicalDeviceSurfaceCapabilities2KHR";
+    case ktl::api::command::get_physical_device_surface_formats_2khr:
+        return "vkGetPhysicalDeviceSurfaceFormats2KHR";
+    case ktl::api::command::get_physical_device_display_properties_2khr:
+        return "vkGetPhysicalDeviceDisplayProperties2KHR";
+    case ktl::api::command::get_physical_device_display_plane_properties_2khr:
+        return "vkGetPhysicalDeviceDisplayPlaneProperties2KHR";
+    case ktl::api::command::get_display_mode_properties_2khr:
+        return "vkGetDisplayModeProperties2KHR";
+    case ktl::api::command::get_display_plane_capabilities_2khr:
+        return "vkGetDisplayPlaneCapabilities2KHR";
+    case ktl::api::command::get_buffer_memory_requirements_2:
+        return "vkGetBufferMemoryRequirements2";
+    case ktl::api::command::get_image_memory_requirements_2:
+        return "vkGetImageMemoryRequirements2";
+    case ktl::api::command::get_image_sparse_memory_requirements_2:
+        return "vkGetImageSparseMemoryRequirements2";
+    case ktl::api::command::get_device_buffer_memory_requirements:
+        return "vkGetDeviceBufferMemoryRequirements";
+    case ktl::api::command::get_device_image_memory_requirements:
+        return "vkGetDeviceImageMemoryRequirements";
+    case ktl::api::command::get_device_image_sparse_memory_requirements:
+        return "vkGetDeviceImageSparseMemoryRequirements";
+    case ktl::api::command::create_sampler_ycbcr_conversion:
+        return "vkCreateSamplerYcbcrConversion";
+    case ktl::api::command::destroy_sampler_ycbcr_conversion:
+        return "vkDestroySamplerYcbcrConversion";
+    case ktl::api::command::get_device_queue_2:
+        return "vkGetDeviceQueue2";
+    case ktl::api::command::create_validation_cache_ext:
+        return "vkCreateValidationCacheEXT";
+    case ktl::api::command::destroy_validation_cache_ext:
+        return "vkDestroyValidationCacheEXT";
+    case ktl::api::command::get_validation_cache_data_ext:
+        return "vkGetValidationCacheDataEXT";
+    case ktl::api::command::merge_validation_caches_ext:
+        return "vkMergeValidationCachesEXT";
+    case ktl::api::command::get_descriptor_set_layout_support:
+        return "vkGetDescriptorSetLayoutSupport";
+    case ktl::api::command::get_swapchain_gralloc_usage_android:
+        return "vkGetSwapchainGrallocUsageANDROID";
+    case ktl::api::command::get_swapchain_gralloc_usage_2android:
+        return "vkGetSwapchainGrallocUsage2ANDROID";
+    case ktl::api::command::acquire_image_android:
+        return "vkAcquireImageANDROID";
+    case ktl::api::command::queue_signal_release_image_android:
+        return "vkQueueSignalReleaseImageANDROID";
+    case ktl::api::command::get_shader_info_amd:
+        return "vkGetShaderInfoAMD";
+    case ktl::api::command::set_local_dimming_amd:
+        return "vkSetLocalDimmingAMD";
+    case ktl::api::command::get_physical_device_calibrateable_time_domains_khr:
+        return "vkGetPhysicalDeviceCalibrateableTimeDomainsKHR";
+    case ktl::api::command::get_calibrated_timestamps_khr:
+        return "vkGetCalibratedTimestampsKHR";
+    case ktl::api::command::set_debug_utils_object_name_ext:
+        return "vkSetDebugUtilsObjectNameEXT";
+    case ktl::api::command::set_debug_utils_object_tag_ext:
+        return "vkSetDebugUtilsObjectTagEXT";
+    case ktl::api::command::queue_begin_debug_utils_label_ext:
+        return "vkQueueBeginDebugUtilsLabelEXT";
+    case ktl::api::command::queue_end_debug_utils_label_ext:
+        return "vkQueueEndDebugUtilsLabelEXT";
+    case ktl::api::command::queue_insert_debug_utils_label_ext:
+        return "vkQueueInsertDebugUtilsLabelEXT";
+    case ktl::api::command::cmd_begin_debug_utils_label_ext:
+        return "vkCmdBeginDebugUtilsLabelEXT";
+    case ktl::api::command::cmd_end_debug_utils_label_ext:
+        return "vkCmdEndDebugUtilsLabelEXT";
+    case ktl::api::command::cmd_insert_debug_utils_label_ext:
+        return "vkCmdInsertDebugUtilsLabelEXT";
+    case ktl::api::command::create_debug_utils_messenger_ext:
+        return "vkCreateDebugUtilsMessengerEXT";
+    case ktl::api::command::destroy_debug_utils_messenger_ext:
+        return "vkDestroyDebugUtilsMessengerEXT";
+    case ktl::api::command::submit_debug_utils_message_ext:
+        return "vkSubmitDebugUtilsMessageEXT";
+    case ktl::api::command::get_memory_host_pointer_properties_ext:
+        return "vkGetMemoryHostPointerPropertiesEXT";
+    case ktl::api::command::cmd_write_buffer_marker_amd:
+        return "vkCmdWriteBufferMarkerAMD";
+    case ktl::api::command::create_render_pass_2:
+        return "vkCreateRenderPass2";
+    case ktl::api::command::cmd_begin_render_pass_2:
+        return "vkCmdBeginRenderPass2";
+    case ktl::api::command::cmd_next_subpass_2:
+        return "vkCmdNextSubpass2";
+    case ktl::api::command::cmd_end_render_pass_2:
+        return "vkCmdEndRenderPass2";
+    case ktl::api::command::get_semaphore_counter_value:
+        return "vkGetSemaphoreCounterValue";
+    case ktl::api::command::wait_semaphores:
+        return "vkWaitSemaphores";
+    case ktl::api::command::signal_semaphore:
+        return "vkSignalSemaphore";
+    case ktl::api::command::get_android_hardware_buffer_properties_android:
+        return "vkGetAndroidHardwareBufferPropertiesANDROID";
+    case ktl::api::command::get_memory_android_hardware_buffer_android:
+        return "vkGetMemoryAndroidHardwareBufferANDROID";
+    case ktl::api::command::cmd_draw_indirect_count:
+        return "vkCmdDrawIndirectCount";
+    case ktl::api::command::cmd_draw_indexed_indirect_count:
+        return "vkCmdDrawIndexedIndirectCount";
+    case ktl::api::command::cmd_set_checkpoint_nv:
+        return "vkCmdSetCheckpointNV";
+    case ktl::api::command::get_queue_checkpoint_data_nv:
+        return "vkGetQueueCheckpointDataNV";
+    case ktl::api::command::cmd_bind_transform_feedback_buffers_ext:
+        return "vkCmdBindTransformFeedbackBuffersEXT";
+    case ktl::api::command::cmd_begin_transform_feedback_ext:
+        return "vkCmdBeginTransformFeedbackEXT";
+    case ktl::api::command::cmd_end_transform_feedback_ext:
+        return "vkCmdEndTransformFeedbackEXT";
+    case ktl::api::command::cmd_begin_query_indexed_ext:
+        return "vkCmdBeginQueryIndexedEXT";
+    case ktl::api::command::cmd_end_query_indexed_ext:
+        return "vkCmdEndQueryIndexedEXT";
+    case ktl::api::command::cmd_draw_indirect_byte_count_ext:
+        return "vkCmdDrawIndirectByteCountEXT";
+    case ktl::api::command::cmd_set_exclusive_scissor_nv:
+        return "vkCmdSetExclusiveScissorNV";
+    case ktl::api::command::cmd_set_exclusive_scissor_enable_nv:
+        return "vkCmdSetExclusiveScissorEnableNV";
+    case ktl::api::command::cmd_bind_shading_rate_image_nv:
+        return "vkCmdBindShadingRateImageNV";
+    case ktl::api::command::cmd_set_viewport_shading_rate_palette_nv:
+        return "vkCmdSetViewportShadingRatePaletteNV";
+    case ktl::api::command::cmd_set_coarse_sample_order_nv:
+        return "vkCmdSetCoarseSampleOrderNV";
+    case ktl::api::command::cmd_draw_mesh_tasks_nv:
+        return "vkCmdDrawMeshTasksNV";
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_nv:
+        return "vkCmdDrawMeshTasksIndirectNV";
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_nv:
+        return "vkCmdDrawMeshTasksIndirectCountNV";
+    case ktl::api::command::cmd_draw_mesh_tasks_ext:
+        return "vkCmdDrawMeshTasksEXT";
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_ext:
+        return "vkCmdDrawMeshTasksIndirectEXT";
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_ext:
+        return "vkCmdDrawMeshTasksIndirectCountEXT";
+    case ktl::api::command::compile_deferred_nv:
+        return "vkCompileDeferredNV";
+    case ktl::api::command::create_acceleration_structure_nv:
+        return "vkCreateAccelerationStructureNV";
+    case ktl::api::command::cmd_bind_invocation_mask_huawei:
+        return "vkCmdBindInvocationMaskHUAWEI";
+    case ktl::api::command::destroy_acceleration_structure_khr:
+        return "vkDestroyAccelerationStructureKHR";
+    case ktl::api::command::destroy_acceleration_structure_nv:
+        return "vkDestroyAccelerationStructureNV";
+    case ktl::api::command::get_acceleration_structure_memory_requirements_nv:
+        return "vkGetAccelerationStructureMemoryRequirementsNV";
+    case ktl::api::command::bind_acceleration_structure_memory_nv:
+        return "vkBindAccelerationStructureMemoryNV";
+    case ktl::api::command::cmd_copy_acceleration_structure_nv:
+        return "vkCmdCopyAccelerationStructureNV";
+    case ktl::api::command::cmd_copy_acceleration_structure_khr:
+        return "vkCmdCopyAccelerationStructureKHR";
+    case ktl::api::command::copy_acceleration_structure_khr:
+        return "vkCopyAccelerationStructureKHR";
+    case ktl::api::command::cmd_copy_acceleration_structure_to_memory_khr:
+        return "vkCmdCopyAccelerationStructureToMemoryKHR";
+    case ktl::api::command::copy_acceleration_structure_to_memory_khr:
+        return "vkCopyAccelerationStructureToMemoryKHR";
+    case ktl::api::command::cmd_copy_memory_to_acceleration_structure_khr:
+        return "vkCmdCopyMemoryToAccelerationStructureKHR";
+    case ktl::api::command::copy_memory_to_acceleration_structure_khr:
+        return "vkCopyMemoryToAccelerationStructureKHR";
+    case ktl::api::command::cmd_write_acceleration_structures_properties_khr:
+        return "vkCmdWriteAccelerationStructuresPropertiesKHR";
+    case ktl::api::command::cmd_write_acceleration_structures_properties_nv:
+        return "vkCmdWriteAccelerationStructuresPropertiesNV";
+    case ktl::api::command::cmd_build_acceleration_structure_nv:
+        return "vkCmdBuildAccelerationStructureNV";
+    case ktl::api::command::write_acceleration_structures_properties_khr:
+        return "vkWriteAccelerationStructuresPropertiesKHR";
+    case ktl::api::command::cmd_trace_rays_khr:
+        return "vkCmdTraceRaysKHR";
+    case ktl::api::command::cmd_trace_rays_nv:
+        return "vkCmdTraceRaysNV";
+    case ktl::api::command::get_ray_tracing_shader_group_handles_khr:
+        return "vkGetRayTracingShaderGroupHandlesKHR";
+    case ktl::api::command::get_ray_tracing_capture_replay_shader_group_handles_khr:
+        return "vkGetRayTracingCaptureReplayShaderGroupHandlesKHR";
+    case ktl::api::command::get_acceleration_structure_handle_nv:
+        return "vkGetAccelerationStructureHandleNV";
+    case ktl::api::command::create_ray_tracing_pipelines_nv:
+        return "vkCreateRayTracingPipelinesNV";
+    case ktl::api::command::create_ray_tracing_pipelines_khr:
+        return "vkCreateRayTracingPipelinesKHR";
+    case ktl::api::command::get_physical_device_cooperative_matrix_properties_nv:
+        return "vkGetPhysicalDeviceCooperativeMatrixPropertiesNV";
+    case ktl::api::command::cmd_trace_rays_indirect_khr:
+        return "vkCmdTraceRaysIndirectKHR";
+    case ktl::api::command::cmd_trace_rays_indirect_2khr:
+        return "vkCmdTraceRaysIndirect2KHR";
+    case ktl::api::command::get_cluster_acceleration_structure_build_sizes_nv:
+        return "vkGetClusterAccelerationStructureBuildSizesNV";
+    case ktl::api::command::cmd_build_cluster_acceleration_structure_indirect_nv:
+        return "vkCmdBuildClusterAccelerationStructureIndirectNV";
+    case ktl::api::command::get_device_acceleration_structure_compatibility_khr:
+        return "vkGetDeviceAccelerationStructureCompatibilityKHR";
+    case ktl::api::command::get_ray_tracing_shader_group_stack_size_khr:
+        return "vkGetRayTracingShaderGroupStackSizeKHR";
+    case ktl::api::command::cmd_set_ray_tracing_pipeline_stack_size_khr:
+        return "vkCmdSetRayTracingPipelineStackSizeKHR";
+    case ktl::api::command::get_image_view_handle_nvx:
+        return "vkGetImageViewHandleNVX";
+    case ktl::api::command::get_image_view_handle_64nvx:
+        return "vkGetImageViewHandle64NVX";
+    case ktl::api::command::get_image_view_address_nvx:
+        return "vkGetImageViewAddressNVX";
+    case ktl::api::command::get_device_combined_image_sampler_index_nvx:
+        return "vkGetDeviceCombinedImageSamplerIndexNVX";
+    case ktl::api::command::get_physical_device_surface_present_modes_2ext:
+        return "vkGetPhysicalDeviceSurfacePresentModes2EXT";
+    case ktl::api::command::get_device_group_surface_present_modes_2ext:
+        return "vkGetDeviceGroupSurfacePresentModes2EXT";
+    case ktl::api::command::acquire_full_screen_exclusive_mode_ext:
+        return "vkAcquireFullScreenExclusiveModeEXT";
+    case ktl::api::command::release_full_screen_exclusive_mode_ext:
+        return "vkReleaseFullScreenExclusiveModeEXT";
+    case ktl::api::command::enumerate_physical_device_queue_family_performance_query_counters_khr:
+        return "vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR";
+    case ktl::api::command::get_physical_device_queue_family_performance_query_passes_khr:
+        return "vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR";
+    case ktl::api::command::acquire_profiling_lock_khr:
+        return "vkAcquireProfilingLockKHR";
+    case ktl::api::command::release_profiling_lock_khr:
+        return "vkReleaseProfilingLockKHR";
+    case ktl::api::command::get_image_drm_format_modifier_properties_ext:
+        return "vkGetImageDrmFormatModifierPropertiesEXT";
+    case ktl::api::command::get_buffer_opaque_capture_address:
+        return "vkGetBufferOpaqueCaptureAddress";
+    case ktl::api::command::get_buffer_device_address:
+        return "vkGetBufferDeviceAddress";
+    case ktl::api::command::create_headless_surface_ext:
+        return "vkCreateHeadlessSurfaceEXT";
+    case ktl::api::command::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv:
+        return "vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV";
+    case ktl::api::command::initialize_performance_api_intel:
+        return "vkInitializePerformanceApiINTEL";
+    case ktl::api::command::uninitialize_performance_api_intel:
+        return "vkUninitializePerformanceApiINTEL";
+    case ktl::api::command::cmd_set_performance_marker_intel:
+        return "vkCmdSetPerformanceMarkerINTEL";
+    case ktl::api::command::cmd_set_performance_stream_marker_intel:
+        return "vkCmdSetPerformanceStreamMarkerINTEL";
+    case ktl::api::command::cmd_set_performance_override_intel:
+        return "vkCmdSetPerformanceOverrideINTEL";
+    case ktl::api::command::acquire_performance_configuration_intel:
+        return "vkAcquirePerformanceConfigurationINTEL";
+    case ktl::api::command::release_performance_configuration_intel:
+        return "vkReleasePerformanceConfigurationINTEL";
+    case ktl::api::command::queue_set_performance_configuration_intel:
+        return "vkQueueSetPerformanceConfigurationINTEL";
+    case ktl::api::command::get_performance_parameter_intel:
+        return "vkGetPerformanceParameterINTEL";
+    case ktl::api::command::get_device_memory_opaque_capture_address:
+        return "vkGetDeviceMemoryOpaqueCaptureAddress";
+    case ktl::api::command::get_pipeline_executable_properties_khr:
+        return "vkGetPipelineExecutablePropertiesKHR";
+    case ktl::api::command::get_pipeline_executable_statistics_khr:
+        return "vkGetPipelineExecutableStatisticsKHR";
+    case ktl::api::command::get_pipeline_executable_internal_representations_khr:
+        return "vkGetPipelineExecutableInternalRepresentationsKHR";
+    case ktl::api::command::cmd_set_line_stipple:
+        return "vkCmdSetLineStipple";
+    case ktl::api::command::get_fault_data:
+        return "vkGetFaultData";
+    case ktl::api::command::get_physical_device_tool_properties:
+        return "vkGetPhysicalDeviceToolProperties";
+    case ktl::api::command::create_acceleration_structure_khr:
+        return "vkCreateAccelerationStructureKHR";
+    case ktl::api::command::cmd_build_acceleration_structures_khr:
+        return "vkCmdBuildAccelerationStructuresKHR";
+    case ktl::api::command::cmd_build_acceleration_structures_indirect_khr:
+        return "vkCmdBuildAccelerationStructuresIndirectKHR";
+    case ktl::api::command::build_acceleration_structures_khr:
+        return "vkBuildAccelerationStructuresKHR";
+    case ktl::api::command::get_acceleration_structure_device_address_khr:
+        return "vkGetAccelerationStructureDeviceAddressKHR";
+    case ktl::api::command::create_deferred_operation_khr:
+        return "vkCreateDeferredOperationKHR";
+    case ktl::api::command::destroy_deferred_operation_khr:
+        return "vkDestroyDeferredOperationKHR";
+    case ktl::api::command::get_deferred_operation_max_concurrency_khr:
+        return "vkGetDeferredOperationMaxConcurrencyKHR";
+    case ktl::api::command::get_deferred_operation_result_khr:
+        return "vkGetDeferredOperationResultKHR";
+    case ktl::api::command::deferred_operation_join_khr:
+        return "vkDeferredOperationJoinKHR";
+    case ktl::api::command::get_pipeline_indirect_memory_requirements_nv:
+        return "vkGetPipelineIndirectMemoryRequirementsNV";
+    case ktl::api::command::get_pipeline_indirect_device_address_nv:
+        return "vkGetPipelineIndirectDeviceAddressNV";
+    case ktl::api::command::anti_lag_update_amd:
+        return "vkAntiLagUpdateAMD";
+    case ktl::api::command::cmd_set_cull_mode:
+        return "vkCmdSetCullMode";
+    case ktl::api::command::cmd_set_front_face:
+        return "vkCmdSetFrontFace";
+    case ktl::api::command::cmd_set_primitive_topology:
+        return "vkCmdSetPrimitiveTopology";
+    case ktl::api::command::cmd_set_viewport_with_count:
+        return "vkCmdSetViewportWithCount";
+    case ktl::api::command::cmd_set_scissor_with_count:
+        return "vkCmdSetScissorWithCount";
+    case ktl::api::command::cmd_bind_index_buffer_2:
+        return "vkCmdBindIndexBuffer2";
+    case ktl::api::command::cmd_bind_vertex_buffers_2:
+        return "vkCmdBindVertexBuffers2";
+    case ktl::api::command::cmd_set_depth_test_enable:
+        return "vkCmdSetDepthTestEnable";
+    case ktl::api::command::cmd_set_depth_write_enable:
+        return "vkCmdSetDepthWriteEnable";
+    case ktl::api::command::cmd_set_depth_compare_op:
+        return "vkCmdSetDepthCompareOp";
+    case ktl::api::command::cmd_set_depth_bounds_test_enable:
+        return "vkCmdSetDepthBoundsTestEnable";
+    case ktl::api::command::cmd_set_stencil_test_enable:
+        return "vkCmdSetStencilTestEnable";
+    case ktl::api::command::cmd_set_stencil_op:
+        return "vkCmdSetStencilOp";
+    case ktl::api::command::cmd_set_patch_control_points_ext:
+        return "vkCmdSetPatchControlPointsEXT";
+    case ktl::api::command::cmd_set_rasterizer_discard_enable:
+        return "vkCmdSetRasterizerDiscardEnable";
+    case ktl::api::command::cmd_set_depth_bias_enable:
+        return "vkCmdSetDepthBiasEnable";
+    case ktl::api::command::cmd_set_logic_op_ext:
+        return "vkCmdSetLogicOpEXT";
+    case ktl::api::command::cmd_set_primitive_restart_enable:
+        return "vkCmdSetPrimitiveRestartEnable";
+    case ktl::api::command::cmd_set_tessellation_domain_origin_ext:
+        return "vkCmdSetTessellationDomainOriginEXT";
+    case ktl::api::command::cmd_set_depth_clamp_enable_ext:
+        return "vkCmdSetDepthClampEnableEXT";
+    case ktl::api::command::cmd_set_polygon_mode_ext:
+        return "vkCmdSetPolygonModeEXT";
+    case ktl::api::command::cmd_set_rasterization_samples_ext:
+        return "vkCmdSetRasterizationSamplesEXT";
+    case ktl::api::command::cmd_set_sample_mask_ext:
+        return "vkCmdSetSampleMaskEXT";
+    case ktl::api::command::cmd_set_alpha_to_coverage_enable_ext:
+        return "vkCmdSetAlphaToCoverageEnableEXT";
+    case ktl::api::command::cmd_set_alpha_to_one_enable_ext:
+        return "vkCmdSetAlphaToOneEnableEXT";
+    case ktl::api::command::cmd_set_logic_op_enable_ext:
+        return "vkCmdSetLogicOpEnableEXT";
+    case ktl::api::command::cmd_set_color_blend_enable_ext:
+        return "vkCmdSetColorBlendEnableEXT";
+    case ktl::api::command::cmd_set_color_blend_equation_ext:
+        return "vkCmdSetColorBlendEquationEXT";
+    case ktl::api::command::cmd_set_color_write_mask_ext:
+        return "vkCmdSetColorWriteMaskEXT";
+    case ktl::api::command::cmd_set_rasterization_stream_ext:
+        return "vkCmdSetRasterizationStreamEXT";
+    case ktl::api::command::cmd_set_conservative_rasterization_mode_ext:
+        return "vkCmdSetConservativeRasterizationModeEXT";
+    case ktl::api::command::cmd_set_extra_primitive_overestimation_size_ext:
+        return "vkCmdSetExtraPrimitiveOverestimationSizeEXT";
+    case ktl::api::command::cmd_set_depth_clip_enable_ext:
+        return "vkCmdSetDepthClipEnableEXT";
+    case ktl::api::command::cmd_set_sample_locations_enable_ext:
+        return "vkCmdSetSampleLocationsEnableEXT";
+    case ktl::api::command::cmd_set_color_blend_advanced_ext:
+        return "vkCmdSetColorBlendAdvancedEXT";
+    case ktl::api::command::cmd_set_provoking_vertex_mode_ext:
+        return "vkCmdSetProvokingVertexModeEXT";
+    case ktl::api::command::cmd_set_line_rasterization_mode_ext:
+        return "vkCmdSetLineRasterizationModeEXT";
+    case ktl::api::command::cmd_set_line_stipple_enable_ext:
+        return "vkCmdSetLineStippleEnableEXT";
+    case ktl::api::command::cmd_set_depth_clip_negative_one_to_one_ext:
+        return "vkCmdSetDepthClipNegativeOneToOneEXT";
+    case ktl::api::command::cmd_set_viewport_w_scaling_enable_nv:
+        return "vkCmdSetViewportWScalingEnableNV";
+    case ktl::api::command::cmd_set_viewport_swizzle_nv:
+        return "vkCmdSetViewportSwizzleNV";
+    case ktl::api::command::cmd_set_coverage_to_color_enable_nv:
+        return "vkCmdSetCoverageToColorEnableNV";
+    case ktl::api::command::cmd_set_coverage_to_color_location_nv:
+        return "vkCmdSetCoverageToColorLocationNV";
+    case ktl::api::command::cmd_set_coverage_modulation_mode_nv:
+        return "vkCmdSetCoverageModulationModeNV";
+    case ktl::api::command::cmd_set_coverage_modulation_table_enable_nv:
+        return "vkCmdSetCoverageModulationTableEnableNV";
+    case ktl::api::command::cmd_set_coverage_modulation_table_nv:
+        return "vkCmdSetCoverageModulationTableNV";
+    case ktl::api::command::cmd_set_shading_rate_image_enable_nv:
+        return "vkCmdSetShadingRateImageEnableNV";
+    case ktl::api::command::cmd_set_coverage_reduction_mode_nv:
+        return "vkCmdSetCoverageReductionModeNV";
+    case ktl::api::command::cmd_set_representative_fragment_test_enable_nv:
+        return "vkCmdSetRepresentativeFragmentTestEnableNV";
+    case ktl::api::command::create_private_data_slot:
+        return "vkCreatePrivateDataSlot";
+    case ktl::api::command::destroy_private_data_slot:
+        return "vkDestroyPrivateDataSlot";
+    case ktl::api::command::set_private_data:
+        return "vkSetPrivateData";
+    case ktl::api::command::get_private_data:
+        return "vkGetPrivateData";
+    case ktl::api::command::cmd_copy_buffer_2:
+        return "vkCmdCopyBuffer2";
+    case ktl::api::command::cmd_copy_image_2:
+        return "vkCmdCopyImage2";
+    case ktl::api::command::cmd_blit_image_2:
+        return "vkCmdBlitImage2";
+    case ktl::api::command::cmd_copy_buffer_to_image_2:
+        return "vkCmdCopyBufferToImage2";
+    case ktl::api::command::cmd_copy_image_to_buffer_2:
+        return "vkCmdCopyImageToBuffer2";
+    case ktl::api::command::cmd_resolve_image_2:
+        return "vkCmdResolveImage2";
+    case ktl::api::command::cmd_refresh_objects_khr:
+        return "vkCmdRefreshObjectsKHR";
+    case ktl::api::command::get_physical_device_refreshable_object_types_khr:
+        return "vkGetPhysicalDeviceRefreshableObjectTypesKHR";
+    case ktl::api::command::cmd_set_fragment_shading_rate_khr:
+        return "vkCmdSetFragmentShadingRateKHR";
+    case ktl::api::command::get_physical_device_fragment_shading_rates_khr:
+        return "vkGetPhysicalDeviceFragmentShadingRatesKHR";
+    case ktl::api::command::cmd_set_fragment_shading_rate_enum_nv:
+        return "vkCmdSetFragmentShadingRateEnumNV";
+    case ktl::api::command::get_acceleration_structure_build_sizes_khr:
+        return "vkGetAccelerationStructureBuildSizesKHR";
+    case ktl::api::command::cmd_set_vertex_input_ext:
+        return "vkCmdSetVertexInputEXT";
+    case ktl::api::command::cmd_set_color_write_enable_ext:
+        return "vkCmdSetColorWriteEnableEXT";
+    case ktl::api::command::cmd_set_event_2:
+        return "vkCmdSetEvent2";
+    case ktl::api::command::cmd_reset_event_2:
+        return "vkCmdResetEvent2";
+    case ktl::api::command::cmd_wait_events_2:
+        return "vkCmdWaitEvents2";
+    case ktl::api::command::cmd_pipeline_barrier_2:
+        return "vkCmdPipelineBarrier2";
+    case ktl::api::command::queue_submit_2:
+        return "vkQueueSubmit2";
+    case ktl::api::command::cmd_write_timestamp_2:
+        return "vkCmdWriteTimestamp2";
+    case ktl::api::command::cmd_write_buffer_marker_2amd:
+        return "vkCmdWriteBufferMarker2AMD";
+    case ktl::api::command::get_queue_checkpoint_data_2nv:
+        return "vkGetQueueCheckpointData2NV";
+    case ktl::api::command::copy_memory_to_image:
+        return "vkCopyMemoryToImage";
+    case ktl::api::command::copy_image_to_memory:
+        return "vkCopyImageToMemory";
+    case ktl::api::command::copy_image_to_image:
+        return "vkCopyImageToImage";
+    case ktl::api::command::transition_image_layout:
+        return "vkTransitionImageLayout";
+    case ktl::api::command::get_command_pool_memory_consumption:
+        return "vkGetCommandPoolMemoryConsumption";
+    case ktl::api::command::cmd_decompress_memory_nv:
+        return "vkCmdDecompressMemoryNV";
+    case ktl::api::command::cmd_decompress_memory_indirect_count_nv:
+        return "vkCmdDecompressMemoryIndirectCountNV";
+    case ktl::api::command::get_partitioned_acceleration_structures_build_sizes_nv:
+        return "vkGetPartitionedAccelerationStructuresBuildSizesNV";
+    case ktl::api::command::cmd_build_partitioned_acceleration_structures_nv:
+        return "vkCmdBuildPartitionedAccelerationStructuresNV";
+    case ktl::api::command::cmd_decompress_memory_ext:
+        return "vkCmdDecompressMemoryEXT";
+    case ktl::api::command::cmd_decompress_memory_indirect_count_ext:
+        return "vkCmdDecompressMemoryIndirectCountEXT";
+    case ktl::api::command::create_cu_module_nvx:
+        return "vkCreateCuModuleNVX";
+    case ktl::api::command::create_cu_function_nvx:
+        return "vkCreateCuFunctionNVX";
+    case ktl::api::command::destroy_cu_module_nvx:
+        return "vkDestroyCuModuleNVX";
+    case ktl::api::command::destroy_cu_function_nvx:
+        return "vkDestroyCuFunctionNVX";
+    case ktl::api::command::cmd_cu_launch_kernel_nvx:
+        return "vkCmdCuLaunchKernelNVX";
+    case ktl::api::command::get_descriptor_set_layout_size_ext:
+        return "vkGetDescriptorSetLayoutSizeEXT";
+    case ktl::api::command::get_descriptor_set_layout_binding_offset_ext:
+        return "vkGetDescriptorSetLayoutBindingOffsetEXT";
+    case ktl::api::command::get_descriptor_ext:
+        return "vkGetDescriptorEXT";
+    case ktl::api::command::cmd_bind_descriptor_buffers_ext:
+        return "vkCmdBindDescriptorBuffersEXT";
+    case ktl::api::command::cmd_set_descriptor_buffer_offsets_ext:
+        return "vkCmdSetDescriptorBufferOffsetsEXT";
+    case ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_ext:
+        return "vkCmdBindDescriptorBufferEmbeddedSamplersEXT";
+    case ktl::api::command::get_buffer_opaque_capture_descriptor_data_ext:
+        return "vkGetBufferOpaqueCaptureDescriptorDataEXT";
+    case ktl::api::command::get_image_opaque_capture_descriptor_data_ext:
+        return "vkGetImageOpaqueCaptureDescriptorDataEXT";
+    case ktl::api::command::get_image_view_opaque_capture_descriptor_data_ext:
+        return "vkGetImageViewOpaqueCaptureDescriptorDataEXT";
+    case ktl::api::command::get_sampler_opaque_capture_descriptor_data_ext:
+        return "vkGetSamplerOpaqueCaptureDescriptorDataEXT";
+    case ktl::api::command::get_acceleration_structure_opaque_capture_descriptor_data_ext:
+        return "vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT";
+    case ktl::api::command::set_device_memory_priority_ext:
+        return "vkSetDeviceMemoryPriorityEXT";
+    case ktl::api::command::acquire_drm_display_ext:
+        return "vkAcquireDrmDisplayEXT";
+    case ktl::api::command::get_drm_display_ext:
+        return "vkGetDrmDisplayEXT";
+    case ktl::api::command::wait_for_present_2khr:
+        return "vkWaitForPresent2KHR";
+    case ktl::api::command::wait_for_present_khr:
+        return "vkWaitForPresentKHR";
+    case ktl::api::command::create_buffer_collection_fuchsia:
+        return "vkCreateBufferCollectionFUCHSIA";
+    case ktl::api::command::set_buffer_collection_buffer_constraints_fuchsia:
+        return "vkSetBufferCollectionBufferConstraintsFUCHSIA";
+    case ktl::api::command::set_buffer_collection_image_constraints_fuchsia:
+        return "vkSetBufferCollectionImageConstraintsFUCHSIA";
+    case ktl::api::command::destroy_buffer_collection_fuchsia:
+        return "vkDestroyBufferCollectionFUCHSIA";
+    case ktl::api::command::get_buffer_collection_properties_fuchsia:
+        return "vkGetBufferCollectionPropertiesFUCHSIA";
+    case ktl::api::command::create_cuda_module_nv:
+        return "vkCreateCudaModuleNV";
+    case ktl::api::command::get_cuda_module_cache_nv:
+        return "vkGetCudaModuleCacheNV";
+    case ktl::api::command::create_cuda_function_nv:
+        return "vkCreateCudaFunctionNV";
+    case ktl::api::command::destroy_cuda_module_nv:
+        return "vkDestroyCudaModuleNV";
+    case ktl::api::command::destroy_cuda_function_nv:
+        return "vkDestroyCudaFunctionNV";
+    case ktl::api::command::cmd_cuda_launch_kernel_nv:
+        return "vkCmdCudaLaunchKernelNV";
+    case ktl::api::command::cmd_begin_rendering:
+        return "vkCmdBeginRenderingKHR";
+    case ktl::api::command::cmd_end_rendering:
+        return "vkCmdEndRenderingKHR";
+    case ktl::api::command::cmd_end_rendering_2khr:
+        return "vkCmdEndRendering2KHR";
+    case ktl::api::command::get_descriptor_set_layout_host_mapping_info_valve:
+        return "vkGetDescriptorSetLayoutHostMappingInfoVALVE";
+    case ktl::api::command::get_descriptor_set_host_mapping_valve:
+        return "vkGetDescriptorSetHostMappingVALVE";
+    case ktl::api::command::create_micromap_ext:
+        return "vkCreateMicromapEXT";
+    case ktl::api::command::cmd_build_micromaps_ext:
+        return "vkCmdBuildMicromapsEXT";
+    case ktl::api::command::build_micromaps_ext:
+        return "vkBuildMicromapsEXT";
+    case ktl::api::command::destroy_micromap_ext:
+        return "vkDestroyMicromapEXT";
+    case ktl::api::command::cmd_copy_micromap_ext:
+        return "vkCmdCopyMicromapEXT";
+    case ktl::api::command::copy_micromap_ext:
+        return "vkCopyMicromapEXT";
+    case ktl::api::command::cmd_copy_micromap_to_memory_ext:
+        return "vkCmdCopyMicromapToMemoryEXT";
+    case ktl::api::command::copy_micromap_to_memory_ext:
+        return "vkCopyMicromapToMemoryEXT";
+    case ktl::api::command::cmd_copy_memory_to_micromap_ext:
+        return "vkCmdCopyMemoryToMicromapEXT";
+    case ktl::api::command::copy_memory_to_micromap_ext:
+        return "vkCopyMemoryToMicromapEXT";
+    case ktl::api::command::cmd_write_micromaps_properties_ext:
+        return "vkCmdWriteMicromapsPropertiesEXT";
+    case ktl::api::command::write_micromaps_properties_ext:
+        return "vkWriteMicromapsPropertiesEXT";
+    case ktl::api::command::get_device_micromap_compatibility_ext:
+        return "vkGetDeviceMicromapCompatibilityEXT";
+    case ktl::api::command::get_micromap_build_sizes_ext:
+        return "vkGetMicromapBuildSizesEXT";
+    case ktl::api::command::get_shader_module_identifier_ext:
+        return "vkGetShaderModuleIdentifierEXT";
+    case ktl::api::command::get_shader_module_create_info_identifier_ext:
+        return "vkGetShaderModuleCreateInfoIdentifierEXT";
+    case ktl::api::command::get_image_subresource_layout_2:
+        return "vkGetImageSubresourceLayout2";
+    case ktl::api::command::get_pipeline_properties_ext:
+        return "vkGetPipelinePropertiesEXT";
+    case ktl::api::command::export_metal_objects_ext:
+        return "vkExportMetalObjectsEXT";
+    case ktl::api::command::cmd_bind_tile_memory_qcom:
+        return "vkCmdBindTileMemoryQCOM";
+    case ktl::api::command::get_framebuffer_tile_properties_qcom:
+        return "vkGetFramebufferTilePropertiesQCOM";
+    case ktl::api::command::get_dynamic_rendering_tile_properties_qcom:
+        return "vkGetDynamicRenderingTilePropertiesQCOM";
+    case ktl::api::command::get_physical_device_optical_flow_image_formats_nv:
+        return "vkGetPhysicalDeviceOpticalFlowImageFormatsNV";
+    case ktl::api::command::create_optical_flow_session_nv:
+        return "vkCreateOpticalFlowSessionNV";
+    case ktl::api::command::destroy_optical_flow_session_nv:
+        return "vkDestroyOpticalFlowSessionNV";
+    case ktl::api::command::bind_optical_flow_session_image_nv:
+        return "vkBindOpticalFlowSessionImageNV";
+    case ktl::api::command::cmd_optical_flow_execute_nv:
+        return "vkCmdOpticalFlowExecuteNV";
+    case ktl::api::command::get_device_fault_info_ext:
+        return "vkGetDeviceFaultInfoEXT";
+    case ktl::api::command::get_device_fault_reports_khr:
+        return "vkGetDeviceFaultReportsKHR";
+    case ktl::api::command::get_device_fault_debug_info_khr:
+        return "vkGetDeviceFaultDebugInfoKHR";
+    case ktl::api::command::cmd_set_depth_bias_2ext:
+        return "vkCmdSetDepthBias2EXT";
+    case ktl::api::command::release_swapchain_images_khr:
+        return "vkReleaseSwapchainImagesKHR";
+    case ktl::api::command::get_device_image_subresource_layout:
+        return "vkGetDeviceImageSubresourceLayout";
+    case ktl::api::command::map_memory_2:
+        return "vkMapMemory2";
+    case ktl::api::command::unmap_memory_2:
+        return "vkUnmapMemory2";
+    case ktl::api::command::create_shaders_ext:
+        return "vkCreateShadersEXT";
+    case ktl::api::command::destroy_shader_ext:
+        return "vkDestroyShaderEXT";
+    case ktl::api::command::get_shader_binary_data_ext:
+        return "vkGetShaderBinaryDataEXT";
+    case ktl::api::command::cmd_bind_shaders_ext:
+        return "vkCmdBindShadersEXT";
+    case ktl::api::command::set_swapchain_present_timing_queue_size_ext:
+        return "vkSetSwapchainPresentTimingQueueSizeEXT";
+    case ktl::api::command::get_swapchain_timing_properties_ext:
+        return "vkGetSwapchainTimingPropertiesEXT";
+    case ktl::api::command::get_swapchain_time_domain_properties_ext:
+        return "vkGetSwapchainTimeDomainPropertiesEXT";
+    case ktl::api::command::get_past_presentation_timing_ext:
+        return "vkGetPastPresentationTimingEXT";
+    case ktl::api::command::get_screen_buffer_properties_qnx:
+        return "vkGetScreenBufferPropertiesQNX";
+    case ktl::api::command::get_physical_device_cooperative_matrix_properties_khr:
+        return "vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR";
+    case ktl::api::command::get_execution_graph_pipeline_scratch_size_amdx:
+        return "vkGetExecutionGraphPipelineScratchSizeAMDX";
+    case ktl::api::command::get_execution_graph_pipeline_node_index_amdx:
+        return "vkGetExecutionGraphPipelineNodeIndexAMDX";
+    case ktl::api::command::create_execution_graph_pipelines_amdx:
+        return "vkCreateExecutionGraphPipelinesAMDX";
+    case ktl::api::command::cmd_initialize_graph_scratch_memory_amdx:
+        return "vkCmdInitializeGraphScratchMemoryAMDX";
+    case ktl::api::command::cmd_dispatch_graph_amdx:
+        return "vkCmdDispatchGraphAMDX";
+    case ktl::api::command::cmd_dispatch_graph_indirect_amdx:
+        return "vkCmdDispatchGraphIndirectAMDX";
+    case ktl::api::command::cmd_dispatch_graph_indirect_count_amdx:
+        return "vkCmdDispatchGraphIndirectCountAMDX";
+    case ktl::api::command::create_gpa_session_amd:
+        return "vkCreateGpaSessionAMD";
+    case ktl::api::command::destroy_gpa_session_amd:
+        return "vkDestroyGpaSessionAMD";
+    case ktl::api::command::set_gpa_device_clock_mode_amd:
+        return "vkSetGpaDeviceClockModeAMD";
+    case ktl::api::command::get_gpa_device_clock_info_amd:
+        return "vkGetGpaDeviceClockInfoAMD";
+    case ktl::api::command::cmd_begin_gpa_session_amd:
+        return "vkCmdBeginGpaSessionAMD";
+    case ktl::api::command::cmd_end_gpa_session_amd:
+        return "vkCmdEndGpaSessionAMD";
+    case ktl::api::command::cmd_begin_gpa_sample_amd:
+        return "vkCmdBeginGpaSampleAMD";
+    case ktl::api::command::cmd_end_gpa_sample_amd:
+        return "vkCmdEndGpaSampleAMD";
+    case ktl::api::command::get_gpa_session_status_amd:
+        return "vkGetGpaSessionStatusAMD";
+    case ktl::api::command::get_gpa_session_results_amd:
+        return "vkGetGpaSessionResultsAMD";
+    case ktl::api::command::reset_gpa_session_amd:
+        return "vkResetGpaSessionAMD";
+    case ktl::api::command::cmd_copy_gpa_session_results_amd:
+        return "vkCmdCopyGpaSessionResultsAMD";
+    case ktl::api::command::cmd_bind_descriptor_sets_2:
+        return "vkCmdBindDescriptorSets2";
+    case ktl::api::command::cmd_push_constants_2:
+        return "vkCmdPushConstants2";
+    case ktl::api::command::cmd_push_descriptor_set_2:
+        return "vkCmdPushDescriptorSet2";
+    case ktl::api::command::cmd_push_descriptor_set_with_template_2:
+        return "vkCmdPushDescriptorSetWithTemplate2";
+    case ktl::api::command::cmd_set_descriptor_buffer_offsets_2ext:
+        return "vkCmdSetDescriptorBufferOffsets2EXT";
+    case ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2ext:
+        return "vkCmdBindDescriptorBufferEmbeddedSamplers2EXT";
+    case ktl::api::command::set_latency_sleep_mode_nv:
+        return "vkSetLatencySleepModeNV";
+    case ktl::api::command::latency_sleep_nv:
+        return "vkLatencySleepNV";
+    case ktl::api::command::set_latency_marker_nv:
+        return "vkSetLatencyMarkerNV";
+    case ktl::api::command::get_latency_timings_nv:
+        return "vkGetLatencyTimingsNV";
+    case ktl::api::command::queue_notify_out_of_band_nv:
+        return "vkQueueNotifyOutOfBandNV";
+    case ktl::api::command::cmd_set_rendering_attachment_locations:
+        return "vkCmdSetRenderingAttachmentLocations";
+    case ktl::api::command::cmd_set_rendering_input_attachment_indices:
+        return "vkCmdSetRenderingInputAttachmentIndices";
+    case ktl::api::command::cmd_set_depth_clamp_range_ext:
+        return "vkCmdSetDepthClampRangeEXT";
+    case ktl::api::command::get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv:
+        return "vkGetPhysicalDeviceCooperativeMatrixFlexibleDimensionsPropertiesNV";
+    case ktl::api::command::get_memory_metal_handle_ext:
+        return "vkGetMemoryMetalHandleEXT";
+    case ktl::api::command::get_memory_metal_handle_properties_ext:
+        return "vkGetMemoryMetalHandlePropertiesEXT";
+    case ktl::api::command::get_physical_device_cooperative_vector_properties_nv:
+        return "vkGetPhysicalDeviceCooperativeVectorPropertiesNV";
+    case ktl::api::command::convert_cooperative_vector_matrix_nv:
+        return "vkConvertCooperativeVectorMatrixNV";
+    case ktl::api::command::cmd_convert_cooperative_vector_matrix_nv:
+        return "vkCmdConvertCooperativeVectorMatrixNV";
+    case ktl::api::command::cmd_dispatch_tile_qcom:
+        return "vkCmdDispatchTileQCOM";
+    case ktl::api::command::cmd_begin_per_tile_execution_qcom:
+        return "vkCmdBeginPerTileExecutionQCOM";
+    case ktl::api::command::cmd_end_per_tile_execution_qcom:
+        return "vkCmdEndPerTileExecutionQCOM";
+    case ktl::api::command::create_external_compute_queue_nv:
+        return "vkCreateExternalComputeQueueNV";
+    case ktl::api::command::destroy_external_compute_queue_nv:
+        return "vkDestroyExternalComputeQueueNV";
+    case ktl::api::command::get_external_compute_queue_data_nv:
+        return "vkGetExternalComputeQueueDataNV";
+    case ktl::api::command::enumerate_physical_device_shader_instrumentation_metrics_arm:
+        return "vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM";
+    case ktl::api::command::create_shader_instrumentation_arm:
+        return "vkCreateShaderInstrumentationARM";
+    case ktl::api::command::destroy_shader_instrumentation_arm:
+        return "vkDestroyShaderInstrumentationARM";
+    case ktl::api::command::cmd_begin_shader_instrumentation_arm:
+        return "vkCmdBeginShaderInstrumentationARM";
+    case ktl::api::command::cmd_end_shader_instrumentation_arm:
+        return "vkCmdEndShaderInstrumentationARM";
+    case ktl::api::command::get_shader_instrumentation_values_arm:
+        return "vkGetShaderInstrumentationValuesARM";
+    case ktl::api::command::clear_shader_instrumentation_metrics_arm:
+        return "vkClearShaderInstrumentationMetricsARM";
+    case ktl::api::command::create_tensor_arm:
+        return "vkCreateTensorARM";
+    case ktl::api::command::destroy_tensor_arm:
+        return "vkDestroyTensorARM";
+    case ktl::api::command::create_tensor_view_arm:
+        return "vkCreateTensorViewARM";
+    case ktl::api::command::destroy_tensor_view_arm:
+        return "vkDestroyTensorViewARM";
+    case ktl::api::command::get_tensor_memory_requirements_arm:
+        return "vkGetTensorMemoryRequirementsARM";
+    case ktl::api::command::bind_tensor_memory_arm:
+        return "vkBindTensorMemoryARM";
+    case ktl::api::command::get_device_tensor_memory_requirements_arm:
+        return "vkGetDeviceTensorMemoryRequirementsARM";
+    case ktl::api::command::cmd_copy_tensor_arm:
+        return "vkCmdCopyTensorARM";
+    case ktl::api::command::get_tensor_opaque_capture_descriptor_data_arm:
+        return "vkGetTensorOpaqueCaptureDescriptorDataARM";
+    case ktl::api::command::get_tensor_view_opaque_capture_descriptor_data_arm:
+        return "vkGetTensorViewOpaqueCaptureDescriptorDataARM";
+    case ktl::api::command::get_physical_device_external_tensor_properties_arm:
+        return "vkGetPhysicalDeviceExternalTensorPropertiesARM";
+    case ktl::api::command::create_data_graph_pipelines_arm:
+        return "vkCreateDataGraphPipelinesARM";
+    case ktl::api::command::create_data_graph_pipeline_session_arm:
+        return "vkCreateDataGraphPipelineSessionARM";
+    case ktl::api::command::get_data_graph_pipeline_session_bind_point_requirements_arm:
+        return "vkGetDataGraphPipelineSessionBindPointRequirementsARM";
+    case ktl::api::command::get_data_graph_pipeline_session_memory_requirements_arm:
+        return "vkGetDataGraphPipelineSessionMemoryRequirementsARM";
+    case ktl::api::command::bind_data_graph_pipeline_session_memory_arm:
+        return "vkBindDataGraphPipelineSessionMemoryARM";
+    case ktl::api::command::destroy_data_graph_pipeline_session_arm:
+        return "vkDestroyDataGraphPipelineSessionARM";
+    case ktl::api::command::cmd_dispatch_data_graph_arm:
+        return "vkCmdDispatchDataGraphARM";
+    case ktl::api::command::get_data_graph_pipeline_available_properties_arm:
+        return "vkGetDataGraphPipelineAvailablePropertiesARM";
+    case ktl::api::command::get_data_graph_pipeline_properties_arm:
+        return "vkGetDataGraphPipelinePropertiesARM";
+    case ktl::api::command::get_physical_device_queue_family_data_graph_properties_arm:
+        return "vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM";
+    case ktl::api::command::get_physical_device_queue_family_data_graph_processing_engine_properties_arm:
+        return "vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM";
+    case ktl::api::command::get_native_buffer_properties_ohos:
+        return "vkGetNativeBufferPropertiesOHOS";
+    case ktl::api::command::get_memory_native_buffer_ohos:
+        return "vkGetMemoryNativeBufferOHOS";
+    case ktl::api::command::get_swapchain_gralloc_usage_ohos:
+        return "vkGetSwapchainGrallocUsageOHOS";
+    case ktl::api::command::acquire_image_ohos:
+        return "vkAcquireImageOHOS";
+    case ktl::api::command::queue_signal_release_image_ohos:
+        return "vkQueueSignalReleaseImageOHOS";
+    case ktl::api::command::queue_set_perf_hint_qcom:
+        return "vkQueueSetPerfHintQCOM";
+    case ktl::api::command::enumerate_physical_device_queue_family_performance_counters_by_region_arm:
+        return "vkEnumeratePhysicalDeviceQueueFamilyPerformanceCountersByRegionARM";
+    case ktl::api::command::cmd_set_compute_occupancy_priority_nv:
+        return "vkCmdSetComputeOccupancyPriorityNV";
+    case ktl::api::command::write_sampler_descriptors_ext:
+        return "vkWriteSamplerDescriptorsEXT";
+    case ktl::api::command::write_resource_descriptors_ext:
+        return "vkWriteResourceDescriptorsEXT";
+    case ktl::api::command::cmd_bind_sampler_heap_ext:
+        return "vkCmdBindSamplerHeapEXT";
+    case ktl::api::command::cmd_bind_resource_heap_ext:
+        return "vkCmdBindResourceHeapEXT";
+    case ktl::api::command::cmd_push_data_ext:
+        return "vkCmdPushDataEXT";
+    case ktl::api::command::register_custom_border_color_ext:
+        return "vkRegisterCustomBorderColorEXT";
+    case ktl::api::command::unregister_custom_border_color_ext:
+        return "vkUnregisterCustomBorderColorEXT";
+    case ktl::api::command::get_image_opaque_capture_data_ext:
+        return "vkGetImageOpaqueCaptureDataEXT";
+    case ktl::api::command::get_physical_device_descriptor_size_ext:
+        return "vkGetPhysicalDeviceDescriptorSizeEXT";
+    case ktl::api::command::get_tensor_opaque_capture_data_arm:
+        return "vkGetTensorOpaqueCaptureDataARM";
+    case ktl::api::command::cmd_copy_memory_khr:
+        return "vkCmdCopyMemoryKHR";
+    case ktl::api::command::cmd_copy_memory_to_image_khr:
+        return "vkCmdCopyMemoryToImageKHR";
+    case ktl::api::command::cmd_copy_image_to_memory_khr:
+        return "vkCmdCopyImageToMemoryKHR";
+    case ktl::api::command::cmd_update_memory_khr:
+        return "vkCmdUpdateMemoryKHR";
+    case ktl::api::command::cmd_fill_memory_khr:
+        return "vkCmdFillMemoryKHR";
+    case ktl::api::command::cmd_copy_query_pool_results_to_memory_khr:
+        return "vkCmdCopyQueryPoolResultsToMemoryKHR";
+    case ktl::api::command::cmd_begin_conditional_rendering_2ext:
+        return "vkCmdBeginConditionalRendering2EXT";
+    case ktl::api::command::cmd_bind_transform_feedback_buffers_2ext:
+        return "vkCmdBindTransformFeedbackBuffers2EXT";
+    case ktl::api::command::cmd_begin_transform_feedback_2ext:
+        return "vkCmdBeginTransformFeedback2EXT";
+    case ktl::api::command::cmd_end_transform_feedback_2ext:
+        return "vkCmdEndTransformFeedback2EXT";
+    case ktl::api::command::cmd_draw_indirect_byte_count_2ext:
+        return "vkCmdDrawIndirectByteCount2EXT";
+    case ktl::api::command::cmd_write_marker_to_memory_amd:
+        return "vkCmdWriteMarkerToMemoryAMD";
+    case ktl::api::command::cmd_bind_index_buffer_3khr:
+        return "vkCmdBindIndexBuffer3KHR";
+    case ktl::api::command::cmd_bind_vertex_buffers_3khr:
+        return "vkCmdBindVertexBuffers3KHR";
+    case ktl::api::command::cmd_draw_indirect_2khr:
+        return "vkCmdDrawIndirect2KHR";
+    case ktl::api::command::cmd_draw_indexed_indirect_2khr:
+        return "vkCmdDrawIndexedIndirect2KHR";
+    case ktl::api::command::cmd_draw_indirect_count_2khr:
+        return "vkCmdDrawIndirectCount2KHR";
+    case ktl::api::command::cmd_draw_indexed_indirect_count_2khr:
+        return "vkCmdDrawIndexedIndirectCount2KHR";
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_2ext:
+        return "vkCmdDrawMeshTasksIndirect2EXT";
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2ext:
+        return "vkCmdDrawMeshTasksIndirectCount2EXT";
+    case ktl::api::command::cmd_dispatch_indirect_2khr:
+        return "vkCmdDispatchIndirect2KHR";
+    case ktl::api::command::create_acceleration_structure_2khr:
+        return "vkCreateAccelerationStructure2KHR";
+    case ktl::api::command::get_physical_device_queue_family_data_graph_engine_operation_properties_arm:
+        return "vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM";
+    case ktl::api::command::cmd_set_dispatch_parameters_arm:
+        return "vkCmdSetDispatchParametersARM";
+    case ktl::api::command::get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm:
+        return "vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM";
+    }
+}
+} // namespace ktl::meta
 #endif
