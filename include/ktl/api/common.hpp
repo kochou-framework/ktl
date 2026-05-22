@@ -65,22 +65,22 @@ using dvsize            = ktl::u64;
 using dvaddr            = ktl::u64;
 using spmask            = ktl::u32;
 using remote_address_nv = void *;
-} // namespace ktl::api
+}
 
 struct ANativeWindow;
 struct AHardwareBuffer;
 
 #ifdef __OBJC__
 @class CAMetalLayer;
-@protocol                   MTLDevice;
+@protocol MTLDevice;
 typedef __unsafe_unretained id< MTLDevice > MTLDevice_id;
-@protocol                                   MTLCommandQueue;
+@protocol MTLCommandQueue;
 typedef __unsafe_unretained id< MTLCommandQueue > MTLCommandQueue_id;
-@protocol                                         MTLBuffer;
+@protocol MTLBuffer;
 typedef __unsafe_unretained id< MTLBuffer > MTLBuffer_id;
-@protocol                                   MTLTexture;
+@protocol MTLTexture;
 typedef __unsafe_unretained id< MTLTexture > MTLTexture_id;
-@protocol                                    MTLSharedEvent;
+@protocol MTLSharedEvent;
 typedef __unsafe_unretained id< MTLSharedEvent > MTLSharedEvent_id;
 #else
 using CAMetalLayer       = void;
@@ -92,7 +92,7 @@ using MTLSharedEvent_id  = void *;
 #endif
 
 typedef struct __IOSurface * IOSurfaceRef;
-typedef struct NativeWindow  OHNativeWindow;
+typedef struct NativeWindow OHNativeWindow;
 struct OHBufferHandle;
 struct OH_NativeBuffer;
 namespace ktl::api
@@ -412,66 +412,66 @@ enum class data_graph_pipeline_node_type_arm : ktl::u32;
 enum class data_graph_optical_flow_create_flag_bits_arm : ktl::u32;
 enum class data_graph_optical_flow_execute_flag_bits_arm : ktl::u32;
 enum class neural_accelerator_statistics_mode_arm : ktl::u32;
-using ray_tracing_invocation_reorder_mode_nv        = ray_tracing_invocation_reorder_mode_ext;
-using private_data_slot_create_flag_bits_ext        = private_data_slot_create_flag_bits;
-using descriptor_update_template_type_khr           = descriptor_update_template_type;
-using point_clipping_behavior_khr                   = point_clipping_behavior;
-using queue_global_priority_khr                     = queue_global_priority;
-using queue_global_priority_ext                     = queue_global_priority;
-using time_domain_ext                               = time_domain_khr;
-using resolve_mode_flag_bits_khr                    = resolve_mode_flag_bits;
-using descriptor_binding_flag_bits_ext              = descriptor_binding_flag_bits;
-using semaphore_type_khr                            = semaphore_type;
-using geometry_flag_bits_nv                         = geometry_flag_bits_khr;
-using geometry_instance_flag_bits_nv                = geometry_instance_flag_bits_khr;
-using build_acceleration_structure_flag_bits_nv     = build_acceleration_structure_flag_bits_khr;
-using copy_acceleration_structure_mode_nv           = copy_acceleration_structure_mode_khr;
-using acceleration_structure_type_nv                = acceleration_structure_type_khr;
-using geometry_type_nv                              = geometry_type_khr;
-using ray_tracing_shader_group_type_nv              = ray_tracing_shader_group_type_khr;
-using pipeline_creation_feedback_flag_bits_ext      = pipeline_creation_feedback_flag_bits;
-using semaphore_wait_flag_bits_khr                  = semaphore_wait_flag_bits;
-using line_rasterization_mode_khr                   = line_rasterization_mode;
-using line_rasterization_mode_ext                   = line_rasterization_mode;
-using tool_purpose_flag_bits_ext                    = tool_purpose_flag_bits;
-using access_flag_bits_2khr                         = access_flag_bits_2;
-using pipeline_stage_flag_bits_2khr                 = pipeline_stage_flag_bits_2;
-using host_image_copy_flag_bits_ext                 = host_image_copy_flag_bits;
-using format_feature_flag_bits_2khr                 = format_feature_flag_bits_2;
-using rendering_flag_bits_khr                       = rendering_flag_bits;
-using pipeline_robustness_buffer_behavior_ext       = pipeline_robustness_buffer_behavior;
-using pipeline_robustness_image_behavior_ext        = pipeline_robustness_image_behavior;
-using opacity_micromap_format_ext                   = opacity_micromap_format_khr;
-using opacity_micromap_special_index_ext            = opacity_micromap_special_index_khr;
+using ray_tracing_invocation_reorder_mode_nv = ray_tracing_invocation_reorder_mode_ext;
+using private_data_slot_create_flag_bits_ext = private_data_slot_create_flag_bits;
+using descriptor_update_template_type_khr = descriptor_update_template_type;
+using point_clipping_behavior_khr = point_clipping_behavior;
+using queue_global_priority_khr = queue_global_priority;
+using queue_global_priority_ext = queue_global_priority;
+using time_domain_ext = time_domain_khr;
+using resolve_mode_flag_bits_khr = resolve_mode_flag_bits;
+using descriptor_binding_flag_bits_ext = descriptor_binding_flag_bits;
+using semaphore_type_khr = semaphore_type;
+using geometry_flag_bits_nv = geometry_flag_bits_khr;
+using geometry_instance_flag_bits_nv = geometry_instance_flag_bits_khr;
+using build_acceleration_structure_flag_bits_nv = build_acceleration_structure_flag_bits_khr;
+using copy_acceleration_structure_mode_nv = copy_acceleration_structure_mode_khr;
+using acceleration_structure_type_nv = acceleration_structure_type_khr;
+using geometry_type_nv = geometry_type_khr;
+using ray_tracing_shader_group_type_nv = ray_tracing_shader_group_type_khr;
+using pipeline_creation_feedback_flag_bits_ext = pipeline_creation_feedback_flag_bits;
+using semaphore_wait_flag_bits_khr = semaphore_wait_flag_bits;
+using line_rasterization_mode_khr = line_rasterization_mode;
+using line_rasterization_mode_ext = line_rasterization_mode;
+using tool_purpose_flag_bits_ext = tool_purpose_flag_bits;
+using access_flag_bits_2khr = access_flag_bits_2;
+using pipeline_stage_flag_bits_2khr = pipeline_stage_flag_bits_2;
+using host_image_copy_flag_bits_ext = host_image_copy_flag_bits;
+using format_feature_flag_bits_2khr = format_feature_flag_bits_2;
+using rendering_flag_bits_khr = rendering_flag_bits;
+using pipeline_robustness_buffer_behavior_ext = pipeline_robustness_buffer_behavior;
+using pipeline_robustness_image_behavior_ext = pipeline_robustness_image_behavior;
+using opacity_micromap_format_ext = opacity_micromap_format_khr;
+using opacity_micromap_special_index_ext = opacity_micromap_special_index_khr;
 using device_fault_vendor_binary_header_version_ext = device_fault_vendor_binary_header_version_khr;
-using memory_decompression_method_flag_bits_nv      = memory_decompression_method_flag_bits_ext;
-using pipeline_create_flag_bits_2khr                = pipeline_create_flag_bits_2;
-using buffer_usage_flag_bits_2khr                   = buffer_usage_flag_bits_2;
-using scope_nv                                      = scope_khr;
-using component_type_nv                             = component_type_khr;
-using external_memory_handle_type_flag_bits_khr     = external_memory_handle_type_flag_bits;
-using external_memory_feature_flag_bits_khr         = external_memory_feature_flag_bits;
-using external_semaphore_handle_type_flag_bits_khr  = external_semaphore_handle_type_flag_bits;
-using external_semaphore_feature_flag_bits_khr      = external_semaphore_feature_flag_bits;
-using semaphore_import_flag_bits_khr                = semaphore_import_flag_bits;
-using external_fence_handle_type_flag_bits_khr      = external_fence_handle_type_flag_bits;
-using external_fence_feature_flag_bits_khr          = external_fence_feature_flag_bits;
-using fence_import_flag_bits_khr                    = fence_import_flag_bits;
-using peer_memory_feature_flag_bits_khr             = peer_memory_feature_flag_bits;
-using memory_allocate_flag_bits_khr                 = memory_allocate_flag_bits;
-using tessellation_domain_origin_khr                = tessellation_domain_origin;
-using sampler_ycbcr_model_conversion_khr            = sampler_ycbcr_model_conversion;
-using sampler_ycbcr_range_khr                       = sampler_ycbcr_range;
-using chroma_location_khr                           = chroma_location;
-using sampler_reduction_mode_ext                    = sampler_reduction_mode;
-using shader_float_controls_independence_khr        = shader_float_controls_independence;
-using submit_flag_bits_khr                          = submit_flag_bits;
-using device_fault_address_type_ext                 = device_fault_address_type_khr;
-using present_scaling_flag_bits_ext                 = present_scaling_flag_bits_khr;
-using present_gravity_flag_bits_ext                 = present_gravity_flag_bits_khr;
-using memory_unmap_flag_bits_khr                    = memory_unmap_flag_bits;
-using driver_id_khr                                 = driver_id;
-} // namespace ktl::api
+using memory_decompression_method_flag_bits_nv = memory_decompression_method_flag_bits_ext;
+using pipeline_create_flag_bits_2khr = pipeline_create_flag_bits_2;
+using buffer_usage_flag_bits_2khr = buffer_usage_flag_bits_2;
+using scope_nv = scope_khr;
+using component_type_nv = component_type_khr;
+using external_memory_handle_type_flag_bits_khr = external_memory_handle_type_flag_bits;
+using external_memory_feature_flag_bits_khr = external_memory_feature_flag_bits;
+using external_semaphore_handle_type_flag_bits_khr = external_semaphore_handle_type_flag_bits;
+using external_semaphore_feature_flag_bits_khr = external_semaphore_feature_flag_bits;
+using semaphore_import_flag_bits_khr = semaphore_import_flag_bits;
+using external_fence_handle_type_flag_bits_khr = external_fence_handle_type_flag_bits;
+using external_fence_feature_flag_bits_khr = external_fence_feature_flag_bits;
+using fence_import_flag_bits_khr = fence_import_flag_bits;
+using peer_memory_feature_flag_bits_khr = peer_memory_feature_flag_bits;
+using memory_allocate_flag_bits_khr = memory_allocate_flag_bits;
+using tessellation_domain_origin_khr = tessellation_domain_origin;
+using sampler_ycbcr_model_conversion_khr = sampler_ycbcr_model_conversion;
+using sampler_ycbcr_range_khr = sampler_ycbcr_range;
+using chroma_location_khr = chroma_location;
+using sampler_reduction_mode_ext = sampler_reduction_mode;
+using shader_float_controls_independence_khr = shader_float_controls_independence;
+using submit_flag_bits_khr = submit_flag_bits;
+using device_fault_address_type_ext = device_fault_address_type_khr;
+using present_scaling_flag_bits_ext = present_scaling_flag_bits_khr;
+using present_gravity_flag_bits_ext = present_gravity_flag_bits_khr;
+using memory_unmap_flag_bits_khr = memory_unmap_flag_bits;
+using driver_id_khr = driver_id;
+}
 namespace ktl::api
 {
 struct opaque_instance;
@@ -533,11 +533,11 @@ using indirect_commands_layout_ext = opaque_indirect_commands_layout_ext *;
 struct opaque_indirect_execution_set_ext;
 using indirect_execution_set_ext = opaque_indirect_execution_set_ext *;
 struct opaque_descriptor_update_template;
-using descriptor_update_template     = opaque_descriptor_update_template *;
+using descriptor_update_template = opaque_descriptor_update_template *;
 using descriptor_update_template_khr = descriptor_update_template;
 
 struct opaque_sampler_ycbcr_conversion;
-using sampler_ycbcr_conversion     = opaque_sampler_ycbcr_conversion *;
+using sampler_ycbcr_conversion = opaque_sampler_ycbcr_conversion *;
 using sampler_ycbcr_conversion_khr = sampler_ycbcr_conversion;
 
 struct opaque_validation_cache_ext;
@@ -553,7 +553,7 @@ using buffer_collection_fuchsia = opaque_buffer_collection_fuchsia *;
 struct opaque_deferred_operation_khr;
 using deferred_operation_khr = opaque_deferred_operation_khr *;
 struct opaque_private_data_slot;
-using private_data_slot     = opaque_private_data_slot *;
+using private_data_slot = opaque_private_data_slot *;
 using private_data_slot_ext = private_data_slot;
 
 struct opaque_cu_module_nvx;
@@ -596,7 +596,7 @@ struct opaque_cuda_function_nv;
 using cuda_function_nv = opaque_cuda_function_nv *;
 struct opaque_external_compute_queue_nv;
 using external_compute_queue_nv = opaque_external_compute_queue_nv *;
-} // namespace ktl::api
+}
 namespace ktl::api
 {
 struct base_out_structure;
@@ -1750,9 +1750,9 @@ struct display_plane_properties_2khr;
 struct surface_format_2khr;
 struct layer_settings_create_info_ext;
 using physical_device_external_sci_buf_features_nv = physical_device_external_memory_sci_buf_features_nv;
-using device_private_data_create_info_ext          = device_private_data_create_info;
-using private_data_slot_create_info_ext            = private_data_slot_create_info;
-using physical_device_private_data_features_ext    = physical_device_private_data_features;
+using device_private_data_create_info_ext = device_private_data_create_info;
+using private_data_slot_create_info_ext = private_data_slot_create_info;
+using physical_device_private_data_features_ext = physical_device_private_data_features;
 struct cluster_acceleration_structure_instantiate_cluster_info_nv;
 struct build_partitioned_acceleration_structure_indirect_command_nv;
 struct cluster_acceleration_structure_build_triangle_cluster_info_nv;
@@ -1760,44 +1760,44 @@ struct cluster_acceleration_structure_build_triangle_cluster_template_info_nv;
 union cluster_acceleration_structure_op_input_nv;
 struct generated_commands_info_nv;
 struct indirect_commands_layout_create_info_nv;
-using physical_device_image_format_info_2khr         = physical_device_image_format_info_2;
-using physical_device_sparse_image_format_info_2khr  = physical_device_sparse_image_format_info_2;
+using physical_device_image_format_info_2khr = physical_device_image_format_info_2;
+using physical_device_sparse_image_format_info_2khr = physical_device_sparse_image_format_info_2;
 using physical_device_push_descriptor_properties_khr = physical_device_push_descriptor_properties;
-using conformance_version_khr                        = conformance_version;
+using conformance_version_khr = conformance_version;
 struct physical_device_driver_properties;
 struct physical_device_vulkan_12properties;
 using physical_device_variable_pointers_features_khr = physical_device_variable_pointers_features;
-using physical_device_variable_pointer_features_khr  = physical_device_variable_pointers_features;
-using physical_device_variable_pointer_features      = physical_device_variable_pointers_features;
-using external_memory_properties_khr                 = external_memory_properties;
+using physical_device_variable_pointer_features_khr = physical_device_variable_pointers_features;
+using physical_device_variable_pointer_features = physical_device_variable_pointers_features;
+using external_memory_properties_khr = external_memory_properties;
 struct external_image_format_properties;
 struct external_buffer_properties;
 struct external_tensor_properties_arm;
 using physical_device_external_image_format_info_khr = physical_device_external_image_format_info;
-using physical_device_external_buffer_info_khr       = physical_device_external_buffer_info;
-using physical_device_id_properties_khr              = physical_device_id_properties;
-using external_memory_image_create_info_khr          = external_memory_image_create_info;
-using external_memory_buffer_create_info_khr         = external_memory_buffer_create_info;
-using export_memory_allocate_info_khr                = export_memory_allocate_info;
-using physical_device_external_semaphore_info_khr    = physical_device_external_semaphore_info;
-using external_semaphore_properties_khr              = external_semaphore_properties;
-using export_semaphore_create_info_khr               = export_semaphore_create_info;
-using physical_device_external_fence_info_khr        = physical_device_external_fence_info;
-using external_fence_properties_khr                  = external_fence_properties;
-using export_fence_create_info_khr                   = export_fence_create_info;
-using physical_device_multiview_features_khr         = physical_device_multiview_features;
-using physical_device_multiview_properties_khr       = physical_device_multiview_properties;
-using render_pass_multiview_create_info_khr          = render_pass_multiview_create_info;
-using physical_device_group_properties_khr           = physical_device_group_properties;
-using memory_allocate_flags_info_khr                 = memory_allocate_flags_info;
-using bind_buffer_memory_info_khr                    = bind_buffer_memory_info;
-using bind_buffer_memory_device_group_info_khr       = bind_buffer_memory_device_group_info;
-using bind_image_memory_info_khr                     = bind_image_memory_info;
-using device_group_command_buffer_begin_info_khr     = device_group_command_buffer_begin_info;
-using device_group_submit_info_khr                   = device_group_submit_info;
-using device_group_bind_sparse_info_khr              = device_group_bind_sparse_info;
-using device_group_device_create_info_khr            = device_group_device_create_info;
-using descriptor_update_template_entry_khr           = descriptor_update_template_entry;
+using physical_device_external_buffer_info_khr = physical_device_external_buffer_info;
+using physical_device_id_properties_khr = physical_device_id_properties;
+using external_memory_image_create_info_khr = external_memory_image_create_info;
+using external_memory_buffer_create_info_khr = external_memory_buffer_create_info;
+using export_memory_allocate_info_khr = export_memory_allocate_info;
+using physical_device_external_semaphore_info_khr = physical_device_external_semaphore_info;
+using external_semaphore_properties_khr = external_semaphore_properties;
+using export_semaphore_create_info_khr = export_semaphore_create_info;
+using physical_device_external_fence_info_khr = physical_device_external_fence_info;
+using external_fence_properties_khr = external_fence_properties;
+using export_fence_create_info_khr = export_fence_create_info;
+using physical_device_multiview_features_khr = physical_device_multiview_features;
+using physical_device_multiview_properties_khr = physical_device_multiview_properties;
+using render_pass_multiview_create_info_khr = render_pass_multiview_create_info;
+using physical_device_group_properties_khr = physical_device_group_properties;
+using memory_allocate_flags_info_khr = memory_allocate_flags_info;
+using bind_buffer_memory_info_khr = bind_buffer_memory_info;
+using bind_buffer_memory_device_group_info_khr = bind_buffer_memory_device_group_info;
+using bind_image_memory_info_khr = bind_image_memory_info;
+using device_group_command_buffer_begin_info_khr = device_group_command_buffer_begin_info;
+using device_group_submit_info_khr = device_group_submit_info;
+using device_group_bind_sparse_info_khr = device_group_bind_sparse_info;
+using device_group_device_create_info_khr = device_group_device_create_info;
+using descriptor_update_template_entry_khr = descriptor_update_template_entry;
 struct descriptor_update_template_create_info;
 struct hdr_metadata_ext;
 struct past_presentation_timing_ext;
@@ -1808,139 +1808,130 @@ struct pipeline_viewport_swizzle_state_create_info_nv;
 using input_attachment_aspect_reference_khr = input_attachment_aspect_reference;
 struct render_pass_input_attachment_aspect_create_info;
 using physical_device_16bit_storage_features_khr = physical_device_16bit_storage_features;
-using physical_device_shader_subgroup_extended_types_features_khr =
-    physical_device_shader_subgroup_extended_types_features;
-using buffer_memory_requirements_info_2khr                      = buffer_memory_requirements_info_2;
-using image_memory_requirements_info_2khr                       = image_memory_requirements_info_2;
-using image_sparse_memory_requirements_info_2khr                = image_sparse_memory_requirements_info_2;
-using physical_device_point_clipping_properties_khr             = physical_device_point_clipping_properties;
-using memory_dedicated_requirements_khr                         = memory_dedicated_requirements;
-using memory_dedicated_allocate_info_khr                        = memory_dedicated_allocate_info;
-using image_view_usage_create_info_khr                          = image_view_usage_create_info;
+using physical_device_shader_subgroup_extended_types_features_khr = physical_device_shader_subgroup_extended_types_features;
+using buffer_memory_requirements_info_2khr = buffer_memory_requirements_info_2;
+using image_memory_requirements_info_2khr = image_memory_requirements_info_2;
+using image_sparse_memory_requirements_info_2khr = image_sparse_memory_requirements_info_2;
+using physical_device_point_clipping_properties_khr = physical_device_point_clipping_properties;
+using memory_dedicated_requirements_khr = memory_dedicated_requirements;
+using memory_dedicated_allocate_info_khr = memory_dedicated_allocate_info;
+using image_view_usage_create_info_khr = image_view_usage_create_info;
 using pipeline_tessellation_domain_origin_state_create_info_khr = pipeline_tessellation_domain_origin_state_create_info;
-using sampler_ycbcr_conversion_info_khr                         = sampler_ycbcr_conversion_info;
-using bind_image_plane_memory_info_khr                          = bind_image_plane_memory_info;
-using image_plane_memory_requirements_info_khr                  = image_plane_memory_requirements_info;
-using physical_device_sampler_ycbcr_conversion_features_khr     = physical_device_sampler_ycbcr_conversion_features;
-using sampler_ycbcr_conversion_image_format_properties_khr      = sampler_ycbcr_conversion_image_format_properties;
-using physical_device_sampler_filter_minmax_properties_ext      = physical_device_sampler_filter_minmax_properties;
+using sampler_ycbcr_conversion_info_khr = sampler_ycbcr_conversion_info;
+using bind_image_plane_memory_info_khr = bind_image_plane_memory_info;
+using image_plane_memory_requirements_info_khr = image_plane_memory_requirements_info;
+using physical_device_sampler_ycbcr_conversion_features_khr = physical_device_sampler_ycbcr_conversion_features;
+using sampler_ycbcr_conversion_image_format_properties_khr = sampler_ycbcr_conversion_image_format_properties;
+using physical_device_sampler_filter_minmax_properties_ext = physical_device_sampler_filter_minmax_properties;
 struct sample_locations_info_ext;
-using sampler_reduction_mode_create_info_ext               = sampler_reduction_mode_create_info;
-using physical_device_inline_uniform_block_features_ext    = physical_device_inline_uniform_block_features;
-using physical_device_inline_uniform_block_properties_ext  = physical_device_inline_uniform_block_properties;
-using write_descriptor_set_inline_uniform_block_ext        = write_descriptor_set_inline_uniform_block;
+using sampler_reduction_mode_create_info_ext = sampler_reduction_mode_create_info;
+using physical_device_inline_uniform_block_features_ext = physical_device_inline_uniform_block_features;
+using physical_device_inline_uniform_block_properties_ext = physical_device_inline_uniform_block_properties;
+using write_descriptor_set_inline_uniform_block_ext = write_descriptor_set_inline_uniform_block;
 using descriptor_pool_inline_uniform_block_create_info_ext = descriptor_pool_inline_uniform_block_create_info;
-using image_format_list_create_info_khr                    = image_format_list_create_info;
-using physical_device_maintenance_3properties_khr          = physical_device_maintenance_3properties;
-using physical_device_maintenance_4features_khr            = physical_device_maintenance_4features;
-using physical_device_maintenance_4properties_khr          = physical_device_maintenance_4properties;
-using physical_device_maintenance_5features_khr            = physical_device_maintenance_5features;
-using physical_device_maintenance_5properties_khr          = physical_device_maintenance_5properties;
-using physical_device_maintenance_6features_khr            = physical_device_maintenance_6features;
-using physical_device_maintenance_6properties_khr          = physical_device_maintenance_6properties;
+using image_format_list_create_info_khr = image_format_list_create_info;
+using physical_device_maintenance_3properties_khr = physical_device_maintenance_3properties;
+using physical_device_maintenance_4features_khr = physical_device_maintenance_4features;
+using physical_device_maintenance_4properties_khr = physical_device_maintenance_4properties;
+using physical_device_maintenance_5features_khr = physical_device_maintenance_5features;
+using physical_device_maintenance_5properties_khr = physical_device_maintenance_5properties;
+using physical_device_maintenance_6features_khr = physical_device_maintenance_6features;
+using physical_device_maintenance_6properties_khr = physical_device_maintenance_6properties;
 struct physical_device_layered_api_properties_list_khr;
-using rendering_area_info_khr                          = rendering_area_info;
-using descriptor_set_layout_support_khr                = descriptor_set_layout_support;
-using physical_device_shader_draw_parameter_features   = physical_device_shader_draw_parameters_features;
+using rendering_area_info_khr = rendering_area_info;
+using descriptor_set_layout_support_khr = descriptor_set_layout_support;
+using physical_device_shader_draw_parameter_features = physical_device_shader_draw_parameters_features;
 using physical_device_shader_float_16int_8features_khr = physical_device_shader_float_16int_8features;
-using physical_device_float_16int_8features_khr        = physical_device_shader_float_16int_8features;
-using physical_device_float_controls_properties_khr    = physical_device_float_controls_properties;
-using physical_device_host_query_reset_features_ext    = physical_device_host_query_reset_features;
+using physical_device_float_16int_8features_khr = physical_device_shader_float_16int_8features;
+using physical_device_float_controls_properties_khr = physical_device_float_controls_properties;
+using physical_device_host_query_reset_features_ext = physical_device_host_query_reset_features;
 struct native_buffer_android;
 struct shader_statistics_info_amd;
-using device_queue_global_priority_create_info_khr       = device_queue_global_priority_create_info;
-using device_queue_global_priority_create_info_ext       = device_queue_global_priority_create_info;
+using device_queue_global_priority_create_info_khr = device_queue_global_priority_create_info;
+using device_queue_global_priority_create_info_ext = device_queue_global_priority_create_info;
 using physical_device_global_priority_query_features_khr = physical_device_global_priority_query_features;
 using physical_device_global_priority_query_features_ext = physical_device_global_priority_query_features;
-using queue_family_global_priority_properties_khr        = queue_family_global_priority_properties;
-using queue_family_global_priority_properties_ext        = queue_family_global_priority_properties;
+using queue_family_global_priority_properties_khr = queue_family_global_priority_properties;
+using queue_family_global_priority_properties_ext = queue_family_global_priority_properties;
 struct debug_utils_messenger_callback_data_ext;
-using calibrated_timestamp_info_ext                       = calibrated_timestamp_info_khr;
-using physical_device_descriptor_indexing_features_ext    = physical_device_descriptor_indexing_features;
-using physical_device_descriptor_indexing_properties_ext  = physical_device_descriptor_indexing_properties;
+using calibrated_timestamp_info_ext = calibrated_timestamp_info_khr;
+using physical_device_descriptor_indexing_features_ext = physical_device_descriptor_indexing_features;
+using physical_device_descriptor_indexing_properties_ext = physical_device_descriptor_indexing_properties;
 using descriptor_set_layout_binding_flags_create_info_ext = descriptor_set_layout_binding_flags_create_info;
-using descriptor_set_variable_descriptor_count_allocate_info_ext =
-    descriptor_set_variable_descriptor_count_allocate_info;
-using descriptor_set_variable_descriptor_count_layout_support_ext =
-    descriptor_set_variable_descriptor_count_layout_support;
+using descriptor_set_variable_descriptor_count_allocate_info_ext = descriptor_set_variable_descriptor_count_allocate_info;
+using descriptor_set_variable_descriptor_count_layout_support_ext = descriptor_set_variable_descriptor_count_layout_support;
 using attachment_description_2khr = attachment_description_2;
-using attachment_reference_2khr   = attachment_reference_2;
+using attachment_reference_2khr = attachment_reference_2;
 struct subpass_description_2;
 struct subpass_description_depth_stencil_resolve;
 struct fragment_shading_rate_attachment_info_khr;
-using subpass_dependency_2khr                           = subpass_dependency_2;
-using subpass_begin_info_khr                            = subpass_begin_info;
-using subpass_end_info_khr                              = subpass_end_info;
-using physical_device_timeline_semaphore_features_khr   = physical_device_timeline_semaphore_features;
+using subpass_dependency_2khr = subpass_dependency_2;
+using subpass_begin_info_khr = subpass_begin_info;
+using subpass_end_info_khr = subpass_end_info;
+using physical_device_timeline_semaphore_features_khr = physical_device_timeline_semaphore_features;
 using physical_device_timeline_semaphore_properties_khr = physical_device_timeline_semaphore_properties;
-using semaphore_type_create_info_khr                    = semaphore_type_create_info;
-using timeline_semaphore_submit_info_khr                = timeline_semaphore_submit_info;
-using semaphore_wait_info_khr                           = semaphore_wait_info;
-using semaphore_signal_info_khr                         = semaphore_signal_info;
-using vertex_input_binding_divisor_description_khr      = vertex_input_binding_divisor_description;
-using vertex_input_binding_divisor_description_ext      = vertex_input_binding_divisor_description;
+using semaphore_type_create_info_khr = semaphore_type_create_info;
+using timeline_semaphore_submit_info_khr = timeline_semaphore_submit_info;
+using semaphore_wait_info_khr = semaphore_wait_info;
+using semaphore_signal_info_khr = semaphore_signal_info;
+using vertex_input_binding_divisor_description_khr = vertex_input_binding_divisor_description;
+using vertex_input_binding_divisor_description_ext = vertex_input_binding_divisor_description;
 struct pipeline_vertex_input_divisor_state_create_info;
 using physical_device_vertex_attribute_divisor_properties_khr = physical_device_vertex_attribute_divisor_properties;
-using physical_device_8bit_storage_features_khr               = physical_device_8bit_storage_features;
-using physical_device_vulkan_memory_model_features_khr        = physical_device_vulkan_memory_model_features;
-using physical_device_shader_atomic_int_64features_khr        = physical_device_shader_atomic_int_64features;
-using physical_device_vertex_attribute_divisor_features_khr   = physical_device_vertex_attribute_divisor_features;
-using physical_device_vertex_attribute_divisor_features_ext   = physical_device_vertex_attribute_divisor_features;
-using physical_device_depth_stencil_resolve_properties_khr    = physical_device_depth_stencil_resolve_properties;
-using physical_device_compute_shader_derivatives_features_nv  = physical_device_compute_shader_derivatives_features_khr;
-using physical_device_copy_memory_indirect_properties_nv      = physical_device_copy_memory_indirect_properties_khr;
-using physical_device_memory_decompression_features_nv        = physical_device_memory_decompression_features_ext;
-using physical_device_memory_decompression_properties_nv      = physical_device_memory_decompression_properties_ext;
+using physical_device_8bit_storage_features_khr = physical_device_8bit_storage_features;
+using physical_device_vulkan_memory_model_features_khr = physical_device_vulkan_memory_model_features;
+using physical_device_shader_atomic_int_64features_khr = physical_device_shader_atomic_int_64features;
+using physical_device_vertex_attribute_divisor_features_khr = physical_device_vertex_attribute_divisor_features;
+using physical_device_vertex_attribute_divisor_features_ext = physical_device_vertex_attribute_divisor_features;
+using physical_device_depth_stencil_resolve_properties_khr = physical_device_depth_stencil_resolve_properties;
+using physical_device_compute_shader_derivatives_features_nv = physical_device_compute_shader_derivatives_features_khr;
+using physical_device_copy_memory_indirect_properties_nv = physical_device_copy_memory_indirect_properties_khr;
+using physical_device_memory_decompression_features_nv = physical_device_memory_decompression_features_ext;
+using physical_device_memory_decompression_properties_nv = physical_device_memory_decompression_properties_ext;
 struct pipeline_viewport_shading_rate_image_state_create_info_nv;
 struct coarse_sample_order_custom_nv;
 struct geometry_data_nv;
 struct drm_format_modifier_properties_list_ext;
 using image_stencil_usage_create_info_ext = image_stencil_usage_create_info;
-using physical_device_fragment_density_map_offset_features_qcom =
-    physical_device_fragment_density_map_offset_features_ext;
+using physical_device_fragment_density_map_offset_features_qcom = physical_device_fragment_density_map_offset_features_ext;
 using physical_device_scalar_block_layout_features_ext = physical_device_scalar_block_layout_features;
-using physical_device_uniform_buffer_standard_layout_features_khr =
-    physical_device_uniform_buffer_standard_layout_features;
+using physical_device_uniform_buffer_standard_layout_features_khr = physical_device_uniform_buffer_standard_layout_features;
 using physical_device_buffer_device_address_features_khr = physical_device_buffer_device_address_features;
-using physical_device_buffer_address_features_ext        = physical_device_buffer_device_address_features_ext;
-using buffer_device_address_info_khr                     = buffer_device_address_info;
-using buffer_device_address_info_ext                     = buffer_device_address_info;
-using buffer_opaque_capture_address_create_info_khr      = buffer_opaque_capture_address_create_info;
+using physical_device_buffer_address_features_ext = physical_device_buffer_device_address_features_ext;
+using buffer_device_address_info_khr = buffer_device_address_info;
+using buffer_device_address_info_ext = buffer_device_address_info;
+using buffer_opaque_capture_address_create_info_khr = buffer_opaque_capture_address_create_info;
 using physical_device_imageless_framebuffer_features_khr = physical_device_imageless_framebuffer_features;
 struct framebuffer_attachments_create_info;
-using framebuffer_attachment_image_info_khr                    = framebuffer_attachment_image_info;
-using render_pass_attachment_begin_info_khr                    = render_pass_attachment_begin_info;
+using framebuffer_attachment_image_info_khr = framebuffer_attachment_image_info;
+using render_pass_attachment_begin_info_khr = render_pass_attachment_begin_info;
 using physical_device_texture_compression_astchdr_features_ext = physical_device_texture_compression_astchdr_features;
-using pipeline_creation_feedback_ext                           = pipeline_creation_feedback;
+using pipeline_creation_feedback_ext = pipeline_creation_feedback;
 struct pipeline_creation_feedback_create_info;
 struct performance_value_intel;
-using query_pool_create_info_intel                  = query_pool_performance_query_create_info_intel;
+using query_pool_create_info_intel = query_pool_performance_query_create_info_intel;
 using physical_device_index_type_uint_8features_khr = physical_device_index_type_uint_8features;
 using physical_device_index_type_uint_8features_ext = physical_device_index_type_uint_8features;
-using physical_device_separate_depth_stencil_layouts_features_khr =
-    physical_device_separate_depth_stencil_layouts_features;
-using attachment_reference_stencil_layout_khr   = attachment_reference_stencil_layout;
+using physical_device_separate_depth_stencil_layouts_features_khr = physical_device_separate_depth_stencil_layouts_features;
+using attachment_reference_stencil_layout_khr = attachment_reference_stencil_layout;
 using attachment_description_stencil_layout_khr = attachment_description_stencil_layout;
-using pipeline_info_ext                         = pipeline_info_khr;
+using pipeline_info_ext = pipeline_info_khr;
 struct pipeline_executable_statistic_khr;
-using physical_device_shader_demote_to_helper_invocation_features_ext =
-    physical_device_shader_demote_to_helper_invocation_features;
+using physical_device_shader_demote_to_helper_invocation_features_ext = physical_device_shader_demote_to_helper_invocation_features;
 using physical_device_texel_buffer_alignment_properties_ext = physical_device_texel_buffer_alignment_properties;
-using physical_device_subgroup_size_control_features_ext    = physical_device_subgroup_size_control_features;
-using physical_device_subgroup_size_control_properties_ext  = physical_device_subgroup_size_control_properties;
-using pipeline_shader_stage_required_subgroup_size_create_info_ext =
-    pipeline_shader_stage_required_subgroup_size_create_info;
-using shader_required_subgroup_size_create_info_ext     = pipeline_shader_stage_required_subgroup_size_create_info;
-using memory_opaque_capture_address_allocate_info_khr   = memory_opaque_capture_address_allocate_info;
-using device_memory_opaque_capture_address_info_khr     = device_memory_opaque_capture_address_info;
-using physical_device_line_rasterization_features_khr   = physical_device_line_rasterization_features;
-using physical_device_line_rasterization_features_ext   = physical_device_line_rasterization_features;
+using physical_device_subgroup_size_control_features_ext = physical_device_subgroup_size_control_features;
+using physical_device_subgroup_size_control_properties_ext = physical_device_subgroup_size_control_properties;
+using pipeline_shader_stage_required_subgroup_size_create_info_ext = pipeline_shader_stage_required_subgroup_size_create_info;
+using shader_required_subgroup_size_create_info_ext = pipeline_shader_stage_required_subgroup_size_create_info;
+using memory_opaque_capture_address_allocate_info_khr = memory_opaque_capture_address_allocate_info;
+using device_memory_opaque_capture_address_info_khr = device_memory_opaque_capture_address_info;
+using physical_device_line_rasterization_features_khr = physical_device_line_rasterization_features;
+using physical_device_line_rasterization_features_ext = physical_device_line_rasterization_features;
 using physical_device_line_rasterization_properties_khr = physical_device_line_rasterization_properties;
 using physical_device_line_rasterization_properties_ext = physical_device_line_rasterization_properties;
 using pipeline_rasterization_line_state_create_info_khr = pipeline_rasterization_line_state_create_info;
 using pipeline_rasterization_line_state_create_info_ext = pipeline_rasterization_line_state_create_info;
-using physical_device_pipeline_creation_cache_control_features_ext =
-    physical_device_pipeline_creation_cache_control_features;
+using physical_device_pipeline_creation_cache_control_features_ext = physical_device_pipeline_creation_cache_control_features;
 struct physical_device_gpa_properties_amd;
 struct gpa_sample_begin_info_amd;
 struct fault_callback_info;
@@ -1959,96 +1950,92 @@ struct acceleration_structure_dense_geometry_format_triangles_data_amdx;
 struct convert_cooperative_vector_matrix_info_nv;
 struct dispatch_graph_info_amdx;
 struct dispatch_graph_count_info_amdx;
-using aabb_positions_nv   = aabb_positions_khr;
+using aabb_positions_nv = aabb_positions_khr;
 using transform_matrix_nv = transform_matrix_khr;
 struct acceleration_structure_instance_khr;
 struct partitioned_acceleration_structure_write_instance_data_nv;
 struct acceleration_structure_matrix_motion_instance_nv;
 struct refresh_object_list_khr;
 struct build_partitioned_acceleration_structure_info_nv;
-using physical_device_zero_initialize_workgroup_memory_features_khr =
-    physical_device_zero_initialize_workgroup_memory_features;
-using physical_device_robustness_2features_ext      = physical_device_robustness_2features_khr;
-using physical_device_robustness_2properties_ext    = physical_device_robustness_2properties_khr;
+using physical_device_zero_initialize_workgroup_memory_features_khr = physical_device_zero_initialize_workgroup_memory_features;
+using physical_device_robustness_2features_ext = physical_device_robustness_2features_khr;
+using physical_device_robustness_2properties_ext = physical_device_robustness_2properties_khr;
 using physical_device_image_robustness_features_ext = physical_device_image_robustness_features;
-using buffer_copy_2khr                              = buffer_copy_2;
+using buffer_copy_2khr = buffer_copy_2;
 struct copy_buffer_info_2;
 using physical_device_shader_terminate_invocation_features_khr = physical_device_shader_terminate_invocation_features;
-using physical_device_mutable_descriptor_type_features_valve   = physical_device_mutable_descriptor_type_features_ext;
-using mutable_descriptor_type_list_valve                       = mutable_descriptor_type_list_ext;
+using physical_device_mutable_descriptor_type_features_valve = physical_device_mutable_descriptor_type_features_ext;
+using mutable_descriptor_type_list_valve = mutable_descriptor_type_list_ext;
 struct mutable_descriptor_type_create_info_ext;
 struct indirect_execution_set_shader_info_ext;
-using memory_barrier_2khr        = memory_barrier_2;
+using memory_barrier_2khr = memory_barrier_2;
 using buffer_memory_barrier_2khr = buffer_memory_barrier_2;
-using semaphore_submit_info_khr  = semaphore_submit_info;
+using semaphore_submit_info_khr = semaphore_submit_info;
 struct render_pass_stripe_submit_info_arm;
 using command_buffer_submit_info_khr = command_buffer_submit_info;
 struct submit_info_2;
-using physical_device_synchronization_2features_khr  = physical_device_synchronization_2features;
-using physical_device_host_image_copy_features_ext   = physical_device_host_image_copy_features;
+using physical_device_synchronization_2features_khr = physical_device_synchronization_2features;
+using physical_device_host_image_copy_features_ext = physical_device_host_image_copy_features;
 using physical_device_host_image_copy_properties_ext = physical_device_host_image_copy_properties;
-using subresource_host_memcpy_size_ext               = subresource_host_memcpy_size;
-using host_image_copy_device_performance_query_ext   = host_image_copy_device_performance_query;
+using subresource_host_memcpy_size_ext = subresource_host_memcpy_size;
+using host_image_copy_device_performance_query_ext = host_image_copy_device_performance_query;
 struct device_object_reservation_create_info;
 using physical_device_pipeline_protected_access_features_ext = physical_device_pipeline_protected_access_features;
 union descriptor_data_ext;
-using physical_device_shader_integer_dot_product_features_khr   = physical_device_shader_integer_dot_product_features;
+using physical_device_shader_integer_dot_product_features_khr = physical_device_shader_integer_dot_product_features;
 using physical_device_shader_integer_dot_product_properties_khr = physical_device_shader_integer_dot_product_properties;
-using physical_device_fragment_shader_barycentric_features_nv =
-    physical_device_fragment_shader_barycentric_features_khr;
+using physical_device_fragment_shader_barycentric_features_nv = physical_device_fragment_shader_barycentric_features_khr;
 struct acceleration_structure_srt_motion_instance_nv;
 struct buffer_collection_properties_fuchsia;
 struct buffer_constraints_info_fuchsia;
 using format_properties_3khr = format_properties_3;
 struct drm_format_modifier_properties_list_2ext;
-using pipeline_rendering_create_info_khr             = pipeline_rendering_create_info;
-using rendering_end_info_ext                         = rendering_end_info_khr;
+using pipeline_rendering_create_info_khr = pipeline_rendering_create_info;
+using rendering_end_info_ext = rendering_end_info_khr;
 using physical_device_dynamic_rendering_features_khr = physical_device_dynamic_rendering_features;
-using command_buffer_inheritance_rendering_info_khr  = command_buffer_inheritance_rendering_info;
-using attachment_sample_count_info_nv                = attachment_sample_count_info_amd;
-using physical_device_rasterization_order_attachment_access_features_arm =
-    physical_device_rasterization_order_attachment_access_features_ext;
+using command_buffer_inheritance_rendering_info_khr = command_buffer_inheritance_rendering_info;
+using attachment_sample_count_info_nv = attachment_sample_count_info_amd;
+using physical_device_rasterization_order_attachment_access_features_arm = physical_device_rasterization_order_attachment_access_features_ext;
 struct render_pass_creation_feedback_create_info_ext;
 struct render_pass_subpass_feedback_create_info_ext;
 struct acceleration_structure_geometry_micromap_data_khr;
 struct micromap_build_info_ext;
 struct acceleration_structure_triangles_opacity_micromap_ext;
 struct acceleration_structure_triangles_displacement_micromap_nv;
-using micromap_triangle_ext                              = micromap_triangle_khr;
-using physical_device_pipeline_robustness_features_ext   = physical_device_pipeline_robustness_features;
-using pipeline_robustness_create_info_ext                = pipeline_robustness_create_info;
+using micromap_triangle_ext = micromap_triangle_khr;
+using physical_device_pipeline_robustness_features_ext = physical_device_pipeline_robustness_features;
+using pipeline_robustness_create_info_ext = pipeline_robustness_create_info;
 using physical_device_pipeline_robustness_properties_ext = physical_device_pipeline_robustness_properties;
-using device_fault_address_info_ext                      = device_fault_address_info_khr;
-using device_fault_vendor_info_ext                       = device_fault_vendor_info_khr;
+using device_fault_address_info_ext = device_fault_address_info_khr;
+using device_fault_vendor_info_ext = device_fault_vendor_info_khr;
 struct device_fault_info_khr;
 struct device_fault_info_ext;
 using device_fault_vendor_binary_header_version_one_ext = device_fault_vendor_binary_header_version_one_khr;
 struct decompress_memory_info_ext;
-using surface_present_mode_ext                            = surface_present_mode_khr;
-using surface_present_mode_compatibility_ext              = surface_present_mode_compatibility_khr;
+using surface_present_mode_ext = surface_present_mode_khr;
+using surface_present_mode_compatibility_ext = surface_present_mode_compatibility_khr;
 using physical_device_swapchain_maintenance_1features_ext = physical_device_swapchain_maintenance_1features_khr;
-using swapchain_present_fence_info_ext                    = swapchain_present_fence_info_khr;
-using swapchain_present_modes_create_info_ext             = swapchain_present_modes_create_info_khr;
-using swapchain_present_mode_info_ext                     = swapchain_present_mode_info_khr;
-using swapchain_present_scaling_create_info_ext           = swapchain_present_scaling_create_info_khr;
-using release_swapchain_images_info_ext                   = release_swapchain_images_info_khr;
+using swapchain_present_fence_info_ext = swapchain_present_fence_info_khr;
+using swapchain_present_modes_create_info_ext = swapchain_present_modes_create_info_khr;
+using swapchain_present_mode_info_ext = swapchain_present_mode_info_khr;
+using swapchain_present_scaling_create_info_ext = swapchain_present_scaling_create_info_khr;
+using release_swapchain_images_info_ext = release_swapchain_images_info_khr;
 struct direct_driver_loading_list_lunarg;
-using memory_map_info_khr   = memory_map_info;
+using memory_map_info_khr = memory_map_info;
 using memory_unmap_info_khr = memory_unmap_info;
 struct anti_lag_data_amd;
-using bind_memory_status_khr                     = bind_memory_status;
-using bind_descriptor_sets_info_khr              = bind_descriptor_sets_info;
-using push_constants_info_khr                    = push_constants_info;
+using bind_memory_status_khr = bind_memory_status;
+using bind_descriptor_sets_info_khr = bind_descriptor_sets_info;
+using push_constants_info_khr = push_constants_info;
 using push_descriptor_set_with_template_info_khr = push_descriptor_set_with_template_info;
 struct get_latency_marker_info_nv;
-using physical_device_shader_subgroup_rotate_features_khr       = physical_device_shader_subgroup_rotate_features;
-using physical_device_shader_expect_assume_features_khr         = physical_device_shader_expect_assume_features;
-using physical_device_shader_float_controls_2features_khr       = physical_device_shader_float_controls_2features;
+using physical_device_shader_subgroup_rotate_features_khr = physical_device_shader_subgroup_rotate_features;
+using physical_device_shader_expect_assume_features_khr = physical_device_shader_expect_assume_features;
+using physical_device_shader_float_controls_2features_khr = physical_device_shader_float_controls_2features;
 using physical_device_dynamic_rendering_local_read_features_khr = physical_device_dynamic_rendering_local_read_features;
-using rendering_attachment_location_info_khr                    = rendering_attachment_location_info;
-using rendering_input_attachment_index_info_khr                 = rendering_input_attachment_index_info;
-using physical_device_present_mode_fifo_latest_ready_features_ext =
-    physical_device_present_mode_fifo_latest_ready_features_khr;
+using rendering_attachment_location_info_khr = rendering_attachment_location_info;
+using rendering_input_attachment_index_info_khr = rendering_input_attachment_index_info;
+using physical_device_present_mode_fifo_latest_ready_features_ext = physical_device_present_mode_fifo_latest_ready_features_khr;
 struct pipeline_viewport_depth_clamp_control_create_info_ext;
 using physical_device_depth_clamp_zero_one_features_ext = physical_device_depth_clamp_zero_one_features_khr;
 struct tensor_create_info_arm;
@@ -2092,8 +2079,7 @@ struct display_mode_create_info_khr;
 struct display_plane_capabilities_2khr;
 struct surface_capabilities_2khr;
 struct present_region_khr;
-using physical_device_fragment_density_map_offset_properties_qcom =
-    physical_device_fragment_density_map_offset_properties_ext;
+using physical_device_fragment_density_map_offset_properties_qcom = physical_device_fragment_density_map_offset_properties_ext;
 using surface_present_scaling_capabilities_ext = surface_present_scaling_capabilities_khr;
 struct queue_family_properties_2;
 struct sparse_image_memory_requirements;
@@ -2103,7 +2089,7 @@ struct image_format_properties_2;
 struct device_image_memory_requirements;
 struct image_format_constraints_info_fuchsia;
 using sampler_ycbcr_conversion_create_info_khr = sampler_ycbcr_conversion_create_info;
-using memory_requirements_2khr                 = memory_requirements_2;
+using memory_requirements_2khr = memory_requirements_2;
 struct physical_device_memory_properties_2;
 using format_properties_2khr = format_properties_2;
 struct push_descriptor_set_info;
@@ -2113,7 +2099,7 @@ using image_subresource_2khr = image_subresource_2;
 using image_subresource_2ext = image_subresource_2;
 struct device_image_subresource_info;
 using copy_memory_to_image_indirect_command_nv = copy_memory_to_image_indirect_command_khr;
-using image_copy_2khr                          = image_copy_2;
+using image_copy_2khr = image_copy_2;
 struct copy_image_info_2;
 struct copy_image_to_image_info;
 using image_blit_2khr = image_blit_2;
@@ -2131,8 +2117,8 @@ struct image_descriptor_info_ext;
 using image_memory_barrier_2khr = image_memory_barrier_2;
 struct dependency_info;
 using host_image_layout_transition_info_ext = host_image_layout_transition_info;
-using subresource_layout_2khr               = subresource_layout_2;
-using subresource_layout_2ext               = subresource_layout_2;
+using subresource_layout_2khr = subresource_layout_2;
+using subresource_layout_2ext = subresource_layout_2;
 struct pipeline_shader_stage_create_info;
 struct shader_create_info_ext;
 struct data_graph_pipeline_shader_module_create_info_arm;
@@ -2146,9 +2132,9 @@ struct render_pass_create_info;
 using physical_device_features_2khr = physical_device_features_2;
 struct physical_device_properties_2;
 struct cluster_acceleration_structure_input_info_nv;
-using physical_device_driver_properties_khr      = physical_device_driver_properties;
-using external_image_format_properties_khr       = external_image_format_properties;
-using external_buffer_properties_khr             = external_buffer_properties;
+using physical_device_driver_properties_khr = physical_device_driver_properties;
+using external_image_format_properties_khr = external_image_format_properties;
+using external_buffer_properties_khr = external_buffer_properties;
 using descriptor_update_template_create_info_khr = descriptor_update_template_create_info;
 struct past_presentation_timing_properties_ext;
 using render_pass_input_attachment_aspect_create_info_khr = render_pass_input_attachment_aspect_create_info;
@@ -2157,16 +2143,16 @@ struct subpass_sample_locations_ext;
 struct pipeline_sample_locations_state_create_info_ext;
 using subpass_description_2khr = subpass_description_2;
 struct render_pass_create_info_2;
-using subpass_description_depth_stencil_resolve_khr       = subpass_description_depth_stencil_resolve;
+using subpass_description_depth_stencil_resolve_khr = subpass_description_depth_stencil_resolve;
 using pipeline_vertex_input_divisor_state_create_info_khr = pipeline_vertex_input_divisor_state_create_info;
 using pipeline_vertex_input_divisor_state_create_info_ext = pipeline_vertex_input_divisor_state_create_info;
 struct pipeline_viewport_coarse_sample_order_state_create_info_nv;
 struct geometry_nv;
-using framebuffer_attachments_create_info_khr    = framebuffer_attachments_create_info;
+using framebuffer_attachments_create_info_khr = framebuffer_attachments_create_info;
 using pipeline_creation_feedback_create_info_ext = pipeline_creation_feedback_create_info;
 union acceleration_structure_geometry_data_khr;
-using acceleration_structure_instance_nv        = acceleration_structure_instance_khr;
-using copy_buffer_info_2khr                     = copy_buffer_info_2;
+using acceleration_structure_instance_nv = acceleration_structure_instance_khr;
+using copy_buffer_info_2khr = copy_buffer_info_2;
 using mutable_descriptor_type_create_info_valve = mutable_descriptor_type_create_info_ext;
 union indirect_execution_set_info_ext;
 using submit_info_2khr = submit_info_2;
@@ -2185,23 +2171,23 @@ struct display_mode_properties_2khr;
 struct present_regions_khr;
 using queue_family_properties_2khr = queue_family_properties_2;
 struct sparse_image_memory_requirements_2;
-using sparse_image_format_properties_2khr  = sparse_image_format_properties_2;
-using image_format_properties_2khr         = image_format_properties_2;
+using sparse_image_format_properties_2khr = sparse_image_format_properties_2;
+using image_format_properties_2khr = image_format_properties_2;
 using device_image_memory_requirements_khr = device_image_memory_requirements;
 struct image_constraints_info_fuchsia;
 using physical_device_memory_properties_2khr = physical_device_memory_properties_2;
-using push_descriptor_set_info_khr           = push_descriptor_set_info;
+using push_descriptor_set_info_khr = push_descriptor_set_info;
 struct bind_sparse_info;
 using device_image_subresource_info_khr = device_image_subresource_info;
-using copy_image_info_2khr              = copy_image_info_2;
-using copy_image_to_image_info_ext      = copy_image_to_image_info;
-using blit_image_info_2khr              = blit_image_info_2;
-using copy_buffer_to_image_info_2khr    = copy_buffer_to_image_info_2;
-using copy_image_to_buffer_info_2khr    = copy_image_to_buffer_info_2;
-using resolve_image_info_2khr           = resolve_image_info_2;
-using copy_memory_to_image_info_ext     = copy_memory_to_image_info;
-using copy_image_to_memory_info_ext     = copy_image_to_memory_info;
-using dependency_info_khr               = dependency_info;
+using copy_image_info_2khr = copy_image_info_2;
+using copy_image_to_image_info_ext = copy_image_to_image_info;
+using blit_image_info_2khr = blit_image_info_2;
+using copy_buffer_to_image_info_2khr = copy_buffer_to_image_info_2;
+using copy_image_to_buffer_info_2khr = copy_image_to_buffer_info_2;
+using resolve_image_info_2khr = resolve_image_info_2;
+using copy_memory_to_image_info_ext = copy_memory_to_image_info;
+using copy_image_to_memory_info_ext = copy_image_to_memory_info;
+using dependency_info_khr = dependency_info;
 struct compute_pipeline_create_info;
 struct graphics_pipeline_create_info;
 struct graphics_shader_group_create_info_nv;
@@ -2211,7 +2197,7 @@ struct execution_graph_pipeline_create_info_amdx;
 struct indirect_commands_layout_token_ext;
 struct descriptor_set_and_binding_mapping_ext;
 struct rendering_info;
-using rendering_attachment_info_khr   = rendering_attachment_info;
+using rendering_attachment_info_khr = rendering_attachment_info;
 using physical_device_properties_2khr = physical_device_properties_2;
 struct physical_device_layered_api_vulkan_properties_khr;
 struct cluster_acceleration_structure_commands_info_nv;
@@ -2231,2467 +2217,1138 @@ using rendering_info_khr = rendering_info;
 struct acceleration_structure_create_info_nv;
 struct acceleration_structure_build_geometry_info_khr;
 struct resource_descriptor_info_ext;
-} // namespace ktl::api
+}
 
 namespace ktl::api
 {
-using framebuffer_create_flags                                   = ktl::api::flag32;
-using query_pool_create_flags                                    = ktl::api::flag32;
-using render_pass_create_flags                                   = ktl::api::flag32;
-using sampler_create_flags                                       = ktl::api::flag32;
-using pipeline_layout_create_flags                               = ktl::api::flag32;
-using pipeline_cache_create_flags                                = ktl::api::flag32;
-using pipeline_depth_stencil_state_create_flags                  = ktl::api::flag32;
-using pipeline_depth_stencil_state_create_flags                  = ktl::api::flag32;
-using pipeline_dynamic_state_create_flags                        = ktl::api::flag32;
-using pipeline_color_blend_state_create_flags                    = ktl::api::flag32;
-using pipeline_color_blend_state_create_flags                    = ktl::api::flag32;
-using pipeline_multisample_state_create_flags                    = ktl::api::flag32;
-using pipeline_rasterization_state_create_flags                  = ktl::api::flag32;
-using pipeline_viewport_state_create_flags                       = ktl::api::flag32;
-using pipeline_tessellation_state_create_flags                   = ktl::api::flag32;
-using pipeline_input_assembly_state_create_flags                 = ktl::api::flag32;
-using pipeline_vertex_input_state_create_flags                   = ktl::api::flag32;
-using pipeline_shader_stage_create_flags                         = ktl::api::flag32;
-using descriptor_set_layout_create_flags                         = ktl::api::flag32;
-using buffer_view_create_flags                                   = ktl::api::flag32;
-using instance_create_flags                                      = ktl::api::flag32;
-using device_create_flags                                        = ktl::api::flag32;
-using device_queue_create_flags                                  = ktl::api::flag32;
-using queue_flags                                                = ktl::api::flag32;
-using memory_property_flags                                      = ktl::api::flag32;
-using memory_heap_flags                                          = ktl::api::flag32;
-using access_flags                                               = ktl::api::flag32;
-using buffer_usage_flags                                         = ktl::api::flag32;
-using buffer_create_flags                                        = ktl::api::flag32;
-using shader_stage_flags                                         = ktl::api::flag32;
-using image_usage_flags                                          = ktl::api::flag32;
-using image_create_flags                                         = ktl::api::flag32;
-using image_view_create_flags                                    = ktl::api::flag32;
-using pipeline_create_flags                                      = ktl::api::flag32;
-using color_component_flags                                      = ktl::api::flag32;
-using fence_create_flags                                         = ktl::api::flag32;
-using semaphore_create_flags                                     = ktl::api::flag32;
-using format_feature_flags                                       = ktl::api::flag32;
-using query_control_flags                                        = ktl::api::flag32;
-using query_result_flags                                         = ktl::api::flag32;
-using shader_module_create_flags                                 = ktl::api::flag32;
-using event_create_flags                                         = ktl::api::flag32;
-using command_pool_create_flags                                  = ktl::api::flag32;
-using command_pool_reset_flags                                   = ktl::api::flag32;
-using command_buffer_reset_flags                                 = ktl::api::flag32;
-using command_buffer_usage_flags                                 = ktl::api::flag32;
-using query_pipeline_statistic_flags                             = ktl::api::flag32;
-using memory_map_flags                                           = ktl::api::flag32;
-using memory_unmap_flags                                         = ktl::api::flag32;
-using memory_unmap_flags_khr                                     = ktl::api::flag32;
-using image_aspect_flags                                         = ktl::api::flag32;
-using sparse_memory_bind_flags                                   = ktl::api::flag32;
-using sparse_image_format_flags                                  = ktl::api::flag32;
-using subpass_description_flags                                  = ktl::api::flag32;
-using pipeline_stage_flags                                       = ktl::api::flag32;
-using sample_count_flags                                         = ktl::api::flag32;
-using attachment_description_flags                               = ktl::api::flag32;
-using stencil_face_flags                                         = ktl::api::flag32;
-using cull_mode_flags                                            = ktl::api::flag32;
-using descriptor_pool_create_flags                               = ktl::api::flag32;
-using descriptor_pool_reset_flags                                = ktl::api::flag32;
-using dependency_flags                                           = ktl::api::flag32;
-using subgroup_feature_flags                                     = ktl::api::flag32;
-using indirect_commands_layout_usage_flags_nv                    = ktl::api::flag32;
-using indirect_state_flags_nv                                    = ktl::api::flag32;
-using geometry_flags_khr                                         = ktl::api::flag32;
-using geometry_flags_nv                                          = ktl::api::flag32;
-using geometry_instance_flags_khr                                = ktl::api::flag32;
-using geometry_instance_flags_nv                                 = ktl::api::flag32;
-using cluster_acceleration_structure_geometry_flags_nv           = ktl::api::flag32;
-using cluster_acceleration_structure_cluster_flags_nv            = ktl::api::flag32;
+using framebuffer_create_flags = ktl::api::flag32;
+using query_pool_create_flags = ktl::api::flag32;
+using render_pass_create_flags = ktl::api::flag32;
+using sampler_create_flags = ktl::api::flag32;
+using pipeline_layout_create_flags = ktl::api::flag32;
+using pipeline_cache_create_flags = ktl::api::flag32;
+using pipeline_depth_stencil_state_create_flags = ktl::api::flag32;
+using pipeline_depth_stencil_state_create_flags = ktl::api::flag32;
+using pipeline_dynamic_state_create_flags = ktl::api::flag32;
+using pipeline_color_blend_state_create_flags = ktl::api::flag32;
+using pipeline_color_blend_state_create_flags = ktl::api::flag32;
+using pipeline_multisample_state_create_flags = ktl::api::flag32;
+using pipeline_rasterization_state_create_flags = ktl::api::flag32;
+using pipeline_viewport_state_create_flags = ktl::api::flag32;
+using pipeline_tessellation_state_create_flags = ktl::api::flag32;
+using pipeline_input_assembly_state_create_flags = ktl::api::flag32;
+using pipeline_vertex_input_state_create_flags = ktl::api::flag32;
+using pipeline_shader_stage_create_flags = ktl::api::flag32;
+using descriptor_set_layout_create_flags = ktl::api::flag32;
+using buffer_view_create_flags = ktl::api::flag32;
+using instance_create_flags = ktl::api::flag32;
+using device_create_flags = ktl::api::flag32;
+using device_queue_create_flags = ktl::api::flag32;
+using queue_flags = ktl::api::flag32;
+using memory_property_flags = ktl::api::flag32;
+using memory_heap_flags = ktl::api::flag32;
+using access_flags = ktl::api::flag32;
+using buffer_usage_flags = ktl::api::flag32;
+using buffer_create_flags = ktl::api::flag32;
+using shader_stage_flags = ktl::api::flag32;
+using image_usage_flags = ktl::api::flag32;
+using image_create_flags = ktl::api::flag32;
+using image_view_create_flags = ktl::api::flag32;
+using pipeline_create_flags = ktl::api::flag32;
+using color_component_flags = ktl::api::flag32;
+using fence_create_flags = ktl::api::flag32;
+using semaphore_create_flags = ktl::api::flag32;
+using format_feature_flags = ktl::api::flag32;
+using query_control_flags = ktl::api::flag32;
+using query_result_flags = ktl::api::flag32;
+using shader_module_create_flags = ktl::api::flag32;
+using event_create_flags = ktl::api::flag32;
+using command_pool_create_flags = ktl::api::flag32;
+using command_pool_reset_flags = ktl::api::flag32;
+using command_buffer_reset_flags = ktl::api::flag32;
+using command_buffer_usage_flags = ktl::api::flag32;
+using query_pipeline_statistic_flags = ktl::api::flag32;
+using memory_map_flags = ktl::api::flag32;
+using memory_unmap_flags = ktl::api::flag32;
+using memory_unmap_flags_khr = ktl::api::flag32;
+using image_aspect_flags = ktl::api::flag32;
+using sparse_memory_bind_flags = ktl::api::flag32;
+using sparse_image_format_flags = ktl::api::flag32;
+using subpass_description_flags = ktl::api::flag32;
+using pipeline_stage_flags = ktl::api::flag32;
+using sample_count_flags = ktl::api::flag32;
+using attachment_description_flags = ktl::api::flag32;
+using stencil_face_flags = ktl::api::flag32;
+using cull_mode_flags = ktl::api::flag32;
+using descriptor_pool_create_flags = ktl::api::flag32;
+using descriptor_pool_reset_flags = ktl::api::flag32;
+using dependency_flags = ktl::api::flag32;
+using subgroup_feature_flags = ktl::api::flag32;
+using indirect_commands_layout_usage_flags_nv = ktl::api::flag32;
+using indirect_state_flags_nv = ktl::api::flag32;
+using geometry_flags_khr = ktl::api::flag32;
+using geometry_flags_nv = ktl::api::flag32;
+using geometry_instance_flags_khr = ktl::api::flag32;
+using geometry_instance_flags_nv = ktl::api::flag32;
+using cluster_acceleration_structure_geometry_flags_nv = ktl::api::flag32;
+using cluster_acceleration_structure_cluster_flags_nv = ktl::api::flag32;
 using cluster_acceleration_structure_address_resolution_flags_nv = ktl::api::flag32;
-using build_acceleration_structure_flags_khr                     = ktl::api::flag32;
-using build_acceleration_structure_flags_nv                      = ktl::api::flag32;
-using private_data_slot_create_flags                             = ktl::api::flag32;
-using private_data_slot_create_flags_ext                         = ktl::api::flag32;
-using acceleration_structure_create_flags_khr                    = ktl::api::flag32;
-using descriptor_update_template_create_flags                    = ktl::api::flag32;
-using descriptor_update_template_create_flags_khr                = ktl::api::flag32;
-using pipeline_creation_feedback_flags                           = ktl::api::flag32;
-using pipeline_creation_feedback_flags_ext                       = ktl::api::flag32;
-using performance_counter_description_flags_khr                  = ktl::api::flag32;
-using acquire_profiling_lock_flags_khr                           = ktl::api::flag32;
-using semaphore_wait_flags                                       = ktl::api::flag32;
-using semaphore_wait_flags_khr                                   = ktl::api::flag32;
-using pipeline_compiler_control_flags_amd                        = ktl::api::flag32;
-using shader_core_properties_flags_amd                           = ktl::api::flag32;
-using device_diagnostics_config_flags_nv                         = ktl::api::flag32;
-using refresh_object_flags_khr                                   = ktl::api::flag32;
-using access_flags_2                                             = ktl::api::flag64;
-using access_flags_2khr                                          = ktl::api::flag64;
-using pipeline_stage_flags_2                                     = ktl::api::flag64;
-using pipeline_stage_flags_2khr                                  = ktl::api::flag64;
-using acceleration_structure_motion_info_flags_nv                = ktl::api::flag32;
-using acceleration_structure_motion_instance_flags_nv            = ktl::api::flag32;
-using format_feature_flags_2                                     = ktl::api::flag64;
-using format_feature_flags_2khr                                  = ktl::api::flag64;
-using rendering_flags                                            = ktl::api::flag32;
-using memory_decompression_method_flags_ext                      = ktl::api::flag64;
-using memory_decompression_method_flags_nv                       = ktl::api::flag64;
-using rendering_flags_khr                                        = ktl::api::flag32;
-using device_fault_flags_khr                                     = ktl::api::flag32;
-using build_micromap_flags_ext                                   = ktl::api::flag32;
-using micromap_create_flags_ext                                  = ktl::api::flag32;
-using indirect_commands_layout_usage_flags_ext                   = ktl::api::flag32;
-using indirect_commands_input_mode_flags_ext                     = ktl::api::flag32;
-using direct_driver_loading_flags_lunarg                         = ktl::api::flag32;
-using pipeline_create_flags_2                                    = ktl::api::flag64;
-using pipeline_create_flags_2khr                                 = ktl::api::flag64;
-using buffer_usage_flags_2                                       = ktl::api::flag64;
-using buffer_usage_flags_2khr                                    = ktl::api::flag64;
-using address_copy_flags_khr                                     = ktl::api::flag32;
-using tensor_create_flags_arm                                    = ktl::api::flag64;
-using tensor_usage_flags_arm                                     = ktl::api::flag64;
-using tensor_view_create_flags_arm                               = ktl::api::flag64;
-using data_graph_pipeline_session_create_flags_arm               = ktl::api::flag64;
-using data_graph_pipeline_dispatch_flags_arm                     = ktl::api::flag64;
-using video_encode_rgb_model_conversion_flags_valve              = ktl::api::flag32;
-using video_encode_rgb_range_compression_flags_valve             = ktl::api::flag32;
-using video_encode_rgb_chroma_offset_flags_valve                 = ktl::api::flag32;
-using spirv_resource_type_flags_ext                              = ktl::api::flag32;
-using gpa_sq_shader_stage_flags_amd                              = ktl::api::flag32;
-using gpa_perf_block_properties_flags_amd                        = ktl::api::flag32;
-using physical_device_gpa_properties_flags_amd                   = ktl::api::flag32;
-using address_command_flags_khr                                  = ktl::api::flag32;
-using composite_alpha_flags_khr                                  = ktl::api::flag32;
-using display_plane_alpha_flags_khr                              = ktl::api::flag32;
-using surface_transform_flags_khr                                = ktl::api::flag32;
-using swapchain_create_flags_khr                                 = ktl::api::flag32;
-using display_mode_create_flags_khr                              = ktl::api::flag32;
-using display_surface_create_flags_khr                           = ktl::api::flag32;
-using android_surface_create_flags_khr                           = ktl::api::flag32;
-using vi_surface_create_flags_nn                                 = ktl::api::flag32;
-using wayland_surface_create_flags_khr                           = ktl::api::flag32;
-using ubm_surface_create_flags_sec                               = ktl::api::flag32;
-using win_32surface_create_flags_khr                             = ktl::api::flag32;
-using xlib_surface_create_flags_khr                              = ktl::api::flag32;
-using xcb_surface_create_flags_khr                               = ktl::api::flag32;
-using direct_fb_surface_create_flags_ext                         = ktl::api::flag32;
-using ios_surface_create_flags_mvk                               = ktl::api::flag32;
-using mac_os_surface_create_flags_mvk                            = ktl::api::flag32;
-using metal_surface_create_flags_ext                             = ktl::api::flag32;
-using image_pipe_surface_create_flags_fuchsia                    = ktl::api::flag32;
-using stream_descriptor_surface_create_flags_ggp                 = ktl::api::flag32;
-using headless_surface_create_flags_ext                          = ktl::api::flag32;
-using screen_surface_create_flags_qnx                            = ktl::api::flag32;
-using peer_memory_feature_flags                                  = ktl::api::flag32;
-using peer_memory_feature_flags_khr                              = ktl::api::flag32;
-using memory_allocate_flags                                      = ktl::api::flag32;
-using memory_allocate_flags_khr                                  = ktl::api::flag32;
-using device_group_present_mode_flags_khr                        = ktl::api::flag32;
-using debug_report_flags_ext                                     = ktl::api::flag32;
-using command_pool_trim_flags                                    = ktl::api::flag32;
-using command_pool_trim_flags_khr                                = ktl::api::flag32;
-using external_memory_handle_type_flags_nv                       = ktl::api::flag32;
-using cluster_acceleration_structure_index_format_flags_nv       = ktl::api::flag32;
-using external_memory_feature_flags_nv                           = ktl::api::flag32;
-using external_memory_handle_type_flags                          = ktl::api::flag32;
-using external_memory_handle_type_flags_khr                      = ktl::api::flag32;
-using external_memory_feature_flags                              = ktl::api::flag32;
-using external_memory_feature_flags_khr                          = ktl::api::flag32;
-using external_semaphore_handle_type_flags                       = ktl::api::flag32;
-using external_semaphore_handle_type_flags_khr                   = ktl::api::flag32;
-using external_semaphore_feature_flags                           = ktl::api::flag32;
-using external_semaphore_feature_flags_khr                       = ktl::api::flag32;
-using semaphore_import_flags                                     = ktl::api::flag32;
-using semaphore_import_flags_khr                                 = ktl::api::flag32;
-using external_fence_handle_type_flags                           = ktl::api::flag32;
-using external_fence_handle_type_flags_khr                       = ktl::api::flag32;
-using external_fence_feature_flags                               = ktl::api::flag32;
-using external_fence_feature_flags_khr                           = ktl::api::flag32;
-using fence_import_flags                                         = ktl::api::flag32;
-using fence_import_flags_khr                                     = ktl::api::flag32;
-using surface_counter_flags_ext                                  = ktl::api::flag32;
-using pipeline_viewport_swizzle_state_create_flags_nv            = ktl::api::flag32;
-using pipeline_discard_rectangle_state_create_flags_ext          = ktl::api::flag32;
-using pipeline_coverage_to_color_state_create_flags_nv           = ktl::api::flag32;
-using pipeline_coverage_modulation_state_create_flags_nv         = ktl::api::flag32;
-using pipeline_coverage_reduction_state_create_flags_nv          = ktl::api::flag32;
-using validation_cache_create_flags_ext                          = ktl::api::flag32;
-using debug_utils_message_severity_flags_ext                     = ktl::api::flag32;
-using debug_utils_message_type_flags_ext                         = ktl::api::flag32;
-using debug_utils_messenger_create_flags_ext                     = ktl::api::flag32;
-using debug_utils_messenger_callback_data_flags_ext              = ktl::api::flag32;
-using device_memory_report_flags_ext                             = ktl::api::flag32;
+using build_acceleration_structure_flags_khr = ktl::api::flag32;
+using build_acceleration_structure_flags_nv = ktl::api::flag32;
+using private_data_slot_create_flags = ktl::api::flag32;
+using private_data_slot_create_flags_ext = ktl::api::flag32;
+using acceleration_structure_create_flags_khr = ktl::api::flag32;
+using descriptor_update_template_create_flags = ktl::api::flag32;
+using descriptor_update_template_create_flags_khr = ktl::api::flag32;
+using pipeline_creation_feedback_flags = ktl::api::flag32;
+using pipeline_creation_feedback_flags_ext = ktl::api::flag32;
+using performance_counter_description_flags_khr = ktl::api::flag32;
+using acquire_profiling_lock_flags_khr = ktl::api::flag32;
+using semaphore_wait_flags = ktl::api::flag32;
+using semaphore_wait_flags_khr = ktl::api::flag32;
+using pipeline_compiler_control_flags_amd = ktl::api::flag32;
+using shader_core_properties_flags_amd = ktl::api::flag32;
+using device_diagnostics_config_flags_nv = ktl::api::flag32;
+using refresh_object_flags_khr = ktl::api::flag32;
+using access_flags_2 = ktl::api::flag64;
+using access_flags_2khr = ktl::api::flag64;
+using pipeline_stage_flags_2 = ktl::api::flag64;
+using pipeline_stage_flags_2khr = ktl::api::flag64;
+using acceleration_structure_motion_info_flags_nv = ktl::api::flag32;
+using acceleration_structure_motion_instance_flags_nv = ktl::api::flag32;
+using format_feature_flags_2 = ktl::api::flag64;
+using format_feature_flags_2khr = ktl::api::flag64;
+using rendering_flags = ktl::api::flag32;
+using memory_decompression_method_flags_ext = ktl::api::flag64;
+using memory_decompression_method_flags_nv = ktl::api::flag64;
+using rendering_flags_khr = ktl::api::flag32;
+using device_fault_flags_khr = ktl::api::flag32;
+using build_micromap_flags_ext = ktl::api::flag32;
+using micromap_create_flags_ext = ktl::api::flag32;
+using indirect_commands_layout_usage_flags_ext = ktl::api::flag32;
+using indirect_commands_input_mode_flags_ext = ktl::api::flag32;
+using direct_driver_loading_flags_lunarg = ktl::api::flag32;
+using pipeline_create_flags_2 = ktl::api::flag64;
+using pipeline_create_flags_2khr = ktl::api::flag64;
+using buffer_usage_flags_2 = ktl::api::flag64;
+using buffer_usage_flags_2khr = ktl::api::flag64;
+using address_copy_flags_khr = ktl::api::flag32;
+using tensor_create_flags_arm = ktl::api::flag64;
+using tensor_usage_flags_arm = ktl::api::flag64;
+using tensor_view_create_flags_arm = ktl::api::flag64;
+using data_graph_pipeline_session_create_flags_arm = ktl::api::flag64;
+using data_graph_pipeline_dispatch_flags_arm = ktl::api::flag64;
+using video_encode_rgb_model_conversion_flags_valve = ktl::api::flag32;
+using video_encode_rgb_range_compression_flags_valve = ktl::api::flag32;
+using video_encode_rgb_chroma_offset_flags_valve = ktl::api::flag32;
+using spirv_resource_type_flags_ext = ktl::api::flag32;
+using gpa_sq_shader_stage_flags_amd = ktl::api::flag32;
+using gpa_perf_block_properties_flags_amd = ktl::api::flag32;
+using physical_device_gpa_properties_flags_amd = ktl::api::flag32;
+using address_command_flags_khr = ktl::api::flag32;
+using composite_alpha_flags_khr = ktl::api::flag32;
+using display_plane_alpha_flags_khr = ktl::api::flag32;
+using surface_transform_flags_khr = ktl::api::flag32;
+using swapchain_create_flags_khr = ktl::api::flag32;
+using display_mode_create_flags_khr = ktl::api::flag32;
+using display_surface_create_flags_khr = ktl::api::flag32;
+using android_surface_create_flags_khr = ktl::api::flag32;
+using vi_surface_create_flags_nn = ktl::api::flag32;
+using wayland_surface_create_flags_khr = ktl::api::flag32;
+using ubm_surface_create_flags_sec = ktl::api::flag32;
+using win_32surface_create_flags_khr = ktl::api::flag32;
+using xlib_surface_create_flags_khr = ktl::api::flag32;
+using xcb_surface_create_flags_khr = ktl::api::flag32;
+using direct_fb_surface_create_flags_ext = ktl::api::flag32;
+using ios_surface_create_flags_mvk = ktl::api::flag32;
+using mac_os_surface_create_flags_mvk = ktl::api::flag32;
+using metal_surface_create_flags_ext = ktl::api::flag32;
+using image_pipe_surface_create_flags_fuchsia = ktl::api::flag32;
+using stream_descriptor_surface_create_flags_ggp = ktl::api::flag32;
+using headless_surface_create_flags_ext = ktl::api::flag32;
+using screen_surface_create_flags_qnx = ktl::api::flag32;
+using peer_memory_feature_flags = ktl::api::flag32;
+using peer_memory_feature_flags_khr = ktl::api::flag32;
+using memory_allocate_flags = ktl::api::flag32;
+using memory_allocate_flags_khr = ktl::api::flag32;
+using device_group_present_mode_flags_khr = ktl::api::flag32;
+using debug_report_flags_ext = ktl::api::flag32;
+using command_pool_trim_flags = ktl::api::flag32;
+using command_pool_trim_flags_khr = ktl::api::flag32;
+using external_memory_handle_type_flags_nv = ktl::api::flag32;
+using cluster_acceleration_structure_index_format_flags_nv = ktl::api::flag32;
+using external_memory_feature_flags_nv = ktl::api::flag32;
+using external_memory_handle_type_flags = ktl::api::flag32;
+using external_memory_handle_type_flags_khr = ktl::api::flag32;
+using external_memory_feature_flags = ktl::api::flag32;
+using external_memory_feature_flags_khr = ktl::api::flag32;
+using external_semaphore_handle_type_flags = ktl::api::flag32;
+using external_semaphore_handle_type_flags_khr = ktl::api::flag32;
+using external_semaphore_feature_flags = ktl::api::flag32;
+using external_semaphore_feature_flags_khr = ktl::api::flag32;
+using semaphore_import_flags = ktl::api::flag32;
+using semaphore_import_flags_khr = ktl::api::flag32;
+using external_fence_handle_type_flags = ktl::api::flag32;
+using external_fence_handle_type_flags_khr = ktl::api::flag32;
+using external_fence_feature_flags = ktl::api::flag32;
+using external_fence_feature_flags_khr = ktl::api::flag32;
+using fence_import_flags = ktl::api::flag32;
+using fence_import_flags_khr = ktl::api::flag32;
+using surface_counter_flags_ext = ktl::api::flag32;
+using pipeline_viewport_swizzle_state_create_flags_nv = ktl::api::flag32;
+using pipeline_discard_rectangle_state_create_flags_ext = ktl::api::flag32;
+using pipeline_coverage_to_color_state_create_flags_nv = ktl::api::flag32;
+using pipeline_coverage_modulation_state_create_flags_nv = ktl::api::flag32;
+using pipeline_coverage_reduction_state_create_flags_nv = ktl::api::flag32;
+using validation_cache_create_flags_ext = ktl::api::flag32;
+using debug_utils_message_severity_flags_ext = ktl::api::flag32;
+using debug_utils_message_type_flags_ext = ktl::api::flag32;
+using debug_utils_messenger_create_flags_ext = ktl::api::flag32;
+using debug_utils_messenger_callback_data_flags_ext = ktl::api::flag32;
+using device_memory_report_flags_ext = ktl::api::flag32;
 using pipeline_rasterization_conservative_state_create_flags_ext = ktl::api::flag32;
-using descriptor_binding_flags                                   = ktl::api::flag32;
-using descriptor_binding_flags_ext                               = ktl::api::flag32;
-using conditional_rendering_flags_ext                            = ktl::api::flag32;
-using resolve_mode_flags                                         = ktl::api::flag32;
-using resolve_mode_flags_khr                                     = ktl::api::flag32;
-using pipeline_rasterization_state_stream_create_flags_ext       = ktl::api::flag32;
-using pipeline_rasterization_depth_clip_state_create_flags_ext   = ktl::api::flag32;
-using swapchain_image_usage_flags_android                        = ktl::api::flag32;
-using tool_purpose_flags                                         = ktl::api::flag32;
-using tool_purpose_flags_ext                                     = ktl::api::flag32;
-using submit_flags                                               = ktl::api::flag32;
-using submit_flags_khr                                           = ktl::api::flag32;
-using image_format_constraints_flags_fuchsia                     = ktl::api::flag32;
-using host_image_copy_flags                                      = ktl::api::flag32;
-using host_image_copy_flags_ext                                  = ktl::api::flag32;
-using partitioned_acceleration_structure_instance_flags_nv       = ktl::api::flag32;
-using image_constraints_info_flags_fuchsia                       = ktl::api::flag32;
-using graphics_pipeline_library_flags_ext                        = ktl::api::flag32;
-using image_compression_flags_ext                                = ktl::api::flag32;
-using image_compression_fixed_rate_flags_ext                     = ktl::api::flag32;
-using export_metal_object_type_flags_ext                         = ktl::api::flag32;
-using rendering_attachment_flags_khr                             = ktl::api::flag32;
-using resolve_image_flags_khr                                    = ktl::api::flag32;
-using device_address_binding_flags_ext                           = ktl::api::flag32;
-using optical_flow_grid_size_flags_nv                            = ktl::api::flag32;
-using optical_flow_usage_flags_nv                                = ktl::api::flag32;
-using optical_flow_session_create_flags_nv                       = ktl::api::flag32;
-using optical_flow_execute_flags_nv                              = ktl::api::flag32;
-using frame_boundary_flags_ext                                   = ktl::api::flag32;
-using present_scaling_flags_khr                                  = ktl::api::flag32;
-using present_scaling_flags_ext                                  = ktl::api::flag32;
-using present_gravity_flags_khr                                  = ktl::api::flag32;
-using present_gravity_flags_ext                                  = ktl::api::flag32;
-using shader_create_flags_ext                                    = ktl::api::flag32;
-using tile_shading_render_pass_flags_qcom                        = ktl::api::flag32;
-using physical_device_scheduling_controls_flags_arm              = ktl::api::flag64;
-using surface_create_flags_ohos                                  = ktl::api::flag32;
-using present_stage_flags_ext                                    = ktl::api::flag32;
-using past_presentation_timing_flags_ext                         = ktl::api::flag32;
-using present_timing_info_flags_ext                              = ktl::api::flag32;
-using swapchain_image_usage_flags_ohos                           = ktl::api::flag32;
-using performance_counter_description_flags_arm                  = ktl::api::flag32;
-using shader_instrumentation_values_flags_arm                    = ktl::api::flag32;
-using data_graph_tosa_quality_flags_arm                          = ktl::api::flag32;
-using data_graph_optical_flow_grid_size_flags_arm                = ktl::api::flag32;
-using data_graph_optical_flow_image_usage_flags_arm              = ktl::api::flag32;
-using data_graph_optical_flow_create_flags_arm                   = ktl::api::flag32;
-using data_graph_optical_flow_execute_flags_arm                  = ktl::api::flag32;
-using video_codec_operation_flags_khr                            = ktl::api::flag32;
-using video_capability_flags_khr                                 = ktl::api::flag32;
-using video_session_create_flags_khr                             = ktl::api::flag32;
-using video_session_parameters_create_flags_khr                  = ktl::api::flag32;
-using video_begin_coding_flags_khr                               = ktl::api::flag32;
-using video_end_coding_flags_khr                                 = ktl::api::flag32;
-using video_coding_control_flags_khr                             = ktl::api::flag32;
-using video_decode_usage_flags_khr                               = ktl::api::flag32;
-using video_decode_capability_flags_khr                          = ktl::api::flag32;
-using video_decode_flags_khr                                     = ktl::api::flag32;
-using video_decode_h_264picture_layout_flags_khr                 = ktl::api::flag32;
-using video_encode_flags_khr                                     = ktl::api::flag32;
-using video_encode_usage_flags_khr                               = ktl::api::flag32;
-using video_encode_content_flags_khr                             = ktl::api::flag32;
-using video_encode_capability_flags_khr                          = ktl::api::flag32;
-using video_encode_feedback_flags_khr                            = ktl::api::flag32;
-using video_encode_rate_control_flags_khr                        = ktl::api::flag32;
-using video_encode_rate_control_mode_flags_khr                   = ktl::api::flag32;
-using video_encode_intra_refresh_mode_flags_khr                  = ktl::api::flag32;
-using video_chroma_subsampling_flags_khr                         = ktl::api::flag32;
-using video_component_bit_depth_flags_khr                        = ktl::api::flag32;
-using video_encode_h_264capability_flags_khr                     = ktl::api::flag32;
-using video_encode_h_264std_flags_khr                            = ktl::api::flag32;
-using video_encode_h_264rate_control_flags_khr                   = ktl::api::flag32;
-using video_encode_h_265capability_flags_khr                     = ktl::api::flag32;
-using video_encode_h_265std_flags_khr                            = ktl::api::flag32;
-using video_encode_h_265rate_control_flags_khr                   = ktl::api::flag32;
-using video_encode_h_265ctb_size_flags_khr                       = ktl::api::flag32;
-using video_encode_h_265transform_block_size_flags_khr           = ktl::api::flag32;
-using video_encode_av_1capability_flags_khr                      = ktl::api::flag32;
-using video_encode_av_1std_flags_khr                             = ktl::api::flag32;
-using video_encode_av_1rate_control_flags_khr                    = ktl::api::flag32;
-using video_encode_av_1superblock_size_flags_khr                 = ktl::api::flag32;
-using access_flags_3khr                                          = ktl::api::flag64;
-} // namespace ktl::api
+using descriptor_binding_flags = ktl::api::flag32;
+using descriptor_binding_flags_ext = ktl::api::flag32;
+using conditional_rendering_flags_ext = ktl::api::flag32;
+using resolve_mode_flags = ktl::api::flag32;
+using resolve_mode_flags_khr = ktl::api::flag32;
+using pipeline_rasterization_state_stream_create_flags_ext = ktl::api::flag32;
+using pipeline_rasterization_depth_clip_state_create_flags_ext = ktl::api::flag32;
+using swapchain_image_usage_flags_android = ktl::api::flag32;
+using tool_purpose_flags = ktl::api::flag32;
+using tool_purpose_flags_ext = ktl::api::flag32;
+using submit_flags = ktl::api::flag32;
+using submit_flags_khr = ktl::api::flag32;
+using image_format_constraints_flags_fuchsia = ktl::api::flag32;
+using host_image_copy_flags = ktl::api::flag32;
+using host_image_copy_flags_ext = ktl::api::flag32;
+using partitioned_acceleration_structure_instance_flags_nv = ktl::api::flag32;
+using image_constraints_info_flags_fuchsia = ktl::api::flag32;
+using graphics_pipeline_library_flags_ext = ktl::api::flag32;
+using image_compression_flags_ext = ktl::api::flag32;
+using image_compression_fixed_rate_flags_ext = ktl::api::flag32;
+using export_metal_object_type_flags_ext = ktl::api::flag32;
+using rendering_attachment_flags_khr = ktl::api::flag32;
+using resolve_image_flags_khr = ktl::api::flag32;
+using device_address_binding_flags_ext = ktl::api::flag32;
+using optical_flow_grid_size_flags_nv = ktl::api::flag32;
+using optical_flow_usage_flags_nv = ktl::api::flag32;
+using optical_flow_session_create_flags_nv = ktl::api::flag32;
+using optical_flow_execute_flags_nv = ktl::api::flag32;
+using frame_boundary_flags_ext = ktl::api::flag32;
+using present_scaling_flags_khr = ktl::api::flag32;
+using present_scaling_flags_ext = ktl::api::flag32;
+using present_gravity_flags_khr = ktl::api::flag32;
+using present_gravity_flags_ext = ktl::api::flag32;
+using shader_create_flags_ext = ktl::api::flag32;
+using tile_shading_render_pass_flags_qcom = ktl::api::flag32;
+using physical_device_scheduling_controls_flags_arm = ktl::api::flag64;
+using surface_create_flags_ohos = ktl::api::flag32;
+using present_stage_flags_ext = ktl::api::flag32;
+using past_presentation_timing_flags_ext = ktl::api::flag32;
+using present_timing_info_flags_ext = ktl::api::flag32;
+using swapchain_image_usage_flags_ohos = ktl::api::flag32;
+using performance_counter_description_flags_arm = ktl::api::flag32;
+using shader_instrumentation_values_flags_arm = ktl::api::flag32;
+using data_graph_tosa_quality_flags_arm = ktl::api::flag32;
+using data_graph_optical_flow_grid_size_flags_arm = ktl::api::flag32;
+using data_graph_optical_flow_image_usage_flags_arm = ktl::api::flag32;
+using data_graph_optical_flow_create_flags_arm = ktl::api::flag32;
+using data_graph_optical_flow_execute_flags_arm = ktl::api::flag32;
+using video_codec_operation_flags_khr = ktl::api::flag32;
+using video_capability_flags_khr = ktl::api::flag32;
+using video_session_create_flags_khr = ktl::api::flag32;
+using video_session_parameters_create_flags_khr = ktl::api::flag32;
+using video_begin_coding_flags_khr = ktl::api::flag32;
+using video_end_coding_flags_khr = ktl::api::flag32;
+using video_coding_control_flags_khr = ktl::api::flag32;
+using video_decode_usage_flags_khr = ktl::api::flag32;
+using video_decode_capability_flags_khr = ktl::api::flag32;
+using video_decode_flags_khr = ktl::api::flag32;
+using video_decode_h_264picture_layout_flags_khr = ktl::api::flag32;
+using video_encode_flags_khr = ktl::api::flag32;
+using video_encode_usage_flags_khr = ktl::api::flag32;
+using video_encode_content_flags_khr = ktl::api::flag32;
+using video_encode_capability_flags_khr = ktl::api::flag32;
+using video_encode_feedback_flags_khr = ktl::api::flag32;
+using video_encode_rate_control_flags_khr = ktl::api::flag32;
+using video_encode_rate_control_mode_flags_khr = ktl::api::flag32;
+using video_encode_intra_refresh_mode_flags_khr = ktl::api::flag32;
+using video_chroma_subsampling_flags_khr = ktl::api::flag32;
+using video_component_bit_depth_flags_khr = ktl::api::flag32;
+using video_encode_h_264capability_flags_khr = ktl::api::flag32;
+using video_encode_h_264std_flags_khr = ktl::api::flag32;
+using video_encode_h_264rate_control_flags_khr = ktl::api::flag32;
+using video_encode_h_265capability_flags_khr = ktl::api::flag32;
+using video_encode_h_265std_flags_khr = ktl::api::flag32;
+using video_encode_h_265rate_control_flags_khr = ktl::api::flag32;
+using video_encode_h_265ctb_size_flags_khr = ktl::api::flag32;
+using video_encode_h_265transform_block_size_flags_khr = ktl::api::flag32;
+using video_encode_av_1capability_flags_khr = ktl::api::flag32;
+using video_encode_av_1std_flags_khr = ktl::api::flag32;
+using video_encode_av_1rate_control_flags_khr = ktl::api::flag32;
+using video_encode_av_1superblock_size_flags_khr = ktl::api::flag32;
+using access_flags_3khr = ktl::api::flag64;
+}
 
 namespace ktl::api
 {
-using pfn_internal_allocation_notification   = void (*)(void * _p_user_data, ktl::usize _size,
-                                                      ktl::api::internal_allocation_type _allocation_type,
-                                                      ktl::api::system_allocation_scope  _allocation_scope);
-using pfn_internal_free_notification         = void (*)(void * _p_user_data, ktl::usize _size,
-                                                ktl::api::internal_allocation_type _allocation_type,
-                                                ktl::api::system_allocation_scope  _allocation_scope);
-using pfn_reallocation_function              = void (*)(void * _p_user_data, void * _p_original, ktl::usize _size,
-                                           ktl::usize _alignment, ktl::api::system_allocation_scope _allocation_scope);
-using pfn_allocation_function                = void (*)(void * _p_user_data, ktl::usize _size, ktl::usize _alignment,
-                                         ktl::api::system_allocation_scope _allocation_scope);
-using pfn_free_function                      = void (*)(void * _p_user_data, void * _p_memory);
-using pfn_void_function                      = void (*)();
-using pfn_debug_report_callback_ext          = ktl::api::bool32 (*)(ktl::api::debug_report_flags_ext       _flags,
-                                                           ktl::api::debug_report_object_type_ext _object_type,
-                                                           ktl::u64 _object, ktl::usize _location,
-                                                           ktl::i32 _message_code, const char * _p_layer_prefix,
-                                                           const char * _p_message, void * _p_user_data);
-using pfn_debug_utils_messenger_callback_ext = ktl::api::bool32 (*)(
-    ktl::api::debug_utils_message_severity_flag_bits_ext      _message_severity,
-    ktl::api::debug_utils_message_type_flags_ext              _message_types,
-    const ktl::api::debug_utils_messenger_callback_data_ext * _p_callback_data, void * _p_user_data);
-using pfn_fault_callback_function = void (*)(ktl::api::bool32 _unrecorded_faults, ktl::u32 _fault_count,
-                                             const ktl::api::fault_data * _p_faults);
-using pfn_device_memory_report_callback_ext =
-    void (*)(const ktl::api::device_memory_report_callback_data_ext * _p_callback_data, void * _p_user_data);
-using pfn_get_instance_proc_addr_lunarg = ktl::api::pfn_void_function (*)(ktl::api::instance _instance,
-                                                                          const char *       _p_name);
-} // namespace ktl::api
+using pfn_internal_allocation_notification = void(*)(void * _p_user_data, ktl::usize _size, ktl::api::internal_allocation_type _allocation_type, ktl::api::system_allocation_scope _allocation_scope);
+using pfn_internal_free_notification = void(*)(void * _p_user_data, ktl::usize _size, ktl::api::internal_allocation_type _allocation_type, ktl::api::system_allocation_scope _allocation_scope);
+using pfn_reallocation_function = void(*)(void * _p_user_data, void * _p_original, ktl::usize _size, ktl::usize _alignment, ktl::api::system_allocation_scope _allocation_scope);
+using pfn_allocation_function = void(*)(void * _p_user_data, ktl::usize _size, ktl::usize _alignment, ktl::api::system_allocation_scope _allocation_scope);
+using pfn_free_function = void(*)(void * _p_user_data, void * _p_memory);
+using pfn_void_function = void(*)();
+using pfn_debug_report_callback_ext = ktl::api::bool32(*)(ktl::api::debug_report_flags_ext _flags, ktl::api::debug_report_object_type_ext _object_type, ktl::u64 _object, ktl::usize _location, ktl::i32 _message_code, const char * _p_layer_prefix, const char * _p_message, void * _p_user_data);
+using pfn_debug_utils_messenger_callback_ext = ktl::api::bool32(*)(ktl::api::debug_utils_message_severity_flag_bits_ext _message_severity, ktl::api::debug_utils_message_type_flags_ext _message_types, const ktl::api::debug_utils_messenger_callback_data_ext * _p_callback_data, void * _p_user_data);
+using pfn_fault_callback_function = void(*)(ktl::api::bool32 _unrecorded_faults, ktl::u32 _fault_count, const ktl::api::fault_data * _p_faults);
+using pfn_device_memory_report_callback_ext = void(*)(const ktl::api::device_memory_report_callback_data_ext * _p_callback_data, void * _p_user_data);
+using pfn_get_instance_proc_addr_lunarg = ktl::api::pfn_void_function(*)(ktl::api::instance _instance, const char * _p_name);
+}
 
 namespace ktl::api
 {
-using pfn_create_instance            = ktl::api::result (*)(const ktl::api::instance_create_info * _p_create_info,
-                                                 const ktl::api::allocation_callbacks * _p_allocator,
-                                                 ktl::api::instance *                   _p_instance);
-using pfn_destroy_instance           = void (*)(ktl::api::instance                     _instance,
-                                      const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_enumerate_physical_devices = ktl::api::result (*)(ktl::api::instance          _instance,
-                                                            ktl::u32 *                  _p_physical_device_count,
-                                                            ktl::api::physical_device * _p_physical_devices);
-using pfn_get_device_proc_addr       = ktl::api::pfn_void_function (*)(ktl::api::device _device, const char * _p_name);
-using pfn_get_instance_proc_addr = ktl::api::pfn_void_function (*)(ktl::api::instance _instance, const char * _p_name);
-using pfn_get_physical_device_properties = void (*)(ktl::api::physical_device              _physical_device,
-                                                    ktl::api::physical_device_properties * _p_properties);
-using pfn_get_physical_device_queue_family_properties =
-    void (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_queue_family_property_count,
-             ktl::api::queue_family_properties * _p_queue_family_properties);
-using pfn_get_physical_device_memory_properties = void (*)(
-    ktl::api::physical_device _physical_device, ktl::api::physical_device_memory_properties * _p_memory_properties);
-using pfn_get_physical_device_features                = void (*)(ktl::api::physical_device            _physical_device,
-                                                  ktl::api::physical_device_features * _p_features);
-using pfn_get_physical_device_format_properties       = void (*)(ktl::api::physical_device     _physical_device,
-                                                           ktl::api::format              _format,
-                                                           ktl::api::format_properties * _p_format_properties);
-using pfn_get_physical_device_image_format_properties = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, ktl::api::format _format, ktl::api::image_type _type,
-    ktl::api::image_tiling _tiling, ktl::api::image_usage_flags _usage, ktl::api::image_create_flags _flags,
-    ktl::api::image_format_properties * _p_image_format_properties);
-using pfn_create_device  = ktl::api::result (*)(ktl::api::physical_device              _physical_device,
-                                               const ktl::api::device_create_info *   _p_create_info,
-                                               const ktl::api::allocation_callbacks * _p_allocator,
-                                               ktl::api::device *                     _p_device);
-using pfn_destroy_device = void (*)(ktl::api::device _device, const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_enumerate_instance_version              = ktl::api::result (*)(ktl::u32 * _p_api_version);
-using pfn_enumerate_instance_layer_properties     = ktl::api::result (*)(ktl::u32 *                   _p_property_count,
-                                                                     ktl::api::layer_properties * _p_properties);
-using pfn_enumerate_instance_extension_properties = ktl::api::result (*)(
-    const char * _p_layer_name, ktl::u32 * _p_property_count, ktl::api::extension_properties * _p_properties);
-using pfn_enumerate_device_layer_properties     = ktl::api::result (*)(ktl::api::physical_device    _physical_device,
-                                                                   ktl::u32 *                   _p_property_count,
-                                                                   ktl::api::layer_properties * _p_properties);
-using pfn_enumerate_device_extension_properties = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                                       const char *              _p_layer_name,
-                                                                       ktl::u32 *                _p_property_count,
-                                                                       ktl::api::extension_properties * _p_properties);
-using pfn_get_device_queue = void (*)(ktl::api::device _device, ktl::u32 _queue_family_index, ktl::u32 _queue_index,
-                                      ktl::api::queue * _p_queue);
-using pfn_queue_submit     = ktl::api::result (*)(ktl::api::queue _queue, ktl::u32 _submit_count,
-                                              const ktl::api::submit_info * _p_submits, ktl::api::fence _fence);
-using pfn_queue_wait_idle  = ktl::api::result (*)(ktl::api::queue _queue);
-using pfn_device_wait_idle = ktl::api::result (*)(ktl::api::device _device);
-using pfn_allocate_memory  = ktl::api::result (*)(ktl::api::device                       _device,
-                                                 const ktl::api::memory_allocate_info * _p_allocate_info,
-                                                 const ktl::api::allocation_callbacks * _p_allocator,
-                                                 ktl::api::device_memory *              _p_memory);
-using pfn_free_memory      = void (*)(ktl::api::device _device, ktl::api::device_memory _memory,
-                                 const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_map_memory       = ktl::api::result (*)(ktl::api::device _device, ktl::api::device_memory _memory,
-                                            ktl::api::dvsize _offset, ktl::api::dvsize _size,
-                                            ktl::api::memory_map_flags _flags, void * _pp_data);
-using pfn_unmap_memory     = void (*)(ktl::api::device _device, ktl::api::device_memory _memory);
-using pfn_flush_mapped_memory_ranges      = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _memory_range_count,
-                                                            const ktl::api::mapped_memory_range * _p_memory_ranges);
-using pfn_invalidate_mapped_memory_ranges = ktl::api::result (*)(
-    ktl::api::device _device, ktl::u32 _memory_range_count, const ktl::api::mapped_memory_range * _p_memory_ranges);
-using pfn_get_device_memory_commitment   = void (*)(ktl::api::device _device, ktl::api::device_memory _memory,
-                                                  ktl::api::dvsize * _p_committed_memory_in_bytes);
-using pfn_get_buffer_memory_requirements = void (*)(ktl::api::device _device, ktl::api::buffer _buffer,
-                                                    ktl::api::memory_requirements * _p_memory_requirements);
-using pfn_bind_buffer_memory             = ktl::api::result (*)(ktl::api::device _device, ktl::api::buffer _buffer,
-                                                    ktl::api::device_memory _memory, ktl::api::dvsize _memory_offset);
-using pfn_get_image_memory_requirements  = void (*)(ktl::api::device _device, ktl::api::image _image,
-                                                   ktl::api::memory_requirements * _p_memory_requirements);
-using pfn_bind_image_memory              = ktl::api::result (*)(ktl::api::device _device, ktl::api::image _image,
-                                                   ktl::api::device_memory _memory, ktl::api::dvsize _memory_offset);
-using pfn_get_image_sparse_memory_requirements =
-    void (*)(ktl::api::device _device, ktl::api::image _image, ktl::u32 * _p_sparse_memory_requirement_count,
-             ktl::api::sparse_image_memory_requirements * _p_sparse_memory_requirements);
-using pfn_get_physical_device_sparse_image_format_properties = void (*)(
-    ktl::api::physical_device _physical_device, ktl::api::format _format, ktl::api::image_type _type,
-    ktl::api::sample_count_flag_bits _samples, ktl::api::image_usage_flags _usage, ktl::api::image_tiling _tiling,
-    ktl::u32 * _p_property_count, ktl::api::sparse_image_format_properties * _p_properties);
-using pfn_queue_bind_sparse      = ktl::api::result (*)(ktl::api::queue _queue, ktl::u32 _bind_info_count,
-                                                   const ktl::api::bind_sparse_info * _p_bind_info,
-                                                   ktl::api::fence                    _fence);
-using pfn_create_fence           = ktl::api::result (*)(ktl::api::device                       _device,
-                                              const ktl::api::fence_create_info *    _p_create_info,
-                                              const ktl::api::allocation_callbacks * _p_allocator,
-                                              ktl::api::fence *                      _p_fence);
-using pfn_destroy_fence          = void (*)(ktl::api::device _device, ktl::api::fence _fence,
-                                   const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_reset_fences           = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _fence_count,
-                                              const ktl::api::fence * _p_fences);
-using pfn_get_fence_status       = ktl::api::result (*)(ktl::api::device _device, ktl::api::fence _fence);
-using pfn_wait_for_fences        = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _fence_count,
-                                                 const ktl::api::fence * _p_fences, ktl::api::bool32 _wait_all,
-                                                 ktl::u64 _timeout);
-using pfn_create_semaphore       = ktl::api::result (*)(ktl::api::device                        _device,
-                                                  const ktl::api::semaphore_create_info * _p_create_info,
-                                                  const ktl::api::allocation_callbacks *  _p_allocator,
-                                                  ktl::api::semaphore *                   _p_semaphore);
-using pfn_destroy_semaphore      = void (*)(ktl::api::device _device, ktl::api::semaphore _semaphore,
-                                       const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_event           = ktl::api::result (*)(ktl::api::device                       _device,
-                                              const ktl::api::event_create_info *    _p_create_info,
-                                              const ktl::api::allocation_callbacks * _p_allocator,
-                                              ktl::api::event *                      _p_event);
-using pfn_destroy_event          = void (*)(ktl::api::device _device, ktl::api::event _event,
-                                   const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_event_status       = ktl::api::result (*)(ktl::api::device _device, ktl::api::event _event);
-using pfn_set_event              = ktl::api::result (*)(ktl::api::device _device, ktl::api::event _event);
-using pfn_reset_event            = ktl::api::result (*)(ktl::api::device _device, ktl::api::event _event);
-using pfn_create_query_pool      = ktl::api::result (*)(ktl::api::device                         _device,
-                                                   const ktl::api::query_pool_create_info * _p_create_info,
-                                                   const ktl::api::allocation_callbacks *   _p_allocator,
-                                                   ktl::api::query_pool *                   _p_query_pool);
-using pfn_destroy_query_pool     = void (*)(ktl::api::device _device, ktl::api::query_pool _query_pool,
-                                        const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_query_pool_results = ktl::api::result (*)(ktl::api::device _device, ktl::api::query_pool _query_pool,
-                                                        ktl::u32 _first_query, ktl::u32 _query_count,
-                                                        ktl::usize _data_size, void * _p_data, ktl::api::dvsize _stride,
-                                                        ktl::api::query_result_flags _flags);
-using pfn_reset_query_pool = void (*)(ktl::api::device _device, ktl::api::query_pool _query_pool, ktl::u32 _first_query,
-                                      ktl::u32 _query_count);
-using pfn_reset_query_pool_ext         = pfn_reset_query_pool;
-using pfn_create_buffer                = ktl::api::result (*)(ktl::api::device                       _device,
-                                               const ktl::api::buffer_create_info *   _p_create_info,
-                                               const ktl::api::allocation_callbacks * _p_allocator,
-                                               ktl::api::buffer *                     _p_buffer);
-using pfn_destroy_buffer               = void (*)(ktl::api::device _device, ktl::api::buffer _buffer,
-                                    const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_buffer_view           = ktl::api::result (*)(ktl::api::device                          _device,
-                                                    const ktl::api::buffer_view_create_info * _p_create_info,
-                                                    const ktl::api::allocation_callbacks *    _p_allocator,
-                                                    ktl::api::buffer_view *                   _p_view);
-using pfn_destroy_buffer_view          = void (*)(ktl::api::device _device, ktl::api::buffer_view _buffer_view,
-                                         const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_image                 = ktl::api::result (*)(ktl::api::device                       _device,
-                                              const ktl::api::image_create_info *    _p_create_info,
-                                              const ktl::api::allocation_callbacks * _p_allocator,
-                                              ktl::api::image *                      _p_image);
-using pfn_destroy_image                = void (*)(ktl::api::device _device, ktl::api::image _image,
-                                   const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_image_subresource_layout = void (*)(ktl::api::device _device, ktl::api::image _image,
-                                                  const ktl::api::image_subresource * _p_subresource,
-                                                  ktl::api::subresource_layout *      _p_layout);
-using pfn_create_image_view            = ktl::api::result (*)(ktl::api::device                         _device,
-                                                   const ktl::api::image_view_create_info * _p_create_info,
-                                                   const ktl::api::allocation_callbacks *   _p_allocator,
-                                                   ktl::api::image_view *                   _p_view);
-using pfn_destroy_image_view           = void (*)(ktl::api::device _device, ktl::api::image_view _image_view,
-                                        const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_shader_module         = ktl::api::result (*)(ktl::api::device                            _device,
-                                                      const ktl::api::shader_module_create_info * _p_create_info,
-                                                      const ktl::api::allocation_callbacks *      _p_allocator,
-                                                      ktl::api::shader_module *                   _p_shader_module);
-using pfn_destroy_shader_module        = void (*)(ktl::api::device _device, ktl::api::shader_module _shader_module,
-                                           const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_pipeline_cache        = ktl::api::result (*)(ktl::api::device                             _device,
-                                                       const ktl::api::pipeline_cache_create_info * _p_create_info,
-                                                       const ktl::api::allocation_callbacks *       _p_allocator,
-                                                       ktl::api::pipeline_cache *                   _p_pipeline_cache);
-using pfn_destroy_pipeline_cache       = void (*)(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache,
-                                            const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_pipeline_cache_data      = ktl::api::result (*)(ktl::api::device         _device,
-                                                         ktl::api::pipeline_cache _pipeline_cache,
-                                                         ktl::usize * _p_data_size, void * _p_data);
-using pfn_merge_pipeline_caches = ktl::api::result (*)(ktl::api::device _device, ktl::api::pipeline_cache _dst_cache,
-                                                       ktl::u32                         _src_cache_count,
-                                                       const ktl::api::pipeline_cache * _p_src_caches);
-using pfn_create_pipeline_binaries_khr = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::pipeline_binary_create_info_khr * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline_binary_handles_info_khr * _p_binaries);
-using pfn_destroy_pipeline_binary_khr = void (*)(ktl::api::device                       _device,
-                                                 ktl::api::pipeline_binary_khr          _pipeline_binary,
-                                                 const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_pipeline_key_khr =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::pipeline_create_info_khr * _p_pipeline_create_info,
-                         ktl::api::pipeline_binary_key_khr * _p_pipeline_key);
-using pfn_get_pipeline_binary_data_khr =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::pipeline_binary_data_info_khr * _p_info,
-                         ktl::api::pipeline_binary_key_khr * _p_pipeline_binary_key,
-                         ktl::usize * _p_pipeline_binary_data_size, void * _p_pipeline_binary_data);
-using pfn_release_captured_pipeline_data_khr =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::release_captured_pipeline_data_info_khr * _p_info,
-                         const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_graphics_pipelines =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache,
-                         ktl::u32 _create_info_count, const ktl::api::graphics_pipeline_create_info * _p_create_infos,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
-using pfn_create_compute_pipelines =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache,
-                         ktl::u32 _create_info_count, const ktl::api::compute_pipeline_create_info * _p_create_infos,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
-using pfn_get_device_subpass_shading_max_workgroup_size_huawei = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::render_pass _renderpass, ktl::api::extent_2d * _p_max_workgroup_size);
-using pfn_destroy_pipeline             = void (*)(ktl::api::device _device, ktl::api::pipeline _pipeline,
-                                      const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_pipeline_layout       = ktl::api::result (*)(ktl::api::device                              _device,
-                                                        const ktl::api::pipeline_layout_create_info * _p_create_info,
-                                                        const ktl::api::allocation_callbacks *        _p_allocator,
-                                                        ktl::api::pipeline_layout * _p_pipeline_layout);
-using pfn_destroy_pipeline_layout      = void (*)(ktl::api::device _device, ktl::api::pipeline_layout _pipeline_layout,
-                                             const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_sampler               = ktl::api::result (*)(ktl::api::device                       _device,
-                                                const ktl::api::sampler_create_info *  _p_create_info,
-                                                const ktl::api::allocation_callbacks * _p_allocator,
-                                                ktl::api::sampler *                    _p_sampler);
-using pfn_destroy_sampler              = void (*)(ktl::api::device _device, ktl::api::sampler _sampler,
-                                     const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_descriptor_set_layout = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::descriptor_set_layout_create_info * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::descriptor_set_layout * _p_set_layout);
-using pfn_destroy_descriptor_set_layout = void (*)(ktl::api::device                       _device,
-                                                   ktl::api::descriptor_set_layout        _descriptor_set_layout,
-                                                   const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_descriptor_pool        = ktl::api::result (*)(ktl::api::device                              _device,
-                                                        const ktl::api::descriptor_pool_create_info * _p_create_info,
-                                                        const ktl::api::allocation_callbacks *        _p_allocator,
-                                                        ktl::api::descriptor_pool * _p_descriptor_pool);
-using pfn_destroy_descriptor_pool       = void (*)(ktl::api::device _device, ktl::api::descriptor_pool _descriptor_pool,
-                                             const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_reset_descriptor_pool         = ktl::api::result (*)(ktl::api::device                      _device,
-                                                       ktl::api::descriptor_pool             _descriptor_pool,
-                                                       ktl::api::descriptor_pool_reset_flags _flags);
-using pfn_allocate_descriptor_sets =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::descriptor_set_allocate_info * _p_allocate_info,
-                         ktl::api::descriptor_set * _p_descriptor_sets);
-using pfn_free_descriptor_sets               = ktl::api::result (*)(ktl::api::device                 _device,
-                                                      ktl::api::descriptor_pool        _descriptor_pool,
-                                                      ktl::u32                         _descriptor_set_count,
-                                                      const ktl::api::descriptor_set * _p_descriptor_sets);
-using pfn_update_descriptor_sets             = void (*)(ktl::api::device _device, ktl::u32 _descriptor_write_count,
-                                            const ktl::api::write_descriptor_set * _p_descriptor_writes,
-                                            ktl::u32                               _descriptor_copy_count,
-                                            const ktl::api::copy_descriptor_set *  _p_descriptor_copies);
-using pfn_create_framebuffer                 = ktl::api::result (*)(ktl::api::device                          _device,
-                                                    const ktl::api::framebuffer_create_info * _p_create_info,
-                                                    const ktl::api::allocation_callbacks *    _p_allocator,
-                                                    ktl::api::framebuffer *                   _p_framebuffer);
-using pfn_destroy_framebuffer                = void (*)(ktl::api::device _device, ktl::api::framebuffer _framebuffer,
-                                         const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_render_pass                 = ktl::api::result (*)(ktl::api::device                          _device,
-                                                    const ktl::api::render_pass_create_info * _p_create_info,
-                                                    const ktl::api::allocation_callbacks *    _p_allocator,
-                                                    ktl::api::render_pass *                   _p_render_pass);
-using pfn_destroy_render_pass                = void (*)(ktl::api::device _device, ktl::api::render_pass _render_pass,
-                                         const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_render_area_granularity        = void (*)(ktl::api::device _device, ktl::api::render_pass _render_pass,
-                                                 ktl::api::extent_2d * _p_granularity);
-using pfn_get_rendering_area_granularity     = void (*)(ktl::api::device                      _device,
-                                                    const ktl::api::rendering_area_info * _p_rendering_area_info,
-                                                    ktl::api::extent_2d *                 _p_granularity);
+using pfn_create_instance = ktl::api::result(*)(const ktl::api::instance_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::instance * _p_instance);
+using pfn_destroy_instance = void(*)(ktl::api::instance _instance, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_enumerate_physical_devices = ktl::api::result(*)(ktl::api::instance _instance, ktl::u32 * _p_physical_device_count, ktl::api::physical_device * _p_physical_devices);
+using pfn_get_device_proc_addr = ktl::api::pfn_void_function(*)(ktl::api::device _device, const char * _p_name);
+using pfn_get_instance_proc_addr = ktl::api::pfn_void_function(*)(ktl::api::instance _instance, const char * _p_name);
+using pfn_get_physical_device_properties = void(*)(ktl::api::physical_device _physical_device, ktl::api::physical_device_properties * _p_properties);
+using pfn_get_physical_device_queue_family_properties = void(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_queue_family_property_count, ktl::api::queue_family_properties * _p_queue_family_properties);
+using pfn_get_physical_device_memory_properties = void(*)(ktl::api::physical_device _physical_device, ktl::api::physical_device_memory_properties * _p_memory_properties);
+using pfn_get_physical_device_features = void(*)(ktl::api::physical_device _physical_device, ktl::api::physical_device_features * _p_features);
+using pfn_get_physical_device_format_properties = void(*)(ktl::api::physical_device _physical_device, ktl::api::format _format, ktl::api::format_properties * _p_format_properties);
+using pfn_get_physical_device_image_format_properties = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::format _format, ktl::api::image_type _type, ktl::api::image_tiling _tiling, ktl::api::image_usage_flags _usage, ktl::api::image_create_flags _flags, ktl::api::image_format_properties * _p_image_format_properties);
+using pfn_create_device = ktl::api::result(*)(ktl::api::physical_device _physical_device, const ktl::api::device_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::device * _p_device);
+using pfn_destroy_device = void(*)(ktl::api::device _device, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_enumerate_instance_version = ktl::api::result(*)(ktl::u32 * _p_api_version);
+using pfn_enumerate_instance_layer_properties = ktl::api::result(*)(ktl::u32 * _p_property_count, ktl::api::layer_properties * _p_properties);
+using pfn_enumerate_instance_extension_properties = ktl::api::result(*)(const char * _p_layer_name, ktl::u32 * _p_property_count, ktl::api::extension_properties * _p_properties);
+using pfn_enumerate_device_layer_properties = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count, ktl::api::layer_properties * _p_properties);
+using pfn_enumerate_device_extension_properties = ktl::api::result(*)(ktl::api::physical_device _physical_device, const char * _p_layer_name, ktl::u32 * _p_property_count, ktl::api::extension_properties * _p_properties);
+using pfn_get_device_queue = void(*)(ktl::api::device _device, ktl::u32 _queue_family_index, ktl::u32 _queue_index, ktl::api::queue * _p_queue);
+using pfn_queue_submit = ktl::api::result(*)(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::submit_info * _p_submits, ktl::api::fence _fence);
+using pfn_queue_wait_idle = ktl::api::result(*)(ktl::api::queue _queue);
+using pfn_device_wait_idle = ktl::api::result(*)(ktl::api::device _device);
+using pfn_allocate_memory = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_allocate_info * _p_allocate_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::device_memory * _p_memory);
+using pfn_free_memory = void(*)(ktl::api::device _device, ktl::api::device_memory _memory, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_map_memory = ktl::api::result(*)(ktl::api::device _device, ktl::api::device_memory _memory, ktl::api::dvsize _offset, ktl::api::dvsize _size, ktl::api::memory_map_flags _flags, void * _pp_data);
+using pfn_unmap_memory = void(*)(ktl::api::device _device, ktl::api::device_memory _memory);
+using pfn_flush_mapped_memory_ranges = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _memory_range_count, const ktl::api::mapped_memory_range * _p_memory_ranges);
+using pfn_invalidate_mapped_memory_ranges = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _memory_range_count, const ktl::api::mapped_memory_range * _p_memory_ranges);
+using pfn_get_device_memory_commitment = void(*)(ktl::api::device _device, ktl::api::device_memory _memory, ktl::api::dvsize * _p_committed_memory_in_bytes);
+using pfn_get_buffer_memory_requirements = void(*)(ktl::api::device _device, ktl::api::buffer _buffer, ktl::api::memory_requirements * _p_memory_requirements);
+using pfn_bind_buffer_memory = ktl::api::result(*)(ktl::api::device _device, ktl::api::buffer _buffer, ktl::api::device_memory _memory, ktl::api::dvsize _memory_offset);
+using pfn_get_image_memory_requirements = void(*)(ktl::api::device _device, ktl::api::image _image, ktl::api::memory_requirements * _p_memory_requirements);
+using pfn_bind_image_memory = ktl::api::result(*)(ktl::api::device _device, ktl::api::image _image, ktl::api::device_memory _memory, ktl::api::dvsize _memory_offset);
+using pfn_get_image_sparse_memory_requirements = void(*)(ktl::api::device _device, ktl::api::image _image, ktl::u32 * _p_sparse_memory_requirement_count, ktl::api::sparse_image_memory_requirements * _p_sparse_memory_requirements);
+using pfn_get_physical_device_sparse_image_format_properties = void(*)(ktl::api::physical_device _physical_device, ktl::api::format _format, ktl::api::image_type _type, ktl::api::sample_count_flag_bits _samples, ktl::api::image_usage_flags _usage, ktl::api::image_tiling _tiling, ktl::u32 * _p_property_count, ktl::api::sparse_image_format_properties * _p_properties);
+using pfn_queue_bind_sparse = ktl::api::result(*)(ktl::api::queue _queue, ktl::u32 _bind_info_count, const ktl::api::bind_sparse_info * _p_bind_info, ktl::api::fence _fence);
+using pfn_create_fence = ktl::api::result(*)(ktl::api::device _device, const ktl::api::fence_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::fence * _p_fence);
+using pfn_destroy_fence = void(*)(ktl::api::device _device, ktl::api::fence _fence, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_reset_fences = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _fence_count, const ktl::api::fence * _p_fences);
+using pfn_get_fence_status = ktl::api::result(*)(ktl::api::device _device, ktl::api::fence _fence);
+using pfn_wait_for_fences = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _fence_count, const ktl::api::fence * _p_fences, ktl::api::bool32 _wait_all, ktl::u64 _timeout);
+using pfn_create_semaphore = ktl::api::result(*)(ktl::api::device _device, const ktl::api::semaphore_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::semaphore * _p_semaphore);
+using pfn_destroy_semaphore = void(*)(ktl::api::device _device, ktl::api::semaphore _semaphore, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_event = ktl::api::result(*)(ktl::api::device _device, const ktl::api::event_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::event * _p_event);
+using pfn_destroy_event = void(*)(ktl::api::device _device, ktl::api::event _event, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_event_status = ktl::api::result(*)(ktl::api::device _device, ktl::api::event _event);
+using pfn_set_event = ktl::api::result(*)(ktl::api::device _device, ktl::api::event _event);
+using pfn_reset_event = ktl::api::result(*)(ktl::api::device _device, ktl::api::event _event);
+using pfn_create_query_pool = ktl::api::result(*)(ktl::api::device _device, const ktl::api::query_pool_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::query_pool * _p_query_pool);
+using pfn_destroy_query_pool = void(*)(ktl::api::device _device, ktl::api::query_pool _query_pool, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_query_pool_results = ktl::api::result(*)(ktl::api::device _device, ktl::api::query_pool _query_pool, ktl::u32 _first_query, ktl::u32 _query_count, ktl::usize _data_size, void * _p_data, ktl::api::dvsize _stride, ktl::api::query_result_flags _flags);
+using pfn_reset_query_pool = void(*)(ktl::api::device _device, ktl::api::query_pool _query_pool, ktl::u32 _first_query, ktl::u32 _query_count);
+using pfn_reset_query_pool_ext = pfn_reset_query_pool;
+using pfn_create_buffer = ktl::api::result(*)(ktl::api::device _device, const ktl::api::buffer_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::buffer * _p_buffer);
+using pfn_destroy_buffer = void(*)(ktl::api::device _device, ktl::api::buffer _buffer, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_buffer_view = ktl::api::result(*)(ktl::api::device _device, const ktl::api::buffer_view_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::buffer_view * _p_view);
+using pfn_destroy_buffer_view = void(*)(ktl::api::device _device, ktl::api::buffer_view _buffer_view, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_image = ktl::api::result(*)(ktl::api::device _device, const ktl::api::image_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::image * _p_image);
+using pfn_destroy_image = void(*)(ktl::api::device _device, ktl::api::image _image, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_image_subresource_layout = void(*)(ktl::api::device _device, ktl::api::image _image, const ktl::api::image_subresource * _p_subresource, ktl::api::subresource_layout * _p_layout);
+using pfn_create_image_view = ktl::api::result(*)(ktl::api::device _device, const ktl::api::image_view_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::image_view * _p_view);
+using pfn_destroy_image_view = void(*)(ktl::api::device _device, ktl::api::image_view _image_view, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_shader_module = ktl::api::result(*)(ktl::api::device _device, const ktl::api::shader_module_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::shader_module * _p_shader_module);
+using pfn_destroy_shader_module = void(*)(ktl::api::device _device, ktl::api::shader_module _shader_module, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_pipeline_cache = ktl::api::result(*)(ktl::api::device _device, const ktl::api::pipeline_cache_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline_cache * _p_pipeline_cache);
+using pfn_destroy_pipeline_cache = void(*)(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_pipeline_cache_data = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache, ktl::usize * _p_data_size, void * _p_data);
+using pfn_merge_pipeline_caches = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline_cache _dst_cache, ktl::u32 _src_cache_count, const ktl::api::pipeline_cache * _p_src_caches);
+using pfn_create_pipeline_binaries_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::pipeline_binary_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline_binary_handles_info_khr * _p_binaries);
+using pfn_destroy_pipeline_binary_khr = void(*)(ktl::api::device _device, ktl::api::pipeline_binary_khr _pipeline_binary, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_pipeline_key_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::pipeline_create_info_khr * _p_pipeline_create_info, ktl::api::pipeline_binary_key_khr * _p_pipeline_key);
+using pfn_get_pipeline_binary_data_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::pipeline_binary_data_info_khr * _p_info, ktl::api::pipeline_binary_key_khr * _p_pipeline_binary_key, ktl::usize * _p_pipeline_binary_data_size, void * _p_pipeline_binary_data);
+using pfn_release_captured_pipeline_data_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::release_captured_pipeline_data_info_khr * _p_info, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_graphics_pipelines = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count, const ktl::api::graphics_pipeline_create_info * _p_create_infos, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
+using pfn_create_compute_pipelines = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count, const ktl::api::compute_pipeline_create_info * _p_create_infos, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
+using pfn_get_device_subpass_shading_max_workgroup_size_huawei = ktl::api::result(*)(ktl::api::device _device, ktl::api::render_pass _renderpass, ktl::api::extent_2d * _p_max_workgroup_size);
+using pfn_destroy_pipeline = void(*)(ktl::api::device _device, ktl::api::pipeline _pipeline, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_pipeline_layout = ktl::api::result(*)(ktl::api::device _device, const ktl::api::pipeline_layout_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline_layout * _p_pipeline_layout);
+using pfn_destroy_pipeline_layout = void(*)(ktl::api::device _device, ktl::api::pipeline_layout _pipeline_layout, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_sampler = ktl::api::result(*)(ktl::api::device _device, const ktl::api::sampler_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::sampler * _p_sampler);
+using pfn_destroy_sampler = void(*)(ktl::api::device _device, ktl::api::sampler _sampler, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_descriptor_set_layout = ktl::api::result(*)(ktl::api::device _device, const ktl::api::descriptor_set_layout_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::descriptor_set_layout * _p_set_layout);
+using pfn_destroy_descriptor_set_layout = void(*)(ktl::api::device _device, ktl::api::descriptor_set_layout _descriptor_set_layout, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_descriptor_pool = ktl::api::result(*)(ktl::api::device _device, const ktl::api::descriptor_pool_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::descriptor_pool * _p_descriptor_pool);
+using pfn_destroy_descriptor_pool = void(*)(ktl::api::device _device, ktl::api::descriptor_pool _descriptor_pool, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_reset_descriptor_pool = ktl::api::result(*)(ktl::api::device _device, ktl::api::descriptor_pool _descriptor_pool, ktl::api::descriptor_pool_reset_flags _flags);
+using pfn_allocate_descriptor_sets = ktl::api::result(*)(ktl::api::device _device, const ktl::api::descriptor_set_allocate_info * _p_allocate_info, ktl::api::descriptor_set * _p_descriptor_sets);
+using pfn_free_descriptor_sets = ktl::api::result(*)(ktl::api::device _device, ktl::api::descriptor_pool _descriptor_pool, ktl::u32 _descriptor_set_count, const ktl::api::descriptor_set * _p_descriptor_sets);
+using pfn_update_descriptor_sets = void(*)(ktl::api::device _device, ktl::u32 _descriptor_write_count, const ktl::api::write_descriptor_set * _p_descriptor_writes, ktl::u32 _descriptor_copy_count, const ktl::api::copy_descriptor_set * _p_descriptor_copies);
+using pfn_create_framebuffer = ktl::api::result(*)(ktl::api::device _device, const ktl::api::framebuffer_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::framebuffer * _p_framebuffer);
+using pfn_destroy_framebuffer = void(*)(ktl::api::device _device, ktl::api::framebuffer _framebuffer, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_render_pass = ktl::api::result(*)(ktl::api::device _device, const ktl::api::render_pass_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::render_pass * _p_render_pass);
+using pfn_destroy_render_pass = void(*)(ktl::api::device _device, ktl::api::render_pass _render_pass, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_render_area_granularity = void(*)(ktl::api::device _device, ktl::api::render_pass _render_pass, ktl::api::extent_2d * _p_granularity);
+using pfn_get_rendering_area_granularity = void(*)(ktl::api::device _device, const ktl::api::rendering_area_info * _p_rendering_area_info, ktl::api::extent_2d * _p_granularity);
 using pfn_get_rendering_area_granularity_khr = pfn_get_rendering_area_granularity;
-using pfn_create_command_pool                = ktl::api::result (*)(ktl::api::device                           _device,
-                                                     const ktl::api::command_pool_create_info * _p_create_info,
-                                                     const ktl::api::allocation_callbacks *     _p_allocator,
-                                                     ktl::api::command_pool *                   _p_command_pool);
-using pfn_destroy_command_pool               = void (*)(ktl::api::device _device, ktl::api::command_pool _command_pool,
-                                          const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_reset_command_pool = ktl::api::result (*)(ktl::api::device _device, ktl::api::command_pool _command_pool,
-                                                    ktl::api::command_pool_reset_flags _flags);
-using pfn_allocate_command_buffers =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::command_buffer_allocate_info * _p_allocate_info,
-                         ktl::api::command_buffer * _p_command_buffers);
-using pfn_free_command_buffers = void (*)(ktl::api::device _device, ktl::api::command_pool _command_pool,
-                                          ktl::u32                         _command_buffer_count,
-                                          const ktl::api::command_buffer * _p_command_buffers);
-using pfn_begin_command_buffer = ktl::api::result (*)(ktl::api::command_buffer                    _command_buffer,
-                                                      const ktl::api::command_buffer_begin_info * _p_begin_info);
-using pfn_end_command_buffer   = ktl::api::result (*)(ktl::api::command_buffer _command_buffer);
-using pfn_reset_command_buffer = ktl::api::result (*)(ktl::api::command_buffer             _command_buffer,
-                                                      ktl::api::command_buffer_reset_flags _flags);
-using pfn_cmd_bind_pipeline    = void (*)(ktl::api::command_buffer      _command_buffer,
-                                       ktl::api::pipeline_bind_point _pipeline_bind_point,
-                                       ktl::api::pipeline            _pipeline);
-using pfn_cmd_set_primitive_restart_index_ext         = void (*)(ktl::api::command_buffer _command_buffer,
-                                                         ktl::u32                 _primitive_restart_index);
-using pfn_cmd_set_attachment_feedback_loop_enable_ext = void (*)(ktl::api::command_buffer     _command_buffer,
-                                                                 ktl::api::image_aspect_flags _aspect_mask);
-using pfn_cmd_set_viewport   = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport,
-                                      ktl::u32 _viewport_count, const ktl::api::viewport * _p_viewports);
-using pfn_cmd_set_scissor    = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_scissor,
-                                     ktl::u32 _scissor_count, const ktl::api::rect_2d * _p_scissors);
-using pfn_cmd_set_line_width = void (*)(ktl::api::command_buffer _command_buffer, float _line_width);
-using pfn_cmd_set_depth_bias = void (*)(ktl::api::command_buffer _command_buffer, float _depth_bias_constant_factor,
-                                        float _depth_bias_clamp, float _depth_bias_slope_factor);
-using pfn_cmd_set_blend_constants = void (*)(ktl::api::command_buffer _command_buffer, const float _blend_constants[4]);
-using pfn_cmd_set_depth_bounds    = void (*)(ktl::api::command_buffer _command_buffer, float _min_depth_bounds,
-                                          float _max_depth_bounds);
-using pfn_cmd_set_stencil_compare_mask = void (*)(ktl::api::command_buffer     _command_buffer,
-                                                  ktl::api::stencil_face_flags _face_mask, ktl::u32 _compare_mask);
-using pfn_cmd_set_stencil_write_mask   = void (*)(ktl::api::command_buffer     _command_buffer,
-                                                ktl::api::stencil_face_flags _face_mask, ktl::u32 _write_mask);
-using pfn_cmd_set_stencil_reference    = void (*)(ktl::api::command_buffer     _command_buffer,
-                                               ktl::api::stencil_face_flags _face_mask, ktl::u32 _reference);
-using pfn_cmd_bind_descriptor_sets     = void (*)(ktl::api::command_buffer      _command_buffer,
-                                              ktl::api::pipeline_bind_point _pipeline_bind_point,
-                                              ktl::api::pipeline_layout _layout, ktl::u32 _first_set,
-                                              ktl::u32                         _descriptor_set_count,
-                                              const ktl::api::descriptor_set * _p_descriptor_sets,
-                                              ktl::u32 _dynamic_offset_count, const ktl::u32 * _p_dynamic_offsets);
-using pfn_cmd_bind_index_buffer        = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
-                                           ktl::api::dvsize _offset, ktl::api::index_type _index_type);
-using pfn_cmd_bind_vertex_buffers      = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
-                                             ktl::u32 _binding_count, const ktl::api::buffer * _p_buffers,
-                                             const ktl::api::dvsize * _p_offsets);
-using pfn_cmd_draw                     = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _vertex_count,
-                              ktl::u32 _instance_count, ktl::u32 _first_vertex, ktl::u32 _first_instance);
-using pfn_cmd_draw_indexed             = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _index_count,
-                                      ktl::u32 _instance_count, ktl::u32 _first_index, ktl::i32 _vertex_offset,
-                                      ktl::u32 _first_instance);
-using pfn_cmd_draw_multi_ext           = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _draw_count,
-                                        const ktl::api::multi_draw_info_ext * _p_vertex_info, ktl::u32 _instance_count,
-                                        ktl::u32 _first_instance, ktl::u32 _stride);
-using pfn_cmd_draw_multi_indexed_ext   = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _draw_count,
-                                                const ktl::api::multi_draw_indexed_info_ext * _p_index_info,
-                                                ktl::u32 _instance_count, ktl::u32 _first_instance, ktl::u32 _stride,
-                                                const ktl::i32 * _p_vertex_offset);
-using pfn_cmd_draw_indirect            = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
-                                       ktl::api::dvsize _offset, ktl::u32 _draw_count, ktl::u32 _stride);
-using pfn_cmd_draw_indexed_indirect    = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
-                                               ktl::api::dvsize _offset, ktl::u32 _draw_count, ktl::u32 _stride);
-using pfn_cmd_dispatch                 = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x,
-                                  ktl::u32 _group_count_y, ktl::u32 _group_count_z);
-using pfn_cmd_dispatch_indirect        = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
-                                           ktl::api::dvsize _offset);
-using pfn_cmd_subpass_shading_huawei   = void (*)(ktl::api::command_buffer _command_buffer);
-using pfn_cmd_draw_cluster_huawei      = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x,
-                                             ktl::u32 _group_count_y, ktl::u32 _group_count_z);
-using pfn_cmd_draw_cluster_indirect_huawei       = void (*)(ktl::api::command_buffer _command_buffer,
-                                                      ktl::api::buffer _buffer, ktl::api::dvsize _offset);
-using pfn_cmd_update_pipeline_indirect_buffer_nv = void (*)(ktl::api::command_buffer      _command_buffer,
-                                                            ktl::api::pipeline_bind_point _pipeline_bind_point,
-                                                            ktl::api::pipeline            _pipeline);
-using pfn_cmd_copy_buffer             = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _src_buffer,
-                                     ktl::api::buffer _dst_buffer, ktl::u32 _region_count,
-                                     const ktl::api::buffer_copy * _p_regions);
-using pfn_cmd_copy_image              = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::image _src_image,
-                                    ktl::api::image_layout _src_image_layout, ktl::api::image _dst_image,
-                                    ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count,
-                                    const ktl::api::image_copy * _p_regions);
-using pfn_cmd_blit_image              = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::image _src_image,
-                                    ktl::api::image_layout _src_image_layout, ktl::api::image _dst_image,
-                                    ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count,
-                                    const ktl::api::image_blit * _p_regions, ktl::api::filter _filter);
-using pfn_cmd_copy_buffer_to_image    = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _src_buffer,
-                                              ktl::api::image _dst_image, ktl::api::image_layout _dst_image_layout,
-                                              ktl::u32 _region_count, const ktl::api::buffer_image_copy * _p_regions);
-using pfn_cmd_copy_image_to_buffer    = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::image _src_image,
-                                              ktl::api::image_layout _src_image_layout, ktl::api::buffer _dst_buffer,
-                                              ktl::u32 _region_count, const ktl::api::buffer_image_copy * _p_regions);
-using pfn_cmd_copy_memory_indirect_nv = void (*)(ktl::api::command_buffer _command_buffer,
-                                                 ktl::api::dvaddr _copy_buffer_address, ktl::u32 _copy_count,
-                                                 ktl::u32 _stride);
-using pfn_cmd_copy_memory_indirect_khr =
-    void (*)(ktl::api::command_buffer                        _command_buffer,
-             const ktl::api::copy_memory_indirect_info_khr * _p_copy_memory_indirect_info);
-using pfn_cmd_copy_memory_to_image_indirect_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _copy_buffer_address, ktl::u32 _copy_count,
-             ktl::u32 _stride, ktl::api::image _dst_image, ktl::api::image_layout _dst_image_layout,
-             const ktl::api::image_subresource_layers * _p_image_subresources);
-using pfn_cmd_copy_memory_to_image_indirect_khr =
-    void (*)(ktl::api::command_buffer                                 _command_buffer,
-             const ktl::api::copy_memory_to_image_indirect_info_khr * _p_copy_memory_to_image_indirect_info);
-using pfn_cmd_update_buffer     = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _dst_buffer,
-                                       ktl::api::dvsize _dst_offset, ktl::api::dvsize _data_size, const void * _p_data);
-using pfn_cmd_fill_buffer       = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _dst_buffer,
-                                     ktl::api::dvsize _dst_offset, ktl::api::dvsize _size, ktl::u32 _data);
-using pfn_cmd_clear_color_image = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::image _image,
-                                           ktl::api::image_layout              _image_layout,
-                                           const ktl::api::clear_color_value * _p_color, ktl::u32 _range_count,
-                                           const ktl::api::image_subresource_range * _p_ranges);
-using pfn_cmd_clear_depth_stencil_image = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::image _image,
-                                                   ktl::api::image_layout                      _image_layout,
-                                                   const ktl::api::clear_depth_stencil_value * _p_depth_stencil,
-                                                   ktl::u32                                    _range_count,
-                                                   const ktl::api::image_subresource_range *   _p_ranges);
-using pfn_cmd_clear_attachments         = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _attachment_count,
-                                           const ktl::api::clear_attachment * _p_attachments, ktl::u32 _rect_count,
-                                           const ktl::api::clear_rect * _p_rects);
-using pfn_cmd_resolve_image             = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::image _src_image,
-                                       ktl::api::image_layout _src_image_layout, ktl::api::image _dst_image,
-                                       ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count,
-                                       const ktl::api::image_resolve * _p_regions);
-using pfn_cmd_set_event                 = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
-                                   ktl::api::pipeline_stage_flags _stage_mask);
-using pfn_cmd_reset_event               = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
-                                     ktl::api::pipeline_stage_flags _stage_mask);
-using pfn_cmd_wait_events               = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count,
-                                     const ktl::api::event * _p_events, ktl::api::pipeline_stage_flags _src_stage_mask,
-                                     ktl::api::pipeline_stage_flags _dst_stage_mask, ktl::u32 _memory_barrier_count,
-                                     const ktl::api::memory_barrier *        _p_memory_barriers,
-                                     ktl::u32                                _buffer_memory_barrier_count,
-                                     const ktl::api::buffer_memory_barrier * _p_buffer_memory_barriers,
-                                     ktl::u32                                _image_memory_barrier_count,
-                                     const ktl::api::image_memory_barrier *  _p_image_memory_barriers);
-using pfn_cmd_pipeline_barrier =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags _src_stage_mask,
-             ktl::api::pipeline_stage_flags _dst_stage_mask, ktl::api::dependency_flags _dependency_flags,
-             ktl::u32 _memory_barrier_count, const ktl::api::memory_barrier * _p_memory_barriers,
-             ktl::u32 _buffer_memory_barrier_count, const ktl::api::buffer_memory_barrier * _p_buffer_memory_barriers,
-             ktl::u32 _image_memory_barrier_count, const ktl::api::image_memory_barrier * _p_image_memory_barriers);
-using pfn_cmd_begin_query = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool,
-                                     ktl::u32 _query, ktl::api::query_control_flags _flags);
-using pfn_cmd_end_query   = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool,
-                                   ktl::u32 _query);
-using pfn_cmd_begin_conditional_rendering_ext =
-    void (*)(ktl::api::command_buffer                               _command_buffer,
-             const ktl::api::conditional_rendering_begin_info_ext * _p_conditional_rendering_begin);
-using pfn_cmd_end_conditional_rendering_ext = void (*)(ktl::api::command_buffer _command_buffer);
-using pfn_cmd_begin_custom_resolve_ext =
-    void (*)(ktl::api::command_buffer                        _command_buffer,
-             const ktl::api::begin_custom_resolve_info_ext * _p_begin_custom_resolve_info);
-using pfn_cmd_reset_query_pool = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool,
-                                          ktl::u32 _first_query, ktl::u32 _query_count);
-using pfn_cmd_write_timestamp  = void (*)(ktl::api::command_buffer           _command_buffer,
-                                         ktl::api::pipeline_stage_flag_bits _pipeline_stage,
-                                         ktl::api::query_pool _query_pool, ktl::u32 _query);
-using pfn_cmd_copy_query_pool_results = void (*)(ktl::api::command_buffer _command_buffer,
-                                                 ktl::api::query_pool _query_pool, ktl::u32 _first_query,
-                                                 ktl::u32 _query_count, ktl::api::buffer _dst_buffer,
-                                                 ktl::api::dvsize _dst_offset, ktl::api::dvsize _stride,
-                                                 ktl::api::query_result_flags _flags);
-using pfn_cmd_push_constants    = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_layout _layout,
-                                        ktl::api::shader_stage_flags _stage_flags, ktl::u32 _offset, ktl::u32 _size,
-                                        const void * _p_values);
-using pfn_cmd_begin_render_pass = void (*)(ktl::api::command_buffer                 _command_buffer,
-                                           const ktl::api::render_pass_begin_info * _p_render_pass_begin,
-                                           ktl::api::subpass_contents               _contents);
-using pfn_cmd_next_subpass = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::subpass_contents _contents);
-using pfn_cmd_end_render_pass  = void (*)(ktl::api::command_buffer _command_buffer);
-using pfn_cmd_execute_commands = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _command_buffer_count,
-                                          const ktl::api::command_buffer * _p_command_buffers);
-using pfn_create_android_surface_khr =
-    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::android_surface_create_info_khr * _p_create_info,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_create_surface_ohos = ktl::api::result (*)(ktl::api::instance                         _instance,
-                                                     const ktl::api::surface_create_info_ohos * _p_create_info,
-                                                     const ktl::api::allocation_callbacks *     _p_allocator,
-                                                     ktl::api::surface_khr *                    _p_surface);
-using pfn_get_physical_device_display_properties_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::display_properties_khr * _p_properties);
-using pfn_get_physical_device_display_plane_properties_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::display_plane_properties_khr * _p_properties);
-using pfn_get_display_plane_supported_displays_khr = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                                          ktl::u32                  _plane_index,
-                                                                          ktl::u32 *                _p_display_count,
-                                                                          ktl::api::display_khr *   _p_displays);
-using pfn_get_display_mode_properties_khr          = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                                 ktl::api::display_khr     _display,
-                                                                 ktl::u32 *                _p_property_count,
-                                                                 ktl::api::display_mode_properties_khr * _p_properties);
-using pfn_create_display_mode_khr                  = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                         ktl::api::display_khr     _display,
-                                                         const ktl::api::display_mode_create_info_khr * _p_create_info,
-                                                         const ktl::api::allocation_callbacks *         _p_allocator,
-                                                         ktl::api::display_mode_khr *                   _p_mode);
-using pfn_get_display_plane_capabilities_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::api::display_mode_khr _mode,
-                         ktl::u32 _plane_index, ktl::api::display_plane_capabilities_khr * _p_capabilities);
-using pfn_create_display_plane_surface_khr =
-    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::display_surface_create_info_khr * _p_create_info,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_create_shared_swapchains_khr = ktl::api::result (*)(
-    ktl::api::device _device, ktl::u32 _swapchain_count, const ktl::api::swapchain_create_info_khr * _p_create_infos,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::swapchain_khr * _p_swapchains);
-using pfn_destroy_surface_khr = void (*)(ktl::api::instance _instance, ktl::api::surface_khr _surface,
-                                         const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_physical_device_surface_support_khr = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                                         ktl::u32                  _queue_family_index,
-                                                                         ktl::api::surface_khr     _surface,
-                                                                         ktl::api::bool32 *        _p_supported);
-using pfn_get_physical_device_surface_capabilities_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface,
-                         ktl::api::surface_capabilities_khr * _p_surface_capabilities);
-using pfn_get_physical_device_surface_formats_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface,
-                         ktl::u32 * _p_surface_format_count, ktl::api::surface_format_khr * _p_surface_formats);
-using pfn_get_physical_device_surface_present_modes_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface,
-                         ktl::u32 * _p_present_mode_count, ktl::api::present_mode_khr * _p_present_modes);
-using pfn_create_swapchain_khr     = ktl::api::result (*)(ktl::api::device                            _device,
-                                                      const ktl::api::swapchain_create_info_khr * _p_create_info,
-                                                      const ktl::api::allocation_callbacks *      _p_allocator,
-                                                      ktl::api::swapchain_khr *                   _p_swapchain);
-using pfn_destroy_swapchain_khr    = void (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                           const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_swapchain_images_khr = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                                          ktl::u32 *        _p_swapchain_image_count,
-                                                          ktl::api::image * _p_swapchain_images);
-using pfn_acquire_next_image_khr   = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                                        ktl::u64 _timeout, ktl::api::semaphore _semaphore,
-                                                        ktl::api::fence _fence, ktl::u32 * _p_image_index);
-using pfn_queue_present_khr        = ktl::api::result (*)(ktl::api::queue                    _queue,
-                                                   const ktl::api::present_info_khr * _p_present_info);
-using pfn_create_vi_surface_nn     = ktl::api::result (*)(ktl::api::instance                          _instance,
-                                                      const ktl::api::vi_surface_create_info_nn * _p_create_info,
-                                                      const ktl::api::allocation_callbacks *      _p_allocator,
-                                                      ktl::api::surface_khr *                     _p_surface);
-using pfn_create_wayland_surface_khr =
-    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::wayland_surface_create_info_khr * _p_create_info,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_get_physical_device_wayland_presentation_support_khr = ktl::api::bool32 (*)(
-    ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, wl_display * _display);
-using pfn_create_ubm_surface_sec = ktl::api::result (*)(ktl::api::instance                            _instance,
-                                                        const ktl::api::ubm_surface_create_info_sec * _p_create_info,
-                                                        const ktl::api::allocation_callbacks *        _p_allocator,
-                                                        ktl::api::surface_khr *                       _p_surface);
-using pfn_get_physical_device_ubm_presentation_support_sec = ktl::api::bool32 (*)(
-    ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, ubm_device * _device);
-using pfn_create_win_32surface_khr =
-    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::win_32surface_create_info_khr * _p_create_info,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_get_physical_device_win_32presentation_support_khr =
-    ktl::api::bool32 (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index);
-using pfn_create_xlib_surface_khr = ktl::api::result (*)(ktl::api::instance                             _instance,
-                                                         const ktl::api::xlib_surface_create_info_khr * _p_create_info,
-                                                         const ktl::api::allocation_callbacks *         _p_allocator,
-                                                         ktl::api::surface_khr *                        _p_surface);
-using pfn_get_physical_device_xlib_presentation_support_khr = ktl::api::bool32 (*)(
-    ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, Display * _dpy, VisualID _visual_id);
-using pfn_create_xcb_surface_khr = ktl::api::result (*)(ktl::api::instance                            _instance,
-                                                        const ktl::api::xcb_surface_create_info_khr * _p_create_info,
-                                                        const ktl::api::allocation_callbacks *        _p_allocator,
-                                                        ktl::api::surface_khr *                       _p_surface);
-using pfn_get_physical_device_xcb_presentation_support_khr =
-    ktl::api::bool32 (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index,
-                         xcb_connection_t * _connection, xcb_visualid_t _visual_id);
-using pfn_create_direct_fb_surface_ext = ktl::api::result (*)(
-    ktl::api::instance _instance, const ktl::api::direct_fb_surface_create_info_ext * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_get_physical_device_direct_fb_presentation_support_ext =
-    ktl::api::bool32 (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, IDirectFB * _dfb);
-using pfn_create_image_pipe_surface_fuchsia = ktl::api::result (*)(
-    ktl::api::instance _instance, const ktl::api::image_pipe_surface_create_info_fuchsia * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_create_stream_descriptor_surface_ggp = ktl::api::result (*)(
-    ktl::api::instance _instance, const ktl::api::stream_descriptor_surface_create_info_ggp * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_create_screen_surface_qnx =
-    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::screen_surface_create_info_qnx * _p_create_info,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_get_physical_device_screen_presentation_support_qnx = ktl::api::bool32 (*)(
-    ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, _screen_window * _window);
-using pfn_create_debug_report_callback_ext = ktl::api::result (*)(
-    ktl::api::instance _instance, const ktl::api::debug_report_callback_create_info_ext * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::debug_report_callback_ext * _p_callback);
-using pfn_destroy_debug_report_callback_ext = void (*)(ktl::api::instance                     _instance,
-                                                       ktl::api::debug_report_callback_ext    _callback,
-                                                       const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_debug_report_message_ext = void (*)(ktl::api::instance _instance, ktl::api::debug_report_flags_ext _flags,
-                                              ktl::api::debug_report_object_type_ext _object_type, ktl::u64 _object,
-                                              ktl::usize _location, ktl::i32 _message_code,
-                                              const char * _p_layer_prefix, const char * _p_message);
-using pfn_debug_marker_set_object_name_ext =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::debug_marker_object_name_info_ext * _p_name_info);
-using pfn_debug_marker_set_object_tag_ext =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::debug_marker_object_tag_info_ext * _p_tag_info);
-using pfn_cmd_debug_marker_begin_ext  = void (*)(ktl::api::command_buffer                       _command_buffer,
-                                                const ktl::api::debug_marker_marker_info_ext * _p_marker_info);
-using pfn_cmd_debug_marker_end_ext    = void (*)(ktl::api::command_buffer _command_buffer);
-using pfn_cmd_debug_marker_insert_ext = void (*)(ktl::api::command_buffer                       _command_buffer,
-                                                 const ktl::api::debug_marker_marker_info_ext * _p_marker_info);
-using pfn_get_physical_device_external_image_format_properties_nv = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, ktl::api::format _format, ktl::api::image_type _type,
-    ktl::api::image_tiling _tiling, ktl::api::image_usage_flags _usage, ktl::api::image_create_flags _flags,
-    ktl::api::external_memory_handle_type_flags_nv  _external_handle_type,
-    ktl::api::external_image_format_properties_nv * _p_external_image_format_properties);
-using pfn_get_memory_win_32handle_nv = ktl::api::result (*)(ktl::api::device _device, ktl::api::device_memory _memory,
-                                                            ktl::api::external_memory_handle_type_flags_nv _handle_type,
-                                                            HANDLE *                                       _p_handle);
-using pfn_cmd_execute_generated_commands_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _is_preprocessed,
-             const ktl::api::generated_commands_info_nv * _p_generated_commands_info);
-using pfn_cmd_preprocess_generated_commands_nv = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::generated_commands_info_nv * _p_generated_commands_info);
-using pfn_cmd_bind_pipeline_shader_group_nv = void (*)(ktl::api::command_buffer      _command_buffer,
-                                                       ktl::api::pipeline_bind_point _pipeline_bind_point,
-                                                       ktl::api::pipeline _pipeline, ktl::u32 _group_index);
-using pfn_get_generated_commands_memory_requirements_nv =
-    void (*)(ktl::api::device _device, const ktl::api::generated_commands_memory_requirements_info_nv * _p_info,
-             ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_create_indirect_commands_layout_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::indirect_commands_layout_create_info_nv * _p_create_info,
-    const ktl::api::allocation_callbacks *  _p_allocator,
-    ktl::api::indirect_commands_layout_nv * _p_indirect_commands_layout);
-using pfn_destroy_indirect_commands_layout_nv =
-    void (*)(ktl::api::device _device, ktl::api::indirect_commands_layout_nv _indirect_commands_layout,
-             const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_cmd_execute_generated_commands_ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _is_preprocessed,
-             const ktl::api::generated_commands_info_ext * _p_generated_commands_info);
-using pfn_cmd_preprocess_generated_commands_ext = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::generated_commands_info_ext * _p_generated_commands_info,
-    ktl::api::command_buffer _state_command_buffer);
-using pfn_get_generated_commands_memory_requirements_ext =
-    void (*)(ktl::api::device _device, const ktl::api::generated_commands_memory_requirements_info_ext * _p_info,
-             ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_create_indirect_commands_layout_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::indirect_commands_layout_create_info_ext * _p_create_info,
-    const ktl::api::allocation_callbacks *   _p_allocator,
-    ktl::api::indirect_commands_layout_ext * _p_indirect_commands_layout);
-using pfn_destroy_indirect_commands_layout_ext =
-    void (*)(ktl::api::device _device, ktl::api::indirect_commands_layout_ext _indirect_commands_layout,
-             const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_indirect_execution_set_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::indirect_execution_set_create_info_ext * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator,
-    ktl::api::indirect_execution_set_ext * _p_indirect_execution_set);
-using pfn_destroy_indirect_execution_set_ext = void (*)(ktl::api::device                       _device,
-                                                        ktl::api::indirect_execution_set_ext   _indirect_execution_set,
-                                                        const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_update_indirect_execution_set_pipeline_ext =
-    void (*)(ktl::api::device _device, ktl::api::indirect_execution_set_ext _indirect_execution_set,
-             ktl::u32                                                    _execution_set_write_count,
-             const ktl::api::write_indirect_execution_set_pipeline_ext * _p_execution_set_writes);
-using pfn_update_indirect_execution_set_shader_ext =
-    void (*)(ktl::api::device _device, ktl::api::indirect_execution_set_ext _indirect_execution_set,
-             ktl::u32                                                  _execution_set_write_count,
-             const ktl::api::write_indirect_execution_set_shader_ext * _p_execution_set_writes);
-using pfn_get_physical_device_features_2          = void (*)(ktl::api::physical_device              _physical_device,
-                                                    ktl::api::physical_device_features_2 * _p_features);
-using pfn_get_physical_device_features_2khr       = pfn_get_physical_device_features_2;
-using pfn_get_physical_device_properties_2        = void (*)(ktl::api::physical_device                _physical_device,
-                                                      ktl::api::physical_device_properties_2 * _p_properties);
-using pfn_get_physical_device_properties_2khr     = pfn_get_physical_device_properties_2;
-using pfn_get_physical_device_format_properties_2 = void (*)(ktl::api::physical_device       _physical_device,
-                                                             ktl::api::format                _format,
-                                                             ktl::api::format_properties_2 * _p_format_properties);
+using pfn_create_command_pool = ktl::api::result(*)(ktl::api::device _device, const ktl::api::command_pool_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::command_pool * _p_command_pool);
+using pfn_destroy_command_pool = void(*)(ktl::api::device _device, ktl::api::command_pool _command_pool, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_reset_command_pool = ktl::api::result(*)(ktl::api::device _device, ktl::api::command_pool _command_pool, ktl::api::command_pool_reset_flags _flags);
+using pfn_allocate_command_buffers = ktl::api::result(*)(ktl::api::device _device, const ktl::api::command_buffer_allocate_info * _p_allocate_info, ktl::api::command_buffer * _p_command_buffers);
+using pfn_free_command_buffers = void(*)(ktl::api::device _device, ktl::api::command_pool _command_pool, ktl::u32 _command_buffer_count, const ktl::api::command_buffer * _p_command_buffers);
+using pfn_begin_command_buffer = ktl::api::result(*)(ktl::api::command_buffer _command_buffer, const ktl::api::command_buffer_begin_info * _p_begin_info);
+using pfn_end_command_buffer = ktl::api::result(*)(ktl::api::command_buffer _command_buffer);
+using pfn_reset_command_buffer = ktl::api::result(*)(ktl::api::command_buffer _command_buffer, ktl::api::command_buffer_reset_flags _flags);
+using pfn_cmd_bind_pipeline = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point, ktl::api::pipeline _pipeline);
+using pfn_cmd_set_primitive_restart_index_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _primitive_restart_index);
+using pfn_cmd_set_attachment_feedback_loop_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::image_aspect_flags _aspect_mask);
+using pfn_cmd_set_viewport = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport, ktl::u32 _viewport_count, const ktl::api::viewport * _p_viewports);
+using pfn_cmd_set_scissor = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_scissor, ktl::u32 _scissor_count, const ktl::api::rect_2d * _p_scissors);
+using pfn_cmd_set_line_width = void(*)(ktl::api::command_buffer _command_buffer, float _line_width);
+using pfn_cmd_set_depth_bias = void(*)(ktl::api::command_buffer _command_buffer, float _depth_bias_constant_factor, float _depth_bias_clamp, float _depth_bias_slope_factor);
+using pfn_cmd_set_blend_constants = void(*)(ktl::api::command_buffer _command_buffer, const float _blend_constants[4]);
+using pfn_cmd_set_depth_bounds = void(*)(ktl::api::command_buffer _command_buffer, float _min_depth_bounds, float _max_depth_bounds);
+using pfn_cmd_set_stencil_compare_mask = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::stencil_face_flags _face_mask, ktl::u32 _compare_mask);
+using pfn_cmd_set_stencil_write_mask = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::stencil_face_flags _face_mask, ktl::u32 _write_mask);
+using pfn_cmd_set_stencil_reference = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::stencil_face_flags _face_mask, ktl::u32 _reference);
+using pfn_cmd_bind_descriptor_sets = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point, ktl::api::pipeline_layout _layout, ktl::u32 _first_set, ktl::u32 _descriptor_set_count, const ktl::api::descriptor_set * _p_descriptor_sets, ktl::u32 _dynamic_offset_count, const ktl::u32 * _p_dynamic_offsets);
+using pfn_cmd_bind_index_buffer = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::api::index_type _index_type);
+using pfn_cmd_bind_vertex_buffers = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count, const ktl::api::buffer * _p_buffers, const ktl::api::dvsize * _p_offsets);
+using pfn_cmd_draw = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _vertex_count, ktl::u32 _instance_count, ktl::u32 _first_vertex, ktl::u32 _first_instance);
+using pfn_cmd_draw_indexed = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _index_count, ktl::u32 _instance_count, ktl::u32 _first_index, ktl::i32 _vertex_offset, ktl::u32 _first_instance);
+using pfn_cmd_draw_multi_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _draw_count, const ktl::api::multi_draw_info_ext * _p_vertex_info, ktl::u32 _instance_count, ktl::u32 _first_instance, ktl::u32 _stride);
+using pfn_cmd_draw_multi_indexed_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _draw_count, const ktl::api::multi_draw_indexed_info_ext * _p_index_info, ktl::u32 _instance_count, ktl::u32 _first_instance, ktl::u32 _stride, const ktl::i32 * _p_vertex_offset);
+using pfn_cmd_draw_indirect = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::u32 _draw_count, ktl::u32 _stride);
+using pfn_cmd_draw_indexed_indirect = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::u32 _draw_count, ktl::u32 _stride);
+using pfn_cmd_dispatch = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x, ktl::u32 _group_count_y, ktl::u32 _group_count_z);
+using pfn_cmd_dispatch_indirect = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset);
+using pfn_cmd_subpass_shading_huawei = void(*)(ktl::api::command_buffer _command_buffer);
+using pfn_cmd_draw_cluster_huawei = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x, ktl::u32 _group_count_y, ktl::u32 _group_count_z);
+using pfn_cmd_draw_cluster_indirect_huawei = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset);
+using pfn_cmd_update_pipeline_indirect_buffer_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point, ktl::api::pipeline _pipeline);
+using pfn_cmd_copy_buffer = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _src_buffer, ktl::api::buffer _dst_buffer, ktl::u32 _region_count, const ktl::api::buffer_copy * _p_regions);
+using pfn_cmd_copy_image = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::image _src_image, ktl::api::image_layout _src_image_layout, ktl::api::image _dst_image, ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count, const ktl::api::image_copy * _p_regions);
+using pfn_cmd_blit_image = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::image _src_image, ktl::api::image_layout _src_image_layout, ktl::api::image _dst_image, ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count, const ktl::api::image_blit * _p_regions, ktl::api::filter _filter);
+using pfn_cmd_copy_buffer_to_image = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _src_buffer, ktl::api::image _dst_image, ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count, const ktl::api::buffer_image_copy * _p_regions);
+using pfn_cmd_copy_image_to_buffer = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::image _src_image, ktl::api::image_layout _src_image_layout, ktl::api::buffer _dst_buffer, ktl::u32 _region_count, const ktl::api::buffer_image_copy * _p_regions);
+using pfn_cmd_copy_memory_indirect_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _copy_buffer_address, ktl::u32 _copy_count, ktl::u32 _stride);
+using pfn_cmd_copy_memory_indirect_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_memory_indirect_info_khr * _p_copy_memory_indirect_info);
+using pfn_cmd_copy_memory_to_image_indirect_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _copy_buffer_address, ktl::u32 _copy_count, ktl::u32 _stride, ktl::api::image _dst_image, ktl::api::image_layout _dst_image_layout, const ktl::api::image_subresource_layers * _p_image_subresources);
+using pfn_cmd_copy_memory_to_image_indirect_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_memory_to_image_indirect_info_khr * _p_copy_memory_to_image_indirect_info);
+using pfn_cmd_update_buffer = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset, ktl::api::dvsize _data_size, const void * _p_data);
+using pfn_cmd_fill_buffer = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset, ktl::api::dvsize _size, ktl::u32 _data);
+using pfn_cmd_clear_color_image = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::image _image, ktl::api::image_layout _image_layout, const ktl::api::clear_color_value * _p_color, ktl::u32 _range_count, const ktl::api::image_subresource_range * _p_ranges);
+using pfn_cmd_clear_depth_stencil_image = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::image _image, ktl::api::image_layout _image_layout, const ktl::api::clear_depth_stencil_value * _p_depth_stencil, ktl::u32 _range_count, const ktl::api::image_subresource_range * _p_ranges);
+using pfn_cmd_clear_attachments = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _attachment_count, const ktl::api::clear_attachment * _p_attachments, ktl::u32 _rect_count, const ktl::api::clear_rect * _p_rects);
+using pfn_cmd_resolve_image = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::image _src_image, ktl::api::image_layout _src_image_layout, ktl::api::image _dst_image, ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count, const ktl::api::image_resolve * _p_regions);
+using pfn_cmd_set_event = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event, ktl::api::pipeline_stage_flags _stage_mask);
+using pfn_cmd_reset_event = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event, ktl::api::pipeline_stage_flags _stage_mask);
+using pfn_cmd_wait_events = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count, const ktl::api::event * _p_events, ktl::api::pipeline_stage_flags _src_stage_mask, ktl::api::pipeline_stage_flags _dst_stage_mask, ktl::u32 _memory_barrier_count, const ktl::api::memory_barrier * _p_memory_barriers, ktl::u32 _buffer_memory_barrier_count, const ktl::api::buffer_memory_barrier * _p_buffer_memory_barriers, ktl::u32 _image_memory_barrier_count, const ktl::api::image_memory_barrier * _p_image_memory_barriers);
+using pfn_cmd_pipeline_barrier = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags _src_stage_mask, ktl::api::pipeline_stage_flags _dst_stage_mask, ktl::api::dependency_flags _dependency_flags, ktl::u32 _memory_barrier_count, const ktl::api::memory_barrier * _p_memory_barriers, ktl::u32 _buffer_memory_barrier_count, const ktl::api::buffer_memory_barrier * _p_buffer_memory_barriers, ktl::u32 _image_memory_barrier_count, const ktl::api::image_memory_barrier * _p_image_memory_barriers);
+using pfn_cmd_begin_query = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _query, ktl::api::query_control_flags _flags);
+using pfn_cmd_end_query = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _query);
+using pfn_cmd_begin_conditional_rendering_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::conditional_rendering_begin_info_ext * _p_conditional_rendering_begin);
+using pfn_cmd_end_conditional_rendering_ext = void(*)(ktl::api::command_buffer _command_buffer);
+using pfn_cmd_begin_custom_resolve_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::begin_custom_resolve_info_ext * _p_begin_custom_resolve_info);
+using pfn_cmd_reset_query_pool = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _first_query, ktl::u32 _query_count);
+using pfn_cmd_write_timestamp = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flag_bits _pipeline_stage, ktl::api::query_pool _query_pool, ktl::u32 _query);
+using pfn_cmd_copy_query_pool_results = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _first_query, ktl::u32 _query_count, ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset, ktl::api::dvsize _stride, ktl::api::query_result_flags _flags);
+using pfn_cmd_push_constants = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_layout _layout, ktl::api::shader_stage_flags _stage_flags, ktl::u32 _offset, ktl::u32 _size, const void * _p_values);
+using pfn_cmd_begin_render_pass = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::render_pass_begin_info * _p_render_pass_begin, ktl::api::subpass_contents _contents);
+using pfn_cmd_next_subpass = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::subpass_contents _contents);
+using pfn_cmd_end_render_pass = void(*)(ktl::api::command_buffer _command_buffer);
+using pfn_cmd_execute_commands = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _command_buffer_count, const ktl::api::command_buffer * _p_command_buffers);
+using pfn_create_android_surface_khr = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::android_surface_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_create_surface_ohos = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::surface_create_info_ohos * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_get_physical_device_display_properties_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count, ktl::api::display_properties_khr * _p_properties);
+using pfn_get_physical_device_display_plane_properties_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count, ktl::api::display_plane_properties_khr * _p_properties);
+using pfn_get_display_plane_supported_displays_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 _plane_index, ktl::u32 * _p_display_count, ktl::api::display_khr * _p_displays);
+using pfn_get_display_mode_properties_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::display_khr _display, ktl::u32 * _p_property_count, ktl::api::display_mode_properties_khr * _p_properties);
+using pfn_create_display_mode_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::display_khr _display, const ktl::api::display_mode_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::display_mode_khr * _p_mode);
+using pfn_get_display_plane_capabilities_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::display_mode_khr _mode, ktl::u32 _plane_index, ktl::api::display_plane_capabilities_khr * _p_capabilities);
+using pfn_create_display_plane_surface_khr = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::display_surface_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_create_shared_swapchains_khr = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _swapchain_count, const ktl::api::swapchain_create_info_khr * _p_create_infos, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::swapchain_khr * _p_swapchains);
+using pfn_destroy_surface_khr = void(*)(ktl::api::instance _instance, ktl::api::surface_khr _surface, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_physical_device_surface_support_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, ktl::api::surface_khr _surface, ktl::api::bool32 * _p_supported);
+using pfn_get_physical_device_surface_capabilities_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface, ktl::api::surface_capabilities_khr * _p_surface_capabilities);
+using pfn_get_physical_device_surface_formats_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface, ktl::u32 * _p_surface_format_count, ktl::api::surface_format_khr * _p_surface_formats);
+using pfn_get_physical_device_surface_present_modes_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface, ktl::u32 * _p_present_mode_count, ktl::api::present_mode_khr * _p_present_modes);
+using pfn_create_swapchain_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::swapchain_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::swapchain_khr * _p_swapchain);
+using pfn_destroy_swapchain_khr = void(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_swapchain_images_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::u32 * _p_swapchain_image_count, ktl::api::image * _p_swapchain_images);
+using pfn_acquire_next_image_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::u64 _timeout, ktl::api::semaphore _semaphore, ktl::api::fence _fence, ktl::u32 * _p_image_index);
+using pfn_queue_present_khr = ktl::api::result(*)(ktl::api::queue _queue, const ktl::api::present_info_khr * _p_present_info);
+using pfn_create_vi_surface_nn = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::vi_surface_create_info_nn * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_create_wayland_surface_khr = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::wayland_surface_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_get_physical_device_wayland_presentation_support_khr = ktl::api::bool32(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, wl_display * _display);
+using pfn_create_ubm_surface_sec = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::ubm_surface_create_info_sec * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_get_physical_device_ubm_presentation_support_sec = ktl::api::bool32(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, ubm_device * _device);
+using pfn_create_win_32surface_khr = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::win_32surface_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_get_physical_device_win_32presentation_support_khr = ktl::api::bool32(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index);
+using pfn_create_xlib_surface_khr = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::xlib_surface_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_get_physical_device_xlib_presentation_support_khr = ktl::api::bool32(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, Display * _dpy, VisualID _visual_id);
+using pfn_create_xcb_surface_khr = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::xcb_surface_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_get_physical_device_xcb_presentation_support_khr = ktl::api::bool32(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, xcb_connection_t * _connection, xcb_visualid_t _visual_id);
+using pfn_create_direct_fb_surface_ext = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::direct_fb_surface_create_info_ext * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_get_physical_device_direct_fb_presentation_support_ext = ktl::api::bool32(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, IDirectFB * _dfb);
+using pfn_create_image_pipe_surface_fuchsia = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::image_pipe_surface_create_info_fuchsia * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_create_stream_descriptor_surface_ggp = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::stream_descriptor_surface_create_info_ggp * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_create_screen_surface_qnx = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::screen_surface_create_info_qnx * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_get_physical_device_screen_presentation_support_qnx = ktl::api::bool32(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, _screen_window * _window);
+using pfn_create_debug_report_callback_ext = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::debug_report_callback_create_info_ext * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::debug_report_callback_ext * _p_callback);
+using pfn_destroy_debug_report_callback_ext = void(*)(ktl::api::instance _instance, ktl::api::debug_report_callback_ext _callback, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_debug_report_message_ext = void(*)(ktl::api::instance _instance, ktl::api::debug_report_flags_ext _flags, ktl::api::debug_report_object_type_ext _object_type, ktl::u64 _object, ktl::usize _location, ktl::i32 _message_code, const char * _p_layer_prefix, const char * _p_message);
+using pfn_debug_marker_set_object_name_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::debug_marker_object_name_info_ext * _p_name_info);
+using pfn_debug_marker_set_object_tag_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::debug_marker_object_tag_info_ext * _p_tag_info);
+using pfn_cmd_debug_marker_begin_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::debug_marker_marker_info_ext * _p_marker_info);
+using pfn_cmd_debug_marker_end_ext = void(*)(ktl::api::command_buffer _command_buffer);
+using pfn_cmd_debug_marker_insert_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::debug_marker_marker_info_ext * _p_marker_info);
+using pfn_get_physical_device_external_image_format_properties_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::format _format, ktl::api::image_type _type, ktl::api::image_tiling _tiling, ktl::api::image_usage_flags _usage, ktl::api::image_create_flags _flags, ktl::api::external_memory_handle_type_flags_nv _external_handle_type, ktl::api::external_image_format_properties_nv * _p_external_image_format_properties);
+using pfn_get_memory_win_32handle_nv = ktl::api::result(*)(ktl::api::device _device, ktl::api::device_memory _memory, ktl::api::external_memory_handle_type_flags_nv _handle_type, HANDLE * _p_handle);
+using pfn_cmd_execute_generated_commands_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _is_preprocessed, const ktl::api::generated_commands_info_nv * _p_generated_commands_info);
+using pfn_cmd_preprocess_generated_commands_nv = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::generated_commands_info_nv * _p_generated_commands_info);
+using pfn_cmd_bind_pipeline_shader_group_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point, ktl::api::pipeline _pipeline, ktl::u32 _group_index);
+using pfn_get_generated_commands_memory_requirements_nv = void(*)(ktl::api::device _device, const ktl::api::generated_commands_memory_requirements_info_nv * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_create_indirect_commands_layout_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::indirect_commands_layout_create_info_nv * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::indirect_commands_layout_nv * _p_indirect_commands_layout);
+using pfn_destroy_indirect_commands_layout_nv = void(*)(ktl::api::device _device, ktl::api::indirect_commands_layout_nv _indirect_commands_layout, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_cmd_execute_generated_commands_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _is_preprocessed, const ktl::api::generated_commands_info_ext * _p_generated_commands_info);
+using pfn_cmd_preprocess_generated_commands_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::generated_commands_info_ext * _p_generated_commands_info, ktl::api::command_buffer _state_command_buffer);
+using pfn_get_generated_commands_memory_requirements_ext = void(*)(ktl::api::device _device, const ktl::api::generated_commands_memory_requirements_info_ext * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_create_indirect_commands_layout_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::indirect_commands_layout_create_info_ext * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::indirect_commands_layout_ext * _p_indirect_commands_layout);
+using pfn_destroy_indirect_commands_layout_ext = void(*)(ktl::api::device _device, ktl::api::indirect_commands_layout_ext _indirect_commands_layout, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_indirect_execution_set_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::indirect_execution_set_create_info_ext * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::indirect_execution_set_ext * _p_indirect_execution_set);
+using pfn_destroy_indirect_execution_set_ext = void(*)(ktl::api::device _device, ktl::api::indirect_execution_set_ext _indirect_execution_set, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_update_indirect_execution_set_pipeline_ext = void(*)(ktl::api::device _device, ktl::api::indirect_execution_set_ext _indirect_execution_set, ktl::u32 _execution_set_write_count, const ktl::api::write_indirect_execution_set_pipeline_ext * _p_execution_set_writes);
+using pfn_update_indirect_execution_set_shader_ext = void(*)(ktl::api::device _device, ktl::api::indirect_execution_set_ext _indirect_execution_set, ktl::u32 _execution_set_write_count, const ktl::api::write_indirect_execution_set_shader_ext * _p_execution_set_writes);
+using pfn_get_physical_device_features_2 = void(*)(ktl::api::physical_device _physical_device, ktl::api::physical_device_features_2 * _p_features);
+using pfn_get_physical_device_features_2khr = pfn_get_physical_device_features_2;
+using pfn_get_physical_device_properties_2 = void(*)(ktl::api::physical_device _physical_device, ktl::api::physical_device_properties_2 * _p_properties);
+using pfn_get_physical_device_properties_2khr = pfn_get_physical_device_properties_2;
+using pfn_get_physical_device_format_properties_2 = void(*)(ktl::api::physical_device _physical_device, ktl::api::format _format, ktl::api::format_properties_2 * _p_format_properties);
 using pfn_get_physical_device_format_properties_2khr = pfn_get_physical_device_format_properties_2;
-using pfn_get_physical_device_image_format_properties_2 =
-    ktl::api::result (*)(ktl::api::physical_device                             _physical_device,
-                         const ktl::api::physical_device_image_format_info_2 * _p_image_format_info,
-                         ktl::api::image_format_properties_2 *                 _p_image_format_properties);
+using pfn_get_physical_device_image_format_properties_2 = ktl::api::result(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_image_format_info_2 * _p_image_format_info, ktl::api::image_format_properties_2 * _p_image_format_properties);
 using pfn_get_physical_device_image_format_properties_2khr = pfn_get_physical_device_image_format_properties_2;
-using pfn_get_physical_device_queue_family_properties_2 =
-    void (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_queue_family_property_count,
-             ktl::api::queue_family_properties_2 * _p_queue_family_properties);
+using pfn_get_physical_device_queue_family_properties_2 = void(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_queue_family_property_count, ktl::api::queue_family_properties_2 * _p_queue_family_properties);
 using pfn_get_physical_device_queue_family_properties_2khr = pfn_get_physical_device_queue_family_properties_2;
-using pfn_get_physical_device_memory_properties_2          = void (*)(
-    ktl::api::physical_device _physical_device, ktl::api::physical_device_memory_properties_2 * _p_memory_properties);
+using pfn_get_physical_device_memory_properties_2 = void(*)(ktl::api::physical_device _physical_device, ktl::api::physical_device_memory_properties_2 * _p_memory_properties);
 using pfn_get_physical_device_memory_properties_2khr = pfn_get_physical_device_memory_properties_2;
-using pfn_get_physical_device_sparse_image_format_properties_2 =
-    void (*)(ktl::api::physical_device                                    _physical_device,
-             const ktl::api::physical_device_sparse_image_format_info_2 * _p_format_info, ktl::u32 * _p_property_count,
-             ktl::api::sparse_image_format_properties_2 * _p_properties);
-using pfn_get_physical_device_sparse_image_format_properties_2khr =
-    pfn_get_physical_device_sparse_image_format_properties_2;
-using pfn_cmd_push_descriptor_set     = void (*)(ktl::api::command_buffer      _command_buffer,
-                                             ktl::api::pipeline_bind_point _pipeline_bind_point,
-                                             ktl::api::pipeline_layout _layout, ktl::u32 _set,
-                                             ktl::u32                               _descriptor_write_count,
-                                             const ktl::api::write_descriptor_set * _p_descriptor_writes);
+using pfn_get_physical_device_sparse_image_format_properties_2 = void(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_sparse_image_format_info_2 * _p_format_info, ktl::u32 * _p_property_count, ktl::api::sparse_image_format_properties_2 * _p_properties);
+using pfn_get_physical_device_sparse_image_format_properties_2khr = pfn_get_physical_device_sparse_image_format_properties_2;
+using pfn_cmd_push_descriptor_set = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point, ktl::api::pipeline_layout _layout, ktl::u32 _set, ktl::u32 _descriptor_write_count, const ktl::api::write_descriptor_set * _p_descriptor_writes);
 using pfn_cmd_push_descriptor_set_khr = pfn_cmd_push_descriptor_set;
-using pfn_trim_command_pool           = void (*)(ktl::api::device _device, ktl::api::command_pool _command_pool,
-                                       ktl::api::command_pool_trim_flags _flags);
-using pfn_trim_command_pool_khr       = pfn_trim_command_pool;
-using pfn_get_physical_device_external_buffer_properties =
-    void (*)(ktl::api::physical_device                              _physical_device,
-             const ktl::api::physical_device_external_buffer_info * _p_external_buffer_info,
-             ktl::api::external_buffer_properties *                 _p_external_buffer_properties);
+using pfn_trim_command_pool = void(*)(ktl::api::device _device, ktl::api::command_pool _command_pool, ktl::api::command_pool_trim_flags _flags);
+using pfn_trim_command_pool_khr = pfn_trim_command_pool;
+using pfn_get_physical_device_external_buffer_properties = void(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_external_buffer_info * _p_external_buffer_info, ktl::api::external_buffer_properties * _p_external_buffer_properties);
 using pfn_get_physical_device_external_buffer_properties_khr = pfn_get_physical_device_external_buffer_properties;
-using pfn_get_memory_win_32handle_khr                        = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::memory_get_win_32handle_info_khr * _p_get_win_32handle_info,
-    HANDLE * _p_handle);
-using pfn_get_memory_win_32handle_properties_khr = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, HANDLE _handle,
-    ktl::api::memory_win_32handle_properties_khr * _p_memory_win_32handle_properties);
-using pfn_get_memory_fd_khr = ktl::api::result (*)(ktl::api::device                         _device,
-                                                   const ktl::api::memory_get_fd_info_khr * _p_get_fd_info,
-                                                   int *                                    _p_fd);
-using pfn_get_memory_fd_properties_khr =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type,
-                         int _fd, ktl::api::memory_fd_properties_khr * _p_memory_fd_properties);
-using pfn_get_memory_zircon_handle_fuchsia = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::memory_get_zircon_handle_info_fuchsia * _p_get_zircon_handle_info,
-    zx_handle_t * _p_zircon_handle);
-using pfn_get_memory_zircon_handle_properties_fuchsia = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, zx_handle_t _zircon_handle,
-    ktl::api::memory_zircon_handle_properties_fuchsia * _p_memory_zircon_handle_properties);
-using pfn_get_memory_remote_address_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::memory_get_remote_address_info_nv * _p_memory_get_remote_address_info,
-    ktl::api::remote_address_nv * _p_address);
-using pfn_get_memory_sci_buf_nv = ktl::api::result (*)(ktl::api::device                             _device,
-                                                       const ktl::api::memory_get_sci_buf_info_nv * _p_get_sci_buf_info,
-                                                       NvSciBufObj *                                _p_handle);
-using pfn_get_physical_device_external_memory_sci_buf_properties_nv = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, ktl::api::external_memory_handle_type_flag_bits _handle_type,
-    NvSciBufObj _handle, ktl::api::memory_sci_buf_properties_nv * _p_memory_sci_buf_properties);
-using pfn_get_physical_device_sci_buf_attributes_nv = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                                           NvSciBufAttrList          _p_attributes);
-using pfn_get_physical_device_external_semaphore_properties =
-    void (*)(ktl::api::physical_device                                 _physical_device,
-             const ktl::api::physical_device_external_semaphore_info * _p_external_semaphore_info,
-             ktl::api::external_semaphore_properties *                 _p_external_semaphore_properties);
+using pfn_get_memory_win_32handle_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_get_win_32handle_info_khr * _p_get_win_32handle_info, HANDLE * _p_handle);
+using pfn_get_memory_win_32handle_properties_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, HANDLE _handle, ktl::api::memory_win_32handle_properties_khr * _p_memory_win_32handle_properties);
+using pfn_get_memory_fd_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_get_fd_info_khr * _p_get_fd_info, int * _p_fd);
+using pfn_get_memory_fd_properties_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, int _fd, ktl::api::memory_fd_properties_khr * _p_memory_fd_properties);
+using pfn_get_memory_zircon_handle_fuchsia = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_get_zircon_handle_info_fuchsia * _p_get_zircon_handle_info, zx_handle_t * _p_zircon_handle);
+using pfn_get_memory_zircon_handle_properties_fuchsia = ktl::api::result(*)(ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, zx_handle_t _zircon_handle, ktl::api::memory_zircon_handle_properties_fuchsia * _p_memory_zircon_handle_properties);
+using pfn_get_memory_remote_address_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_get_remote_address_info_nv * _p_memory_get_remote_address_info, ktl::api::remote_address_nv * _p_address);
+using pfn_get_memory_sci_buf_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_get_sci_buf_info_nv * _p_get_sci_buf_info, NvSciBufObj * _p_handle);
+using pfn_get_physical_device_external_memory_sci_buf_properties_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::external_memory_handle_type_flag_bits _handle_type, NvSciBufObj _handle, ktl::api::memory_sci_buf_properties_nv * _p_memory_sci_buf_properties);
+using pfn_get_physical_device_sci_buf_attributes_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, NvSciBufAttrList _p_attributes);
+using pfn_get_physical_device_external_semaphore_properties = void(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_external_semaphore_info * _p_external_semaphore_info, ktl::api::external_semaphore_properties * _p_external_semaphore_properties);
 using pfn_get_physical_device_external_semaphore_properties_khr = pfn_get_physical_device_external_semaphore_properties;
-using pfn_get_semaphore_win_32handle_khr                        = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::semaphore_get_win_32handle_info_khr * _p_get_win_32handle_info,
-    HANDLE * _p_handle);
-using pfn_import_semaphore_win_32handle_khr = ktl::api::result (*)(
-    ktl::api::device                                         _device,
-    const ktl::api::import_semaphore_win_32handle_info_khr * _p_import_semaphore_win_32handle_info);
-using pfn_get_semaphore_fd_khr    = ktl::api::result (*)(ktl::api::device                            _device,
-                                                      const ktl::api::semaphore_get_fd_info_khr * _p_get_fd_info,
-                                                      int *                                       _p_fd);
-using pfn_import_semaphore_fd_khr = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::import_semaphore_fd_info_khr * _p_import_semaphore_fd_info);
-using pfn_get_semaphore_zircon_handle_fuchsia = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::semaphore_get_zircon_handle_info_fuchsia * _p_get_zircon_handle_info,
-    zx_handle_t * _p_zircon_handle);
-using pfn_import_semaphore_zircon_handle_fuchsia = ktl::api::result (*)(
-    ktl::api::device                                              _device,
-    const ktl::api::import_semaphore_zircon_handle_info_fuchsia * _p_import_semaphore_zircon_handle_info);
-using pfn_get_physical_device_external_fence_properties =
-    void (*)(ktl::api::physical_device                             _physical_device,
-             const ktl::api::physical_device_external_fence_info * _p_external_fence_info,
-             ktl::api::external_fence_properties *                 _p_external_fence_properties);
+using pfn_get_semaphore_win_32handle_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::semaphore_get_win_32handle_info_khr * _p_get_win_32handle_info, HANDLE * _p_handle);
+using pfn_import_semaphore_win_32handle_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::import_semaphore_win_32handle_info_khr * _p_import_semaphore_win_32handle_info);
+using pfn_get_semaphore_fd_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::semaphore_get_fd_info_khr * _p_get_fd_info, int * _p_fd);
+using pfn_import_semaphore_fd_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::import_semaphore_fd_info_khr * _p_import_semaphore_fd_info);
+using pfn_get_semaphore_zircon_handle_fuchsia = ktl::api::result(*)(ktl::api::device _device, const ktl::api::semaphore_get_zircon_handle_info_fuchsia * _p_get_zircon_handle_info, zx_handle_t * _p_zircon_handle);
+using pfn_import_semaphore_zircon_handle_fuchsia = ktl::api::result(*)(ktl::api::device _device, const ktl::api::import_semaphore_zircon_handle_info_fuchsia * _p_import_semaphore_zircon_handle_info);
+using pfn_get_physical_device_external_fence_properties = void(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_external_fence_info * _p_external_fence_info, ktl::api::external_fence_properties * _p_external_fence_properties);
 using pfn_get_physical_device_external_fence_properties_khr = pfn_get_physical_device_external_fence_properties;
-using pfn_get_fence_win_32handle_khr                        = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::fence_get_win_32handle_info_khr * _p_get_win_32handle_info,
-    HANDLE * _p_handle);
-using pfn_import_fence_win_32handle_khr = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::import_fence_win_32handle_info_khr * _p_import_fence_win_32handle_info);
-using pfn_get_fence_fd_khr = ktl::api::result (*)(ktl::api::device                        _device,
-                                                  const ktl::api::fence_get_fd_info_khr * _p_get_fd_info, int * _p_fd);
-using pfn_import_fence_fd_khr =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::import_fence_fd_info_khr * _p_import_fence_fd_info);
-using pfn_get_fence_sci_sync_fence_nv =
-    ktl::api::result (*)(ktl::api::device                             _device,
-                         const ktl::api::fence_get_sci_sync_info_nv * _p_get_sci_sync_handle_info, void * _p_handle);
-using pfn_get_fence_sci_sync_obj_nv =
-    ktl::api::result (*)(ktl::api::device                             _device,
-                         const ktl::api::fence_get_sci_sync_info_nv * _p_get_sci_sync_handle_info, void * _p_handle);
-using pfn_import_fence_sci_sync_fence_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::import_fence_sci_sync_info_nv * _p_import_fence_sci_sync_info);
-using pfn_import_fence_sci_sync_obj_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::import_fence_sci_sync_info_nv * _p_import_fence_sci_sync_info);
-using pfn_get_semaphore_sci_sync_obj_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::semaphore_get_sci_sync_info_nv * _p_get_sci_sync_info, void * _p_handle);
-using pfn_import_semaphore_sci_sync_obj_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::import_semaphore_sci_sync_info_nv * _p_import_semaphore_sci_sync_info);
-using pfn_get_physical_device_sci_sync_attributes_nv = ktl::api::result (*)(
-    ktl::api::physical_device                     _physical_device,
-    const ktl::api::sci_sync_attributes_info_nv * _p_sci_sync_attributes_info, NvSciSyncAttrList _p_attributes);
-using pfn_create_semaphore_sci_sync_pool_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::semaphore_sci_sync_pool_create_info_nv * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::semaphore_sci_sync_pool_nv * _p_semaphore_pool);
-using pfn_destroy_semaphore_sci_sync_pool_nv = void (*)(ktl::api::device                       _device,
-                                                        ktl::api::semaphore_sci_sync_pool_nv   _semaphore_pool,
-                                                        const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_release_display_ext                = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                     ktl::api::display_khr     _display);
-using pfn_acquire_xlib_display_ext = ktl::api::result (*)(ktl::api::physical_device _physical_device, Display * _dpy,
-                                                          ktl::api::display_khr _display);
-using pfn_get_rand_r_output_display_ext = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                               Display * _dpy, RROutput _rr_output,
-                                                               ktl::api::display_khr * _p_display);
-using pfn_acquire_winrt_display_nv      = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                          ktl::api::display_khr     _display);
-using pfn_get_winrt_display_nv          = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                      ktl::u32 _device_relative_id, ktl::api::display_khr * _p_display);
-using pfn_display_power_control_ext =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::display_khr _display,
-                         const ktl::api::display_power_info_ext * _p_display_power_info);
-using pfn_register_device_event_ext = ktl::api::result (*)(ktl::api::device                        _device,
-                                                           const ktl::api::device_event_info_ext * _p_device_event_info,
-                                                           const ktl::api::allocation_callbacks *  _p_allocator,
-                                                           ktl::api::fence *                       _p_fence);
-using pfn_register_display_event_ext =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::display_khr _display,
-                         const ktl::api::display_event_info_ext * _p_display_event_info,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::fence * _p_fence);
-using pfn_get_swapchain_counter_ext = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                                           ktl::api::surface_counter_flag_bits_ext _counter,
-                                                           ktl::u64 *                              _p_counter_value);
-using pfn_get_physical_device_surface_capabilities_2ext =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface,
-                         ktl::api::surface_capabilities_2ext * _p_surface_capabilities);
-using pfn_enumerate_physical_device_groups =
-    ktl::api::result (*)(ktl::api::instance _instance, ktl::u32 * _p_physical_device_group_count,
-                         ktl::api::physical_device_group_properties * _p_physical_device_group_properties);
+using pfn_get_fence_win_32handle_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::fence_get_win_32handle_info_khr * _p_get_win_32handle_info, HANDLE * _p_handle);
+using pfn_import_fence_win_32handle_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::import_fence_win_32handle_info_khr * _p_import_fence_win_32handle_info);
+using pfn_get_fence_fd_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::fence_get_fd_info_khr * _p_get_fd_info, int * _p_fd);
+using pfn_import_fence_fd_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::import_fence_fd_info_khr * _p_import_fence_fd_info);
+using pfn_get_fence_sci_sync_fence_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::fence_get_sci_sync_info_nv * _p_get_sci_sync_handle_info, void * _p_handle);
+using pfn_get_fence_sci_sync_obj_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::fence_get_sci_sync_info_nv * _p_get_sci_sync_handle_info, void * _p_handle);
+using pfn_import_fence_sci_sync_fence_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::import_fence_sci_sync_info_nv * _p_import_fence_sci_sync_info);
+using pfn_import_fence_sci_sync_obj_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::import_fence_sci_sync_info_nv * _p_import_fence_sci_sync_info);
+using pfn_get_semaphore_sci_sync_obj_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::semaphore_get_sci_sync_info_nv * _p_get_sci_sync_info, void * _p_handle);
+using pfn_import_semaphore_sci_sync_obj_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::import_semaphore_sci_sync_info_nv * _p_import_semaphore_sci_sync_info);
+using pfn_get_physical_device_sci_sync_attributes_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, const ktl::api::sci_sync_attributes_info_nv * _p_sci_sync_attributes_info, NvSciSyncAttrList _p_attributes);
+using pfn_create_semaphore_sci_sync_pool_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::semaphore_sci_sync_pool_create_info_nv * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::semaphore_sci_sync_pool_nv * _p_semaphore_pool);
+using pfn_destroy_semaphore_sci_sync_pool_nv = void(*)(ktl::api::device _device, ktl::api::semaphore_sci_sync_pool_nv _semaphore_pool, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_release_display_ext = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::display_khr _display);
+using pfn_acquire_xlib_display_ext = ktl::api::result(*)(ktl::api::physical_device _physical_device, Display * _dpy, ktl::api::display_khr _display);
+using pfn_get_rand_r_output_display_ext = ktl::api::result(*)(ktl::api::physical_device _physical_device, Display * _dpy, RROutput _rr_output, ktl::api::display_khr * _p_display);
+using pfn_acquire_winrt_display_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::display_khr _display);
+using pfn_get_winrt_display_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 _device_relative_id, ktl::api::display_khr * _p_display);
+using pfn_display_power_control_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::display_khr _display, const ktl::api::display_power_info_ext * _p_display_power_info);
+using pfn_register_device_event_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::device_event_info_ext * _p_device_event_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::fence * _p_fence);
+using pfn_register_display_event_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::display_khr _display, const ktl::api::display_event_info_ext * _p_display_event_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::fence * _p_fence);
+using pfn_get_swapchain_counter_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::api::surface_counter_flag_bits_ext _counter, ktl::u64 * _p_counter_value);
+using pfn_get_physical_device_surface_capabilities_2ext = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface, ktl::api::surface_capabilities_2ext * _p_surface_capabilities);
+using pfn_enumerate_physical_device_groups = ktl::api::result(*)(ktl::api::instance _instance, ktl::u32 * _p_physical_device_group_count, ktl::api::physical_device_group_properties * _p_physical_device_group_properties);
 using pfn_enumerate_physical_device_groups_khr = pfn_enumerate_physical_device_groups;
-using pfn_get_device_group_peer_memory_features =
-    void (*)(ktl::api::device _device, ktl::u32 _heap_index, ktl::u32 _local_device_index,
-             ktl::u32 _remote_device_index, ktl::api::peer_memory_feature_flags * _p_peer_memory_features);
+using pfn_get_device_group_peer_memory_features = void(*)(ktl::api::device _device, ktl::u32 _heap_index, ktl::u32 _local_device_index, ktl::u32 _remote_device_index, ktl::api::peer_memory_feature_flags * _p_peer_memory_features);
 using pfn_get_device_group_peer_memory_features_khr = pfn_get_device_group_peer_memory_features;
-using pfn_bind_buffer_memory_2    = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _bind_info_count,
-                                                      const ktl::api::bind_buffer_memory_info * _p_bind_infos);
+using pfn_bind_buffer_memory_2 = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _bind_info_count, const ktl::api::bind_buffer_memory_info * _p_bind_infos);
 using pfn_bind_buffer_memory_2khr = pfn_bind_buffer_memory_2;
-using pfn_bind_image_memory_2     = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _bind_info_count,
-                                                     const ktl::api::bind_image_memory_info * _p_bind_infos);
-using pfn_bind_image_memory_2khr  = pfn_bind_image_memory_2;
-using pfn_cmd_set_device_mask     = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _device_mask);
+using pfn_bind_image_memory_2 = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _bind_info_count, const ktl::api::bind_image_memory_info * _p_bind_infos);
+using pfn_bind_image_memory_2khr = pfn_bind_image_memory_2;
+using pfn_cmd_set_device_mask = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _device_mask);
 using pfn_cmd_set_device_mask_khr = pfn_cmd_set_device_mask;
-using pfn_get_device_group_present_capabilities_khr = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::device_group_present_capabilities_khr * _p_device_group_present_capabilities);
-using pfn_get_device_group_surface_present_modes_khr = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::surface_khr _surface, ktl::api::device_group_present_mode_flags_khr * _p_modes);
-using pfn_acquire_next_image_2khr = ktl::api::result (*)(ktl::api::device                              _device,
-                                                         const ktl::api::acquire_next_image_info_khr * _p_acquire_info,
-                                                         ktl::u32 *                                    _p_image_index);
-using pfn_cmd_dispatch_base       = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _base_group_x,
-                                       ktl::u32 _base_group_y, ktl::u32 _base_group_z, ktl::u32 _group_count_x,
-                                       ktl::u32 _group_count_y, ktl::u32 _group_count_z);
-using pfn_cmd_dispatch_base_khr   = pfn_cmd_dispatch_base;
-using pfn_get_physical_device_present_rectangles_khr = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                                            ktl::api::surface_khr     _surface,
-                                                                            ktl::u32 *                _p_rect_count,
-                                                                            ktl::api::rect_2d *       _p_rects);
-using pfn_create_descriptor_update_template          = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::descriptor_update_template_create_info * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator,
-    ktl::api::descriptor_update_template * _p_descriptor_update_template);
+using pfn_get_device_group_present_capabilities_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::device_group_present_capabilities_khr * _p_device_group_present_capabilities);
+using pfn_get_device_group_surface_present_modes_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::surface_khr _surface, ktl::api::device_group_present_mode_flags_khr * _p_modes);
+using pfn_acquire_next_image_2khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::acquire_next_image_info_khr * _p_acquire_info, ktl::u32 * _p_image_index);
+using pfn_cmd_dispatch_base = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _base_group_x, ktl::u32 _base_group_y, ktl::u32 _base_group_z, ktl::u32 _group_count_x, ktl::u32 _group_count_y, ktl::u32 _group_count_z);
+using pfn_cmd_dispatch_base_khr = pfn_cmd_dispatch_base;
+using pfn_get_physical_device_present_rectangles_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface, ktl::u32 * _p_rect_count, ktl::api::rect_2d * _p_rects);
+using pfn_create_descriptor_update_template = ktl::api::result(*)(ktl::api::device _device, const ktl::api::descriptor_update_template_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::descriptor_update_template * _p_descriptor_update_template);
 using pfn_create_descriptor_update_template_khr = pfn_create_descriptor_update_template;
-using pfn_destroy_descriptor_update_template =
-    void (*)(ktl::api::device _device, ktl::api::descriptor_update_template _descriptor_update_template,
-             const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_destroy_descriptor_update_template = void(*)(ktl::api::device _device, ktl::api::descriptor_update_template _descriptor_update_template, const ktl::api::allocation_callbacks * _p_allocator);
 using pfn_destroy_descriptor_update_template_khr = pfn_destroy_descriptor_update_template;
-using pfn_update_descriptor_set_with_template =
-    void (*)(ktl::api::device _device, ktl::api::descriptor_set _descriptor_set,
-             ktl::api::descriptor_update_template _descriptor_update_template, const void * _p_data);
+using pfn_update_descriptor_set_with_template = void(*)(ktl::api::device _device, ktl::api::descriptor_set _descriptor_set, ktl::api::descriptor_update_template _descriptor_update_template, const void * _p_data);
 using pfn_update_descriptor_set_with_template_khr = pfn_update_descriptor_set_with_template;
-using pfn_cmd_push_descriptor_set_with_template =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::descriptor_update_template _descriptor_update_template,
-             ktl::api::pipeline_layout _layout, ktl::u32 _set, const void * _p_data);
+using pfn_cmd_push_descriptor_set_with_template = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::descriptor_update_template _descriptor_update_template, ktl::api::pipeline_layout _layout, ktl::u32 _set, const void * _p_data);
 using pfn_cmd_push_descriptor_set_with_template_khr = pfn_cmd_push_descriptor_set_with_template;
-using pfn_set_hdr_metadata_ext                      = void (*)(ktl::api::device _device, ktl::u32 _swapchain_count,
-                                          const ktl::api::swapchain_khr *    _p_swapchains,
-                                          const ktl::api::hdr_metadata_ext * _p_metadata);
-using pfn_get_swapchain_status_khr = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain);
-using pfn_get_refresh_cycle_duration_google =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                         ktl::api::refresh_cycle_duration_google * _p_display_timing_properties);
-using pfn_get_past_presentation_timing_google = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::u32 * _p_presentation_timing_count,
-    ktl::api::past_presentation_timing_google * _p_presentation_timings);
-using pfn_create_ios_surface_mvk = ktl::api::result (*)(ktl::api::instance                            _instance,
-                                                        const ktl::api::ios_surface_create_info_mvk * _p_create_info,
-                                                        const ktl::api::allocation_callbacks *        _p_allocator,
-                                                        ktl::api::surface_khr *                       _p_surface);
-using pfn_create_mac_os_surface_mvk =
-    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::mac_os_surface_create_info_mvk * _p_create_info,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_create_metal_surface_ext =
-    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::metal_surface_create_info_ext * _p_create_info,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_cmd_set_viewport_w_scaling_nv = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport,
-                                                   ktl::u32                                _viewport_count,
-                                                   const ktl::api::viewport_w_scaling_nv * _p_viewport_w_scalings);
-using pfn_cmd_set_discard_rectangle_ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                   ktl::u32 _first_discard_rectangle, ktl::u32 _discard_rectangle_count,
-                                                   const ktl::api::rect_2d * _p_discard_rectangles);
-using pfn_cmd_set_discard_rectangle_enable_ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                          ktl::api::bool32         _discard_rectangle_enable);
-using pfn_cmd_set_discard_rectangle_mode_ext   = void (*)(ktl::api::command_buffer             _command_buffer,
-                                                        ktl::api::discard_rectangle_mode_ext _discard_rectangle_mode);
-using pfn_cmd_set_sample_locations_ext         = void (*)(ktl::api::command_buffer                    _command_buffer,
-                                                  const ktl::api::sample_locations_info_ext * _p_sample_locations_info);
-using pfn_get_physical_device_multisample_properties_ext =
-    void (*)(ktl::api::physical_device _physical_device, ktl::api::sample_count_flag_bits _samples,
-             ktl::api::multisample_properties_ext * _p_multisample_properties);
-using pfn_get_physical_device_surface_capabilities_2khr = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-    ktl::api::surface_capabilities_2khr * _p_surface_capabilities);
-using pfn_get_physical_device_surface_formats_2khr = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-    ktl::u32 * _p_surface_format_count, ktl::api::surface_format_2khr * _p_surface_formats);
-using pfn_get_physical_device_display_properties_2khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::display_properties_2khr * _p_properties);
-using pfn_get_physical_device_display_plane_properties_2khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::display_plane_properties_2khr * _p_properties);
-using pfn_get_display_mode_properties_2khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::api::display_khr _display,
-                         ktl::u32 * _p_property_count, ktl::api::display_mode_properties_2khr * _p_properties);
-using pfn_get_display_plane_capabilities_2khr = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, const ktl::api::display_plane_info_2khr * _p_display_plane_info,
-    ktl::api::display_plane_capabilities_2khr * _p_capabilities);
-using pfn_get_buffer_memory_requirements_2    = void (*)(ktl::api::device                                    _device,
-                                                      const ktl::api::buffer_memory_requirements_info_2 * _p_info,
-                                                      ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_set_hdr_metadata_ext = void(*)(ktl::api::device _device, ktl::u32 _swapchain_count, const ktl::api::swapchain_khr * _p_swapchains, const ktl::api::hdr_metadata_ext * _p_metadata);
+using pfn_get_swapchain_status_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain);
+using pfn_get_refresh_cycle_duration_google = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::api::refresh_cycle_duration_google * _p_display_timing_properties);
+using pfn_get_past_presentation_timing_google = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::u32 * _p_presentation_timing_count, ktl::api::past_presentation_timing_google * _p_presentation_timings);
+using pfn_create_ios_surface_mvk = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::ios_surface_create_info_mvk * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_create_mac_os_surface_mvk = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::mac_os_surface_create_info_mvk * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_create_metal_surface_ext = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::metal_surface_create_info_ext * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_cmd_set_viewport_w_scaling_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport, ktl::u32 _viewport_count, const ktl::api::viewport_w_scaling_nv * _p_viewport_w_scalings);
+using pfn_cmd_set_discard_rectangle_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_discard_rectangle, ktl::u32 _discard_rectangle_count, const ktl::api::rect_2d * _p_discard_rectangles);
+using pfn_cmd_set_discard_rectangle_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _discard_rectangle_enable);
+using pfn_cmd_set_discard_rectangle_mode_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::discard_rectangle_mode_ext _discard_rectangle_mode);
+using pfn_cmd_set_sample_locations_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::sample_locations_info_ext * _p_sample_locations_info);
+using pfn_get_physical_device_multisample_properties_ext = void(*)(ktl::api::physical_device _physical_device, ktl::api::sample_count_flag_bits _samples, ktl::api::multisample_properties_ext * _p_multisample_properties);
+using pfn_get_physical_device_surface_capabilities_2khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info, ktl::api::surface_capabilities_2khr * _p_surface_capabilities);
+using pfn_get_physical_device_surface_formats_2khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info, ktl::u32 * _p_surface_format_count, ktl::api::surface_format_2khr * _p_surface_formats);
+using pfn_get_physical_device_display_properties_2khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count, ktl::api::display_properties_2khr * _p_properties);
+using pfn_get_physical_device_display_plane_properties_2khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count, ktl::api::display_plane_properties_2khr * _p_properties);
+using pfn_get_display_mode_properties_2khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::api::display_khr _display, ktl::u32 * _p_property_count, ktl::api::display_mode_properties_2khr * _p_properties);
+using pfn_get_display_plane_capabilities_2khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, const ktl::api::display_plane_info_2khr * _p_display_plane_info, ktl::api::display_plane_capabilities_2khr * _p_capabilities);
+using pfn_get_buffer_memory_requirements_2 = void(*)(ktl::api::device _device, const ktl::api::buffer_memory_requirements_info_2 * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
 using pfn_get_buffer_memory_requirements_2khr = pfn_get_buffer_memory_requirements_2;
-using pfn_get_image_memory_requirements_2     = void (*)(ktl::api::device                                   _device,
-                                                     const ktl::api::image_memory_requirements_info_2 * _p_info,
-                                                     ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_get_image_memory_requirements_2khr  = pfn_get_image_memory_requirements_2;
-using pfn_get_image_sparse_memory_requirements_2 =
-    void (*)(ktl::api::device _device, const ktl::api::image_sparse_memory_requirements_info_2 * _p_info,
-             ktl::u32 *                                     _p_sparse_memory_requirement_count,
-             ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements);
+using pfn_get_image_memory_requirements_2 = void(*)(ktl::api::device _device, const ktl::api::image_memory_requirements_info_2 * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_get_image_memory_requirements_2khr = pfn_get_image_memory_requirements_2;
+using pfn_get_image_sparse_memory_requirements_2 = void(*)(ktl::api::device _device, const ktl::api::image_sparse_memory_requirements_info_2 * _p_info, ktl::u32 * _p_sparse_memory_requirement_count, ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements);
 using pfn_get_image_sparse_memory_requirements_2khr = pfn_get_image_sparse_memory_requirements_2;
-using pfn_get_device_buffer_memory_requirements = void (*)(ktl::api::device                                    _device,
-                                                           const ktl::api::device_buffer_memory_requirements * _p_info,
-                                                           ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_get_device_buffer_memory_requirements = void(*)(ktl::api::device _device, const ktl::api::device_buffer_memory_requirements * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
 using pfn_get_device_buffer_memory_requirements_khr = pfn_get_device_buffer_memory_requirements;
-using pfn_get_device_image_memory_requirements = void (*)(ktl::api::device                                   _device,
-                                                          const ktl::api::device_image_memory_requirements * _p_info,
-                                                          ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_get_device_image_memory_requirements = void(*)(ktl::api::device _device, const ktl::api::device_image_memory_requirements * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
 using pfn_get_device_image_memory_requirements_khr = pfn_get_device_image_memory_requirements;
-using pfn_get_device_image_sparse_memory_requirements =
-    void (*)(ktl::api::device _device, const ktl::api::device_image_memory_requirements * _p_info,
-             ktl::u32 *                                     _p_sparse_memory_requirement_count,
-             ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements);
+using pfn_get_device_image_sparse_memory_requirements = void(*)(ktl::api::device _device, const ktl::api::device_image_memory_requirements * _p_info, ktl::u32 * _p_sparse_memory_requirement_count, ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements);
 using pfn_get_device_image_sparse_memory_requirements_khr = pfn_get_device_image_sparse_memory_requirements;
-using pfn_create_sampler_ycbcr_conversion                 = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::sampler_ycbcr_conversion_create_info * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::sampler_ycbcr_conversion * _p_ycbcr_conversion);
-using pfn_create_sampler_ycbcr_conversion_khr  = pfn_create_sampler_ycbcr_conversion;
-using pfn_destroy_sampler_ycbcr_conversion     = void (*)(ktl::api::device                       _device,
-                                                      ktl::api::sampler_ycbcr_conversion     _ycbcr_conversion,
-                                                      const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_sampler_ycbcr_conversion = ktl::api::result(*)(ktl::api::device _device, const ktl::api::sampler_ycbcr_conversion_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::sampler_ycbcr_conversion * _p_ycbcr_conversion);
+using pfn_create_sampler_ycbcr_conversion_khr = pfn_create_sampler_ycbcr_conversion;
+using pfn_destroy_sampler_ycbcr_conversion = void(*)(ktl::api::device _device, ktl::api::sampler_ycbcr_conversion _ycbcr_conversion, const ktl::api::allocation_callbacks * _p_allocator);
 using pfn_destroy_sampler_ycbcr_conversion_khr = pfn_destroy_sampler_ycbcr_conversion;
-using pfn_get_device_queue_2 = void (*)(ktl::api::device _device, const ktl::api::device_queue_info_2 * _p_queue_info,
-                                        ktl::api::queue * _p_queue);
-using pfn_create_validation_cache_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::validation_cache_create_info_ext * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::validation_cache_ext * _p_validation_cache);
-using pfn_destroy_validation_cache_ext  = void (*)(ktl::api::device                       _device,
-                                                  ktl::api::validation_cache_ext         _validation_cache,
-                                                  const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_validation_cache_data_ext = ktl::api::result (*)(ktl::api::device               _device,
-                                                               ktl::api::validation_cache_ext _validation_cache,
-                                                               ktl::usize * _p_data_size, void * _p_data);
-using pfn_merge_validation_caches_ext   = ktl::api::result (*)(ktl::api::device                       _device,
-                                                             ktl::api::validation_cache_ext         _dst_cache,
-                                                             ktl::u32                               _src_cache_count,
-                                                             const ktl::api::validation_cache_ext * _p_src_caches);
-using pfn_get_descriptor_set_layout_support =
-    void (*)(ktl::api::device _device, const ktl::api::descriptor_set_layout_create_info * _p_create_info,
-             ktl::api::descriptor_set_layout_support * _p_support);
+using pfn_get_device_queue_2 = void(*)(ktl::api::device _device, const ktl::api::device_queue_info_2 * _p_queue_info, ktl::api::queue * _p_queue);
+using pfn_create_validation_cache_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::validation_cache_create_info_ext * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::validation_cache_ext * _p_validation_cache);
+using pfn_destroy_validation_cache_ext = void(*)(ktl::api::device _device, ktl::api::validation_cache_ext _validation_cache, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_validation_cache_data_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::validation_cache_ext _validation_cache, ktl::usize * _p_data_size, void * _p_data);
+using pfn_merge_validation_caches_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::validation_cache_ext _dst_cache, ktl::u32 _src_cache_count, const ktl::api::validation_cache_ext * _p_src_caches);
+using pfn_get_descriptor_set_layout_support = void(*)(ktl::api::device _device, const ktl::api::descriptor_set_layout_create_info * _p_create_info, ktl::api::descriptor_set_layout_support * _p_support);
 using pfn_get_descriptor_set_layout_support_khr = pfn_get_descriptor_set_layout_support;
-using pfn_get_swapchain_gralloc_usage_android = ktl::api::result (*)(ktl::api::device _device, ktl::api::format _format,
-                                                                     ktl::api::image_usage_flags _image_usage,
-                                                                     int *                       _gralloc_usage);
-using pfn_get_swapchain_gralloc_usage_2android =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::format _format, ktl::api::image_usage_flags _image_usage,
-                         ktl::api::swapchain_image_usage_flags_android _swapchain_image_usage,
-                         ktl::u64 * _gralloc_consumer_usage, ktl::u64 * _gralloc_producer_usage);
-using pfn_acquire_image_android              = ktl::api::result (*)(ktl::api::device _device, ktl::api::image _image,
-                                                       int _native_fence_fd, ktl::api::semaphore _semaphore,
-                                                       ktl::api::fence _fence);
-using pfn_queue_signal_release_image_android = ktl::api::result (*)(ktl::api::queue             _queue,
-                                                                    ktl::u32                    _wait_semaphore_count,
-                                                                    const ktl::api::semaphore * _p_wait_semaphores,
-                                                                    ktl::api::image _image, int * _p_native_fence_fd);
-using pfn_get_shader_info_amd   = ktl::api::result (*)(ktl::api::device _device, ktl::api::pipeline _pipeline,
-                                                     ktl::api::shader_stage_flag_bits _shader_stage,
-                                                     ktl::api::shader_info_type_amd   _info_type,
-                                                     ktl::usize * _p_info_size, void * _p_info);
-using pfn_set_local_dimming_amd = void (*)(ktl::api::device _device, ktl::api::swapchain_khr _swap_chain,
-                                           ktl::api::bool32 _local_dimming_enable);
-using pfn_get_physical_device_calibrateable_time_domains_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_time_domain_count,
-                         ktl::api::time_domain_khr * _p_time_domains);
+using pfn_get_swapchain_gralloc_usage_android = ktl::api::result(*)(ktl::api::device _device, ktl::api::format _format, ktl::api::image_usage_flags _image_usage, int * _gralloc_usage);
+using pfn_get_swapchain_gralloc_usage_2android = ktl::api::result(*)(ktl::api::device _device, ktl::api::format _format, ktl::api::image_usage_flags _image_usage, ktl::api::swapchain_image_usage_flags_android _swapchain_image_usage, ktl::u64 * _gralloc_consumer_usage, ktl::u64 * _gralloc_producer_usage);
+using pfn_acquire_image_android = ktl::api::result(*)(ktl::api::device _device, ktl::api::image _image, int _native_fence_fd, ktl::api::semaphore _semaphore, ktl::api::fence _fence);
+using pfn_queue_signal_release_image_android = ktl::api::result(*)(ktl::api::queue _queue, ktl::u32 _wait_semaphore_count, const ktl::api::semaphore * _p_wait_semaphores, ktl::api::image _image, int * _p_native_fence_fd);
+using pfn_get_shader_info_amd = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline _pipeline, ktl::api::shader_stage_flag_bits _shader_stage, ktl::api::shader_info_type_amd _info_type, ktl::usize * _p_info_size, void * _p_info);
+using pfn_set_local_dimming_amd = void(*)(ktl::api::device _device, ktl::api::swapchain_khr _swap_chain, ktl::api::bool32 _local_dimming_enable);
+using pfn_get_physical_device_calibrateable_time_domains_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_time_domain_count, ktl::api::time_domain_khr * _p_time_domains);
 using pfn_get_physical_device_calibrateable_time_domains_ext = pfn_get_physical_device_calibrateable_time_domains_khr;
-using pfn_get_calibrated_timestamps_khr =
-    ktl::api::result (*)(ktl::api::device _device, ktl::u32 _timestamp_count,
-                         const ktl::api::calibrated_timestamp_info_khr * _p_timestamp_infos, ktl::u64 * _p_timestamps,
-                         ktl::u64 * _p_max_deviation);
+using pfn_get_calibrated_timestamps_khr = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _timestamp_count, const ktl::api::calibrated_timestamp_info_khr * _p_timestamp_infos, ktl::u64 * _p_timestamps, ktl::u64 * _p_max_deviation);
 using pfn_get_calibrated_timestamps_ext = pfn_get_calibrated_timestamps_khr;
-using pfn_set_debug_utils_object_name_ext =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::debug_utils_object_name_info_ext * _p_name_info);
-using pfn_set_debug_utils_object_tag_ext =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::debug_utils_object_tag_info_ext * _p_tag_info);
-using pfn_queue_begin_debug_utils_label_ext  = void (*)(ktl::api::queue                         _queue,
-                                                       const ktl::api::debug_utils_label_ext * _p_label_info);
-using pfn_queue_end_debug_utils_label_ext    = void (*)(ktl::api::queue _queue);
-using pfn_queue_insert_debug_utils_label_ext = void (*)(ktl::api::queue                         _queue,
-                                                        const ktl::api::debug_utils_label_ext * _p_label_info);
-using pfn_cmd_begin_debug_utils_label_ext    = void (*)(ktl::api::command_buffer                _command_buffer,
-                                                     const ktl::api::debug_utils_label_ext * _p_label_info);
-using pfn_cmd_end_debug_utils_label_ext      = void (*)(ktl::api::command_buffer _command_buffer);
-using pfn_cmd_insert_debug_utils_label_ext   = void (*)(ktl::api::command_buffer                _command_buffer,
-                                                      const ktl::api::debug_utils_label_ext * _p_label_info);
-using pfn_create_debug_utils_messenger_ext   = ktl::api::result (*)(
-    ktl::api::instance _instance, const ktl::api::debug_utils_messenger_create_info_ext * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::debug_utils_messenger_ext * _p_messenger);
-using pfn_destroy_debug_utils_messenger_ext = void (*)(ktl::api::instance                     _instance,
-                                                       ktl::api::debug_utils_messenger_ext    _messenger,
-                                                       const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_submit_debug_utils_message_ext =
-    void (*)(ktl::api::instance _instance, ktl::api::debug_utils_message_severity_flag_bits_ext _message_severity,
-             ktl::api::debug_utils_message_type_flags_ext              _message_types,
-             const ktl::api::debug_utils_messenger_callback_data_ext * _p_callback_data);
-using pfn_get_memory_host_pointer_properties_ext = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type,
-    const void * _p_host_pointer, ktl::api::memory_host_pointer_properties_ext * _p_memory_host_pointer_properties);
-using pfn_cmd_write_buffer_marker_amd = void (*)(ktl::api::command_buffer           _command_buffer,
-                                                 ktl::api::pipeline_stage_flag_bits _pipeline_stage,
-                                                 ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset,
-                                                 ktl::u32 _marker);
-using pfn_create_render_pass_2        = ktl::api::result (*)(ktl::api::device                            _device,
-                                                      const ktl::api::render_pass_create_info_2 * _p_create_info,
-                                                      const ktl::api::allocation_callbacks *      _p_allocator,
-                                                      ktl::api::render_pass *                     _p_render_pass);
-using pfn_create_render_pass_2khr     = pfn_create_render_pass_2;
-using pfn_cmd_begin_render_pass_2     = void (*)(ktl::api::command_buffer                 _command_buffer,
-                                             const ktl::api::render_pass_begin_info * _p_render_pass_begin,
-                                             const ktl::api::subpass_begin_info *     _p_subpass_begin_info);
-using pfn_cmd_begin_render_pass_2khr  = pfn_cmd_begin_render_pass_2;
-using pfn_cmd_next_subpass_2          = void (*)(ktl::api::command_buffer             _command_buffer,
-                                        const ktl::api::subpass_begin_info * _p_subpass_begin_info,
-                                        const ktl::api::subpass_end_info *   _p_subpass_end_info);
-using pfn_cmd_next_subpass_2khr       = pfn_cmd_next_subpass_2;
-using pfn_cmd_end_render_pass_2       = void (*)(ktl::api::command_buffer           _command_buffer,
-                                           const ktl::api::subpass_end_info * _p_subpass_end_info);
-using pfn_cmd_end_render_pass_2khr    = pfn_cmd_end_render_pass_2;
-using pfn_get_semaphore_counter_value = ktl::api::result (*)(ktl::api::device _device, ktl::api::semaphore _semaphore,
-                                                             ktl::u64 * _p_value);
+using pfn_set_debug_utils_object_name_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::debug_utils_object_name_info_ext * _p_name_info);
+using pfn_set_debug_utils_object_tag_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::debug_utils_object_tag_info_ext * _p_tag_info);
+using pfn_queue_begin_debug_utils_label_ext = void(*)(ktl::api::queue _queue, const ktl::api::debug_utils_label_ext * _p_label_info);
+using pfn_queue_end_debug_utils_label_ext = void(*)(ktl::api::queue _queue);
+using pfn_queue_insert_debug_utils_label_ext = void(*)(ktl::api::queue _queue, const ktl::api::debug_utils_label_ext * _p_label_info);
+using pfn_cmd_begin_debug_utils_label_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::debug_utils_label_ext * _p_label_info);
+using pfn_cmd_end_debug_utils_label_ext = void(*)(ktl::api::command_buffer _command_buffer);
+using pfn_cmd_insert_debug_utils_label_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::debug_utils_label_ext * _p_label_info);
+using pfn_create_debug_utils_messenger_ext = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::debug_utils_messenger_create_info_ext * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::debug_utils_messenger_ext * _p_messenger);
+using pfn_destroy_debug_utils_messenger_ext = void(*)(ktl::api::instance _instance, ktl::api::debug_utils_messenger_ext _messenger, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_submit_debug_utils_message_ext = void(*)(ktl::api::instance _instance, ktl::api::debug_utils_message_severity_flag_bits_ext _message_severity, ktl::api::debug_utils_message_type_flags_ext _message_types, const ktl::api::debug_utils_messenger_callback_data_ext * _p_callback_data);
+using pfn_get_memory_host_pointer_properties_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, const void * _p_host_pointer, ktl::api::memory_host_pointer_properties_ext * _p_memory_host_pointer_properties);
+using pfn_cmd_write_buffer_marker_amd = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flag_bits _pipeline_stage, ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset, ktl::u32 _marker);
+using pfn_create_render_pass_2 = ktl::api::result(*)(ktl::api::device _device, const ktl::api::render_pass_create_info_2 * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::render_pass * _p_render_pass);
+using pfn_create_render_pass_2khr = pfn_create_render_pass_2;
+using pfn_cmd_begin_render_pass_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::render_pass_begin_info * _p_render_pass_begin, const ktl::api::subpass_begin_info * _p_subpass_begin_info);
+using pfn_cmd_begin_render_pass_2khr = pfn_cmd_begin_render_pass_2;
+using pfn_cmd_next_subpass_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::subpass_begin_info * _p_subpass_begin_info, const ktl::api::subpass_end_info * _p_subpass_end_info);
+using pfn_cmd_next_subpass_2khr = pfn_cmd_next_subpass_2;
+using pfn_cmd_end_render_pass_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::subpass_end_info * _p_subpass_end_info);
+using pfn_cmd_end_render_pass_2khr = pfn_cmd_end_render_pass_2;
+using pfn_get_semaphore_counter_value = ktl::api::result(*)(ktl::api::device _device, ktl::api::semaphore _semaphore, ktl::u64 * _p_value);
 using pfn_get_semaphore_counter_value_khr = pfn_get_semaphore_counter_value;
-using pfn_wait_semaphores                 = ktl::api::result (*)(ktl::api::device                      _device,
-                                                 const ktl::api::semaphore_wait_info * _p_wait_info, ktl::u64 _timeout);
-using pfn_wait_semaphores_khr             = pfn_wait_semaphores;
-using pfn_signal_semaphore                = ktl::api::result (*)(ktl::api::device                        _device,
-                                                  const ktl::api::semaphore_signal_info * _p_signal_info);
-using pfn_signal_semaphore_khr            = pfn_signal_semaphore;
-using pfn_get_android_hardware_buffer_properties_android =
-    ktl::api::result (*)(ktl::api::device _device, const AHardwareBuffer * _buffer,
-                         ktl::api::android_hardware_buffer_properties_android * _p_properties);
-using pfn_get_memory_android_hardware_buffer_android = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::memory_get_android_hardware_buffer_info_android * _p_info,
-    AHardwareBuffer * _p_buffer);
-using pfn_cmd_draw_indirect_count         = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
-                                             ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
-                                             ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count,
-                                             ktl::u32 _stride);
-using pfn_cmd_draw_indirect_count_khr     = pfn_cmd_draw_indirect_count;
-using pfn_cmd_draw_indirect_count_amd     = pfn_cmd_draw_indirect_count;
-using pfn_cmd_draw_indexed_indirect_count = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
-                                                     ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
-                                                     ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count,
-                                                     ktl::u32 _stride);
+using pfn_wait_semaphores = ktl::api::result(*)(ktl::api::device _device, const ktl::api::semaphore_wait_info * _p_wait_info, ktl::u64 _timeout);
+using pfn_wait_semaphores_khr = pfn_wait_semaphores;
+using pfn_signal_semaphore = ktl::api::result(*)(ktl::api::device _device, const ktl::api::semaphore_signal_info * _p_signal_info);
+using pfn_signal_semaphore_khr = pfn_signal_semaphore;
+using pfn_get_android_hardware_buffer_properties_android = ktl::api::result(*)(ktl::api::device _device, const AHardwareBuffer * _buffer, ktl::api::android_hardware_buffer_properties_android * _p_properties);
+using pfn_get_memory_android_hardware_buffer_android = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_get_android_hardware_buffer_info_android * _p_info, AHardwareBuffer * _p_buffer);
+using pfn_cmd_draw_indirect_count = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::api::buffer _count_buffer, ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride);
+using pfn_cmd_draw_indirect_count_khr = pfn_cmd_draw_indirect_count;
+using pfn_cmd_draw_indirect_count_amd = pfn_cmd_draw_indirect_count;
+using pfn_cmd_draw_indexed_indirect_count = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::api::buffer _count_buffer, ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride);
 using pfn_cmd_draw_indexed_indirect_count_khr = pfn_cmd_draw_indexed_indirect_count;
 using pfn_cmd_draw_indexed_indirect_count_amd = pfn_cmd_draw_indexed_indirect_count;
-using pfn_cmd_set_checkpoint_nv = void (*)(ktl::api::command_buffer _command_buffer, const void * _p_checkpoint_marker);
-using pfn_get_queue_checkpoint_data_nv = void (*)(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count,
-                                                  ktl::api::checkpoint_data_nv * _p_checkpoint_data);
-using pfn_cmd_bind_transform_feedback_buffers_ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                             ktl::u32 _first_binding, ktl::u32 _binding_count,
-                                                             const ktl::api::buffer * _p_buffers,
-                                                             const ktl::api::dvsize * _p_offsets,
-                                                             const ktl::api::dvsize * _p_sizes);
-using pfn_cmd_begin_transform_feedback_ext        = void (*)(ktl::api::command_buffer _command_buffer,
-                                                      ktl::u32 _first_counter_buffer, ktl::u32 _counter_buffer_count,
-                                                      const ktl::api::buffer * _p_counter_buffers,
-                                                      const ktl::api::dvsize * _p_counter_buffer_offsets);
-using pfn_cmd_end_transform_feedback_ext          = void (*)(ktl::api::command_buffer _command_buffer,
-                                                    ktl::u32 _first_counter_buffer, ktl::u32 _counter_buffer_count,
-                                                    const ktl::api::buffer * _p_counter_buffers,
-                                                    const ktl::api::dvsize * _p_counter_buffer_offsets);
-using pfn_cmd_begin_query_indexed_ext             = void (*)(ktl::api::command_buffer _command_buffer,
-                                                 ktl::api::query_pool _query_pool, ktl::u32 _query,
-                                                 ktl::api::query_control_flags _flags, ktl::u32 _index);
-using pfn_cmd_end_query_indexed_ext               = void (*)(ktl::api::command_buffer _command_buffer,
-                                               ktl::api::query_pool _query_pool, ktl::u32 _query, ktl::u32 _index);
-using pfn_cmd_draw_indirect_byte_count_ext        = void (*)(ktl::api::command_buffer _command_buffer,
-                                                      ktl::u32 _instance_count, ktl::u32 _first_instance,
-                                                      ktl::api::buffer _counter_buffer,
-                                                      ktl::api::dvsize _counter_buffer_offset, ktl::u32 _counter_offset,
-                                                      ktl::u32 _vertex_stride);
-using pfn_cmd_set_exclusive_scissor_nv            = void (*)(ktl::api::command_buffer _command_buffer,
-                                                  ktl::u32 _first_exclusive_scissor, ktl::u32 _exclusive_scissor_count,
-                                                  const ktl::api::rect_2d * _p_exclusive_scissors);
-using pfn_cmd_set_exclusive_scissor_enable_nv     = void (*)(ktl::api::command_buffer _command_buffer,
-                                                         ktl::u32                 _first_exclusive_scissor,
-                                                         ktl::u32                 _exclusive_scissor_count,
-                                                         const ktl::api::bool32 * _p_exclusive_scissor_enables);
-using pfn_cmd_bind_shading_rate_image_nv          = void (*)(ktl::api::command_buffer _command_buffer,
-                                                    ktl::api::image_view     _image_view,
-                                                    ktl::api::image_layout   _image_layout);
-using pfn_cmd_set_viewport_shading_rate_palette_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport, ktl::u32 _viewport_count,
-             const ktl::api::shading_rate_palette_nv * _p_shading_rate_palettes);
-using pfn_cmd_set_coarse_sample_order_nv = void (*)(
-    ktl::api::command_buffer _command_buffer, ktl::api::coarse_sample_order_type_nv _sample_order_type,
-    ktl::u32 _custom_sample_order_count, const ktl::api::coarse_sample_order_custom_nv * _p_custom_sample_orders);
-using pfn_cmd_draw_mesh_tasks_nv          = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _task_count,
-                                            ktl::u32 _first_task);
-using pfn_cmd_draw_mesh_tasks_indirect_nv = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
-                                                     ktl::api::dvsize _offset, ktl::u32 _draw_count, ktl::u32 _stride);
-using pfn_cmd_draw_mesh_tasks_indirect_count_nv = void (*)(ktl::api::command_buffer _command_buffer,
-                                                           ktl::api::buffer _buffer, ktl::api::dvsize _offset,
-                                                           ktl::api::buffer _count_buffer,
-                                                           ktl::api::dvsize _count_buffer_offset,
-                                                           ktl::u32 _max_draw_count, ktl::u32 _stride);
-using pfn_cmd_draw_mesh_tasks_ext          = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x,
-                                             ktl::u32 _group_count_y, ktl::u32 _group_count_z);
-using pfn_cmd_draw_mesh_tasks_indirect_ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                      ktl::api::buffer _buffer, ktl::api::dvsize _offset,
-                                                      ktl::u32 _draw_count, ktl::u32 _stride);
-using pfn_cmd_draw_mesh_tasks_indirect_count_ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                            ktl::api::buffer _buffer, ktl::api::dvsize _offset,
-                                                            ktl::api::buffer _count_buffer,
-                                                            ktl::api::dvsize _count_buffer_offset,
-                                                            ktl::u32 _max_draw_count, ktl::u32 _stride);
-using pfn_compile_deferred_nv = ktl::api::result (*)(ktl::api::device _device, ktl::api::pipeline _pipeline,
-                                                     ktl::u32 _shader);
-using pfn_create_acceleration_structure_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::acceleration_structure_create_info_nv * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator,
-    ktl::api::acceleration_structure_nv *  _p_acceleration_structure);
-using pfn_cmd_bind_invocation_mask_huawei    = void (*)(ktl::api::command_buffer _command_buffer,
-                                                     ktl::api::image_view     _image_view,
-                                                     ktl::api::image_layout   _image_layout);
-using pfn_destroy_acceleration_structure_khr = void (*)(ktl::api::device                       _device,
-                                                        ktl::api::acceleration_structure_khr   _acceleration_structure,
-                                                        const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_destroy_acceleration_structure_nv  = void (*)(ktl::api::device                       _device,
-                                                       ktl::api::acceleration_structure_nv    _acceleration_structure,
-                                                       const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_acceleration_structure_memory_requirements_nv =
-    void (*)(ktl::api::device _device, const ktl::api::acceleration_structure_memory_requirements_info_nv * _p_info,
-             ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_bind_acceleration_structure_memory_nv =
-    ktl::api::result (*)(ktl::api::device _device, ktl::u32 _bind_info_count,
-                         const ktl::api::bind_acceleration_structure_memory_info_nv * _p_bind_infos);
-using pfn_cmd_copy_acceleration_structure_nv = void (*)(ktl::api::command_buffer                       _command_buffer,
-                                                        ktl::api::acceleration_structure_nv            _dst,
-                                                        ktl::api::acceleration_structure_nv            _src,
-                                                        ktl::api::copy_acceleration_structure_mode_khr _mode);
-using pfn_cmd_copy_acceleration_structure_khr =
-    void (*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_acceleration_structure_info_khr * _p_info);
-using pfn_copy_acceleration_structure_khr =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
-                         const ktl::api::copy_acceleration_structure_info_khr * _p_info);
-using pfn_cmd_copy_acceleration_structure_to_memory_khr = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::copy_acceleration_structure_to_memory_info_khr * _p_info);
-using pfn_copy_acceleration_structure_to_memory_khr =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
-                         const ktl::api::copy_acceleration_structure_to_memory_info_khr * _p_info);
-using pfn_cmd_copy_memory_to_acceleration_structure_khr = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::copy_memory_to_acceleration_structure_info_khr * _p_info);
-using pfn_copy_memory_to_acceleration_structure_khr =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
-                         const ktl::api::copy_memory_to_acceleration_structure_info_khr * _p_info);
-using pfn_cmd_write_acceleration_structures_properties_khr =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _acceleration_structure_count,
-             const ktl::api::acceleration_structure_khr * _p_acceleration_structures, ktl::api::query_type _query_type,
-             ktl::api::query_pool _query_pool, ktl::u32 _first_query);
-using pfn_cmd_write_acceleration_structures_properties_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _acceleration_structure_count,
-             const ktl::api::acceleration_structure_nv * _p_acceleration_structures, ktl::api::query_type _query_type,
-             ktl::api::query_pool _query_pool, ktl::u32 _first_query);
-using pfn_cmd_build_acceleration_structure_nv = void (*)(ktl::api::command_buffer _command_buffer,
-                                                         const ktl::api::acceleration_structure_info_nv * _p_info,
-                                                         ktl::api::buffer _instance_data,
-                                                         ktl::api::dvsize _instance_offset, ktl::api::bool32 _update,
-                                                         ktl::api::acceleration_structure_nv _dst,
-                                                         ktl::api::acceleration_structure_nv _src,
-                                                         ktl::api::buffer _scratch, ktl::api::dvsize _scratch_offset);
-using pfn_write_acceleration_structures_properties_khr =
-    ktl::api::result (*)(ktl::api::device _device, ktl::u32 _acceleration_structure_count,
-                         const ktl::api::acceleration_structure_khr * _p_acceleration_structures,
-                         ktl::api::query_type _query_type, ktl::usize _data_size, void * _p_data, ktl::usize _stride);
-using pfn_cmd_trace_rays_khr =
-    void (*)(ktl::api::command_buffer                            _command_buffer,
-             const ktl::api::strided_device_address_region_khr * _p_raygen_shader_binding_table,
-             const ktl::api::strided_device_address_region_khr * _p_miss_shader_binding_table,
-             const ktl::api::strided_device_address_region_khr * _p_hit_shader_binding_table,
-             const ktl::api::strided_device_address_region_khr * _p_callable_shader_binding_table, ktl::u32 _width,
-             ktl::u32 _height, ktl::u32 _depth);
-using pfn_cmd_trace_rays_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _raygen_shader_binding_table_buffer,
-             ktl::api::dvsize _raygen_shader_binding_offset, ktl::api::buffer _miss_shader_binding_table_buffer,
-             ktl::api::dvsize _miss_shader_binding_offset, ktl::api::dvsize _miss_shader_binding_stride,
-             ktl::api::buffer _hit_shader_binding_table_buffer, ktl::api::dvsize _hit_shader_binding_offset,
-             ktl::api::dvsize _hit_shader_binding_stride, ktl::api::buffer _callable_shader_binding_table_buffer,
-             ktl::api::dvsize _callable_shader_binding_offset, ktl::api::dvsize _callable_shader_binding_stride,
-             ktl::u32 _width, ktl::u32 _height, ktl::u32 _depth);
-using pfn_get_ray_tracing_shader_group_handles_khr = ktl::api::result (*)(ktl::api::device   _device,
-                                                                          ktl::api::pipeline _pipeline,
-                                                                          ktl::u32 _first_group, ktl::u32 _group_count,
-                                                                          ktl::usize _data_size, void * _p_data);
-using pfn_get_ray_tracing_shader_group_handles_nv  = pfn_get_ray_tracing_shader_group_handles_khr;
-using pfn_get_ray_tracing_capture_replay_shader_group_handles_khr =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::pipeline _pipeline, ktl::u32 _first_group,
-                         ktl::u32 _group_count, ktl::usize _data_size, void * _p_data);
-using pfn_get_acceleration_structure_handle_nv =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::acceleration_structure_nv _acceleration_structure,
-                         ktl::usize _data_size, void * _p_data);
-using pfn_create_ray_tracing_pipelines_nv = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count,
-    const ktl::api::ray_tracing_pipeline_create_info_nv * _p_create_infos,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
-using pfn_create_ray_tracing_pipelines_khr =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
-                         ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count,
-                         const ktl::api::ray_tracing_pipeline_create_info_khr * _p_create_infos,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
-using pfn_get_physical_device_cooperative_matrix_properties_nv =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::cooperative_matrix_properties_nv * _p_properties);
-using pfn_cmd_trace_rays_indirect_khr =
-    void (*)(ktl::api::command_buffer                            _command_buffer,
-             const ktl::api::strided_device_address_region_khr * _p_raygen_shader_binding_table,
-             const ktl::api::strided_device_address_region_khr * _p_miss_shader_binding_table,
-             const ktl::api::strided_device_address_region_khr * _p_hit_shader_binding_table,
-             const ktl::api::strided_device_address_region_khr * _p_callable_shader_binding_table,
-             ktl::api::dvaddr                                    _indirect_device_address);
-using pfn_cmd_trace_rays_indirect_2khr = void (*)(ktl::api::command_buffer _command_buffer,
-                                                  ktl::api::dvaddr         _indirect_device_address);
-using pfn_get_cluster_acceleration_structure_build_sizes_nv =
-    void (*)(ktl::api::device _device, const ktl::api::cluster_acceleration_structure_input_info_nv * _p_info,
-             ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info);
-using pfn_cmd_build_cluster_acceleration_structure_indirect_nv =
-    void (*)(ktl::api::command_buffer                                          _command_buffer,
-             const ktl::api::cluster_acceleration_structure_commands_info_nv * _p_command_infos);
-using pfn_get_device_acceleration_structure_compatibility_khr =
-    void (*)(ktl::api::device _device, const ktl::api::acceleration_structure_version_info_khr * _p_version_info,
-             ktl::api::acceleration_structure_compatibility_khr * _p_compatibility);
-using pfn_get_ray_tracing_shader_group_stack_size_khr =
-    ktl::api::dvsize (*)(ktl::api::device _device, ktl::api::pipeline _pipeline, ktl::u32 _group,
-                         ktl::api::shader_group_shader_khr _group_shader);
-using pfn_cmd_set_ray_tracing_pipeline_stack_size_khr = void (*)(ktl::api::command_buffer _command_buffer,
-                                                                 ktl::u32                 _pipeline_stack_size);
-using pfn_get_image_view_handle_nvx   = ktl::u32 (*)(ktl::api::device                             _device,
-                                                   const ktl::api::image_view_handle_info_nvx * _p_info);
-using pfn_get_image_view_handle_64nvx = ktl::u64 (*)(ktl::api::device                             _device,
-                                                     const ktl::api::image_view_handle_info_nvx * _p_info);
-using pfn_get_image_view_address_nvx =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::image_view _image_view,
-                         ktl::api::image_view_address_properties_nvx * _p_properties);
-using pfn_get_device_combined_image_sampler_index_nvx    = ktl::u64 (*)(ktl::api::device _device,
-                                                                     ktl::u64         _image_view_index,
-                                                                     ktl::u64         _sampler_index);
-using pfn_get_physical_device_surface_present_modes_2ext = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-    ktl::u32 * _p_present_mode_count, ktl::api::present_mode_khr * _p_present_modes);
-using pfn_get_device_group_surface_present_modes_2ext =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-                         ktl::api::device_group_present_mode_flags_khr * _p_modes);
-using pfn_acquire_full_screen_exclusive_mode_ext = ktl::api::result (*)(ktl::api::device        _device,
-                                                                        ktl::api::swapchain_khr _swapchain);
-using pfn_release_full_screen_exclusive_mode_ext = ktl::api::result (*)(ktl::api::device        _device,
-                                                                        ktl::api::swapchain_khr _swapchain);
-using pfn_enumerate_physical_device_queue_family_performance_query_counters_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index,
-                         ktl::u32 * _p_counter_count, ktl::api::performance_counter_khr * _p_counters,
-                         ktl::api::performance_counter_description_khr * _p_counter_descriptions);
-using pfn_get_physical_device_queue_family_performance_query_passes_khr =
-    void (*)(ktl::api::physical_device                                _physical_device,
-             const ktl::api::query_pool_performance_create_info_khr * _p_performance_query_create_info,
-             ktl::u32 *                                               _p_num_passes);
-using pfn_acquire_profiling_lock_khr = ktl::api::result (*)(ktl::api::device                                  _device,
-                                                            const ktl::api::acquire_profiling_lock_info_khr * _p_info);
-using pfn_release_profiling_lock_khr = void (*)(ktl::api::device _device);
-using pfn_get_image_drm_format_modifier_properties_ext =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::image _image,
-                         ktl::api::image_drm_format_modifier_properties_ext * _p_properties);
-using pfn_get_buffer_opaque_capture_address     = ktl::u64 (*)(ktl::api::device                             _device,
-                                                           const ktl::api::buffer_device_address_info * _p_info);
+using pfn_cmd_set_checkpoint_nv = void(*)(ktl::api::command_buffer _command_buffer, const void * _p_checkpoint_marker);
+using pfn_get_queue_checkpoint_data_nv = void(*)(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count, ktl::api::checkpoint_data_nv * _p_checkpoint_data);
+using pfn_cmd_bind_transform_feedback_buffers_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count, const ktl::api::buffer * _p_buffers, const ktl::api::dvsize * _p_offsets, const ktl::api::dvsize * _p_sizes);
+using pfn_cmd_begin_transform_feedback_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_buffer, ktl::u32 _counter_buffer_count, const ktl::api::buffer * _p_counter_buffers, const ktl::api::dvsize * _p_counter_buffer_offsets);
+using pfn_cmd_end_transform_feedback_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_buffer, ktl::u32 _counter_buffer_count, const ktl::api::buffer * _p_counter_buffers, const ktl::api::dvsize * _p_counter_buffer_offsets);
+using pfn_cmd_begin_query_indexed_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _query, ktl::api::query_control_flags _flags, ktl::u32 _index);
+using pfn_cmd_end_query_indexed_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _query, ktl::u32 _index);
+using pfn_cmd_draw_indirect_byte_count_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _instance_count, ktl::u32 _first_instance, ktl::api::buffer _counter_buffer, ktl::api::dvsize _counter_buffer_offset, ktl::u32 _counter_offset, ktl::u32 _vertex_stride);
+using pfn_cmd_set_exclusive_scissor_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_exclusive_scissor, ktl::u32 _exclusive_scissor_count, const ktl::api::rect_2d * _p_exclusive_scissors);
+using pfn_cmd_set_exclusive_scissor_enable_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_exclusive_scissor, ktl::u32 _exclusive_scissor_count, const ktl::api::bool32 * _p_exclusive_scissor_enables);
+using pfn_cmd_bind_shading_rate_image_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::image_view _image_view, ktl::api::image_layout _image_layout);
+using pfn_cmd_set_viewport_shading_rate_palette_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport, ktl::u32 _viewport_count, const ktl::api::shading_rate_palette_nv * _p_shading_rate_palettes);
+using pfn_cmd_set_coarse_sample_order_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::coarse_sample_order_type_nv _sample_order_type, ktl::u32 _custom_sample_order_count, const ktl::api::coarse_sample_order_custom_nv * _p_custom_sample_orders);
+using pfn_cmd_draw_mesh_tasks_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _task_count, ktl::u32 _first_task);
+using pfn_cmd_draw_mesh_tasks_indirect_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::u32 _draw_count, ktl::u32 _stride);
+using pfn_cmd_draw_mesh_tasks_indirect_count_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::api::buffer _count_buffer, ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride);
+using pfn_cmd_draw_mesh_tasks_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x, ktl::u32 _group_count_y, ktl::u32 _group_count_z);
+using pfn_cmd_draw_mesh_tasks_indirect_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::u32 _draw_count, ktl::u32 _stride);
+using pfn_cmd_draw_mesh_tasks_indirect_count_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::api::buffer _count_buffer, ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride);
+using pfn_compile_deferred_nv = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline _pipeline, ktl::u32 _shader);
+using pfn_create_acceleration_structure_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::acceleration_structure_create_info_nv * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::acceleration_structure_nv * _p_acceleration_structure);
+using pfn_cmd_bind_invocation_mask_huawei = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::image_view _image_view, ktl::api::image_layout _image_layout);
+using pfn_destroy_acceleration_structure_khr = void(*)(ktl::api::device _device, ktl::api::acceleration_structure_khr _acceleration_structure, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_destroy_acceleration_structure_nv = void(*)(ktl::api::device _device, ktl::api::acceleration_structure_nv _acceleration_structure, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_acceleration_structure_memory_requirements_nv = void(*)(ktl::api::device _device, const ktl::api::acceleration_structure_memory_requirements_info_nv * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_bind_acceleration_structure_memory_nv = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _bind_info_count, const ktl::api::bind_acceleration_structure_memory_info_nv * _p_bind_infos);
+using pfn_cmd_copy_acceleration_structure_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::acceleration_structure_nv _dst, ktl::api::acceleration_structure_nv _src, ktl::api::copy_acceleration_structure_mode_khr _mode);
+using pfn_cmd_copy_acceleration_structure_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_acceleration_structure_info_khr * _p_info);
+using pfn_copy_acceleration_structure_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, const ktl::api::copy_acceleration_structure_info_khr * _p_info);
+using pfn_cmd_copy_acceleration_structure_to_memory_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_acceleration_structure_to_memory_info_khr * _p_info);
+using pfn_copy_acceleration_structure_to_memory_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, const ktl::api::copy_acceleration_structure_to_memory_info_khr * _p_info);
+using pfn_cmd_copy_memory_to_acceleration_structure_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_memory_to_acceleration_structure_info_khr * _p_info);
+using pfn_copy_memory_to_acceleration_structure_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, const ktl::api::copy_memory_to_acceleration_structure_info_khr * _p_info);
+using pfn_cmd_write_acceleration_structures_properties_khr = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _acceleration_structure_count, const ktl::api::acceleration_structure_khr * _p_acceleration_structures, ktl::api::query_type _query_type, ktl::api::query_pool _query_pool, ktl::u32 _first_query);
+using pfn_cmd_write_acceleration_structures_properties_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _acceleration_structure_count, const ktl::api::acceleration_structure_nv * _p_acceleration_structures, ktl::api::query_type _query_type, ktl::api::query_pool _query_pool, ktl::u32 _first_query);
+using pfn_cmd_build_acceleration_structure_nv = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::acceleration_structure_info_nv * _p_info, ktl::api::buffer _instance_data, ktl::api::dvsize _instance_offset, ktl::api::bool32 _update, ktl::api::acceleration_structure_nv _dst, ktl::api::acceleration_structure_nv _src, ktl::api::buffer _scratch, ktl::api::dvsize _scratch_offset);
+using pfn_write_acceleration_structures_properties_khr = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _acceleration_structure_count, const ktl::api::acceleration_structure_khr * _p_acceleration_structures, ktl::api::query_type _query_type, ktl::usize _data_size, void * _p_data, ktl::usize _stride);
+using pfn_cmd_trace_rays_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::strided_device_address_region_khr * _p_raygen_shader_binding_table, const ktl::api::strided_device_address_region_khr * _p_miss_shader_binding_table, const ktl::api::strided_device_address_region_khr * _p_hit_shader_binding_table, const ktl::api::strided_device_address_region_khr * _p_callable_shader_binding_table, ktl::u32 _width, ktl::u32 _height, ktl::u32 _depth);
+using pfn_cmd_trace_rays_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _raygen_shader_binding_table_buffer, ktl::api::dvsize _raygen_shader_binding_offset, ktl::api::buffer _miss_shader_binding_table_buffer, ktl::api::dvsize _miss_shader_binding_offset, ktl::api::dvsize _miss_shader_binding_stride, ktl::api::buffer _hit_shader_binding_table_buffer, ktl::api::dvsize _hit_shader_binding_offset, ktl::api::dvsize _hit_shader_binding_stride, ktl::api::buffer _callable_shader_binding_table_buffer, ktl::api::dvsize _callable_shader_binding_offset, ktl::api::dvsize _callable_shader_binding_stride, ktl::u32 _width, ktl::u32 _height, ktl::u32 _depth);
+using pfn_get_ray_tracing_shader_group_handles_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline _pipeline, ktl::u32 _first_group, ktl::u32 _group_count, ktl::usize _data_size, void * _p_data);
+using pfn_get_ray_tracing_shader_group_handles_nv = pfn_get_ray_tracing_shader_group_handles_khr;
+using pfn_get_ray_tracing_capture_replay_shader_group_handles_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline _pipeline, ktl::u32 _first_group, ktl::u32 _group_count, ktl::usize _data_size, void * _p_data);
+using pfn_get_acceleration_structure_handle_nv = ktl::api::result(*)(ktl::api::device _device, ktl::api::acceleration_structure_nv _acceleration_structure, ktl::usize _data_size, void * _p_data);
+using pfn_create_ray_tracing_pipelines_nv = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count, const ktl::api::ray_tracing_pipeline_create_info_nv * _p_create_infos, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
+using pfn_create_ray_tracing_pipelines_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count, const ktl::api::ray_tracing_pipeline_create_info_khr * _p_create_infos, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
+using pfn_get_physical_device_cooperative_matrix_properties_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count, ktl::api::cooperative_matrix_properties_nv * _p_properties);
+using pfn_cmd_trace_rays_indirect_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::strided_device_address_region_khr * _p_raygen_shader_binding_table, const ktl::api::strided_device_address_region_khr * _p_miss_shader_binding_table, const ktl::api::strided_device_address_region_khr * _p_hit_shader_binding_table, const ktl::api::strided_device_address_region_khr * _p_callable_shader_binding_table, ktl::api::dvaddr _indirect_device_address);
+using pfn_cmd_trace_rays_indirect_2khr = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _indirect_device_address);
+using pfn_get_cluster_acceleration_structure_build_sizes_nv = void(*)(ktl::api::device _device, const ktl::api::cluster_acceleration_structure_input_info_nv * _p_info, ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info);
+using pfn_cmd_build_cluster_acceleration_structure_indirect_nv = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::cluster_acceleration_structure_commands_info_nv * _p_command_infos);
+using pfn_get_device_acceleration_structure_compatibility_khr = void(*)(ktl::api::device _device, const ktl::api::acceleration_structure_version_info_khr * _p_version_info, ktl::api::acceleration_structure_compatibility_khr * _p_compatibility);
+using pfn_get_ray_tracing_shader_group_stack_size_khr = ktl::api::dvsize(*)(ktl::api::device _device, ktl::api::pipeline _pipeline, ktl::u32 _group, ktl::api::shader_group_shader_khr _group_shader);
+using pfn_cmd_set_ray_tracing_pipeline_stack_size_khr = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _pipeline_stack_size);
+using pfn_get_image_view_handle_nvx = ktl::u32(*)(ktl::api::device _device, const ktl::api::image_view_handle_info_nvx * _p_info);
+using pfn_get_image_view_handle_64nvx = ktl::u64(*)(ktl::api::device _device, const ktl::api::image_view_handle_info_nvx * _p_info);
+using pfn_get_image_view_address_nvx = ktl::api::result(*)(ktl::api::device _device, ktl::api::image_view _image_view, ktl::api::image_view_address_properties_nvx * _p_properties);
+using pfn_get_device_combined_image_sampler_index_nvx = ktl::u64(*)(ktl::api::device _device, ktl::u64 _image_view_index, ktl::u64 _sampler_index);
+using pfn_get_physical_device_surface_present_modes_2ext = ktl::api::result(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info, ktl::u32 * _p_present_mode_count, ktl::api::present_mode_khr * _p_present_modes);
+using pfn_get_device_group_surface_present_modes_2ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info, ktl::api::device_group_present_mode_flags_khr * _p_modes);
+using pfn_acquire_full_screen_exclusive_mode_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain);
+using pfn_release_full_screen_exclusive_mode_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain);
+using pfn_enumerate_physical_device_queue_family_performance_query_counters_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, ktl::u32 * _p_counter_count, ktl::api::performance_counter_khr * _p_counters, ktl::api::performance_counter_description_khr * _p_counter_descriptions);
+using pfn_get_physical_device_queue_family_performance_query_passes_khr = void(*)(ktl::api::physical_device _physical_device, const ktl::api::query_pool_performance_create_info_khr * _p_performance_query_create_info, ktl::u32 * _p_num_passes);
+using pfn_acquire_profiling_lock_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::acquire_profiling_lock_info_khr * _p_info);
+using pfn_release_profiling_lock_khr = void(*)(ktl::api::device _device);
+using pfn_get_image_drm_format_modifier_properties_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::image _image, ktl::api::image_drm_format_modifier_properties_ext * _p_properties);
+using pfn_get_buffer_opaque_capture_address = ktl::u64(*)(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info);
 using pfn_get_buffer_opaque_capture_address_khr = pfn_get_buffer_opaque_capture_address;
-using pfn_get_buffer_device_address     = ktl::api::dvaddr (*)(ktl::api::device                             _device,
-                                                           const ktl::api::buffer_device_address_info * _p_info);
+using pfn_get_buffer_device_address = ktl::api::dvaddr(*)(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info);
 using pfn_get_buffer_device_address_khr = pfn_get_buffer_device_address;
 using pfn_get_buffer_device_address_ext = pfn_get_buffer_device_address;
-using pfn_create_headless_surface_ext   = ktl::api::result (*)(
-    ktl::api::instance _instance, const ktl::api::headless_surface_create_info_ext * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_get_physical_device_supported_framebuffer_mixed_samples_combinations_nv =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_combination_count,
-                         ktl::api::framebuffer_mixed_samples_combination_nv * _p_combinations);
-using pfn_initialize_performance_api_intel = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::initialize_performance_api_info_intel * _p_initialize_info);
-using pfn_uninitialize_performance_api_intel = void (*)(ktl::api::device _device);
-using pfn_cmd_set_performance_marker_intel   = ktl::api::result (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::performance_marker_info_intel * _p_marker_info);
-using pfn_cmd_set_performance_stream_marker_intel = ktl::api::result (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::performance_stream_marker_info_intel * _p_marker_info);
-using pfn_cmd_set_performance_override_intel = ktl::api::result (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::performance_override_info_intel * _p_override_info);
-using pfn_acquire_performance_configuration_intel = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::performance_configuration_acquire_info_intel * _p_acquire_info,
-    ktl::api::performance_configuration_intel * _p_configuration);
-using pfn_release_performance_configuration_intel =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::performance_configuration_intel _configuration);
-using pfn_queue_set_performance_configuration_intel =
-    ktl::api::result (*)(ktl::api::queue _queue, ktl::api::performance_configuration_intel _configuration);
-using pfn_get_performance_parameter_intel = ktl::api::result (*)(ktl::api::device                           _device,
-                                                                 ktl::api::performance_parameter_type_intel _parameter,
-                                                                 ktl::api::performance_value_intel *        _p_value);
-using pfn_get_device_memory_opaque_capture_address =
-    ktl::u64 (*)(ktl::api::device _device, const ktl::api::device_memory_opaque_capture_address_info * _p_info);
+using pfn_create_headless_surface_ext = ktl::api::result(*)(ktl::api::instance _instance, const ktl::api::headless_surface_create_info_ext * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
+using pfn_get_physical_device_supported_framebuffer_mixed_samples_combinations_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_combination_count, ktl::api::framebuffer_mixed_samples_combination_nv * _p_combinations);
+using pfn_initialize_performance_api_intel = ktl::api::result(*)(ktl::api::device _device, const ktl::api::initialize_performance_api_info_intel * _p_initialize_info);
+using pfn_uninitialize_performance_api_intel = void(*)(ktl::api::device _device);
+using pfn_cmd_set_performance_marker_intel = ktl::api::result(*)(ktl::api::command_buffer _command_buffer, const ktl::api::performance_marker_info_intel * _p_marker_info);
+using pfn_cmd_set_performance_stream_marker_intel = ktl::api::result(*)(ktl::api::command_buffer _command_buffer, const ktl::api::performance_stream_marker_info_intel * _p_marker_info);
+using pfn_cmd_set_performance_override_intel = ktl::api::result(*)(ktl::api::command_buffer _command_buffer, const ktl::api::performance_override_info_intel * _p_override_info);
+using pfn_acquire_performance_configuration_intel = ktl::api::result(*)(ktl::api::device _device, const ktl::api::performance_configuration_acquire_info_intel * _p_acquire_info, ktl::api::performance_configuration_intel * _p_configuration);
+using pfn_release_performance_configuration_intel = ktl::api::result(*)(ktl::api::device _device, ktl::api::performance_configuration_intel _configuration);
+using pfn_queue_set_performance_configuration_intel = ktl::api::result(*)(ktl::api::queue _queue, ktl::api::performance_configuration_intel _configuration);
+using pfn_get_performance_parameter_intel = ktl::api::result(*)(ktl::api::device _device, ktl::api::performance_parameter_type_intel _parameter, ktl::api::performance_value_intel * _p_value);
+using pfn_get_device_memory_opaque_capture_address = ktl::u64(*)(ktl::api::device _device, const ktl::api::device_memory_opaque_capture_address_info * _p_info);
 using pfn_get_device_memory_opaque_capture_address_khr = pfn_get_device_memory_opaque_capture_address;
-using pfn_get_pipeline_executable_properties_khr =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::pipeline_info_khr * _p_pipeline_info,
-                         ktl::u32 * _p_executable_count, ktl::api::pipeline_executable_properties_khr * _p_properties);
-using pfn_get_pipeline_executable_statistics_khr =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::pipeline_executable_info_khr * _p_executable_info,
-                         ktl::u32 * _p_statistic_count, ktl::api::pipeline_executable_statistic_khr * _p_statistics);
-using pfn_get_pipeline_executable_internal_representations_khr =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::pipeline_executable_info_khr * _p_executable_info,
-                         ktl::u32 *                                                  _p_internal_representation_count,
-                         ktl::api::pipeline_executable_internal_representation_khr * _p_internal_representations);
-using pfn_cmd_set_line_stipple     = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _line_stipple_factor,
-                                          ktl::u16 _line_stipple_pattern);
+using pfn_get_pipeline_executable_properties_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::pipeline_info_khr * _p_pipeline_info, ktl::u32 * _p_executable_count, ktl::api::pipeline_executable_properties_khr * _p_properties);
+using pfn_get_pipeline_executable_statistics_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::pipeline_executable_info_khr * _p_executable_info, ktl::u32 * _p_statistic_count, ktl::api::pipeline_executable_statistic_khr * _p_statistics);
+using pfn_get_pipeline_executable_internal_representations_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::pipeline_executable_info_khr * _p_executable_info, ktl::u32 * _p_internal_representation_count, ktl::api::pipeline_executable_internal_representation_khr * _p_internal_representations);
+using pfn_cmd_set_line_stipple = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _line_stipple_factor, ktl::u16 _line_stipple_pattern);
 using pfn_cmd_set_line_stipple_khr = pfn_cmd_set_line_stipple;
 using pfn_cmd_set_line_stipple_ext = pfn_cmd_set_line_stipple;
-using pfn_get_fault_data           = ktl::api::result (*)(ktl::api::device               _device,
-                                                ktl::api::fault_query_behavior _fault_query_behavior,
-                                                ktl::api::bool32 * _p_unrecorded_faults, ktl::u32 * _p_fault_count,
-                                                ktl::api::fault_data * _p_faults);
-using pfn_get_physical_device_tool_properties =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_tool_count,
-                         ktl::api::physical_device_tool_properties * _p_tool_properties);
+using pfn_get_fault_data = ktl::api::result(*)(ktl::api::device _device, ktl::api::fault_query_behavior _fault_query_behavior, ktl::api::bool32 * _p_unrecorded_faults, ktl::u32 * _p_fault_count, ktl::api::fault_data * _p_faults);
+using pfn_get_physical_device_tool_properties = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_tool_count, ktl::api::physical_device_tool_properties * _p_tool_properties);
 using pfn_get_physical_device_tool_properties_ext = pfn_get_physical_device_tool_properties;
-using pfn_create_acceleration_structure_khr       = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::acceleration_structure_create_info_khr * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator,
-    ktl::api::acceleration_structure_khr * _p_acceleration_structure);
-using pfn_cmd_build_acceleration_structures_khr =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count,
-             const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos,
-             const ktl::api::acceleration_structure_build_range_info_khr *    _pp_build_range_infos);
-using pfn_cmd_build_acceleration_structures_indirect_khr =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count,
-             const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos,
-             const ktl::api::dvaddr * _p_indirect_device_addresses, const ktl::u32 * _p_indirect_strides,
-             const ktl::u32 * _pp_max_primitive_counts);
-using pfn_build_acceleration_structures_khr = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, ktl::u32 _info_count,
-    const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos,
-    const ktl::api::acceleration_structure_build_range_info_khr *    _pp_build_range_infos);
-using pfn_get_acceleration_structure_device_address_khr = ktl::api::dvaddr (*)(
-    ktl::api::device _device, const ktl::api::acceleration_structure_device_address_info_khr * _p_info);
-using pfn_create_deferred_operation_khr =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::allocation_callbacks * _p_allocator,
-                         ktl::api::deferred_operation_khr * _p_deferred_operation);
-using pfn_destroy_deferred_operation_khr             = void (*)(ktl::api::device                       _device,
-                                                    ktl::api::deferred_operation_khr       _operation,
-                                                    const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_deferred_operation_max_concurrency_khr = ktl::u32 (*)(ktl::api::device                 _device,
-                                                                    ktl::api::deferred_operation_khr _operation);
-using pfn_get_deferred_operation_result_khr          = ktl::api::result (*)(ktl::api::device                 _device,
-                                                                   ktl::api::deferred_operation_khr _operation);
-using pfn_deferred_operation_join_khr                = ktl::api::result (*)(ktl::api::device                 _device,
-                                                             ktl::api::deferred_operation_khr _operation);
-using pfn_get_pipeline_indirect_memory_requirements_nv =
-    void (*)(ktl::api::device _device, const ktl::api::compute_pipeline_create_info * _p_create_info,
-             ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_get_pipeline_indirect_device_address_nv =
-    ktl::api::dvaddr (*)(ktl::api::device _device, const ktl::api::pipeline_indirect_device_address_info_nv * _p_info);
-using pfn_anti_lag_update_amd = void (*)(ktl::api::device _device, const ktl::api::anti_lag_data_amd * _p_data);
-using pfn_cmd_set_cull_mode = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::cull_mode_flags _cull_mode);
-using pfn_cmd_set_cull_mode_ext  = pfn_cmd_set_cull_mode;
-using pfn_cmd_set_front_face     = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::front_face _front_face);
+using pfn_create_acceleration_structure_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::acceleration_structure_create_info_khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::acceleration_structure_khr * _p_acceleration_structure);
+using pfn_cmd_build_acceleration_structures_khr = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count, const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos, const ktl::api::acceleration_structure_build_range_info_khr * _pp_build_range_infos);
+using pfn_cmd_build_acceleration_structures_indirect_khr = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count, const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos, const ktl::api::dvaddr * _p_indirect_device_addresses, const ktl::u32 * _p_indirect_strides, const ktl::u32 * _pp_max_primitive_counts);
+using pfn_build_acceleration_structures_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, ktl::u32 _info_count, const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos, const ktl::api::acceleration_structure_build_range_info_khr * _pp_build_range_infos);
+using pfn_get_acceleration_structure_device_address_khr = ktl::api::dvaddr(*)(ktl::api::device _device, const ktl::api::acceleration_structure_device_address_info_khr * _p_info);
+using pfn_create_deferred_operation_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::deferred_operation_khr * _p_deferred_operation);
+using pfn_destroy_deferred_operation_khr = void(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _operation, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_deferred_operation_max_concurrency_khr = ktl::u32(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _operation);
+using pfn_get_deferred_operation_result_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _operation);
+using pfn_deferred_operation_join_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _operation);
+using pfn_get_pipeline_indirect_memory_requirements_nv = void(*)(ktl::api::device _device, const ktl::api::compute_pipeline_create_info * _p_create_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_get_pipeline_indirect_device_address_nv = ktl::api::dvaddr(*)(ktl::api::device _device, const ktl::api::pipeline_indirect_device_address_info_nv * _p_info);
+using pfn_anti_lag_update_amd = void(*)(ktl::api::device _device, const ktl::api::anti_lag_data_amd * _p_data);
+using pfn_cmd_set_cull_mode = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::cull_mode_flags _cull_mode);
+using pfn_cmd_set_cull_mode_ext = pfn_cmd_set_cull_mode;
+using pfn_cmd_set_front_face = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::front_face _front_face);
 using pfn_cmd_set_front_face_ext = pfn_cmd_set_front_face;
-using pfn_cmd_set_primitive_topology      = void (*)(ktl::api::command_buffer     _command_buffer,
-                                                ktl::api::primitive_topology _primitive_topology);
-using pfn_cmd_set_primitive_topology_ext  = pfn_cmd_set_primitive_topology;
-using pfn_cmd_set_viewport_with_count     = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _viewport_count,
-                                                 const ktl::api::viewport * _p_viewports);
+using pfn_cmd_set_primitive_topology = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::primitive_topology _primitive_topology);
+using pfn_cmd_set_primitive_topology_ext = pfn_cmd_set_primitive_topology;
+using pfn_cmd_set_viewport_with_count = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _viewport_count, const ktl::api::viewport * _p_viewports);
 using pfn_cmd_set_viewport_with_count_ext = pfn_cmd_set_viewport_with_count;
-using pfn_cmd_set_scissor_with_count      = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _scissor_count,
-                                                const ktl::api::rect_2d * _p_scissors);
-using pfn_cmd_set_scissor_with_count_ext  = pfn_cmd_set_scissor_with_count;
-using pfn_cmd_bind_index_buffer_2         = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
-                                             ktl::api::dvsize _offset, ktl::api::dvsize _size,
-                                             ktl::api::index_type _index_type);
-using pfn_cmd_bind_index_buffer_2khr      = pfn_cmd_bind_index_buffer_2;
-using pfn_cmd_bind_vertex_buffers_2       = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
-                                               ktl::u32 _binding_count, const ktl::api::buffer * _p_buffers,
-                                               const ktl::api::dvsize * _p_offsets, const ktl::api::dvsize * _p_sizes,
-                                               const ktl::api::dvsize * _p_strides);
-using pfn_cmd_bind_vertex_buffers_2ext    = pfn_cmd_bind_vertex_buffers_2;
-using pfn_cmd_set_depth_test_enable       = void (*)(ktl::api::command_buffer _command_buffer,
-                                               ktl::api::bool32         _depth_test_enable);
-using pfn_cmd_set_depth_test_enable_ext   = pfn_cmd_set_depth_test_enable;
-using pfn_cmd_set_depth_write_enable      = void (*)(ktl::api::command_buffer _command_buffer,
-                                                ktl::api::bool32         _depth_write_enable);
-using pfn_cmd_set_depth_write_enable_ext  = pfn_cmd_set_depth_write_enable;
-using pfn_cmd_set_depth_compare_op        = void (*)(ktl::api::command_buffer _command_buffer,
-                                              ktl::api::compare_op     _depth_compare_op);
-using pfn_cmd_set_depth_compare_op_ext    = pfn_cmd_set_depth_compare_op;
-using pfn_cmd_set_depth_bounds_test_enable      = void (*)(ktl::api::command_buffer _command_buffer,
-                                                      ktl::api::bool32         _depth_bounds_test_enable);
-using pfn_cmd_set_depth_bounds_test_enable_ext  = pfn_cmd_set_depth_bounds_test_enable;
-using pfn_cmd_set_stencil_test_enable           = void (*)(ktl::api::command_buffer _command_buffer,
-                                                 ktl::api::bool32         _stencil_test_enable);
-using pfn_cmd_set_stencil_test_enable_ext       = pfn_cmd_set_stencil_test_enable;
-using pfn_cmd_set_stencil_op                    = void (*)(ktl::api::command_buffer     _command_buffer,
-                                        ktl::api::stencil_face_flags _face_mask, ktl::api::stencil_op _fail_op,
-                                        ktl::api::stencil_op _pass_op, ktl::api::stencil_op _depth_fail_op,
-                                        ktl::api::compare_op _compare_op);
-using pfn_cmd_set_stencil_op_ext                = pfn_cmd_set_stencil_op;
-using pfn_cmd_set_patch_control_points_ext      = void (*)(ktl::api::command_buffer _command_buffer,
-                                                      ktl::u32                 _patch_control_points);
-using pfn_cmd_set_rasterizer_discard_enable     = void (*)(ktl::api::command_buffer _command_buffer,
-                                                       ktl::api::bool32         _rasterizer_discard_enable);
+using pfn_cmd_set_scissor_with_count = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _scissor_count, const ktl::api::rect_2d * _p_scissors);
+using pfn_cmd_set_scissor_with_count_ext = pfn_cmd_set_scissor_with_count;
+using pfn_cmd_bind_index_buffer_2 = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset, ktl::api::dvsize _size, ktl::api::index_type _index_type);
+using pfn_cmd_bind_index_buffer_2khr = pfn_cmd_bind_index_buffer_2;
+using pfn_cmd_bind_vertex_buffers_2 = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count, const ktl::api::buffer * _p_buffers, const ktl::api::dvsize * _p_offsets, const ktl::api::dvsize * _p_sizes, const ktl::api::dvsize * _p_strides);
+using pfn_cmd_bind_vertex_buffers_2ext = pfn_cmd_bind_vertex_buffers_2;
+using pfn_cmd_set_depth_test_enable = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_test_enable);
+using pfn_cmd_set_depth_test_enable_ext = pfn_cmd_set_depth_test_enable;
+using pfn_cmd_set_depth_write_enable = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_write_enable);
+using pfn_cmd_set_depth_write_enable_ext = pfn_cmd_set_depth_write_enable;
+using pfn_cmd_set_depth_compare_op = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::compare_op _depth_compare_op);
+using pfn_cmd_set_depth_compare_op_ext = pfn_cmd_set_depth_compare_op;
+using pfn_cmd_set_depth_bounds_test_enable = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_bounds_test_enable);
+using pfn_cmd_set_depth_bounds_test_enable_ext = pfn_cmd_set_depth_bounds_test_enable;
+using pfn_cmd_set_stencil_test_enable = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _stencil_test_enable);
+using pfn_cmd_set_stencil_test_enable_ext = pfn_cmd_set_stencil_test_enable;
+using pfn_cmd_set_stencil_op = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::stencil_face_flags _face_mask, ktl::api::stencil_op _fail_op, ktl::api::stencil_op _pass_op, ktl::api::stencil_op _depth_fail_op, ktl::api::compare_op _compare_op);
+using pfn_cmd_set_stencil_op_ext = pfn_cmd_set_stencil_op;
+using pfn_cmd_set_patch_control_points_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _patch_control_points);
+using pfn_cmd_set_rasterizer_discard_enable = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _rasterizer_discard_enable);
 using pfn_cmd_set_rasterizer_discard_enable_ext = pfn_cmd_set_rasterizer_discard_enable;
-using pfn_cmd_set_depth_bias_enable             = void (*)(ktl::api::command_buffer _command_buffer,
-                                               ktl::api::bool32         _depth_bias_enable);
-using pfn_cmd_set_depth_bias_enable_ext         = pfn_cmd_set_depth_bias_enable;
-using pfn_cmd_set_logic_op_ext = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::logic_op _logic_op);
-using pfn_cmd_set_primitive_restart_enable       = void (*)(ktl::api::command_buffer _command_buffer,
-                                                      ktl::api::bool32         _primitive_restart_enable);
-using pfn_cmd_set_primitive_restart_enable_ext   = pfn_cmd_set_primitive_restart_enable;
-using pfn_cmd_set_tessellation_domain_origin_ext = void (*)(ktl::api::command_buffer             _command_buffer,
-                                                            ktl::api::tessellation_domain_origin _domain_origin);
-using pfn_cmd_set_depth_clamp_enable_ext         = void (*)(ktl::api::command_buffer _command_buffer,
-                                                    ktl::api::bool32         _depth_clamp_enable);
-using pfn_cmd_set_polygon_mode_ext               = void (*)(ktl::api::command_buffer _command_buffer,
-                                              ktl::api::polygon_mode   _polygon_mode);
-using pfn_cmd_set_rasterization_samples_ext      = void (*)(ktl::api::command_buffer         _command_buffer,
-                                                       ktl::api::sample_count_flag_bits _rasterization_samples);
-using pfn_cmd_set_sample_mask_ext                = void (*)(ktl::api::command_buffer         _command_buffer,
-                                             ktl::api::sample_count_flag_bits _samples,
-                                             const ktl::api::spmask *         _p_sample_mask);
-using pfn_cmd_set_alpha_to_coverage_enable_ext   = void (*)(ktl::api::command_buffer _command_buffer,
-                                                          ktl::api::bool32         _alpha_to_coverage_enable);
-using pfn_cmd_set_alpha_to_one_enable_ext        = void (*)(ktl::api::command_buffer _command_buffer,
-                                                     ktl::api::bool32         _alpha_to_one_enable);
-using pfn_cmd_set_logic_op_enable_ext            = void (*)(ktl::api::command_buffer _command_buffer,
-                                                 ktl::api::bool32         _logic_op_enable);
-using pfn_cmd_set_color_blend_enable_ext         = void (*)(ktl::api::command_buffer _command_buffer,
-                                                    ktl::u32 _first_attachment, ktl::u32 _attachment_count,
-                                                    const ktl::api::bool32 * _p_color_blend_enables);
-using pfn_cmd_set_color_blend_equation_ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_attachment, ktl::u32 _attachment_count,
-             const ktl::api::color_blend_equation_ext * _p_color_blend_equations);
-using pfn_cmd_set_color_write_mask_ext = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_attachment,
-                                                  ktl::u32                                _attachment_count,
-                                                  const ktl::api::color_component_flags * _p_color_write_masks);
-using pfn_cmd_set_rasterization_stream_ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                      ktl::u32                 _rasterization_stream);
-using pfn_cmd_set_conservative_rasterization_mode_ext =
-    void (*)(ktl::api::command_buffer                      _command_buffer,
-             ktl::api::conservative_rasterization_mode_ext _conservative_rasterization_mode);
-using pfn_cmd_set_extra_primitive_overestimation_size_ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                                     float _extra_primitive_overestimation_size);
-using pfn_cmd_set_depth_clip_enable_ext                   = void (*)(ktl::api::command_buffer _command_buffer,
-                                                   ktl::api::bool32         _depth_clip_enable);
-using pfn_cmd_set_sample_locations_enable_ext             = void (*)(ktl::api::command_buffer _command_buffer,
-                                                         ktl::api::bool32         _sample_locations_enable);
-using pfn_cmd_set_color_blend_advanced_ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_attachment, ktl::u32 _attachment_count,
-             const ktl::api::color_blend_advanced_ext * _p_color_blend_advanced);
-using pfn_cmd_set_provoking_vertex_mode_ext = void (*)(ktl::api::command_buffer            _command_buffer,
-                                                       ktl::api::provoking_vertex_mode_ext _provoking_vertex_mode);
-using pfn_cmd_set_line_rasterization_mode_ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::line_rasterization_mode_ext _line_rasterization_mode);
-using pfn_cmd_set_line_stipple_enable_ext            = void (*)(ktl::api::command_buffer _command_buffer,
-                                                     ktl::api::bool32         _stippled_line_enable);
-using pfn_cmd_set_depth_clip_negative_one_to_one_ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                                ktl::api::bool32         _negative_one_to_one);
-using pfn_cmd_set_viewport_w_scaling_enable_nv       = void (*)(ktl::api::command_buffer _command_buffer,
-                                                          ktl::api::bool32         _viewport_w_scaling_enable);
-using pfn_cmd_set_viewport_swizzle_nv = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport,
-                                                 ktl::u32                              _viewport_count,
-                                                 const ktl::api::viewport_swizzle_nv * _p_viewport_swizzles);
-using pfn_cmd_set_coverage_to_color_enable_nv   = void (*)(ktl::api::command_buffer _command_buffer,
-                                                         ktl::api::bool32         _coverage_to_color_enable);
-using pfn_cmd_set_coverage_to_color_location_nv = void (*)(ktl::api::command_buffer _command_buffer,
-                                                           ktl::u32                 _coverage_to_color_location);
-using pfn_cmd_set_coverage_modulation_mode_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::coverage_modulation_mode_nv _coverage_modulation_mode);
-using pfn_cmd_set_coverage_modulation_table_enable_nv = void (*)(ktl::api::command_buffer _command_buffer,
-                                                                 ktl::api::bool32 _coverage_modulation_table_enable);
-using pfn_cmd_set_coverage_modulation_table_nv        = void (*)(ktl::api::command_buffer _command_buffer,
-                                                          ktl::u32                 _coverage_modulation_table_count,
-                                                          const float *            _p_coverage_modulation_table);
-using pfn_cmd_set_shading_rate_image_enable_nv        = void (*)(ktl::api::command_buffer _command_buffer,
-                                                          ktl::api::bool32         _shading_rate_image_enable);
-using pfn_cmd_set_coverage_reduction_mode_nv          = void (*)(ktl::api::command_buffer             _command_buffer,
-                                                        ktl::api::coverage_reduction_mode_nv _coverage_reduction_mode);
-using pfn_cmd_set_representative_fragment_test_enable_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _representative_fragment_test_enable);
-using pfn_create_private_data_slot = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::private_data_slot_create_info * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::private_data_slot * _p_private_data_slot);
+using pfn_cmd_set_depth_bias_enable = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_bias_enable);
+using pfn_cmd_set_depth_bias_enable_ext = pfn_cmd_set_depth_bias_enable;
+using pfn_cmd_set_logic_op_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::logic_op _logic_op);
+using pfn_cmd_set_primitive_restart_enable = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _primitive_restart_enable);
+using pfn_cmd_set_primitive_restart_enable_ext = pfn_cmd_set_primitive_restart_enable;
+using pfn_cmd_set_tessellation_domain_origin_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::tessellation_domain_origin _domain_origin);
+using pfn_cmd_set_depth_clamp_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_clamp_enable);
+using pfn_cmd_set_polygon_mode_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::polygon_mode _polygon_mode);
+using pfn_cmd_set_rasterization_samples_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::sample_count_flag_bits _rasterization_samples);
+using pfn_cmd_set_sample_mask_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::sample_count_flag_bits _samples, const ktl::api::spmask * _p_sample_mask);
+using pfn_cmd_set_alpha_to_coverage_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _alpha_to_coverage_enable);
+using pfn_cmd_set_alpha_to_one_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _alpha_to_one_enable);
+using pfn_cmd_set_logic_op_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _logic_op_enable);
+using pfn_cmd_set_color_blend_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_attachment, ktl::u32 _attachment_count, const ktl::api::bool32 * _p_color_blend_enables);
+using pfn_cmd_set_color_blend_equation_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_attachment, ktl::u32 _attachment_count, const ktl::api::color_blend_equation_ext * _p_color_blend_equations);
+using pfn_cmd_set_color_write_mask_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_attachment, ktl::u32 _attachment_count, const ktl::api::color_component_flags * _p_color_write_masks);
+using pfn_cmd_set_rasterization_stream_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _rasterization_stream);
+using pfn_cmd_set_conservative_rasterization_mode_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::conservative_rasterization_mode_ext _conservative_rasterization_mode);
+using pfn_cmd_set_extra_primitive_overestimation_size_ext = void(*)(ktl::api::command_buffer _command_buffer, float _extra_primitive_overestimation_size);
+using pfn_cmd_set_depth_clip_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_clip_enable);
+using pfn_cmd_set_sample_locations_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _sample_locations_enable);
+using pfn_cmd_set_color_blend_advanced_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_attachment, ktl::u32 _attachment_count, const ktl::api::color_blend_advanced_ext * _p_color_blend_advanced);
+using pfn_cmd_set_provoking_vertex_mode_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::provoking_vertex_mode_ext _provoking_vertex_mode);
+using pfn_cmd_set_line_rasterization_mode_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::line_rasterization_mode_ext _line_rasterization_mode);
+using pfn_cmd_set_line_stipple_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _stippled_line_enable);
+using pfn_cmd_set_depth_clip_negative_one_to_one_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _negative_one_to_one);
+using pfn_cmd_set_viewport_w_scaling_enable_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _viewport_w_scaling_enable);
+using pfn_cmd_set_viewport_swizzle_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport, ktl::u32 _viewport_count, const ktl::api::viewport_swizzle_nv * _p_viewport_swizzles);
+using pfn_cmd_set_coverage_to_color_enable_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _coverage_to_color_enable);
+using pfn_cmd_set_coverage_to_color_location_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _coverage_to_color_location);
+using pfn_cmd_set_coverage_modulation_mode_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::coverage_modulation_mode_nv _coverage_modulation_mode);
+using pfn_cmd_set_coverage_modulation_table_enable_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _coverage_modulation_table_enable);
+using pfn_cmd_set_coverage_modulation_table_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _coverage_modulation_table_count, const float * _p_coverage_modulation_table);
+using pfn_cmd_set_shading_rate_image_enable_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _shading_rate_image_enable);
+using pfn_cmd_set_coverage_reduction_mode_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::coverage_reduction_mode_nv _coverage_reduction_mode);
+using pfn_cmd_set_representative_fragment_test_enable_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _representative_fragment_test_enable);
+using pfn_create_private_data_slot = ktl::api::result(*)(ktl::api::device _device, const ktl::api::private_data_slot_create_info * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::private_data_slot * _p_private_data_slot);
 using pfn_create_private_data_slot_ext = pfn_create_private_data_slot;
-using pfn_destroy_private_data_slot = void (*)(ktl::api::device _device, ktl::api::private_data_slot _private_data_slot,
-                                               const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_destroy_private_data_slot = void(*)(ktl::api::device _device, ktl::api::private_data_slot _private_data_slot, const ktl::api::allocation_callbacks * _p_allocator);
 using pfn_destroy_private_data_slot_ext = pfn_destroy_private_data_slot;
-using pfn_set_private_data     = ktl::api::result (*)(ktl::api::device _device, ktl::api::object_type _object_type,
-                                                  ktl::u64                    _object_handle,
-                                                  ktl::api::private_data_slot _private_data_slot, ktl::u64 _data);
+using pfn_set_private_data = ktl::api::result(*)(ktl::api::device _device, ktl::api::object_type _object_type, ktl::u64 _object_handle, ktl::api::private_data_slot _private_data_slot, ktl::u64 _data);
 using pfn_set_private_data_ext = pfn_set_private_data;
-using pfn_get_private_data     = void (*)(ktl::api::device _device, ktl::api::object_type _object_type,
-                                      ktl::u64 _object_handle, ktl::api::private_data_slot _private_data_slot,
-                                      ktl::u64 * _p_data);
+using pfn_get_private_data = void(*)(ktl::api::device _device, ktl::api::object_type _object_type, ktl::u64 _object_handle, ktl::api::private_data_slot _private_data_slot, ktl::u64 * _p_data);
 using pfn_get_private_data_ext = pfn_get_private_data;
-using pfn_cmd_copy_buffer_2    = void (*)(ktl::api::command_buffer             _command_buffer,
-                                       const ktl::api::copy_buffer_info_2 * _p_copy_buffer_info);
+using pfn_cmd_copy_buffer_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_buffer_info_2 * _p_copy_buffer_info);
 using pfn_cmd_copy_buffer_2khr = pfn_cmd_copy_buffer_2;
-using pfn_cmd_copy_image_2     = void (*)(ktl::api::command_buffer            _command_buffer,
-                                      const ktl::api::copy_image_info_2 * _p_copy_image_info);
-using pfn_cmd_copy_image_2khr  = pfn_cmd_copy_image_2;
-using pfn_cmd_blit_image_2     = void (*)(ktl::api::command_buffer            _command_buffer,
-                                      const ktl::api::blit_image_info_2 * _p_blit_image_info);
-using pfn_cmd_blit_image_2khr  = pfn_cmd_blit_image_2;
-using pfn_cmd_copy_buffer_to_image_2 =
-    void (*)(ktl::api::command_buffer                      _command_buffer,
-             const ktl::api::copy_buffer_to_image_info_2 * _p_copy_buffer_to_image_info);
+using pfn_cmd_copy_image_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_image_info_2 * _p_copy_image_info);
+using pfn_cmd_copy_image_2khr = pfn_cmd_copy_image_2;
+using pfn_cmd_blit_image_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::blit_image_info_2 * _p_blit_image_info);
+using pfn_cmd_blit_image_2khr = pfn_cmd_blit_image_2;
+using pfn_cmd_copy_buffer_to_image_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_buffer_to_image_info_2 * _p_copy_buffer_to_image_info);
 using pfn_cmd_copy_buffer_to_image_2khr = pfn_cmd_copy_buffer_to_image_2;
-using pfn_cmd_copy_image_to_buffer_2 =
-    void (*)(ktl::api::command_buffer                      _command_buffer,
-             const ktl::api::copy_image_to_buffer_info_2 * _p_copy_image_to_buffer_info);
+using pfn_cmd_copy_image_to_buffer_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_image_to_buffer_info_2 * _p_copy_image_to_buffer_info);
 using pfn_cmd_copy_image_to_buffer_2khr = pfn_cmd_copy_image_to_buffer_2;
-using pfn_cmd_resolve_image_2           = void (*)(ktl::api::command_buffer               _command_buffer,
-                                         const ktl::api::resolve_image_info_2 * _p_resolve_image_info);
-using pfn_cmd_resolve_image_2khr        = pfn_cmd_resolve_image_2;
-using pfn_cmd_refresh_objects_khr       = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                             const ktl::api::refresh_object_list_khr * _p_refresh_objects);
-using pfn_get_physical_device_refreshable_object_types_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_refreshable_object_type_count,
-                         ktl::api::object_type * _p_refreshable_object_types);
-using pfn_cmd_set_fragment_shading_rate_khr =
-    void (*)(ktl::api::command_buffer _command_buffer, const ktl::api::extent_2d * _p_fragment_size,
-             const ktl::api::fragment_shading_rate_combiner_op_khr _combiner_ops[2]);
-using pfn_get_physical_device_fragment_shading_rates_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_fragment_shading_rate_count,
-                         ktl::api::physical_device_fragment_shading_rate_khr * _p_fragment_shading_rates);
-using pfn_cmd_set_fragment_shading_rate_enum_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::fragment_shading_rate_nv _shading_rate,
-             const ktl::api::fragment_shading_rate_combiner_op_khr _combiner_ops[2]);
-using pfn_get_acceleration_structure_build_sizes_khr = void (*)(
-    ktl::api::device _device, ktl::api::acceleration_structure_build_type_khr _build_type,
-    const ktl::api::acceleration_structure_build_geometry_info_khr * _p_build_info,
-    const ktl::u32 * _p_max_primitive_counts, ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info);
-using pfn_cmd_set_vertex_input_ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _vertex_binding_description_count,
-             const ktl::api::vertex_input_binding_description_2ext *   _p_vertex_binding_descriptions,
-             ktl::u32                                                  _vertex_attribute_description_count,
-             const ktl::api::vertex_input_attribute_description_2ext * _p_vertex_attribute_descriptions);
-using pfn_cmd_set_color_write_enable_ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                    ktl::u32                 _attachment_count,
-                                                    const ktl::api::bool32 * _p_color_write_enables);
-using pfn_cmd_set_event_2                = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
-                                     const ktl::api::dependency_info * _p_dependency_info);
-using pfn_cmd_set_event_2khr             = pfn_cmd_set_event_2;
-using pfn_cmd_reset_event_2              = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
-                                       ktl::api::pipeline_stage_flags_2 _stage_mask);
-using pfn_cmd_reset_event_2khr           = pfn_cmd_reset_event_2;
-using pfn_cmd_wait_events_2              = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count,
-                                       const ktl::api::event *           _p_events,
-                                       const ktl::api::dependency_info * _p_dependency_infos);
-using pfn_cmd_wait_events_2khr           = pfn_cmd_wait_events_2;
-using pfn_cmd_pipeline_barrier_2         = void (*)(ktl::api::command_buffer          _command_buffer,
-                                            const ktl::api::dependency_info * _p_dependency_info);
-using pfn_cmd_pipeline_barrier_2khr      = pfn_cmd_pipeline_barrier_2;
-using pfn_queue_submit_2                 = ktl::api::result (*)(ktl::api::queue _queue, ktl::u32 _submit_count,
-                                                const ktl::api::submit_info_2 * _p_submits, ktl::api::fence _fence);
-using pfn_queue_submit_2khr              = pfn_queue_submit_2;
-using pfn_cmd_write_timestamp_2          = void (*)(ktl::api::command_buffer         _command_buffer,
-                                           ktl::api::pipeline_stage_flags_2 _stage, ktl::api::query_pool _query_pool,
-                                           ktl::u32 _query);
-using pfn_cmd_write_timestamp_2khr       = pfn_cmd_write_timestamp_2;
-using pfn_cmd_write_buffer_marker_2amd   = void (*)(ktl::api::command_buffer         _command_buffer,
-                                                  ktl::api::pipeline_stage_flags_2 _stage, ktl::api::buffer _dst_buffer,
-                                                  ktl::api::dvsize _dst_offset, ktl::u32 _marker);
-using pfn_get_queue_checkpoint_data_2nv  = void (*)(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count,
-                                                   ktl::api::checkpoint_data_2nv * _p_checkpoint_data);
-using pfn_copy_memory_to_image           = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::copy_memory_to_image_info * _p_copy_memory_to_image_info);
+using pfn_cmd_resolve_image_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::resolve_image_info_2 * _p_resolve_image_info);
+using pfn_cmd_resolve_image_2khr = pfn_cmd_resolve_image_2;
+using pfn_cmd_refresh_objects_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::refresh_object_list_khr * _p_refresh_objects);
+using pfn_get_physical_device_refreshable_object_types_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_refreshable_object_type_count, ktl::api::object_type * _p_refreshable_object_types);
+using pfn_cmd_set_fragment_shading_rate_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::extent_2d * _p_fragment_size, const ktl::api::fragment_shading_rate_combiner_op_khr _combiner_ops[2]);
+using pfn_get_physical_device_fragment_shading_rates_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_fragment_shading_rate_count, ktl::api::physical_device_fragment_shading_rate_khr * _p_fragment_shading_rates);
+using pfn_cmd_set_fragment_shading_rate_enum_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::fragment_shading_rate_nv _shading_rate, const ktl::api::fragment_shading_rate_combiner_op_khr _combiner_ops[2]);
+using pfn_get_acceleration_structure_build_sizes_khr = void(*)(ktl::api::device _device, ktl::api::acceleration_structure_build_type_khr _build_type, const ktl::api::acceleration_structure_build_geometry_info_khr * _p_build_info, const ktl::u32 * _p_max_primitive_counts, ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info);
+using pfn_cmd_set_vertex_input_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _vertex_binding_description_count, const ktl::api::vertex_input_binding_description_2ext * _p_vertex_binding_descriptions, ktl::u32 _vertex_attribute_description_count, const ktl::api::vertex_input_attribute_description_2ext * _p_vertex_attribute_descriptions);
+using pfn_cmd_set_color_write_enable_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _attachment_count, const ktl::api::bool32 * _p_color_write_enables);
+using pfn_cmd_set_event_2 = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event, const ktl::api::dependency_info * _p_dependency_info);
+using pfn_cmd_set_event_2khr = pfn_cmd_set_event_2;
+using pfn_cmd_reset_event_2 = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event, ktl::api::pipeline_stage_flags_2 _stage_mask);
+using pfn_cmd_reset_event_2khr = pfn_cmd_reset_event_2;
+using pfn_cmd_wait_events_2 = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count, const ktl::api::event * _p_events, const ktl::api::dependency_info * _p_dependency_infos);
+using pfn_cmd_wait_events_2khr = pfn_cmd_wait_events_2;
+using pfn_cmd_pipeline_barrier_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::dependency_info * _p_dependency_info);
+using pfn_cmd_pipeline_barrier_2khr = pfn_cmd_pipeline_barrier_2;
+using pfn_queue_submit_2 = ktl::api::result(*)(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::submit_info_2 * _p_submits, ktl::api::fence _fence);
+using pfn_queue_submit_2khr = pfn_queue_submit_2;
+using pfn_cmd_write_timestamp_2 = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage, ktl::api::query_pool _query_pool, ktl::u32 _query);
+using pfn_cmd_write_timestamp_2khr = pfn_cmd_write_timestamp_2;
+using pfn_cmd_write_buffer_marker_2amd = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage, ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset, ktl::u32 _marker);
+using pfn_get_queue_checkpoint_data_2nv = void(*)(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count, ktl::api::checkpoint_data_2nv * _p_checkpoint_data);
+using pfn_copy_memory_to_image = ktl::api::result(*)(ktl::api::device _device, const ktl::api::copy_memory_to_image_info * _p_copy_memory_to_image_info);
 using pfn_copy_memory_to_image_ext = pfn_copy_memory_to_image;
-using pfn_copy_image_to_memory     = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::copy_image_to_memory_info * _p_copy_image_to_memory_info);
+using pfn_copy_image_to_memory = ktl::api::result(*)(ktl::api::device _device, const ktl::api::copy_image_to_memory_info * _p_copy_image_to_memory_info);
 using pfn_copy_image_to_memory_ext = pfn_copy_image_to_memory;
-using pfn_copy_image_to_image      = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::copy_image_to_image_info * _p_copy_image_to_image_info);
+using pfn_copy_image_to_image = ktl::api::result(*)(ktl::api::device _device, const ktl::api::copy_image_to_image_info * _p_copy_image_to_image_info);
 using pfn_copy_image_to_image_ext = pfn_copy_image_to_image;
-using pfn_transition_image_layout =
-    ktl::api::result (*)(ktl::api::device _device, ktl::u32 _transition_count,
-                         const ktl::api::host_image_layout_transition_info * _p_transitions);
-using pfn_transition_image_layout_ext         = pfn_transition_image_layout;
-using pfn_get_command_pool_memory_consumption = void (*)(ktl::api::device _device, ktl::api::command_pool _command_pool,
-                                                         ktl::api::command_buffer                    _command_buffer,
-                                                         ktl::api::command_pool_memory_consumption * _p_consumption);
-using pfn_cmd_decompress_memory_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _decompress_region_count,
-             const ktl::api::decompress_memory_region_nv * _p_decompress_memory_regions);
-using pfn_cmd_decompress_memory_indirect_count_nv = void (*)(ktl::api::command_buffer _command_buffer,
-                                                             ktl::api::dvaddr         _indirect_commands_address,
-                                                             ktl::api::dvaddr         _indirect_commands_count_address,
-                                                             ktl::u32                 _stride);
-using pfn_get_partitioned_acceleration_structures_build_sizes_nv =
-    void (*)(ktl::api::device _device, const ktl::api::partitioned_acceleration_structure_instances_input_nv * _p_info,
-             ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info);
-using pfn_cmd_build_partitioned_acceleration_structures_nv =
-    void (*)(ktl::api::command_buffer                                           _command_buffer,
-             const ktl::api::build_partitioned_acceleration_structure_info_nv * _p_build_info);
-using pfn_cmd_decompress_memory_ext =
-    void (*)(ktl::api::command_buffer                     _command_buffer,
-             const ktl::api::decompress_memory_info_ext * _p_decompress_memory_info_ext);
-using pfn_cmd_decompress_memory_indirect_count_ext = void (*)(
-    ktl::api::command_buffer _command_buffer, ktl::api::memory_decompression_method_flags_ext _decompression_method,
-    ktl::api::dvaddr _indirect_commands_address, ktl::api::dvaddr _indirect_commands_count_address,
-    ktl::u32 _max_decompression_count, ktl::u32 _stride);
-using pfn_create_cu_module_nvx     = ktl::api::result (*)(ktl::api::device                            _device,
-                                                      const ktl::api::cu_module_create_info_nvx * _p_create_info,
-                                                      const ktl::api::allocation_callbacks *      _p_allocator,
-                                                      ktl::api::cu_module_nvx *                   _p_module);
-using pfn_create_cu_function_nvx   = ktl::api::result (*)(ktl::api::device                              _device,
-                                                        const ktl::api::cu_function_create_info_nvx * _p_create_info,
-                                                        const ktl::api::allocation_callbacks *        _p_allocator,
-                                                        ktl::api::cu_function_nvx *                   _p_function);
-using pfn_destroy_cu_module_nvx    = void (*)(ktl::api::device _device, ktl::api::cu_module_nvx _module,
-                                           const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_destroy_cu_function_nvx  = void (*)(ktl::api::device _device, ktl::api::cu_function_nvx _function,
-                                             const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_cmd_cu_launch_kernel_nvx = void (*)(ktl::api::command_buffer             _command_buffer,
-                                              const ktl::api::cu_launch_info_nvx * _p_launch_info);
-using pfn_get_descriptor_set_layout_size_ext           = void (*)(ktl::api::device                _device,
-                                                        ktl::api::descriptor_set_layout _layout,
-                                                        ktl::api::dvsize *              _p_layout_size_in_bytes);
-using pfn_get_descriptor_set_layout_binding_offset_ext = void (*)(ktl::api::device                _device,
-                                                                  ktl::api::descriptor_set_layout _layout,
-                                                                  ktl::u32 _binding, ktl::api::dvsize * _p_offset);
-using pfn_get_descriptor_ext                           = void (*)(ktl::api::device                          _device,
-                                        const ktl::api::descriptor_get_info_ext * _p_descriptor_info,
-                                        ktl::usize _data_size, void * _p_descriptor);
-using pfn_cmd_bind_descriptor_buffers_ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _buffer_count,
-             const ktl::api::descriptor_buffer_binding_info_ext * _p_binding_infos);
-using pfn_cmd_set_descriptor_buffer_offsets_ext = void (*)(ktl::api::command_buffer      _command_buffer,
-                                                           ktl::api::pipeline_bind_point _pipeline_bind_point,
-                                                           ktl::api::pipeline_layout _layout, ktl::u32 _first_set,
-                                                           ktl::u32 _set_count, const ktl::u32 * _p_buffer_indices,
-                                                           const ktl::api::dvsize * _p_offsets);
-using pfn_cmd_bind_descriptor_buffer_embedded_samplers_ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point,
-             ktl::api::pipeline_layout _layout, ktl::u32 _set);
-using pfn_get_buffer_opaque_capture_descriptor_data_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::buffer_capture_descriptor_data_info_ext * _p_info, void * _p_data);
-using pfn_get_image_opaque_capture_descriptor_data_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::image_capture_descriptor_data_info_ext * _p_info, void * _p_data);
-using pfn_get_image_view_opaque_capture_descriptor_data_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::image_view_capture_descriptor_data_info_ext * _p_info, void * _p_data);
-using pfn_get_sampler_opaque_capture_descriptor_data_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::sampler_capture_descriptor_data_info_ext * _p_info, void * _p_data);
-using pfn_get_acceleration_structure_opaque_capture_descriptor_data_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::acceleration_structure_capture_descriptor_data_info_ext * _p_info,
-    void * _p_data);
-using pfn_set_device_memory_priority_ext = void (*)(ktl::api::device _device, ktl::api::device_memory _memory,
-                                                    float _priority);
-using pfn_acquire_drm_display_ext = ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::i32 _drm_fd,
-                                                         ktl::api::display_khr _display);
-using pfn_get_drm_display_ext     = ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::i32 _drm_fd,
-                                                     ktl::u32 _connector_id, ktl::api::display_khr * _display);
-using pfn_wait_for_present_2khr   = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                                       const ktl::api::present_wait_2info_khr * _p_present_wait_2info);
-using pfn_wait_for_present_khr    = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                                      ktl::u64 _present_id, ktl::u64 _timeout);
-using pfn_create_buffer_collection_fuchsia = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::buffer_collection_create_info_fuchsia * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::buffer_collection_fuchsia * _p_collection);
-using pfn_set_buffer_collection_buffer_constraints_fuchsia =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::buffer_collection_fuchsia _collection,
-                         const ktl::api::buffer_constraints_info_fuchsia * _p_buffer_constraints_info);
-using pfn_set_buffer_collection_image_constraints_fuchsia =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::buffer_collection_fuchsia _collection,
-                         const ktl::api::image_constraints_info_fuchsia * _p_image_constraints_info);
-using pfn_destroy_buffer_collection_fuchsia = void (*)(ktl::api::device                       _device,
-                                                       ktl::api::buffer_collection_fuchsia    _collection,
-                                                       const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_buffer_collection_properties_fuchsia =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::buffer_collection_fuchsia _collection,
-                         ktl::api::buffer_collection_properties_fuchsia * _p_properties);
-using pfn_create_cuda_module_nv     = ktl::api::result (*)(ktl::api::device                             _device,
-                                                       const ktl::api::cuda_module_create_info_nv * _p_create_info,
-                                                       const ktl::api::allocation_callbacks *       _p_allocator,
-                                                       ktl::api::cuda_module_nv *                   _p_module);
-using pfn_get_cuda_module_cache_nv  = ktl::api::result (*)(ktl::api::device _device, ktl::api::cuda_module_nv _module,
-                                                          ktl::usize * _p_cache_size, void * _p_cache_data);
-using pfn_create_cuda_function_nv   = ktl::api::result (*)(ktl::api::device                               _device,
-                                                         const ktl::api::cuda_function_create_info_nv * _p_create_info,
-                                                         const ktl::api::allocation_callbacks *         _p_allocator,
-                                                         ktl::api::cuda_function_nv *                   _p_function);
-using pfn_destroy_cuda_module_nv    = void (*)(ktl::api::device _device, ktl::api::cuda_module_nv _module,
-                                            const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_destroy_cuda_function_nv  = void (*)(ktl::api::device _device, ktl::api::cuda_function_nv _function,
-                                              const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_cmd_cuda_launch_kernel_nv = void (*)(ktl::api::command_buffer              _command_buffer,
-                                               const ktl::api::cuda_launch_info_nv * _p_launch_info);
-using pfn_cmd_begin_rendering       = void (*)(ktl::api::command_buffer         _command_buffer,
-                                         const ktl::api::rendering_info * _p_rendering_info);
-using pfn_cmd_begin_rendering_khr   = pfn_cmd_begin_rendering;
-using pfn_cmd_end_rendering         = void (*)(ktl::api::command_buffer _command_buffer);
-using pfn_cmd_end_rendering_2khr    = void (*)(ktl::api::command_buffer                 _command_buffer,
-                                            const ktl::api::rendering_end_info_khr * _p_rendering_end_info);
-using pfn_cmd_end_rendering_2ext    = pfn_cmd_end_rendering_2khr;
-using pfn_cmd_end_rendering_khr     = pfn_cmd_end_rendering;
-using pfn_get_descriptor_set_layout_host_mapping_info_valve =
-    void (*)(ktl::api::device _device, const ktl::api::descriptor_set_binding_reference_valve * _p_binding_reference,
-             ktl::api::descriptor_set_layout_host_mapping_info_valve * _p_host_mapping);
-using pfn_get_descriptor_set_host_mapping_valve = void (*)(ktl::api::device         _device,
-                                                           ktl::api::descriptor_set _descriptor_set, void * _pp_data);
-using pfn_create_micromap_ext             = ktl::api::result (*)(ktl::api::device                           _device,
-                                                     const ktl::api::micromap_create_info_ext * _p_create_info,
-                                                     const ktl::api::allocation_callbacks *     _p_allocator,
-                                                     ktl::api::micromap_ext *                   _p_micromap);
-using pfn_cmd_build_micromaps_ext         = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count,
-                                             const ktl::api::micromap_build_info_ext * _p_infos);
-using pfn_build_micromaps_ext             = ktl::api::result (*)(ktl::api::device                          _device,
-                                                     ktl::api::deferred_operation_khr          _deferred_operation,
-                                                     ktl::u32                                  _info_count,
-                                                     const ktl::api::micromap_build_info_ext * _p_infos);
-using pfn_destroy_micromap_ext            = void (*)(ktl::api::device _device, ktl::api::micromap_ext _micromap,
-                                          const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_cmd_copy_micromap_ext           = void (*)(ktl::api::command_buffer                 _command_buffer,
-                                           const ktl::api::copy_micromap_info_ext * _p_info);
-using pfn_copy_micromap_ext               = ktl::api::result (*)(ktl::api::device                         _device,
-                                                   ktl::api::deferred_operation_khr         _deferred_operation,
-                                                   const ktl::api::copy_micromap_info_ext * _p_info);
-using pfn_cmd_copy_micromap_to_memory_ext = void (*)(ktl::api::command_buffer                           _command_buffer,
-                                                     const ktl::api::copy_micromap_to_memory_info_ext * _p_info);
-using pfn_copy_micromap_to_memory_ext =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
-                         const ktl::api::copy_micromap_to_memory_info_ext * _p_info);
-using pfn_cmd_copy_memory_to_micromap_ext = void (*)(ktl::api::command_buffer                           _command_buffer,
-                                                     const ktl::api::copy_memory_to_micromap_info_ext * _p_info);
-using pfn_copy_memory_to_micromap_ext =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
-                         const ktl::api::copy_memory_to_micromap_info_ext * _p_info);
-using pfn_cmd_write_micromaps_properties_ext = void (*)(ktl::api::command_buffer       _command_buffer,
-                                                        ktl::u32                       _micromap_count,
-                                                        const ktl::api::micromap_ext * _p_micromaps,
-                                                        ktl::api::query_type           _query_type,
-                                                        ktl::api::query_pool _query_pool, ktl::u32 _first_query);
-using pfn_write_micromaps_properties_ext     = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _micromap_count,
-                                                                const ktl::api::micromap_ext * _p_micromaps,
-                                                                ktl::api::query_type _query_type, ktl::usize _data_size,
-                                                                void * _p_data, ktl::usize _stride);
-using pfn_get_device_micromap_compatibility_ext =
-    void (*)(ktl::api::device _device, const ktl::api::micromap_version_info_ext * _p_version_info,
-             ktl::api::acceleration_structure_compatibility_khr * _p_compatibility);
-using pfn_get_micromap_build_sizes_ext     = void (*)(ktl::api::device                                _device,
-                                                  ktl::api::acceleration_structure_build_type_khr _build_type,
-                                                  const ktl::api::micromap_build_info_ext *       _p_build_info,
-                                                  ktl::api::micromap_build_sizes_info_ext *       _p_size_info);
-using pfn_get_shader_module_identifier_ext = void (*)(ktl::api::device _device, ktl::api::shader_module _shader_module,
-                                                      ktl::api::shader_module_identifier_ext * _p_identifier);
-using pfn_get_shader_module_create_info_identifier_ext =
-    void (*)(ktl::api::device _device, const ktl::api::shader_module_create_info * _p_create_info,
-             ktl::api::shader_module_identifier_ext * _p_identifier);
-using pfn_get_image_subresource_layout_2       = void (*)(ktl::api::device _device, ktl::api::image _image,
-                                                    const ktl::api::image_subresource_2 * _p_subresource,
-                                                    ktl::api::subresource_layout_2 *      _p_layout);
-using pfn_get_image_subresource_layout_2khr    = pfn_get_image_subresource_layout_2;
-using pfn_get_image_subresource_layout_2ext    = pfn_get_image_subresource_layout_2;
-using pfn_get_pipeline_properties_ext          = ktl::api::result (*)(ktl::api::device                    _device,
-                                                             const ktl::api::pipeline_info_khr * _p_pipeline_info,
-                                                             ktl::api::base_out_structure * _p_pipeline_properties);
-using pfn_export_metal_objects_ext             = void (*)(ktl::api::device                          _device,
-                                              ktl::api::export_metal_objects_info_ext * _p_metal_objects_info);
-using pfn_cmd_bind_tile_memory_qcom            = void (*)(ktl::api::command_buffer                     _command_buffer,
-                                               const ktl::api::tile_memory_bind_info_qcom * _p_tile_memory_bind_info);
-using pfn_get_framebuffer_tile_properties_qcom = ktl::api::result (*)(ktl::api::device      _device,
-                                                                      ktl::api::framebuffer _framebuffer,
-                                                                      ktl::u32 *            _p_properties_count,
-                                                                      ktl::api::tile_properties_qcom * _p_properties);
-using pfn_get_dynamic_rendering_tile_properties_qcom =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::rendering_info * _p_rendering_info,
-                         ktl::api::tile_properties_qcom * _p_properties);
-using pfn_get_physical_device_optical_flow_image_formats_nv = ktl::api::result (*)(
-    ktl::api::physical_device                           _physical_device,
-    const ktl::api::optical_flow_image_format_info_nv * _p_optical_flow_image_format_info, ktl::u32 * _p_format_count,
-    ktl::api::optical_flow_image_format_properties_nv * _p_image_format_properties);
-using pfn_create_optical_flow_session_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::optical_flow_session_create_info_nv * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::optical_flow_session_nv * _p_session);
-using pfn_destroy_optical_flow_session_nv = void (*)(ktl::api::device                       _device,
-                                                     ktl::api::optical_flow_session_nv      _session,
-                                                     const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_bind_optical_flow_session_image_nv =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::optical_flow_session_nv _session,
-                         ktl::api::optical_flow_session_binding_point_nv _binding_point, ktl::api::image_view _view,
-                         ktl::api::image_layout _layout);
-using pfn_cmd_optical_flow_execute_nv     = void (*)(ktl::api::command_buffer                       _command_buffer,
-                                                 ktl::api::optical_flow_session_nv              _session,
-                                                 const ktl::api::optical_flow_execute_info_nv * _p_execute_info);
-using pfn_get_device_fault_info_ext       = ktl::api::result (*)(ktl::api::device                    _device,
-                                                           ktl::api::device_fault_counts_ext * _p_fault_counts,
-                                                           ktl::api::device_fault_info_ext *   _p_fault_info);
-using pfn_get_device_fault_reports_khr    = ktl::api::result (*)(ktl::api::device _device, ktl::u64 _timeout,
-                                                              ktl::u32 *                        _p_fault_counts,
-                                                              ktl::api::device_fault_info_khr * _p_fault_info);
-using pfn_get_device_fault_debug_info_khr = ktl::api::result (*)(ktl::api::device                        _device,
-                                                                 ktl::api::device_fault_debug_info_khr * _p_debug_info);
-using pfn_cmd_set_depth_bias_2ext         = void (*)(ktl::api::command_buffer              _command_buffer,
-                                             const ktl::api::depth_bias_info_ext * _p_depth_bias_info);
-using pfn_release_swapchain_images_khr =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::release_swapchain_images_info_khr * _p_release_info);
-using pfn_release_swapchain_images_ext            = pfn_release_swapchain_images_khr;
-using pfn_get_device_image_subresource_layout     = void (*)(ktl::api::device                                _device,
-                                                         const ktl::api::device_image_subresource_info * _p_info,
-                                                         ktl::api::subresource_layout_2 *                _p_layout);
+using pfn_transition_image_layout = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _transition_count, const ktl::api::host_image_layout_transition_info * _p_transitions);
+using pfn_transition_image_layout_ext = pfn_transition_image_layout;
+using pfn_get_command_pool_memory_consumption = void(*)(ktl::api::device _device, ktl::api::command_pool _command_pool, ktl::api::command_buffer _command_buffer, ktl::api::command_pool_memory_consumption * _p_consumption);
+using pfn_cmd_decompress_memory_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _decompress_region_count, const ktl::api::decompress_memory_region_nv * _p_decompress_memory_regions);
+using pfn_cmd_decompress_memory_indirect_count_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _indirect_commands_address, ktl::api::dvaddr _indirect_commands_count_address, ktl::u32 _stride);
+using pfn_get_partitioned_acceleration_structures_build_sizes_nv = void(*)(ktl::api::device _device, const ktl::api::partitioned_acceleration_structure_instances_input_nv * _p_info, ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info);
+using pfn_cmd_build_partitioned_acceleration_structures_nv = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::build_partitioned_acceleration_structure_info_nv * _p_build_info);
+using pfn_cmd_decompress_memory_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::decompress_memory_info_ext * _p_decompress_memory_info_ext);
+using pfn_cmd_decompress_memory_indirect_count_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::memory_decompression_method_flags_ext _decompression_method, ktl::api::dvaddr _indirect_commands_address, ktl::api::dvaddr _indirect_commands_count_address, ktl::u32 _max_decompression_count, ktl::u32 _stride);
+using pfn_create_cu_module_nvx = ktl::api::result(*)(ktl::api::device _device, const ktl::api::cu_module_create_info_nvx * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::cu_module_nvx * _p_module);
+using pfn_create_cu_function_nvx = ktl::api::result(*)(ktl::api::device _device, const ktl::api::cu_function_create_info_nvx * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::cu_function_nvx * _p_function);
+using pfn_destroy_cu_module_nvx = void(*)(ktl::api::device _device, ktl::api::cu_module_nvx _module, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_destroy_cu_function_nvx = void(*)(ktl::api::device _device, ktl::api::cu_function_nvx _function, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_cmd_cu_launch_kernel_nvx = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::cu_launch_info_nvx * _p_launch_info);
+using pfn_get_descriptor_set_layout_size_ext = void(*)(ktl::api::device _device, ktl::api::descriptor_set_layout _layout, ktl::api::dvsize * _p_layout_size_in_bytes);
+using pfn_get_descriptor_set_layout_binding_offset_ext = void(*)(ktl::api::device _device, ktl::api::descriptor_set_layout _layout, ktl::u32 _binding, ktl::api::dvsize * _p_offset);
+using pfn_get_descriptor_ext = void(*)(ktl::api::device _device, const ktl::api::descriptor_get_info_ext * _p_descriptor_info, ktl::usize _data_size, void * _p_descriptor);
+using pfn_cmd_bind_descriptor_buffers_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _buffer_count, const ktl::api::descriptor_buffer_binding_info_ext * _p_binding_infos);
+using pfn_cmd_set_descriptor_buffer_offsets_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point, ktl::api::pipeline_layout _layout, ktl::u32 _first_set, ktl::u32 _set_count, const ktl::u32 * _p_buffer_indices, const ktl::api::dvsize * _p_offsets);
+using pfn_cmd_bind_descriptor_buffer_embedded_samplers_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point, ktl::api::pipeline_layout _layout, ktl::u32 _set);
+using pfn_get_buffer_opaque_capture_descriptor_data_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::buffer_capture_descriptor_data_info_ext * _p_info, void * _p_data);
+using pfn_get_image_opaque_capture_descriptor_data_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::image_capture_descriptor_data_info_ext * _p_info, void * _p_data);
+using pfn_get_image_view_opaque_capture_descriptor_data_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::image_view_capture_descriptor_data_info_ext * _p_info, void * _p_data);
+using pfn_get_sampler_opaque_capture_descriptor_data_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::sampler_capture_descriptor_data_info_ext * _p_info, void * _p_data);
+using pfn_get_acceleration_structure_opaque_capture_descriptor_data_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::acceleration_structure_capture_descriptor_data_info_ext * _p_info, void * _p_data);
+using pfn_set_device_memory_priority_ext = void(*)(ktl::api::device _device, ktl::api::device_memory _memory, float _priority);
+using pfn_acquire_drm_display_ext = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::i32 _drm_fd, ktl::api::display_khr _display);
+using pfn_get_drm_display_ext = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::i32 _drm_fd, ktl::u32 _connector_id, ktl::api::display_khr * _display);
+using pfn_wait_for_present_2khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, const ktl::api::present_wait_2info_khr * _p_present_wait_2info);
+using pfn_wait_for_present_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::u64 _present_id, ktl::u64 _timeout);
+using pfn_create_buffer_collection_fuchsia = ktl::api::result(*)(ktl::api::device _device, const ktl::api::buffer_collection_create_info_fuchsia * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::buffer_collection_fuchsia * _p_collection);
+using pfn_set_buffer_collection_buffer_constraints_fuchsia = ktl::api::result(*)(ktl::api::device _device, ktl::api::buffer_collection_fuchsia _collection, const ktl::api::buffer_constraints_info_fuchsia * _p_buffer_constraints_info);
+using pfn_set_buffer_collection_image_constraints_fuchsia = ktl::api::result(*)(ktl::api::device _device, ktl::api::buffer_collection_fuchsia _collection, const ktl::api::image_constraints_info_fuchsia * _p_image_constraints_info);
+using pfn_destroy_buffer_collection_fuchsia = void(*)(ktl::api::device _device, ktl::api::buffer_collection_fuchsia _collection, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_buffer_collection_properties_fuchsia = ktl::api::result(*)(ktl::api::device _device, ktl::api::buffer_collection_fuchsia _collection, ktl::api::buffer_collection_properties_fuchsia * _p_properties);
+using pfn_create_cuda_module_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::cuda_module_create_info_nv * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::cuda_module_nv * _p_module);
+using pfn_get_cuda_module_cache_nv = ktl::api::result(*)(ktl::api::device _device, ktl::api::cuda_module_nv _module, ktl::usize * _p_cache_size, void * _p_cache_data);
+using pfn_create_cuda_function_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::cuda_function_create_info_nv * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::cuda_function_nv * _p_function);
+using pfn_destroy_cuda_module_nv = void(*)(ktl::api::device _device, ktl::api::cuda_module_nv _module, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_destroy_cuda_function_nv = void(*)(ktl::api::device _device, ktl::api::cuda_function_nv _function, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_cmd_cuda_launch_kernel_nv = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::cuda_launch_info_nv * _p_launch_info);
+using pfn_cmd_begin_rendering = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::rendering_info * _p_rendering_info);
+using pfn_cmd_begin_rendering_khr = pfn_cmd_begin_rendering;
+using pfn_cmd_end_rendering = void(*)(ktl::api::command_buffer _command_buffer);
+using pfn_cmd_end_rendering_2khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::rendering_end_info_khr * _p_rendering_end_info);
+using pfn_cmd_end_rendering_2ext = pfn_cmd_end_rendering_2khr;
+using pfn_cmd_end_rendering_khr = pfn_cmd_end_rendering;
+using pfn_get_descriptor_set_layout_host_mapping_info_valve = void(*)(ktl::api::device _device, const ktl::api::descriptor_set_binding_reference_valve * _p_binding_reference, ktl::api::descriptor_set_layout_host_mapping_info_valve * _p_host_mapping);
+using pfn_get_descriptor_set_host_mapping_valve = void(*)(ktl::api::device _device, ktl::api::descriptor_set _descriptor_set, void * _pp_data);
+using pfn_create_micromap_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::micromap_create_info_ext * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::micromap_ext * _p_micromap);
+using pfn_cmd_build_micromaps_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count, const ktl::api::micromap_build_info_ext * _p_infos);
+using pfn_build_micromaps_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, ktl::u32 _info_count, const ktl::api::micromap_build_info_ext * _p_infos);
+using pfn_destroy_micromap_ext = void(*)(ktl::api::device _device, ktl::api::micromap_ext _micromap, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_cmd_copy_micromap_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_micromap_info_ext * _p_info);
+using pfn_copy_micromap_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, const ktl::api::copy_micromap_info_ext * _p_info);
+using pfn_cmd_copy_micromap_to_memory_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_micromap_to_memory_info_ext * _p_info);
+using pfn_copy_micromap_to_memory_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, const ktl::api::copy_micromap_to_memory_info_ext * _p_info);
+using pfn_cmd_copy_memory_to_micromap_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_memory_to_micromap_info_ext * _p_info);
+using pfn_copy_memory_to_micromap_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, const ktl::api::copy_memory_to_micromap_info_ext * _p_info);
+using pfn_cmd_write_micromaps_properties_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _micromap_count, const ktl::api::micromap_ext * _p_micromaps, ktl::api::query_type _query_type, ktl::api::query_pool _query_pool, ktl::u32 _first_query);
+using pfn_write_micromaps_properties_ext = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _micromap_count, const ktl::api::micromap_ext * _p_micromaps, ktl::api::query_type _query_type, ktl::usize _data_size, void * _p_data, ktl::usize _stride);
+using pfn_get_device_micromap_compatibility_ext = void(*)(ktl::api::device _device, const ktl::api::micromap_version_info_ext * _p_version_info, ktl::api::acceleration_structure_compatibility_khr * _p_compatibility);
+using pfn_get_micromap_build_sizes_ext = void(*)(ktl::api::device _device, ktl::api::acceleration_structure_build_type_khr _build_type, const ktl::api::micromap_build_info_ext * _p_build_info, ktl::api::micromap_build_sizes_info_ext * _p_size_info);
+using pfn_get_shader_module_identifier_ext = void(*)(ktl::api::device _device, ktl::api::shader_module _shader_module, ktl::api::shader_module_identifier_ext * _p_identifier);
+using pfn_get_shader_module_create_info_identifier_ext = void(*)(ktl::api::device _device, const ktl::api::shader_module_create_info * _p_create_info, ktl::api::shader_module_identifier_ext * _p_identifier);
+using pfn_get_image_subresource_layout_2 = void(*)(ktl::api::device _device, ktl::api::image _image, const ktl::api::image_subresource_2 * _p_subresource, ktl::api::subresource_layout_2 * _p_layout);
+using pfn_get_image_subresource_layout_2khr = pfn_get_image_subresource_layout_2;
+using pfn_get_image_subresource_layout_2ext = pfn_get_image_subresource_layout_2;
+using pfn_get_pipeline_properties_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::pipeline_info_khr * _p_pipeline_info, ktl::api::base_out_structure * _p_pipeline_properties);
+using pfn_export_metal_objects_ext = void(*)(ktl::api::device _device, ktl::api::export_metal_objects_info_ext * _p_metal_objects_info);
+using pfn_cmd_bind_tile_memory_qcom = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::tile_memory_bind_info_qcom * _p_tile_memory_bind_info);
+using pfn_get_framebuffer_tile_properties_qcom = ktl::api::result(*)(ktl::api::device _device, ktl::api::framebuffer _framebuffer, ktl::u32 * _p_properties_count, ktl::api::tile_properties_qcom * _p_properties);
+using pfn_get_dynamic_rendering_tile_properties_qcom = ktl::api::result(*)(ktl::api::device _device, const ktl::api::rendering_info * _p_rendering_info, ktl::api::tile_properties_qcom * _p_properties);
+using pfn_get_physical_device_optical_flow_image_formats_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, const ktl::api::optical_flow_image_format_info_nv * _p_optical_flow_image_format_info, ktl::u32 * _p_format_count, ktl::api::optical_flow_image_format_properties_nv * _p_image_format_properties);
+using pfn_create_optical_flow_session_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::optical_flow_session_create_info_nv * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::optical_flow_session_nv * _p_session);
+using pfn_destroy_optical_flow_session_nv = void(*)(ktl::api::device _device, ktl::api::optical_flow_session_nv _session, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_bind_optical_flow_session_image_nv = ktl::api::result(*)(ktl::api::device _device, ktl::api::optical_flow_session_nv _session, ktl::api::optical_flow_session_binding_point_nv _binding_point, ktl::api::image_view _view, ktl::api::image_layout _layout);
+using pfn_cmd_optical_flow_execute_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::optical_flow_session_nv _session, const ktl::api::optical_flow_execute_info_nv * _p_execute_info);
+using pfn_get_device_fault_info_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::device_fault_counts_ext * _p_fault_counts, ktl::api::device_fault_info_ext * _p_fault_info);
+using pfn_get_device_fault_reports_khr = ktl::api::result(*)(ktl::api::device _device, ktl::u64 _timeout, ktl::u32 * _p_fault_counts, ktl::api::device_fault_info_khr * _p_fault_info);
+using pfn_get_device_fault_debug_info_khr = ktl::api::result(*)(ktl::api::device _device, ktl::api::device_fault_debug_info_khr * _p_debug_info);
+using pfn_cmd_set_depth_bias_2ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::depth_bias_info_ext * _p_depth_bias_info);
+using pfn_release_swapchain_images_khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::release_swapchain_images_info_khr * _p_release_info);
+using pfn_release_swapchain_images_ext = pfn_release_swapchain_images_khr;
+using pfn_get_device_image_subresource_layout = void(*)(ktl::api::device _device, const ktl::api::device_image_subresource_info * _p_info, ktl::api::subresource_layout_2 * _p_layout);
 using pfn_get_device_image_subresource_layout_khr = pfn_get_device_image_subresource_layout;
-using pfn_map_memory_2                            = ktl::api::result (*)(ktl::api::device                  _device,
-                                              const ktl::api::memory_map_info * _p_memory_map_info, void * _pp_data);
-using pfn_map_memory_2khr                         = pfn_map_memory_2;
-using pfn_unmap_memory_2                          = ktl::api::result (*)(ktl::api::device                    _device,
-                                                const ktl::api::memory_unmap_info * _p_memory_unmap_info);
-using pfn_unmap_memory_2khr                       = pfn_unmap_memory_2;
-using pfn_create_shaders_ext         = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _create_info_count,
-                                                    const ktl::api::shader_create_info_ext * _p_create_infos,
-                                                    const ktl::api::allocation_callbacks *   _p_allocator,
-                                                    ktl::api::shader_ext *                   _p_shaders);
-using pfn_destroy_shader_ext         = void (*)(ktl::api::device _device, ktl::api::shader_ext _shader,
-                                        const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_shader_binary_data_ext = ktl::api::result (*)(ktl::api::device _device, ktl::api::shader_ext _shader,
-                                                            ktl::usize * _p_data_size, void * _p_data);
-using pfn_cmd_bind_shaders_ext       = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _stage_count,
-                                          const ktl::api::shader_stage_flag_bits * _p_stages,
-                                          const ktl::api::shader_ext *             _p_shaders);
-using pfn_set_swapchain_present_timing_queue_size_ext = ktl::api::result (*)(ktl::api::device        _device,
-                                                                             ktl::api::swapchain_khr _swapchain,
-                                                                             ktl::u32                _size);
-using pfn_get_swapchain_timing_properties_ext =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                         ktl::api::swapchain_timing_properties_ext * _p_swapchain_timing_properties,
-                         ktl::u64 *                                  _p_swapchain_timing_properties_counter);
-using pfn_get_swapchain_time_domain_properties_ext =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                         ktl::api::swapchain_time_domain_properties_ext * _p_swapchain_time_domain_properties,
-                         ktl::u64 *                                       _p_time_domains_counter);
-using pfn_get_past_presentation_timing_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::past_presentation_timing_info_ext * _p_past_presentation_timing_info,
-    ktl::api::past_presentation_timing_properties_ext * _p_past_presentation_timing_properties);
-using pfn_get_screen_buffer_properties_qnx = ktl::api::result (*)(
-    ktl::api::device _device, const _screen_buffer * _buffer, ktl::api::screen_buffer_properties_qnx * _p_properties);
-using pfn_get_physical_device_cooperative_matrix_properties_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::cooperative_matrix_properties_khr * _p_properties);
-using pfn_get_execution_graph_pipeline_scratch_size_amdx =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::pipeline _execution_graph,
-                         ktl::api::execution_graph_pipeline_scratch_size_amdx * _p_size_info);
-using pfn_get_execution_graph_pipeline_node_index_amdx = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::pipeline _execution_graph,
-    const ktl::api::pipeline_shader_stage_node_create_info_amdx * _p_node_info, ktl::u32 * _p_node_index);
-using pfn_create_execution_graph_pipelines_amdx = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count,
-    const ktl::api::execution_graph_pipeline_create_info_amdx * _p_create_infos,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
-using pfn_cmd_initialize_graph_scratch_memory_amdx = void (*)(ktl::api::command_buffer _command_buffer,
-                                                              ktl::api::pipeline       _execution_graph,
-                                                              ktl::api::dvaddr         _scratch,
-                                                              ktl::api::dvsize         _scratch_size);
-using pfn_cmd_dispatch_graph_amdx = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _scratch,
-                                             ktl::api::dvsize                                 _scratch_size,
-                                             const ktl::api::dispatch_graph_count_info_amdx * _p_count_info);
-using pfn_cmd_dispatch_graph_indirect_amdx       = void (*)(ktl::api::command_buffer _command_buffer,
-                                                      ktl::api::dvaddr _scratch, ktl::api::dvsize _scratch_size,
-                                                      const ktl::api::dispatch_graph_count_info_amdx * _p_count_info);
-using pfn_cmd_dispatch_graph_indirect_count_amdx = void (*)(ktl::api::command_buffer _command_buffer,
-                                                            ktl::api::dvaddr _scratch, ktl::api::dvsize _scratch_size,
-                                                            ktl::api::dvaddr _count_info);
-using pfn_create_gpa_session_amd        = ktl::api::result (*)(ktl::api::device                              _device,
-                                                        const ktl::api::gpa_session_create_info_amd * _p_create_info,
-                                                        const ktl::api::allocation_callbacks *        _p_allocator,
-                                                        ktl::api::gpa_session_amd *                   _p_gpa_session);
-using pfn_destroy_gpa_session_amd       = void (*)(ktl::api::device _device, ktl::api::gpa_session_amd _gpa_session,
-                                             const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_set_gpa_device_clock_mode_amd = ktl::api::result (*)(ktl::api::device                           _device,
-                                                               ktl::api::gpa_device_clock_mode_info_amd * _p_info);
-using pfn_get_gpa_device_clock_info_amd = ktl::api::result (*)(ktl::api::device                          _device,
-                                                               ktl::api::gpa_device_get_clock_info_amd * _p_info);
-using pfn_cmd_begin_gpa_session_amd     = ktl::api::result (*)(ktl::api::command_buffer  _command_buffer,
-                                                           ktl::api::gpa_session_amd _gpa_session);
-using pfn_cmd_end_gpa_session_amd       = ktl::api::result (*)(ktl::api::command_buffer  _command_buffer,
-                                                         ktl::api::gpa_session_amd _gpa_session);
-using pfn_cmd_begin_gpa_sample_amd =
-    ktl::api::result (*)(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session,
-                         const ktl::api::gpa_sample_begin_info_amd * _p_gpa_sample_begin_info, ktl::u32 * _p_sample_id);
-using pfn_cmd_end_gpa_sample_amd           = void (*)(ktl::api::command_buffer  _command_buffer,
-                                            ktl::api::gpa_session_amd _gpa_session, ktl::u32 _sample_id);
-using pfn_get_gpa_session_status_amd       = ktl::api::result (*)(ktl::api::device          _device,
-                                                            ktl::api::gpa_session_amd _gpa_session);
-using pfn_get_gpa_session_results_amd      = ktl::api::result (*)(ktl::api::device          _device,
-                                                             ktl::api::gpa_session_amd _gpa_session,
-                                                             ktl::u32 _sample_id, ktl::usize * _p_size_in_bytes,
-                                                             void * _p_data);
-using pfn_reset_gpa_session_amd            = ktl::api::result (*)(ktl::api::device          _device,
-                                                       ktl::api::gpa_session_amd _gpa_session);
-using pfn_cmd_copy_gpa_session_results_amd = void (*)(ktl::api::command_buffer  _command_buffer,
-                                                      ktl::api::gpa_session_amd _gpa_session);
-using pfn_cmd_bind_descriptor_sets_2       = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::bind_descriptor_sets_info * _p_bind_descriptor_sets_info);
+using pfn_map_memory_2 = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_map_info * _p_memory_map_info, void * _pp_data);
+using pfn_map_memory_2khr = pfn_map_memory_2;
+using pfn_unmap_memory_2 = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_memory_unmap_info);
+using pfn_unmap_memory_2khr = pfn_unmap_memory_2;
+using pfn_create_shaders_ext = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _create_info_count, const ktl::api::shader_create_info_ext * _p_create_infos, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::shader_ext * _p_shaders);
+using pfn_destroy_shader_ext = void(*)(ktl::api::device _device, ktl::api::shader_ext _shader, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_shader_binary_data_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::shader_ext _shader, ktl::usize * _p_data_size, void * _p_data);
+using pfn_cmd_bind_shaders_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _stage_count, const ktl::api::shader_stage_flag_bits * _p_stages, const ktl::api::shader_ext * _p_shaders);
+using pfn_set_swapchain_present_timing_queue_size_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::u32 _size);
+using pfn_get_swapchain_timing_properties_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::api::swapchain_timing_properties_ext * _p_swapchain_timing_properties, ktl::u64 * _p_swapchain_timing_properties_counter);
+using pfn_get_swapchain_time_domain_properties_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::api::swapchain_time_domain_properties_ext * _p_swapchain_time_domain_properties, ktl::u64 * _p_time_domains_counter);
+using pfn_get_past_presentation_timing_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::past_presentation_timing_info_ext * _p_past_presentation_timing_info, ktl::api::past_presentation_timing_properties_ext * _p_past_presentation_timing_properties);
+using pfn_get_screen_buffer_properties_qnx = ktl::api::result(*)(ktl::api::device _device, const _screen_buffer * _buffer, ktl::api::screen_buffer_properties_qnx * _p_properties);
+using pfn_get_physical_device_cooperative_matrix_properties_khr = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count, ktl::api::cooperative_matrix_properties_khr * _p_properties);
+using pfn_get_execution_graph_pipeline_scratch_size_amdx = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline _execution_graph, ktl::api::execution_graph_pipeline_scratch_size_amdx * _p_size_info);
+using pfn_get_execution_graph_pipeline_node_index_amdx = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline _execution_graph, const ktl::api::pipeline_shader_stage_node_create_info_amdx * _p_node_info, ktl::u32 * _p_node_index);
+using pfn_create_execution_graph_pipelines_amdx = ktl::api::result(*)(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count, const ktl::api::execution_graph_pipeline_create_info_amdx * _p_create_infos, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
+using pfn_cmd_initialize_graph_scratch_memory_amdx = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::pipeline _execution_graph, ktl::api::dvaddr _scratch, ktl::api::dvsize _scratch_size);
+using pfn_cmd_dispatch_graph_amdx = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _scratch, ktl::api::dvsize _scratch_size, const ktl::api::dispatch_graph_count_info_amdx * _p_count_info);
+using pfn_cmd_dispatch_graph_indirect_amdx = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _scratch, ktl::api::dvsize _scratch_size, const ktl::api::dispatch_graph_count_info_amdx * _p_count_info);
+using pfn_cmd_dispatch_graph_indirect_count_amdx = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _scratch, ktl::api::dvsize _scratch_size, ktl::api::dvaddr _count_info);
+using pfn_create_gpa_session_amd = ktl::api::result(*)(ktl::api::device _device, const ktl::api::gpa_session_create_info_amd * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::gpa_session_amd * _p_gpa_session);
+using pfn_destroy_gpa_session_amd = void(*)(ktl::api::device _device, ktl::api::gpa_session_amd _gpa_session, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_set_gpa_device_clock_mode_amd = ktl::api::result(*)(ktl::api::device _device, ktl::api::gpa_device_clock_mode_info_amd * _p_info);
+using pfn_get_gpa_device_clock_info_amd = ktl::api::result(*)(ktl::api::device _device, ktl::api::gpa_device_get_clock_info_amd * _p_info);
+using pfn_cmd_begin_gpa_session_amd = ktl::api::result(*)(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session);
+using pfn_cmd_end_gpa_session_amd = ktl::api::result(*)(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session);
+using pfn_cmd_begin_gpa_sample_amd = ktl::api::result(*)(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session, const ktl::api::gpa_sample_begin_info_amd * _p_gpa_sample_begin_info, ktl::u32 * _p_sample_id);
+using pfn_cmd_end_gpa_sample_amd = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session, ktl::u32 _sample_id);
+using pfn_get_gpa_session_status_amd = ktl::api::result(*)(ktl::api::device _device, ktl::api::gpa_session_amd _gpa_session);
+using pfn_get_gpa_session_results_amd = ktl::api::result(*)(ktl::api::device _device, ktl::api::gpa_session_amd _gpa_session, ktl::u32 _sample_id, ktl::usize * _p_size_in_bytes, void * _p_data);
+using pfn_reset_gpa_session_amd = ktl::api::result(*)(ktl::api::device _device, ktl::api::gpa_session_amd _gpa_session);
+using pfn_cmd_copy_gpa_session_results_amd = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session);
+using pfn_cmd_bind_descriptor_sets_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::bind_descriptor_sets_info * _p_bind_descriptor_sets_info);
 using pfn_cmd_bind_descriptor_sets_2khr = pfn_cmd_bind_descriptor_sets_2;
-using pfn_cmd_push_constants_2          = void (*)(ktl::api::command_buffer              _command_buffer,
-                                          const ktl::api::push_constants_info * _p_push_constants_info);
-using pfn_cmd_push_constants_2khr       = pfn_cmd_push_constants_2;
-using pfn_cmd_push_descriptor_set_2     = void (*)(ktl::api::command_buffer                   _command_buffer,
-                                               const ktl::api::push_descriptor_set_info * _p_push_descriptor_set_info);
-using pfn_cmd_push_descriptor_set_2khr  = pfn_cmd_push_descriptor_set_2;
-using pfn_cmd_push_descriptor_set_with_template_2 =
-    void (*)(ktl::api::command_buffer                                 _command_buffer,
-             const ktl::api::push_descriptor_set_with_template_info * _p_push_descriptor_set_with_template_info);
+using pfn_cmd_push_constants_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::push_constants_info * _p_push_constants_info);
+using pfn_cmd_push_constants_2khr = pfn_cmd_push_constants_2;
+using pfn_cmd_push_descriptor_set_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::push_descriptor_set_info * _p_push_descriptor_set_info);
+using pfn_cmd_push_descriptor_set_2khr = pfn_cmd_push_descriptor_set_2;
+using pfn_cmd_push_descriptor_set_with_template_2 = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::push_descriptor_set_with_template_info * _p_push_descriptor_set_with_template_info);
 using pfn_cmd_push_descriptor_set_with_template_2khr = pfn_cmd_push_descriptor_set_with_template_2;
-using pfn_cmd_set_descriptor_buffer_offsets_2ext =
-    void (*)(ktl::api::command_buffer                                 _command_buffer,
-             const ktl::api::set_descriptor_buffer_offsets_info_ext * _p_set_descriptor_buffer_offsets_info);
-using pfn_cmd_bind_descriptor_buffer_embedded_samplers_2ext = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::bind_descriptor_buffer_embedded_samplers_info_ext *
-                                                  _p_bind_descriptor_buffer_embedded_samplers_info);
-using pfn_set_latency_sleep_mode_nv =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                         const ktl::api::latency_sleep_mode_info_nv * _p_sleep_mode_info);
-using pfn_latency_sleep_nv       = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                                  const ktl::api::latency_sleep_info_nv * _p_sleep_info);
-using pfn_set_latency_marker_nv  = void (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                           const ktl::api::set_latency_marker_info_nv * _p_latency_marker_info);
-using pfn_get_latency_timings_nv = void (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                            ktl::api::get_latency_marker_info_nv * _p_latency_marker_info);
-using pfn_queue_notify_out_of_band_nv            = void (*)(ktl::api::queue                                  _queue,
-                                                 const ktl::api::out_of_band_queue_type_info_nv * _p_queue_type_info);
-using pfn_cmd_set_rendering_attachment_locations = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::rendering_attachment_location_info * _p_location_info);
+using pfn_cmd_set_descriptor_buffer_offsets_2ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::set_descriptor_buffer_offsets_info_ext * _p_set_descriptor_buffer_offsets_info);
+using pfn_cmd_bind_descriptor_buffer_embedded_samplers_2ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::bind_descriptor_buffer_embedded_samplers_info_ext * _p_bind_descriptor_buffer_embedded_samplers_info);
+using pfn_set_latency_sleep_mode_nv = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, const ktl::api::latency_sleep_mode_info_nv * _p_sleep_mode_info);
+using pfn_latency_sleep_nv = ktl::api::result(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, const ktl::api::latency_sleep_info_nv * _p_sleep_info);
+using pfn_set_latency_marker_nv = void(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, const ktl::api::set_latency_marker_info_nv * _p_latency_marker_info);
+using pfn_get_latency_timings_nv = void(*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::api::get_latency_marker_info_nv * _p_latency_marker_info);
+using pfn_queue_notify_out_of_band_nv = void(*)(ktl::api::queue _queue, const ktl::api::out_of_band_queue_type_info_nv * _p_queue_type_info);
+using pfn_cmd_set_rendering_attachment_locations = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::rendering_attachment_location_info * _p_location_info);
 using pfn_cmd_set_rendering_attachment_locations_khr = pfn_cmd_set_rendering_attachment_locations;
-using pfn_cmd_set_rendering_input_attachment_indices =
-    void (*)(ktl::api::command_buffer                                _command_buffer,
-             const ktl::api::rendering_input_attachment_index_info * _p_input_attachment_index_info);
+using pfn_cmd_set_rendering_input_attachment_indices = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::rendering_input_attachment_index_info * _p_input_attachment_index_info);
 using pfn_cmd_set_rendering_input_attachment_indices_khr = pfn_cmd_set_rendering_input_attachment_indices;
-using pfn_cmd_set_depth_clamp_range_ext = void (*)(ktl::api::command_buffer                _command_buffer,
-                                                   ktl::api::depth_clamp_mode_ext          _depth_clamp_mode,
-                                                   const ktl::api::depth_clamp_range_ext * _p_depth_clamp_range);
-using pfn_get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::cooperative_matrix_flexible_dimensions_properties_nv * _p_properties);
-using pfn_get_memory_metal_handle_ext =
-    ktl::api::result (*)(ktl::api::device                                   _device,
-                         const ktl::api::memory_get_metal_handle_info_ext * _p_get_metal_handle_info, void * _p_handle);
-using pfn_get_memory_metal_handle_properties_ext = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, const void * _p_handle,
-    ktl::api::memory_metal_handle_properties_ext * _p_memory_metal_handle_properties);
-using pfn_get_physical_device_cooperative_vector_properties_nv =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::cooperative_vector_properties_nv * _p_properties);
-using pfn_convert_cooperative_vector_matrix_nv =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::convert_cooperative_vector_matrix_info_nv * _p_info);
-using pfn_cmd_convert_cooperative_vector_matrix_nv =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count,
-             const ktl::api::convert_cooperative_vector_matrix_info_nv * _p_infos);
-using pfn_cmd_dispatch_tile_qcom            = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                            const ktl::api::dispatch_tile_info_qcom * _p_dispatch_tile_info);
-using pfn_cmd_begin_per_tile_execution_qcom = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::per_tile_begin_info_qcom * _p_per_tile_begin_info);
-using pfn_cmd_end_per_tile_execution_qcom  = void (*)(ktl::api::command_buffer                 _command_buffer,
-                                                     const ktl::api::per_tile_end_info_qcom * _p_per_tile_end_info);
-using pfn_create_external_compute_queue_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::external_compute_queue_create_info_nv * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::external_compute_queue_nv * _p_external_queue);
-using pfn_destroy_external_compute_queue_nv  = void (*)(ktl::api::device                       _device,
-                                                       ktl::api::external_compute_queue_nv    _external_queue,
-                                                       const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_external_compute_queue_data_nv = void (*)(ktl::api::external_compute_queue_nv _external_queue,
-                                                        ktl::api::external_compute_queue_data_params_nv * _params,
-                                                        void *                                            _p_data);
-using pfn_enumerate_physical_device_shader_instrumentation_metrics_arm =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_description_count,
-                         ktl::api::shader_instrumentation_metric_description_arm * _p_descriptions);
-using pfn_create_shader_instrumentation_arm = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::shader_instrumentation_create_info_arm * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::shader_instrumentation_arm * _p_instrumentation);
-using pfn_destroy_shader_instrumentation_arm    = void (*)(ktl::api::device                       _device,
-                                                        ktl::api::shader_instrumentation_arm   _instrumentation,
-                                                        const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_cmd_begin_shader_instrumentation_arm  = void (*)(ktl::api::command_buffer             _command_buffer,
-                                                          ktl::api::shader_instrumentation_arm _instrumentation);
-using pfn_cmd_end_shader_instrumentation_arm    = void (*)(ktl::api::command_buffer _command_buffer);
-using pfn_get_shader_instrumentation_values_arm = ktl::api::result (*)(
-    ktl::api::device _device, ktl::api::shader_instrumentation_arm _instrumentation, ktl::u32 * _p_metric_block_count,
-    void * _p_metric_values, ktl::api::shader_instrumentation_values_flags_arm _flags);
-using pfn_clear_shader_instrumentation_metrics_arm = void (*)(ktl::api::device                     _device,
-                                                              ktl::api::shader_instrumentation_arm _instrumentation);
-using pfn_create_tensor_arm       = ktl::api::result (*)(ktl::api::device                         _device,
-                                                   const ktl::api::tensor_create_info_arm * _p_create_info,
-                                                   const ktl::api::allocation_callbacks *   _p_allocator,
-                                                   ktl::api::tensor_arm *                   _p_tensor);
-using pfn_destroy_tensor_arm      = void (*)(ktl::api::device _device, ktl::api::tensor_arm _tensor,
-                                        const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_create_tensor_view_arm  = ktl::api::result (*)(ktl::api::device                              _device,
-                                                        const ktl::api::tensor_view_create_info_arm * _p_create_info,
-                                                        const ktl::api::allocation_callbacks *        _p_allocator,
-                                                        ktl::api::tensor_view_arm *                   _p_view);
-using pfn_destroy_tensor_view_arm = void (*)(ktl::api::device _device, ktl::api::tensor_view_arm _tensor_view,
-                                             const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_get_tensor_memory_requirements_arm = void (*)(ktl::api::device                                      _device,
-                                                        const ktl::api::tensor_memory_requirements_info_arm * _p_info,
-                                                        ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_bind_tensor_memory_arm             = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _bind_info_count,
-                                                        const ktl::api::bind_tensor_memory_info_arm * _p_bind_infos);
-using pfn_get_device_tensor_memory_requirements_arm =
-    void (*)(ktl::api::device _device, const ktl::api::device_tensor_memory_requirements_arm * _p_info,
-             ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_cmd_copy_tensor_arm = void (*)(ktl::api::command_buffer               _command_buffer,
-                                         const ktl::api::copy_tensor_info_arm * _p_copy_tensor_info);
-using pfn_get_tensor_opaque_capture_descriptor_data_arm = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::tensor_capture_descriptor_data_info_arm * _p_info, void * _p_data);
-using pfn_get_tensor_view_opaque_capture_descriptor_data_arm = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::tensor_view_capture_descriptor_data_info_arm * _p_info, void * _p_data);
-using pfn_get_physical_device_external_tensor_properties_arm =
-    void (*)(ktl::api::physical_device                                  _physical_device,
-             const ktl::api::physical_device_external_tensor_info_arm * _p_external_tensor_info,
-             ktl::api::external_tensor_properties_arm *                 _p_external_tensor_properties);
-using pfn_create_data_graph_pipelines_arm =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
-                         ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count,
-                         const ktl::api::data_graph_pipeline_create_info_arm * _p_create_infos,
-                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
-using pfn_create_data_graph_pipeline_session_arm = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::data_graph_pipeline_session_create_info_arm * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::data_graph_pipeline_session_arm * _p_session);
-using pfn_get_data_graph_pipeline_session_bind_point_requirements_arm = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::data_graph_pipeline_session_bind_point_requirements_info_arm * _p_info,
-    ktl::u32 *                                                         _p_bind_point_requirement_count,
-    ktl::api::data_graph_pipeline_session_bind_point_requirement_arm * _p_bind_point_requirements);
-using pfn_get_data_graph_pipeline_session_memory_requirements_arm = void (*)(
-    ktl::api::device _device, const ktl::api::data_graph_pipeline_session_memory_requirements_info_arm * _p_info,
-    ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_bind_data_graph_pipeline_session_memory_arm =
-    ktl::api::result (*)(ktl::api::device _device, ktl::u32 _bind_info_count,
-                         const ktl::api::bind_data_graph_pipeline_session_memory_info_arm * _p_bind_infos);
-using pfn_destroy_data_graph_pipeline_session_arm = void (*)(ktl::api::device                          _device,
-                                                             ktl::api::data_graph_pipeline_session_arm _session,
-                                                             const ktl::api::allocation_callbacks *    _p_allocator);
-using pfn_cmd_dispatch_data_graph_arm             = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                                 ktl::api::data_graph_pipeline_session_arm _session,
-                                                 const ktl::api::data_graph_pipeline_dispatch_info_arm * _p_info);
-using pfn_get_data_graph_pipeline_available_properties_arm =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::data_graph_pipeline_info_arm * _p_pipeline_info,
-                         ktl::u32 * _p_properties_count, ktl::api::data_graph_pipeline_property_arm * _p_properties);
-using pfn_get_data_graph_pipeline_properties_arm = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::data_graph_pipeline_info_arm * _p_pipeline_info,
-    ktl::u32 _properties_count, ktl::api::data_graph_pipeline_property_query_result_arm * _p_properties);
-using pfn_get_physical_device_queue_family_data_graph_properties_arm =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index,
-                         ktl::u32 *                                         _p_queue_family_data_graph_property_count,
-                         ktl::api::queue_family_data_graph_properties_arm * _p_queue_family_data_graph_properties);
-using pfn_get_physical_device_queue_family_data_graph_processing_engine_properties_arm =
-    void (*)(ktl::api::physical_device _physical_device,
-             const ktl::api::physical_device_queue_family_data_graph_processing_engine_info_arm *
-                 _p_queue_family_data_graph_processing_engine_info,
-             ktl::api::queue_family_data_graph_processing_engine_properties_arm *
-                 _p_queue_family_data_graph_processing_engine_properties);
-using pfn_get_native_buffer_properties_ohos = ktl::api::result (*)(
-    ktl::api::device _device, const OH_NativeBuffer * _buffer, ktl::api::native_buffer_properties_ohos * _p_properties);
-using pfn_get_memory_native_buffer_ohos =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::memory_get_native_buffer_info_ohos * _p_info,
-                         OH_NativeBuffer * _p_buffer);
-using pfn_get_swapchain_gralloc_usage_ohos = ktl::api::result (*)(ktl::api::device _device, ktl::api::format _format,
-                                                                  ktl::api::image_usage_flags _image_usage,
-                                                                  ktl::u64 *                  _gralloc_usage);
-using pfn_acquire_image_ohos               = ktl::api::result (*)(ktl::api::device _device, ktl::api::image _image,
-                                                    ktl::i32 _native_fence_fd, ktl::api::semaphore _semaphore,
-                                                    ktl::api::fence _fence);
-using pfn_queue_signal_release_image_ohos = ktl::api::result (*)(ktl::api::queue _queue, ktl::u32 _wait_semaphore_count,
-                                                                 const ktl::api::semaphore * _p_wait_semaphores,
-                                                                 ktl::api::image _image, ktl::i32 * _p_native_fence_fd);
-using pfn_queue_set_perf_hint_qcom        = ktl::api::result (*)(ktl::api::queue                       _queue,
-                                                          const ktl::api::perf_hint_info_qcom * _p_perf_hint_info);
-using pfn_enumerate_physical_device_queue_family_performance_counters_by_region_arm =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index,
-                         ktl::u32 * _p_counter_count, ktl::api::performance_counter_arm * _p_counters,
-                         ktl::api::performance_counter_description_arm * _p_counter_descriptions);
-using pfn_cmd_set_compute_occupancy_priority_nv = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::compute_occupancy_priority_parameters_nv * _p_parameters);
-using pfn_write_sampler_descriptors_ext  = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _sampler_count,
-                                                               const ktl::api::sampler_create_info *    _p_samplers,
-                                                               const ktl::api::host_address_range_ext * _p_descriptors);
-using pfn_write_resource_descriptors_ext = ktl::api::result (*)(
-    ktl::api::device _device, ktl::u32 _resource_count, const ktl::api::resource_descriptor_info_ext * _p_resources,
-    const ktl::api::host_address_range_ext * _p_descriptors);
-using pfn_cmd_bind_sampler_heap_ext        = void (*)(ktl::api::command_buffer             _command_buffer,
-                                               const ktl::api::bind_heap_info_ext * _p_bind_info);
-using pfn_cmd_bind_resource_heap_ext       = void (*)(ktl::api::command_buffer             _command_buffer,
-                                                const ktl::api::bind_heap_info_ext * _p_bind_info);
-using pfn_cmd_push_data_ext                = void (*)(ktl::api::command_buffer             _command_buffer,
-                                       const ktl::api::push_data_info_ext * _p_push_data_info);
-using pfn_register_custom_border_color_ext = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::sampler_custom_border_color_create_info_ext * _p_border_color,
-    ktl::api::bool32 _request_index, ktl::u32 * _p_index);
-using pfn_unregister_custom_border_color_ext = void (*)(ktl::api::device _device, ktl::u32 _index);
-using pfn_get_image_opaque_capture_data_ext  = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _image_count,
-                                                                   const ktl::api::image *            _p_images,
-                                                                   ktl::api::host_address_range_ext * _p_datas);
-using pfn_get_physical_device_descriptor_size_ext = ktl::api::dvsize (*)(ktl::api::physical_device _physical_device,
-                                                                         ktl::api::descriptor_type _descriptor_type);
-using pfn_get_tensor_opaque_capture_data_arm = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _tensor_count,
-                                                                    const ktl::api::tensor_arm *       _p_tensors,
-                                                                    ktl::api::host_address_range_ext * _p_datas);
-using pfn_cmd_copy_memory_khr                = void (*)(ktl::api::command_buffer                      _command_buffer,
-                                         const ktl::api::copy_device_memory_info_khr * _p_copy_memory_info);
-using pfn_cmd_copy_memory_to_image_khr       = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::copy_device_memory_image_info_khr * _p_copy_memory_info);
-using pfn_cmd_copy_image_to_memory_khr = void (*)(
-    ktl::api::command_buffer _command_buffer, const ktl::api::copy_device_memory_image_info_khr * _p_copy_memory_info);
-using pfn_cmd_update_memory_khr = void (*)(ktl::api::command_buffer                   _command_buffer,
-                                           const ktl::api::device_address_range_khr * _p_dst_range,
-                                           ktl::api::address_command_flags_khr _dst_flags, ktl::api::dvsize _data_size,
-                                           const void * _p_data);
-using pfn_cmd_fill_memory_khr   = void (*)(ktl::api::command_buffer                   _command_buffer,
-                                         const ktl::api::device_address_range_khr * _p_dst_range,
-                                         ktl::api::address_command_flags_khr _dst_flags, ktl::u32 _data);
-using pfn_cmd_copy_query_pool_results_to_memory_khr =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _first_query,
-             ktl::u32 _query_count, const ktl::api::strided_device_address_range_khr * _p_dst_range,
-             ktl::api::address_command_flags_khr _dst_flags, ktl::api::query_result_flags _query_result_flags);
-using pfn_cmd_begin_conditional_rendering_2ext =
-    void (*)(ktl::api::command_buffer                                _command_buffer,
-             const ktl::api::conditional_rendering_begin_info_2ext * _p_conditional_rendering_begin);
-using pfn_cmd_bind_transform_feedback_buffers_2ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count,
-             const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_binding_infos);
-using pfn_cmd_begin_transform_feedback_2ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range, ktl::u32 _counter_range_count,
-             const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_infos);
-using pfn_cmd_end_transform_feedback_2ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range, ktl::u32 _counter_range_count,
-             const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_infos);
-using pfn_cmd_draw_indirect_byte_count_2ext =
-    void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _instance_count, ktl::u32 _first_instance,
-             const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_info, ktl::u32 _counter_offset,
-             ktl::u32 _vertex_stride);
-using pfn_cmd_write_marker_to_memory_amd = void (*)(ktl::api::command_buffer                 _command_buffer,
-                                                    const ktl::api::memory_marker_info_amd * _p_info);
-using pfn_cmd_bind_index_buffer_3khr     = void (*)(ktl::api::command_buffer                      _command_buffer,
-                                                const ktl::api::bind_index_buffer_3info_khr * _p_info);
-using pfn_cmd_bind_vertex_buffers_3khr   = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
-                                                  ktl::u32                                       _binding_count,
-                                                  const ktl::api::bind_vertex_buffer_3info_khr * _p_binding_infos);
-using pfn_cmd_draw_indirect_2khr         = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                            const ktl::api::draw_indirect_2info_khr * _p_info);
-using pfn_cmd_draw_indexed_indirect_2khr = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                                    const ktl::api::draw_indirect_2info_khr * _p_info);
-using pfn_cmd_draw_indirect_count_2khr   = void (*)(ktl::api::command_buffer                        _command_buffer,
-                                                  const ktl::api::draw_indirect_count_2info_khr * _p_info);
-using pfn_cmd_draw_indexed_indirect_count_2khr    = void (*)(ktl::api::command_buffer _command_buffer,
-                                                          const ktl::api::draw_indirect_count_2info_khr * _p_info);
-using pfn_cmd_draw_mesh_tasks_indirect_2ext       = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                                       const ktl::api::draw_indirect_2info_khr * _p_info);
-using pfn_cmd_draw_mesh_tasks_indirect_count_2ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                             const ktl::api::draw_indirect_count_2info_khr * _p_info);
-using pfn_cmd_dispatch_indirect_2khr         = void (*)(ktl::api::command_buffer                      _command_buffer,
-                                                const ktl::api::dispatch_indirect_2info_khr * _p_info);
-using pfn_create_acceleration_structure_2khr = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::acceleration_structure_create_info_2khr * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator,
-    ktl::api::acceleration_structure_khr * _p_acceleration_structure);
-using pfn_get_physical_device_queue_family_data_graph_engine_operation_properties_arm =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index,
-                         const ktl::api::queue_family_data_graph_properties_arm * _p_queue_family_data_graph_properties,
-                         ktl::api::base_out_structure *                           _p_properties);
-using pfn_cmd_set_dispatch_parameters_arm = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                                     const ktl::api::dispatch_parameters_arm * _p_dispatch_parameters);
-using pfn_get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index,
-    const ktl::api::queue_family_data_graph_properties_arm *        _p_queue_family_data_graph_properties,
-    const ktl::api::data_graph_optical_flow_image_format_info_arm * _p_optical_flow_image_format_info,
-    ktl::u32 *                                                      _p_format_count,
-    ktl::api::data_graph_optical_flow_image_format_properties_arm * _p_image_format_properties);
-} // namespace ktl::api
+using pfn_cmd_set_depth_clamp_range_ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::depth_clamp_mode_ext _depth_clamp_mode, const ktl::api::depth_clamp_range_ext * _p_depth_clamp_range);
+using pfn_get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count, ktl::api::cooperative_matrix_flexible_dimensions_properties_nv * _p_properties);
+using pfn_get_memory_metal_handle_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_get_metal_handle_info_ext * _p_get_metal_handle_info, void * _p_handle);
+using pfn_get_memory_metal_handle_properties_ext = ktl::api::result(*)(ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, const void * _p_handle, ktl::api::memory_metal_handle_properties_ext * _p_memory_metal_handle_properties);
+using pfn_get_physical_device_cooperative_vector_properties_nv = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count, ktl::api::cooperative_vector_properties_nv * _p_properties);
+using pfn_convert_cooperative_vector_matrix_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::convert_cooperative_vector_matrix_info_nv * _p_info);
+using pfn_cmd_convert_cooperative_vector_matrix_nv = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count, const ktl::api::convert_cooperative_vector_matrix_info_nv * _p_infos);
+using pfn_cmd_dispatch_tile_qcom = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::dispatch_tile_info_qcom * _p_dispatch_tile_info);
+using pfn_cmd_begin_per_tile_execution_qcom = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::per_tile_begin_info_qcom * _p_per_tile_begin_info);
+using pfn_cmd_end_per_tile_execution_qcom = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::per_tile_end_info_qcom * _p_per_tile_end_info);
+using pfn_create_external_compute_queue_nv = ktl::api::result(*)(ktl::api::device _device, const ktl::api::external_compute_queue_create_info_nv * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::external_compute_queue_nv * _p_external_queue);
+using pfn_destroy_external_compute_queue_nv = void(*)(ktl::api::device _device, ktl::api::external_compute_queue_nv _external_queue, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_external_compute_queue_data_nv = void(*)(ktl::api::external_compute_queue_nv _external_queue, ktl::api::external_compute_queue_data_params_nv * _params, void * _p_data);
+using pfn_enumerate_physical_device_shader_instrumentation_metrics_arm = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_description_count, ktl::api::shader_instrumentation_metric_description_arm * _p_descriptions);
+using pfn_create_shader_instrumentation_arm = ktl::api::result(*)(ktl::api::device _device, const ktl::api::shader_instrumentation_create_info_arm * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::shader_instrumentation_arm * _p_instrumentation);
+using pfn_destroy_shader_instrumentation_arm = void(*)(ktl::api::device _device, ktl::api::shader_instrumentation_arm _instrumentation, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_cmd_begin_shader_instrumentation_arm = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::shader_instrumentation_arm _instrumentation);
+using pfn_cmd_end_shader_instrumentation_arm = void(*)(ktl::api::command_buffer _command_buffer);
+using pfn_get_shader_instrumentation_values_arm = ktl::api::result(*)(ktl::api::device _device, ktl::api::shader_instrumentation_arm _instrumentation, ktl::u32 * _p_metric_block_count, void * _p_metric_values, ktl::api::shader_instrumentation_values_flags_arm _flags);
+using pfn_clear_shader_instrumentation_metrics_arm = void(*)(ktl::api::device _device, ktl::api::shader_instrumentation_arm _instrumentation);
+using pfn_create_tensor_arm = ktl::api::result(*)(ktl::api::device _device, const ktl::api::tensor_create_info_arm * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::tensor_arm * _p_tensor);
+using pfn_destroy_tensor_arm = void(*)(ktl::api::device _device, ktl::api::tensor_arm _tensor, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_create_tensor_view_arm = ktl::api::result(*)(ktl::api::device _device, const ktl::api::tensor_view_create_info_arm * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::tensor_view_arm * _p_view);
+using pfn_destroy_tensor_view_arm = void(*)(ktl::api::device _device, ktl::api::tensor_view_arm _tensor_view, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_get_tensor_memory_requirements_arm = void(*)(ktl::api::device _device, const ktl::api::tensor_memory_requirements_info_arm * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_bind_tensor_memory_arm = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _bind_info_count, const ktl::api::bind_tensor_memory_info_arm * _p_bind_infos);
+using pfn_get_device_tensor_memory_requirements_arm = void(*)(ktl::api::device _device, const ktl::api::device_tensor_memory_requirements_arm * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_cmd_copy_tensor_arm = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_tensor_info_arm * _p_copy_tensor_info);
+using pfn_get_tensor_opaque_capture_descriptor_data_arm = ktl::api::result(*)(ktl::api::device _device, const ktl::api::tensor_capture_descriptor_data_info_arm * _p_info, void * _p_data);
+using pfn_get_tensor_view_opaque_capture_descriptor_data_arm = ktl::api::result(*)(ktl::api::device _device, const ktl::api::tensor_view_capture_descriptor_data_info_arm * _p_info, void * _p_data);
+using pfn_get_physical_device_external_tensor_properties_arm = void(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_external_tensor_info_arm * _p_external_tensor_info, ktl::api::external_tensor_properties_arm * _p_external_tensor_properties);
+using pfn_create_data_graph_pipelines_arm = ktl::api::result(*)(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, ktl::api::pipeline_cache _pipeline_cache, ktl::u32 _create_info_count, const ktl::api::data_graph_pipeline_create_info_arm * _p_create_infos, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines);
+using pfn_create_data_graph_pipeline_session_arm = ktl::api::result(*)(ktl::api::device _device, const ktl::api::data_graph_pipeline_session_create_info_arm * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::data_graph_pipeline_session_arm * _p_session);
+using pfn_get_data_graph_pipeline_session_bind_point_requirements_arm = ktl::api::result(*)(ktl::api::device _device, const ktl::api::data_graph_pipeline_session_bind_point_requirements_info_arm * _p_info, ktl::u32 * _p_bind_point_requirement_count, ktl::api::data_graph_pipeline_session_bind_point_requirement_arm * _p_bind_point_requirements);
+using pfn_get_data_graph_pipeline_session_memory_requirements_arm = void(*)(ktl::api::device _device, const ktl::api::data_graph_pipeline_session_memory_requirements_info_arm * _p_info, ktl::api::memory_requirements_2 * _p_memory_requirements);
+using pfn_bind_data_graph_pipeline_session_memory_arm = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _bind_info_count, const ktl::api::bind_data_graph_pipeline_session_memory_info_arm * _p_bind_infos);
+using pfn_destroy_data_graph_pipeline_session_arm = void(*)(ktl::api::device _device, ktl::api::data_graph_pipeline_session_arm _session, const ktl::api::allocation_callbacks * _p_allocator);
+using pfn_cmd_dispatch_data_graph_arm = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::data_graph_pipeline_session_arm _session, const ktl::api::data_graph_pipeline_dispatch_info_arm * _p_info);
+using pfn_get_data_graph_pipeline_available_properties_arm = ktl::api::result(*)(ktl::api::device _device, const ktl::api::data_graph_pipeline_info_arm * _p_pipeline_info, ktl::u32 * _p_properties_count, ktl::api::data_graph_pipeline_property_arm * _p_properties);
+using pfn_get_data_graph_pipeline_properties_arm = ktl::api::result(*)(ktl::api::device _device, const ktl::api::data_graph_pipeline_info_arm * _p_pipeline_info, ktl::u32 _properties_count, ktl::api::data_graph_pipeline_property_query_result_arm * _p_properties);
+using pfn_get_physical_device_queue_family_data_graph_properties_arm = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, ktl::u32 * _p_queue_family_data_graph_property_count, ktl::api::queue_family_data_graph_properties_arm * _p_queue_family_data_graph_properties);
+using pfn_get_physical_device_queue_family_data_graph_processing_engine_properties_arm = void(*)(ktl::api::physical_device _physical_device, const ktl::api::physical_device_queue_family_data_graph_processing_engine_info_arm * _p_queue_family_data_graph_processing_engine_info, ktl::api::queue_family_data_graph_processing_engine_properties_arm * _p_queue_family_data_graph_processing_engine_properties);
+using pfn_get_native_buffer_properties_ohos = ktl::api::result(*)(ktl::api::device _device, const OH_NativeBuffer * _buffer, ktl::api::native_buffer_properties_ohos * _p_properties);
+using pfn_get_memory_native_buffer_ohos = ktl::api::result(*)(ktl::api::device _device, const ktl::api::memory_get_native_buffer_info_ohos * _p_info, OH_NativeBuffer * _p_buffer);
+using pfn_get_swapchain_gralloc_usage_ohos = ktl::api::result(*)(ktl::api::device _device, ktl::api::format _format, ktl::api::image_usage_flags _image_usage, ktl::u64 * _gralloc_usage);
+using pfn_acquire_image_ohos = ktl::api::result(*)(ktl::api::device _device, ktl::api::image _image, ktl::i32 _native_fence_fd, ktl::api::semaphore _semaphore, ktl::api::fence _fence);
+using pfn_queue_signal_release_image_ohos = ktl::api::result(*)(ktl::api::queue _queue, ktl::u32 _wait_semaphore_count, const ktl::api::semaphore * _p_wait_semaphores, ktl::api::image _image, ktl::i32 * _p_native_fence_fd);
+using pfn_queue_set_perf_hint_qcom = ktl::api::result(*)(ktl::api::queue _queue, const ktl::api::perf_hint_info_qcom * _p_perf_hint_info);
+using pfn_enumerate_physical_device_queue_family_performance_counters_by_region_arm = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, ktl::u32 * _p_counter_count, ktl::api::performance_counter_arm * _p_counters, ktl::api::performance_counter_description_arm * _p_counter_descriptions);
+using pfn_cmd_set_compute_occupancy_priority_nv = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::compute_occupancy_priority_parameters_nv * _p_parameters);
+using pfn_write_sampler_descriptors_ext = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _sampler_count, const ktl::api::sampler_create_info * _p_samplers, const ktl::api::host_address_range_ext * _p_descriptors);
+using pfn_write_resource_descriptors_ext = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _resource_count, const ktl::api::resource_descriptor_info_ext * _p_resources, const ktl::api::host_address_range_ext * _p_descriptors);
+using pfn_cmd_bind_sampler_heap_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::bind_heap_info_ext * _p_bind_info);
+using pfn_cmd_bind_resource_heap_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::bind_heap_info_ext * _p_bind_info);
+using pfn_cmd_push_data_ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::push_data_info_ext * _p_push_data_info);
+using pfn_register_custom_border_color_ext = ktl::api::result(*)(ktl::api::device _device, const ktl::api::sampler_custom_border_color_create_info_ext * _p_border_color, ktl::api::bool32 _request_index, ktl::u32 * _p_index);
+using pfn_unregister_custom_border_color_ext = void(*)(ktl::api::device _device, ktl::u32 _index);
+using pfn_get_image_opaque_capture_data_ext = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _image_count, const ktl::api::image * _p_images, ktl::api::host_address_range_ext * _p_datas);
+using pfn_get_physical_device_descriptor_size_ext = ktl::api::dvsize(*)(ktl::api::physical_device _physical_device, ktl::api::descriptor_type _descriptor_type);
+using pfn_get_tensor_opaque_capture_data_arm = ktl::api::result(*)(ktl::api::device _device, ktl::u32 _tensor_count, const ktl::api::tensor_arm * _p_tensors, ktl::api::host_address_range_ext * _p_datas);
+using pfn_cmd_copy_memory_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_device_memory_info_khr * _p_copy_memory_info);
+using pfn_cmd_copy_memory_to_image_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_device_memory_image_info_khr * _p_copy_memory_info);
+using pfn_cmd_copy_image_to_memory_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::copy_device_memory_image_info_khr * _p_copy_memory_info);
+using pfn_cmd_update_memory_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::device_address_range_khr * _p_dst_range, ktl::api::address_command_flags_khr _dst_flags, ktl::api::dvsize _data_size, const void * _p_data);
+using pfn_cmd_fill_memory_khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::device_address_range_khr * _p_dst_range, ktl::api::address_command_flags_khr _dst_flags, ktl::u32 _data);
+using pfn_cmd_copy_query_pool_results_to_memory_khr = void(*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _first_query, ktl::u32 _query_count, const ktl::api::strided_device_address_range_khr * _p_dst_range, ktl::api::address_command_flags_khr _dst_flags, ktl::api::query_result_flags _query_result_flags);
+using pfn_cmd_begin_conditional_rendering_2ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::conditional_rendering_begin_info_2ext * _p_conditional_rendering_begin);
+using pfn_cmd_bind_transform_feedback_buffers_2ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count, const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_binding_infos);
+using pfn_cmd_begin_transform_feedback_2ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range, ktl::u32 _counter_range_count, const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_infos);
+using pfn_cmd_end_transform_feedback_2ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range, ktl::u32 _counter_range_count, const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_infos);
+using pfn_cmd_draw_indirect_byte_count_2ext = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _instance_count, ktl::u32 _first_instance, const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_info, ktl::u32 _counter_offset, ktl::u32 _vertex_stride);
+using pfn_cmd_write_marker_to_memory_amd = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::memory_marker_info_amd * _p_info);
+using pfn_cmd_bind_index_buffer_3khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::bind_index_buffer_3info_khr * _p_info);
+using pfn_cmd_bind_vertex_buffers_3khr = void(*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count, const ktl::api::bind_vertex_buffer_3info_khr * _p_binding_infos);
+using pfn_cmd_draw_indirect_2khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::draw_indirect_2info_khr * _p_info);
+using pfn_cmd_draw_indexed_indirect_2khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::draw_indirect_2info_khr * _p_info);
+using pfn_cmd_draw_indirect_count_2khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::draw_indirect_count_2info_khr * _p_info);
+using pfn_cmd_draw_indexed_indirect_count_2khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::draw_indirect_count_2info_khr * _p_info);
+using pfn_cmd_draw_mesh_tasks_indirect_2ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::draw_indirect_2info_khr * _p_info);
+using pfn_cmd_draw_mesh_tasks_indirect_count_2ext = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::draw_indirect_count_2info_khr * _p_info);
+using pfn_cmd_dispatch_indirect_2khr = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::dispatch_indirect_2info_khr * _p_info);
+using pfn_create_acceleration_structure_2khr = ktl::api::result(*)(ktl::api::device _device, const ktl::api::acceleration_structure_create_info_2khr * _p_create_info, const ktl::api::allocation_callbacks * _p_allocator, ktl::api::acceleration_structure_khr * _p_acceleration_structure);
+using pfn_get_physical_device_queue_family_data_graph_engine_operation_properties_arm = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, const ktl::api::queue_family_data_graph_properties_arm * _p_queue_family_data_graph_properties, ktl::api::base_out_structure * _p_properties);
+using pfn_cmd_set_dispatch_parameters_arm = void(*)(ktl::api::command_buffer _command_buffer, const ktl::api::dispatch_parameters_arm * _p_dispatch_parameters);
+using pfn_get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm = ktl::api::result(*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, const ktl::api::queue_family_data_graph_properties_arm * _p_queue_family_data_graph_properties, const ktl::api::data_graph_optical_flow_image_format_info_arm * _p_optical_flow_image_format_info, ktl::u32 * _p_format_count, ktl::api::data_graph_optical_flow_image_format_properties_arm * _p_image_format_properties);
+}
 
 #endif

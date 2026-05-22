@@ -35,7 +35,7 @@ def is_vulkan_video(name: str) -> bool: # vulkan-video is not supported now
 
 
 def make_vulkan_value(_number: str, _offset: str) -> str:
-    return str(1_000_000 + (int(_number) - 1) * 1000 + int(_offset))
+    return str(1_000_000_000 + (int(_number) - 1) * 1000 + int(_offset))
 
 
 _PRIMITIVES = frozenset({
