@@ -1,69 +1,9 @@
+from platforms import cast_platform_type
+
 DEFAULT_POSITIVE_TYPE = "ktl::u32"
 DEFAULT_NEGATIVE_TYPE = "ktl::i32"
 
 def is_exception(_type: str) -> bool:
-    if _type == "Display":
-        return True
-    if _type == "VisualID":
-        return True
-    if _type == "Window":
-        return True
-    if _type == "RROutput":
-        return True
-    if _type == "wl_display":
-        return True
-    if _type == "wl_surface":
-        return True
-    if _type == "ubm_device":
-        return True
-    if _type == "ubm_surface":
-        return True
-    if _type == "HINSTANCE":
-        return True
-    if _type == "HWND":
-        return True
-    if _type == "HMONITOR":
-        return True
-    if _type == "HANDLE":
-        return True
-    if _type == "SECURITY_ATTRIBUTES":
-        return True
-    if _type == "DWORD":
-        return True
-    if _type == "LPCWSTR":
-        return True
-    if _type == "xcb_connection_t":
-        return True
-    if _type == "xcb_visualid_t":
-        return True
-    if _type == "xcb_window_t":
-        return True
-    if _type == "IDirectFB":
-        return True
-    if _type == "IDirectFBSurface":
-        return True
-    if _type == "zx_handle_t":
-        return True
-    if _type == "GgpStreamDescriptor":
-        return True
-    if _type == "GgpFrameToken":
-        return True
-    if _type == "_screen_context":
-        return True
-    if _type == "_screen_window":
-        return True
-    if _type == "_screen_buffer":
-        return True
-    if _type == "NvSciSyncAttrList":
-        return True
-    if _type == "NvSciSyncObj":
-        return True
-    if _type == "NvSciSyncFence":
-        return True
-    if _type == "NvSciBufAttrList":
-        return True
-    if _type == "NvSciBufObj":
-        return True
     if _type == "OHNativeWindow":
         return True
     if _type == "OHBufferHandle":
@@ -106,6 +46,8 @@ def is_exception(_type: str) -> bool:
 def cast_type(_type : str) -> str | None:
     if is_exception(_type):
         return _type
+    if platform_type := cast_platform_type(_type):
+        return platform_type
 
     if _type == "int8_t" or _type == "std::int8_t":
         return "ktl::i8"

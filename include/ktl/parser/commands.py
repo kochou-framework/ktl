@@ -95,7 +95,7 @@ namespace ktl::api
 {{
 static constexpr ktl::usize pfn_table_size = {len(_commands)};
 using pfn_table = std::array< ktl::loader::proc_type, pfn_table_size >;
-inline thread_local pfn_table * ptable = nullptr;           
+inline pfn_table * ptable = nullptr;           
 
 """)
     _file.write("enum class command : ktl::u32\n{\n")

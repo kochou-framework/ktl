@@ -9,6 +9,7 @@ import pointers
 import commands
 import features
 import extensions
+import platforms
 
 
 def make_header_guard(_filename: str) -> str | None:
@@ -35,23 +36,9 @@ def fill_common(_filename: str,
 #define {header_guard}
 
 #include <ktl/type.hpp>
-
-#include "dummy_headers/X11/Xlib.h"
-#include "dummy_headers/X11/extensions/Xrandr.h"
-#include "dummy_headers/directfb.h"
-#include "dummy_headers/ggp_c/vulkan_types.h"
-#include "dummy_headers/nvscibuf.h"
-#include "dummy_headers/nvscisync.h"
-#include "dummy_headers/screen/screen.h"
-#include "dummy_headers/ubm.h"
-#include "dummy_headers/ubm_common.h"
-#include "dummy_headers/wayland-client.h"
-#include "dummy_headers/windows.h"
-#include "dummy_headers/xcb/xcb.h"
-#include "dummy_headers/zircon/types.h"
-
 """)
 
+        platforms.fill_definition(file)
         constants.fill_definition(file, _constants)
         basetypes.fill_definition(file)
         enums.fill_definition(file, _enums)

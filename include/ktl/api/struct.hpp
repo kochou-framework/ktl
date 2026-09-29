@@ -853,70 +853,70 @@ struct wayland_surface_create_info_khr
     ktl::api::structure_type                   stype = ktl::api::structure_type::v_wayland_surface_create_info_khr;
     const void *                               pnext = {};
     ktl::api::wayland_surface_create_flags_khr flags = {};
-    wl_display *                               display;
-    wl_surface *                               surface;
+    ktl::api::wayland_display *                display;
+    ktl::api::wayland_surface *                surface;
 };
 struct ubm_surface_create_info_sec
 {
     ktl::api::structure_type               stype = ktl::api::structure_type::v_ubm_surface_create_info_sec;
     const void *                           pnext = {};
     ktl::api::ubm_surface_create_flags_sec flags = {};
-    ubm_device *                           device;
-    ubm_surface *                          surface;
+    ktl::api::ubm_device *                 device;
+    ktl::api::ubm_surface *                surface;
 };
 struct win_32surface_create_info_khr
 {
     ktl::api::structure_type                 stype = ktl::api::structure_type::v_win_32surface_create_info_khr;
     const void *                             pnext = {};
     ktl::api::win_32surface_create_flags_khr flags = {};
-    HINSTANCE                                hinstance;
-    HWND                                     hwnd;
+    ktl::api::win32_hinstance                hinstance;
+    ktl::api::win32_hwnd                     hwnd;
 };
 struct xlib_surface_create_info_khr
 {
     ktl::api::structure_type                stype = ktl::api::structure_type::v_xlib_surface_create_info_khr;
     const void *                            pnext = {};
     ktl::api::xlib_surface_create_flags_khr flags = {};
-    Display *                               dpy;
-    Window                                  window;
+    ktl::api::xlib_display *                dpy;
+    ktl::api::xlib_window                   window;
 };
 struct xcb_surface_create_info_khr
 {
     ktl::api::structure_type               stype = ktl::api::structure_type::v_xcb_surface_create_info_khr;
     const void *                           pnext = {};
     ktl::api::xcb_surface_create_flags_khr flags = {};
-    xcb_connection_t *                     connection;
-    xcb_window_t                           window;
+    ktl::api::xcb_connection *             connection;
+    ktl::api::xcb_window                   window;
 };
 struct direct_fb_surface_create_info_ext
 {
     ktl::api::structure_type                     stype = ktl::api::structure_type::v_directfb_surface_create_info_ext;
     const void *                                 pnext = {};
     ktl::api::direct_fb_surface_create_flags_ext flags = {};
-    IDirectFB *                                  dfb;
-    IDirectFBSurface *                           surface;
+    ktl::api::directfb *                         dfb;
+    ktl::api::directfb_surface *                 surface;
 };
 struct image_pipe_surface_create_info_fuchsia
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_imagepipe_surface_create_info_fuchsia;
     const void *             pnext = {};
     ktl::api::image_pipe_surface_create_flags_fuchsia flags = {};
-    zx_handle_t                                       image_pipe_handle;
+    ktl::api::zx_handle                               image_pipe_handle;
 };
 struct stream_descriptor_surface_create_info_ggp
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_stream_descriptor_surface_create_info_ggp;
     const void *             pnext = {};
     ktl::api::stream_descriptor_surface_create_flags_ggp flags = {};
-    GgpStreamDescriptor                                  stream_descriptor;
+    ktl::api::ggp_stream_descriptor                      stream_descriptor;
 };
 struct screen_surface_create_info_qnx
 {
     ktl::api::structure_type                  stype = ktl::api::structure_type::v_screen_surface_create_info_qnx;
     const void *                              pnext = {};
     ktl::api::screen_surface_create_flags_qnx flags = {};
-    _screen_context *                         context;
-    _screen_window *                          window;
+    ktl::api::screen_context *                context;
+    ktl::api::screen_window *                 window;
 };
 struct surface_format_khr
 {
@@ -1042,27 +1042,27 @@ struct import_memory_win_32handle_info_nv
     ktl::api::structure_type stype = ktl::api::structure_type::v_import_memory_win_32handle_info_nv;
     const void *             pnext = {};
     ktl::api::external_memory_handle_type_flags_nv handle_type = {};
-    HANDLE                                         handle      = {};
+    ktl::api::win32_handle                         handle      = {};
 };
 struct export_memory_win_32handle_info_nv
 {
-    ktl::api::structure_type    stype        = ktl::api::structure_type::v_export_memory_win_32handle_info_nv;
-    const void *                pnext        = {};
-    const SECURITY_ATTRIBUTES * p_attributes = {};
-    DWORD                       dw_access    = {};
+    ktl::api::structure_type                    stype = ktl::api::structure_type::v_export_memory_win_32handle_info_nv;
+    const void *                                pnext = {};
+    const ktl::api::win32_security_attributes * p_attributes = {};
+    ktl::api::win32_dword                       dw_access    = {};
 };
 struct export_memory_sci_buf_info_nv
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_export_memory_sci_buf_info_nv;
-    const void *             pnext = {};
-    NvSciBufAttrList         p_attributes;
+    ktl::api::structure_type      stype = ktl::api::structure_type::v_export_memory_sci_buf_info_nv;
+    const void *                  pnext = {};
+    ktl::api::nvsci_buf_attr_list p_attributes;
 };
 struct import_memory_sci_buf_info_nv
 {
     ktl::api::structure_type                        stype = ktl::api::structure_type::v_import_memory_sci_buf_info_nv;
     const void *                                    pnext = {};
     ktl::api::external_memory_handle_type_flag_bits handle_type;
-    NvSciBufObj                                     handle;
+    ktl::api::nvsci_buf_obj                         handle;
 };
 struct memory_get_sci_buf_info_nv
 {
@@ -1410,23 +1410,23 @@ struct import_memory_win_32handle_info_khr
     ktl::api::structure_type stype = ktl::api::structure_type::v_import_memory_win_32handle_info_khr;
     const void *             pnext = {};
     ktl::api::external_memory_handle_type_flag_bits handle_type = {};
-    HANDLE                                          handle      = {};
-    LPCWSTR                                         name        = {};
+    ktl::api::win32_handle                          handle      = {};
+    ktl::api::win32_lpcwstr                         name        = {};
 };
 struct export_memory_win_32handle_info_khr
 {
-    ktl::api::structure_type    stype        = ktl::api::structure_type::v_export_memory_win_32handle_info_khr;
-    const void *                pnext        = {};
-    const SECURITY_ATTRIBUTES * p_attributes = {};
-    DWORD                       dw_access;
-    LPCWSTR                     name;
+    ktl::api::structure_type                    stype = ktl::api::structure_type::v_export_memory_win_32handle_info_khr;
+    const void *                                pnext = {};
+    const ktl::api::win32_security_attributes * p_attributes = {};
+    ktl::api::win32_dword                       dw_access;
+    ktl::api::win32_lpcwstr                     name;
 };
 struct import_memory_zircon_handle_info_fuchsia
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_import_memory_zircon_handle_info_fuchsia;
     const void *             pnext = {};
     ktl::api::external_memory_handle_type_flag_bits handle_type = {};
-    zx_handle_t                                     handle      = {};
+    ktl::api::zx_handle                             handle      = {};
 };
 struct memory_zircon_handle_properties_fuchsia
 {
@@ -1533,16 +1533,16 @@ struct import_semaphore_win_32handle_info_khr
     ktl::api::semaphore              semaphore;
     ktl::api::semaphore_import_flags flags = {};
     ktl::api::external_semaphore_handle_type_flag_bits handle_type;
-    HANDLE                                             handle = {};
-    LPCWSTR                                            name   = {};
+    ktl::api::win32_handle                             handle = {};
+    ktl::api::win32_lpcwstr                            name   = {};
 };
 struct export_semaphore_win_32handle_info_khr
 {
-    ktl::api::structure_type    stype        = ktl::api::structure_type::v_export_semaphore_win_32handle_info_khr;
-    const void *                pnext        = {};
-    const SECURITY_ATTRIBUTES * p_attributes = {};
-    DWORD                       dw_access;
-    LPCWSTR                     name;
+    ktl::api::structure_type stype = ktl::api::structure_type::v_export_semaphore_win_32handle_info_khr;
+    const void *             pnext = {};
+    const ktl::api::win32_security_attributes * p_attributes = {};
+    ktl::api::win32_dword                       dw_access;
+    ktl::api::win32_lpcwstr                     name;
 };
 struct d_3d_12fence_submit_info_khr
 {
@@ -1583,7 +1583,7 @@ struct import_semaphore_zircon_handle_info_fuchsia
     ktl::api::semaphore              semaphore;
     ktl::api::semaphore_import_flags flags = {};
     ktl::api::external_semaphore_handle_type_flag_bits handle_type;
-    zx_handle_t                                        zircon_handle;
+    ktl::api::zx_handle                                zircon_handle;
 };
 struct semaphore_get_zircon_handle_info_fuchsia
 {
@@ -1619,16 +1619,16 @@ struct import_fence_win_32handle_info_khr
     ktl::api::fence              fence;
     ktl::api::fence_import_flags flags = {};
     ktl::api::external_fence_handle_type_flag_bits handle_type;
-    HANDLE                                         handle = {};
-    LPCWSTR                                        name   = {};
+    ktl::api::win32_handle                         handle = {};
+    ktl::api::win32_lpcwstr                        name   = {};
 };
 struct export_fence_win_32handle_info_khr
 {
-    ktl::api::structure_type    stype        = ktl::api::structure_type::v_export_fence_win_32handle_info_khr;
-    const void *                pnext        = {};
-    const SECURITY_ATTRIBUTES * p_attributes = {};
-    DWORD                       dw_access;
-    LPCWSTR                     name;
+    ktl::api::structure_type                    stype = ktl::api::structure_type::v_export_fence_win_32handle_info_khr;
+    const void *                                pnext = {};
+    const ktl::api::win32_security_attributes * p_attributes = {};
+    ktl::api::win32_dword                       dw_access;
+    ktl::api::win32_lpcwstr                     name;
 };
 struct fence_get_win_32handle_info_khr
 {
@@ -1655,9 +1655,9 @@ struct fence_get_fd_info_khr
 };
 struct export_fence_sci_sync_info_nv
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_export_fence_sci_sync_info_nv;
-    const void *             pnext = {};
-    NvSciSyncAttrList        p_attributes;
+    ktl::api::structure_type       stype = ktl::api::structure_type::v_export_fence_sci_sync_info_nv;
+    const void *                   pnext = {};
+    ktl::api::nvsci_sync_attr_list p_attributes;
 };
 struct import_fence_sci_sync_info_nv
 {
@@ -1676,9 +1676,9 @@ struct fence_get_sci_sync_info_nv
 };
 struct export_semaphore_sci_sync_info_nv
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_export_semaphore_sci_sync_info_nv;
-    const void *             pnext = {};
-    NvSciSyncAttrList        p_attributes;
+    ktl::api::structure_type       stype = ktl::api::structure_type::v_export_semaphore_sci_sync_info_nv;
+    const void *                   pnext = {};
+    ktl::api::nvsci_sync_attr_list p_attributes;
 };
 struct import_semaphore_sci_sync_info_nv
 {
@@ -1724,14 +1724,14 @@ struct semaphore_sci_sync_pool_create_info_nv
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_semaphore_sci_sync_pool_create_info_nv;
     const void *             pnext = {};
-    NvSciSyncObj             handle;
+    ktl::api::nvsci_sync_obj handle;
 };
 struct semaphore_sci_sync_create_info_nv
 {
     ktl::api::structure_type             stype = ktl::api::structure_type::v_semaphore_sci_sync_create_info_nv;
     const void *                         pnext = {};
     ktl::api::semaphore_sci_sync_pool_nv semaphore_pool;
-    const NvSciSyncFence *               p_fence;
+    const ktl::api::nvsci_sync_fence *   p_fence;
 };
 struct device_semaphore_sci_sync_pool_reservation_create_info_nv
 {
@@ -3761,9 +3761,9 @@ struct image_view_address_properties_nvx
 };
 struct present_frame_token_ggp
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_present_frame_token_ggp;
-    const void *             pnext = {};
-    GgpFrameToken            frame_token;
+    ktl::api::structure_type  stype = ktl::api::structure_type::v_present_frame_token_ggp;
+    const void *              pnext = {};
+    ktl::api::ggp_frame_token frame_token;
 };
 struct pipeline_creation_feedback
 {
@@ -3780,7 +3780,7 @@ struct surface_full_screen_exclusive_win_32info_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_surface_full_screen_exclusive_win_32info_ext;
     const void *             pnext = {};
-    HMONITOR                 hmonitor;
+    ktl::api::win32_hmonitor hmonitor;
 };
 struct surface_capabilities_full_screen_exclusive_ext
 {
@@ -5704,7 +5704,7 @@ struct buffer_collection_create_info_fuchsia
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_buffer_collection_create_info_fuchsia;
     const void *             pnext = {};
-    zx_handle_t              collection_token;
+    ktl::api::zx_handle      collection_token;
 };
 struct sysmem_color_space_fuchsia
 {
@@ -6761,9 +6761,9 @@ struct physical_device_shader_tile_image_properties_ext
 };
 struct import_screen_buffer_info_qnx
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_import_screen_buffer_info_qnx;
-    const void *             pnext = {};
-    _screen_buffer *         buffer;
+    ktl::api::structure_type  stype = ktl::api::structure_type::v_import_screen_buffer_info_qnx;
+    const void *              pnext = {};
+    ktl::api::screen_buffer * buffer;
 };
 struct screen_buffer_properties_qnx
 {

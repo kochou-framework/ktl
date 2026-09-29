@@ -260,7 +260,7 @@ def extract(root, enums) -> list:
                     deprecated = bool(enum.get("deprecated"))
                     if offset:
                         field_name = make_field_name(enum.get("name"), target.name)
-                        field_value = make_vulkan_value(number, offset)
+                        field_value = make_vulkan_value(enum.get("extnumber") or number, offset, direction)
                         target.fields.append(VkEnumField(field_name, field_value, False, deprecated))
                     if value:
                         if direction:

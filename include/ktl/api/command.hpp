@@ -10,7 +10,7 @@ namespace ktl::api
 {
 static constexpr ktl::usize pfn_table_size = 841;
 using pfn_table                            = std::array< ktl::loader::proc_type, pfn_table_size >;
-inline thread_local pfn_table * ptable     = nullptr;
+inline pfn_table * ptable                  = nullptr;
 
 enum class command : ktl::u32
 {
@@ -3148,7 +3148,7 @@ create_wayland_surface_khr(ktl::api::instance                                _in
 
 inline ktl::api::bool32
 get_physical_device_wayland_presentation_support_khr(ktl::api::physical_device _physical_device,
-                                                     ktl::u32 _queue_family_index, wl_display * _display)
+                                                     ktl::u32 _queue_family_index, ktl::api::wayland_display * _display)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_wayland_presentation_support_khr)];
@@ -3174,7 +3174,7 @@ create_ubm_surface_sec(ktl::api::instance _instance, const ktl::api::ubm_surface
 
 inline ktl::api::bool32
 get_physical_device_ubm_presentation_support_sec(ktl::api::physical_device _physical_device,
-                                                 ktl::u32 _queue_family_index, ubm_device * _device)
+                                                 ktl::u32 _queue_family_index, ktl::api::ubm_device * _device)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_ubm_presentation_support_sec)];
@@ -3224,7 +3224,8 @@ create_xlib_surface_khr(ktl::api::instance _instance, const ktl::api::xlib_surfa
 
 inline ktl::api::bool32
 get_physical_device_xlib_presentation_support_khr(ktl::api::physical_device _physical_device,
-                                                  ktl::u32 _queue_family_index, Display * _dpy, VisualID _visual_id)
+                                                  ktl::u32 _queue_family_index, ktl::api::xlib_display * _dpy,
+                                                  ktl::api::xlib_visual_id _visual_id)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_xlib_presentation_support_khr)];
@@ -3250,8 +3251,8 @@ create_xcb_surface_khr(ktl::api::instance _instance, const ktl::api::xcb_surface
 
 inline ktl::api::bool32
 get_physical_device_xcb_presentation_support_khr(ktl::api::physical_device _physical_device,
-                                                 ktl::u32 _queue_family_index, xcb_connection_t * _connection,
-                                                 xcb_visualid_t _visual_id)
+                                                 ktl::u32 _queue_family_index, ktl::api::xcb_connection * _connection,
+                                                 ktl::api::xcb_visual_id _visual_id)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_xcb_presentation_support_khr)];
@@ -3278,7 +3279,7 @@ create_direct_fb_surface_ext(ktl::api::instance                                 
 
 inline ktl::api::bool32
 get_physical_device_direct_fb_presentation_support_ext(ktl::api::physical_device _physical_device,
-                                                       ktl::u32 _queue_family_index, IDirectFB * _dfb)
+                                                       ktl::u32 _queue_family_index, ktl::api::directfb * _dfb)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_direct_fb_presentation_support_ext)];
@@ -3334,7 +3335,7 @@ create_screen_surface_qnx(ktl::api::instance _instance, const ktl::api::screen_s
 
 inline ktl::api::bool32
 get_physical_device_screen_presentation_support_qnx(ktl::api::physical_device _physical_device,
-                                                    ktl::u32 _queue_family_index, _screen_window * _window)
+                                                    ktl::u32 _queue_family_index, ktl::api::screen_window * _window)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_screen_presentation_support_qnx)];
@@ -3468,7 +3469,8 @@ get_physical_device_external_image_format_properties_nv(
 
 inline ktl::api::result
 get_memory_win_32handle_nv(ktl::api::device _device, ktl::api::device_memory _memory,
-                           ktl::api::external_memory_handle_type_flags_nv _handle_type, HANDLE * _p_handle)
+                           ktl::api::external_memory_handle_type_flags_nv _handle_type,
+                           ktl::api::win32_handle *                       _p_handle)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win_32handle_nv)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -3839,7 +3841,7 @@ get_physical_device_external_buffer_properties(
 inline ktl::api::result
 get_memory_win_32handle_khr(ktl::api::device                                   _device,
                             const ktl::api::memory_get_win_32handle_info_khr * _p_get_win_32handle_info,
-                            HANDLE *                                           _p_handle)
+                            ktl::api::win32_handle *                           _p_handle)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win_32handle_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -3851,7 +3853,8 @@ get_memory_win_32handle_khr(ktl::api::device                                   _
 
 inline ktl::api::result
 get_memory_win_32handle_properties_khr(ktl::api::device                                _device,
-                                       ktl::api::external_memory_handle_type_flag_bits _handle_type, HANDLE _handle,
+                                       ktl::api::external_memory_handle_type_flag_bits _handle_type,
+                                       ktl::api::win32_handle                          _handle,
                                        ktl::api::memory_win_32handle_properties_khr * _p_memory_win_32handle_properties)
 {
     ktl::loader::proc_type ptr =
@@ -3890,7 +3893,7 @@ get_memory_fd_properties_khr(ktl::api::device _device, ktl::api::external_memory
 inline ktl::api::result
 get_memory_zircon_handle_fuchsia(ktl::api::device                                        _device,
                                  const ktl::api::memory_get_zircon_handle_info_fuchsia * _p_get_zircon_handle_info,
-                                 zx_handle_t *                                           _p_zircon_handle)
+                                 ktl::api::zx_handle *                                   _p_zircon_handle)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_zircon_handle_fuchsia)];
@@ -3903,7 +3906,8 @@ get_memory_zircon_handle_fuchsia(ktl::api::device                               
 
 inline ktl::api::result
 get_memory_zircon_handle_properties_fuchsia(
-    ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, zx_handle_t _zircon_handle,
+    ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type,
+    ktl::api::zx_handle                                 _zircon_handle,
     ktl::api::memory_zircon_handle_properties_fuchsia * _p_memory_zircon_handle_properties)
 {
     ktl::loader::proc_type ptr =
@@ -3931,7 +3935,7 @@ get_memory_remote_address_nv(ktl::api::device                                   
 
 inline ktl::api::result
 get_memory_sci_buf_nv(ktl::api::device _device, const ktl::api::memory_get_sci_buf_info_nv * _p_get_sci_buf_info,
-                      NvSciBufObj * _p_handle)
+                      ktl::api::nvsci_buf_obj * _p_handle)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_sci_buf_nv)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -3944,7 +3948,7 @@ get_memory_sci_buf_nv(ktl::api::device _device, const ktl::api::memory_get_sci_b
 inline ktl::api::result
 get_physical_device_external_memory_sci_buf_properties_nv(
     ktl::api::physical_device _physical_device, ktl::api::external_memory_handle_type_flag_bits _handle_type,
-    NvSciBufObj _handle, ktl::api::memory_sci_buf_properties_nv * _p_memory_sci_buf_properties)
+    ktl::api::nvsci_buf_obj _handle, ktl::api::memory_sci_buf_properties_nv * _p_memory_sci_buf_properties)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
         ktl::api::command::get_physical_device_external_memory_sci_buf_properties_nv)];
@@ -3957,7 +3961,8 @@ get_physical_device_external_memory_sci_buf_properties_nv(
 }
 
 inline ktl::api::result
-get_physical_device_sci_buf_attributes_nv(ktl::api::physical_device _physical_device, NvSciBufAttrList _p_attributes)
+get_physical_device_sci_buf_attributes_nv(ktl::api::physical_device     _physical_device,
+                                          ktl::api::nvsci_buf_attr_list _p_attributes)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sci_buf_attributes_nv)];
@@ -3987,7 +3992,7 @@ get_physical_device_external_semaphore_properties(
 inline ktl::api::result
 get_semaphore_win_32handle_khr(ktl::api::device                                      _device,
                                const ktl::api::semaphore_get_win_32handle_info_khr * _p_get_win_32handle_info,
-                               HANDLE *                                              _p_handle)
+                               ktl::api::win32_handle *                              _p_handle)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_win_32handle_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -4037,7 +4042,7 @@ import_semaphore_fd_khr(ktl::api::device                               _device,
 inline ktl::api::result
 get_semaphore_zircon_handle_fuchsia(
     ktl::api::device _device, const ktl::api::semaphore_get_zircon_handle_info_fuchsia * _p_get_zircon_handle_info,
-    zx_handle_t * _p_zircon_handle)
+    ktl::api::zx_handle * _p_zircon_handle)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_zircon_handle_fuchsia)];
@@ -4081,7 +4086,7 @@ get_physical_device_external_fence_properties(
 inline ktl::api::result
 get_fence_win_32handle_khr(ktl::api::device                                  _device,
                            const ktl::api::fence_get_win_32handle_info_khr * _p_get_win_32handle_info,
-                           HANDLE *                                          _p_handle)
+                           ktl::api::win32_handle *                          _p_handle)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_win_32handle_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -4201,7 +4206,7 @@ import_semaphore_sci_sync_obj_nv(ktl::api::device                               
 inline ktl::api::result
 get_physical_device_sci_sync_attributes_nv(ktl::api::physical_device                     _physical_device,
                                            const ktl::api::sci_sync_attributes_info_nv * _p_sci_sync_attributes_info,
-                                           NvSciSyncAttrList                             _p_attributes)
+                                           ktl::api::nvsci_sync_attr_list                _p_attributes)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sci_sync_attributes_nv)];
@@ -4253,7 +4258,8 @@ release_display_ext(ktl::api::physical_device _physical_device, ktl::api::displa
 }
 
 inline ktl::api::result
-acquire_xlib_display_ext(ktl::api::physical_device _physical_device, Display * _dpy, ktl::api::display_khr _display)
+acquire_xlib_display_ext(ktl::api::physical_device _physical_device, ktl::api::xlib_display * _dpy,
+                         ktl::api::display_khr _display)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_xlib_display_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -4264,8 +4270,8 @@ acquire_xlib_display_ext(ktl::api::physical_device _physical_device, Display * _
 }
 
 inline ktl::api::result
-get_rand_r_output_display_ext(ktl::api::physical_device _physical_device, Display * _dpy, RROutput _rr_output,
-                              ktl::api::display_khr * _p_display)
+get_rand_r_output_display_ext(ktl::api::physical_device _physical_device, ktl::api::xlib_display * _dpy,
+                              ktl::api::xlib_rr_output _rr_output, ktl::api::display_khr * _p_display)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_rand_r_output_display_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -8839,7 +8845,7 @@ get_past_presentation_timing_ext(
 }
 
 inline ktl::api::result
-get_screen_buffer_properties_qnx(ktl::api::device _device, const _screen_buffer * _buffer,
+get_screen_buffer_properties_qnx(ktl::api::device _device, const ktl::api::screen_buffer * _buffer,
                                  ktl::api::screen_buffer_properties_qnx * _p_properties)
 {
     ktl::loader::proc_type ptr =
