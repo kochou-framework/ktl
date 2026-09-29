@@ -1,0 +1,77 @@
+{
+    "configurations": [
+        {
+            "name": "MacOS RELEASE",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/include/kochou"
+            ],
+            "defines": [
+                "KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_NAME=\"\"",
+                "KOCHOU_FRAMEWORK_VERSION=1",
+                "KOCHOU_PLATFORM_MACOS",
+                "KOCHOU_LOG_LEVEL=0",
+                "KOCHOU_BUILD_RELEASE"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c23",
+            "intelliSenseMode": "macos-clang-arm64",
+            "cppStandard": "c++23"
+        },
+        {
+            "name": "MacOS DEBUG",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/include/kochou"
+            ],
+            "defines": [
+                "KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_NAME=\"\"",
+                "KOCHOU_FRAMEWORK_VERSION=1",
+                "KOCHOU_PLATFORM_MACOS",
+                "KOCHOU_LOG_LEVEL=5",
+                "KOCHOU_BUILD_DEBUG"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c23",
+            "intelliSenseMode": "macos-clang-arm64",
+            "cppStandard": "c++23"
+        },
+        {
+            "name": "Linux RELEASE",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/include/kochou"
+            ],
+            "defines": [
+                "KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_NAME=\"\"",
+                "KOCHOU_FRAMEWORK_VERSION=1",
+                "KOCHOU_PLATFORM_LINUX",
+                "KOCHOU_LOG_LEVEL=0",
+                "KOCHOU_BUILD_RELEASE"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c23",
+            "intelliSenseMode": "linux-clang-x64",
+            "cppStandard": "c++23"
+        },
+        {
+            "name": "Linux DEBUG",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/include/kochou"
+            ],
+            "defines": [
+                "KOCHOU_LOADER_VULKAN_DYNAMIC_LIB_NAME=\"\"",
+                "KOCHOU_FRAMEWORK_VERSION=1",
+                "KOCHOU_PLATFORM_LINUX",
+                "KOCHOU_LOG_LEVEL=5",
+                "KOCHOU_BUILD_DEBUG"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c23",
+            "intelliSenseMode": "linux-clang-x64",
+            "cppStandard": "c++23"
+        }
+    ],
+    "version": 4
+}

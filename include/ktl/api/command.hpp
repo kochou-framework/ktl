@@ -8,7 +8,7 @@
 
 namespace ktl::api
 {
-static constexpr ktl::usize pfn_table_size = 841;
+static constexpr ktl::usize pfn_table_size = 849;
 using pfn_table                            = std::array< ktl::loader::proc_type, pfn_table_size >;
 inline pfn_table * ptable                  = nullptr;
 
@@ -732,129 +732,137 @@ enum class command : ktl::u32
     get_past_presentation_timing_ext                                        = 715,
     get_screen_buffer_properties_qnx                                        = 716,
     get_physical_device_cooperative_matrix_properties_khr                   = 717,
-    get_execution_graph_pipeline_scratch_size_amdx                          = 718,
-    get_execution_graph_pipeline_node_index_amdx                            = 719,
-    create_execution_graph_pipelines_amdx                                   = 720,
-    cmd_initialize_graph_scratch_memory_amdx                                = 721,
-    cmd_dispatch_graph_amdx                                                 = 722,
-    cmd_dispatch_graph_indirect_amdx                                        = 723,
-    cmd_dispatch_graph_indirect_count_amdx                                  = 724,
-    create_gpa_session_amd                                                  = 725,
-    destroy_gpa_session_amd                                                 = 726,
-    set_gpa_device_clock_mode_amd                                           = 727,
-    get_gpa_device_clock_info_amd                                           = 728,
-    cmd_begin_gpa_session_amd                                               = 729,
-    cmd_end_gpa_session_amd                                                 = 730,
-    cmd_begin_gpa_sample_amd                                                = 731,
-    cmd_end_gpa_sample_amd                                                  = 732,
-    get_gpa_session_status_amd                                              = 733,
-    get_gpa_session_results_amd                                             = 734,
-    reset_gpa_session_amd                                                   = 735,
-    cmd_copy_gpa_session_results_amd                                        = 736,
-    cmd_bind_descriptor_sets_2                                              = 737,
+    get_physical_device_cooperative_matrix_properties_2ext                  = 718,
+    get_execution_graph_pipeline_scratch_size_amdx                          = 719,
+    get_execution_graph_pipeline_node_index_amdx                            = 720,
+    create_execution_graph_pipelines_amdx                                   = 721,
+    cmd_initialize_graph_scratch_memory_amdx                                = 722,
+    cmd_dispatch_graph_amdx                                                 = 723,
+    cmd_dispatch_graph_indirect_amdx                                        = 724,
+    cmd_dispatch_graph_indirect_count_amdx                                  = 725,
+    create_gpa_session_amd                                                  = 726,
+    destroy_gpa_session_amd                                                 = 727,
+    set_gpa_device_clock_mode_amd                                           = 728,
+    get_gpa_device_clock_info_amd                                           = 729,
+    cmd_begin_gpa_session_amd                                               = 730,
+    cmd_end_gpa_session_amd                                                 = 731,
+    cmd_begin_gpa_sample_amd                                                = 732,
+    cmd_end_gpa_sample_amd                                                  = 733,
+    get_gpa_session_status_amd                                              = 734,
+    get_gpa_session_results_amd                                             = 735,
+    reset_gpa_session_amd                                                   = 736,
+    cmd_copy_gpa_session_results_amd                                        = 737,
+    cmd_bind_descriptor_sets_2                                              = 738,
     cmd_bind_descriptor_sets_2khr                                           = cmd_bind_descriptor_sets_2,
-    cmd_push_constants_2                                                    = 739,
+    cmd_push_constants_2                                                    = 740,
     cmd_push_constants_2khr                                                 = cmd_push_constants_2,
-    cmd_push_descriptor_set_2                                               = 741,
+    cmd_push_descriptor_set_2                                               = 742,
     cmd_push_descriptor_set_2khr                                            = cmd_push_descriptor_set_2,
-    cmd_push_descriptor_set_with_template_2                                 = 743,
+    cmd_push_descriptor_set_with_template_2                                 = 744,
     cmd_push_descriptor_set_with_template_2khr                              = cmd_push_descriptor_set_with_template_2,
-    cmd_set_descriptor_buffer_offsets_2ext                                  = 745,
-    cmd_bind_descriptor_buffer_embedded_samplers_2ext                       = 746,
-    set_latency_sleep_mode_nv                                               = 747,
-    latency_sleep_nv                                                        = 748,
-    set_latency_marker_nv                                                   = 749,
-    get_latency_timings_nv                                                  = 750,
-    queue_notify_out_of_band_nv                                             = 751,
-    cmd_set_rendering_attachment_locations                                  = 752,
+    cmd_set_descriptor_buffer_offsets_2ext                                  = 746,
+    cmd_bind_descriptor_buffer_embedded_samplers_2ext                       = 747,
+    set_latency_sleep_mode_nv                                               = 748,
+    latency_sleep_nv                                                        = 749,
+    set_latency_marker_nv                                                   = 750,
+    get_latency_timings_nv                                                  = 751,
+    queue_notify_out_of_band_nv                                             = 752,
+    set_latency_sleep_mode_legacy_nv                                        = 753,
+    latency_sleep_legacy_nv                                                 = 754,
+    set_latency_marker_legacy_nv                                            = 755,
+    get_latency_timings_legacy_nv                                           = 756,
+    queue_notify_out_of_band_legacy_nv                                      = 757,
+    get_sleep_status_legacy_nv                                              = 758,
+    shutdown_latency_device_legacy_nv                                       = 759,
+    cmd_set_rendering_attachment_locations                                  = 760,
     cmd_set_rendering_attachment_locations_khr                              = cmd_set_rendering_attachment_locations,
-    cmd_set_rendering_input_attachment_indices                              = 754,
+    cmd_set_rendering_input_attachment_indices                              = 762,
     cmd_set_rendering_input_attachment_indices_khr = cmd_set_rendering_input_attachment_indices,
-    cmd_set_depth_clamp_range_ext                  = 756,
-    get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv     = 757,
-    get_memory_metal_handle_ext                                                  = 758,
-    get_memory_metal_handle_properties_ext                                       = 759,
-    get_physical_device_cooperative_vector_properties_nv                         = 760,
-    convert_cooperative_vector_matrix_nv                                         = 761,
-    cmd_convert_cooperative_vector_matrix_nv                                     = 762,
-    cmd_dispatch_tile_qcom                                                       = 763,
-    cmd_begin_per_tile_execution_qcom                                            = 764,
-    cmd_end_per_tile_execution_qcom                                              = 765,
-    create_external_compute_queue_nv                                             = 766,
-    destroy_external_compute_queue_nv                                            = 767,
-    get_external_compute_queue_data_nv                                           = 768,
-    enumerate_physical_device_shader_instrumentation_metrics_arm                 = 769,
-    create_shader_instrumentation_arm                                            = 770,
-    destroy_shader_instrumentation_arm                                           = 771,
-    cmd_begin_shader_instrumentation_arm                                         = 772,
-    cmd_end_shader_instrumentation_arm                                           = 773,
-    get_shader_instrumentation_values_arm                                        = 774,
-    clear_shader_instrumentation_metrics_arm                                     = 775,
-    create_tensor_arm                                                            = 776,
-    destroy_tensor_arm                                                           = 777,
-    create_tensor_view_arm                                                       = 778,
-    destroy_tensor_view_arm                                                      = 779,
-    get_tensor_memory_requirements_arm                                           = 780,
-    bind_tensor_memory_arm                                                       = 781,
-    get_device_tensor_memory_requirements_arm                                    = 782,
-    cmd_copy_tensor_arm                                                          = 783,
-    get_tensor_opaque_capture_descriptor_data_arm                                = 784,
-    get_tensor_view_opaque_capture_descriptor_data_arm                           = 785,
-    get_physical_device_external_tensor_properties_arm                           = 786,
-    create_data_graph_pipelines_arm                                              = 787,
-    create_data_graph_pipeline_session_arm                                       = 788,
-    get_data_graph_pipeline_session_bind_point_requirements_arm                  = 789,
-    get_data_graph_pipeline_session_memory_requirements_arm                      = 790,
-    bind_data_graph_pipeline_session_memory_arm                                  = 791,
-    destroy_data_graph_pipeline_session_arm                                      = 792,
-    cmd_dispatch_data_graph_arm                                                  = 793,
-    get_data_graph_pipeline_available_properties_arm                             = 794,
-    get_data_graph_pipeline_properties_arm                                       = 795,
-    get_physical_device_queue_family_data_graph_properties_arm                   = 796,
-    get_physical_device_queue_family_data_graph_processing_engine_properties_arm = 797,
-    get_native_buffer_properties_ohos                                            = 798,
-    get_memory_native_buffer_ohos                                                = 799,
-    get_swapchain_gralloc_usage_ohos                                             = 800,
-    acquire_image_ohos                                                           = 801,
-    queue_signal_release_image_ohos                                              = 802,
-    queue_set_perf_hint_qcom                                                     = 803,
-    enumerate_physical_device_queue_family_performance_counters_by_region_arm    = 804,
-    cmd_set_compute_occupancy_priority_nv                                        = 805,
-    write_sampler_descriptors_ext                                                = 806,
-    write_resource_descriptors_ext                                               = 807,
-    cmd_bind_sampler_heap_ext                                                    = 808,
-    cmd_bind_resource_heap_ext                                                   = 809,
-    cmd_push_data_ext                                                            = 810,
-    register_custom_border_color_ext                                             = 811,
-    unregister_custom_border_color_ext                                           = 812,
-    get_image_opaque_capture_data_ext                                            = 813,
-    get_physical_device_descriptor_size_ext                                      = 814,
-    get_tensor_opaque_capture_data_arm                                           = 815,
-    cmd_copy_memory_khr                                                          = 816,
-    cmd_copy_memory_to_image_khr                                                 = 817,
-    cmd_copy_image_to_memory_khr                                                 = 818,
-    cmd_update_memory_khr                                                        = 819,
-    cmd_fill_memory_khr                                                          = 820,
-    cmd_copy_query_pool_results_to_memory_khr                                    = 821,
-    cmd_begin_conditional_rendering_2ext                                         = 822,
-    cmd_bind_transform_feedback_buffers_2ext                                     = 823,
-    cmd_begin_transform_feedback_2ext                                            = 824,
-    cmd_end_transform_feedback_2ext                                              = 825,
-    cmd_draw_indirect_byte_count_2ext                                            = 826,
-    cmd_write_marker_to_memory_amd                                               = 827,
-    cmd_bind_index_buffer_3khr                                                   = 828,
-    cmd_bind_vertex_buffers_3khr                                                 = 829,
-    cmd_draw_indirect_2khr                                                       = 830,
-    cmd_draw_indexed_indirect_2khr                                               = 831,
-    cmd_draw_indirect_count_2khr                                                 = 832,
-    cmd_draw_indexed_indirect_count_2khr                                         = 833,
-    cmd_draw_mesh_tasks_indirect_2ext                                            = 834,
-    cmd_draw_mesh_tasks_indirect_count_2ext                                      = 835,
-    cmd_dispatch_indirect_2khr                                                   = 836,
-    create_acceleration_structure_2khr                                           = 837,
-    get_physical_device_queue_family_data_graph_engine_operation_properties_arm  = 838,
-    cmd_set_dispatch_parameters_arm                                              = 839,
-    get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm   = 840,
+    cmd_set_depth_clamp_range_ext                  = 764,
+    get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv     = 765,
+    get_memory_metal_handle_ext                                                  = 766,
+    get_memory_metal_handle_properties_ext                                       = 767,
+    get_physical_device_cooperative_vector_properties_nv                         = 768,
+    convert_cooperative_vector_matrix_nv                                         = 769,
+    cmd_convert_cooperative_vector_matrix_nv                                     = 770,
+    cmd_dispatch_tile_qcom                                                       = 771,
+    cmd_begin_per_tile_execution_qcom                                            = 772,
+    cmd_end_per_tile_execution_qcom                                              = 773,
+    create_external_compute_queue_nv                                             = 774,
+    destroy_external_compute_queue_nv                                            = 775,
+    get_external_compute_queue_data_nv                                           = 776,
+    enumerate_physical_device_shader_instrumentation_metrics_arm                 = 777,
+    create_shader_instrumentation_arm                                            = 778,
+    destroy_shader_instrumentation_arm                                           = 779,
+    cmd_begin_shader_instrumentation_arm                                         = 780,
+    cmd_end_shader_instrumentation_arm                                           = 781,
+    get_shader_instrumentation_values_arm                                        = 782,
+    clear_shader_instrumentation_metrics_arm                                     = 783,
+    create_tensor_arm                                                            = 784,
+    destroy_tensor_arm                                                           = 785,
+    create_tensor_view_arm                                                       = 786,
+    destroy_tensor_view_arm                                                      = 787,
+    get_tensor_memory_requirements_arm                                           = 788,
+    bind_tensor_memory_arm                                                       = 789,
+    get_device_tensor_memory_requirements_arm                                    = 790,
+    cmd_copy_tensor_arm                                                          = 791,
+    get_tensor_opaque_capture_descriptor_data_arm                                = 792,
+    get_tensor_view_opaque_capture_descriptor_data_arm                           = 793,
+    get_physical_device_external_tensor_properties_arm                           = 794,
+    create_data_graph_pipelines_arm                                              = 795,
+    create_data_graph_pipeline_session_arm                                       = 796,
+    get_data_graph_pipeline_session_bind_point_requirements_arm                  = 797,
+    get_data_graph_pipeline_session_memory_requirements_arm                      = 798,
+    bind_data_graph_pipeline_session_memory_arm                                  = 799,
+    destroy_data_graph_pipeline_session_arm                                      = 800,
+    cmd_dispatch_data_graph_arm                                                  = 801,
+    get_data_graph_pipeline_available_properties_arm                             = 802,
+    get_data_graph_pipeline_properties_arm                                       = 803,
+    get_physical_device_queue_family_data_graph_properties_arm                   = 804,
+    get_physical_device_queue_family_data_graph_processing_engine_properties_arm = 805,
+    get_native_buffer_properties_ohos                                            = 806,
+    get_memory_native_buffer_ohos                                                = 807,
+    get_swapchain_gralloc_usage_ohos                                             = 808,
+    acquire_image_ohos                                                           = 809,
+    queue_signal_release_image_ohos                                              = 810,
+    queue_set_perf_hint_qcom                                                     = 811,
+    enumerate_physical_device_queue_family_performance_counters_by_region_arm    = 812,
+    cmd_set_compute_occupancy_priority_nv                                        = 813,
+    write_sampler_descriptors_ext                                                = 814,
+    write_resource_descriptors_ext                                               = 815,
+    cmd_bind_sampler_heap_ext                                                    = 816,
+    cmd_bind_resource_heap_ext                                                   = 817,
+    cmd_push_data_ext                                                            = 818,
+    register_custom_border_color_ext                                             = 819,
+    unregister_custom_border_color_ext                                           = 820,
+    get_image_opaque_capture_data_ext                                            = 821,
+    get_physical_device_descriptor_size_ext                                      = 822,
+    get_tensor_opaque_capture_data_arm                                           = 823,
+    cmd_copy_memory_khr                                                          = 824,
+    cmd_copy_memory_to_image_khr                                                 = 825,
+    cmd_copy_image_to_memory_khr                                                 = 826,
+    cmd_update_memory_khr                                                        = 827,
+    cmd_fill_memory_khr                                                          = 828,
+    cmd_copy_query_pool_results_to_memory_khr                                    = 829,
+    cmd_begin_conditional_rendering_2ext                                         = 830,
+    cmd_bind_transform_feedback_buffers_2ext                                     = 831,
+    cmd_begin_transform_feedback_2ext                                            = 832,
+    cmd_end_transform_feedback_2ext                                              = 833,
+    cmd_draw_indirect_byte_count_2ext                                            = 834,
+    cmd_write_marker_to_memory_amd                                               = 835,
+    cmd_bind_index_buffer_3khr                                                   = 836,
+    cmd_bind_vertex_buffers_3khr                                                 = 837,
+    cmd_draw_indirect_2khr                                                       = 838,
+    cmd_draw_indexed_indirect_2khr                                               = 839,
+    cmd_draw_indirect_count_2khr                                                 = 840,
+    cmd_draw_indexed_indirect_count_2khr                                         = 841,
+    cmd_draw_mesh_tasks_indirect_2ext                                            = 842,
+    cmd_draw_mesh_tasks_indirect_count_2ext                                      = 843,
+    cmd_dispatch_indirect_2khr                                                   = 844,
+    create_acceleration_structure_2khr                                           = 845,
+    get_physical_device_queue_family_data_graph_engine_operation_properties_arm  = 846,
+    cmd_set_dispatch_parameters_arm                                              = 847,
+    get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm   = 848,
 };
 
 inline ktl::api::result
@@ -8873,6 +8881,22 @@ get_physical_device_cooperative_matrix_properties_khr(ktl::api::physical_device 
 }
 
 inline ktl::api::result
+get_physical_device_cooperative_matrix_properties_2ext(
+    ktl::api::physical_device                                      _physical_device,
+    const ktl::api::physical_device_cooperative_matrix_info_2ext * _p_cooperative_matrix_info,
+    ktl::u32 * _p_property_count, ktl::api::cooperative_matrix_properties_2ext * _p_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_cooperative_matrix_properties_2ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_cooperative_matrix_properties_2ext)ptr)(
+        _physical_device, _p_cooperative_matrix_info, _p_property_count, _p_properties);
+}
+
+inline ktl::api::result
 get_execution_graph_pipeline_scratch_size_amdx(ktl::api::device _device, ktl::api::pipeline _execution_graph,
                                                ktl::api::execution_graph_pipeline_scratch_size_amdx * _p_size_info)
 {
@@ -9245,6 +9269,88 @@ queue_notify_out_of_band_nv(ktl::api::queue _queue, const ktl::api::out_of_band_
         std::abort();
     }
     return ((pfn_queue_notify_out_of_band_nv)ptr)(_queue, _p_queue_type_info);
+}
+
+inline void
+set_latency_sleep_mode_legacy_nv(ktl::api::device _device, ktl::api::bool32 _low_latency_mode,
+                                 ktl::api::bool32 _low_latency_boost, ktl::u32 _minimum_interval_us)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_sleep_mode_legacy_nv)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_set_latency_sleep_mode_legacy_nv)ptr)(_device, _low_latency_mode, _low_latency_boost,
+                                                       _minimum_interval_us);
+}
+
+inline void
+latency_sleep_legacy_nv(ktl::api::device _device, ktl::api::semaphore _signal_semaphore, ktl::u64 _value)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::latency_sleep_legacy_nv)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_latency_sleep_legacy_nv)ptr)(_device, _signal_semaphore, _value);
+}
+
+inline void
+set_latency_marker_legacy_nv(ktl::api::device _device, ktl::u64 _frame_id, ktl::u32 _marker)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_marker_legacy_nv)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_set_latency_marker_legacy_nv)ptr)(_device, _frame_id, _marker);
+}
+
+inline void
+get_latency_timings_legacy_nv(ktl::api::device _device, void * _p_timings)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_latency_timings_legacy_nv)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_latency_timings_legacy_nv)ptr)(_device, _p_timings);
+}
+
+inline void
+queue_notify_out_of_band_legacy_nv(ktl::api::queue _queue, ktl::u32 _queue_type)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_notify_out_of_band_legacy_nv)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_queue_notify_out_of_band_legacy_nv)ptr)(_queue, _queue_type);
+}
+
+inline void
+get_sleep_status_legacy_nv(ktl::api::device _device, ktl::api::bool32 * _p_low_latency_mode)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_sleep_status_legacy_nv)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_sleep_status_legacy_nv)ptr)(_device, _p_low_latency_mode);
+}
+
+inline void
+shutdown_latency_device_legacy_nv(ktl::api::device _device)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::shutdown_latency_device_legacy_nv)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_shutdown_latency_device_legacy_nv)ptr)(_device);
 }
 
 inline void

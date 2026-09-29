@@ -36,8 +36,7 @@ struct handle_meta< physical_device >
     using type   = opaque_physical_device;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_physical_device)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_physical_device)
     };
 };
 
@@ -169,8 +168,7 @@ struct handle_meta< pipeline_layout >
     using type   = opaque_pipeline_layout;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_pipeline_layout)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_pipeline_layout)
     };
 };
 
@@ -203,8 +201,7 @@ struct handle_meta< descriptor_set_layout >
     using type   = opaque_descriptor_set_layout;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_descriptor_set_layout)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_descriptor_set_layout)
     };
 };
 
@@ -215,8 +212,7 @@ struct handle_meta< descriptor_pool >
     using type   = opaque_descriptor_pool;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_descriptor_pool)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_descriptor_pool)
     };
 };
 
@@ -304,8 +300,7 @@ struct handle_meta< pipeline_binary_khr >
     using type   = opaque_pipeline_binary_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_pipeline_binary_khr)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_pipeline_binary_khr)
     };
 };
 
@@ -316,8 +311,7 @@ struct handle_meta< indirect_commands_layout_nv >
     using type   = opaque_indirect_commands_layout_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_indirect_commands_layout_nv)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_indirect_commands_layout_nv)
     };
 };
 
@@ -328,8 +322,7 @@ struct handle_meta< indirect_commands_layout_ext >
     using type   = opaque_indirect_commands_layout_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_indirect_commands_layout_ext)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_indirect_commands_layout_ext)
     };
 };
 
@@ -340,8 +333,7 @@ struct handle_meta< indirect_execution_set_ext >
     using type   = opaque_indirect_execution_set_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_indirect_execution_set_ext)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_indirect_execution_set_ext)
     };
 };
 
@@ -352,8 +344,7 @@ struct handle_meta< descriptor_update_template >
     using type   = opaque_descriptor_update_template;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_descriptor_update_template)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_descriptor_update_template)
     };
 };
 
@@ -364,8 +355,7 @@ struct handle_meta< sampler_ycbcr_conversion >
     using type   = opaque_sampler_ycbcr_conversion;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_sampler_ycbcr_conversion)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_sampler_ycbcr_conversion)
     };
 };
 
@@ -376,8 +366,7 @@ struct handle_meta< validation_cache_ext >
     using type   = opaque_validation_cache_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_validation_cache_ext)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_validation_cache_ext)
     };
 };
 
@@ -388,8 +377,7 @@ struct handle_meta< acceleration_structure_khr >
     using type   = opaque_acceleration_structure_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_acceleration_structure_khr)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_acceleration_structure_khr)
     };
 };
 
@@ -400,8 +388,7 @@ struct handle_meta< acceleration_structure_nv >
     using type   = opaque_acceleration_structure_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_acceleration_structure_nv)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_acceleration_structure_nv)
     };
 };
 
@@ -412,8 +399,7 @@ struct handle_meta< performance_configuration_intel >
     using type   = opaque_performance_configuration_intel;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_performance_configuration_intel)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_performance_configuration_intel)
     };
 };
 
@@ -424,8 +410,7 @@ struct handle_meta< buffer_collection_fuchsia >
     using type   = opaque_buffer_collection_fuchsia;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_buffer_collection_fuchsia)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_buffer_collection_fuchsia)
     };
 };
 
@@ -436,8 +421,7 @@ struct handle_meta< deferred_operation_khr >
     using type   = opaque_deferred_operation_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_deferred_operation_khr)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_deferred_operation_khr)
     };
 };
 
@@ -448,8 +432,7 @@ struct handle_meta< private_data_slot >
     using type   = opaque_private_data_slot;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_private_data_slot)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_private_data_slot)
     };
 };
 
@@ -471,8 +454,7 @@ struct handle_meta< cu_function_nvx >
     using type   = opaque_cu_function_nvx;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_cu_function_nvx)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_cu_function_nvx)
     };
 };
 
@@ -483,8 +465,7 @@ struct handle_meta< optical_flow_session_nv >
     using type   = opaque_optical_flow_session_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_optical_flow_session_nv)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_optical_flow_session_nv)
     };
 };
 
@@ -528,8 +509,7 @@ struct handle_meta< tensor_view_arm >
     using type   = opaque_tensor_view_arm;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_tensor_view_arm)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_tensor_view_arm)
     };
 };
 
@@ -540,8 +520,7 @@ struct handle_meta< data_graph_pipeline_session_arm >
     using type   = opaque_data_graph_pipeline_session_arm;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_data_graph_pipeline_session_arm)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_data_graph_pipeline_session_arm)
     };
 };
 
@@ -552,8 +531,7 @@ struct handle_meta< shader_instrumentation_arm >
     using type   = opaque_shader_instrumentation_arm;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_shader_instrumentation_arm)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_shader_instrumentation_arm)
     };
 };
 
@@ -564,8 +542,7 @@ struct handle_meta< gpa_session_amd >
     using type   = opaque_gpa_session_amd;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_gpa_session_amd)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_gpa_session_amd)
     };
 };
 
@@ -587,8 +564,7 @@ struct handle_meta< display_mode_khr >
     using type   = opaque_display_mode_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_display_mode_khr)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_display_mode_khr)
     };
 };
 
@@ -621,8 +597,7 @@ struct handle_meta< debug_report_callback_ext >
     using type   = opaque_debug_report_callback_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_debug_report_callback_ext)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_debug_report_callback_ext)
     };
 };
 
@@ -633,8 +608,7 @@ struct handle_meta< debug_utils_messenger_ext >
     using type   = opaque_debug_utils_messenger_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_debug_utils_messenger_ext)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_debug_utils_messenger_ext)
     };
 };
 
@@ -645,8 +619,7 @@ struct handle_meta< semaphore_sci_sync_pool_nv >
     using type   = opaque_semaphore_sci_sync_pool_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_semaphore_sci_sync_pool_nv)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_semaphore_sci_sync_pool_nv)
     };
 };
 
@@ -668,8 +641,7 @@ struct handle_meta< cuda_function_nv >
     using type   = opaque_cuda_function_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object =
-            static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_cuda_function_nv)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_cuda_function_nv)
     };
 };
 
@@ -680,11 +652,10 @@ struct handle_meta< external_compute_queue_nv >
     using type   = opaque_external_compute_queue_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(
-            ktl::api::object_type::v_external_compute_queue_nv)
+        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_external_compute_queue_nv)
     };
 };
-} // namespace ktl::api
+}
 namespace std
 {
 template <>
@@ -1672,6 +1643,5 @@ struct formatter< ktl::api::external_compute_queue_nv, char >
         auto ptr = reinterpret_cast< std::uintptr_t >(_handle);
         return std::format_to(ctx.out(), "0x{:x}", ptr);
     }
-};
-} // namespace std
+};}
 #endif
