@@ -3,9 +3,7 @@
 
 #include <concepts>
 
-namespace ktl::reflection
-{
-namespace
+namespace ktl::reflection::details
 {
 template < template < typename > typename CONDITION, typename... VARIANTS >
 struct first_or_void;
@@ -24,9 +22,15 @@ struct first_or_void< CONDITION, LHS, RHS... >
 };
 } // namespace
 
-// first good or void
+namespace ktl::reflection
+{
+/**
+ * @brief compile time type selector
+ * 
+ * returns first `type` that satisfy condition or `void`
+ */
 template < template < typename > typename CONDITION, typename... VARIANTS >
-using selector = typename first_or_void< CONDITION, VARIANTS... >::type;
+using selector = typename details::first_or_void< CONDITION, VARIANTS... >::type;
 } // namespace ktl::reflection
 
 #endif

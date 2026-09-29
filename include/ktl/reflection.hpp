@@ -4,5 +4,7 @@
 #include "reflection/field_type.hpp"
 #include "reflection/fields_amount.hpp"
 #include "reflection/to_tuple.hpp"
+#include "reflection/alternative.hpp"
+#include "reflection/selector.hpp"
 
 #endif

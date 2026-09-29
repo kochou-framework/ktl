@@ -1,9 +1,11 @@
 #ifndef KTL_REFLECTION_TO_TUPLE_HPP
 #define KTL_REFLECTION_TO_TUPLE_HPP
 
+#include <ktl/type.hpp>
+
 namespace ktl::reflection::details
 {
-template < typename T, std::size_t N >
+template < typename T, ktl::usize N >
 struct to_tuple_impl;
 
 template < typename T >
