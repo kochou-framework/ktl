@@ -1153,7 +1153,7 @@ free_memory(ktl::api::device _device, ktl::api::device_memory _memory,
 
 inline ktl::api::result
 map_memory(ktl::api::device _device, ktl::api::device_memory _memory, ktl::api::dvsize _offset, ktl::api::dvsize _size,
-           ktl::api::memory_map_flags _flags, void * _pp_data)
+           ktl::api::memory_map_flags _flags, void ** _pp_data)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -5367,7 +5367,7 @@ get_android_hardware_buffer_properties_android(ktl::api::device _device, const A
 inline ktl::api::result
 get_memory_android_hardware_buffer_android(ktl::api::device                                                  _device,
                                            const ktl::api::memory_get_android_hardware_buffer_info_android * _p_info,
-                                           AHardwareBuffer *                                                 _p_buffer)
+                                           AHardwareBuffer **                                                _p_buffer)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_android_hardware_buffer_android)];
@@ -6593,8 +6593,8 @@ create_acceleration_structure_khr(ktl::api::device                              
 inline void
 cmd_build_acceleration_structures_khr(
     ktl::api::command_buffer _command_buffer, ktl::u32 _info_count,
-    const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos,
-    const ktl::api::acceleration_structure_build_range_info_khr *    _pp_build_range_infos)
+    const ktl::api::acceleration_structure_build_geometry_info_khr *      _p_infos,
+    const ktl::api::acceleration_structure_build_range_info_khr * const * _pp_build_range_infos)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_acceleration_structures_khr)];
@@ -6611,7 +6611,7 @@ cmd_build_acceleration_structures_indirect_khr(
     ktl::api::command_buffer _command_buffer, ktl::u32 _info_count,
     const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos,
     const ktl::api::dvaddr * _p_indirect_device_addresses, const ktl::u32 * _p_indirect_strides,
-    const ktl::u32 * _pp_max_primitive_counts)
+    const ktl::u32 * const * _pp_max_primitive_counts)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_acceleration_structures_indirect_khr)];
@@ -6625,10 +6625,10 @@ cmd_build_acceleration_structures_indirect_khr(
 }
 
 inline ktl::api::result
-build_acceleration_structures_khr(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
-                                  ktl::u32                                                         _info_count,
-                                  const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos,
-                                  const ktl::api::acceleration_structure_build_range_info_khr * _pp_build_range_infos)
+build_acceleration_structures_khr(
+    ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, ktl::u32 _info_count,
+    const ktl::api::acceleration_structure_build_geometry_info_khr *      _p_infos,
+    const ktl::api::acceleration_structure_build_range_info_khr * const * _pp_build_range_infos)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::build_acceleration_structures_khr)];
@@ -8287,7 +8287,7 @@ get_descriptor_set_layout_host_mapping_info_valve(
 
 inline void
 get_descriptor_set_host_mapping_valve(ktl::api::device _device, ktl::api::descriptor_set _descriptor_set,
-                                      void * _pp_data)
+                                      void ** _pp_data)
 {
     ktl::loader::proc_type ptr =
         (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_host_mapping_valve)];
@@ -8715,7 +8715,7 @@ get_device_image_subresource_layout(ktl::api::device _device, const ktl::api::de
 }
 
 inline ktl::api::result
-map_memory_2(ktl::api::device _device, const ktl::api::memory_map_info * _p_memory_map_info, void * _pp_data)
+map_memory_2(ktl::api::device _device, const ktl::api::memory_map_info * _p_memory_map_info, void ** _pp_data)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory_2)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -9305,7 +9305,7 @@ get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv(
 inline ktl::api::result
 get_memory_metal_handle_ext(ktl::api::device                                   _device,
                             const ktl::api::memory_get_metal_handle_info_ext * _p_get_metal_handle_info,
-                            void *                                             _p_handle)
+                            void **                                            _p_handle)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_metal_handle_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -9872,7 +9872,7 @@ get_native_buffer_properties_ohos(ktl::api::device _device, const OH_NativeBuffe
 
 inline ktl::api::result
 get_memory_native_buffer_ohos(ktl::api::device _device, const ktl::api::memory_get_native_buffer_info_ohos * _p_info,
-                              OH_NativeBuffer * _p_buffer)
+                              OH_NativeBuffer ** _p_buffer)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_native_buffer_ohos)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]

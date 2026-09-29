@@ -2634,17 +2634,18 @@ using pfn_internal_allocation_notification = void (*)(void * _p_user_data, ktl::
 using pfn_internal_free_notification       = void (*)(void * _p_user_data, ktl::usize _size,
                                                       ktl::api::internal_allocation_type _allocation_type,
                                                       ktl::api::system_allocation_scope  _allocation_scope);
-using pfn_reallocation_function = void (*)(void * _p_user_data, void * _p_original, ktl::usize _size,
-                                           ktl::usize _alignment, ktl::api::system_allocation_scope _allocation_scope);
-using pfn_allocation_function   = void (*)(void * _p_user_data, ktl::usize _size, ktl::usize _alignment,
-                                           ktl::api::system_allocation_scope _allocation_scope);
-using pfn_free_function         = void (*)(void * _p_user_data, void * _p_memory);
-using pfn_void_function         = void (*)();
-using pfn_debug_report_callback_ext = ktl::api::bool32 (*)(ktl::api::debug_report_flags_ext       _flags,
-                                                           ktl::api::debug_report_object_type_ext _object_type,
-                                                           ktl::u64 _object, ktl::usize _location,
-                                                           ktl::i32 _message_code, const char * _p_layer_prefix,
-                                                           const char * _p_message, void * _p_user_data);
+using pfn_reallocation_function            = void * (*)(void * _p_user_data, void * _p_original, ktl::usize _size,
+                                                        ktl::usize                        _alignment,
+                                                        ktl::api::system_allocation_scope _allocation_scope);
+using pfn_allocation_function              = void * (*)(void * _p_user_data, ktl::usize _size, ktl::usize _alignment,
+                                                        ktl::api::system_allocation_scope _allocation_scope);
+using pfn_free_function                    = void (*)(void * _p_user_data, void * _p_memory);
+using pfn_void_function                    = void (*)();
+using pfn_debug_report_callback_ext        = ktl::api::bool32 (*)(ktl::api::debug_report_flags_ext       _flags,
+                                                                  ktl::api::debug_report_object_type_ext _object_type,
+                                                                  ktl::u64 _object, ktl::usize _location,
+                                                                  ktl::i32 _message_code, const char * _p_layer_prefix,
+                                                                  const char * _p_message, void * _p_user_data);
 using pfn_debug_utils_messenger_callback_ext = ktl::api::bool32 (*)(
     ktl::api::debug_utils_message_severity_flag_bits_ext      _message_severity,
     ktl::api::debug_utils_message_type_flags_ext              _message_types,
@@ -2716,7 +2717,7 @@ using pfn_free_memory      = void (*)(ktl::api::device _device, ktl::api::device
                                       const ktl::api::allocation_callbacks * _p_allocator);
 using pfn_map_memory       = ktl::api::result (*)(ktl::api::device _device, ktl::api::device_memory _memory,
                                                   ktl::api::dvsize _offset, ktl::api::dvsize _size,
-                                                  ktl::api::memory_map_flags _flags, void * _pp_data);
+                                                  ktl::api::memory_map_flags _flags, void ** _pp_data);
 using pfn_unmap_memory     = void (*)(ktl::api::device _device, ktl::api::device_memory _memory);
 using pfn_flush_mapped_memory_ranges = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _memory_range_count,
                                                             const ktl::api::mapped_memory_range * _p_memory_ranges);
@@ -3687,7 +3688,7 @@ using pfn_get_android_hardware_buffer_properties_android =
                          ktl::api::android_hardware_buffer_properties_android * _p_properties);
 using pfn_get_memory_android_hardware_buffer_android = ktl::api::result (*)(
     ktl::api::device _device, const ktl::api::memory_get_android_hardware_buffer_info_android * _p_info,
-    AHardwareBuffer * _p_buffer);
+    AHardwareBuffer ** _p_buffer);
 using pfn_cmd_draw_indirect_count         = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
                                                      ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
                                                      ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count,
@@ -3978,17 +3979,17 @@ using pfn_create_acceleration_structure_khr       = ktl::api::result (*)(
     ktl::api::acceleration_structure_khr * _p_acceleration_structure);
 using pfn_cmd_build_acceleration_structures_khr =
     void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count,
-             const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos,
-             const ktl::api::acceleration_structure_build_range_info_khr *    _pp_build_range_infos);
+             const ktl::api::acceleration_structure_build_geometry_info_khr *      _p_infos,
+             const ktl::api::acceleration_structure_build_range_info_khr * const * _pp_build_range_infos);
 using pfn_cmd_build_acceleration_structures_indirect_khr =
     void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count,
              const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos,
              const ktl::api::dvaddr * _p_indirect_device_addresses, const ktl::u32 * _p_indirect_strides,
-             const ktl::u32 * _pp_max_primitive_counts);
+             const ktl::u32 * const * _pp_max_primitive_counts);
 using pfn_build_acceleration_structures_khr = ktl::api::result (*)(
     ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation, ktl::u32 _info_count,
-    const ktl::api::acceleration_structure_build_geometry_info_khr * _p_infos,
-    const ktl::api::acceleration_structure_build_range_info_khr *    _pp_build_range_infos);
+    const ktl::api::acceleration_structure_build_geometry_info_khr *      _p_infos,
+    const ktl::api::acceleration_structure_build_range_info_khr * const * _pp_build_range_infos);
 using pfn_get_acceleration_structure_device_address_khr = ktl::api::dvaddr (*)(
     ktl::api::device _device, const ktl::api::acceleration_structure_device_address_info_khr * _p_info);
 using pfn_create_deferred_operation_khr =
@@ -4353,7 +4354,7 @@ using pfn_get_descriptor_set_layout_host_mapping_info_valve =
     void (*)(ktl::api::device _device, const ktl::api::descriptor_set_binding_reference_valve * _p_binding_reference,
              ktl::api::descriptor_set_layout_host_mapping_info_valve * _p_host_mapping);
 using pfn_get_descriptor_set_host_mapping_valve = void (*)(ktl::api::device         _device,
-                                                           ktl::api::descriptor_set _descriptor_set, void * _pp_data);
+                                                           ktl::api::descriptor_set _descriptor_set, void ** _pp_data);
 using pfn_create_micromap_ext     = ktl::api::result (*)(ktl::api::device                           _device,
                                                          const ktl::api::micromap_create_info_ext * _p_create_info,
                                                          const ktl::api::allocation_callbacks *     _p_allocator,
@@ -4455,11 +4456,11 @@ using pfn_get_device_image_subresource_layout     = void (*)(ktl::api::device   
                                                              const ktl::api::device_image_subresource_info * _p_info,
                                                              ktl::api::subresource_layout_2 *                _p_layout);
 using pfn_get_device_image_subresource_layout_khr = pfn_get_device_image_subresource_layout;
-using pfn_map_memory_2    = ktl::api::result (*)(ktl::api::device                  _device,
-                                                 const ktl::api::memory_map_info * _p_memory_map_info, void * _pp_data);
-using pfn_map_memory_2khr = pfn_map_memory_2;
-using pfn_unmap_memory_2  = ktl::api::result (*)(ktl::api::device                    _device,
-                                                 const ktl::api::memory_unmap_info * _p_memory_unmap_info);
+using pfn_map_memory_2 = ktl::api::result (*)(ktl::api::device                  _device,
+                                              const ktl::api::memory_map_info * _p_memory_map_info, void ** _pp_data);
+using pfn_map_memory_2khr            = pfn_map_memory_2;
+using pfn_unmap_memory_2             = ktl::api::result (*)(ktl::api::device                    _device,
+                                                            const ktl::api::memory_unmap_info * _p_memory_unmap_info);
 using pfn_unmap_memory_2khr          = pfn_unmap_memory_2;
 using pfn_create_shaders_ext         = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _create_info_count,
                                                             const ktl::api::shader_create_info_ext * _p_create_infos,
@@ -4587,9 +4588,9 @@ using pfn_cmd_set_depth_clamp_range_ext = void (*)(ktl::api::command_buffer     
 using pfn_get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv =
     ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
                          ktl::api::cooperative_matrix_flexible_dimensions_properties_nv * _p_properties);
-using pfn_get_memory_metal_handle_ext =
-    ktl::api::result (*)(ktl::api::device                                   _device,
-                         const ktl::api::memory_get_metal_handle_info_ext * _p_get_metal_handle_info, void * _p_handle);
+using pfn_get_memory_metal_handle_ext = ktl::api::result (*)(
+    ktl::api::device _device, const ktl::api::memory_get_metal_handle_info_ext * _p_get_metal_handle_info,
+    void ** _p_handle);
 using pfn_get_memory_metal_handle_properties_ext = ktl::api::result (*)(
     ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type, const void * _p_handle,
     ktl::api::memory_metal_handle_properties_ext * _p_memory_metal_handle_properties);
@@ -4707,7 +4708,7 @@ using pfn_get_native_buffer_properties_ohos = ktl::api::result (*)(
     ktl::api::device _device, const OH_NativeBuffer * _buffer, ktl::api::native_buffer_properties_ohos * _p_properties);
 using pfn_get_memory_native_buffer_ohos =
     ktl::api::result (*)(ktl::api::device _device, const ktl::api::memory_get_native_buffer_info_ohos * _p_info,
-                         OH_NativeBuffer * _p_buffer);
+                         OH_NativeBuffer ** _p_buffer);
 using pfn_get_swapchain_gralloc_usage_ohos = ktl::api::result (*)(ktl::api::device _device, ktl::api::format _format,
                                                                   ktl::api::image_usage_flags _image_usage,
                                                                   ktl::u64 *                  _gralloc_usage);

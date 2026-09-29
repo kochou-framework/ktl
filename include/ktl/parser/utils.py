@@ -2,15 +2,6 @@ from vk_types import VkStruct, VkStructField
 from collections import defaultdict, deque
 
 
-def first_diff_index(s1: str, s2: str) -> int:
-    min_len = min(len(s1), len(s2))
-    for i in range(min_len):
-        if s1[i] != s2[i]:
-            return i
-    if len(s1) != len(s2):
-        return min_len
-    return len(s1)
-
 import re
 
 def c_name_to_cpp(name: str) -> str:

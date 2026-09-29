@@ -2,45 +2,26 @@ from vk_types import VkFunction, VkFunctionField
 from name_rules import *
 from utils import is_vulkan_video
 from typing import TextIO
-import xml.etree.ElementTree as ET
+from decl import parse_decl, make_decl_type, make_declaration
 
 
 def extract_command_field_impl(_root) -> VkFunctionField:
-    type_str = _root.find("type").text.strip()
-    type_res = ""
-    if make_type(type_str):
-        type_str = make_type(type_str)
-        type_res = type_str
-    else:
-        type_str = make_cpp_name(type_str)
-        type_res = f"ktl::api::{make_cpp_name(type_str)}"
-    name_str = make_cpp_name(_root.find("name").text.strip())
+    decl = parse_decl(_root)
+    return VkFunctionField(make_decl_type(decl.tppe), f"_{make_cpp_name(decl.name)}", decl.const, decl.array)
 
-    raw_field = ET.tostring(_root, encoding='unicode')
-    static_size = _root.find("enum")
-    for elem in _root.iter():
-        if elem.tag.endswith('}enum') or elem.tag == 'enum':
-            static_size = elem.text.strip()
-    if "[" in raw_field and "]" in raw_field:
-        exit_cond = False
-        size = make_constant(static_size)
-        start = raw_field.find('[')
-        comment_start = raw_field.find("comment")
-        if size is None:
-            end = raw_field.find(']')
-            size = raw_field[start + 1:end]
-            if not size.isdigit():
-                exit_cond = True
 
-        if start > comment_start and comment_start != -1 or exit_cond:
-            pass
-        else:
-            name_str = f"{name_str}[{size}]"
+def extract_return_type_impl(_proto) -> str:
+    decl = parse_decl(_proto)
+    return make_declaration(make_decl_type(decl.tppe), decl.const)
 
-    is_const = "const" in raw_field
-    is_pointer = "*" in raw_field
 
-    return VkFunctionField(type_res, f"_{name_str}", is_const, is_pointer)
+def extract_command_fields_impl(_root) -> list:
+    # same parameter can be declared separately for vulkan and vulkansc
+    return [extract_command_field_impl(param) for param in _root.findall("param") if param.get("api") != "vulkansc"]
+
+
+def make_params(_fields: list) -> str:
+    return ", ".join(make_declaration(field.tppe, field.const, field.name, field.array) for field in _fields)
 
 
 def extract_command_impl(_root) -> VkFunction | None:
@@ -51,16 +32,12 @@ def extract_command_impl(_root) -> VkFunction | None:
         return VkFunction(f"pfn_{alias_name}", raw_alias, None, None, f"pfn_{pfn_alias}")
 
     proto = _root.find("proto")
-    tppe = make_type(proto.find("type").text.strip())
+    tppe = extract_return_type_impl(proto)
     name = proto.find("name").text.strip()
     if is_vulkan_video(name):
         return None
 
-    fields = []
-    for field in _root.findall("param"):
-        fields.append(extract_command_field_impl(field))
-    fields = list(dict.fromkeys(fields))
-
+    fields = extract_command_fields_impl(_root)
     return VkFunction(f"pfn_{make_cpp_name(name)}", name, tppe, fields, None)
 
 
@@ -73,19 +50,7 @@ namespace ktl::api
         if command.alias:
             _file.write(f"using {command.pfn} = {command.alias};\n")
         else:
-            _file.write(f"using {command.pfn} = {command.tppe}(*)(")
-            fields_str = ""
-            for field in command.fields:
-                if field.is_const:
-                    fields_str += "const "
-                fields_str += f"{field.tppe} "
-                if field.is_pointer:
-                    fields_str += "* "
-                fields_str += field.name
-                fields_str += ", "
-            fields_str = fields_str[:-2]
-            _file.write(fields_str)
-            _file.write(");\n")
+            _file.write(f"using {command.pfn} = {command.tppe}(*)({make_params(command.fields)});\n")
     _file.write("}\n")
 
 
@@ -114,19 +79,7 @@ inline pfn_table * ptable = nullptr;
             # _file.write(f"using {command.pfn[4:]} = ")
             continue
 
-        _file.write(f"inline {command.tppe} {command.pfn[4:]}(")
-        fields_str = ""
-        for field in command.fields:
-            if field.is_const:
-                fields_str += "const "
-            fields_str += f"{field.tppe} "
-            if field.is_pointer:
-                fields_str += "* "
-            fields_str += field.name
-            fields_str += ", "
-        fields_str = fields_str[:-2]
-        _file.write(fields_str)
-        _file.write(")\n{\n")
+        _file.write(f"inline {command.tppe} {command.pfn[4:]}({make_params(command.fields)})\n{{\n")
 
         _file.write(f"""ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::{command.pfn[4:]})];
 if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -134,12 +87,7 @@ if (ptr == ktl::loader::proc_null) [[unlikely]]
 std::abort();
 }}
 return (({command.pfn})ptr)(""")
-        fields_str = ""
-        for field in command.fields:
-            fields_str += field.name.split('[')[0]
-            fields_str += ", "
-        fields_str = fields_str[:-2]
-        _file.write(fields_str)
+        _file.write(", ".join(field.name for field in command.fields))
         _file.write(");\n")
         _file.write("}\n\n")
     _file.write("}\n")

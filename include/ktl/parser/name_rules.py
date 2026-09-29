@@ -1,4 +1,4 @@
-from utils import first_diff_index, c_name_to_cpp
+from utils import c_name_to_cpp
 from type_cast import cast_type, DEFAULT_NEGATIVE_TYPE, DEFAULT_POSITIVE_TYPE
 
 
@@ -32,12 +32,15 @@ def make_cpp_name(src: str) -> str | None:
 def make_field_name(src: str, cmp: str) -> str | None:
     if src is None or not src.startswith("VK_"):
         return None
-    tmp = src.lower()[3:]
+    # strip common prefix by whole words: VK_CULL_MODE_FRONT_BIT + cull_mode_flag_bits -> front_bit
+    words = src.lower()[3:].split('_')
     if cmp is not None:
-        tmp = tmp[first_diff_index(tmp, cmp):]
-    if tmp.startswith('_'):
-        tmp = tmp[1:]
-    return make_cpp_name(f"v_{tmp}")
+        prefix = cmp.split('_')
+        common = 0
+        while common < min(len(words), len(prefix)) and words[common] == prefix[common]:
+            common += 1
+        words = words[common:] or words
+    return make_cpp_name(f"v_{'_'.join(words)}")
 
 
 def make_underling_type(_src: str, _direction: bool) -> str | None:

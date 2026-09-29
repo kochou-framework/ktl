@@ -2438,7 +2438,7 @@ enum class ray_tracing_lss_indexing_mode_nv : ktl::u32
 };
 enum class ray_tracing_lss_primitive_end_caps_mode_nv : ktl::u32
 {
-    v_one_nv     = 0,
+    v_none_nv    = 0,
     v_chained_nv = 1
 };
 enum class direct_driver_loading_mode_lunarg : ktl::u32
@@ -2474,10 +2474,10 @@ enum class queue_flag_bits : ktl::u32
 };
 enum class cull_mode_flag_bits : ktl::u32
 {
-    v_none          = 0,
-    v_ront_bit      = (1U << 0),
-    v_back_bit      = (1U << 1),
-    v_ront_and_back = 0x00000003
+    v_none           = 0,
+    v_front_bit      = (1U << 0),
+    v_back_bit       = (1U << 1),
+    v_front_and_back = 0x00000003
 };
 enum class render_pass_create_flag_bits : ktl::u32
 {
@@ -2514,41 +2514,41 @@ enum class memory_heap_flag_bits : ktl::u32
 };
 enum class access_flag_bits : ktl::u32
 {
-    v_indirect_command_read_bit                    = (1U << 0),
-    v_index_read_bit                               = (1U << 1),
-    v_vertex_attribute_read_bit                    = (1U << 2),
-    v_uniform_read_bit                             = (1U << 3),
-    v_input_attachment_read_bit                    = (1U << 4),
-    v_shader_read_bit                              = (1U << 5),
-    v_shader_write_bit                             = (1U << 6),
-    v_color_attachment_read_bit                    = (1U << 7),
-    v_color_attachment_write_bit                   = (1U << 8),
-    v_depth_stencil_attachment_read_bit            = (1U << 9),
-    v_depth_stencil_attachment_write_bit           = (1U << 10),
-    v_transfer_read_bit                            = (1U << 11),
-    v_transfer_write_bit                           = (1U << 12),
-    v_host_read_bit                                = (1U << 13),
-    v_host_write_bit                               = (1U << 14),
-    v_memory_read_bit                              = (1U << 15),
-    v_memory_write_bit                             = (1U << 16),
-    v_none                                         = 0,
-    v_transform_feedback_write_bit_ext             = (1U << 25),
-    v_transform_feedback_counter_read_bit_ext      = (1U << 26),
-    v_transform_feedback_counter_write_bit_ext     = (1U << 27),
-    v_conditional_rendering_read_bit_ext           = (1U << 20),
-    v_color_attachment_read_noncoherent_bit_ext    = (1U << 19),
-    v_acceleration_structure_read_bit_khr          = (1U << 21),
-    v_acceleration_structure_write_bit_khr         = (1U << 22),
-    v_ragment_density_map_read_bit_ext             = (1U << 24),
-    v_ragment_shading_rate_attachment_read_bit_khr = (1U << 23),
-    v_command_preprocess_read_bit_ext              = (1U << 17),
-    v_command_preprocess_write_bit_ext             = (1U << 18),
-    v_shading_rate_image_read_bit_nv               = v_ragment_shading_rate_attachment_read_bit_khr,
-    v_acceleration_structure_read_bit_nv           = v_acceleration_structure_read_bit_khr,
-    v_acceleration_structure_write_bit_nv          = v_acceleration_structure_write_bit_khr,
-    v_command_preprocess_read_bit_nv               = v_command_preprocess_read_bit_ext,
-    v_command_preprocess_write_bit_nv              = v_command_preprocess_write_bit_ext,
-    v_none_khr                                     = v_none
+    v_indirect_command_read_bit                     = (1U << 0),
+    v_index_read_bit                                = (1U << 1),
+    v_vertex_attribute_read_bit                     = (1U << 2),
+    v_uniform_read_bit                              = (1U << 3),
+    v_input_attachment_read_bit                     = (1U << 4),
+    v_shader_read_bit                               = (1U << 5),
+    v_shader_write_bit                              = (1U << 6),
+    v_color_attachment_read_bit                     = (1U << 7),
+    v_color_attachment_write_bit                    = (1U << 8),
+    v_depth_stencil_attachment_read_bit             = (1U << 9),
+    v_depth_stencil_attachment_write_bit            = (1U << 10),
+    v_transfer_read_bit                             = (1U << 11),
+    v_transfer_write_bit                            = (1U << 12),
+    v_host_read_bit                                 = (1U << 13),
+    v_host_write_bit                                = (1U << 14),
+    v_memory_read_bit                               = (1U << 15),
+    v_memory_write_bit                              = (1U << 16),
+    v_none                                          = 0,
+    v_transform_feedback_write_bit_ext              = (1U << 25),
+    v_transform_feedback_counter_read_bit_ext       = (1U << 26),
+    v_transform_feedback_counter_write_bit_ext      = (1U << 27),
+    v_conditional_rendering_read_bit_ext            = (1U << 20),
+    v_color_attachment_read_noncoherent_bit_ext     = (1U << 19),
+    v_acceleration_structure_read_bit_khr           = (1U << 21),
+    v_acceleration_structure_write_bit_khr          = (1U << 22),
+    v_fragment_density_map_read_bit_ext             = (1U << 24),
+    v_fragment_shading_rate_attachment_read_bit_khr = (1U << 23),
+    v_command_preprocess_read_bit_ext               = (1U << 17),
+    v_command_preprocess_write_bit_ext              = (1U << 18),
+    v_shading_rate_image_read_bit_nv                = v_fragment_shading_rate_attachment_read_bit_khr,
+    v_acceleration_structure_read_bit_nv            = v_acceleration_structure_read_bit_khr,
+    v_acceleration_structure_write_bit_nv           = v_acceleration_structure_write_bit_khr,
+    v_command_preprocess_read_bit_nv                = v_command_preprocess_read_bit_ext,
+    v_command_preprocess_write_bit_nv               = v_command_preprocess_write_bit_ext,
+    v_none_khr                                      = v_none
 };
 enum class buffer_usage_flag_bits : ktl::u32
 {
@@ -2650,7 +2650,7 @@ enum class shader_stage_flag_bits : ktl::u32
     v_tessellation_control_bit    = (1U << 1),
     v_tessellation_evaluation_bit = (1U << 2),
     v_geometry_bit                = (1U << 3),
-    v_ragment_bit                 = (1U << 4),
+    v_fragment_bit                = (1U << 4),
     v_compute_bit                 = (1U << 5),
     v_all_graphics                = 0x0000001F,
     v_all                         = 0x7FFFFFFF,
@@ -2677,31 +2677,31 @@ enum class shader_stage_flag_bits : ktl::u32
 };
 enum class image_usage_flag_bits : ktl::u32
 {
-    v_transfer_src_bit                        = (1U << 0),
-    v_transfer_dst_bit                        = (1U << 1),
-    v_sampled_bit                             = (1U << 2),
-    v_storage_bit                             = (1U << 3),
-    v_color_attachment_bit                    = (1U << 4),
-    v_depth_stencil_attachment_bit            = (1U << 5),
-    v_transient_attachment_bit                = (1U << 6),
-    v_input_attachment_bit                    = (1U << 7),
-    v_host_transfer_bit                       = (1U << 22),
-    v_ragment_density_map_bit_ext             = (1U << 9),
-    v_ragment_shading_rate_attachment_bit_khr = (1U << 8),
-    v_attachment_feedback_loop_bit_ext        = (1U << 19),
-    v_invocation_mask_bit_huawei              = (1U << 18),
-    v_sample_weight_bit_qcom                  = (1U << 20),
-    v_sample_block_match_bit_qcom             = (1U << 21),
-    v_reserved_24bit_coreavi                  = (1U << 24),
-    v_tensor_aliasing_bit_arm                 = (1U << 23),
-    v_reserved_28bit_ext                      = (1U << 28),
-    v_tile_memory_bit_qcom                    = (1U << 27),
-    v_reserved_29bit_khr                      = (1U << 29),
-    v_reserved_30bit_khr                      = (1U << 30),
-    v_reserved_16bit_huawei                   = (1U << 16),
-    v_reserved_27bit_huawei                   = (1U << 17),
-    v_shading_rate_image_bit_nv               = v_ragment_shading_rate_attachment_bit_khr,
-    v_host_transfer_bit_ext                   = v_host_transfer_bit
+    v_transfer_src_bit                         = (1U << 0),
+    v_transfer_dst_bit                         = (1U << 1),
+    v_sampled_bit                              = (1U << 2),
+    v_storage_bit                              = (1U << 3),
+    v_color_attachment_bit                     = (1U << 4),
+    v_depth_stencil_attachment_bit             = (1U << 5),
+    v_transient_attachment_bit                 = (1U << 6),
+    v_input_attachment_bit                     = (1U << 7),
+    v_host_transfer_bit                        = (1U << 22),
+    v_fragment_density_map_bit_ext             = (1U << 9),
+    v_fragment_shading_rate_attachment_bit_khr = (1U << 8),
+    v_attachment_feedback_loop_bit_ext         = (1U << 19),
+    v_invocation_mask_bit_huawei               = (1U << 18),
+    v_sample_weight_bit_qcom                   = (1U << 20),
+    v_sample_block_match_bit_qcom              = (1U << 21),
+    v_reserved_24bit_coreavi                   = (1U << 24),
+    v_tensor_aliasing_bit_arm                  = (1U << 23),
+    v_reserved_28bit_ext                       = (1U << 28),
+    v_tile_memory_bit_qcom                     = (1U << 27),
+    v_reserved_29bit_khr                       = (1U << 29),
+    v_reserved_30bit_khr                       = (1U << 30),
+    v_reserved_16bit_huawei                    = (1U << 16),
+    v_reserved_27bit_huawei                    = (1U << 17),
+    v_shading_rate_image_bit_nv                = v_fragment_shading_rate_attachment_bit_khr,
+    v_host_transfer_bit_ext                    = v_host_transfer_bit
 };
 enum class image_create_flag_bits : ktl::u32
 {
@@ -2724,7 +2724,7 @@ enum class image_create_flag_bits : ktl::u32
     v_subsampled_bit_ext                            = (1U << 14),
     v_multisampled_render_to_single_sampled_bit_ext = (1U << 18),
     v_2d_view_compatible_bit_ext                    = (1U << 17),
-    v_ragment_density_map_offset_bit_ext            = (1U << 15),
+    v_fragment_density_map_offset_bit_ext           = (1U << 15),
     v_alias_single_layer_descriptor_bit_khr         = (1U << 22),
     v_split_instance_bind_regions_bit_khr           = v_split_instance_bind_regions_bit,
     v_2d_array_compatible_bit_khr                   = v_2d_array_compatible_bit,
@@ -2733,13 +2733,13 @@ enum class image_create_flag_bits : ktl::u32
     v_disjoint_bit_khr                              = v_disjoint_bit,
     v_alias_bit_khr                                 = v_alias_bit,
     v_descriptor_buffer_capture_replay_bit_ext      = v_descriptor_heap_capture_replay_bit_ext,
-    v_ragment_density_map_offset_bit_qcom           = v_ragment_density_map_offset_bit_ext
+    v_fragment_density_map_offset_bit_qcom          = v_fragment_density_map_offset_bit_ext
 };
 enum class image_view_create_flag_bits : ktl::u32
 {
-    v_ragment_density_map_dynamic_bit_ext      = (1U << 0),
+    v_fragment_density_map_dynamic_bit_ext     = (1U << 0),
     v_descriptor_buffer_capture_replay_bit_ext = (1U << 2),
-    v_ragment_density_map_deferred_bit_ext     = (1U << 1)
+    v_fragment_density_map_deferred_bit_ext    = (1U << 1)
 };
 enum class sampler_create_flag_bits : ktl::u32
 {
@@ -2756,7 +2756,7 @@ enum class pipeline_create_flag_bits : ktl::u32
     v_derivative_bit                                         = (1U << 2),
     v_dispatch_base_bit                                      = (1U << 4),
     v_view_index_from_device_index_bit                       = (1U << 3),
-    v_ail_on_pipeline_compile_required_bit                   = (1U << 8),
+    v_fail_on_pipeline_compile_required_bit                  = (1U << 8),
     v_early_return_on_failure_bit                            = (1U << 9),
     v_no_protected_access_bit                                = (1U << 27),
     v_protected_access_only_bit                              = (1U << 30),
@@ -2790,11 +2790,11 @@ enum class pipeline_create_flag_bits : ktl::u32
         v_rendering_fragment_density_map_attachment_bit_ext,
     v_rasterization_state_create_fragment_shading_rate_attachment_bit_khr [[deprecated]] =
         v_rendering_fragment_shading_rate_attachment_bit_khr,
-    v_ail_on_pipeline_compile_required_bit_ext = v_ail_on_pipeline_compile_required_bit,
-    v_early_return_on_failure_bit_ext          = v_early_return_on_failure_bit,
-    v_ray_tracing_opacity_micromap_bit_ext     = v_ray_tracing_opacity_micromap_bit_khr,
-    v_no_protected_access_bit_ext              = v_no_protected_access_bit,
-    v_protected_access_only_bit_ext            = v_protected_access_only_bit
+    v_fail_on_pipeline_compile_required_bit_ext = v_fail_on_pipeline_compile_required_bit,
+    v_early_return_on_failure_bit_ext           = v_early_return_on_failure_bit,
+    v_ray_tracing_opacity_micromap_bit_ext      = v_ray_tracing_opacity_micromap_bit_khr,
+    v_no_protected_access_bit_ext               = v_no_protected_access_bit,
+    v_protected_access_only_bit_ext             = v_protected_access_only_bit
 };
 enum class pipeline_create_flag_bits_2 : ktl::u64
 {
@@ -2907,8 +2907,8 @@ enum class format_feature_flag_bits : ktl::u32
     v_sampled_image_filter_minmax_bit                                             = (1U << 16),
     v_acceleration_structure_vertex_buffer_bit_khr                                = (1U << 29),
     v_sampled_image_filter_cubic_bit_ext                                          = (1U << 13),
-    v_ragment_density_map_bit_ext                                                 = (1U << 24),
-    v_ragment_shading_rate_attachment_bit_khr                                     = (1U << 30),
+    v_fragment_density_map_bit_ext                                                = (1U << 24),
+    v_fragment_shading_rate_attachment_bit_khr                                    = (1U << 30),
     v_sampled_image_filter_cubic_bit_img                   = v_sampled_image_filter_cubic_bit_ext,
     v_transfer_src_bit_khr                                 = v_transfer_src_bit,
     v_transfer_dst_bit_khr                                 = v_transfer_dst_bit,
@@ -2953,7 +2953,7 @@ enum class query_pipeline_statistic_flag_bits : ktl::u32
     v_geometry_shader_primitives_bit                 = (1U << 4),
     v_clipping_invocations_bit                       = (1U << 5),
     v_clipping_primitives_bit                        = (1U << 6),
-    v_ragment_shader_invocations_bit                 = (1U << 7),
+    v_fragment_shader_invocations_bit                = (1U << 7),
     v_tessellation_control_shader_patches_bit        = (1U << 8),
     v_tessellation_evaluation_shader_invocations_bit = (1U << 9),
     v_compute_shader_invocations_bit                 = (1U << 10),
@@ -2997,40 +2997,40 @@ enum class sparse_memory_bind_flag_bits : ktl::u32
 };
 enum class pipeline_stage_flag_bits : ktl::u32
 {
-    v_top_of_pipe_bit                         = (1U << 0),
-    v_draw_indirect_bit                       = (1U << 1),
-    v_vertex_input_bit                        = (1U << 2),
-    v_vertex_shader_bit                       = (1U << 3),
-    v_tessellation_control_shader_bit         = (1U << 4),
-    v_tessellation_evaluation_shader_bit      = (1U << 5),
-    v_geometry_shader_bit                     = (1U << 6),
-    v_ragment_shader_bit                      = (1U << 7),
-    v_early_fragment_tests_bit                = (1U << 8),
-    v_late_fragment_tests_bit                 = (1U << 9),
-    v_color_attachment_output_bit             = (1U << 10),
-    v_compute_shader_bit                      = (1U << 11),
-    v_transfer_bit                            = (1U << 12),
-    v_bottom_of_pipe_bit                      = (1U << 13),
-    v_host_bit                                = (1U << 14),
-    v_all_graphics_bit                        = (1U << 15),
-    v_all_commands_bit                        = (1U << 16),
-    v_none                                    = 0,
-    v_transform_feedback_bit_ext              = (1U << 24),
-    v_conditional_rendering_bit_ext           = (1U << 18),
-    v_acceleration_structure_build_bit_khr    = (1U << 25),
-    v_ray_tracing_shader_bit_khr              = (1U << 21),
-    v_ragment_density_process_bit_ext         = (1U << 23),
-    v_ragment_shading_rate_attachment_bit_khr = (1U << 22),
-    v_task_shader_bit_ext                     = (1U << 19),
-    v_mesh_shader_bit_ext                     = (1U << 20),
-    v_command_preprocess_bit_ext              = (1U << 17),
-    v_shading_rate_image_bit_nv               = v_ragment_shading_rate_attachment_bit_khr,
-    v_ray_tracing_shader_bit_nv               = v_ray_tracing_shader_bit_khr,
-    v_acceleration_structure_build_bit_nv     = v_acceleration_structure_build_bit_khr,
-    v_task_shader_bit_nv                      = v_task_shader_bit_ext,
-    v_mesh_shader_bit_nv                      = v_mesh_shader_bit_ext,
-    v_command_preprocess_bit_nv               = v_command_preprocess_bit_ext,
-    v_none_khr                                = v_none
+    v_top_of_pipe_bit                          = (1U << 0),
+    v_draw_indirect_bit                        = (1U << 1),
+    v_vertex_input_bit                         = (1U << 2),
+    v_vertex_shader_bit                        = (1U << 3),
+    v_tessellation_control_shader_bit          = (1U << 4),
+    v_tessellation_evaluation_shader_bit       = (1U << 5),
+    v_geometry_shader_bit                      = (1U << 6),
+    v_fragment_shader_bit                      = (1U << 7),
+    v_early_fragment_tests_bit                 = (1U << 8),
+    v_late_fragment_tests_bit                  = (1U << 9),
+    v_color_attachment_output_bit              = (1U << 10),
+    v_compute_shader_bit                       = (1U << 11),
+    v_transfer_bit                             = (1U << 12),
+    v_bottom_of_pipe_bit                       = (1U << 13),
+    v_host_bit                                 = (1U << 14),
+    v_all_graphics_bit                         = (1U << 15),
+    v_all_commands_bit                         = (1U << 16),
+    v_none                                     = 0,
+    v_transform_feedback_bit_ext               = (1U << 24),
+    v_conditional_rendering_bit_ext            = (1U << 18),
+    v_acceleration_structure_build_bit_khr     = (1U << 25),
+    v_ray_tracing_shader_bit_khr               = (1U << 21),
+    v_fragment_density_process_bit_ext         = (1U << 23),
+    v_fragment_shading_rate_attachment_bit_khr = (1U << 22),
+    v_task_shader_bit_ext                      = (1U << 19),
+    v_mesh_shader_bit_ext                      = (1U << 20),
+    v_command_preprocess_bit_ext               = (1U << 17),
+    v_shading_rate_image_bit_nv                = v_fragment_shading_rate_attachment_bit_khr,
+    v_ray_tracing_shader_bit_nv                = v_ray_tracing_shader_bit_khr,
+    v_acceleration_structure_build_bit_nv      = v_acceleration_structure_build_bit_khr,
+    v_task_shader_bit_nv                       = v_task_shader_bit_ext,
+    v_mesh_shader_bit_nv                       = v_mesh_shader_bit_ext,
+    v_command_preprocess_bit_nv                = v_command_preprocess_bit_ext,
+    v_none_khr                                 = v_none
 };
 enum class command_pool_create_flag_bits : ktl::u32
 {
@@ -3065,13 +3065,13 @@ enum class attachment_description_flag_bits : ktl::u32
 };
 enum class stencil_face_flag_bits : ktl::u32
 {
-    v_ront_bit      = (1U << 0),
-    v_back_bit      = (1U << 1),
-    v_ront_and_back = 0x00000003
+    v_front_bit      = (1U << 0),
+    v_back_bit       = (1U << 1),
+    v_front_and_back = 0x00000003
 };
 enum class descriptor_pool_create_flag_bits : ktl::u32
 {
-    v_ree_descriptor_set_bit            = (1U << 0),
+    v_free_descriptor_set_bit           = (1U << 0),
     v_update_after_bind_bit             = (1U << 1),
     v_host_only_bit_ext                 = (1U << 2),
     v_allow_overallocation_sets_bit_nv  = (1U << 3),
@@ -3084,7 +3084,7 @@ enum class dependency_flag_bits : ktl::u32
     v_by_region_bit                                          = (1U << 0),
     v_device_group_bit                                       = (1U << 2),
     v_view_local_bit                                         = (1U << 1),
-    v_eedback_loop_bit_ext                                   = (1U << 3),
+    v_feedback_loop_bit_ext                                  = (1U << 3),
     v_queue_family_ownership_transfer_use_all_stages_bit_khr = (1U << 5),
     v_asymmetric_event_bit_khr                               = (1U << 6),
     v_extension_586bit_img                                   = (1U << 4),
@@ -3116,24 +3116,24 @@ enum class present_mode_khr : ktl::u32
 };
 enum class color_space_khr : ktl::u32
 {
-    v_srgb_nonlinear_khr                      = 0,
-    v_display_p_3nonlinear_ext                = 1000104001,
-    v_extended_srgb_linear_ext                = 1000104002,
-    v_display_p_3linear_ext                   = 1000104003,
-    v_dci_p_3nonlinear_ext                    = 1000104004,
-    v_bt_709linear_ext                        = 1000104005,
-    v_bt_709nonlinear_ext                     = 1000104006,
-    v_bt_2020linear_ext                       = 1000104007,
-    v_hdr_10st_2084ext                        = 1000104008,
-    v_dolbyvision_ext [[deprecated]]          = 1000104009,
-    v_hdr_10hlg_ext                           = 1000104010,
-    v_adobergb_linear_ext                     = 1000104011,
-    v_adobergb_nonlinear_ext                  = 1000104012,
-    v_pass_through_ext                        = 1000104013,
-    v_extended_srgb_nonlinear_ext             = 1000104014,
-    v_display_native_amd                      = 1000213000,
-    v_space_srgb_nonlinear_khr [[deprecated]] = v_srgb_nonlinear_khr,
-    v_dci_p_3linear_ext [[deprecated]]        = v_display_p_3linear_ext
+    v_srgb_nonlinear_khr                           = 0,
+    v_display_p_3nonlinear_ext                     = 1000104001,
+    v_extended_srgb_linear_ext                     = 1000104002,
+    v_display_p_3linear_ext                        = 1000104003,
+    v_dci_p_3nonlinear_ext                         = 1000104004,
+    v_bt_709linear_ext                             = 1000104005,
+    v_bt_709nonlinear_ext                          = 1000104006,
+    v_bt_2020linear_ext                            = 1000104007,
+    v_hdr_10st_2084ext                             = 1000104008,
+    v_dolbyvision_ext [[deprecated]]               = 1000104009,
+    v_hdr_10hlg_ext                                = 1000104010,
+    v_adobergb_linear_ext                          = 1000104011,
+    v_adobergb_nonlinear_ext                       = 1000104012,
+    v_pass_through_ext                             = 1000104013,
+    v_extended_srgb_nonlinear_ext                  = 1000104014,
+    v_display_native_amd                           = 1000213000,
+    v_colorspace_srgb_nonlinear_khr [[deprecated]] = v_srgb_nonlinear_khr,
+    v_dci_p_3linear_ext [[deprecated]]             = v_display_p_3linear_ext
 };
 enum class display_plane_alpha_flag_bits_khr : ktl::u32
 {
@@ -3163,7 +3163,7 @@ enum class surface_transform_flag_bits_khr : ktl::u32
 };
 enum class display_surface_stereo_type_nv : ktl::u32
 {
-    v_one_nv                = 0,
+    v_none_nv               = 0,
     v_onboard_din_nv        = 1,
     v_hdmi_3d_nv            = 2,
     v_inband_displayport_nv = 3
@@ -3206,7 +3206,7 @@ enum class debug_report_object_type_ext : ktl::u32
     v_device_memory_ext                   = 8,
     v_buffer_ext                          = 9,
     v_image_ext                           = 10,
-    v_vent_ext                            = 11,
+    v_event_ext                           = 11,
     v_query_pool_ext                      = 12,
     v_buffer_view_ext                     = 13,
     v_image_view_ext                      = 14,
@@ -3563,18 +3563,18 @@ enum class swapchain_create_flag_bits_khr : ktl::u32
 enum class viewport_coordinate_swizzle_nv : ktl::u32
 {
     v_positive_x_nv = 0,
-    v_egative_x_nv  = 1,
+    v_negative_x_nv = 1,
     v_positive_y_nv = 2,
-    v_egative_y_nv  = 3,
+    v_negative_y_nv = 3,
     v_positive_z_nv = 4,
-    v_egative_z_nv  = 5,
+    v_negative_z_nv = 5,
     v_positive_w_nv = 6,
-    v_egative_w_nv  = 7
+    v_negative_w_nv = 7
 };
 enum class discard_rectangle_mode_ext : ktl::u32
 {
     v_inclusive_ext = 0,
-    v_clusive_ext   = 1
+    v_exclusive_ext = 1
 };
 enum class subpass_description_flag_bits : ktl::u32
 {
@@ -3585,9 +3585,9 @@ enum class subpass_description_flag_bits : ktl::u32
     v_rasterization_order_attachment_depth_access_bit_ext   = (1U << 5),
     v_rasterization_order_attachment_stencil_access_bit_ext = (1U << 6),
     v_enable_legacy_dithering_bit_ext                       = (1U << 7),
-    v_ragment_region_bit_ext                                = (1U << 2),
+    v_fragment_region_bit_ext                               = (1U << 2),
     v_custom_resolve_bit_ext                                = (1U << 3),
-    v_ragment_region_bit_qcom                               = v_ragment_region_bit_ext,
+    v_fragment_region_bit_qcom                              = v_fragment_region_bit_ext,
     v_shader_resolve_bit_qcom                               = v_custom_resolve_bit_ext,
     v_rasterization_order_attachment_color_access_bit_arm   = v_rasterization_order_attachment_color_access_bit_ext,
     v_rasterization_order_attachment_depth_access_bit_arm   = v_rasterization_order_attachment_depth_access_bit_ext,
@@ -3652,7 +3652,7 @@ enum class blend_overlap_ext : ktl::u32
 };
 enum class coverage_modulation_mode_nv : ktl::u32
 {
-    v_one_nv   = 0,
+    v_none_nv  = 0,
     v_rgb_nv   = 1,
     v_alpha_nv = 2,
     v_rgba_nv  = 3
@@ -3796,7 +3796,7 @@ enum class resolve_mode_flag_bits : ktl::u32
 };
 enum class shading_rate_palette_entry_nv : ktl::u32
 {
-    v_o_invocations_nv              = 0,
+    v_no_invocations_nv             = 0,
     v_16invocations_per_pixel_nv    = 1,
     v_8invocations_per_pixel_nv     = 2,
     v_4invocations_per_pixel_nv     = 3,
@@ -3818,21 +3818,21 @@ enum class coarse_sample_order_type_nv : ktl::u32
 };
 enum class geometry_instance_flag_bits_khr : ktl::u32
 {
-    v_triangle_facing_cull_disable_bit_khr            = (1U << 0),
-    v_triangle_flip_facing_bit_khr                    = (1U << 1),
-    v_orce_opaque_bit_khr                             = (1U << 2),
-    v_orce_no_opaque_bit_khr                          = (1U << 3),
-    v_orce_opacity_micromap_2state_bit_khr            = (1U << 4),
-    v_disable_opacity_micromaps_bit_khr               = (1U << 5),
-    v_triangle_front_counterclockwise_bit_khr         = v_triangle_flip_facing_bit_khr,
-    v_triangle_cull_disable_bit_nv                    = v_triangle_facing_cull_disable_bit_khr,
-    v_triangle_front_counterclockwise_bit_nv          = v_triangle_front_counterclockwise_bit_khr,
-    v_orce_opaque_bit_nv                              = v_orce_opaque_bit_khr,
-    v_orce_no_opaque_bit_nv                           = v_orce_no_opaque_bit_khr,
-    v_orce_opacity_micromap_2state_bit_ext            = v_orce_opacity_micromap_2state_bit_khr,
-    v_orce_opacity_micromap_2state_ext [[deprecated]] = v_orce_opacity_micromap_2state_bit_ext,
-    v_disable_opacity_micromaps_bit_ext               = v_disable_opacity_micromaps_bit_khr,
-    v_disable_opacity_micromaps_ext [[deprecated]]    = v_disable_opacity_micromaps_bit_ext
+    v_triangle_facing_cull_disable_bit_khr             = (1U << 0),
+    v_triangle_flip_facing_bit_khr                     = (1U << 1),
+    v_force_opaque_bit_khr                             = (1U << 2),
+    v_force_no_opaque_bit_khr                          = (1U << 3),
+    v_force_opacity_micromap_2state_bit_khr            = (1U << 4),
+    v_disable_opacity_micromaps_bit_khr                = (1U << 5),
+    v_triangle_front_counterclockwise_bit_khr          = v_triangle_flip_facing_bit_khr,
+    v_triangle_cull_disable_bit_nv                     = v_triangle_facing_cull_disable_bit_khr,
+    v_triangle_front_counterclockwise_bit_nv           = v_triangle_front_counterclockwise_bit_khr,
+    v_force_opaque_bit_nv                              = v_force_opaque_bit_khr,
+    v_force_no_opaque_bit_nv                           = v_force_no_opaque_bit_khr,
+    v_force_opacity_micromap_2state_bit_ext            = v_force_opacity_micromap_2state_bit_khr,
+    v_force_opacity_micromap_2state_ext [[deprecated]] = v_force_opacity_micromap_2state_bit_ext,
+    v_disable_opacity_micromaps_bit_ext                = v_disable_opacity_micromaps_bit_khr,
+    v_disable_opacity_micromaps_ext [[deprecated]]     = v_disable_opacity_micromaps_bit_ext
 };
 enum class geometry_flag_bits_khr : ktl::u32
 {
@@ -3946,7 +3946,7 @@ enum class shader_group_shader_khr : ktl::u32
 enum class memory_overallocation_behavior_amd : ktl::u32
 {
     v_default_amd    = 0,
-    v_llowed_amd     = 1,
+    v_allowed_amd    = 1,
     v_disallowed_amd = 2
 };
 enum class framebuffer_create_flag_bits : ktl::u32
@@ -4002,7 +4002,7 @@ enum class performance_counter_unit_khr : ktl::u32
     v_nanoseconds_khr      = 2,
     v_bytes_khr            = 3,
     v_bytes_per_second_khr = 4,
-    v_elvin_khr            = 5,
+    v_kelvin_khr           = 5,
     v_watts_khr            = 6,
     v_volts_khr            = 7,
     v_amps_khr             = 8,
@@ -4139,7 +4139,7 @@ enum class pipeline_match_control : ktl::u32
 };
 enum class fragment_shading_rate_combiner_op_khr : ktl::u32
 {
-    v_eep_khr     = 0,
+    v_keep_khr    = 0,
     v_replace_khr = 1,
     v_min_khr     = 2,
     v_max_khr     = 3,
@@ -4158,7 +4158,7 @@ enum class fragment_shading_rate_nv : ktl::u32
     v_4invocations_per_pixel_nv     = 12,
     v_8invocations_per_pixel_nv     = 13,
     v_16invocations_per_pixel_nv    = 14,
-    v_o_invocations_nv              = 15
+    v_no_invocations_nv             = 15
 };
 enum class fragment_shading_rate_type_nv : ktl::u32
 {
@@ -4413,8 +4413,8 @@ enum class graphics_pipeline_library_flag_bits_ext : ktl::u32
 {
     v_vertex_input_interface_bit_ext    = (1U << 0),
     v_pre_rasterization_shaders_bit_ext = (1U << 1),
-    v_ragment_shader_bit_ext            = (1U << 2),
-    v_ragment_output_interface_bit_ext  = (1U << 3)
+    v_fragment_shader_bit_ext           = (1U << 2),
+    v_fragment_output_interface_bit_ext = (1U << 3)
 };
 enum class rendering_attachment_flag_bits_khr : ktl::u32
 {
@@ -4438,7 +4438,7 @@ enum class device_address_binding_type_ext : ktl::u32
 };
 enum class frame_boundary_flag_bits_ext : ktl::u32
 {
-    v_rame_end_bit_ext = (1U << 0)
+    v_frame_end_bit_ext = (1U << 0)
 };
 enum class present_scaling_flag_bits_khr : ktl::u32
 {
@@ -4616,7 +4616,7 @@ enum class rendering_flag_bits : ktl::u32
     v_enable_legacy_dithering_bit_ext              = (1U << 3),
     v_contents_inline_bit_khr                      = (1U << 4),
     v_per_layer_fragment_density_bit_valve         = (1U << 5),
-    v_ragment_region_bit_ext                       = (1U << 6),
+    v_fragment_region_bit_ext                      = (1U << 6),
     v_custom_resolve_bit_ext                       = (1U << 7),
     v_local_read_concurrent_access_control_bit_khr = (1U << 8),
     v_reserved_10bit_valve                         = (1U << 10),
@@ -4643,10 +4643,10 @@ enum class instance_create_flag_bits : ktl::u32
 };
 enum class image_compression_flag_bits_ext : ktl::u32
 {
-    v_default_ext            = 0,
-    v_ixed_rate_default_ext  = (1U << 0),
-    v_ixed_rate_explicit_ext = (1U << 1),
-    v_disabled_ext           = (1U << 2)
+    v_default_ext             = 0,
+    v_fixed_rate_default_ext  = (1U << 0),
+    v_fixed_rate_explicit_ext = (1U << 1),
+    v_disabled_ext            = (1U << 2)
 };
 enum class image_compression_fixed_rate_flag_bits_ext : ktl::u32
 {
@@ -4849,7 +4849,7 @@ enum class indirect_commands_input_mode_flag_bits_ext : ktl::u32
 };
 enum class indirect_commands_token_type_ext : ktl::u32
 {
-    v_ecution_set_ext              = 0,
+    v_execution_set_ext            = 0,
     v_push_constant_ext            = 1,
     v_sequence_index_ext           = 2,
     v_index_buffer_ext             = 3,
@@ -4884,8 +4884,8 @@ enum class shader_create_flag_bits_ext : ktl::u32
     v_require_full_subgroups_bit_ext                        = (1U << 2),
     v_no_task_shader_bit_ext                                = (1U << 3),
     v_dispatch_base_bit_ext                                 = (1U << 4),
-    v_ragment_shading_rate_attachment_bit_ext               = (1U << 5),
-    v_ragment_density_map_attachment_bit_ext                = (1U << 6),
+    v_fragment_shading_rate_attachment_bit_ext              = (1U << 5),
+    v_fragment_density_map_attachment_bit_ext               = (1U << 6),
     v_indirect_bindable_bit_ext                             = (1U << 7),
     v_reserved_8bit_ext                                     = (1U << 8),
     v_reserved_9bit_ext                                     = (1U << 9),
@@ -5179,8 +5179,8 @@ enum class gpa_perf_block_amd : ktl::u32
     v_cpc_amd      = 23,
     v_wd_amd       = 24,
     v_tcs_amd      = 25,
-    v_tc_amd       = 26,
-    v_tc_l_2amd    = 27,
+    v_atc_amd      = 26,
+    v_atc_l_2amd   = 27,
     v_mc_vm_l_2amd = 28,
     v_ea_amd       = 29,
     v_rpb_amd      = 30,
@@ -5231,7 +5231,7 @@ enum class gpa_device_clock_mode_amd : ktl::u32
 enum class address_command_flag_bits_khr : ktl::u32
 {
     v_protected_bit_khr                               = (1U << 0),
-    v_ully_bound_bit_khr                              = (1U << 1),
+    v_fully_bound_bit_khr                             = (1U << 1),
     v_storage_buffer_usage_bit_khr                    = (1U << 2),
     v_unknown_storage_buffer_usage_bit_khr            = (1U << 3),
     v_transform_feedback_buffer_usage_bit_khr         = (1U << 4),

@@ -2,7 +2,7 @@ from vk_types import VkStruct, VkStructField, VkFeature
 from name_rules import *
 from utils import is_vulkan_video
 from typing import TextIO
-import xml.etree.ElementTree as ET
+from decl import parse_decl, make_decl_type, make_declaration
 from utils import sort_by_dependencies
 
 import re
@@ -40,49 +40,21 @@ def make_feature_enum_name(field_snake: str, source_snake: str) -> str:
 
 
 def extract_struct_field_impl(_root, _name) -> VkStructField:
-    type_str = _root.find("type").text.strip()
-    type_res = ""
-    if make_type(type_str):
-        type_str = make_type(type_str)
-        type_res = type_str
-    else:
-        type_str = make_cpp_name(type_str)
-        type_res = f"ktl::api::{make_cpp_name(type_str)}"
-    name_str = make_cpp_name(_root.find("name").text.strip())
+    decl = parse_decl(_root)
+    type_res = make_decl_type(decl.tppe)
+    name_str = make_cpp_name(decl.name)
     if type_res == "ktl::api::bool32" and "features" in _name:
         name_str = make_feature_enum_name(name_str, _name)
-    
-    raw_field = ET.tostring(_root, encoding='unicode')
-    static_size = _root.find("enum")
-    for elem in _root.iter():
-        if elem.tag.endswith('}enum') or elem.tag == 'enum':
-            static_size = elem.text.strip()
-    if "[" in raw_field and "]" in raw_field:
-        exit_cond = False
-        size = make_constant(static_size)
-        start = raw_field.find('[')
-        comment_start = raw_field.find("comment")
-        if size is None:
-            end = raw_field.find(']')
-            size = raw_field[start + 1:end]
-            if not size.isdigit():
-                exit_cond = True
-
-        if start > comment_start and comment_start != -1 or exit_cond:
-            pass
-        else:
-            name_str = f"{name_str}[{size}]"
 
     is_optional = _root.get("optional") == "true"
-    is_const = "const" in raw_field
-    pointer_count = raw_field.count('*')
     default_value = _root.get("values")
     if default_value:
+        type_str = make_cpp_name(decl.tppe)
         default_value = f"ktl::api::{type_str}::{make_field_name(default_value, type_str)}"
     if is_optional:
         default_value = "{}"
 
-    return VkStructField(type_res, name_str, is_optional, is_const, pointer_count, default_value)
+    return VkStructField(type_res, name_str, is_optional, decl.const, decl.array, decl.bitfield, default_value)
 
 
 def extract_struct_impl(_root, _unique) -> tuple:
@@ -129,11 +101,7 @@ def fill_implementation(_file: TextIO, _structs: list) -> None:
         if struct.is_union:
             _file.write(f"union {struct.name}\n{{\n")
             for field in struct.fields:
-                act = ""
-                act += f"{field.tppe} "
-                act += '*' * field.pointer_count
-                act += field.name
-                _file.write(f"{act};\n")
+                _file.write(f"{make_declaration(field.tppe, field.const, field.name, field.array)};\n")
             _file.write("};\n")
         else:
             if struct.alias:
@@ -141,13 +109,7 @@ def fill_implementation(_file: TextIO, _structs: list) -> None:
 
             _file.write(f"struct {struct.name}\n{{\n")
             for field in struct.fields:
-                act = ""
-                if field.is_const:
-                    act += "const "
-                act += f"{field.tppe} "
-                act += '*' * field.pointer_count
-                act += field.name
-
+                act = make_declaration(field.tppe, field.const, field.name, field.array, field.bitfield)
                 if field.default_value:
                     act += f" = {field.default_value}"
                 _file.write(f"{act};\n")

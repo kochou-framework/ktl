@@ -20,16 +20,8 @@ class VkConstant:
 class VkFunctionField:
     tppe: str
     name: str
-    is_const: bool
-    is_pointer: bool
-
-    def __hash__(self) -> int:
-        return hash(self.name)
-
-    def __eq__(self, other) -> bool:
-        if not isinstance(other, VkEnumField):
-            return True
-        return self.name == other.name
+    const: list[bool]
+    array: list[str]
 
 
 @dataclass
@@ -98,9 +90,14 @@ class VkStructField:
     tppe: str
     name: str
     is_optional: bool
-    is_const: bool
-    pointer_count: int
+    const: list[bool]
+    array: list[str]
+    bitfield: str | None
     default_value: str
+
+    @property
+    def pointer_count(self) -> int:
+        return len(self.const) - 1
 
 
 @dataclass
