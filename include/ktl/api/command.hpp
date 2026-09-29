@@ -14,771 +14,771 @@ inline pfn_table * ptable                  = nullptr;
 
 enum class command : ktl::u32
 {
-    create_instance                                           = 0,
-    destroy_instance                                          = 1,
-    enumerate_physical_devices                                = 2,
-    get_device_proc_addr                                      = 3,
-    get_instance_proc_addr                                    = 4,
-    get_physical_device_properties                            = 5,
-    get_physical_device_queue_family_properties               = 6,
-    get_physical_device_memory_properties                     = 7,
-    get_physical_device_features                              = 8,
-    get_physical_device_format_properties                     = 9,
-    get_physical_device_image_format_properties               = 10,
-    create_device                                             = 11,
-    destroy_device                                            = 12,
-    enumerate_instance_version                                = 13,
-    enumerate_instance_layer_properties                       = 14,
-    enumerate_instance_extension_properties                   = 15,
-    enumerate_device_layer_properties                         = 16,
-    enumerate_device_extension_properties                     = 17,
-    get_device_queue                                          = 18,
-    queue_submit                                              = 19,
-    queue_wait_idle                                           = 20,
-    device_wait_idle                                          = 21,
-    allocate_memory                                           = 22,
-    free_memory                                               = 23,
-    map_memory                                                = 24,
-    unmap_memory                                              = 25,
-    flush_mapped_memory_ranges                                = 26,
-    invalidate_mapped_memory_ranges                           = 27,
-    get_device_memory_commitment                              = 28,
-    get_buffer_memory_requirements                            = 29,
-    bind_buffer_memory                                        = 30,
-    get_image_memory_requirements                             = 31,
-    bind_image_memory                                         = 32,
-    get_image_sparse_memory_requirements                      = 33,
-    get_physical_device_sparse_image_format_properties        = 34,
-    queue_bind_sparse                                         = 35,
-    create_fence                                              = 36,
-    destroy_fence                                             = 37,
-    reset_fences                                              = 38,
-    get_fence_status                                          = 39,
-    wait_for_fences                                           = 40,
-    create_semaphore                                          = 41,
-    destroy_semaphore                                         = 42,
-    create_event                                              = 43,
-    destroy_event                                             = 44,
-    get_event_status                                          = 45,
-    set_event                                                 = 46,
-    reset_event                                               = 47,
-    create_query_pool                                         = 48,
-    destroy_query_pool                                        = 49,
-    get_query_pool_results                                    = 50,
-    reset_query_pool                                          = 51,
-    reset_query_pool_ext                                      = reset_query_pool,
-    create_buffer                                             = 53,
-    destroy_buffer                                            = 54,
-    create_buffer_view                                        = 55,
-    destroy_buffer_view                                       = 56,
-    create_image                                              = 57,
-    destroy_image                                             = 58,
-    get_image_subresource_layout                              = 59,
-    create_image_view                                         = 60,
-    destroy_image_view                                        = 61,
-    create_shader_module                                      = 62,
-    destroy_shader_module                                     = 63,
-    create_pipeline_cache                                     = 64,
-    destroy_pipeline_cache                                    = 65,
-    get_pipeline_cache_data                                   = 66,
-    merge_pipeline_caches                                     = 67,
-    create_pipeline_binaries_khr                              = 68,
-    destroy_pipeline_binary_khr                               = 69,
-    get_pipeline_key_khr                                      = 70,
-    get_pipeline_binary_data_khr                              = 71,
-    release_captured_pipeline_data_khr                        = 72,
-    create_graphics_pipelines                                 = 73,
-    create_compute_pipelines                                  = 74,
-    get_device_subpass_shading_max_workgroup_size_huawei      = 75,
-    destroy_pipeline                                          = 76,
-    create_pipeline_layout                                    = 77,
-    destroy_pipeline_layout                                   = 78,
-    create_sampler                                            = 79,
-    destroy_sampler                                           = 80,
-    create_descriptor_set_layout                              = 81,
-    destroy_descriptor_set_layout                             = 82,
-    create_descriptor_pool                                    = 83,
-    destroy_descriptor_pool                                   = 84,
-    reset_descriptor_pool                                     = 85,
-    allocate_descriptor_sets                                  = 86,
-    free_descriptor_sets                                      = 87,
-    update_descriptor_sets                                    = 88,
-    create_framebuffer                                        = 89,
-    destroy_framebuffer                                       = 90,
-    create_render_pass                                        = 91,
-    destroy_render_pass                                       = 92,
-    get_render_area_granularity                               = 93,
-    get_rendering_area_granularity                            = 94,
-    get_rendering_area_granularity_khr                        = get_rendering_area_granularity,
-    create_command_pool                                       = 96,
-    destroy_command_pool                                      = 97,
-    reset_command_pool                                        = 98,
-    allocate_command_buffers                                  = 99,
-    free_command_buffers                                      = 100,
-    begin_command_buffer                                      = 101,
-    end_command_buffer                                        = 102,
-    reset_command_buffer                                      = 103,
-    cmd_bind_pipeline                                         = 104,
-    cmd_set_primitive_restart_index_ext                       = 105,
-    cmd_set_attachment_feedback_loop_enable_ext               = 106,
-    cmd_set_viewport                                          = 107,
-    cmd_set_scissor                                           = 108,
-    cmd_set_line_width                                        = 109,
-    cmd_set_depth_bias                                        = 110,
-    cmd_set_blend_constants                                   = 111,
-    cmd_set_depth_bounds                                      = 112,
-    cmd_set_stencil_compare_mask                              = 113,
-    cmd_set_stencil_write_mask                                = 114,
-    cmd_set_stencil_reference                                 = 115,
-    cmd_bind_descriptor_sets                                  = 116,
-    cmd_bind_index_buffer                                     = 117,
-    cmd_bind_vertex_buffers                                   = 118,
-    cmd_draw                                                  = 119,
-    cmd_draw_indexed                                          = 120,
-    cmd_draw_multi_ext                                        = 121,
-    cmd_draw_multi_indexed_ext                                = 122,
-    cmd_draw_indirect                                         = 123,
-    cmd_draw_indexed_indirect                                 = 124,
-    cmd_dispatch                                              = 125,
-    cmd_dispatch_indirect                                     = 126,
-    cmd_subpass_shading_huawei                                = 127,
-    cmd_draw_cluster_huawei                                   = 128,
-    cmd_draw_cluster_indirect_huawei                          = 129,
-    cmd_update_pipeline_indirect_buffer_nv                    = 130,
-    cmd_copy_buffer                                           = 131,
-    cmd_copy_image                                            = 132,
-    cmd_blit_image                                            = 133,
-    cmd_copy_buffer_to_image                                  = 134,
-    cmd_copy_image_to_buffer                                  = 135,
-    cmd_copy_memory_indirect_nv                               = 136,
-    cmd_copy_memory_indirect_khr                              = 137,
-    cmd_copy_memory_to_image_indirect_nv                      = 138,
-    cmd_copy_memory_to_image_indirect_khr                     = 139,
-    cmd_update_buffer                                         = 140,
-    cmd_fill_buffer                                           = 141,
-    cmd_clear_color_image                                     = 142,
-    cmd_clear_depth_stencil_image                             = 143,
-    cmd_clear_attachments                                     = 144,
-    cmd_resolve_image                                         = 145,
-    cmd_set_event                                             = 146,
-    cmd_reset_event                                           = 147,
-    cmd_wait_events                                           = 148,
-    cmd_pipeline_barrier                                      = 149,
-    cmd_begin_query                                           = 150,
-    cmd_end_query                                             = 151,
-    cmd_begin_conditional_rendering_ext                       = 152,
-    cmd_end_conditional_rendering_ext                         = 153,
-    cmd_begin_custom_resolve_ext                              = 154,
-    cmd_reset_query_pool                                      = 155,
-    cmd_write_timestamp                                       = 156,
-    cmd_copy_query_pool_results                               = 157,
-    cmd_push_constants                                        = 158,
-    cmd_begin_render_pass                                     = 159,
-    cmd_next_subpass                                          = 160,
-    cmd_end_render_pass                                       = 161,
-    cmd_execute_commands                                      = 162,
-    create_android_surface_khr                                = 163,
-    create_surface_ohos                                       = 164,
-    get_physical_device_display_properties_khr                = 165,
-    get_physical_device_display_plane_properties_khr          = 166,
-    get_display_plane_supported_displays_khr                  = 167,
-    get_display_mode_properties_khr                           = 168,
-    create_display_mode_khr                                   = 169,
-    get_display_plane_capabilities_khr                        = 170,
-    create_display_plane_surface_khr                          = 171,
-    create_shared_swapchains_khr                              = 172,
-    destroy_surface_khr                                       = 173,
-    get_physical_device_surface_support_khr                   = 174,
-    get_physical_device_surface_capabilities_khr              = 175,
-    get_physical_device_surface_formats_khr                   = 176,
-    get_physical_device_surface_present_modes_khr             = 177,
-    create_swapchain_khr                                      = 178,
-    destroy_swapchain_khr                                     = 179,
-    get_swapchain_images_khr                                  = 180,
-    acquire_next_image_khr                                    = 181,
-    queue_present_khr                                         = 182,
-    create_vi_surface_nn                                      = 183,
-    create_wayland_surface_khr                                = 184,
-    get_physical_device_wayland_presentation_support_khr      = 185,
-    create_ubm_surface_sec                                    = 186,
-    get_physical_device_ubm_presentation_support_sec          = 187,
-    create_win_32surface_khr                                  = 188,
-    get_physical_device_win_32presentation_support_khr        = 189,
-    create_xlib_surface_khr                                   = 190,
-    get_physical_device_xlib_presentation_support_khr         = 191,
-    create_xcb_surface_khr                                    = 192,
-    get_physical_device_xcb_presentation_support_khr          = 193,
-    create_direct_fb_surface_ext                              = 194,
-    get_physical_device_direct_fb_presentation_support_ext    = 195,
-    create_image_pipe_surface_fuchsia                         = 196,
-    create_stream_descriptor_surface_ggp                      = 197,
-    create_screen_surface_qnx                                 = 198,
-    get_physical_device_screen_presentation_support_qnx       = 199,
-    create_debug_report_callback_ext                          = 200,
-    destroy_debug_report_callback_ext                         = 201,
-    debug_report_message_ext                                  = 202,
-    debug_marker_set_object_name_ext                          = 203,
-    debug_marker_set_object_tag_ext                           = 204,
-    cmd_debug_marker_begin_ext                                = 205,
-    cmd_debug_marker_end_ext                                  = 206,
-    cmd_debug_marker_insert_ext                               = 207,
-    get_physical_device_external_image_format_properties_nv   = 208,
-    get_memory_win_32handle_nv                                = 209,
-    cmd_execute_generated_commands_nv                         = 210,
-    cmd_preprocess_generated_commands_nv                      = 211,
-    cmd_bind_pipeline_shader_group_nv                         = 212,
-    get_generated_commands_memory_requirements_nv             = 213,
-    create_indirect_commands_layout_nv                        = 214,
-    destroy_indirect_commands_layout_nv                       = 215,
-    cmd_execute_generated_commands_ext                        = 216,
-    cmd_preprocess_generated_commands_ext                     = 217,
-    get_generated_commands_memory_requirements_ext            = 218,
-    create_indirect_commands_layout_ext                       = 219,
-    destroy_indirect_commands_layout_ext                      = 220,
-    create_indirect_execution_set_ext                         = 221,
-    destroy_indirect_execution_set_ext                        = 222,
-    update_indirect_execution_set_pipeline_ext                = 223,
-    update_indirect_execution_set_shader_ext                  = 224,
-    get_physical_device_features_2                            = 225,
-    get_physical_device_features_2khr                         = get_physical_device_features_2,
-    get_physical_device_properties_2                          = 227,
-    get_physical_device_properties_2khr                       = get_physical_device_properties_2,
-    get_physical_device_format_properties_2                   = 229,
-    get_physical_device_format_properties_2khr                = get_physical_device_format_properties_2,
-    get_physical_device_image_format_properties_2             = 231,
-    get_physical_device_image_format_properties_2khr          = get_physical_device_image_format_properties_2,
-    get_physical_device_queue_family_properties_2             = 233,
-    get_physical_device_queue_family_properties_2khr          = get_physical_device_queue_family_properties_2,
-    get_physical_device_memory_properties_2                   = 235,
-    get_physical_device_memory_properties_2khr                = get_physical_device_memory_properties_2,
-    get_physical_device_sparse_image_format_properties_2      = 237,
-    get_physical_device_sparse_image_format_properties_2khr   = get_physical_device_sparse_image_format_properties_2,
-    cmd_push_descriptor_set                                   = 239,
-    cmd_push_descriptor_set_khr                               = cmd_push_descriptor_set,
-    trim_command_pool                                         = 241,
-    trim_command_pool_khr                                     = trim_command_pool,
-    get_physical_device_external_buffer_properties            = 243,
-    get_physical_device_external_buffer_properties_khr        = get_physical_device_external_buffer_properties,
-    get_memory_win_32handle_khr                               = 245,
-    get_memory_win_32handle_properties_khr                    = 246,
-    get_memory_fd_khr                                         = 247,
-    get_memory_fd_properties_khr                              = 248,
-    get_memory_zircon_handle_fuchsia                          = 249,
-    get_memory_zircon_handle_properties_fuchsia               = 250,
-    get_memory_remote_address_nv                              = 251,
-    get_memory_sci_buf_nv                                     = 252,
-    get_physical_device_external_memory_sci_buf_properties_nv = 253,
-    get_physical_device_sci_buf_attributes_nv                 = 254,
-    get_physical_device_external_semaphore_properties         = 255,
-    get_physical_device_external_semaphore_properties_khr     = get_physical_device_external_semaphore_properties,
-    get_semaphore_win_32handle_khr                            = 257,
-    import_semaphore_win_32handle_khr                         = 258,
-    get_semaphore_fd_khr                                      = 259,
-    import_semaphore_fd_khr                                   = 260,
-    get_semaphore_zircon_handle_fuchsia                       = 261,
-    import_semaphore_zircon_handle_fuchsia                    = 262,
-    get_physical_device_external_fence_properties             = 263,
-    get_physical_device_external_fence_properties_khr         = get_physical_device_external_fence_properties,
-    get_fence_win_32handle_khr                                = 265,
-    import_fence_win_32handle_khr                             = 266,
-    get_fence_fd_khr                                          = 267,
-    import_fence_fd_khr                                       = 268,
-    get_fence_sci_sync_fence_nv                               = 269,
-    get_fence_sci_sync_obj_nv                                 = 270,
-    import_fence_sci_sync_fence_nv                            = 271,
-    import_fence_sci_sync_obj_nv                              = 272,
-    get_semaphore_sci_sync_obj_nv                             = 273,
-    import_semaphore_sci_sync_obj_nv                          = 274,
-    get_physical_device_sci_sync_attributes_nv                = 275,
-    create_semaphore_sci_sync_pool_nv                         = 276,
-    destroy_semaphore_sci_sync_pool_nv                        = 277,
-    release_display_ext                                       = 278,
-    acquire_xlib_display_ext                                  = 279,
-    get_rand_r_output_display_ext                             = 280,
-    acquire_winrt_display_nv                                  = 281,
-    get_winrt_display_nv                                      = 282,
-    display_power_control_ext                                 = 283,
-    register_device_event_ext                                 = 284,
-    register_display_event_ext                                = 285,
-    get_swapchain_counter_ext                                 = 286,
-    get_physical_device_surface_capabilities_2ext             = 287,
-    enumerate_physical_device_groups                          = 288,
-    enumerate_physical_device_groups_khr                      = enumerate_physical_device_groups,
-    get_device_group_peer_memory_features                     = 290,
-    get_device_group_peer_memory_features_khr                 = get_device_group_peer_memory_features,
-    bind_buffer_memory_2                                      = 292,
-    bind_buffer_memory_2khr                                   = bind_buffer_memory_2,
-    bind_image_memory_2                                       = 294,
-    bind_image_memory_2khr                                    = bind_image_memory_2,
-    cmd_set_device_mask                                       = 296,
-    cmd_set_device_mask_khr                                   = cmd_set_device_mask,
-    get_device_group_present_capabilities_khr                 = 298,
-    get_device_group_surface_present_modes_khr                = 299,
-    acquire_next_image_2khr                                   = 300,
-    cmd_dispatch_base                                         = 301,
-    cmd_dispatch_base_khr                                     = cmd_dispatch_base,
-    get_physical_device_present_rectangles_khr                = 303,
-    create_descriptor_update_template                         = 304,
-    create_descriptor_update_template_khr                     = create_descriptor_update_template,
-    destroy_descriptor_update_template                        = 306,
-    destroy_descriptor_update_template_khr                    = destroy_descriptor_update_template,
-    update_descriptor_set_with_template                       = 308,
-    update_descriptor_set_with_template_khr                   = update_descriptor_set_with_template,
-    cmd_push_descriptor_set_with_template                     = 310,
-    cmd_push_descriptor_set_with_template_khr                 = cmd_push_descriptor_set_with_template,
-    set_hdr_metadata_ext                                      = 312,
-    get_swapchain_status_khr                                  = 313,
-    get_refresh_cycle_duration_google                         = 314,
-    get_past_presentation_timing_google                       = 315,
-    create_ios_surface_mvk                                    = 316,
-    create_mac_os_surface_mvk                                 = 317,
-    create_metal_surface_ext                                  = 318,
-    cmd_set_viewport_w_scaling_nv                             = 319,
-    cmd_set_discard_rectangle_ext                             = 320,
-    cmd_set_discard_rectangle_enable_ext                      = 321,
-    cmd_set_discard_rectangle_mode_ext                        = 322,
-    cmd_set_sample_locations_ext                              = 323,
-    get_physical_device_multisample_properties_ext            = 324,
-    get_physical_device_surface_capabilities_2khr             = 325,
-    get_physical_device_surface_formats_2khr                  = 326,
-    get_physical_device_display_properties_2khr               = 327,
-    get_physical_device_display_plane_properties_2khr         = 328,
-    get_display_mode_properties_2khr                          = 329,
-    get_display_plane_capabilities_2khr                       = 330,
-    get_buffer_memory_requirements_2                          = 331,
-    get_buffer_memory_requirements_2khr                       = get_buffer_memory_requirements_2,
-    get_image_memory_requirements_2                           = 333,
-    get_image_memory_requirements_2khr                        = get_image_memory_requirements_2,
-    get_image_sparse_memory_requirements_2                    = 335,
-    get_image_sparse_memory_requirements_2khr                 = get_image_sparse_memory_requirements_2,
-    get_device_buffer_memory_requirements                     = 337,
-    get_device_buffer_memory_requirements_khr                 = get_device_buffer_memory_requirements,
-    get_device_image_memory_requirements                      = 339,
-    get_device_image_memory_requirements_khr                  = get_device_image_memory_requirements,
-    get_device_image_sparse_memory_requirements               = 341,
-    get_device_image_sparse_memory_requirements_khr           = get_device_image_sparse_memory_requirements,
-    create_sampler_ycbcr_conversion                           = 343,
-    create_sampler_ycbcr_conversion_khr                       = create_sampler_ycbcr_conversion,
-    destroy_sampler_ycbcr_conversion                          = 345,
-    destroy_sampler_ycbcr_conversion_khr                      = destroy_sampler_ycbcr_conversion,
-    get_device_queue_2                                        = 347,
-    create_validation_cache_ext                               = 348,
-    destroy_validation_cache_ext                              = 349,
-    get_validation_cache_data_ext                             = 350,
-    merge_validation_caches_ext                               = 351,
-    get_descriptor_set_layout_support                         = 352,
-    get_descriptor_set_layout_support_khr                     = get_descriptor_set_layout_support,
-    get_swapchain_gralloc_usage_android                       = 354,
-    get_swapchain_gralloc_usage_2android                      = 355,
-    acquire_image_android                                     = 356,
-    queue_signal_release_image_android                        = 357,
-    get_shader_info_amd                                       = 358,
-    set_local_dimming_amd                                     = 359,
-    get_physical_device_calibrateable_time_domains_khr        = 360,
-    get_physical_device_calibrateable_time_domains_ext        = get_physical_device_calibrateable_time_domains_khr,
-    get_calibrated_timestamps_khr                             = 362,
-    get_calibrated_timestamps_ext                             = get_calibrated_timestamps_khr,
-    set_debug_utils_object_name_ext                           = 364,
-    set_debug_utils_object_tag_ext                            = 365,
-    queue_begin_debug_utils_label_ext                         = 366,
-    queue_end_debug_utils_label_ext                           = 367,
-    queue_insert_debug_utils_label_ext                        = 368,
-    cmd_begin_debug_utils_label_ext                           = 369,
-    cmd_end_debug_utils_label_ext                             = 370,
-    cmd_insert_debug_utils_label_ext                          = 371,
-    create_debug_utils_messenger_ext                          = 372,
-    destroy_debug_utils_messenger_ext                         = 373,
-    submit_debug_utils_message_ext                            = 374,
-    get_memory_host_pointer_properties_ext                    = 375,
-    cmd_write_buffer_marker_amd                               = 376,
-    create_render_pass_2                                      = 377,
-    create_render_pass_2khr                                   = create_render_pass_2,
-    cmd_begin_render_pass_2                                   = 379,
-    cmd_begin_render_pass_2khr                                = cmd_begin_render_pass_2,
-    cmd_next_subpass_2                                        = 381,
-    cmd_next_subpass_2khr                                     = cmd_next_subpass_2,
-    cmd_end_render_pass_2                                     = 383,
-    cmd_end_render_pass_2khr                                  = cmd_end_render_pass_2,
-    get_semaphore_counter_value                               = 385,
-    get_semaphore_counter_value_khr                           = get_semaphore_counter_value,
-    wait_semaphores                                           = 387,
-    wait_semaphores_khr                                       = wait_semaphores,
-    signal_semaphore                                          = 389,
-    signal_semaphore_khr                                      = signal_semaphore,
-    get_android_hardware_buffer_properties_android            = 391,
-    get_memory_android_hardware_buffer_android                = 392,
-    cmd_draw_indirect_count                                   = 393,
-    cmd_draw_indirect_count_khr                               = cmd_draw_indirect_count,
-    cmd_draw_indirect_count_amd                               = cmd_draw_indirect_count,
-    cmd_draw_indexed_indirect_count                           = 396,
-    cmd_draw_indexed_indirect_count_khr                       = cmd_draw_indexed_indirect_count,
-    cmd_draw_indexed_indirect_count_amd                       = cmd_draw_indexed_indirect_count,
-    cmd_set_checkpoint_nv                                     = 399,
-    get_queue_checkpoint_data_nv                              = 400,
-    cmd_bind_transform_feedback_buffers_ext                   = 401,
-    cmd_begin_transform_feedback_ext                          = 402,
-    cmd_end_transform_feedback_ext                            = 403,
-    cmd_begin_query_indexed_ext                               = 404,
-    cmd_end_query_indexed_ext                                 = 405,
-    cmd_draw_indirect_byte_count_ext                          = 406,
-    cmd_set_exclusive_scissor_nv                              = 407,
-    cmd_set_exclusive_scissor_enable_nv                       = 408,
-    cmd_bind_shading_rate_image_nv                            = 409,
-    cmd_set_viewport_shading_rate_palette_nv                  = 410,
-    cmd_set_coarse_sample_order_nv                            = 411,
-    cmd_draw_mesh_tasks_nv                                    = 412,
-    cmd_draw_mesh_tasks_indirect_nv                           = 413,
-    cmd_draw_mesh_tasks_indirect_count_nv                     = 414,
-    cmd_draw_mesh_tasks_ext                                   = 415,
-    cmd_draw_mesh_tasks_indirect_ext                          = 416,
-    cmd_draw_mesh_tasks_indirect_count_ext                    = 417,
-    compile_deferred_nv                                       = 418,
-    create_acceleration_structure_nv                          = 419,
-    cmd_bind_invocation_mask_huawei                           = 420,
-    destroy_acceleration_structure_khr                        = 421,
-    destroy_acceleration_structure_nv                         = 422,
-    get_acceleration_structure_memory_requirements_nv         = 423,
-    bind_acceleration_structure_memory_nv                     = 424,
-    cmd_copy_acceleration_structure_nv                        = 425,
-    cmd_copy_acceleration_structure_khr                       = 426,
-    copy_acceleration_structure_khr                           = 427,
-    cmd_copy_acceleration_structure_to_memory_khr             = 428,
-    copy_acceleration_structure_to_memory_khr                 = 429,
-    cmd_copy_memory_to_acceleration_structure_khr             = 430,
-    copy_memory_to_acceleration_structure_khr                 = 431,
-    cmd_write_acceleration_structures_properties_khr          = 432,
-    cmd_write_acceleration_structures_properties_nv           = 433,
-    cmd_build_acceleration_structure_nv                       = 434,
-    write_acceleration_structures_properties_khr              = 435,
-    cmd_trace_rays_khr                                        = 436,
-    cmd_trace_rays_nv                                         = 437,
-    get_ray_tracing_shader_group_handles_khr                  = 438,
-    get_ray_tracing_shader_group_handles_nv                   = get_ray_tracing_shader_group_handles_khr,
-    get_ray_tracing_capture_replay_shader_group_handles_khr   = 440,
-    get_acceleration_structure_handle_nv                      = 441,
-    create_ray_tracing_pipelines_nv                           = 442,
-    create_ray_tracing_pipelines_khr                          = 443,
-    get_physical_device_cooperative_matrix_properties_nv      = 444,
-    cmd_trace_rays_indirect_khr                               = 445,
-    cmd_trace_rays_indirect_2khr                              = 446,
-    get_cluster_acceleration_structure_build_sizes_nv         = 447,
-    cmd_build_cluster_acceleration_structure_indirect_nv      = 448,
-    get_device_acceleration_structure_compatibility_khr       = 449,
-    get_ray_tracing_shader_group_stack_size_khr               = 450,
-    cmd_set_ray_tracing_pipeline_stack_size_khr               = 451,
-    get_image_view_handle_nvx                                 = 452,
-    get_image_view_handle_64nvx                               = 453,
-    get_image_view_address_nvx                                = 454,
-    get_device_combined_image_sampler_index_nvx               = 455,
-    get_physical_device_surface_present_modes_2ext            = 456,
-    get_device_group_surface_present_modes_2ext               = 457,
-    acquire_full_screen_exclusive_mode_ext                    = 458,
-    release_full_screen_exclusive_mode_ext                    = 459,
-    enumerate_physical_device_queue_family_performance_query_counters_khr   = 460,
-    get_physical_device_queue_family_performance_query_passes_khr           = 461,
-    acquire_profiling_lock_khr                                              = 462,
-    release_profiling_lock_khr                                              = 463,
-    get_image_drm_format_modifier_properties_ext                            = 464,
-    get_buffer_opaque_capture_address                                       = 465,
-    get_buffer_opaque_capture_address_khr                                   = get_buffer_opaque_capture_address,
-    get_buffer_device_address                                               = 467,
-    get_buffer_device_address_khr                                           = get_buffer_device_address,
-    get_buffer_device_address_ext                                           = get_buffer_device_address,
-    create_headless_surface_ext                                             = 470,
-    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv = 471,
-    initialize_performance_api_intel                                        = 472,
-    uninitialize_performance_api_intel                                      = 473,
-    cmd_set_performance_marker_intel                                        = 474,
-    cmd_set_performance_stream_marker_intel                                 = 475,
-    cmd_set_performance_override_intel                                      = 476,
-    acquire_performance_configuration_intel                                 = 477,
-    release_performance_configuration_intel                                 = 478,
-    queue_set_performance_configuration_intel                               = 479,
-    get_performance_parameter_intel                                         = 480,
-    get_device_memory_opaque_capture_address                                = 481,
-    get_device_memory_opaque_capture_address_khr                            = get_device_memory_opaque_capture_address,
-    get_pipeline_executable_properties_khr                                  = 483,
-    get_pipeline_executable_statistics_khr                                  = 484,
-    get_pipeline_executable_internal_representations_khr                    = 485,
-    cmd_set_line_stipple                                                    = 486,
-    cmd_set_line_stipple_khr                                                = cmd_set_line_stipple,
-    cmd_set_line_stipple_ext                                                = cmd_set_line_stipple,
-    get_fault_data                                                          = 489,
-    get_physical_device_tool_properties                                     = 490,
-    get_physical_device_tool_properties_ext                                 = get_physical_device_tool_properties,
-    create_acceleration_structure_khr                                       = 492,
-    cmd_build_acceleration_structures_khr                                   = 493,
-    cmd_build_acceleration_structures_indirect_khr                          = 494,
-    build_acceleration_structures_khr                                       = 495,
-    get_acceleration_structure_device_address_khr                           = 496,
-    create_deferred_operation_khr                                           = 497,
-    destroy_deferred_operation_khr                                          = 498,
-    get_deferred_operation_max_concurrency_khr                              = 499,
-    get_deferred_operation_result_khr                                       = 500,
-    deferred_operation_join_khr                                             = 501,
-    get_pipeline_indirect_memory_requirements_nv                            = 502,
-    get_pipeline_indirect_device_address_nv                                 = 503,
-    anti_lag_update_amd                                                     = 504,
-    cmd_set_cull_mode                                                       = 505,
-    cmd_set_cull_mode_ext                                                   = cmd_set_cull_mode,
-    cmd_set_front_face                                                      = 507,
-    cmd_set_front_face_ext                                                  = cmd_set_front_face,
-    cmd_set_primitive_topology                                              = 509,
-    cmd_set_primitive_topology_ext                                          = cmd_set_primitive_topology,
-    cmd_set_viewport_with_count                                             = 511,
-    cmd_set_viewport_with_count_ext                                         = cmd_set_viewport_with_count,
-    cmd_set_scissor_with_count                                              = 513,
-    cmd_set_scissor_with_count_ext                                          = cmd_set_scissor_with_count,
-    cmd_bind_index_buffer_2                                                 = 515,
-    cmd_bind_index_buffer_2khr                                              = cmd_bind_index_buffer_2,
-    cmd_bind_vertex_buffers_2                                               = 517,
-    cmd_bind_vertex_buffers_2ext                                            = cmd_bind_vertex_buffers_2,
-    cmd_set_depth_test_enable                                               = 519,
-    cmd_set_depth_test_enable_ext                                           = cmd_set_depth_test_enable,
-    cmd_set_depth_write_enable                                              = 521,
-    cmd_set_depth_write_enable_ext                                          = cmd_set_depth_write_enable,
-    cmd_set_depth_compare_op                                                = 523,
-    cmd_set_depth_compare_op_ext                                            = cmd_set_depth_compare_op,
-    cmd_set_depth_bounds_test_enable                                        = 525,
-    cmd_set_depth_bounds_test_enable_ext                                    = cmd_set_depth_bounds_test_enable,
-    cmd_set_stencil_test_enable                                             = 527,
-    cmd_set_stencil_test_enable_ext                                         = cmd_set_stencil_test_enable,
-    cmd_set_stencil_op                                                      = 529,
-    cmd_set_stencil_op_ext                                                  = cmd_set_stencil_op,
-    cmd_set_patch_control_points_ext                                        = 531,
-    cmd_set_rasterizer_discard_enable                                       = 532,
-    cmd_set_rasterizer_discard_enable_ext                                   = cmd_set_rasterizer_discard_enable,
-    cmd_set_depth_bias_enable                                               = 534,
-    cmd_set_depth_bias_enable_ext                                           = cmd_set_depth_bias_enable,
-    cmd_set_logic_op_ext                                                    = 536,
-    cmd_set_primitive_restart_enable                                        = 537,
-    cmd_set_primitive_restart_enable_ext                                    = cmd_set_primitive_restart_enable,
-    cmd_set_tessellation_domain_origin_ext                                  = 539,
-    cmd_set_depth_clamp_enable_ext                                          = 540,
-    cmd_set_polygon_mode_ext                                                = 541,
-    cmd_set_rasterization_samples_ext                                       = 542,
-    cmd_set_sample_mask_ext                                                 = 543,
-    cmd_set_alpha_to_coverage_enable_ext                                    = 544,
-    cmd_set_alpha_to_one_enable_ext                                         = 545,
-    cmd_set_logic_op_enable_ext                                             = 546,
-    cmd_set_color_blend_enable_ext                                          = 547,
-    cmd_set_color_blend_equation_ext                                        = 548,
-    cmd_set_color_write_mask_ext                                            = 549,
-    cmd_set_rasterization_stream_ext                                        = 550,
-    cmd_set_conservative_rasterization_mode_ext                             = 551,
-    cmd_set_extra_primitive_overestimation_size_ext                         = 552,
-    cmd_set_depth_clip_enable_ext                                           = 553,
-    cmd_set_sample_locations_enable_ext                                     = 554,
-    cmd_set_color_blend_advanced_ext                                        = 555,
-    cmd_set_provoking_vertex_mode_ext                                       = 556,
-    cmd_set_line_rasterization_mode_ext                                     = 557,
-    cmd_set_line_stipple_enable_ext                                         = 558,
-    cmd_set_depth_clip_negative_one_to_one_ext                              = 559,
-    cmd_set_viewport_w_scaling_enable_nv                                    = 560,
-    cmd_set_viewport_swizzle_nv                                             = 561,
-    cmd_set_coverage_to_color_enable_nv                                     = 562,
-    cmd_set_coverage_to_color_location_nv                                   = 563,
-    cmd_set_coverage_modulation_mode_nv                                     = 564,
-    cmd_set_coverage_modulation_table_enable_nv                             = 565,
-    cmd_set_coverage_modulation_table_nv                                    = 566,
-    cmd_set_shading_rate_image_enable_nv                                    = 567,
-    cmd_set_coverage_reduction_mode_nv                                      = 568,
-    cmd_set_representative_fragment_test_enable_nv                          = 569,
-    create_private_data_slot                                                = 570,
-    create_private_data_slot_ext                                            = create_private_data_slot,
-    destroy_private_data_slot                                               = 572,
-    destroy_private_data_slot_ext                                           = destroy_private_data_slot,
-    set_private_data                                                        = 574,
-    set_private_data_ext                                                    = set_private_data,
-    get_private_data                                                        = 576,
-    get_private_data_ext                                                    = get_private_data,
-    cmd_copy_buffer_2                                                       = 578,
-    cmd_copy_buffer_2khr                                                    = cmd_copy_buffer_2,
-    cmd_copy_image_2                                                        = 580,
-    cmd_copy_image_2khr                                                     = cmd_copy_image_2,
-    cmd_blit_image_2                                                        = 582,
-    cmd_blit_image_2khr                                                     = cmd_blit_image_2,
-    cmd_copy_buffer_to_image_2                                              = 584,
-    cmd_copy_buffer_to_image_2khr                                           = cmd_copy_buffer_to_image_2,
-    cmd_copy_image_to_buffer_2                                              = 586,
-    cmd_copy_image_to_buffer_2khr                                           = cmd_copy_image_to_buffer_2,
-    cmd_resolve_image_2                                                     = 588,
-    cmd_resolve_image_2khr                                                  = cmd_resolve_image_2,
-    cmd_refresh_objects_khr                                                 = 590,
-    get_physical_device_refreshable_object_types_khr                        = 591,
-    cmd_set_fragment_shading_rate_khr                                       = 592,
-    get_physical_device_fragment_shading_rates_khr                          = 593,
-    cmd_set_fragment_shading_rate_enum_nv                                   = 594,
-    get_acceleration_structure_build_sizes_khr                              = 595,
-    cmd_set_vertex_input_ext                                                = 596,
-    cmd_set_color_write_enable_ext                                          = 597,
-    cmd_set_event_2                                                         = 598,
-    cmd_set_event_2khr                                                      = cmd_set_event_2,
-    cmd_reset_event_2                                                       = 600,
-    cmd_reset_event_2khr                                                    = cmd_reset_event_2,
-    cmd_wait_events_2                                                       = 602,
-    cmd_wait_events_2khr                                                    = cmd_wait_events_2,
-    cmd_pipeline_barrier_2                                                  = 604,
-    cmd_pipeline_barrier_2khr                                               = cmd_pipeline_barrier_2,
-    queue_submit_2                                                          = 606,
-    queue_submit_2khr                                                       = queue_submit_2,
-    cmd_write_timestamp_2                                                   = 608,
-    cmd_write_timestamp_2khr                                                = cmd_write_timestamp_2,
-    cmd_write_buffer_marker_2amd                                            = 610,
-    get_queue_checkpoint_data_2nv                                           = 611,
-    copy_memory_to_image                                                    = 612,
-    copy_memory_to_image_ext                                                = copy_memory_to_image,
-    copy_image_to_memory                                                    = 614,
-    copy_image_to_memory_ext                                                = copy_image_to_memory,
-    copy_image_to_image                                                     = 616,
-    copy_image_to_image_ext                                                 = copy_image_to_image,
-    transition_image_layout                                                 = 618,
-    transition_image_layout_ext                                             = transition_image_layout,
-    get_command_pool_memory_consumption                                     = 620,
-    cmd_decompress_memory_nv                                                = 621,
-    cmd_decompress_memory_indirect_count_nv                                 = 622,
-    get_partitioned_acceleration_structures_build_sizes_nv                  = 623,
-    cmd_build_partitioned_acceleration_structures_nv                        = 624,
-    cmd_decompress_memory_ext                                               = 625,
-    cmd_decompress_memory_indirect_count_ext                                = 626,
-    create_cu_module_nvx                                                    = 627,
-    create_cu_function_nvx                                                  = 628,
-    destroy_cu_module_nvx                                                   = 629,
-    destroy_cu_function_nvx                                                 = 630,
-    cmd_cu_launch_kernel_nvx                                                = 631,
-    get_descriptor_set_layout_size_ext                                      = 632,
-    get_descriptor_set_layout_binding_offset_ext                            = 633,
-    get_descriptor_ext                                                      = 634,
-    cmd_bind_descriptor_buffers_ext                                         = 635,
-    cmd_set_descriptor_buffer_offsets_ext                                   = 636,
-    cmd_bind_descriptor_buffer_embedded_samplers_ext                        = 637,
-    get_buffer_opaque_capture_descriptor_data_ext                           = 638,
-    get_image_opaque_capture_descriptor_data_ext                            = 639,
-    get_image_view_opaque_capture_descriptor_data_ext                       = 640,
-    get_sampler_opaque_capture_descriptor_data_ext                          = 641,
-    get_acceleration_structure_opaque_capture_descriptor_data_ext           = 642,
-    set_device_memory_priority_ext                                          = 643,
-    acquire_drm_display_ext                                                 = 644,
-    get_drm_display_ext                                                     = 645,
-    wait_for_present_2khr                                                   = 646,
-    wait_for_present_khr                                                    = 647,
-    create_buffer_collection_fuchsia                                        = 648,
-    set_buffer_collection_buffer_constraints_fuchsia                        = 649,
-    set_buffer_collection_image_constraints_fuchsia                         = 650,
-    destroy_buffer_collection_fuchsia                                       = 651,
-    get_buffer_collection_properties_fuchsia                                = 652,
-    create_cuda_module_nv                                                   = 653,
-    get_cuda_module_cache_nv                                                = 654,
-    create_cuda_function_nv                                                 = 655,
-    destroy_cuda_module_nv                                                  = 656,
-    destroy_cuda_function_nv                                                = 657,
-    cmd_cuda_launch_kernel_nv                                               = 658,
-    cmd_begin_rendering                                                     = 659,
-    cmd_begin_rendering_khr                                                 = cmd_begin_rendering,
-    cmd_end_rendering                                                       = 661,
-    cmd_end_rendering_2khr                                                  = 662,
-    cmd_end_rendering_2ext                                                  = cmd_end_rendering_2khr,
-    cmd_end_rendering_khr                                                   = cmd_end_rendering,
-    get_descriptor_set_layout_host_mapping_info_valve                       = 665,
-    get_descriptor_set_host_mapping_valve                                   = 666,
-    create_micromap_ext                                                     = 667,
-    cmd_build_micromaps_ext                                                 = 668,
-    build_micromaps_ext                                                     = 669,
-    destroy_micromap_ext                                                    = 670,
-    cmd_copy_micromap_ext                                                   = 671,
-    copy_micromap_ext                                                       = 672,
-    cmd_copy_micromap_to_memory_ext                                         = 673,
-    copy_micromap_to_memory_ext                                             = 674,
-    cmd_copy_memory_to_micromap_ext                                         = 675,
-    copy_memory_to_micromap_ext                                             = 676,
-    cmd_write_micromaps_properties_ext                                      = 677,
-    write_micromaps_properties_ext                                          = 678,
-    get_device_micromap_compatibility_ext                                   = 679,
-    get_micromap_build_sizes_ext                                            = 680,
-    get_shader_module_identifier_ext                                        = 681,
-    get_shader_module_create_info_identifier_ext                            = 682,
-    get_image_subresource_layout_2                                          = 683,
-    get_image_subresource_layout_2khr                                       = get_image_subresource_layout_2,
-    get_image_subresource_layout_2ext                                       = get_image_subresource_layout_2,
-    get_pipeline_properties_ext                                             = 686,
-    export_metal_objects_ext                                                = 687,
-    cmd_bind_tile_memory_qcom                                               = 688,
-    get_framebuffer_tile_properties_qcom                                    = 689,
-    get_dynamic_rendering_tile_properties_qcom                              = 690,
-    get_physical_device_optical_flow_image_formats_nv                       = 691,
-    create_optical_flow_session_nv                                          = 692,
-    destroy_optical_flow_session_nv                                         = 693,
-    bind_optical_flow_session_image_nv                                      = 694,
-    cmd_optical_flow_execute_nv                                             = 695,
-    get_device_fault_info_ext                                               = 696,
-    get_device_fault_reports_khr                                            = 697,
-    get_device_fault_debug_info_khr                                         = 698,
-    cmd_set_depth_bias_2ext                                                 = 699,
-    release_swapchain_images_khr                                            = 700,
-    release_swapchain_images_ext                                            = release_swapchain_images_khr,
-    get_device_image_subresource_layout                                     = 702,
-    get_device_image_subresource_layout_khr                                 = get_device_image_subresource_layout,
-    map_memory_2                                                            = 704,
-    map_memory_2khr                                                         = map_memory_2,
-    unmap_memory_2                                                          = 706,
-    unmap_memory_2khr                                                       = unmap_memory_2,
-    create_shaders_ext                                                      = 708,
-    destroy_shader_ext                                                      = 709,
-    get_shader_binary_data_ext                                              = 710,
-    cmd_bind_shaders_ext                                                    = 711,
-    set_swapchain_present_timing_queue_size_ext                             = 712,
-    get_swapchain_timing_properties_ext                                     = 713,
-    get_swapchain_time_domain_properties_ext                                = 714,
-    get_past_presentation_timing_ext                                        = 715,
-    get_screen_buffer_properties_qnx                                        = 716,
-    get_physical_device_cooperative_matrix_properties_khr                   = 717,
-    get_physical_device_cooperative_matrix_properties_2ext                  = 718,
-    get_execution_graph_pipeline_scratch_size_amdx                          = 719,
-    get_execution_graph_pipeline_node_index_amdx                            = 720,
-    create_execution_graph_pipelines_amdx                                   = 721,
-    cmd_initialize_graph_scratch_memory_amdx                                = 722,
-    cmd_dispatch_graph_amdx                                                 = 723,
-    cmd_dispatch_graph_indirect_amdx                                        = 724,
-    cmd_dispatch_graph_indirect_count_amdx                                  = 725,
-    create_gpa_session_amd                                                  = 726,
-    destroy_gpa_session_amd                                                 = 727,
-    set_gpa_device_clock_mode_amd                                           = 728,
-    get_gpa_device_clock_info_amd                                           = 729,
-    cmd_begin_gpa_session_amd                                               = 730,
-    cmd_end_gpa_session_amd                                                 = 731,
-    cmd_begin_gpa_sample_amd                                                = 732,
-    cmd_end_gpa_sample_amd                                                  = 733,
-    get_gpa_session_status_amd                                              = 734,
-    get_gpa_session_results_amd                                             = 735,
-    reset_gpa_session_amd                                                   = 736,
-    cmd_copy_gpa_session_results_amd                                        = 737,
-    cmd_bind_descriptor_sets_2                                              = 738,
-    cmd_bind_descriptor_sets_2khr                                           = cmd_bind_descriptor_sets_2,
-    cmd_push_constants_2                                                    = 740,
-    cmd_push_constants_2khr                                                 = cmd_push_constants_2,
-    cmd_push_descriptor_set_2                                               = 742,
-    cmd_push_descriptor_set_2khr                                            = cmd_push_descriptor_set_2,
-    cmd_push_descriptor_set_with_template_2                                 = 744,
-    cmd_push_descriptor_set_with_template_2khr                              = cmd_push_descriptor_set_with_template_2,
-    cmd_set_descriptor_buffer_offsets_2ext                                  = 746,
-    cmd_bind_descriptor_buffer_embedded_samplers_2ext                       = 747,
-    set_latency_sleep_mode_nv                                               = 748,
-    latency_sleep_nv                                                        = 749,
-    set_latency_marker_nv                                                   = 750,
-    get_latency_timings_nv                                                  = 751,
-    queue_notify_out_of_band_nv                                             = 752,
-    set_latency_sleep_mode_legacy_nv                                        = 753,
-    latency_sleep_legacy_nv                                                 = 754,
-    set_latency_marker_legacy_nv                                            = 755,
-    get_latency_timings_legacy_nv                                           = 756,
-    queue_notify_out_of_band_legacy_nv                                      = 757,
-    get_sleep_status_legacy_nv                                              = 758,
-    shutdown_latency_device_legacy_nv                                       = 759,
-    cmd_set_rendering_attachment_locations                                  = 760,
-    cmd_set_rendering_attachment_locations_khr                              = cmd_set_rendering_attachment_locations,
-    cmd_set_rendering_input_attachment_indices                              = 762,
-    cmd_set_rendering_input_attachment_indices_khr = cmd_set_rendering_input_attachment_indices,
-    cmd_set_depth_clamp_range_ext                  = 764,
+    create_instance                                                              = 0,
+    destroy_instance                                                             = 1,
+    enumerate_physical_devices                                                   = 2,
+    get_device_proc_addr                                                         = 3,
+    get_instance_proc_addr                                                       = 4,
+    get_physical_device_properties                                               = 5,
+    get_physical_device_queue_family_properties                                  = 6,
+    get_physical_device_memory_properties                                        = 7,
+    get_physical_device_features                                                 = 8,
+    get_physical_device_format_properties                                        = 9,
+    get_physical_device_image_format_properties                                  = 10,
+    create_device                                                                = 11,
+    destroy_device                                                               = 12,
+    enumerate_instance_version                                                   = 13,
+    enumerate_instance_layer_properties                                          = 14,
+    enumerate_instance_extension_properties                                      = 15,
+    enumerate_device_layer_properties                                            = 16,
+    enumerate_device_extension_properties                                        = 17,
+    get_device_queue                                                             = 18,
+    queue_submit                                                                 = 19,
+    queue_wait_idle                                                              = 20,
+    device_wait_idle                                                             = 21,
+    allocate_memory                                                              = 22,
+    free_memory                                                                  = 23,
+    map_memory                                                                   = 24,
+    unmap_memory                                                                 = 25,
+    flush_mapped_memory_ranges                                                   = 26,
+    invalidate_mapped_memory_ranges                                              = 27,
+    get_device_memory_commitment                                                 = 28,
+    get_buffer_memory_requirements                                               = 29,
+    bind_buffer_memory                                                           = 30,
+    get_image_memory_requirements                                                = 31,
+    bind_image_memory                                                            = 32,
+    get_image_sparse_memory_requirements                                         = 33,
+    get_physical_device_sparse_image_format_properties                           = 34,
+    queue_bind_sparse                                                            = 35,
+    create_fence                                                                 = 36,
+    destroy_fence                                                                = 37,
+    reset_fences                                                                 = 38,
+    get_fence_status                                                             = 39,
+    wait_for_fences                                                              = 40,
+    create_semaphore                                                             = 41,
+    destroy_semaphore                                                            = 42,
+    create_event                                                                 = 43,
+    destroy_event                                                                = 44,
+    get_event_status                                                             = 45,
+    set_event                                                                    = 46,
+    reset_event                                                                  = 47,
+    create_query_pool                                                            = 48,
+    destroy_query_pool                                                           = 49,
+    get_query_pool_results                                                       = 50,
+    reset_query_pool                                                             = 51,
+    reset_query_pool_ext                                                         = 52,
+    create_buffer                                                                = 53,
+    destroy_buffer                                                               = 54,
+    create_buffer_view                                                           = 55,
+    destroy_buffer_view                                                          = 56,
+    create_image                                                                 = 57,
+    destroy_image                                                                = 58,
+    get_image_subresource_layout                                                 = 59,
+    create_image_view                                                            = 60,
+    destroy_image_view                                                           = 61,
+    create_shader_module                                                         = 62,
+    destroy_shader_module                                                        = 63,
+    create_pipeline_cache                                                        = 64,
+    destroy_pipeline_cache                                                       = 65,
+    get_pipeline_cache_data                                                      = 66,
+    merge_pipeline_caches                                                        = 67,
+    create_pipeline_binaries_khr                                                 = 68,
+    destroy_pipeline_binary_khr                                                  = 69,
+    get_pipeline_key_khr                                                         = 70,
+    get_pipeline_binary_data_khr                                                 = 71,
+    release_captured_pipeline_data_khr                                           = 72,
+    create_graphics_pipelines                                                    = 73,
+    create_compute_pipelines                                                     = 74,
+    get_device_subpass_shading_max_workgroup_size_huawei                         = 75,
+    destroy_pipeline                                                             = 76,
+    create_pipeline_layout                                                       = 77,
+    destroy_pipeline_layout                                                      = 78,
+    create_sampler                                                               = 79,
+    destroy_sampler                                                              = 80,
+    create_descriptor_set_layout                                                 = 81,
+    destroy_descriptor_set_layout                                                = 82,
+    create_descriptor_pool                                                       = 83,
+    destroy_descriptor_pool                                                      = 84,
+    reset_descriptor_pool                                                        = 85,
+    allocate_descriptor_sets                                                     = 86,
+    free_descriptor_sets                                                         = 87,
+    update_descriptor_sets                                                       = 88,
+    create_framebuffer                                                           = 89,
+    destroy_framebuffer                                                          = 90,
+    create_render_pass                                                           = 91,
+    destroy_render_pass                                                          = 92,
+    get_render_area_granularity                                                  = 93,
+    get_rendering_area_granularity                                               = 94,
+    get_rendering_area_granularity_khr                                           = 95,
+    create_command_pool                                                          = 96,
+    destroy_command_pool                                                         = 97,
+    reset_command_pool                                                           = 98,
+    allocate_command_buffers                                                     = 99,
+    free_command_buffers                                                         = 100,
+    begin_command_buffer                                                         = 101,
+    end_command_buffer                                                           = 102,
+    reset_command_buffer                                                         = 103,
+    cmd_bind_pipeline                                                            = 104,
+    cmd_set_primitive_restart_index_ext                                          = 105,
+    cmd_set_attachment_feedback_loop_enable_ext                                  = 106,
+    cmd_set_viewport                                                             = 107,
+    cmd_set_scissor                                                              = 108,
+    cmd_set_line_width                                                           = 109,
+    cmd_set_depth_bias                                                           = 110,
+    cmd_set_blend_constants                                                      = 111,
+    cmd_set_depth_bounds                                                         = 112,
+    cmd_set_stencil_compare_mask                                                 = 113,
+    cmd_set_stencil_write_mask                                                   = 114,
+    cmd_set_stencil_reference                                                    = 115,
+    cmd_bind_descriptor_sets                                                     = 116,
+    cmd_bind_index_buffer                                                        = 117,
+    cmd_bind_vertex_buffers                                                      = 118,
+    cmd_draw                                                                     = 119,
+    cmd_draw_indexed                                                             = 120,
+    cmd_draw_multi_ext                                                           = 121,
+    cmd_draw_multi_indexed_ext                                                   = 122,
+    cmd_draw_indirect                                                            = 123,
+    cmd_draw_indexed_indirect                                                    = 124,
+    cmd_dispatch                                                                 = 125,
+    cmd_dispatch_indirect                                                        = 126,
+    cmd_subpass_shading_huawei                                                   = 127,
+    cmd_draw_cluster_huawei                                                      = 128,
+    cmd_draw_cluster_indirect_huawei                                             = 129,
+    cmd_update_pipeline_indirect_buffer_nv                                       = 130,
+    cmd_copy_buffer                                                              = 131,
+    cmd_copy_image                                                               = 132,
+    cmd_blit_image                                                               = 133,
+    cmd_copy_buffer_to_image                                                     = 134,
+    cmd_copy_image_to_buffer                                                     = 135,
+    cmd_copy_memory_indirect_nv                                                  = 136,
+    cmd_copy_memory_indirect_khr                                                 = 137,
+    cmd_copy_memory_to_image_indirect_nv                                         = 138,
+    cmd_copy_memory_to_image_indirect_khr                                        = 139,
+    cmd_update_buffer                                                            = 140,
+    cmd_fill_buffer                                                              = 141,
+    cmd_clear_color_image                                                        = 142,
+    cmd_clear_depth_stencil_image                                                = 143,
+    cmd_clear_attachments                                                        = 144,
+    cmd_resolve_image                                                            = 145,
+    cmd_set_event                                                                = 146,
+    cmd_reset_event                                                              = 147,
+    cmd_wait_events                                                              = 148,
+    cmd_pipeline_barrier                                                         = 149,
+    cmd_begin_query                                                              = 150,
+    cmd_end_query                                                                = 151,
+    cmd_begin_conditional_rendering_ext                                          = 152,
+    cmd_end_conditional_rendering_ext                                            = 153,
+    cmd_begin_custom_resolve_ext                                                 = 154,
+    cmd_reset_query_pool                                                         = 155,
+    cmd_write_timestamp                                                          = 156,
+    cmd_copy_query_pool_results                                                  = 157,
+    cmd_push_constants                                                           = 158,
+    cmd_begin_render_pass                                                        = 159,
+    cmd_next_subpass                                                             = 160,
+    cmd_end_render_pass                                                          = 161,
+    cmd_execute_commands                                                         = 162,
+    create_android_surface_khr                                                   = 163,
+    create_surface_ohos                                                          = 164,
+    get_physical_device_display_properties_khr                                   = 165,
+    get_physical_device_display_plane_properties_khr                             = 166,
+    get_display_plane_supported_displays_khr                                     = 167,
+    get_display_mode_properties_khr                                              = 168,
+    create_display_mode_khr                                                      = 169,
+    get_display_plane_capabilities_khr                                           = 170,
+    create_display_plane_surface_khr                                             = 171,
+    create_shared_swapchains_khr                                                 = 172,
+    destroy_surface_khr                                                          = 173,
+    get_physical_device_surface_support_khr                                      = 174,
+    get_physical_device_surface_capabilities_khr                                 = 175,
+    get_physical_device_surface_formats_khr                                      = 176,
+    get_physical_device_surface_present_modes_khr                                = 177,
+    create_swapchain_khr                                                         = 178,
+    destroy_swapchain_khr                                                        = 179,
+    get_swapchain_images_khr                                                     = 180,
+    acquire_next_image_khr                                                       = 181,
+    queue_present_khr                                                            = 182,
+    create_vi_surface_nn                                                         = 183,
+    create_wayland_surface_khr                                                   = 184,
+    get_physical_device_wayland_presentation_support_khr                         = 185,
+    create_ubm_surface_sec                                                       = 186,
+    get_physical_device_ubm_presentation_support_sec                             = 187,
+    create_win_32surface_khr                                                     = 188,
+    get_physical_device_win_32presentation_support_khr                           = 189,
+    create_xlib_surface_khr                                                      = 190,
+    get_physical_device_xlib_presentation_support_khr                            = 191,
+    create_xcb_surface_khr                                                       = 192,
+    get_physical_device_xcb_presentation_support_khr                             = 193,
+    create_direct_fb_surface_ext                                                 = 194,
+    get_physical_device_direct_fb_presentation_support_ext                       = 195,
+    create_image_pipe_surface_fuchsia                                            = 196,
+    create_stream_descriptor_surface_ggp                                         = 197,
+    create_screen_surface_qnx                                                    = 198,
+    get_physical_device_screen_presentation_support_qnx                          = 199,
+    create_debug_report_callback_ext                                             = 200,
+    destroy_debug_report_callback_ext                                            = 201,
+    debug_report_message_ext                                                     = 202,
+    debug_marker_set_object_name_ext                                             = 203,
+    debug_marker_set_object_tag_ext                                              = 204,
+    cmd_debug_marker_begin_ext                                                   = 205,
+    cmd_debug_marker_end_ext                                                     = 206,
+    cmd_debug_marker_insert_ext                                                  = 207,
+    get_physical_device_external_image_format_properties_nv                      = 208,
+    get_memory_win_32handle_nv                                                   = 209,
+    cmd_execute_generated_commands_nv                                            = 210,
+    cmd_preprocess_generated_commands_nv                                         = 211,
+    cmd_bind_pipeline_shader_group_nv                                            = 212,
+    get_generated_commands_memory_requirements_nv                                = 213,
+    create_indirect_commands_layout_nv                                           = 214,
+    destroy_indirect_commands_layout_nv                                          = 215,
+    cmd_execute_generated_commands_ext                                           = 216,
+    cmd_preprocess_generated_commands_ext                                        = 217,
+    get_generated_commands_memory_requirements_ext                               = 218,
+    create_indirect_commands_layout_ext                                          = 219,
+    destroy_indirect_commands_layout_ext                                         = 220,
+    create_indirect_execution_set_ext                                            = 221,
+    destroy_indirect_execution_set_ext                                           = 222,
+    update_indirect_execution_set_pipeline_ext                                   = 223,
+    update_indirect_execution_set_shader_ext                                     = 224,
+    get_physical_device_features_2                                               = 225,
+    get_physical_device_features_2khr                                            = 226,
+    get_physical_device_properties_2                                             = 227,
+    get_physical_device_properties_2khr                                          = 228,
+    get_physical_device_format_properties_2                                      = 229,
+    get_physical_device_format_properties_2khr                                   = 230,
+    get_physical_device_image_format_properties_2                                = 231,
+    get_physical_device_image_format_properties_2khr                             = 232,
+    get_physical_device_queue_family_properties_2                                = 233,
+    get_physical_device_queue_family_properties_2khr                             = 234,
+    get_physical_device_memory_properties_2                                      = 235,
+    get_physical_device_memory_properties_2khr                                   = 236,
+    get_physical_device_sparse_image_format_properties_2                         = 237,
+    get_physical_device_sparse_image_format_properties_2khr                      = 238,
+    cmd_push_descriptor_set                                                      = 239,
+    cmd_push_descriptor_set_khr                                                  = 240,
+    trim_command_pool                                                            = 241,
+    trim_command_pool_khr                                                        = 242,
+    get_physical_device_external_buffer_properties                               = 243,
+    get_physical_device_external_buffer_properties_khr                           = 244,
+    get_memory_win_32handle_khr                                                  = 245,
+    get_memory_win_32handle_properties_khr                                       = 246,
+    get_memory_fd_khr                                                            = 247,
+    get_memory_fd_properties_khr                                                 = 248,
+    get_memory_zircon_handle_fuchsia                                             = 249,
+    get_memory_zircon_handle_properties_fuchsia                                  = 250,
+    get_memory_remote_address_nv                                                 = 251,
+    get_memory_sci_buf_nv                                                        = 252,
+    get_physical_device_external_memory_sci_buf_properties_nv                    = 253,
+    get_physical_device_sci_buf_attributes_nv                                    = 254,
+    get_physical_device_external_semaphore_properties                            = 255,
+    get_physical_device_external_semaphore_properties_khr                        = 256,
+    get_semaphore_win_32handle_khr                                               = 257,
+    import_semaphore_win_32handle_khr                                            = 258,
+    get_semaphore_fd_khr                                                         = 259,
+    import_semaphore_fd_khr                                                      = 260,
+    get_semaphore_zircon_handle_fuchsia                                          = 261,
+    import_semaphore_zircon_handle_fuchsia                                       = 262,
+    get_physical_device_external_fence_properties                                = 263,
+    get_physical_device_external_fence_properties_khr                            = 264,
+    get_fence_win_32handle_khr                                                   = 265,
+    import_fence_win_32handle_khr                                                = 266,
+    get_fence_fd_khr                                                             = 267,
+    import_fence_fd_khr                                                          = 268,
+    get_fence_sci_sync_fence_nv                                                  = 269,
+    get_fence_sci_sync_obj_nv                                                    = 270,
+    import_fence_sci_sync_fence_nv                                               = 271,
+    import_fence_sci_sync_obj_nv                                                 = 272,
+    get_semaphore_sci_sync_obj_nv                                                = 273,
+    import_semaphore_sci_sync_obj_nv                                             = 274,
+    get_physical_device_sci_sync_attributes_nv                                   = 275,
+    create_semaphore_sci_sync_pool_nv                                            = 276,
+    destroy_semaphore_sci_sync_pool_nv                                           = 277,
+    release_display_ext                                                          = 278,
+    acquire_xlib_display_ext                                                     = 279,
+    get_rand_r_output_display_ext                                                = 280,
+    acquire_winrt_display_nv                                                     = 281,
+    get_winrt_display_nv                                                         = 282,
+    display_power_control_ext                                                    = 283,
+    register_device_event_ext                                                    = 284,
+    register_display_event_ext                                                   = 285,
+    get_swapchain_counter_ext                                                    = 286,
+    get_physical_device_surface_capabilities_2ext                                = 287,
+    enumerate_physical_device_groups                                             = 288,
+    enumerate_physical_device_groups_khr                                         = 289,
+    get_device_group_peer_memory_features                                        = 290,
+    get_device_group_peer_memory_features_khr                                    = 291,
+    bind_buffer_memory_2                                                         = 292,
+    bind_buffer_memory_2khr                                                      = 293,
+    bind_image_memory_2                                                          = 294,
+    bind_image_memory_2khr                                                       = 295,
+    cmd_set_device_mask                                                          = 296,
+    cmd_set_device_mask_khr                                                      = 297,
+    get_device_group_present_capabilities_khr                                    = 298,
+    get_device_group_surface_present_modes_khr                                   = 299,
+    acquire_next_image_2khr                                                      = 300,
+    cmd_dispatch_base                                                            = 301,
+    cmd_dispatch_base_khr                                                        = 302,
+    get_physical_device_present_rectangles_khr                                   = 303,
+    create_descriptor_update_template                                            = 304,
+    create_descriptor_update_template_khr                                        = 305,
+    destroy_descriptor_update_template                                           = 306,
+    destroy_descriptor_update_template_khr                                       = 307,
+    update_descriptor_set_with_template                                          = 308,
+    update_descriptor_set_with_template_khr                                      = 309,
+    cmd_push_descriptor_set_with_template                                        = 310,
+    cmd_push_descriptor_set_with_template_khr                                    = 311,
+    set_hdr_metadata_ext                                                         = 312,
+    get_swapchain_status_khr                                                     = 313,
+    get_refresh_cycle_duration_google                                            = 314,
+    get_past_presentation_timing_google                                          = 315,
+    create_ios_surface_mvk                                                       = 316,
+    create_mac_os_surface_mvk                                                    = 317,
+    create_metal_surface_ext                                                     = 318,
+    cmd_set_viewport_w_scaling_nv                                                = 319,
+    cmd_set_discard_rectangle_ext                                                = 320,
+    cmd_set_discard_rectangle_enable_ext                                         = 321,
+    cmd_set_discard_rectangle_mode_ext                                           = 322,
+    cmd_set_sample_locations_ext                                                 = 323,
+    get_physical_device_multisample_properties_ext                               = 324,
+    get_physical_device_surface_capabilities_2khr                                = 325,
+    get_physical_device_surface_formats_2khr                                     = 326,
+    get_physical_device_display_properties_2khr                                  = 327,
+    get_physical_device_display_plane_properties_2khr                            = 328,
+    get_display_mode_properties_2khr                                             = 329,
+    get_display_plane_capabilities_2khr                                          = 330,
+    get_buffer_memory_requirements_2                                             = 331,
+    get_buffer_memory_requirements_2khr                                          = 332,
+    get_image_memory_requirements_2                                              = 333,
+    get_image_memory_requirements_2khr                                           = 334,
+    get_image_sparse_memory_requirements_2                                       = 335,
+    get_image_sparse_memory_requirements_2khr                                    = 336,
+    get_device_buffer_memory_requirements                                        = 337,
+    get_device_buffer_memory_requirements_khr                                    = 338,
+    get_device_image_memory_requirements                                         = 339,
+    get_device_image_memory_requirements_khr                                     = 340,
+    get_device_image_sparse_memory_requirements                                  = 341,
+    get_device_image_sparse_memory_requirements_khr                              = 342,
+    create_sampler_ycbcr_conversion                                              = 343,
+    create_sampler_ycbcr_conversion_khr                                          = 344,
+    destroy_sampler_ycbcr_conversion                                             = 345,
+    destroy_sampler_ycbcr_conversion_khr                                         = 346,
+    get_device_queue_2                                                           = 347,
+    create_validation_cache_ext                                                  = 348,
+    destroy_validation_cache_ext                                                 = 349,
+    get_validation_cache_data_ext                                                = 350,
+    merge_validation_caches_ext                                                  = 351,
+    get_descriptor_set_layout_support                                            = 352,
+    get_descriptor_set_layout_support_khr                                        = 353,
+    get_swapchain_gralloc_usage_android                                          = 354,
+    get_swapchain_gralloc_usage_2android                                         = 355,
+    acquire_image_android                                                        = 356,
+    queue_signal_release_image_android                                           = 357,
+    get_shader_info_amd                                                          = 358,
+    set_local_dimming_amd                                                        = 359,
+    get_physical_device_calibrateable_time_domains_khr                           = 360,
+    get_physical_device_calibrateable_time_domains_ext                           = 361,
+    get_calibrated_timestamps_khr                                                = 362,
+    get_calibrated_timestamps_ext                                                = 363,
+    set_debug_utils_object_name_ext                                              = 364,
+    set_debug_utils_object_tag_ext                                               = 365,
+    queue_begin_debug_utils_label_ext                                            = 366,
+    queue_end_debug_utils_label_ext                                              = 367,
+    queue_insert_debug_utils_label_ext                                           = 368,
+    cmd_begin_debug_utils_label_ext                                              = 369,
+    cmd_end_debug_utils_label_ext                                                = 370,
+    cmd_insert_debug_utils_label_ext                                             = 371,
+    create_debug_utils_messenger_ext                                             = 372,
+    destroy_debug_utils_messenger_ext                                            = 373,
+    submit_debug_utils_message_ext                                               = 374,
+    get_memory_host_pointer_properties_ext                                       = 375,
+    cmd_write_buffer_marker_amd                                                  = 376,
+    create_render_pass_2                                                         = 377,
+    create_render_pass_2khr                                                      = 378,
+    cmd_begin_render_pass_2                                                      = 379,
+    cmd_begin_render_pass_2khr                                                   = 380,
+    cmd_next_subpass_2                                                           = 381,
+    cmd_next_subpass_2khr                                                        = 382,
+    cmd_end_render_pass_2                                                        = 383,
+    cmd_end_render_pass_2khr                                                     = 384,
+    get_semaphore_counter_value                                                  = 385,
+    get_semaphore_counter_value_khr                                              = 386,
+    wait_semaphores                                                              = 387,
+    wait_semaphores_khr                                                          = 388,
+    signal_semaphore                                                             = 389,
+    signal_semaphore_khr                                                         = 390,
+    get_android_hardware_buffer_properties_android                               = 391,
+    get_memory_android_hardware_buffer_android                                   = 392,
+    cmd_draw_indirect_count                                                      = 393,
+    cmd_draw_indirect_count_khr                                                  = 394,
+    cmd_draw_indirect_count_amd                                                  = 395,
+    cmd_draw_indexed_indirect_count                                              = 396,
+    cmd_draw_indexed_indirect_count_khr                                          = 397,
+    cmd_draw_indexed_indirect_count_amd                                          = 398,
+    cmd_set_checkpoint_nv                                                        = 399,
+    get_queue_checkpoint_data_nv                                                 = 400,
+    cmd_bind_transform_feedback_buffers_ext                                      = 401,
+    cmd_begin_transform_feedback_ext                                             = 402,
+    cmd_end_transform_feedback_ext                                               = 403,
+    cmd_begin_query_indexed_ext                                                  = 404,
+    cmd_end_query_indexed_ext                                                    = 405,
+    cmd_draw_indirect_byte_count_ext                                             = 406,
+    cmd_set_exclusive_scissor_nv                                                 = 407,
+    cmd_set_exclusive_scissor_enable_nv                                          = 408,
+    cmd_bind_shading_rate_image_nv                                               = 409,
+    cmd_set_viewport_shading_rate_palette_nv                                     = 410,
+    cmd_set_coarse_sample_order_nv                                               = 411,
+    cmd_draw_mesh_tasks_nv                                                       = 412,
+    cmd_draw_mesh_tasks_indirect_nv                                              = 413,
+    cmd_draw_mesh_tasks_indirect_count_nv                                        = 414,
+    cmd_draw_mesh_tasks_ext                                                      = 415,
+    cmd_draw_mesh_tasks_indirect_ext                                             = 416,
+    cmd_draw_mesh_tasks_indirect_count_ext                                       = 417,
+    compile_deferred_nv                                                          = 418,
+    create_acceleration_structure_nv                                             = 419,
+    cmd_bind_invocation_mask_huawei                                              = 420,
+    destroy_acceleration_structure_khr                                           = 421,
+    destroy_acceleration_structure_nv                                            = 422,
+    get_acceleration_structure_memory_requirements_nv                            = 423,
+    bind_acceleration_structure_memory_nv                                        = 424,
+    cmd_copy_acceleration_structure_nv                                           = 425,
+    cmd_copy_acceleration_structure_khr                                          = 426,
+    copy_acceleration_structure_khr                                              = 427,
+    cmd_copy_acceleration_structure_to_memory_khr                                = 428,
+    copy_acceleration_structure_to_memory_khr                                    = 429,
+    cmd_copy_memory_to_acceleration_structure_khr                                = 430,
+    copy_memory_to_acceleration_structure_khr                                    = 431,
+    cmd_write_acceleration_structures_properties_khr                             = 432,
+    cmd_write_acceleration_structures_properties_nv                              = 433,
+    cmd_build_acceleration_structure_nv                                          = 434,
+    write_acceleration_structures_properties_khr                                 = 435,
+    cmd_trace_rays_khr                                                           = 436,
+    cmd_trace_rays_nv                                                            = 437,
+    get_ray_tracing_shader_group_handles_khr                                     = 438,
+    get_ray_tracing_shader_group_handles_nv                                      = 439,
+    get_ray_tracing_capture_replay_shader_group_handles_khr                      = 440,
+    get_acceleration_structure_handle_nv                                         = 441,
+    create_ray_tracing_pipelines_nv                                              = 442,
+    create_ray_tracing_pipelines_khr                                             = 443,
+    get_physical_device_cooperative_matrix_properties_nv                         = 444,
+    cmd_trace_rays_indirect_khr                                                  = 445,
+    cmd_trace_rays_indirect_2khr                                                 = 446,
+    get_cluster_acceleration_structure_build_sizes_nv                            = 447,
+    cmd_build_cluster_acceleration_structure_indirect_nv                         = 448,
+    get_device_acceleration_structure_compatibility_khr                          = 449,
+    get_ray_tracing_shader_group_stack_size_khr                                  = 450,
+    cmd_set_ray_tracing_pipeline_stack_size_khr                                  = 451,
+    get_image_view_handle_nvx                                                    = 452,
+    get_image_view_handle_64nvx                                                  = 453,
+    get_image_view_address_nvx                                                   = 454,
+    get_device_combined_image_sampler_index_nvx                                  = 455,
+    get_physical_device_surface_present_modes_2ext                               = 456,
+    get_device_group_surface_present_modes_2ext                                  = 457,
+    acquire_full_screen_exclusive_mode_ext                                       = 458,
+    release_full_screen_exclusive_mode_ext                                       = 459,
+    enumerate_physical_device_queue_family_performance_query_counters_khr        = 460,
+    get_physical_device_queue_family_performance_query_passes_khr                = 461,
+    acquire_profiling_lock_khr                                                   = 462,
+    release_profiling_lock_khr                                                   = 463,
+    get_image_drm_format_modifier_properties_ext                                 = 464,
+    get_buffer_opaque_capture_address                                            = 465,
+    get_buffer_opaque_capture_address_khr                                        = 466,
+    get_buffer_device_address                                                    = 467,
+    get_buffer_device_address_khr                                                = 468,
+    get_buffer_device_address_ext                                                = 469,
+    create_headless_surface_ext                                                  = 470,
+    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv      = 471,
+    initialize_performance_api_intel                                             = 472,
+    uninitialize_performance_api_intel                                           = 473,
+    cmd_set_performance_marker_intel                                             = 474,
+    cmd_set_performance_stream_marker_intel                                      = 475,
+    cmd_set_performance_override_intel                                           = 476,
+    acquire_performance_configuration_intel                                      = 477,
+    release_performance_configuration_intel                                      = 478,
+    queue_set_performance_configuration_intel                                    = 479,
+    get_performance_parameter_intel                                              = 480,
+    get_device_memory_opaque_capture_address                                     = 481,
+    get_device_memory_opaque_capture_address_khr                                 = 482,
+    get_pipeline_executable_properties_khr                                       = 483,
+    get_pipeline_executable_statistics_khr                                       = 484,
+    get_pipeline_executable_internal_representations_khr                         = 485,
+    cmd_set_line_stipple                                                         = 486,
+    cmd_set_line_stipple_khr                                                     = 487,
+    cmd_set_line_stipple_ext                                                     = 488,
+    get_fault_data                                                               = 489,
+    get_physical_device_tool_properties                                          = 490,
+    get_physical_device_tool_properties_ext                                      = 491,
+    create_acceleration_structure_khr                                            = 492,
+    cmd_build_acceleration_structures_khr                                        = 493,
+    cmd_build_acceleration_structures_indirect_khr                               = 494,
+    build_acceleration_structures_khr                                            = 495,
+    get_acceleration_structure_device_address_khr                                = 496,
+    create_deferred_operation_khr                                                = 497,
+    destroy_deferred_operation_khr                                               = 498,
+    get_deferred_operation_max_concurrency_khr                                   = 499,
+    get_deferred_operation_result_khr                                            = 500,
+    deferred_operation_join_khr                                                  = 501,
+    get_pipeline_indirect_memory_requirements_nv                                 = 502,
+    get_pipeline_indirect_device_address_nv                                      = 503,
+    anti_lag_update_amd                                                          = 504,
+    cmd_set_cull_mode                                                            = 505,
+    cmd_set_cull_mode_ext                                                        = 506,
+    cmd_set_front_face                                                           = 507,
+    cmd_set_front_face_ext                                                       = 508,
+    cmd_set_primitive_topology                                                   = 509,
+    cmd_set_primitive_topology_ext                                               = 510,
+    cmd_set_viewport_with_count                                                  = 511,
+    cmd_set_viewport_with_count_ext                                              = 512,
+    cmd_set_scissor_with_count                                                   = 513,
+    cmd_set_scissor_with_count_ext                                               = 514,
+    cmd_bind_index_buffer_2                                                      = 515,
+    cmd_bind_index_buffer_2khr                                                   = 516,
+    cmd_bind_vertex_buffers_2                                                    = 517,
+    cmd_bind_vertex_buffers_2ext                                                 = 518,
+    cmd_set_depth_test_enable                                                    = 519,
+    cmd_set_depth_test_enable_ext                                                = 520,
+    cmd_set_depth_write_enable                                                   = 521,
+    cmd_set_depth_write_enable_ext                                               = 522,
+    cmd_set_depth_compare_op                                                     = 523,
+    cmd_set_depth_compare_op_ext                                                 = 524,
+    cmd_set_depth_bounds_test_enable                                             = 525,
+    cmd_set_depth_bounds_test_enable_ext                                         = 526,
+    cmd_set_stencil_test_enable                                                  = 527,
+    cmd_set_stencil_test_enable_ext                                              = 528,
+    cmd_set_stencil_op                                                           = 529,
+    cmd_set_stencil_op_ext                                                       = 530,
+    cmd_set_patch_control_points_ext                                             = 531,
+    cmd_set_rasterizer_discard_enable                                            = 532,
+    cmd_set_rasterizer_discard_enable_ext                                        = 533,
+    cmd_set_depth_bias_enable                                                    = 534,
+    cmd_set_depth_bias_enable_ext                                                = 535,
+    cmd_set_logic_op_ext                                                         = 536,
+    cmd_set_primitive_restart_enable                                             = 537,
+    cmd_set_primitive_restart_enable_ext                                         = 538,
+    cmd_set_tessellation_domain_origin_ext                                       = 539,
+    cmd_set_depth_clamp_enable_ext                                               = 540,
+    cmd_set_polygon_mode_ext                                                     = 541,
+    cmd_set_rasterization_samples_ext                                            = 542,
+    cmd_set_sample_mask_ext                                                      = 543,
+    cmd_set_alpha_to_coverage_enable_ext                                         = 544,
+    cmd_set_alpha_to_one_enable_ext                                              = 545,
+    cmd_set_logic_op_enable_ext                                                  = 546,
+    cmd_set_color_blend_enable_ext                                               = 547,
+    cmd_set_color_blend_equation_ext                                             = 548,
+    cmd_set_color_write_mask_ext                                                 = 549,
+    cmd_set_rasterization_stream_ext                                             = 550,
+    cmd_set_conservative_rasterization_mode_ext                                  = 551,
+    cmd_set_extra_primitive_overestimation_size_ext                              = 552,
+    cmd_set_depth_clip_enable_ext                                                = 553,
+    cmd_set_sample_locations_enable_ext                                          = 554,
+    cmd_set_color_blend_advanced_ext                                             = 555,
+    cmd_set_provoking_vertex_mode_ext                                            = 556,
+    cmd_set_line_rasterization_mode_ext                                          = 557,
+    cmd_set_line_stipple_enable_ext                                              = 558,
+    cmd_set_depth_clip_negative_one_to_one_ext                                   = 559,
+    cmd_set_viewport_w_scaling_enable_nv                                         = 560,
+    cmd_set_viewport_swizzle_nv                                                  = 561,
+    cmd_set_coverage_to_color_enable_nv                                          = 562,
+    cmd_set_coverage_to_color_location_nv                                        = 563,
+    cmd_set_coverage_modulation_mode_nv                                          = 564,
+    cmd_set_coverage_modulation_table_enable_nv                                  = 565,
+    cmd_set_coverage_modulation_table_nv                                         = 566,
+    cmd_set_shading_rate_image_enable_nv                                         = 567,
+    cmd_set_coverage_reduction_mode_nv                                           = 568,
+    cmd_set_representative_fragment_test_enable_nv                               = 569,
+    create_private_data_slot                                                     = 570,
+    create_private_data_slot_ext                                                 = 571,
+    destroy_private_data_slot                                                    = 572,
+    destroy_private_data_slot_ext                                                = 573,
+    set_private_data                                                             = 574,
+    set_private_data_ext                                                         = 575,
+    get_private_data                                                             = 576,
+    get_private_data_ext                                                         = 577,
+    cmd_copy_buffer_2                                                            = 578,
+    cmd_copy_buffer_2khr                                                         = 579,
+    cmd_copy_image_2                                                             = 580,
+    cmd_copy_image_2khr                                                          = 581,
+    cmd_blit_image_2                                                             = 582,
+    cmd_blit_image_2khr                                                          = 583,
+    cmd_copy_buffer_to_image_2                                                   = 584,
+    cmd_copy_buffer_to_image_2khr                                                = 585,
+    cmd_copy_image_to_buffer_2                                                   = 586,
+    cmd_copy_image_to_buffer_2khr                                                = 587,
+    cmd_resolve_image_2                                                          = 588,
+    cmd_resolve_image_2khr                                                       = 589,
+    cmd_refresh_objects_khr                                                      = 590,
+    get_physical_device_refreshable_object_types_khr                             = 591,
+    cmd_set_fragment_shading_rate_khr                                            = 592,
+    get_physical_device_fragment_shading_rates_khr                               = 593,
+    cmd_set_fragment_shading_rate_enum_nv                                        = 594,
+    get_acceleration_structure_build_sizes_khr                                   = 595,
+    cmd_set_vertex_input_ext                                                     = 596,
+    cmd_set_color_write_enable_ext                                               = 597,
+    cmd_set_event_2                                                              = 598,
+    cmd_set_event_2khr                                                           = 599,
+    cmd_reset_event_2                                                            = 600,
+    cmd_reset_event_2khr                                                         = 601,
+    cmd_wait_events_2                                                            = 602,
+    cmd_wait_events_2khr                                                         = 603,
+    cmd_pipeline_barrier_2                                                       = 604,
+    cmd_pipeline_barrier_2khr                                                    = 605,
+    queue_submit_2                                                               = 606,
+    queue_submit_2khr                                                            = 607,
+    cmd_write_timestamp_2                                                        = 608,
+    cmd_write_timestamp_2khr                                                     = 609,
+    cmd_write_buffer_marker_2amd                                                 = 610,
+    get_queue_checkpoint_data_2nv                                                = 611,
+    copy_memory_to_image                                                         = 612,
+    copy_memory_to_image_ext                                                     = 613,
+    copy_image_to_memory                                                         = 614,
+    copy_image_to_memory_ext                                                     = 615,
+    copy_image_to_image                                                          = 616,
+    copy_image_to_image_ext                                                      = 617,
+    transition_image_layout                                                      = 618,
+    transition_image_layout_ext                                                  = 619,
+    get_command_pool_memory_consumption                                          = 620,
+    cmd_decompress_memory_nv                                                     = 621,
+    cmd_decompress_memory_indirect_count_nv                                      = 622,
+    get_partitioned_acceleration_structures_build_sizes_nv                       = 623,
+    cmd_build_partitioned_acceleration_structures_nv                             = 624,
+    cmd_decompress_memory_ext                                                    = 625,
+    cmd_decompress_memory_indirect_count_ext                                     = 626,
+    create_cu_module_nvx                                                         = 627,
+    create_cu_function_nvx                                                       = 628,
+    destroy_cu_module_nvx                                                        = 629,
+    destroy_cu_function_nvx                                                      = 630,
+    cmd_cu_launch_kernel_nvx                                                     = 631,
+    get_descriptor_set_layout_size_ext                                           = 632,
+    get_descriptor_set_layout_binding_offset_ext                                 = 633,
+    get_descriptor_ext                                                           = 634,
+    cmd_bind_descriptor_buffers_ext                                              = 635,
+    cmd_set_descriptor_buffer_offsets_ext                                        = 636,
+    cmd_bind_descriptor_buffer_embedded_samplers_ext                             = 637,
+    get_buffer_opaque_capture_descriptor_data_ext                                = 638,
+    get_image_opaque_capture_descriptor_data_ext                                 = 639,
+    get_image_view_opaque_capture_descriptor_data_ext                            = 640,
+    get_sampler_opaque_capture_descriptor_data_ext                               = 641,
+    get_acceleration_structure_opaque_capture_descriptor_data_ext                = 642,
+    set_device_memory_priority_ext                                               = 643,
+    acquire_drm_display_ext                                                      = 644,
+    get_drm_display_ext                                                          = 645,
+    wait_for_present_2khr                                                        = 646,
+    wait_for_present_khr                                                         = 647,
+    create_buffer_collection_fuchsia                                             = 648,
+    set_buffer_collection_buffer_constraints_fuchsia                             = 649,
+    set_buffer_collection_image_constraints_fuchsia                              = 650,
+    destroy_buffer_collection_fuchsia                                            = 651,
+    get_buffer_collection_properties_fuchsia                                     = 652,
+    create_cuda_module_nv                                                        = 653,
+    get_cuda_module_cache_nv                                                     = 654,
+    create_cuda_function_nv                                                      = 655,
+    destroy_cuda_module_nv                                                       = 656,
+    destroy_cuda_function_nv                                                     = 657,
+    cmd_cuda_launch_kernel_nv                                                    = 658,
+    cmd_begin_rendering                                                          = 659,
+    cmd_begin_rendering_khr                                                      = 660,
+    cmd_end_rendering                                                            = 661,
+    cmd_end_rendering_2khr                                                       = 662,
+    cmd_end_rendering_2ext                                                       = 663,
+    cmd_end_rendering_khr                                                        = 664,
+    get_descriptor_set_layout_host_mapping_info_valve                            = 665,
+    get_descriptor_set_host_mapping_valve                                        = 666,
+    create_micromap_ext                                                          = 667,
+    cmd_build_micromaps_ext                                                      = 668,
+    build_micromaps_ext                                                          = 669,
+    destroy_micromap_ext                                                         = 670,
+    cmd_copy_micromap_ext                                                        = 671,
+    copy_micromap_ext                                                            = 672,
+    cmd_copy_micromap_to_memory_ext                                              = 673,
+    copy_micromap_to_memory_ext                                                  = 674,
+    cmd_copy_memory_to_micromap_ext                                              = 675,
+    copy_memory_to_micromap_ext                                                  = 676,
+    cmd_write_micromaps_properties_ext                                           = 677,
+    write_micromaps_properties_ext                                               = 678,
+    get_device_micromap_compatibility_ext                                        = 679,
+    get_micromap_build_sizes_ext                                                 = 680,
+    get_shader_module_identifier_ext                                             = 681,
+    get_shader_module_create_info_identifier_ext                                 = 682,
+    get_image_subresource_layout_2                                               = 683,
+    get_image_subresource_layout_2khr                                            = 684,
+    get_image_subresource_layout_2ext                                            = 685,
+    get_pipeline_properties_ext                                                  = 686,
+    export_metal_objects_ext                                                     = 687,
+    cmd_bind_tile_memory_qcom                                                    = 688,
+    get_framebuffer_tile_properties_qcom                                         = 689,
+    get_dynamic_rendering_tile_properties_qcom                                   = 690,
+    get_physical_device_optical_flow_image_formats_nv                            = 691,
+    create_optical_flow_session_nv                                               = 692,
+    destroy_optical_flow_session_nv                                              = 693,
+    bind_optical_flow_session_image_nv                                           = 694,
+    cmd_optical_flow_execute_nv                                                  = 695,
+    get_device_fault_info_ext                                                    = 696,
+    get_device_fault_reports_khr                                                 = 697,
+    get_device_fault_debug_info_khr                                              = 698,
+    cmd_set_depth_bias_2ext                                                      = 699,
+    release_swapchain_images_khr                                                 = 700,
+    release_swapchain_images_ext                                                 = 701,
+    get_device_image_subresource_layout                                          = 702,
+    get_device_image_subresource_layout_khr                                      = 703,
+    map_memory_2                                                                 = 704,
+    map_memory_2khr                                                              = 705,
+    unmap_memory_2                                                               = 706,
+    unmap_memory_2khr                                                            = 707,
+    create_shaders_ext                                                           = 708,
+    destroy_shader_ext                                                           = 709,
+    get_shader_binary_data_ext                                                   = 710,
+    cmd_bind_shaders_ext                                                         = 711,
+    set_swapchain_present_timing_queue_size_ext                                  = 712,
+    get_swapchain_timing_properties_ext                                          = 713,
+    get_swapchain_time_domain_properties_ext                                     = 714,
+    get_past_presentation_timing_ext                                             = 715,
+    get_screen_buffer_properties_qnx                                             = 716,
+    get_physical_device_cooperative_matrix_properties_khr                        = 717,
+    get_physical_device_cooperative_matrix_properties_2ext                       = 718,
+    get_execution_graph_pipeline_scratch_size_amdx                               = 719,
+    get_execution_graph_pipeline_node_index_amdx                                 = 720,
+    create_execution_graph_pipelines_amdx                                        = 721,
+    cmd_initialize_graph_scratch_memory_amdx                                     = 722,
+    cmd_dispatch_graph_amdx                                                      = 723,
+    cmd_dispatch_graph_indirect_amdx                                             = 724,
+    cmd_dispatch_graph_indirect_count_amdx                                       = 725,
+    create_gpa_session_amd                                                       = 726,
+    destroy_gpa_session_amd                                                      = 727,
+    set_gpa_device_clock_mode_amd                                                = 728,
+    get_gpa_device_clock_info_amd                                                = 729,
+    cmd_begin_gpa_session_amd                                                    = 730,
+    cmd_end_gpa_session_amd                                                      = 731,
+    cmd_begin_gpa_sample_amd                                                     = 732,
+    cmd_end_gpa_sample_amd                                                       = 733,
+    get_gpa_session_status_amd                                                   = 734,
+    get_gpa_session_results_amd                                                  = 735,
+    reset_gpa_session_amd                                                        = 736,
+    cmd_copy_gpa_session_results_amd                                             = 737,
+    cmd_bind_descriptor_sets_2                                                   = 738,
+    cmd_bind_descriptor_sets_2khr                                                = 739,
+    cmd_push_constants_2                                                         = 740,
+    cmd_push_constants_2khr                                                      = 741,
+    cmd_push_descriptor_set_2                                                    = 742,
+    cmd_push_descriptor_set_2khr                                                 = 743,
+    cmd_push_descriptor_set_with_template_2                                      = 744,
+    cmd_push_descriptor_set_with_template_2khr                                   = 745,
+    cmd_set_descriptor_buffer_offsets_2ext                                       = 746,
+    cmd_bind_descriptor_buffer_embedded_samplers_2ext                            = 747,
+    set_latency_sleep_mode_nv                                                    = 748,
+    latency_sleep_nv                                                             = 749,
+    set_latency_marker_nv                                                        = 750,
+    get_latency_timings_nv                                                       = 751,
+    queue_notify_out_of_band_nv                                                  = 752,
+    set_latency_sleep_mode_legacy_nv                                             = 753,
+    latency_sleep_legacy_nv                                                      = 754,
+    set_latency_marker_legacy_nv                                                 = 755,
+    get_latency_timings_legacy_nv                                                = 756,
+    queue_notify_out_of_band_legacy_nv                                           = 757,
+    get_sleep_status_legacy_nv                                                   = 758,
+    shutdown_latency_device_legacy_nv                                            = 759,
+    cmd_set_rendering_attachment_locations                                       = 760,
+    cmd_set_rendering_attachment_locations_khr                                   = 761,
+    cmd_set_rendering_input_attachment_indices                                   = 762,
+    cmd_set_rendering_input_attachment_indices_khr                               = 763,
+    cmd_set_depth_clamp_range_ext                                                = 764,
     get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv     = 765,
     get_memory_metal_handle_ext                                                  = 766,
     get_memory_metal_handle_properties_ext                                       = 767,
@@ -1498,6 +1498,18 @@ reset_query_pool(ktl::api::device _device, ktl::api::query_pool _query_pool, ktl
     return ((pfn_reset_query_pool)ptr)(_device, _query_pool, _first_query, _query_count);
 }
 
+inline void
+reset_query_pool_ext(ktl::api::device _device, ktl::api::query_pool _query_pool, ktl::u32 _first_query,
+                     ktl::u32 _query_count)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_query_pool_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_reset_query_pool_ext)ptr)(_device, _query_pool, _first_query, _query_count);
+}
+
 inline ktl::api::result
 create_buffer(ktl::api::device _device, const ktl::api::buffer_create_info * _p_create_info,
               const ktl::api::allocation_callbacks * _p_allocator, ktl::api::buffer * _p_buffer)
@@ -2015,6 +2027,20 @@ get_rendering_area_granularity(ktl::api::device _device, const ktl::api::renderi
         std::abort();
     }
     return ((pfn_get_rendering_area_granularity)ptr)(_device, _p_rendering_area_info, _p_granularity);
+}
+
+inline void
+get_rendering_area_granularity_khr(ktl::api::device                      _device,
+                                   const ktl::api::rendering_area_info * _p_rendering_area_info,
+                                   ktl::api::extent_2d *                 _p_granularity)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_rendering_area_granularity_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_rendering_area_granularity_khr)ptr)(_device, _p_rendering_area_info, _p_granularity);
 }
 
 inline ktl::api::result
@@ -3719,6 +3745,19 @@ get_physical_device_features_2(ktl::api::physical_device              _physical_
 }
 
 inline void
+get_physical_device_features_2khr(ktl::api::physical_device              _physical_device,
+                                  ktl::api::physical_device_features_2 * _p_features)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_features_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_features_2khr)ptr)(_physical_device, _p_features);
+}
+
+inline void
 get_physical_device_properties_2(ktl::api::physical_device                _physical_device,
                                  ktl::api::physical_device_properties_2 * _p_properties)
 {
@@ -3732,6 +3771,19 @@ get_physical_device_properties_2(ktl::api::physical_device                _physi
 }
 
 inline void
+get_physical_device_properties_2khr(ktl::api::physical_device                _physical_device,
+                                    ktl::api::physical_device_properties_2 * _p_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_properties_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_properties_2khr)ptr)(_physical_device, _p_properties);
+}
+
+inline void
 get_physical_device_format_properties_2(ktl::api::physical_device _physical_device, ktl::api::format _format,
                                         ktl::api::format_properties_2 * _p_format_properties)
 {
@@ -3742,6 +3794,19 @@ get_physical_device_format_properties_2(ktl::api::physical_device _physical_devi
         std::abort();
     }
     return ((pfn_get_physical_device_format_properties_2)ptr)(_physical_device, _format, _p_format_properties);
+}
+
+inline void
+get_physical_device_format_properties_2khr(ktl::api::physical_device _physical_device, ktl::api::format _format,
+                                           ktl::api::format_properties_2 * _p_format_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_format_properties_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_format_properties_2khr)ptr)(_physical_device, _format, _p_format_properties);
 }
 
 inline ktl::api::result
@@ -3760,6 +3825,22 @@ get_physical_device_image_format_properties_2(
                                                                     _p_image_format_properties);
 }
 
+inline ktl::api::result
+get_physical_device_image_format_properties_2khr(
+    ktl::api::physical_device                             _physical_device,
+    const ktl::api::physical_device_image_format_info_2 * _p_image_format_info,
+    ktl::api::image_format_properties_2 *                 _p_image_format_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_image_format_properties_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_image_format_properties_2khr)ptr)(_physical_device, _p_image_format_info,
+                                                                       _p_image_format_properties);
+}
+
 inline void
 get_physical_device_queue_family_properties_2(ktl::api::physical_device             _physical_device,
                                               ktl::u32 *                            _p_queue_family_property_count,
@@ -3776,6 +3857,21 @@ get_physical_device_queue_family_properties_2(ktl::api::physical_device         
 }
 
 inline void
+get_physical_device_queue_family_properties_2khr(ktl::api::physical_device             _physical_device,
+                                                 ktl::u32 *                            _p_queue_family_property_count,
+                                                 ktl::api::queue_family_properties_2 * _p_queue_family_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_queue_family_properties_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_queue_family_properties_2khr)ptr)(_physical_device, _p_queue_family_property_count,
+                                                                       _p_queue_family_properties);
+}
+
+inline void
 get_physical_device_memory_properties_2(ktl::api::physical_device                       _physical_device,
                                         ktl::api::physical_device_memory_properties_2 * _p_memory_properties)
 {
@@ -3786,6 +3882,19 @@ get_physical_device_memory_properties_2(ktl::api::physical_device               
         std::abort();
     }
     return ((pfn_get_physical_device_memory_properties_2)ptr)(_physical_device, _p_memory_properties);
+}
+
+inline void
+get_physical_device_memory_properties_2khr(ktl::api::physical_device                       _physical_device,
+                                           ktl::api::physical_device_memory_properties_2 * _p_memory_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_memory_properties_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_memory_properties_2khr)ptr)(_physical_device, _p_memory_properties);
 }
 
 inline void
@@ -3805,6 +3914,22 @@ get_physical_device_sparse_image_format_properties_2(
 }
 
 inline void
+get_physical_device_sparse_image_format_properties_2khr(
+    ktl::api::physical_device                                    _physical_device,
+    const ktl::api::physical_device_sparse_image_format_info_2 * _p_format_info, ktl::u32 * _p_property_count,
+    ktl::api::sparse_image_format_properties_2 * _p_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sparse_image_format_properties_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_sparse_image_format_properties_2khr)ptr)(_physical_device, _p_format_info,
+                                                                              _p_property_count, _p_properties);
+}
+
+inline void
 cmd_push_descriptor_set(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point,
                         ktl::api::pipeline_layout _layout, ktl::u32 _set, ktl::u32 _descriptor_write_count,
                         const ktl::api::write_descriptor_set * _p_descriptor_writes)
@@ -3819,6 +3944,21 @@ cmd_push_descriptor_set(ktl::api::command_buffer _command_buffer, ktl::api::pipe
 }
 
 inline void
+cmd_push_descriptor_set_khr(ktl::api::command_buffer      _command_buffer,
+                            ktl::api::pipeline_bind_point _pipeline_bind_point, ktl::api::pipeline_layout _layout,
+                            ktl::u32 _set, ktl::u32 _descriptor_write_count,
+                            const ktl::api::write_descriptor_set * _p_descriptor_writes)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_push_descriptor_set_khr)ptr)(_command_buffer, _pipeline_bind_point, _layout, _set,
+                                                  _descriptor_write_count, _p_descriptor_writes);
+}
+
+inline void
 trim_command_pool(ktl::api::device _device, ktl::api::command_pool _command_pool,
                   ktl::api::command_pool_trim_flags _flags)
 {
@@ -3828,6 +3968,18 @@ trim_command_pool(ktl::api::device _device, ktl::api::command_pool _command_pool
         std::abort();
     }
     return ((pfn_trim_command_pool)ptr)(_device, _command_pool, _flags);
+}
+
+inline void
+trim_command_pool_khr(ktl::api::device _device, ktl::api::command_pool _command_pool,
+                      ktl::api::command_pool_trim_flags _flags)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::trim_command_pool_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_trim_command_pool_khr)ptr)(_device, _command_pool, _flags);
 }
 
 inline void
@@ -3844,6 +3996,22 @@ get_physical_device_external_buffer_properties(
     }
     return ((pfn_get_physical_device_external_buffer_properties)ptr)(_physical_device, _p_external_buffer_info,
                                                                      _p_external_buffer_properties);
+}
+
+inline void
+get_physical_device_external_buffer_properties_khr(
+    ktl::api::physical_device                              _physical_device,
+    const ktl::api::physical_device_external_buffer_info * _p_external_buffer_info,
+    ktl::api::external_buffer_properties *                 _p_external_buffer_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_buffer_properties_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_external_buffer_properties_khr)ptr)(_physical_device, _p_external_buffer_info,
+                                                                         _p_external_buffer_properties);
 }
 
 inline ktl::api::result
@@ -3997,6 +4165,22 @@ get_physical_device_external_semaphore_properties(
                                                                         _p_external_semaphore_properties);
 }
 
+inline void
+get_physical_device_external_semaphore_properties_khr(
+    ktl::api::physical_device                                 _physical_device,
+    const ktl::api::physical_device_external_semaphore_info * _p_external_semaphore_info,
+    ktl::api::external_semaphore_properties *                 _p_external_semaphore_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_semaphore_properties_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_external_semaphore_properties_khr)ptr)(
+        _physical_device, _p_external_semaphore_info, _p_external_semaphore_properties);
+}
+
 inline ktl::api::result
 get_semaphore_win_32handle_khr(ktl::api::device                                      _device,
                                const ktl::api::semaphore_get_win_32handle_info_khr * _p_get_win_32handle_info,
@@ -4089,6 +4273,22 @@ get_physical_device_external_fence_properties(
     }
     return ((pfn_get_physical_device_external_fence_properties)ptr)(_physical_device, _p_external_fence_info,
                                                                     _p_external_fence_properties);
+}
+
+inline void
+get_physical_device_external_fence_properties_khr(
+    ktl::api::physical_device                             _physical_device,
+    const ktl::api::physical_device_external_fence_info * _p_external_fence_info,
+    ktl::api::external_fence_properties *                 _p_external_fence_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_fence_properties_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_external_fence_properties_khr)ptr)(_physical_device, _p_external_fence_info,
+                                                                        _p_external_fence_properties);
 }
 
 inline ktl::api::result
@@ -4390,6 +4590,20 @@ enumerate_physical_device_groups(ktl::api::instance _instance, ktl::u32 * _p_phy
                                                        _p_physical_device_group_properties);
 }
 
+inline ktl::api::result
+enumerate_physical_device_groups_khr(ktl::api::instance _instance, ktl::u32 * _p_physical_device_group_count,
+                                     ktl::api::physical_device_group_properties * _p_physical_device_group_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_physical_device_groups_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_enumerate_physical_device_groups_khr)ptr)(_instance, _p_physical_device_group_count,
+                                                           _p_physical_device_group_properties);
+}
+
 inline void
 get_device_group_peer_memory_features(ktl::api::device _device, ktl::u32 _heap_index, ktl::u32 _local_device_index,
                                       ktl::u32                              _remote_device_index,
@@ -4405,6 +4619,21 @@ get_device_group_peer_memory_features(ktl::api::device _device, ktl::u32 _heap_i
                                                             _remote_device_index, _p_peer_memory_features);
 }
 
+inline void
+get_device_group_peer_memory_features_khr(ktl::api::device _device, ktl::u32 _heap_index, ktl::u32 _local_device_index,
+                                          ktl::u32                              _remote_device_index,
+                                          ktl::api::peer_memory_feature_flags * _p_peer_memory_features)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_peer_memory_features_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_device_group_peer_memory_features_khr)ptr)(_device, _heap_index, _local_device_index,
+                                                                _remote_device_index, _p_peer_memory_features);
+}
+
 inline ktl::api::result
 bind_buffer_memory_2(ktl::api::device _device, ktl::u32 _bind_info_count,
                      const ktl::api::bind_buffer_memory_info * _p_bind_infos)
@@ -4415,6 +4644,18 @@ bind_buffer_memory_2(ktl::api::device _device, ktl::u32 _bind_info_count,
         std::abort();
     }
     return ((pfn_bind_buffer_memory_2)ptr)(_device, _bind_info_count, _p_bind_infos);
+}
+
+inline ktl::api::result
+bind_buffer_memory_2khr(ktl::api::device _device, ktl::u32 _bind_info_count,
+                        const ktl::api::bind_buffer_memory_info * _p_bind_infos)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_buffer_memory_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_bind_buffer_memory_2khr)ptr)(_device, _bind_info_count, _p_bind_infos);
 }
 
 inline ktl::api::result
@@ -4429,6 +4670,18 @@ bind_image_memory_2(ktl::api::device _device, ktl::u32 _bind_info_count,
     return ((pfn_bind_image_memory_2)ptr)(_device, _bind_info_count, _p_bind_infos);
 }
 
+inline ktl::api::result
+bind_image_memory_2khr(ktl::api::device _device, ktl::u32 _bind_info_count,
+                       const ktl::api::bind_image_memory_info * _p_bind_infos)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_image_memory_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_bind_image_memory_2khr)ptr)(_device, _bind_info_count, _p_bind_infos);
+}
+
 inline void
 cmd_set_device_mask(ktl::api::command_buffer _command_buffer, ktl::u32 _device_mask)
 {
@@ -4438,6 +4691,17 @@ cmd_set_device_mask(ktl::api::command_buffer _command_buffer, ktl::u32 _device_m
         std::abort();
     }
     return ((pfn_cmd_set_device_mask)ptr)(_command_buffer, _device_mask);
+}
+
+inline void
+cmd_set_device_mask_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _device_mask)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_device_mask_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_device_mask_khr)ptr)(_command_buffer, _device_mask);
 }
 
 inline ktl::api::result
@@ -4491,6 +4755,19 @@ cmd_dispatch_base(ktl::api::command_buffer _command_buffer, ktl::u32 _base_group
                                         _group_count_y, _group_count_z);
 }
 
+inline void
+cmd_dispatch_base_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _base_group_x, ktl::u32 _base_group_y,
+                      ktl::u32 _base_group_z, ktl::u32 _group_count_x, ktl::u32 _group_count_y, ktl::u32 _group_count_z)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_base_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_dispatch_base_khr)ptr)(_command_buffer, _base_group_x, _base_group_y, _base_group_z,
+                                            _group_count_x, _group_count_y, _group_count_z);
+}
+
 inline ktl::api::result
 get_physical_device_present_rectangles_khr(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface,
                                            ktl::u32 * _p_rect_count, ktl::api::rect_2d * _p_rects)
@@ -4520,6 +4797,22 @@ create_descriptor_update_template(ktl::api::device                              
                                                         _p_descriptor_update_template);
 }
 
+inline ktl::api::result
+create_descriptor_update_template_khr(ktl::api::device                                         _device,
+                                      const ktl::api::descriptor_update_template_create_info * _p_create_info,
+                                      const ktl::api::allocation_callbacks *                   _p_allocator,
+                                      ktl::api::descriptor_update_template * _p_descriptor_update_template)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_descriptor_update_template_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_create_descriptor_update_template_khr)ptr)(_device, _p_create_info, _p_allocator,
+                                                            _p_descriptor_update_template);
+}
+
 inline void
 destroy_descriptor_update_template(ktl::api::device                       _device,
                                    ktl::api::descriptor_update_template   _descriptor_update_template,
@@ -4532,6 +4825,20 @@ destroy_descriptor_update_template(ktl::api::device                       _devic
         std::abort();
     }
     return ((pfn_destroy_descriptor_update_template)ptr)(_device, _descriptor_update_template, _p_allocator);
+}
+
+inline void
+destroy_descriptor_update_template_khr(ktl::api::device                       _device,
+                                       ktl::api::descriptor_update_template   _descriptor_update_template,
+                                       const ktl::api::allocation_callbacks * _p_allocator)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_descriptor_update_template_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_destroy_descriptor_update_template_khr)ptr)(_device, _descriptor_update_template, _p_allocator);
 }
 
 inline void
@@ -4550,6 +4857,21 @@ update_descriptor_set_with_template(ktl::api::device _device, ktl::api::descript
 }
 
 inline void
+update_descriptor_set_with_template_khr(ktl::api::device _device, ktl::api::descriptor_set _descriptor_set,
+                                        ktl::api::descriptor_update_template _descriptor_update_template,
+                                        const void *                         _p_data)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_descriptor_set_with_template_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_update_descriptor_set_with_template_khr)ptr)(_device, _descriptor_set, _descriptor_update_template,
+                                                              _p_data);
+}
+
+inline void
 cmd_push_descriptor_set_with_template(ktl::api::command_buffer             _command_buffer,
                                       ktl::api::descriptor_update_template _descriptor_update_template,
                                       ktl::api::pipeline_layout _layout, ktl::u32 _set, const void * _p_data)
@@ -4562,6 +4884,21 @@ cmd_push_descriptor_set_with_template(ktl::api::command_buffer             _comm
     }
     return ((pfn_cmd_push_descriptor_set_with_template)ptr)(_command_buffer, _descriptor_update_template, _layout, _set,
                                                             _p_data);
+}
+
+inline void
+cmd_push_descriptor_set_with_template_khr(ktl::api::command_buffer             _command_buffer,
+                                          ktl::api::descriptor_update_template _descriptor_update_template,
+                                          ktl::api::pipeline_layout _layout, ktl::u32 _set, const void * _p_data)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_push_descriptor_set_with_template_khr)ptr)(_command_buffer, _descriptor_update_template, _layout,
+                                                                _set, _p_data);
 }
 
 inline void
@@ -4830,6 +5167,20 @@ get_buffer_memory_requirements_2(ktl::api::device _device, const ktl::api::buffe
 }
 
 inline void
+get_buffer_memory_requirements_2khr(ktl::api::device                                    _device,
+                                    const ktl::api::buffer_memory_requirements_info_2 * _p_info,
+                                    ktl::api::memory_requirements_2 *                   _p_memory_requirements)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_memory_requirements_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_buffer_memory_requirements_2khr)ptr)(_device, _p_info, _p_memory_requirements);
+}
+
+inline void
 get_image_memory_requirements_2(ktl::api::device _device, const ktl::api::image_memory_requirements_info_2 * _p_info,
                                 ktl::api::memory_requirements_2 * _p_memory_requirements)
 {
@@ -4839,6 +5190,19 @@ get_image_memory_requirements_2(ktl::api::device _device, const ktl::api::image_
         std::abort();
     }
     return ((pfn_get_image_memory_requirements_2)ptr)(_device, _p_info, _p_memory_requirements);
+}
+
+inline void
+get_image_memory_requirements_2khr(ktl::api::device _device, const ktl::api::image_memory_requirements_info_2 * _p_info,
+                                   ktl::api::memory_requirements_2 * _p_memory_requirements)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_memory_requirements_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_image_memory_requirements_2khr)ptr)(_device, _p_info, _p_memory_requirements);
 }
 
 inline void
@@ -4858,6 +5222,22 @@ get_image_sparse_memory_requirements_2(ktl::api::device                         
 }
 
 inline void
+get_image_sparse_memory_requirements_2khr(ktl::api::device                                          _device,
+                                          const ktl::api::image_sparse_memory_requirements_info_2 * _p_info,
+                                          ktl::u32 * _p_sparse_memory_requirement_count,
+                                          ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_sparse_memory_requirements_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_image_sparse_memory_requirements_2khr)ptr)(_device, _p_info, _p_sparse_memory_requirement_count,
+                                                                _p_sparse_memory_requirements);
+}
+
+inline void
 get_device_buffer_memory_requirements(ktl::api::device                                    _device,
                                       const ktl::api::device_buffer_memory_requirements * _p_info,
                                       ktl::api::memory_requirements_2 *                   _p_memory_requirements)
@@ -4872,6 +5252,20 @@ get_device_buffer_memory_requirements(ktl::api::device                          
 }
 
 inline void
+get_device_buffer_memory_requirements_khr(ktl::api::device                                    _device,
+                                          const ktl::api::device_buffer_memory_requirements * _p_info,
+                                          ktl::api::memory_requirements_2 *                   _p_memory_requirements)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_buffer_memory_requirements_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_device_buffer_memory_requirements_khr)ptr)(_device, _p_info, _p_memory_requirements);
+}
+
+inline void
 get_device_image_memory_requirements(ktl::api::device                                   _device,
                                      const ktl::api::device_image_memory_requirements * _p_info,
                                      ktl::api::memory_requirements_2 *                  _p_memory_requirements)
@@ -4883,6 +5277,20 @@ get_device_image_memory_requirements(ktl::api::device                           
         std::abort();
     }
     return ((pfn_get_device_image_memory_requirements)ptr)(_device, _p_info, _p_memory_requirements);
+}
+
+inline void
+get_device_image_memory_requirements_khr(ktl::api::device                                   _device,
+                                         const ktl::api::device_image_memory_requirements * _p_info,
+                                         ktl::api::memory_requirements_2 *                  _p_memory_requirements)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_memory_requirements_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_device_image_memory_requirements_khr)ptr)(_device, _p_info, _p_memory_requirements);
 }
 
 inline void
@@ -4901,6 +5309,22 @@ get_device_image_sparse_memory_requirements(
                                                                   _p_sparse_memory_requirements);
 }
 
+inline void
+get_device_image_sparse_memory_requirements_khr(
+    ktl::api::device _device, const ktl::api::device_image_memory_requirements * _p_info,
+    ktl::u32 *                                     _p_sparse_memory_requirement_count,
+    ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_sparse_memory_requirements_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_device_image_sparse_memory_requirements_khr)ptr)(
+        _device, _p_info, _p_sparse_memory_requirement_count, _p_sparse_memory_requirements);
+}
+
 inline ktl::api::result
 create_sampler_ycbcr_conversion(ktl::api::device                                       _device,
                                 const ktl::api::sampler_ycbcr_conversion_create_info * _p_create_info,
@@ -4915,6 +5339,21 @@ create_sampler_ycbcr_conversion(ktl::api::device                                
     return ((pfn_create_sampler_ycbcr_conversion)ptr)(_device, _p_create_info, _p_allocator, _p_ycbcr_conversion);
 }
 
+inline ktl::api::result
+create_sampler_ycbcr_conversion_khr(ktl::api::device                                       _device,
+                                    const ktl::api::sampler_ycbcr_conversion_create_info * _p_create_info,
+                                    const ktl::api::allocation_callbacks *                 _p_allocator,
+                                    ktl::api::sampler_ycbcr_conversion *                   _p_ycbcr_conversion)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_sampler_ycbcr_conversion_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_create_sampler_ycbcr_conversion_khr)ptr)(_device, _p_create_info, _p_allocator, _p_ycbcr_conversion);
+}
+
 inline void
 destroy_sampler_ycbcr_conversion(ktl::api::device _device, ktl::api::sampler_ycbcr_conversion _ycbcr_conversion,
                                  const ktl::api::allocation_callbacks * _p_allocator)
@@ -4926,6 +5365,19 @@ destroy_sampler_ycbcr_conversion(ktl::api::device _device, ktl::api::sampler_ycb
         std::abort();
     }
     return ((pfn_destroy_sampler_ycbcr_conversion)ptr)(_device, _ycbcr_conversion, _p_allocator);
+}
+
+inline void
+destroy_sampler_ycbcr_conversion_khr(ktl::api::device _device, ktl::api::sampler_ycbcr_conversion _ycbcr_conversion,
+                                     const ktl::api::allocation_callbacks * _p_allocator)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_sampler_ycbcr_conversion_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_destroy_sampler_ycbcr_conversion_khr)ptr)(_device, _ycbcr_conversion, _p_allocator);
 }
 
 inline void
@@ -5001,6 +5453,20 @@ get_descriptor_set_layout_support(ktl::api::device                              
         std::abort();
     }
     return ((pfn_get_descriptor_set_layout_support)ptr)(_device, _p_create_info, _p_support);
+}
+
+inline void
+get_descriptor_set_layout_support_khr(ktl::api::device                                    _device,
+                                      const ktl::api::descriptor_set_layout_create_info * _p_create_info,
+                                      ktl::api::descriptor_set_layout_support *           _p_support)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_support_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_descriptor_set_layout_support_khr)ptr)(_device, _p_create_info, _p_support);
 }
 
 inline ktl::api::result
@@ -5100,6 +5566,21 @@ get_physical_device_calibrateable_time_domains_khr(ktl::api::physical_device   _
 }
 
 inline ktl::api::result
+get_physical_device_calibrateable_time_domains_ext(ktl::api::physical_device   _physical_device,
+                                                   ktl::u32 *                  _p_time_domain_count,
+                                                   ktl::api::time_domain_khr * _p_time_domains)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_calibrateable_time_domains_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_calibrateable_time_domains_ext)ptr)(_physical_device, _p_time_domain_count,
+                                                                         _p_time_domains);
+}
+
+inline ktl::api::result
 get_calibrated_timestamps_khr(ktl::api::device _device, ktl::u32 _timestamp_count,
                               const ktl::api::calibrated_timestamp_info_khr * _p_timestamp_infos,
                               ktl::u64 * _p_timestamps, ktl::u64 * _p_max_deviation)
@@ -5110,6 +5591,20 @@ get_calibrated_timestamps_khr(ktl::api::device _device, ktl::u32 _timestamp_coun
         std::abort();
     }
     return ((pfn_get_calibrated_timestamps_khr)ptr)(_device, _timestamp_count, _p_timestamp_infos, _p_timestamps,
+                                                    _p_max_deviation);
+}
+
+inline ktl::api::result
+get_calibrated_timestamps_ext(ktl::api::device _device, ktl::u32 _timestamp_count,
+                              const ktl::api::calibrated_timestamp_info_khr * _p_timestamp_infos,
+                              ktl::u64 * _p_timestamps, ktl::u64 * _p_max_deviation)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_calibrated_timestamps_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_calibrated_timestamps_ext)ptr)(_device, _timestamp_count, _p_timestamp_infos, _p_timestamps,
                                                     _p_max_deviation);
 }
 
@@ -5290,6 +5785,18 @@ create_render_pass_2(ktl::api::device _device, const ktl::api::render_pass_creat
     return ((pfn_create_render_pass_2)ptr)(_device, _p_create_info, _p_allocator, _p_render_pass);
 }
 
+inline ktl::api::result
+create_render_pass_2khr(ktl::api::device _device, const ktl::api::render_pass_create_info_2 * _p_create_info,
+                        const ktl::api::allocation_callbacks * _p_allocator, ktl::api::render_pass * _p_render_pass)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_render_pass_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_create_render_pass_2khr)ptr)(_device, _p_create_info, _p_allocator, _p_render_pass);
+}
+
 inline void
 cmd_begin_render_pass_2(ktl::api::command_buffer                 _command_buffer,
                         const ktl::api::render_pass_begin_info * _p_render_pass_begin,
@@ -5301,6 +5808,19 @@ cmd_begin_render_pass_2(ktl::api::command_buffer                 _command_buffer
         std::abort();
     }
     return ((pfn_cmd_begin_render_pass_2)ptr)(_command_buffer, _p_render_pass_begin, _p_subpass_begin_info);
+}
+
+inline void
+cmd_begin_render_pass_2khr(ktl::api::command_buffer                 _command_buffer,
+                           const ktl::api::render_pass_begin_info * _p_render_pass_begin,
+                           const ktl::api::subpass_begin_info *     _p_subpass_begin_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_render_pass_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_begin_render_pass_2khr)ptr)(_command_buffer, _p_render_pass_begin, _p_subpass_begin_info);
 }
 
 inline void
@@ -5316,6 +5836,19 @@ cmd_next_subpass_2(ktl::api::command_buffer _command_buffer, const ktl::api::sub
 }
 
 inline void
+cmd_next_subpass_2khr(ktl::api::command_buffer             _command_buffer,
+                      const ktl::api::subpass_begin_info * _p_subpass_begin_info,
+                      const ktl::api::subpass_end_info *   _p_subpass_end_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_next_subpass_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_next_subpass_2khr)ptr)(_command_buffer, _p_subpass_begin_info, _p_subpass_end_info);
+}
+
+inline void
 cmd_end_render_pass_2(ktl::api::command_buffer _command_buffer, const ktl::api::subpass_end_info * _p_subpass_end_info)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass_2)];
@@ -5324,6 +5857,18 @@ cmd_end_render_pass_2(ktl::api::command_buffer _command_buffer, const ktl::api::
         std::abort();
     }
     return ((pfn_cmd_end_render_pass_2)ptr)(_command_buffer, _p_subpass_end_info);
+}
+
+inline void
+cmd_end_render_pass_2khr(ktl::api::command_buffer           _command_buffer,
+                         const ktl::api::subpass_end_info * _p_subpass_end_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_end_render_pass_2khr)ptr)(_command_buffer, _p_subpass_end_info);
 }
 
 inline ktl::api::result
@@ -5338,6 +5883,17 @@ get_semaphore_counter_value(ktl::api::device _device, ktl::api::semaphore _semap
 }
 
 inline ktl::api::result
+get_semaphore_counter_value_khr(ktl::api::device _device, ktl::api::semaphore _semaphore, ktl::u64 * _p_value)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_counter_value_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_semaphore_counter_value_khr)ptr)(_device, _semaphore, _p_value);
+}
+
+inline ktl::api::result
 wait_semaphores(ktl::api::device _device, const ktl::api::semaphore_wait_info * _p_wait_info, ktl::u64 _timeout)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_semaphores)];
@@ -5349,6 +5905,17 @@ wait_semaphores(ktl::api::device _device, const ktl::api::semaphore_wait_info * 
 }
 
 inline ktl::api::result
+wait_semaphores_khr(ktl::api::device _device, const ktl::api::semaphore_wait_info * _p_wait_info, ktl::u64 _timeout)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_semaphores_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_wait_semaphores_khr)ptr)(_device, _p_wait_info, _timeout);
+}
+
+inline ktl::api::result
 signal_semaphore(ktl::api::device _device, const ktl::api::semaphore_signal_info * _p_signal_info)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::signal_semaphore)];
@@ -5357,6 +5924,17 @@ signal_semaphore(ktl::api::device _device, const ktl::api::semaphore_signal_info
         std::abort();
     }
     return ((pfn_signal_semaphore)ptr)(_device, _p_signal_info);
+}
+
+inline ktl::api::result
+signal_semaphore_khr(ktl::api::device _device, const ktl::api::semaphore_signal_info * _p_signal_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::signal_semaphore_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_signal_semaphore_khr)ptr)(_device, _p_signal_info);
 }
 
 inline ktl::api::result
@@ -5401,6 +5979,34 @@ cmd_draw_indirect_count(ktl::api::command_buffer _command_buffer, ktl::api::buff
 }
 
 inline void
+cmd_draw_indirect_count_khr(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
+                            ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
+                            ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_draw_indirect_count_khr)ptr)(_command_buffer, _buffer, _offset, _count_buffer,
+                                                  _count_buffer_offset, _max_draw_count, _stride);
+}
+
+inline void
+cmd_draw_indirect_count_amd(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
+                            ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
+                            ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_amd)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_draw_indirect_count_amd)ptr)(_command_buffer, _buffer, _offset, _count_buffer,
+                                                  _count_buffer_offset, _max_draw_count, _stride);
+}
+
+inline void
 cmd_draw_indexed_indirect_count(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
                                 ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
                                 ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
@@ -5412,6 +6018,36 @@ cmd_draw_indexed_indirect_count(ktl::api::command_buffer _command_buffer, ktl::a
     }
     return ((pfn_cmd_draw_indexed_indirect_count)ptr)(_command_buffer, _buffer, _offset, _count_buffer,
                                                       _count_buffer_offset, _max_draw_count, _stride);
+}
+
+inline void
+cmd_draw_indexed_indirect_count_khr(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
+                                    ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
+                                    ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_draw_indexed_indirect_count_khr)ptr)(_command_buffer, _buffer, _offset, _count_buffer,
+                                                          _count_buffer_offset, _max_draw_count, _stride);
+}
+
+inline void
+cmd_draw_indexed_indirect_count_amd(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
+                                    ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
+                                    ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_amd)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_draw_indexed_indirect_count_amd)ptr)(_command_buffer, _buffer, _offset, _count_buffer,
+                                                          _count_buffer_offset, _max_draw_count, _stride);
 }
 
 inline void
@@ -5981,6 +6617,20 @@ get_ray_tracing_shader_group_handles_khr(ktl::api::device _device, ktl::api::pip
 }
 
 inline ktl::api::result
+get_ray_tracing_shader_group_handles_nv(ktl::api::device _device, ktl::api::pipeline _pipeline, ktl::u32 _first_group,
+                                        ktl::u32 _group_count, ktl::usize _data_size, void * _p_data)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_ray_tracing_shader_group_handles_nv)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_ray_tracing_shader_group_handles_nv)ptr)(_device, _pipeline, _first_group, _group_count,
+                                                              _data_size, _p_data);
+}
+
+inline ktl::api::result
 get_ray_tracing_capture_replay_shader_group_handles_khr(ktl::api::device _device, ktl::api::pipeline _pipeline,
                                                         ktl::u32 _first_group, ktl::u32 _group_count,
                                                         ktl::usize _data_size, void * _p_data)
@@ -6330,6 +6980,18 @@ get_buffer_opaque_capture_address(ktl::api::device _device, const ktl::api::buff
     return ((pfn_get_buffer_opaque_capture_address)ptr)(_device, _p_info);
 }
 
+inline ktl::u64
+get_buffer_opaque_capture_address_khr(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_opaque_capture_address_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_buffer_opaque_capture_address_khr)ptr)(_device, _p_info);
+}
+
 inline ktl::api::dvaddr
 get_buffer_device_address(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info)
 {
@@ -6339,6 +7001,28 @@ get_buffer_device_address(ktl::api::device _device, const ktl::api::buffer_devic
         std::abort();
     }
     return ((pfn_get_buffer_device_address)ptr)(_device, _p_info);
+}
+
+inline ktl::api::dvaddr
+get_buffer_device_address_khr(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_device_address_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_buffer_device_address_khr)ptr)(_device, _p_info);
+}
+
+inline ktl::api::dvaddr
+get_buffer_device_address_ext(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_device_address_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_buffer_device_address_ext)ptr)(_device, _p_info);
 }
 
 inline ktl::api::result
@@ -6498,6 +7182,19 @@ get_device_memory_opaque_capture_address(ktl::api::device                       
     return ((pfn_get_device_memory_opaque_capture_address)ptr)(_device, _p_info);
 }
 
+inline ktl::u64
+get_device_memory_opaque_capture_address_khr(ktl::api::device                                            _device,
+                                             const ktl::api::device_memory_opaque_capture_address_info * _p_info)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_memory_opaque_capture_address_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_device_memory_opaque_capture_address_khr)ptr)(_device, _p_info);
+}
+
 inline ktl::api::result
 get_pipeline_executable_properties_khr(ktl::api::device _device, const ktl::api::pipeline_info_khr * _p_pipeline_info,
                                        ktl::u32 *                                     _p_executable_count,
@@ -6557,6 +7254,30 @@ cmd_set_line_stipple(ktl::api::command_buffer _command_buffer, ktl::u32 _line_st
     return ((pfn_cmd_set_line_stipple)ptr)(_command_buffer, _line_stipple_factor, _line_stipple_pattern);
 }
 
+inline void
+cmd_set_line_stipple_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _line_stipple_factor,
+                         ktl::u16 _line_stipple_pattern)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_line_stipple_khr)ptr)(_command_buffer, _line_stipple_factor, _line_stipple_pattern);
+}
+
+inline void
+cmd_set_line_stipple_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _line_stipple_factor,
+                         ktl::u16 _line_stipple_pattern)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_line_stipple_ext)ptr)(_command_buffer, _line_stipple_factor, _line_stipple_pattern);
+}
+
 inline ktl::api::result
 get_fault_data(ktl::api::device _device, ktl::api::fault_query_behavior _fault_query_behavior,
                ktl::api::bool32 * _p_unrecorded_faults, ktl::u32 * _p_fault_count, ktl::api::fault_data * _p_faults)
@@ -6580,6 +7301,19 @@ get_physical_device_tool_properties(ktl::api::physical_device _physical_device, 
         std::abort();
     }
     return ((pfn_get_physical_device_tool_properties)ptr)(_physical_device, _p_tool_count, _p_tool_properties);
+}
+
+inline ktl::api::result
+get_physical_device_tool_properties_ext(ktl::api::physical_device _physical_device, ktl::u32 * _p_tool_count,
+                                        ktl::api::physical_device_tool_properties * _p_tool_properties)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_tool_properties_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_physical_device_tool_properties_ext)ptr)(_physical_device, _p_tool_count, _p_tool_properties);
 }
 
 inline ktl::api::result
@@ -6770,6 +7504,17 @@ cmd_set_cull_mode(ktl::api::command_buffer _command_buffer, ktl::api::cull_mode_
 }
 
 inline void
+cmd_set_cull_mode_ext(ktl::api::command_buffer _command_buffer, ktl::api::cull_mode_flags _cull_mode)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_cull_mode_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_cull_mode_ext)ptr)(_command_buffer, _cull_mode);
+}
+
+inline void
 cmd_set_front_face(ktl::api::command_buffer _command_buffer, ktl::api::front_face _front_face)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_front_face)];
@@ -6781,6 +7526,17 @@ cmd_set_front_face(ktl::api::command_buffer _command_buffer, ktl::api::front_fac
 }
 
 inline void
+cmd_set_front_face_ext(ktl::api::command_buffer _command_buffer, ktl::api::front_face _front_face)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_front_face_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_front_face_ext)ptr)(_command_buffer, _front_face);
+}
+
+inline void
 cmd_set_primitive_topology(ktl::api::command_buffer _command_buffer, ktl::api::primitive_topology _primitive_topology)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_topology)];
@@ -6789,6 +7545,18 @@ cmd_set_primitive_topology(ktl::api::command_buffer _command_buffer, ktl::api::p
         std::abort();
     }
     return ((pfn_cmd_set_primitive_topology)ptr)(_command_buffer, _primitive_topology);
+}
+
+inline void
+cmd_set_primitive_topology_ext(ktl::api::command_buffer     _command_buffer,
+                               ktl::api::primitive_topology _primitive_topology)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_topology_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_primitive_topology_ext)ptr)(_command_buffer, _primitive_topology);
 }
 
 inline void
@@ -6804,6 +7572,18 @@ cmd_set_viewport_with_count(ktl::api::command_buffer _command_buffer, ktl::u32 _
 }
 
 inline void
+cmd_set_viewport_with_count_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _viewport_count,
+                                const ktl::api::viewport * _p_viewports)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_with_count_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_viewport_with_count_ext)ptr)(_command_buffer, _viewport_count, _p_viewports);
+}
+
+inline void
 cmd_set_scissor_with_count(ktl::api::command_buffer _command_buffer, ktl::u32 _scissor_count,
                            const ktl::api::rect_2d * _p_scissors)
 {
@@ -6816,6 +7596,18 @@ cmd_set_scissor_with_count(ktl::api::command_buffer _command_buffer, ktl::u32 _s
 }
 
 inline void
+cmd_set_scissor_with_count_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _scissor_count,
+                               const ktl::api::rect_2d * _p_scissors)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_scissor_with_count_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_scissor_with_count_ext)ptr)(_command_buffer, _scissor_count, _p_scissors);
+}
+
+inline void
 cmd_bind_index_buffer_2(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset,
                         ktl::api::dvsize _size, ktl::api::index_type _index_type)
 {
@@ -6825,6 +7617,18 @@ cmd_bind_index_buffer_2(ktl::api::command_buffer _command_buffer, ktl::api::buff
         std::abort();
     }
     return ((pfn_cmd_bind_index_buffer_2)ptr)(_command_buffer, _buffer, _offset, _size, _index_type);
+}
+
+inline void
+cmd_bind_index_buffer_2khr(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset,
+                           ktl::api::dvsize _size, ktl::api::index_type _index_type)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_bind_index_buffer_2khr)ptr)(_command_buffer, _buffer, _offset, _size, _index_type);
 }
 
 inline void
@@ -6842,6 +7646,20 @@ cmd_bind_vertex_buffers_2(ktl::api::command_buffer _command_buffer, ktl::u32 _fi
 }
 
 inline void
+cmd_bind_vertex_buffers_2ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count,
+                             const ktl::api::buffer * _p_buffers, const ktl::api::dvsize * _p_offsets,
+                             const ktl::api::dvsize * _p_sizes, const ktl::api::dvsize * _p_strides)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_2ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_bind_vertex_buffers_2ext)ptr)(_command_buffer, _first_binding, _binding_count, _p_buffers,
+                                                   _p_offsets, _p_sizes, _p_strides);
+}
+
+inline void
 cmd_set_depth_test_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_test_enable)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_test_enable)];
@@ -6850,6 +7668,17 @@ cmd_set_depth_test_enable(ktl::api::command_buffer _command_buffer, ktl::api::bo
         std::abort();
     }
     return ((pfn_cmd_set_depth_test_enable)ptr)(_command_buffer, _depth_test_enable);
+}
+
+inline void
+cmd_set_depth_test_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_test_enable)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_test_enable_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_depth_test_enable_ext)ptr)(_command_buffer, _depth_test_enable);
 }
 
 inline void
@@ -6864,6 +7693,17 @@ cmd_set_depth_write_enable(ktl::api::command_buffer _command_buffer, ktl::api::b
 }
 
 inline void
+cmd_set_depth_write_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_write_enable)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_write_enable_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_depth_write_enable_ext)ptr)(_command_buffer, _depth_write_enable);
+}
+
+inline void
 cmd_set_depth_compare_op(ktl::api::command_buffer _command_buffer, ktl::api::compare_op _depth_compare_op)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_compare_op)];
@@ -6872,6 +7712,17 @@ cmd_set_depth_compare_op(ktl::api::command_buffer _command_buffer, ktl::api::com
         std::abort();
     }
     return ((pfn_cmd_set_depth_compare_op)ptr)(_command_buffer, _depth_compare_op);
+}
+
+inline void
+cmd_set_depth_compare_op_ext(ktl::api::command_buffer _command_buffer, ktl::api::compare_op _depth_compare_op)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_compare_op_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_depth_compare_op_ext)ptr)(_command_buffer, _depth_compare_op);
 }
 
 inline void
@@ -6887,6 +7738,19 @@ cmd_set_depth_bounds_test_enable(ktl::api::command_buffer _command_buffer, ktl::
 }
 
 inline void
+cmd_set_depth_bounds_test_enable_ext(ktl::api::command_buffer _command_buffer,
+                                     ktl::api::bool32         _depth_bounds_test_enable)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bounds_test_enable_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_depth_bounds_test_enable_ext)ptr)(_command_buffer, _depth_bounds_test_enable);
+}
+
+inline void
 cmd_set_stencil_test_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _stencil_test_enable)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_test_enable)];
@@ -6895,6 +7759,17 @@ cmd_set_stencil_test_enable(ktl::api::command_buffer _command_buffer, ktl::api::
         std::abort();
     }
     return ((pfn_cmd_set_stencil_test_enable)ptr)(_command_buffer, _stencil_test_enable);
+}
+
+inline void
+cmd_set_stencil_test_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _stencil_test_enable)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_test_enable_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_stencil_test_enable_ext)ptr)(_command_buffer, _stencil_test_enable);
 }
 
 inline void
@@ -6908,6 +7783,20 @@ cmd_set_stencil_op(ktl::api::command_buffer _command_buffer, ktl::api::stencil_f
         std::abort();
     }
     return ((pfn_cmd_set_stencil_op)ptr)(_command_buffer, _face_mask, _fail_op, _pass_op, _depth_fail_op, _compare_op);
+}
+
+inline void
+cmd_set_stencil_op_ext(ktl::api::command_buffer _command_buffer, ktl::api::stencil_face_flags _face_mask,
+                       ktl::api::stencil_op _fail_op, ktl::api::stencil_op _pass_op,
+                       ktl::api::stencil_op _depth_fail_op, ktl::api::compare_op _compare_op)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_op_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_stencil_op_ext)ptr)(_command_buffer, _face_mask, _fail_op, _pass_op, _depth_fail_op,
+                                             _compare_op);
 }
 
 inline void
@@ -6935,6 +7824,19 @@ cmd_set_rasterizer_discard_enable(ktl::api::command_buffer _command_buffer, ktl:
 }
 
 inline void
+cmd_set_rasterizer_discard_enable_ext(ktl::api::command_buffer _command_buffer,
+                                      ktl::api::bool32         _rasterizer_discard_enable)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rasterizer_discard_enable_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_rasterizer_discard_enable_ext)ptr)(_command_buffer, _rasterizer_discard_enable);
+}
+
+inline void
 cmd_set_depth_bias_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_bias_enable)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_enable)];
@@ -6943,6 +7845,17 @@ cmd_set_depth_bias_enable(ktl::api::command_buffer _command_buffer, ktl::api::bo
         std::abort();
     }
     return ((pfn_cmd_set_depth_bias_enable)ptr)(_command_buffer, _depth_bias_enable);
+}
+
+inline void
+cmd_set_depth_bias_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_bias_enable)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_enable_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_depth_bias_enable_ext)ptr)(_command_buffer, _depth_bias_enable);
 }
 
 inline void
@@ -6966,6 +7879,19 @@ cmd_set_primitive_restart_enable(ktl::api::command_buffer _command_buffer, ktl::
         std::abort();
     }
     return ((pfn_cmd_set_primitive_restart_enable)ptr)(_command_buffer, _primitive_restart_enable);
+}
+
+inline void
+cmd_set_primitive_restart_enable_ext(ktl::api::command_buffer _command_buffer,
+                                     ktl::api::bool32         _primitive_restart_enable)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_restart_enable_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_primitive_restart_enable_ext)ptr)(_command_buffer, _primitive_restart_enable);
 }
 
 inline void
@@ -7377,6 +8303,19 @@ create_private_data_slot(ktl::api::device _device, const ktl::api::private_data_
     return ((pfn_create_private_data_slot)ptr)(_device, _p_create_info, _p_allocator, _p_private_data_slot);
 }
 
+inline ktl::api::result
+create_private_data_slot_ext(ktl::api::device _device, const ktl::api::private_data_slot_create_info * _p_create_info,
+                             const ktl::api::allocation_callbacks * _p_allocator,
+                             ktl::api::private_data_slot *          _p_private_data_slot)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_private_data_slot_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_create_private_data_slot_ext)ptr)(_device, _p_create_info, _p_allocator, _p_private_data_slot);
+}
+
 inline void
 destroy_private_data_slot(ktl::api::device _device, ktl::api::private_data_slot _private_data_slot,
                           const ktl::api::allocation_callbacks * _p_allocator)
@@ -7389,6 +8328,18 @@ destroy_private_data_slot(ktl::api::device _device, ktl::api::private_data_slot 
     return ((pfn_destroy_private_data_slot)ptr)(_device, _private_data_slot, _p_allocator);
 }
 
+inline void
+destroy_private_data_slot_ext(ktl::api::device _device, ktl::api::private_data_slot _private_data_slot,
+                              const ktl::api::allocation_callbacks * _p_allocator)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_private_data_slot_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_destroy_private_data_slot_ext)ptr)(_device, _private_data_slot, _p_allocator);
+}
+
 inline ktl::api::result
 set_private_data(ktl::api::device _device, ktl::api::object_type _object_type, ktl::u64 _object_handle,
                  ktl::api::private_data_slot _private_data_slot, ktl::u64 _data)
@@ -7399,6 +8350,18 @@ set_private_data(ktl::api::device _device, ktl::api::object_type _object_type, k
         std::abort();
     }
     return ((pfn_set_private_data)ptr)(_device, _object_type, _object_handle, _private_data_slot, _data);
+}
+
+inline ktl::api::result
+set_private_data_ext(ktl::api::device _device, ktl::api::object_type _object_type, ktl::u64 _object_handle,
+                     ktl::api::private_data_slot _private_data_slot, ktl::u64 _data)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_private_data_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_set_private_data_ext)ptr)(_device, _object_type, _object_handle, _private_data_slot, _data);
 }
 
 inline void
@@ -7414,6 +8377,18 @@ get_private_data(ktl::api::device _device, ktl::api::object_type _object_type, k
 }
 
 inline void
+get_private_data_ext(ktl::api::device _device, ktl::api::object_type _object_type, ktl::u64 _object_handle,
+                     ktl::api::private_data_slot _private_data_slot, ktl::u64 * _p_data)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_private_data_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_private_data_ext)ptr)(_device, _object_type, _object_handle, _private_data_slot, _p_data);
+}
+
+inline void
 cmd_copy_buffer_2(ktl::api::command_buffer _command_buffer, const ktl::api::copy_buffer_info_2 * _p_copy_buffer_info)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_2)];
@@ -7422,6 +8397,17 @@ cmd_copy_buffer_2(ktl::api::command_buffer _command_buffer, const ktl::api::copy
         std::abort();
     }
     return ((pfn_cmd_copy_buffer_2)ptr)(_command_buffer, _p_copy_buffer_info);
+}
+
+inline void
+cmd_copy_buffer_2khr(ktl::api::command_buffer _command_buffer, const ktl::api::copy_buffer_info_2 * _p_copy_buffer_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_copy_buffer_2khr)ptr)(_command_buffer, _p_copy_buffer_info);
 }
 
 inline void
@@ -7436,6 +8422,17 @@ cmd_copy_image_2(ktl::api::command_buffer _command_buffer, const ktl::api::copy_
 }
 
 inline void
+cmd_copy_image_2khr(ktl::api::command_buffer _command_buffer, const ktl::api::copy_image_info_2 * _p_copy_image_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_copy_image_2khr)ptr)(_command_buffer, _p_copy_image_info);
+}
+
+inline void
 cmd_blit_image_2(ktl::api::command_buffer _command_buffer, const ktl::api::blit_image_info_2 * _p_blit_image_info)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image_2)];
@@ -7444,6 +8441,17 @@ cmd_blit_image_2(ktl::api::command_buffer _command_buffer, const ktl::api::blit_
         std::abort();
     }
     return ((pfn_cmd_blit_image_2)ptr)(_command_buffer, _p_blit_image_info);
+}
+
+inline void
+cmd_blit_image_2khr(ktl::api::command_buffer _command_buffer, const ktl::api::blit_image_info_2 * _p_blit_image_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_blit_image_2khr)ptr)(_command_buffer, _p_blit_image_info);
 }
 
 inline void
@@ -7459,6 +8467,18 @@ cmd_copy_buffer_to_image_2(ktl::api::command_buffer                      _comman
 }
 
 inline void
+cmd_copy_buffer_to_image_2khr(ktl::api::command_buffer                      _command_buffer,
+                              const ktl::api::copy_buffer_to_image_info_2 * _p_copy_buffer_to_image_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_to_image_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_copy_buffer_to_image_2khr)ptr)(_command_buffer, _p_copy_buffer_to_image_info);
+}
+
+inline void
 cmd_copy_image_to_buffer_2(ktl::api::command_buffer                      _command_buffer,
                            const ktl::api::copy_image_to_buffer_info_2 * _p_copy_image_to_buffer_info)
 {
@@ -7471,6 +8491,18 @@ cmd_copy_image_to_buffer_2(ktl::api::command_buffer                      _comman
 }
 
 inline void
+cmd_copy_image_to_buffer_2khr(ktl::api::command_buffer                      _command_buffer,
+                              const ktl::api::copy_image_to_buffer_info_2 * _p_copy_image_to_buffer_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_buffer_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_copy_image_to_buffer_2khr)ptr)(_command_buffer, _p_copy_image_to_buffer_info);
+}
+
+inline void
 cmd_resolve_image_2(ktl::api::command_buffer               _command_buffer,
                     const ktl::api::resolve_image_info_2 * _p_resolve_image_info)
 {
@@ -7480,6 +8512,18 @@ cmd_resolve_image_2(ktl::api::command_buffer               _command_buffer,
         std::abort();
     }
     return ((pfn_cmd_resolve_image_2)ptr)(_command_buffer, _p_resolve_image_info);
+}
+
+inline void
+cmd_resolve_image_2khr(ktl::api::command_buffer               _command_buffer,
+                       const ktl::api::resolve_image_info_2 * _p_resolve_image_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_resolve_image_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_resolve_image_2khr)ptr)(_command_buffer, _p_resolve_image_info);
 }
 
 inline void
@@ -7609,6 +8653,18 @@ cmd_set_event_2(ktl::api::command_buffer _command_buffer, ktl::api::event _event
 }
 
 inline void
+cmd_set_event_2khr(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
+                   const ktl::api::dependency_info * _p_dependency_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_event_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_event_2khr)ptr)(_command_buffer, _event, _p_dependency_info);
+}
+
+inline void
 cmd_reset_event_2(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
                   ktl::api::pipeline_stage_flags_2 _stage_mask)
 {
@@ -7618,6 +8674,18 @@ cmd_reset_event_2(ktl::api::command_buffer _command_buffer, ktl::api::event _eve
         std::abort();
     }
     return ((pfn_cmd_reset_event_2)ptr)(_command_buffer, _event, _stage_mask);
+}
+
+inline void
+cmd_reset_event_2khr(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
+                     ktl::api::pipeline_stage_flags_2 _stage_mask)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_event_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_reset_event_2khr)ptr)(_command_buffer, _event, _stage_mask);
 }
 
 inline void
@@ -7633,6 +8701,18 @@ cmd_wait_events_2(ktl::api::command_buffer _command_buffer, ktl::u32 _event_coun
 }
 
 inline void
+cmd_wait_events_2khr(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count, const ktl::api::event * _p_events,
+                     const ktl::api::dependency_info * _p_dependency_infos)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_wait_events_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_wait_events_2khr)ptr)(_command_buffer, _event_count, _p_events, _p_dependency_infos);
+}
+
+inline void
 cmd_pipeline_barrier_2(ktl::api::command_buffer _command_buffer, const ktl::api::dependency_info * _p_dependency_info)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier_2)];
@@ -7641,6 +8721,18 @@ cmd_pipeline_barrier_2(ktl::api::command_buffer _command_buffer, const ktl::api:
         std::abort();
     }
     return ((pfn_cmd_pipeline_barrier_2)ptr)(_command_buffer, _p_dependency_info);
+}
+
+inline void
+cmd_pipeline_barrier_2khr(ktl::api::command_buffer          _command_buffer,
+                          const ktl::api::dependency_info * _p_dependency_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_pipeline_barrier_2khr)ptr)(_command_buffer, _p_dependency_info);
 }
 
 inline ktl::api::result
@@ -7655,6 +8747,18 @@ queue_submit_2(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::s
     return ((pfn_queue_submit_2)ptr)(_queue, _submit_count, _p_submits, _fence);
 }
 
+inline ktl::api::result
+queue_submit_2khr(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::submit_info_2 * _p_submits,
+                  ktl::api::fence _fence)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_submit_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_queue_submit_2khr)ptr)(_queue, _submit_count, _p_submits, _fence);
+}
+
 inline void
 cmd_write_timestamp_2(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage,
                       ktl::api::query_pool _query_pool, ktl::u32 _query)
@@ -7665,6 +8769,18 @@ cmd_write_timestamp_2(ktl::api::command_buffer _command_buffer, ktl::api::pipeli
         std::abort();
     }
     return ((pfn_cmd_write_timestamp_2)ptr)(_command_buffer, _stage, _query_pool, _query);
+}
+
+inline void
+cmd_write_timestamp_2khr(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage,
+                         ktl::api::query_pool _query_pool, ktl::u32 _query)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_timestamp_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_write_timestamp_2khr)ptr)(_command_buffer, _stage, _query_pool, _query);
 }
 
 inline void
@@ -7703,6 +8819,18 @@ copy_memory_to_image(ktl::api::device _device, const ktl::api::copy_memory_to_im
 }
 
 inline ktl::api::result
+copy_memory_to_image_ext(ktl::api::device                            _device,
+                         const ktl::api::copy_memory_to_image_info * _p_copy_memory_to_image_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_memory_to_image_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_copy_memory_to_image_ext)ptr)(_device, _p_copy_memory_to_image_info);
+}
+
+inline ktl::api::result
 copy_image_to_memory(ktl::api::device _device, const ktl::api::copy_image_to_memory_info * _p_copy_image_to_memory_info)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_memory)];
@@ -7711,6 +8839,18 @@ copy_image_to_memory(ktl::api::device _device, const ktl::api::copy_image_to_mem
         std::abort();
     }
     return ((pfn_copy_image_to_memory)ptr)(_device, _p_copy_image_to_memory_info);
+}
+
+inline ktl::api::result
+copy_image_to_memory_ext(ktl::api::device                            _device,
+                         const ktl::api::copy_image_to_memory_info * _p_copy_image_to_memory_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_memory_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_copy_image_to_memory_ext)ptr)(_device, _p_copy_image_to_memory_info);
 }
 
 inline ktl::api::result
@@ -7725,6 +8865,18 @@ copy_image_to_image(ktl::api::device _device, const ktl::api::copy_image_to_imag
 }
 
 inline ktl::api::result
+copy_image_to_image_ext(ktl::api::device                           _device,
+                        const ktl::api::copy_image_to_image_info * _p_copy_image_to_image_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_image_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_copy_image_to_image_ext)ptr)(_device, _p_copy_image_to_image_info);
+}
+
+inline ktl::api::result
 transition_image_layout(ktl::api::device _device, ktl::u32 _transition_count,
                         const ktl::api::host_image_layout_transition_info * _p_transitions)
 {
@@ -7734,6 +8886,18 @@ transition_image_layout(ktl::api::device _device, ktl::u32 _transition_count,
         std::abort();
     }
     return ((pfn_transition_image_layout)ptr)(_device, _transition_count, _p_transitions);
+}
+
+inline ktl::api::result
+transition_image_layout_ext(ktl::api::device _device, ktl::u32 _transition_count,
+                            const ktl::api::host_image_layout_transition_info * _p_transitions)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::transition_image_layout_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_transition_image_layout_ext)ptr)(_device, _transition_count, _p_transitions);
 }
 
 inline void
@@ -8257,6 +9421,17 @@ cmd_begin_rendering(ktl::api::command_buffer _command_buffer, const ktl::api::re
 }
 
 inline void
+cmd_begin_rendering_khr(ktl::api::command_buffer _command_buffer, const ktl::api::rendering_info * _p_rendering_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_rendering_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_begin_rendering_khr)ptr)(_command_buffer, _p_rendering_info);
+}
+
+inline void
 cmd_end_rendering(ktl::api::command_buffer _command_buffer)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering)];
@@ -8277,6 +9452,29 @@ cmd_end_rendering_2khr(ktl::api::command_buffer                 _command_buffer,
         std::abort();
     }
     return ((pfn_cmd_end_rendering_2khr)ptr)(_command_buffer, _p_rendering_end_info);
+}
+
+inline void
+cmd_end_rendering_2ext(ktl::api::command_buffer                 _command_buffer,
+                       const ktl::api::rendering_end_info_khr * _p_rendering_end_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_2ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_end_rendering_2ext)ptr)(_command_buffer, _p_rendering_end_info);
+}
+
+inline void
+cmd_end_rendering_khr(ktl::api::command_buffer _command_buffer)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_end_rendering_khr)ptr)(_command_buffer);
 }
 
 inline void
@@ -8521,6 +9719,34 @@ get_image_subresource_layout_2(ktl::api::device _device, ktl::api::image _image,
     return ((pfn_get_image_subresource_layout_2)ptr)(_device, _image, _p_subresource, _p_layout);
 }
 
+inline void
+get_image_subresource_layout_2khr(ktl::api::device _device, ktl::api::image _image,
+                                  const ktl::api::image_subresource_2 * _p_subresource,
+                                  ktl::api::subresource_layout_2 *      _p_layout)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_image_subresource_layout_2khr)ptr)(_device, _image, _p_subresource, _p_layout);
+}
+
+inline void
+get_image_subresource_layout_2ext(ktl::api::device _device, ktl::api::image _image,
+                                  const ktl::api::image_subresource_2 * _p_subresource,
+                                  ktl::api::subresource_layout_2 *      _p_layout)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_image_subresource_layout_2ext)ptr)(_device, _image, _p_subresource, _p_layout);
+}
+
 inline ktl::api::result
 get_pipeline_properties_ext(ktl::api::device _device, const ktl::api::pipeline_info_khr * _p_pipeline_info,
                             ktl::api::base_out_structure * _p_pipeline_properties)
@@ -8709,6 +9935,18 @@ release_swapchain_images_khr(ktl::api::device                                   
     return ((pfn_release_swapchain_images_khr)ptr)(_device, _p_release_info);
 }
 
+inline ktl::api::result
+release_swapchain_images_ext(ktl::api::device                                    _device,
+                             const ktl::api::release_swapchain_images_info_khr * _p_release_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_swapchain_images_ext)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_release_swapchain_images_ext)ptr)(_device, _p_release_info);
+}
+
 inline void
 get_device_image_subresource_layout(ktl::api::device _device, const ktl::api::device_image_subresource_info * _p_info,
                                     ktl::api::subresource_layout_2 * _p_layout)
@@ -8720,6 +9958,20 @@ get_device_image_subresource_layout(ktl::api::device _device, const ktl::api::de
         std::abort();
     }
     return ((pfn_get_device_image_subresource_layout)ptr)(_device, _p_info, _p_layout);
+}
+
+inline void
+get_device_image_subresource_layout_khr(ktl::api::device                                _device,
+                                        const ktl::api::device_image_subresource_info * _p_info,
+                                        ktl::api::subresource_layout_2 *                _p_layout)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_subresource_layout_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_get_device_image_subresource_layout_khr)ptr)(_device, _p_info, _p_layout);
 }
 
 inline ktl::api::result
@@ -8734,6 +9986,17 @@ map_memory_2(ktl::api::device _device, const ktl::api::memory_map_info * _p_memo
 }
 
 inline ktl::api::result
+map_memory_2khr(ktl::api::device _device, const ktl::api::memory_map_info * _p_memory_map_info, void ** _pp_data)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_map_memory_2khr)ptr)(_device, _p_memory_map_info, _pp_data);
+}
+
+inline ktl::api::result
 unmap_memory_2(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_memory_unmap_info)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory_2)];
@@ -8742,6 +10005,17 @@ unmap_memory_2(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_
         std::abort();
     }
     return ((pfn_unmap_memory_2)ptr)(_device, _p_memory_unmap_info);
+}
+
+inline ktl::api::result
+unmap_memory_2khr(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_memory_unmap_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_unmap_memory_2khr)ptr)(_device, _p_memory_unmap_info);
 }
 
 inline ktl::api::result
@@ -9145,6 +10419,18 @@ cmd_bind_descriptor_sets_2(ktl::api::command_buffer                    _command_
 }
 
 inline void
+cmd_bind_descriptor_sets_2khr(ktl::api::command_buffer                    _command_buffer,
+                              const ktl::api::bind_descriptor_sets_info * _p_bind_descriptor_sets_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_sets_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_bind_descriptor_sets_2khr)ptr)(_command_buffer, _p_bind_descriptor_sets_info);
+}
+
+inline void
 cmd_push_constants_2(ktl::api::command_buffer              _command_buffer,
                      const ktl::api::push_constants_info * _p_push_constants_info)
 {
@@ -9154,6 +10440,18 @@ cmd_push_constants_2(ktl::api::command_buffer              _command_buffer,
         std::abort();
     }
     return ((pfn_cmd_push_constants_2)ptr)(_command_buffer, _p_push_constants_info);
+}
+
+inline void
+cmd_push_constants_2khr(ktl::api::command_buffer              _command_buffer,
+                        const ktl::api::push_constants_info * _p_push_constants_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_constants_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_push_constants_2khr)ptr)(_command_buffer, _p_push_constants_info);
 }
 
 inline void
@@ -9169,6 +10467,18 @@ cmd_push_descriptor_set_2(ktl::api::command_buffer                   _command_bu
 }
 
 inline void
+cmd_push_descriptor_set_2khr(ktl::api::command_buffer                   _command_buffer,
+                             const ktl::api::push_descriptor_set_info * _p_push_descriptor_set_info)
+{
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_push_descriptor_set_2khr)ptr)(_command_buffer, _p_push_descriptor_set_info);
+}
+
+inline void
 cmd_push_descriptor_set_with_template_2(
     ktl::api::command_buffer                                 _command_buffer,
     const ktl::api::push_descriptor_set_with_template_info * _p_push_descriptor_set_with_template_info)
@@ -9181,6 +10491,21 @@ cmd_push_descriptor_set_with_template_2(
     }
     return ((pfn_cmd_push_descriptor_set_with_template_2)ptr)(_command_buffer,
                                                               _p_push_descriptor_set_with_template_info);
+}
+
+inline void
+cmd_push_descriptor_set_with_template_2khr(
+    ktl::api::command_buffer                                 _command_buffer,
+    const ktl::api::push_descriptor_set_with_template_info * _p_push_descriptor_set_with_template_info)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_2khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_push_descriptor_set_with_template_2khr)ptr)(_command_buffer,
+                                                                 _p_push_descriptor_set_with_template_info);
 }
 
 inline void
@@ -9367,6 +10692,19 @@ cmd_set_rendering_attachment_locations(ktl::api::command_buffer                 
 }
 
 inline void
+cmd_set_rendering_attachment_locations_khr(ktl::api::command_buffer                             _command_buffer,
+                                           const ktl::api::rendering_attachment_location_info * _p_location_info)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_attachment_locations_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_rendering_attachment_locations_khr)ptr)(_command_buffer, _p_location_info);
+}
+
+inline void
 cmd_set_rendering_input_attachment_indices(
     ktl::api::command_buffer                                _command_buffer,
     const ktl::api::rendering_input_attachment_index_info * _p_input_attachment_index_info)
@@ -9378,6 +10716,20 @@ cmd_set_rendering_input_attachment_indices(
         std::abort();
     }
     return ((pfn_cmd_set_rendering_input_attachment_indices)ptr)(_command_buffer, _p_input_attachment_index_info);
+}
+
+inline void
+cmd_set_rendering_input_attachment_indices_khr(
+    ktl::api::command_buffer                                _command_buffer,
+    const ktl::api::rendering_input_attachment_index_info * _p_input_attachment_index_info)
+{
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_input_attachment_indices_khr)];
+    if (ptr == ktl::loader::proc_null) [[unlikely]]
+    {
+        std::abort();
+    }
+    return ((pfn_cmd_set_rendering_input_attachment_indices_khr)ptr)(_command_buffer, _p_input_attachment_index_info);
 }
 
 inline void

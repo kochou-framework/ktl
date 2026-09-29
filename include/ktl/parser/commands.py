@@ -29,7 +29,8 @@ def extract_command_impl(_root) -> VkFunction | None:
     raw_alias = _root.get("alias")
     pfn_alias = make_cpp_name(raw_alias)
     if alias_name and raw_alias:
-        return VkFunction(f"pfn_{alias_name}", raw_alias, None, None, f"pfn_{pfn_alias}")
+        # signature is taken from the target in extract()
+        return VkFunction(f"pfn_{alias_name}", _root.get("name"), None, None, f"pfn_{pfn_alias}")
 
     proto = _root.find("proto")
     tppe = extract_return_type_impl(proto)
@@ -63,22 +64,13 @@ using pfn_table = std::array< ktl::loader::proc_type, pfn_table_size >;
 inline pfn_table * ptable = nullptr;           
 
 """)
+    # every alias has its own slot: vkGet*ProcAddr resolves core and extension names under different conditions
     _file.write("enum class command : ktl::u32\n{\n")
     for i in range(len(_commands)):
-        command = _commands[i]
-        if command.alias:
-            _file.write(f"{command.pfn[4:]} = {command.alias[4:]},\n")
-        else:
-            _file.write(f"{command.pfn[4:]} = {i},\n")
+        _file.write(f"{_commands[i].pfn[4:]} = {i},\n")
     _file.write("};\n\n")
 
-    for i in range(len(_commands)):
-        command = _commands[i]
-        if command.alias:
-            # print(command.alias)
-            # _file.write(f"using {command.pfn[4:]} = ")
-            continue
-
+    for command in _commands:
         _file.write(f"inline {command.tppe} {command.pfn[4:]}({make_params(command.fields)})\n{{\n")
 
         _file.write(f"""ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::{command.pfn[4:]})];
@@ -156,8 +148,6 @@ raw_command(ktl::api::command _command) noexcept
     {
 """)
     for command in _commands:
-        if command.alias:
-            continue
         _file.write(f"case ktl::api::command::{command.pfn[4:]}:\n")
         _file.write(f'return "{command.name}";\n')
     _file.write("}}}")
@@ -172,6 +162,14 @@ def extract(_root) -> list:
             continue
         if result := extract_command_impl(command):
             commands.append(result)
+
+    targets = {command.pfn: command for command in commands if not command.alias}
+    for command in commands:
+        if command.alias:
+            if command.alias not in targets:
+                raise ValueError(f"alias {command.name} of unknown command {command.alias}")
+            command.tppe = targets[command.alias].tppe
+            command.fields = targets[command.alias].fields
 
     return commands
 
