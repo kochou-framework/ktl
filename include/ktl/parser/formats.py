@@ -15,7 +15,8 @@ def extract_format_impl(_root) -> VkFormat:
     block_height = eval(f"[{block_extent}]")[1] if block_extent else "0"
     block_depth = eval(f"[{block_extent}]")[2] if block_extent else "0"
     is_3d = "true" if int(block_depth) > 1 else "false"
-    is_compressed = None
+    # compressed="BC|ETC2|EAC|ASTC..." is set for every compressed format, components of EAC still have numeric bits
+    is_compressed = "true" if _root.get("compressed") else "false"
     r = None
     g = None
     b = None
@@ -26,16 +27,16 @@ def extract_format_impl(_root) -> VkFormat:
     for component in _root.findall("component"):
         name = component.get("name")
         bits = component.get("bits")
+        bits = "0" if bits == "compressed" else bits
         plane = component.get("planeIndex")
-        is_compressed = "true" if bits == "compressed" else None
         if name == "R":
-            r = VkFormatComponent("0" if is_compressed else bits, "true" if plane else "false", plane if plane else "0", "true")
+            r = VkFormatComponent(bits, "true" if plane else "false", plane if plane else "0", "true")
         if name == "G":
-            g = VkFormatComponent("0" if is_compressed else bits, "true" if plane else "false", plane if plane else "0", "true")
+            g = VkFormatComponent(bits, "true" if plane else "false", plane if plane else "0", "true")
         if name == "B":
-            b = VkFormatComponent("0" if is_compressed else bits, "true" if plane else "false", plane if plane else "0", "true")
+            b = VkFormatComponent(bits, "true" if plane else "false", plane if plane else "0", "true")
         if name == "A":
-            a = VkFormatComponent("0" if is_compressed else bits, "true" if plane else "false", plane if plane else "0", "true")
+            a = VkFormatComponent(bits, "true" if plane else "false", plane if plane else "0", "true")
     if not r:
         r = VkFormatComponent("0", "false", "0", "false")
     if not g:
@@ -66,7 +67,7 @@ def extract_format_impl(_root) -> VkFormat:
                     block_height,
                     block_depth,
                     is_3d,
-                    is_compressed if is_compressed else "false",
+                    is_compressed,
                     r, g, b, a,
                     planes_amount,
                     planes)

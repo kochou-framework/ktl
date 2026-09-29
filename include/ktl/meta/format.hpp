@@ -8722,7 +8722,7 @@ struct format< ktl::api::format::v_eac_r_11unorm_block >
     static constexpr ktl::u32 block_height = 4;
     static constexpr ktl::u32 block_depth = 1;
     static constexpr bool is_3d = false;
-    static constexpr bool is_compressed = false;
+    static constexpr bool is_compressed = true;
     static constexpr component r = {
         11,
         false,
@@ -8778,7 +8778,7 @@ struct format< ktl::api::format::v_eac_r_11snorm_block >
     static constexpr ktl::u32 block_height = 4;
     static constexpr ktl::u32 block_depth = 1;
     static constexpr bool is_3d = false;
-    static constexpr bool is_compressed = false;
+    static constexpr bool is_compressed = true;
     static constexpr component r = {
         11,
         false,
@@ -8834,7 +8834,7 @@ struct format< ktl::api::format::v_eac_r_11g_11unorm_block >
     static constexpr ktl::u32 block_height = 4;
     static constexpr ktl::u32 block_depth = 1;
     static constexpr bool is_3d = false;
-    static constexpr bool is_compressed = false;
+    static constexpr bool is_compressed = true;
     static constexpr component r = {
         11,
         false,
@@ -8890,7 +8890,7 @@ struct format< ktl::api::format::v_eac_r_11g_11snorm_block >
     static constexpr ktl::u32 block_height = 4;
     static constexpr ktl::u32 block_depth = 1;
     static constexpr bool is_3d = false;
-    static constexpr bool is_compressed = false;
+    static constexpr bool is_compressed = true;
     static constexpr component r = {
         11,
         false,

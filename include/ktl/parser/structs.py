@@ -23,8 +23,20 @@ _VENDORS = (
 _BIT_WIDTHS = {"8", "16", "32", "64"}
 
 
+def is_feature_struct(_root) -> bool:
+    # VkPhysicalDeviceFeatures itself is chained through VkPhysicalDeviceFeatures2::features
+    if _root.get("name") == "VkPhysicalDeviceFeatures":
+        return True
+    return "VkPhysicalDeviceFeatures2" in (_root.get("structextends") or "").split(",")
+
+
+def is_core_features(source_snake: str) -> bool:
+    # physical_device_vulkan_11features ... physical_device_vulkan_14features
+    return re.search(r"vulkan_\d+features$", source_snake) is not None
+
+
 def make_feature_enum_name(field_snake: str, source_snake: str) -> str:
-    if source_snake == "physical_device_features" or re.search(r"vulkan\d+features$", source_snake):
+    if source_snake == "physical_device_features" or is_core_features(source_snake):
         return field_snake
 
     result = field_snake
@@ -39,11 +51,11 @@ def make_feature_enum_name(field_snake: str, source_snake: str) -> str:
     return make_cpp_name(result)
 
 
-def extract_struct_field_impl(_root, _name) -> VkStructField:
+def extract_struct_field_impl(_root, _name, _is_feature) -> VkStructField:
     decl = parse_decl(_root)
     type_res = make_decl_type(decl.tppe)
     name_str = make_cpp_name(decl.name)
-    if type_res == "ktl::api::bool32" and "features" in _name:
+    if type_res == "ktl::api::bool32" and _is_feature:
         name_str = make_feature_enum_name(name_str, _name)
 
     is_optional = _root.get("optional") == "true"
@@ -57,23 +69,20 @@ def extract_struct_field_impl(_root, _name) -> VkStructField:
     return VkStructField(type_res, name_str, is_optional, decl.const, decl.array, decl.bitfield, default_value)
 
 
-def extract_struct_impl(_root, _unique) -> tuple:
+def extract_struct_impl(_root) -> tuple:
     name = make_cpp_name(_root.get("name"))
     if is_vulkan_video(name):
         return None, None
 
+    is_feature = is_feature_struct(_root)
     features = []
     fields = []
     for field in _root.findall("member"):
         if not field.get("api") == "vulkansc":
-            result = extract_struct_field_impl(field, name)
+            result = extract_struct_field_impl(field, name, is_feature)
             fields.append(result)
-            if result.tppe == "ktl::api::bool32" and "features" in name:
-                feature = result.name # make_feature_enum_name(result.name, name)
-                if feature not in _unique:
-                    _unique.add(feature)
-                    # print(name, feature)
-                    features.append(VkFeature(result.name, name, name))
+            if result.tppe == "ktl::api::bool32" and is_feature:
+                features.append(VkFeature(result.name, name, name))
 
     return VkStruct(name, fields, False, None), features
 
@@ -119,8 +128,7 @@ def fill_implementation(_file: TextIO, _structs: list) -> None:
 
 def extract(_root) -> tuple:
     structs = []
-    features = []
-    unique = set()
+    features = {}
 
     types = _root.find("types")
     for src in types.findall("type"):
@@ -130,14 +138,19 @@ def extract(_root) -> tuple:
                 if not is_vulkan_video(name):
                     structs.append(VkStruct(name, [], False, alias))
             else:
-                result, ff = extract_struct_impl(src, unique)
+                result, ff = extract_struct_impl(src)
                 if result:
                     structs.append(result)
-                    features += ff
+                    for feature in ff:
+                        # same feature is declared in physical_device_vulkan_XYfeatures and in its own struct:
+                        # own struct is valid both for core version and for extension
+                        known = features.get(feature.name)
+                        if known is None or (is_core_features(known.struct) and not is_core_features(feature.struct)):
+                            features[feature.name] = feature
 
         elif src.get("category") == "union":
-            result, _ = extract_struct_impl(src, unique)
+            result, _ = extract_struct_impl(src)
             if result:
                 result.is_union = True
                 structs.append(result)
-    return sort_by_dependencies(structs), features
+    return sort_by_dependencies(structs), list(features.values())

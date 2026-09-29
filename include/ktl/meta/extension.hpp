@@ -304,7 +304,7 @@ struct extension< ktl::api::extension::khr_video_queue >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_synchronization_2}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_synchronization_2}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_synchronization_2}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_synchronization_2}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -1657,7 +1657,7 @@ struct extension< ktl::api::extension::khr_acceleration_structure >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 16 > commands = {ktl::api::command::create_acceleration_structure_khr,ktl::api::command::destroy_acceleration_structure_khr,ktl::api::command::cmd_build_acceleration_structures_khr,ktl::api::command::cmd_build_acceleration_structures_indirect_khr,ktl::api::command::build_acceleration_structures_khr,ktl::api::command::copy_acceleration_structure_khr,ktl::api::command::copy_acceleration_structure_to_memory_khr,ktl::api::command::copy_memory_to_acceleration_structure_khr,ktl::api::command::write_acceleration_structures_properties_khr,ktl::api::command::cmd_copy_acceleration_structure_khr,ktl::api::command::cmd_copy_acceleration_structure_to_memory_khr,ktl::api::command::cmd_copy_memory_to_acceleration_structure_khr,ktl::api::command::get_acceleration_structure_device_address_khr,ktl::api::command::cmd_write_acceleration_structures_properties_khr,ktl::api::command::get_device_acceleration_structure_compatibility_khr,ktl::api::command::get_acceleration_structure_build_sizes_khr};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 3, {ktl::api::extension::ext_descriptor_indexing,ktl::api::extension::khr_buffer_device_address,ktl::api::extension::khr_deferred_host_operations}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_deferred_host_operations}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_deferred_host_operations}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_deferred_host_operations}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 3, {ktl::api::extension::ext_descriptor_indexing,ktl::api::extension::khr_buffer_device_address,ktl::api::extension::khr_deferred_host_operations}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_deferred_host_operations}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_deferred_host_operations}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_deferred_host_operations}}}};
 };
 
 template <>
@@ -1723,7 +1723,7 @@ struct extension< ktl::api::extension::nv_shader_sm_builtins >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -1954,7 +1954,7 @@ struct extension< ktl::api::extension::khr_shader_subgroup_extended_types >
     static constexpr ktl::meta::dependency     promoted    = {ktl::api::version_1_2};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -2196,7 +2196,7 @@ struct extension< ktl::api::extension::nv_shader_subgroup_partitioned >
     static constexpr ktl::meta::dependency     promoted    = {ktl::api::extension::ext_shader_subgroup_partitioned};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -2493,7 +2493,7 @@ struct extension< ktl::api::extension::ext_subgroup_size_control >
     static constexpr ktl::meta::dependency     promoted    = {ktl::api::version_1_3};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -2603,7 +2603,7 @@ struct extension< ktl::api::extension::khr_shader_quad_control >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 2, {ktl::api::extension::khr_vulkan_memory_model,ktl::api::extension::khr_shader_maximal_reconvergence}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_shader_maximal_reconvergence}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_shader_maximal_reconvergence}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_shader_maximal_reconvergence}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 2, {ktl::api::extension::khr_vulkan_memory_model,ktl::api::extension::khr_shader_maximal_reconvergence}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_shader_maximal_reconvergence}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_shader_maximal_reconvergence}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_shader_maximal_reconvergence}}}};
 };
 
 template <>
@@ -2614,7 +2614,7 @@ struct extension< ktl::api::extension::khr_spirv_14 >
     static constexpr ktl::meta::dependency     promoted    = {ktl::api::version_1_2};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_shader_float_controls}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_shader_float_controls}}}};
 };
 
 template <>
@@ -2647,7 +2647,7 @@ struct extension< ktl::api::extension::khr_surface_protected_capabilities >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_get_surface_capabilities_2}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_get_surface_capabilities_2}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_get_surface_capabilities_2}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_get_surface_capabilities_2}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_get_surface_capabilities_2}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_get_surface_capabilities_2}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_get_surface_capabilities_2}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_get_surface_capabilities_2}}}};
 };
 
 template <>
@@ -3065,7 +3065,7 @@ struct extension< ktl::api::extension::nv_device_generated_commands >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 6 > commands = {ktl::api::command::get_generated_commands_memory_requirements_nv,ktl::api::command::cmd_preprocess_generated_commands_nv,ktl::api::command::cmd_execute_generated_commands_nv,ktl::api::command::cmd_bind_pipeline_shader_group_nv,ktl::api::command::create_indirect_commands_layout_nv,ktl::api::command::destroy_indirect_commands_layout_nv};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_buffer_device_address}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_buffer_device_address}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -3560,7 +3560,7 @@ struct extension< ktl::api::extension::khr_shader_subgroup_uniform_control_flow 
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -4088,7 +4088,7 @@ struct extension< ktl::api::extension::nv_external_sci_sync >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 7 > commands = {ktl::api::command::get_fence_sci_sync_fence_nv,ktl::api::command::get_fence_sci_sync_obj_nv,ktl::api::command::import_fence_sci_sync_fence_nv,ktl::api::command::import_fence_sci_sync_obj_nv,ktl::api::command::get_physical_device_sci_sync_attributes_nv,ktl::api::command::get_semaphore_sci_sync_obj_nv,ktl::api::command::import_semaphore_sci_sync_obj_nv};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -4099,7 +4099,7 @@ struct extension< ktl::api::extension::nv_external_memory_sci_buf >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 3 > commands = {ktl::api::command::get_memory_sci_buf_nv,ktl::api::command::get_physical_device_external_memory_sci_buf_properties_nv,ktl::api::command::get_physical_device_sci_buf_attributes_nv};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -4319,7 +4319,7 @@ struct extension< ktl::api::extension::ext_shader_tile_image >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, false, 1, {}},{ktl::api::version_1_2, false, 1, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, false, 0, {}},{ktl::api::version_1_2, false, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -4517,7 +4517,7 @@ struct extension< ktl::api::extension::khr_maintenance_4 >
     static constexpr ktl::meta::dependency     promoted    = {ktl::api::version_1_3};
 
     static constexpr std::array< ktl::api::command, 3 > commands = {ktl::api::command::get_device_buffer_memory_requirements_khr,ktl::api::command::get_device_image_memory_requirements_khr,ktl::api::command::get_device_image_sparse_memory_requirements_khr};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -4539,7 +4539,7 @@ struct extension< ktl::api::extension::arm_shader_core_properties >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -4748,7 +4748,7 @@ struct extension< ktl::api::extension::khr_shader_maximal_reconvergence >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -5034,7 +5034,7 @@ struct extension< ktl::api::extension::arm_tensors >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 11 > commands = {ktl::api::command::create_tensor_arm,ktl::api::command::destroy_tensor_arm,ktl::api::command::create_tensor_view_arm,ktl::api::command::destroy_tensor_view_arm,ktl::api::command::get_tensor_memory_requirements_arm,ktl::api::command::bind_tensor_memory_arm,ktl::api::command::get_device_tensor_memory_requirements_arm,ktl::api::command::cmd_copy_tensor_arm,ktl::api::command::get_physical_device_external_tensor_properties_arm,ktl::api::command::get_tensor_opaque_capture_descriptor_data_arm,ktl::api::command::get_tensor_view_opaque_capture_descriptor_data_arm};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, false, 1, {}},{ktl::api::version_1_2, false, 1, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, false, 0, {}},{ktl::api::version_1_2, false, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -5144,7 +5144,7 @@ struct extension< ktl::api::extension::khr_maintenance_5 >
     static constexpr ktl::meta::dependency     promoted    = {ktl::api::version_1_4};
 
     static constexpr std::array< ktl::api::command, 4 > commands = {ktl::api::command::cmd_bind_index_buffer_2khr,ktl::api::command::get_rendering_area_granularity_khr,ktl::api::command::get_device_image_subresource_layout_khr,ktl::api::command::get_image_subresource_layout_2khr};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_dynamic_rendering}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_dynamic_rendering}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_dynamic_rendering}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_dynamic_rendering}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -5353,7 +5353,7 @@ struct extension< ktl::api::extension::nv_external_sci_sync_2 >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 7 > commands = {ktl::api::command::create_semaphore_sci_sync_pool_nv,ktl::api::command::destroy_semaphore_sci_sync_pool_nv,ktl::api::command::get_fence_sci_sync_fence_nv,ktl::api::command::get_fence_sci_sync_obj_nv,ktl::api::command::import_fence_sci_sync_fence_nv,ktl::api::command::import_fence_sci_sync_obj_nv,ktl::api::command::get_physical_device_sci_sync_attributes_nv};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -5518,7 +5518,7 @@ struct extension< ktl::api::extension::khr_internally_synchronized_queues >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -5551,7 +5551,7 @@ struct extension< ktl::api::extension::arm_data_graph >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 11 > commands = {ktl::api::command::create_data_graph_pipelines_arm,ktl::api::command::create_data_graph_pipeline_session_arm,ktl::api::command::get_data_graph_pipeline_session_bind_point_requirements_arm,ktl::api::command::get_data_graph_pipeline_session_memory_requirements_arm,ktl::api::command::bind_data_graph_pipeline_session_memory_arm,ktl::api::command::destroy_data_graph_pipeline_session_arm,ktl::api::command::cmd_dispatch_data_graph_arm,ktl::api::command::get_data_graph_pipeline_available_properties_arm,ktl::api::command::get_data_graph_pipeline_properties_arm,ktl::api::command::get_physical_device_queue_family_data_graph_properties_arm,ktl::api::command::get_physical_device_queue_family_data_graph_processing_engine_properties_arm};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, false, 1, {}},{ktl::api::version_1_2, false, 1, {}},{ktl::api::version_1_3, true, 2, {ktl::api::extension::khr_extended_flags,ktl::api::extension::khr_deferred_host_operations}},{ktl::api::version_1_4, true, 2, {ktl::api::extension::khr_extended_flags,ktl::api::extension::khr_deferred_host_operations}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, false, 0, {}},{ktl::api::version_1_2, false, 0, {}},{ktl::api::version_1_3, true, 2, {ktl::api::extension::khr_extended_flags,ktl::api::extension::khr_deferred_host_operations}},{ktl::api::version_1_4, true, 2, {ktl::api::extension::khr_extended_flags,ktl::api::extension::khr_deferred_host_operations}}}};
 };
 
 template <>
@@ -5738,7 +5738,7 @@ struct extension< ktl::api::extension::khr_shader_float_controls_2 >
     static constexpr ktl::meta::dependency     promoted    = {ktl::api::version_1_4};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_shader_float_controls}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_2, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_3, true, 1, {ktl::api::extension::khr_shader_float_controls}},{ktl::api::version_1_4, true, 1, {ktl::api::extension::khr_shader_float_controls}}}};
 };
 
 template <>
@@ -5925,7 +5925,7 @@ struct extension< ktl::api::extension::khr_maintenance_6 >
     static constexpr ktl::meta::dependency     promoted    = {ktl::api::version_1_4};
 
     static constexpr std::array< ktl::api::command, 6 > commands = {ktl::api::command::cmd_bind_descriptor_sets_2khr,ktl::api::command::cmd_push_constants_2khr,ktl::api::command::cmd_push_descriptor_set_2khr,ktl::api::command::cmd_push_descriptor_set_with_template_2khr,ktl::api::command::cmd_set_descriptor_buffer_offsets_2ext,ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2ext};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -5936,7 +5936,7 @@ struct extension< ktl::api::extension::nv_descriptor_pool_overallocation >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -6090,7 +6090,7 @@ struct extension< ktl::api::extension::khr_maintenance_7 >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -6222,7 +6222,7 @@ struct extension< ktl::api::extension::khr_maintenance_8 >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, true, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>
@@ -6871,7 +6871,7 @@ struct extension< ktl::api::extension::ext_shader_long_vector >
     static constexpr ktl::meta::dependency     promoted    = {};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
-    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 1, {}},{ktl::api::version_1_1, false, 1, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
+    static constexpr std::array< ktl::meta::version_deps, 5 > deps   = {{{ktl::api::version_1_0, false, 0, {}},{ktl::api::version_1_1, false, 0, {}},{ktl::api::version_1_2, true, 0, {}},{ktl::api::version_1_3, true, 0, {}},{ktl::api::version_1_4, true, 0, {}}}};
 };
 
 template <>

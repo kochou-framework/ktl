@@ -174,13 +174,10 @@ def fill_meta(_file: TextIO, _extensions: list) -> None:
         if extension.deps:
             deps = "{"
             for version, value in extension.deps.items():
-                deps += f"{{ktl::api::{version}, {"false" if value == ['UNSATISFIABLE'] else "true"}, {len(value)}, {{"
-                if value != ['UNSATISFIABLE']:
-                    for dep in value:
-                        deps += f"{dep},"
-                    if deps[-1] == ',':
-                        deps = deps[:-1]
-                deps += "}},"
+                # unsatisfiable version has no dependencies, deps_size must match the list
+                is_allowed = value != ['UNSATISFIABLE']
+                items = value if is_allowed else []
+                deps += f"{{ktl::api::{version}, {"true" if is_allowed else "false"}, {len(items)}, {{{",".join(items)}}}}},"
             if deps[-1] == ',':
                 deps = deps[:-1]
             deps += "}"
