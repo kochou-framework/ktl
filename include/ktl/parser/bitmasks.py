@@ -1,47 +1,37 @@
-from vk_types import VkBitMask
-from name_rules import *
+from model import Bitmask
+from naming import make_cpp_name
 from typing import TextIO
-from dataclasses import replace
 from api_filter import is_vulkan_type
 
 
-def extract_bitmask_impl(_root) -> VkBitMask:
-    name = make_cpp_name(_root.find("name").text.strip())
-    tppe = make_type(_root.find("type").text.strip())
-    return VkBitMask(name, tppe)
-
-
-def fill_definition(_file: TextIO, _bitmasks: list) -> None:
+def write_declarations(_file: TextIO, _model) -> None:
     _file.write("""
 namespace ktl::api
 {
 """)
-    for bitmask in _bitmasks:
-        _file.write(f"using {bitmask.name} = {bitmask.tppe};\n")
+    for bitmask in _model.bitmasks.values():
+        _file.write(f"using {bitmask.name} = {_model.types[bitmask.tppe]};\n")
     _file.write("}\n")
 
 
-def fill_implementation():
-    pass # nothing to do
-
-
-def fill_meta():
-    pass # nothing to do
-
-
-def extract(_root) -> list:
-    bitmasks = []
-
-    types = _root.find("types")
-    for src in types.findall("type[@category='bitmask']"):
+def load(_root, _model) -> None:
+    for src in _root.find("types").findall("type[@category='bitmask']"):
         # bitmask can be declared separately for vulkan and vulkansc
         if not is_vulkan_type(_root, src):
             continue
-        if alias := make_cpp_name(src.get("alias")):
-            found = next((h for h in bitmasks if h.name == alias), None)
-            bitmask = replace(found, name=make_cpp_name(src.get("name")))
-            bitmasks.append(bitmask)
+        if src.get("alias"):
+            _model.bitmasks[src.get("name")] = Bitmask(make_cpp_name(src.get("name")), None, src.get("alias"))
         else:
-            bitmasks.append(extract_bitmask_impl(src))
+            name = src.findtext("name").strip()
+            _model.bitmasks[name] = Bitmask(make_cpp_name(name), src.findtext("type").strip(), None)
 
-    return bitmasks
+
+def resolve(_model) -> None:
+    # an alias is declared as its target: using pipeline_create_flags_2_khr = ktl::api::flag64
+    for c_name, bitmask in _model.bitmasks.items():
+        if bitmask.alias:
+            target = _model.find(_model.bitmasks, bitmask.alias, "bitmask", f"alias {c_name}")
+            if target.alias:
+                raise ValueError(f"alias {c_name} names alias {bitmask.alias}")
+            bitmask.tppe = target.tppe
+        _model.find(_model.types, bitmask.tppe, "type", c_name)

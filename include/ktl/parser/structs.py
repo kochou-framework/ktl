@@ -1,146 +1,101 @@
-from vk_types import VkStruct, VkStructField, VkFeature
-from name_rules import *
+from collections import deque
+from model import Struct, Member
+from naming import make_cpp_name
 from typing import TextIO
-from decl import parse_decl, make_decl_type, make_declaration
-from utils import sort_by_dependencies
+from decl import parse_decl
 from api_filter import is_vulkan_api, is_vulkan_type
-
-import re
-
-def vulkan_vendors(_root) -> tuple:
-    # vendor suffixes of names from <tags><tag name="KHR" .../>: a hand-written list misses new vendors
-    return tuple(tag.get("name").lower() for tag in _root.find("tags"))
+import features
 
 
-
-def is_feature_struct(_root) -> bool:
-    # VkPhysicalDeviceFeatures itself is chained through VkPhysicalDeviceFeatures2::features
-    if _root.get("name") == "VkPhysicalDeviceFeatures":
-        return True
-    return "VkPhysicalDeviceFeatures2" in (_root.get("structextends") or "").split(",")
-
-
-def is_core_features(source_snake: str) -> bool:
-    # physical_device_vulkan_1_1_features ... physical_device_vulkan_1_4_features
-    return re.search(r"vulkan_\d+_\d+_features$", source_snake) is not None
-
-
-def make_feature_enum_name(field_snake: str, source_snake: str, _vendors: tuple) -> str:
-    # a feature of an extension struct gets the vendor suffix of the struct: null_descriptor -> null_descriptor_khr,
-    # a number of the struct is not added, the same feature in two extension structs is an error in extract()
-    if source_snake == "physical_device_features" or is_core_features(source_snake):
-        return field_snake
-    vendor = next((f"_{v}" for v in _vendors if source_snake.endswith(f"_{v}")), "")
-    return field_snake if field_snake.endswith(vendor) else field_snake + vendor
-
-
-def extract_struct_field_impl(_root, _name, _is_feature, _vendors) -> VkStructField:
+def load_member(_root, _struct: str, _is_feature: bool, _vendors: tuple) -> Member:
     decl = parse_decl(_root)
-    type_res = make_decl_type(decl.tppe)
-    name_str = make_cpp_name(decl.name)
-    if type_res == "ktl::api::bool32" and _is_feature:
-        name_str = make_feature_enum_name(name_str, _name, _vendors)
-
-    is_optional = _root.get("optional") == "true"
-    default_value = _root.get("values")
-    if default_value:
-        type_str = make_cpp_name(decl.tppe)
-        default_value = f"ktl::api::{type_str}::{make_field_name(default_value, type_str)}"
-    if is_optional:
-        default_value = "{}"
-
-    return VkStructField(type_res, name_str, is_optional, decl.const, decl.array, decl.bitfield, default_value)
+    name = make_cpp_name(decl.name)
+    if _is_feature and decl.tppe == "VkBool32":
+        name = features.make_feature_name(name, _struct, _vendors)
+    return Member(name, decl.tppe, decl.const, decl.array, decl.bitfield, _root.get("optional") == "true", _root.get("values"))
 
 
-def extract_struct_impl(_root, _vendors) -> tuple:
-    name = make_cpp_name(_root.get("name"))
-    is_feature = is_feature_struct(_root)
-    feature_names = []
-    fields = []
-    for field in _root.findall("member"):
-        if is_vulkan_api(field):
-            result = extract_struct_field_impl(field, name, is_feature, _vendors)
-            fields.append(result)
-            if result.tppe == "ktl::api::bool32" and is_feature:
-                feature_names.append(result.name)
+def sort_by_dependencies(_structs: dict) -> dict:
+    # Kahn's algorithm: a struct goes after the struct it aliases and the structs of its members,
+    # a pointer to the struct itself needs no definition
+    dependents = {name: [] for name in _structs}
+    degree = dict.fromkeys(_structs, 0)
+    for name, struct in _structs.items():
+        dependencies = {struct.alias} if struct.alias else set()
+        dependencies |= {member.tppe for member in struct.members if member.pointer_count == 0 or member.tppe != name}
+        for dependency in dependencies & _structs.keys():
+            dependents[dependency].append(name)
+            degree[name] += 1
 
-    # stype is taken from values="VK_STRUCTURE_TYPE_..." of sType, VkPhysicalDeviceFeatures has no sType
-    stype = next((field.default_value for field in fields if field.name == "stype"), None)
-    if feature_names and stype is None and name != "physical_device_features":
-        raise ValueError(f"feature struct {name} has no sType value")
-    features = [VkFeature(feature, stype, name) for feature in feature_names]
+    queue = deque(name for name in _structs if degree[name] == 0)
+    result = {}
+    while queue:
+        current = queue.popleft()
+        result[current] = _structs[current]
+        for dependent in dependents[current]:
+            degree[dependent] -= 1
+            if degree[dependent] == 0:
+                queue.append(dependent)
 
-    return VkStruct(name, fields, False, None), features
+    if len(result) != len(_structs):
+        raise ValueError(f"cyclic dependencies of structs: {[name for name in _structs if name not in result]}")
+    return result
 
 
-def fill_definition(_file: TextIO, _structs: list) -> None:
+def write_declarations(_file: TextIO, _model) -> None:
     _file.write("""namespace ktl::api
 {
 """)
-    for struct in _structs:
-        if struct.is_union:
-            _file.write(f"union {struct.name};\n")
+    for struct in _model.structs.values():
+        if struct.alias:
+            _file.write(f"using {struct.name} = {make_cpp_name(struct.alias)};\n")
         else:
-            if struct.alias:
-                _file.write(f"using {struct.name} = {struct.alias};\n")
-            else:
-                _file.write(f"struct {struct.name};\n")
+            _file.write(f"{'union' if struct.is_union else 'struct'} {struct.name};\n")
     _file.write("}\n")
 
 
-def fill_implementation(_file: TextIO, _structs: list) -> None:
+def write_definitions(_file: TextIO, _model) -> None:
     _file.write("""namespace ktl::api
 {
 """)
-    for struct in _structs:
-        if struct.is_union:
-            _file.write(f"union {struct.name}\n{{\n")
-            for field in struct.fields:
-                _file.write(f"{make_declaration(field.tppe, field.const, field.name, field.array)};\n")
-            _file.write("};\n")
-        else:
-            if struct.alias:
-                continue
-
-            _file.write(f"struct {struct.name}\n{{\n")
-            for field in struct.fields:
-                act = make_declaration(field.tppe, field.const, field.name, field.array, field.bitfield)
-                if field.default_value:
-                    act += f" = {field.default_value}"
-                _file.write(f"{act};\n")
-            _file.write("};\n")
-    _file.write("}\n")
-
-
-def extract(_root) -> tuple:
-    structs = []
-    features = {}
-    vendors = vulkan_vendors(_root)
-
-    types = _root.find("types")
-    for src in types.findall("type"):
-        if not is_vulkan_type(_root, src):
+    for struct in _model.structs.values():
+        if struct.alias:
             continue
-        if src.get("category") == "struct":
-            if alias := make_cpp_name(src.get("alias")):
-                structs.append(VkStruct(make_cpp_name(src.get("name")), [], False, alias))
-            else:
-                result, ff = extract_struct_impl(src, vendors)
-                if result:
-                    structs.append(result)
-                    for feature in ff:
-                        # same feature is declared in physical_device_vulkan_X_Y_features and in its own struct:
-                        # own struct is valid both for core version and for extension
-                        known = features.get(feature.name)
-                        if known and not is_core_features(known.struct) and not is_core_features(feature.struct):
-                            # one of them would be lost silently or bound to the other struct
-                            raise ValueError(f"feature {feature.name} is declared by {known.struct} and {feature.struct}")
-                        if known is None or (is_core_features(known.struct) and not is_core_features(feature.struct)):
-                            features[feature.name] = feature
+        _file.write(f"{'union' if struct.is_union else 'struct'} {struct.name}\n{{\n")
+        for member in struct.members:
+            declaration = _model.declare(member)
+            # a union has no default member initializers, though its pointers can be optional
+            if member.is_optional and not struct.is_union:
+                declaration += " = {}"
+            elif member.values and not struct.is_union:
+                declaration += f" = {_model.value_ref(member.tppe, member.values)}"
+            _file.write(f"{declaration};\n")
+        _file.write("};\n")
+    _file.write("}\n")
 
-        elif src.get("category") == "union":
-            result, _ = extract_struct_impl(src, vendors)
-            if result:
-                result.is_union = True
-                structs.append(result)
-    return sort_by_dependencies(structs), list(features.values())
+
+def load(_root, _model) -> None:
+    for src in _root.find("types").findall("type"):
+        if src.get("category") not in ("struct", "union") or not is_vulkan_type(_root, src):
+            continue
+        name = make_cpp_name(src.get("name"))
+        is_union = src.get("category") == "union"
+        if src.get("alias"):
+            _model.structs[src.get("name")] = Struct(name, [], is_union, False, src.get("alias"))
+            continue
+        is_feature = not is_union and features.is_feature_struct(src)
+        members = [load_member(member, name, is_feature, _model.vendors) for member in src.findall("member") if is_vulkan_api(member)]
+        _model.structs[src.get("name")] = Struct(name, members, is_union, is_feature, None)
+
+
+def resolve(_model) -> None:
+    for c_name, struct in _model.structs.items():
+        if struct.alias:
+            _model.find(_model.structs, struct.alias, "struct", f"alias {c_name}")
+            continue
+        for member in struct.members:
+            where = f"{c_name}::{member.name}"
+            _model.check_member(member, where)
+            if member.values:
+                _model.check_value(member.tppe, member.values, where)
+    _model.structs = sort_by_dependencies(_model.structs)

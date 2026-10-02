@@ -64,7 +64,7 @@ def cast_platform_type(_type: str) -> str | None:
     return PLATFORM_TYPES.get(_type)
 
 
-def fill_definition(_file: TextIO) -> None:
+def write_declarations(_file: TextIO, _model) -> None:
     _file.write("""
 // platform types: ABI-compatible stand-ins by default,
 // define KTL_USE_PLATFORM_<NAME> to include the native header and use native types instead

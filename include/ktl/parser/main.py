@@ -12,100 +12,43 @@ import pointers
 import commands
 import features
 import extensions
-import decl
-
-API_DIR = "api/"
-META_DIR = "meta/"
-
-API_COMMON_HEADER_FILE     = f"{API_DIR}common.hpp"
-API_ENUMS_HEADER_FILE      = f"{API_DIR}enum.hpp"
-API_STRUCTS_HEADER_FILE    = f"{API_DIR}struct.hpp"
-API_COMMANDS_HEADER_FILE   = f"{API_DIR}command.hpp"
-API_FEATURES_HEADER_FILE   = f"{API_DIR}feature.hpp"
-API_EXTENSIONS_HEADER_FILE = f"{API_DIR}extension.hpp"
-API_LAYERS_HEADER_FILE     = f"{API_DIR}layer.hpp"
-API_VERSION_HEADER_FILE    = f"{API_DIR}version.hpp"
-API_HEADER_FILE            = "api.hpp"
-
-META_HANDLES_HEADER_FILE    = f"{META_DIR}handle.hpp"
-META_FORMATS_HEADER_FILE    = f"{META_DIR}format.hpp"
-META_COMMANDS_HEADER_FILE   = f"{META_DIR}command.hpp"
-META_FEATURES_HEADER_FILE   = f"{META_DIR}feature.hpp"
-META_EXTENSIONS_HEADER_FILE = f"{META_DIR}extension.hpp"
-META_VERSION_HEADER_FILE    = f"{META_DIR}version.hpp"
-META_LAYERS_HEADER_FILE     = f"{META_DIR}layer.hpp"
-META_HEADER_FILE            = "meta.hpp"
+import versions
+from model import Model
+from api_filter import vulkan_versions
 
 
 def main(_root):
-    CONSTANTS         = constants.extract(_root)
-    ENUMS             = enums.extract(_root) + enums.extract_aliased(_root)
-    HANDLES           = handles.extract(_root)
-    STRUCTS, FEATURES = structs.extract(_root)
-    BITMASKS          = bitmasks.extract(_root)
-    FORMATS           = formats.extract(_root)
-    POINTERS          = pointers.extract(_root)
-    COMMANDS          = commands.extract(_root)
-    features.add_core_enum_values(_root, ENUMS)
-    EXTENSIONS        = extensions.extract(_root, ENUMS)
-    enums.update_underlying_types(ENUMS)
-    VERSION_COMMANDS  = commands.extract_version_commands(_root)
-    decl.check_types(ENUMS, STRUCTS, HANDLES, BITMASKS, POINTERS, COMMANDS)
+    model = Model(vulkan_versions(_root), features.vulkan_vendors(_root))
 
-    headers.fill_common(API_COMMON_HEADER_FILE,
-                        CONSTANTS,
-                        ENUMS,
-                        HANDLES,
-                        STRUCTS,
-                        BITMASKS,
-                        POINTERS,
-                        COMMANDS)
-    headers.fill_enums(API_COMMON_HEADER_FILE,
-                       API_ENUMS_HEADER_FILE,
-                       ENUMS)
-    headers.fill_handles(API_HEADER_FILE,
-                         META_HANDLES_HEADER_FILE,
-                         HANDLES)
-    headers.fill_structs(API_COMMON_HEADER_FILE,
-                         API_ENUMS_HEADER_FILE,
-                         API_STRUCTS_HEADER_FILE,
-                         STRUCTS)
-    headers.fill_formats(API_HEADER_FILE,
-                         META_FORMATS_HEADER_FILE,
-                         FORMATS)
-    headers.fill_commands(API_HEADER_FILE,
-                          API_COMMANDS_HEADER_FILE,
-                          META_COMMANDS_HEADER_FILE,
-                          COMMANDS)
-    headers.fill_features(API_HEADER_FILE,
-                          API_FEATURES_HEADER_FILE,
-                          META_FEATURES_HEADER_FILE,
-                          FEATURES)
-    headers.fill_extensions(API_HEADER_FILE,
-                            API_EXTENSIONS_HEADER_FILE,
-                            META_EXTENSIONS_HEADER_FILE,
-                            EXTENSIONS)
-    headers.fill_version(API_HEADER_FILE,
-                         API_VERSION_HEADER_FILE,
-                         META_VERSION_HEADER_FILE,
-                         VERSION_COMMANDS)
-    headers.fill_api(API_HEADER_FILE,
-                     API_COMMON_HEADER_FILE,
-                     API_ENUMS_HEADER_FILE,
-                     API_STRUCTS_HEADER_FILE,
-                     API_COMMANDS_HEADER_FILE,
-                     API_FEATURES_HEADER_FILE,
-                     API_EXTENSIONS_HEADER_FILE,
-                     API_VERSION_HEADER_FILE,
-                     API_LAYERS_HEADER_FILE)
-    headers.fill_meta(META_HEADER_FILE,
-                      META_EXTENSIONS_HEADER_FILE,
-                      META_FEATURES_HEADER_FILE,
-                      META_FORMATS_HEADER_FILE,
-                      META_HANDLES_HEADER_FILE,
-                      META_COMMANDS_HEADER_FILE,
-                      META_VERSION_HEADER_FILE,
-                      META_LAYERS_HEADER_FILE)
+    # load: vulkan entities of vk.xml, references between them are C names
+    constants.load(_root, model)
+    enums.load(_root, model)
+    handles.load(_root, model)
+    structs.load(_root, model)
+    features.load(model)
+    bitmasks.load(_root, model)
+    formats.load(_root, model)
+    pointers.load(_root, model)
+    commands.load(_root, model)
+    extensions.load(_root, model)
+    versions.load(_root, model)
+
+    # resolve: every reference is checked, what depends on other entities is completed
+    enums.resolve(model)
+    model.resolve_types()
+    handles.resolve(model)
+    structs.resolve(model)
+    bitmasks.resolve(model)
+    formats.resolve(model)
+    pointers.resolve(model)
+    commands.resolve(model)
+    extensions.resolve(model)
+    versions.resolve(model)
+
+    # every file is generated before the first one is written
+    for path, text in headers.generate(model).items():
+        with open(path, "w", encoding="utf-8") as file:
+            file.write(text)
 
 
 if __name__ == "__main__":

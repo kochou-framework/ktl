@@ -1,8 +1,11 @@
 import functools
-from utils import is_vulkan_video
 
 # vk.xml describes vulkan, vulkansc and vulkanbase, ktl is generated for vulkan only:
 # api="..." of any element and supported="..." of an extension are comma-separated lists
+
+
+def is_vulkan_video(name: str) -> bool: # vulkan-video is not supported now
+    return "video" in name.lower()
 
 
 def is_vulkan_api(_root) -> bool:

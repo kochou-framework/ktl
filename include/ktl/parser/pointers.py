@@ -1,43 +1,29 @@
-from vk_types import VkFunction
-from name_rules import *
+from model import Function
+from naming import make_cpp_name
 from typing import TextIO
-from commands import extract_return_type_impl, extract_command_fields_impl, make_params
+from commands import load_result, load_params, make_params, check_function
 from api_filter import is_vulkan_type
 
 
-def extract_pointer_impl(_root) -> VkFunction | None:
-    proto = _root.find("proto")
-    tppe = extract_return_type_impl(proto)
-    name = proto.find("name").text.strip()
-    fields = extract_command_fields_impl(_root)
-    return VkFunction(f"pfn_{make_cpp_name(name)}", name, tppe, fields, None)
-
-
-def fill_definition(_file: TextIO, _pointers: list) -> None:
+def write_declarations(_file: TextIO, _model) -> None:
     _file.write("""
 namespace ktl::api
 {
 """)
-    for pointer in _pointers:
-        if pointer.alias:
-            _file.write(f"using {pointer.pfn} = {pointer.alias};\n")
-        else:
-            _file.write(f"using {pointer.pfn} = {pointer.tppe}(*)({make_params(pointer.fields)});\n")
+    for pointer in _model.funcpointers.values():
+        _file.write(f"using pfn_{pointer.name} = {_model.declare(pointer.result)}(*)({make_params(_model, pointer.params)});\n")
     _file.write("}\n")
 
 
-def fill_implementation():
-    pass # nothing to do
-
-
-def extract(_root) -> list:
-    pointers = []
-
-    types = _root.find("types")
-    for pointer in types.findall("type[@category='funcpointer']"):
-        if not is_vulkan_type(_root, pointer):
+def load(_root, _model) -> None:
+    for src in _root.find("types").findall("type[@category='funcpointer']"):
+        if not is_vulkan_type(_root, src):
             continue
-        if result := extract_pointer_impl(pointer):
-            pointers.append(result)
+        proto = src.find("proto")
+        raw = proto.findtext("name").strip()
+        _model.funcpointers[raw] = Function(make_cpp_name(raw), raw, load_result(proto), load_params(src), None)
 
-    return pointers
+
+def resolve(_model) -> None:
+    for pointer in _model.funcpointers.values():
+        check_function(_model, pointer)

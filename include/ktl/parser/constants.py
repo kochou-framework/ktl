@@ -1,52 +1,31 @@
-from vk_types import VkConstant
-from name_rules import *
+from model import Constant
+from naming import FIXED_TYPES, make_constant
 from typing import TextIO
 from api_filter import is_vulkan_api, vulkan_features, vulkan_extensions, vulkan_requires
 
 
-def fill_definition(_file: TextIO, _constants: list) -> None:
-    for constant in _constants:
+def write_declarations(_file: TextIO, _model) -> None:
+    constants = sorted(_model.constants.values(), key=lambda c: len(c.name), reverse=True)
+    for constant in sorted(constants, key=lambda c: c.tppe):
         _file.write(f"#define {constant.name} {constant.value}\n")
 
 
-def fill_implementation() -> None:
-    pass # nothing to do
-
-
-def fill_meta() -> None:
-    pass # nothing to do
-
-
-def extract_constant_impl(_root) -> VkConstant | None:
-    name  = make_constant(_root.get("name"))
-    tppe  = make_type(_root.get("type"))
-    value = _root.get("value")
-
-    if name:
-        return VkConstant(name, tppe, value)
-    return None
-
-
-def extract(_root) -> list:
-    constants = []
-
+def load(_root, _model) -> None:
     for src in _root.findall("enums[@type='constants']"):
         for constant in src.findall("enum"):
             if not is_vulkan_api(constant):
                 continue
-            if result := extract_constant_impl(constant):
-                constants.append(result)
+            name = constant.get("name")
+            if not make_constant(name) or constant.get("type") not in FIXED_TYPES:
+                raise ValueError(f"constant {name} of type {constant.get('type')} is not supported")
+            _model.constants[name] = Constant(make_constant(name), FIXED_TYPES[constant.get("type")], constant.get("value"))
 
-    # aliases are declared by features and extensions: <enum name="VK_LUID_SIZE_KHR" alias="VK_LUID_SIZE"/>
-    known = {constant.name: constant for constant in constants}
+    # aliases are declared by features and extensions: <enum name="VK_LUID_SIZE_KHR" alias="VK_LUID_SIZE"/>,
+    # other aliases of a <require> name values of enums or SPEC_VERSION / EXTENSION_NAME of extensions
     for block in vulkan_features(_root) + vulkan_extensions(_root):
         for require in vulkan_requires(block):
             for enum in require.findall("enum"):
-                target = known.get(make_constant(enum.get("alias")))
-                name = make_constant(enum.get("name"))
-                if target and not enum.get("extends") and is_vulkan_api(enum) and name not in known:
-                    known[name] = VkConstant(name, target.tppe, target.name)
-                    constants.append(known[name])
-
-    constants.sort(key=lambda c: len(c.name), reverse=True)
-    return sorted(constants, key=lambda c: c.tppe)
+                target = _model.constants.get(enum.get("alias"))
+                name = enum.get("name")
+                if target and not enum.get("extends") and is_vulkan_api(enum) and name not in _model.constants:
+                    _model.constants[name] = Constant(make_constant(name), target.tppe, target.name)

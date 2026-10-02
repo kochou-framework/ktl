@@ -1,16 +1,38 @@
+import io
+import platforms
 import constants
 import basetypes
 import enums
 import handles
 import structs
-import formats
 import bitmasks
 import pointers
 import commands
 import features
 import extensions
-import platforms
-from cpp_meta import VERSION_META, VERSION_STD
+import formats
+import versions
+
+# generated files relative to include/ktl: api/common.hpp declares everything, the other api/ headers define it,
+# meta/ headers describe it; api/layer.hpp and meta/layer.hpp are written by hand, api.hpp and meta.hpp include them
+API_COMMON     = "api/common.hpp"
+API_ENUMS      = "api/enum.hpp"
+API_STRUCTS    = "api/struct.hpp"
+API_COMMANDS   = "api/command.hpp"
+API_FEATURES   = "api/feature.hpp"
+API_EXTENSIONS = "api/extension.hpp"
+API_VERSION    = "api/version.hpp"
+API_LAYERS     = "api/layer.hpp"
+API            = "api.hpp"
+
+META_EXTENSIONS = "meta/extension.hpp"
+META_FEATURES   = "meta/feature.hpp"
+META_FORMATS    = "meta/format.hpp"
+META_HANDLES    = "meta/handle.hpp"
+META_COMMANDS   = "meta/command.hpp"
+META_VERSION    = "meta/version.hpp"
+META_LAYERS     = "meta/layer.hpp"
+META            = "meta.hpp"
 
 
 def make_header_guard(_filename: str) -> str:
@@ -19,307 +41,96 @@ def make_header_guard(_filename: str) -> str:
     return f"KTL_{_filename.replace('.', '_').replace('/', '_').upper()}"
 
 
-def fill_common(_filename: str,
-                _constants: list,
-                _enums: list,
-                _handles: list,
-                _structs: list,
-                _bitmasks: list,
-                _pointers: list,
-                _commands: list) -> None:
+def make_header(_filename: str, _includes: str, _model, *_writers) -> str:
+    file = io.StringIO()
     header_guard = make_header_guard(_filename)
-
-    with open(_filename, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include <ktl/type.hpp>
-""")
-
-        platforms.fill_definition(file)
-        constants.fill_definition(file, _constants)
-        basetypes.fill_definition(file)
-        enums.fill_definition(file, _enums)
-        handles.fill_definition(file, _handles)
-        structs.fill_definition(file, _structs)
-        bitmasks.fill_definition(file, _bitmasks)
-        pointers.fill_definition(file, _pointers)
-        commands.fill_definition(file, _commands)
-
-        file.write("\n#endif\n")
+    file.write(f"#ifndef {header_guard}\n#define {header_guard}\n\n{_includes}")
+    for write in _writers:
+        write(file, _model)
+    file.write("\n#endif\n")
+    return file.getvalue()
 
 
-def fill_enums(_common_include: str,
-               _filename: str,
-               _enums: list) -> None:
-    header_guard = make_header_guard(_filename)
-
-    with open(_filename, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include <ktl/{_common_include}>
-
-""")
-        enums.fill_implementation(file, _enums)
-        file.write("\n#endif\n")
-
-
-def fill_handles(_api_include: str,
-                 _filename: str,
-                 _handles: list) -> None:
-    # meta
-    header_guard = make_header_guard(_filename)
-
-    with open(_filename, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include <cstdint>
+def generate(_model) -> dict[str, str]:
+    # path -> text of every generated file
+    api_includes = "".join(f'#include "{include}"\n' for include in (API_COMMON, API_ENUMS, API_STRUCTS, API_COMMANDS,
+                                                                     API_FEATURES, API_EXTENSIONS, API_VERSION, API_LAYERS))
+    meta_includes = "".join(f'#include "{include}"\n' for include in (META_EXTENSIONS, META_FEATURES, META_FORMATS, META_HANDLES,
+                                                                      META_COMMANDS, META_VERSION, META_LAYERS))
+    return {
+        API_COMMON: make_header(API_COMMON, "#include <ktl/type.hpp>\n", _model,
+                                platforms.write_declarations,
+                                constants.write_declarations,
+                                basetypes.write_declarations,
+                                enums.write_declarations,
+                                handles.write_declarations,
+                                structs.write_declarations,
+                                bitmasks.write_declarations,
+                                pointers.write_declarations,
+                                commands.write_declarations),
+        API_ENUMS: make_header(API_ENUMS, f"#include <ktl/{API_COMMON}>\n\n", _model, enums.write_definitions),
+        META_HANDLES: make_header(META_HANDLES, f"""#include <cstdint>
 #include <format>
 #include <type_traits>
 
-#include <ktl/{_api_include}>
+#include <ktl/{API}>
 
-""")
-        handles.fill_meta(file, _handles)
-        file.write("\n#endif\n")
+""", _model, handles.write_meta),
+        API_STRUCTS: make_header(API_STRUCTS, f"""#include <ktl/{API_COMMON}>
+#include <ktl/{API_ENUMS}>
 
+""", _model, structs.write_definitions),
+        META_FORMATS: make_header(META_FORMATS, f"""#include <array>
 
-def fill_structs(_common_include: str,
-                 _enums_include: str,
-                 _filename: str,
-                 _structs: list) -> None:
-    header_guard = make_header_guard(_filename)
+#include <ktl/{API}>
 
-    with open(_filename, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include <ktl/{_common_include}>
-#include <ktl/{_enums_include}>
-
-""")
-        structs.fill_implementation(file, _structs)
-        file.write("\n#endif\n")
-
-
-def fill_formats(_api: str,
-                 _meta_file: str,
-                 _formats: list) -> None:
-    header_guard = make_header_guard(_meta_file)
-
-    with open(_meta_file, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include <array>
-
-#include <ktl/{_api}>
-
-""")
-        formats.fill_meta(file, _formats)
-        file.write("\n#endif\n")
-
-
-def fill_commands(_api_include: str,
-                  _api_file: str,
-                  _meta_file: str,
-                  _commands: list) -> None:
-    header_guard = make_header_guard(_api_file)
-    
-    with open(_api_file, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include <array>
+""", _model, formats.write_meta),
+        API_COMMANDS: make_header(API_COMMANDS, f"""#include <array>
 #include <cstdlib>
 
 #include <ktl/loader.hpp>
-#include <ktl/{_api_include}>
+#include <ktl/{API}>
 
-""")
-        commands.fill_implementation(file, _commands)
-        file.write("\n#endif\n")
-
-    header_guard = make_header_guard(_meta_file)
-    
-    with open(_meta_file, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include <cstdlib>
+""", _model, commands.write_definitions),
+        META_COMMANDS: make_header(META_COMMANDS, f"""#include <cstdlib>
 #include <string_view>
 
-#include <ktl/{_api_include}>
+#include <ktl/{API}>
 
-""")
-        commands.fill_match(file, _commands)
-        file.write("\n#endif\n")
-
-
-def fill_features(_api_include: str,
-                  _api_file: str,
-                  _meta_file: str,
-                  _features: list) -> None:
-    header_guard = make_header_guard(_api_file)
-
-    with open(_api_file, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include <ktl/type.hpp>
-
-""")
-        features.fill_implementation(file, _features)
-        file.write("\n#endif\n")
-
-    header_guard = make_header_guard(_meta_file)
-
-    with open(_meta_file, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include <cstddef>
+""", _model, commands.write_meta),
+        API_FEATURES: make_header(API_FEATURES, "#include <ktl/type.hpp>\n\n", _model, features.write_definitions),
+        META_FEATURES: make_header(META_FEATURES, f"""#include <cstddef>
 #include <cstdlib>
 
-#include <ktl/{_api_include}>
-""")
-        features.fill_meta(file, _features)
-        file.write("\n#endif\n")
-
-
-def fill_extensions(_api_include: str,
-                    _api_file: str,
-                    _meta_file: str,
-                    _extensions: list) -> None:
-    api_header_guard = make_header_guard(_api_file)
-    with open(_api_file, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {api_header_guard}
-#define {api_header_guard}
-
-#include <ktl/type.hpp>
-
-""")
-        extensions.fill_implementation(file, _extensions)
-        file.write("\n#endif\n")
-
-    meta_header_guard = make_header_guard(_meta_file)
-    with open(_meta_file, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {meta_header_guard}
-#define {meta_header_guard}
-
-#include <array>
+#include <ktl/{API}>
+""", _model, features.write_meta),
+        API_EXTENSIONS: make_header(API_EXTENSIONS, "#include <ktl/type.hpp>\n\n", _model, extensions.write_definitions),
+        META_EXTENSIONS: make_header(META_EXTENSIONS, f"""#include <array>
 #include <cstdlib>
 #include <optional>
 #include <span>
 #include <string_view>
 
-#include <ktl/{_api_include}>
+#include <ktl/{API}>
 #include <ktl/meta/dependency.hpp>
-#include <ktl/api/version.hpp>
+#include <ktl/{API_VERSION}>
 
-""")
-        extensions.fill_meta(file, _extensions)
-        file.write("\n#endif\n")
-
-
-def fill_version(_api_include: str,
-                 _api_file: str,
-                 _meta_file: str,
-                 _version_commands: dict) -> None:
-    # api/version.hpp: ktl::api::version and the vulkan versions of vk.xml
-    api_header_guard = make_header_guard(_api_file)
-    with open(_api_file, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {api_header_guard}
-#define {api_header_guard}
-
-#include <array>
+""", _model, extensions.write_meta),
+        API_VERSION: make_header(API_VERSION, """#include <array>
 #include <compare>
 #include <format>
 #include <functional>
 
 #include <ktl/type.hpp>
 
-namespace ktl::api
-{{
-{VERSION_META}
-
-""")
-        commands.fill_versions(file, list(_version_commands))
-        file.write(f"""}} // namespace ktl::api
-
-{VERSION_STD}
-
-#endif
-""")
-
-    meta_header_guard = make_header_guard(_meta_file)
-    with open(_meta_file, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {meta_header_guard}
-#define {meta_header_guard}
-
-#include <array>
+""", _model, versions.write_definitions),
+        META_VERSION: make_header(META_VERSION, f"""#include <array>
 #include <span>
 
-#include <ktl/{_api_include}>
-#include <ktl/{_api_file}>
+#include <ktl/{API}>
+#include <ktl/{API_VERSION}>
 
-""")
-        commands.fill_meta(file, _version_commands)
-        file.write("\n#endif\n")
-
-
-def fill_api(_filename,
-             _common_include,
-             _enums_include,
-             _structs_include,
-             _commands_include,
-             _features_include,
-             _extensions_include,
-             _version_include,
-             _layers_include) -> None:
-    header_guard = make_header_guard(_filename)
-
-    # layer.hpp is written by hand, the generator only includes it
-    with open(_filename, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include "{_common_include}"
-#include "{_enums_include}"
-#include "{_structs_include}"
-#include "{_commands_include}"
-#include "{_features_include}"
-#include "{_extensions_include}"
-#include "{_version_include}"
-#include "{_layers_include}"
-
-#endif
-""")
-  
-def fill_meta(_filename: str,
-              _meta_extension: str,
-              _meta_feature: str,
-              _meta_format: str,
-              _meta_handle: str,
-              _meta_command: str,
-              _meta_version: str,
-              _meta_layer: str) -> None:
-    header_guard = make_header_guard(_filename)
-
-    # layer.hpp is written by hand, the generator only includes it
-    with open(_filename, "w", encoding="utf-8") as file:
-        file.write(f"""#ifndef {header_guard}
-#define {header_guard}
-
-#include "{_meta_extension}"
-#include "{_meta_feature}"
-#include "{_meta_format}"
-#include "{_meta_handle}"
-#include "{_meta_command}"
-#include "{_meta_version}"
-#include "{_meta_layer}"
-
-#endif
-""")
+""", _model, versions.write_meta),
+        API: make_header(API, api_includes, _model),
+        META: make_header(META, meta_includes, _model),
+    }

@@ -1,100 +1,76 @@
-from vk_types import VkFunction, VkFunctionField
-from name_rules import *
+from model import Function, Member
+from naming import make_cpp_name
 from typing import TextIO
-from decl import parse_decl, make_decl_type, make_declaration
-from api_filter import is_vulkan_api, excluded_names, vulkan_features, vulkan_requires, feature_version, vulkan_versions
+from decl import parse_decl
+from api_filter import is_vulkan_api, excluded_names
 
 
-def extract_command_field_impl(_root) -> VkFunctionField:
-    decl = parse_decl(_root)
-    return VkFunctionField(make_decl_type(decl.tppe), f"_{make_cpp_name(decl.name)}", decl.const, decl.array)
-
-
-def extract_return_type_impl(_proto) -> str:
+def load_result(_proto) -> Member:
     decl = parse_decl(_proto)
-    return make_declaration(make_decl_type(decl.tppe), decl.const)
+    return Member("", decl.tppe, decl.const, decl.array)
 
 
-def extract_command_fields_impl(_root) -> list:
+def load_params(_root) -> list:
     # same parameter can be declared separately for vulkan and vulkansc
-    return [extract_command_field_impl(param) for param in _root.findall("param") if is_vulkan_api(param)]
+    params = [parse_decl(param) for param in _root.findall("param") if is_vulkan_api(param)]
+    return [Member(f"_{make_cpp_name(decl.name)}", decl.tppe, decl.const, decl.array) for decl in params]
 
 
-def make_params(_fields: list) -> str:
-    return ", ".join(make_declaration(field.tppe, field.const, field.name, field.array) for field in _fields)
+def make_params(_model, _params: list) -> str:
+    return ", ".join(_model.declare(param) for param in _params)
+
+
+def check_function(_model, _function: Function) -> None:
+    _model.check_member(_function.result, f"{_function.raw} return")
+    for param in _function.params:
+        _model.check_member(param, f"{_function.raw}({param.name})")
 
 
 COMMAND_LEVELS = ("global", "instance", "physical_device", "device")
 
 
-def extract_dispatchable_levels(_root) -> dict:
+def make_levels(_model) -> dict:
     # VkInstance -> instance, VkPhysicalDevice -> physical_device, VkDevice and its children -> device
     roots = {"VkInstance": "instance", "VkPhysicalDevice": "physical_device", "VkDevice": "device"}
-    parents = {}
-    dispatchable = []
-    for src in _root.find("types").findall("type[@category='handle']"):
-        name = src.find("name")
-        if name is None: # alias
-            continue
-        parents[name.text] = src.get("parent")
-        if src.find("type").text == "VK_DEFINE_HANDLE":
-            dispatchable.append(name.text)
-
     levels = {}
-    for handle in dispatchable:
-        current = handle
+    for c_name, handle in _model.handles.items():
+        if not handle.is_dispatchable:
+            continue
+        current = c_name
         while current not in roots:
-            current = parents.get(current)
+            current = _model.handles[current].parent
             if current is None:
-                raise ValueError(f"dispatchable handle {handle} has no VkInstance, VkPhysicalDevice or VkDevice parent")
-        levels[handle] = roots[current]
+                raise ValueError(f"dispatchable handle {c_name} has no VkInstance, VkPhysicalDevice or VkDevice parent")
+        levels[c_name] = roots[current]
     return levels
 
 
-def extract_command_level_impl(_root, _levels: dict) -> str:
+def make_level(_command: Function, _levels: dict) -> str:
     # level is the one of the dispatchable object passed by value as the first parameter, otherwise command is global
-    params = [param for param in _root.findall("param") if is_vulkan_api(param)]
-    if params:
-        decl = parse_decl(params[0])
-        if decl.pointer_count == 0 and decl.tppe in _levels:
-            return _levels[decl.tppe]
+    if _command.params and _command.params[0].pointer_count == 0 and _command.params[0].tppe in _levels:
+        return _levels[_command.params[0].tppe]
     return "global"
 
 
-def extract_command_impl(_root, _levels: dict) -> VkFunction | None:
-    alias_name = make_cpp_name(_root.get("name"))
-    raw_alias = _root.get("alias")
-    pfn_alias = make_cpp_name(raw_alias)
-    if alias_name and raw_alias:
-        # signature is taken from the target in extract()
-        return VkFunction(f"pfn_{alias_name}", _root.get("name"), None, None, f"pfn_{pfn_alias}")
-
-    proto = _root.find("proto")
-    tppe = extract_return_type_impl(proto)
-    name = proto.find("name").text.strip()
-    fields = extract_command_fields_impl(_root)
-    level = extract_command_level_impl(_root, _levels)
-    return VkFunction(f"pfn_{make_cpp_name(name)}", name, tppe, fields, None, level)
-
-
-def fill_definition(_file: TextIO, _commands: list) -> None:
+def write_declarations(_file: TextIO, _model) -> None:
     _file.write("""
 namespace ktl::api
 {
 """)
-    for command in _commands:
+    for command in _model.commands.values():
         if command.alias:
-            _file.write(f"using {command.pfn} = {command.alias};\n")
+            _file.write(f"using pfn_{command.name} = pfn_{make_cpp_name(command.alias)};\n")
         else:
-            _file.write(f"using {command.pfn} = {command.tppe}(*)({make_params(command.fields)});\n")
+            _file.write(f"using pfn_{command.name} = {_model.declare(command.result)}(*)({make_params(_model, command.params)});\n")
     _file.write("}\n")
 
 
-def fill_implementation(_file: TextIO, _commands: list):
+def write_definitions(_file: TextIO, _model) -> None:
+    commands = list(_model.commands.values())
     _file.write(f"""
 namespace ktl::api
 {{
-static constexpr ktl::usize pfn_table_size = {len(_commands)};
+static constexpr ktl::usize pfn_table_size = {len(commands)};
 using pfn_table = std::array< ktl::loader::proc_type, pfn_table_size >;
 // set by the user to a loaded table: commands abort while it is null or their slot is proc_null
 inline pfn_table * ptable = nullptr;
@@ -102,77 +78,28 @@ inline pfn_table * ptable = nullptr;
 """)
     # every alias has its own slot: vkGet*ProcAddr resolves core and extension names under different conditions
     _file.write("enum class command : ktl::u32\n{\n")
-    for i in range(len(_commands)):
-        _file.write(f"{_commands[i].pfn[4:]} = {i},\n")
+    for i, command in enumerate(commands):
+        _file.write(f"{command.name} = {i},\n")
     _file.write("};\n\n")
 
-    for command in _commands:
-        _file.write(f"inline {command.tppe} {command.pfn[4:]}({make_params(command.fields)})\n{{\n")
+    for command in commands:
+        _file.write(f"inline {_model.declare(command.result)} {command.name}({make_params(_model, command.params)})\n{{\n")
 
         # null ptable (before setup or after reset) reads as an unloaded command and aborts instead of a crash;
         # one check keeps the hot path one branch longer only, two checks also move the frame setup into it
-        _file.write(f"""ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::{command.pfn[4:]})] : ktl::loader::proc_null;
+        _file.write(f"""ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::{command.name})] : ktl::loader::proc_null;
 if (ptr == ktl::loader::proc_null) [[unlikely]]
 {{
 std::abort();
 }}
-return (({command.pfn})ptr)(""")
-        _file.write(", ".join(field.name for field in command.fields))
+return ((pfn_{command.name})ptr)(""")
+        _file.write(", ".join(param.name for param in command.params))
         _file.write(");\n")
         _file.write("}\n\n")
     _file.write("}\n")
 
 
-def fill_versions(_file: TextIO, _versions) -> None:
-    # api/version.hpp: a constant for every vulkan version of vk.xml and all of them in common_versions
-    for major, minor in _versions:
-        _file.write(f"static constexpr ktl::api::version version_{major}_{minor}(0, {major}, {minor}, 0);\n")
-    names = ", ".join(f"version_{major}_{minor}" for major, minor in _versions)
-    _file.write(f"static constexpr std::array< ktl::api::version, {len(_versions)} > common_versions = {{{names}}};\n")
-
-
-def fill_meta(_file: TextIO, _version_commands):
-    _file.write("""
-namespace ktl::meta
-{
-template < ktl::api::version >
-struct version
-{
-};
-""")
-    for version, commands in _version_commands.items():
-        _file.write(f"""
-template <>
-struct version< {make_version(version)} >
-{{
-    static constexpr std::array< ktl::api::command, {len(commands)} > commands = {{
-""")
-        st = ""
-        for command in commands:
-            st += f"{command},"
-        st = st[:-1]
-        _file.write(st)
-        _file.write("};};\n")
-    _file.write("""
-inline constexpr std::span< const ktl::api::command >
-get_commands_by_version(ktl::api::version _version) noexcept
-{
-    // patch adds no commands: 1.3.250 has the commands of 1.3; variant other than 0 is not vulkan
-    const ktl::api::version rounded(_version.variant, _version.major, _version.minor, 0);
-""")
-    for version in _version_commands:
-        _file.write(f"""    if (rounded == {make_version(version)})
-    {{
-        return ktl::meta::version< {make_version(version)} >::commands;
-    }}
-""")
-    _file.write("""    return {};
-}
-""")
-    _file.write("}")
-
-
-def fill_match(_file: TextIO, _commands):
+def write_meta(_file: TextIO, _model) -> None:
     _file.write("""
 namespace ktl::meta
 {
@@ -182,9 +109,9 @@ raw_command(ktl::api::command _command) noexcept
     switch (_command)
     {
 """)
-    for command in _commands:
-        _file.write(f"case ktl::api::command::{command.pfn[4:]}:\n")
-        _file.write(f'return "{command.name}";\n')
+    for command in _model.commands.values():
+        _file.write(f"case ktl::api::command::{command.name}:\n")
+        _file.write(f'return "{command.raw}";\n')
     # value outside of the enum, falling off a non-void function is UB
     _file.write("}\nstd::abort();\n}\n")
 
@@ -210,50 +137,34 @@ get_command_level(ktl::api::command _command) noexcept
     {
 """)
     for level in COMMAND_LEVELS:
-        for command in _commands:
+        for command in _model.commands.values():
             if command.level == level:
-                _file.write(f"case ktl::api::command::{command.pfn[4:]}:\n")
+                _file.write(f"case ktl::api::command::{command.name}:\n")
         _file.write(f"return ktl::meta::command_level::{level};\n")
     _file.write("}\nstd::abort();\n}\n}")
 
 
-def extract(_root) -> list:
-    commands = []
-    levels = extract_dispatchable_levels(_root)
-
-    root = _root.find("commands")
-    for command in root.findall("command"):
-        name = command.get("name") or command.findtext("proto/name")
-        if not is_vulkan_api(command) or name in excluded_names(_root):
+def load(_root, _model) -> None:
+    for src in _root.find("commands").findall("command"):
+        raw = src.get("name") or src.findtext("proto/name")
+        if not is_vulkan_api(src) or raw in excluded_names(_root):
             continue
-        if result := extract_command_impl(command, levels):
-            commands.append(result)
+        if src.get("alias"):
+            # signature and level are the ones of the target: resolve()
+            _model.commands[raw] = Function(make_cpp_name(raw), raw, None, [], src.get("alias"))
+        else:
+            _model.commands[raw] = Function(make_cpp_name(raw), raw, load_result(src.find("proto")), load_params(src), None)
 
-    targets = {command.pfn: command for command in commands if not command.alias}
-    for command in commands:
+
+def resolve(_model) -> None:
+    levels = make_levels(_model)
+    for command in _model.commands.values():
+        if not command.alias:
+            check_function(_model, command)
+            command.level = make_level(command, levels)
+    for raw, command in _model.commands.items():
         if command.alias:
-            if command.alias not in targets:
-                raise ValueError(f"alias {command.name} of unknown command {command.alias}")
-            command.tppe = targets[command.alias].tppe
-            command.fields = targets[command.alias].fields
-            command.level = targets[command.alias].level
-
-    return commands
-
-def extract_version_commands_impl(_root) -> list:
-    commands = []
-    for require in vulkan_requires(_root):
-        for cmd in require.findall("command"):
-            commands.append(f"ktl::api::command::{make_cpp_name(cmd.get("name"))}")
-
-    # print(commands)
-    return commands
-
-
-def extract_version_commands(_root) -> dict:
-    # (major, minor) -> commands added by the version, from every feature of its number:
-    # VK_BASE_VERSION_1_3, VK_COMPUTE_VERSION_1_3, VK_GRAPHICS_VERSION_1_3 and VK_VERSION_1_3
-    commands = {version: [] for version in vulkan_versions(_root)}
-    for feature in vulkan_features(_root):
-        commands[feature_version(feature)] += extract_version_commands_impl(feature)
-    return commands
+            target = _model.find(_model.commands, command.alias, "command", f"alias {raw}")
+            if target.alias:
+                raise ValueError(f"alias {raw} names alias {command.alias}")
+            command.result, command.params, command.level = target.result, target.params, target.level
