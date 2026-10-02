@@ -11,7 +11,8 @@ namespace ktl::api
 {
 static constexpr ktl::usize pfn_table_size = 826;
 using pfn_table                            = std::array< ktl::loader::proc_type, pfn_table_size >;
-inline pfn_table * ptable                  = nullptr;
+// set by the user to a loaded table: commands abort while it is null or their slot is proc_null
+inline pfn_table * ptable = nullptr;
 
 enum class command : ktl::u32
 {
@@ -847,7 +848,9 @@ inline ktl::api::result
 create_instance(const ktl::api::instance_create_info * _p_create_info,
                 const ktl::api::allocation_callbacks * _p_allocator, ktl::api::instance * _p_instance)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_instance)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_instance)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -858,7 +861,9 @@ create_instance(const ktl::api::instance_create_info * _p_create_info,
 inline void
 destroy_instance(ktl::api::instance _instance, const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_instance)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_instance)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -870,7 +875,9 @@ inline ktl::api::result
 enumerate_physical_devices(ktl::api::instance _instance, ktl::u32 * _p_physical_device_count,
                            ktl::api::physical_device * _p_physical_devices)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_physical_devices)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_physical_devices)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -881,7 +888,9 @@ enumerate_physical_devices(ktl::api::instance _instance, ktl::u32 * _p_physical_
 inline ktl::api::pfn_void_function
 get_device_proc_addr(ktl::api::device _device, const char * _p_name)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_proc_addr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_proc_addr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -892,7 +901,9 @@ get_device_proc_addr(ktl::api::device _device, const char * _p_name)
 inline ktl::api::pfn_void_function
 get_instance_proc_addr(ktl::api::instance _instance, const char * _p_name)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_instance_proc_addr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_instance_proc_addr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -904,7 +915,9 @@ inline void
 get_physical_device_properties(ktl::api::physical_device              _physical_device,
                                ktl::api::physical_device_properties * _p_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_properties)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_properties)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -918,7 +931,9 @@ get_physical_device_queue_family_properties(ktl::api::physical_device           
                                             ktl::api::queue_family_properties * _p_queue_family_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_queue_family_properties)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_queue_family_properties)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -932,7 +947,8 @@ get_physical_device_memory_properties(ktl::api::physical_device                 
                                       ktl::api::physical_device_memory_properties * _p_memory_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_memory_properties)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_memory_properties)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -944,7 +960,9 @@ inline void
 get_physical_device_features(ktl::api::physical_device            _physical_device,
                              ktl::api::physical_device_features * _p_features)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_features)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_features)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -957,7 +975,8 @@ get_physical_device_format_properties(ktl::api::physical_device _physical_device
                                       ktl::api::format_properties * _p_format_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_format_properties)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_format_properties)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -972,7 +991,9 @@ get_physical_device_image_format_properties(ktl::api::physical_device _physical_
                                             ktl::api::image_format_properties * _p_image_format_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_image_format_properties)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_image_format_properties)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -985,7 +1006,9 @@ inline ktl::api::result
 create_device(ktl::api::physical_device _physical_device, const ktl::api::device_create_info * _p_create_info,
               const ktl::api::allocation_callbacks * _p_allocator, ktl::api::device * _p_device)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_device)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_device)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -996,7 +1019,9 @@ create_device(ktl::api::physical_device _physical_device, const ktl::api::device
 inline void
 destroy_device(ktl::api::device _device, const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_device)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_device)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1007,7 +1032,9 @@ destroy_device(ktl::api::device _device, const ktl::api::allocation_callbacks * 
 inline ktl::api::result
 enumerate_instance_version(ktl::u32 * _p_api_version)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_instance_version)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_instance_version)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1019,7 +1046,8 @@ inline ktl::api::result
 enumerate_instance_layer_properties(ktl::u32 * _p_property_count, ktl::api::layer_properties * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_instance_layer_properties)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_instance_layer_properties)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1032,7 +1060,9 @@ enumerate_instance_extension_properties(const char * _p_layer_name, ktl::u32 * _
                                         ktl::api::extension_properties * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_instance_extension_properties)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_instance_extension_properties)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1045,7 +1075,8 @@ enumerate_device_layer_properties(ktl::api::physical_device _physical_device, kt
                                   ktl::api::layer_properties * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_device_layer_properties)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_device_layer_properties)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1058,7 +1089,8 @@ enumerate_device_extension_properties(ktl::api::physical_device _physical_device
                                       ktl::u32 * _p_property_count, ktl::api::extension_properties * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_device_extension_properties)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_device_extension_properties)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1071,7 +1103,9 @@ inline void
 get_device_queue(ktl::api::device _device, ktl::u32 _queue_family_index, ktl::u32 _queue_index,
                  ktl::api::queue * _p_queue)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_queue)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_queue)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1083,7 +1117,8 @@ inline ktl::api::result
 queue_submit(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::submit_info * _p_submits,
              ktl::api::fence _fence)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_submit)];
+    ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_submit)]
+                                                   : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1094,7 +1129,9 @@ queue_submit(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::sub
 inline ktl::api::result
 queue_wait_idle(ktl::api::queue _queue)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_wait_idle)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_wait_idle)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1105,7 +1142,9 @@ queue_wait_idle(ktl::api::queue _queue)
 inline ktl::api::result
 device_wait_idle(ktl::api::device _device)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::device_wait_idle)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::device_wait_idle)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1117,7 +1156,9 @@ inline ktl::api::result
 allocate_memory(ktl::api::device _device, const ktl::api::memory_allocate_info * _p_allocate_info,
                 const ktl::api::allocation_callbacks * _p_allocator, ktl::api::device_memory * _p_memory)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::allocate_memory)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::allocate_memory)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1129,7 +1170,8 @@ inline void
 free_memory(ktl::api::device _device, ktl::api::device_memory _memory,
             const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::free_memory)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::free_memory)] : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1141,7 +1183,8 @@ inline ktl::api::result
 map_memory(ktl::api::device _device, ktl::api::device_memory _memory, ktl::api::dvsize _offset, ktl::api::dvsize _size,
            ktl::api::memory_map_flags _flags, void ** _pp_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory)] : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1152,7 +1195,8 @@ map_memory(ktl::api::device _device, ktl::api::device_memory _memory, ktl::api::
 inline void
 unmap_memory(ktl::api::device _device, ktl::api::device_memory _memory)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory)];
+    ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory)]
+                                                   : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1164,7 +1208,9 @@ inline ktl::api::result
 flush_mapped_memory_ranges(ktl::api::device _device, ktl::u32 _memory_range_count,
                            const ktl::api::mapped_memory_range * _p_memory_ranges)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::flush_mapped_memory_ranges)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::flush_mapped_memory_ranges)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1176,7 +1222,9 @@ inline ktl::api::result
 invalidate_mapped_memory_ranges(ktl::api::device _device, ktl::u32 _memory_range_count,
                                 const ktl::api::mapped_memory_range * _p_memory_ranges)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::invalidate_mapped_memory_ranges)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::invalidate_mapped_memory_ranges)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1188,7 +1236,9 @@ inline void
 get_device_memory_commitment(ktl::api::device _device, ktl::api::device_memory _memory,
                              ktl::api::dvsize * _p_committed_memory_in_bytes)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_memory_commitment)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_memory_commitment)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1200,7 +1250,9 @@ inline void
 get_buffer_memory_requirements(ktl::api::device _device, ktl::api::buffer _buffer,
                                ktl::api::memory_requirements * _p_memory_requirements)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_memory_requirements)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_memory_requirements)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1212,7 +1264,9 @@ inline ktl::api::result
 bind_buffer_memory(ktl::api::device _device, ktl::api::buffer _buffer, ktl::api::device_memory _memory,
                    ktl::api::dvsize _memory_offset)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_buffer_memory)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_buffer_memory)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1224,7 +1278,9 @@ inline void
 get_image_memory_requirements(ktl::api::device _device, ktl::api::image _image,
                               ktl::api::memory_requirements * _p_memory_requirements)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_memory_requirements)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_memory_requirements)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1236,7 +1292,9 @@ inline ktl::api::result
 bind_image_memory(ktl::api::device _device, ktl::api::image _image, ktl::api::device_memory _memory,
                   ktl::api::dvsize _memory_offset)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_image_memory)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_image_memory)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1250,7 +1308,8 @@ get_image_sparse_memory_requirements(ktl::api::device _device, ktl::api::image _
                                      ktl::api::sparse_image_memory_requirements * _p_sparse_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_sparse_memory_requirements)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_sparse_memory_requirements)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1268,7 +1327,9 @@ get_physical_device_sparse_image_format_properties(ktl::api::physical_device _ph
                                                    ktl::api::sparse_image_format_properties * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sparse_image_format_properties)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sparse_image_format_properties)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1281,7 +1342,9 @@ inline ktl::api::result
 queue_bind_sparse(ktl::api::queue _queue, ktl::u32 _bind_info_count, const ktl::api::bind_sparse_info * _p_bind_info,
                   ktl::api::fence _fence)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_bind_sparse)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_bind_sparse)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1293,7 +1356,8 @@ inline ktl::api::result
 create_fence(ktl::api::device _device, const ktl::api::fence_create_info * _p_create_info,
              const ktl::api::allocation_callbacks * _p_allocator, ktl::api::fence * _p_fence)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_fence)];
+    ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_fence)]
+                                                   : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1304,7 +1368,9 @@ create_fence(ktl::api::device _device, const ktl::api::fence_create_info * _p_cr
 inline void
 destroy_fence(ktl::api::device _device, ktl::api::fence _fence, const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_fence)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_fence)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1315,7 +1381,8 @@ destroy_fence(ktl::api::device _device, ktl::api::fence _fence, const ktl::api::
 inline ktl::api::result
 reset_fences(ktl::api::device _device, ktl::u32 _fence_count, const ktl::api::fence * _p_fences)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_fences)];
+    ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_fences)]
+                                                   : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1326,7 +1393,9 @@ reset_fences(ktl::api::device _device, ktl::u32 _fence_count, const ktl::api::fe
 inline ktl::api::result
 get_fence_status(ktl::api::device _device, ktl::api::fence _fence)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_status)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_status)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1338,7 +1407,9 @@ inline ktl::api::result
 wait_for_fences(ktl::api::device _device, ktl::u32 _fence_count, const ktl::api::fence * _p_fences,
                 ktl::api::bool32 _wait_all, ktl::u64 _timeout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_for_fences)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_for_fences)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1350,7 +1421,9 @@ inline ktl::api::result
 create_semaphore(ktl::api::device _device, const ktl::api::semaphore_create_info * _p_create_info,
                  const ktl::api::allocation_callbacks * _p_allocator, ktl::api::semaphore * _p_semaphore)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_semaphore)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_semaphore)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1362,7 +1435,9 @@ inline void
 destroy_semaphore(ktl::api::device _device, ktl::api::semaphore _semaphore,
                   const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_semaphore)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_semaphore)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1374,7 +1449,8 @@ inline ktl::api::result
 create_event(ktl::api::device _device, const ktl::api::event_create_info * _p_create_info,
              const ktl::api::allocation_callbacks * _p_allocator, ktl::api::event * _p_event)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_event)];
+    ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_event)]
+                                                   : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1385,7 +1461,9 @@ create_event(ktl::api::device _device, const ktl::api::event_create_info * _p_cr
 inline void
 destroy_event(ktl::api::device _device, ktl::api::event _event, const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_event)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_event)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1396,7 +1474,9 @@ destroy_event(ktl::api::device _device, ktl::api::event _event, const ktl::api::
 inline ktl::api::result
 get_event_status(ktl::api::device _device, ktl::api::event _event)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_event_status)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_event_status)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1407,7 +1487,8 @@ get_event_status(ktl::api::device _device, ktl::api::event _event)
 inline ktl::api::result
 set_event(ktl::api::device _device, ktl::api::event _event)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_event)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_event)] : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1418,7 +1499,8 @@ set_event(ktl::api::device _device, ktl::api::event _event)
 inline ktl::api::result
 reset_event(ktl::api::device _device, ktl::api::event _event)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_event)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_event)] : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1430,7 +1512,9 @@ inline ktl::api::result
 create_query_pool(ktl::api::device _device, const ktl::api::query_pool_create_info * _p_create_info,
                   const ktl::api::allocation_callbacks * _p_allocator, ktl::api::query_pool * _p_query_pool)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_query_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_query_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1442,7 +1526,9 @@ inline void
 destroy_query_pool(ktl::api::device _device, ktl::api::query_pool _query_pool,
                    const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_query_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_query_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1455,7 +1541,9 @@ get_query_pool_results(ktl::api::device _device, ktl::api::query_pool _query_poo
                        ktl::u32 _query_count, ktl::usize _data_size, void * _p_data, ktl::api::dvsize _stride,
                        ktl::api::query_result_flags _flags)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_query_pool_results)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_query_pool_results)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1468,7 +1556,9 @@ inline void
 reset_query_pool(ktl::api::device _device, ktl::api::query_pool _query_pool, ktl::u32 _first_query,
                  ktl::u32 _query_count)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_query_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_query_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1480,7 +1570,9 @@ inline void
 reset_query_pool_ext(ktl::api::device _device, ktl::api::query_pool _query_pool, ktl::u32 _first_query,
                      ktl::u32 _query_count)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_query_pool_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_query_pool_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1492,7 +1584,9 @@ inline ktl::api::result
 create_buffer(ktl::api::device _device, const ktl::api::buffer_create_info * _p_create_info,
               const ktl::api::allocation_callbacks * _p_allocator, ktl::api::buffer * _p_buffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1503,7 +1597,9 @@ create_buffer(ktl::api::device _device, const ktl::api::buffer_create_info * _p_
 inline void
 destroy_buffer(ktl::api::device _device, ktl::api::buffer _buffer, const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1515,7 +1611,9 @@ inline ktl::api::result
 create_buffer_view(ktl::api::device _device, const ktl::api::buffer_view_create_info * _p_create_info,
                    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::buffer_view * _p_view)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_buffer_view)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_buffer_view)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1527,7 +1625,9 @@ inline void
 destroy_buffer_view(ktl::api::device _device, ktl::api::buffer_view _buffer_view,
                     const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_buffer_view)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_buffer_view)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1539,7 +1639,8 @@ inline ktl::api::result
 create_image(ktl::api::device _device, const ktl::api::image_create_info * _p_create_info,
              const ktl::api::allocation_callbacks * _p_allocator, ktl::api::image * _p_image)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_image)];
+    ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_image)]
+                                                   : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1550,7 +1651,9 @@ create_image(ktl::api::device _device, const ktl::api::image_create_info * _p_cr
 inline void
 destroy_image(ktl::api::device _device, ktl::api::image _image, const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_image)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_image)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1563,7 +1666,9 @@ get_image_subresource_layout(ktl::api::device _device, ktl::api::image _image,
                              const ktl::api::image_subresource * _p_subresource,
                              ktl::api::subresource_layout *      _p_layout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1575,7 +1680,9 @@ inline ktl::api::result
 create_image_view(ktl::api::device _device, const ktl::api::image_view_create_info * _p_create_info,
                   const ktl::api::allocation_callbacks * _p_allocator, ktl::api::image_view * _p_view)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_image_view)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_image_view)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1587,7 +1694,9 @@ inline void
 destroy_image_view(ktl::api::device _device, ktl::api::image_view _image_view,
                    const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_image_view)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_image_view)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1599,7 +1708,9 @@ inline ktl::api::result
 create_shader_module(ktl::api::device _device, const ktl::api::shader_module_create_info * _p_create_info,
                      const ktl::api::allocation_callbacks * _p_allocator, ktl::api::shader_module * _p_shader_module)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_shader_module)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_shader_module)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1611,7 +1722,9 @@ inline void
 destroy_shader_module(ktl::api::device _device, ktl::api::shader_module _shader_module,
                       const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_shader_module)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_shader_module)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1623,7 +1736,9 @@ inline ktl::api::result
 create_pipeline_cache(ktl::api::device _device, const ktl::api::pipeline_cache_create_info * _p_create_info,
                       const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline_cache * _p_pipeline_cache)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_pipeline_cache)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_pipeline_cache)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1635,7 +1750,9 @@ inline void
 destroy_pipeline_cache(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache,
                        const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_pipeline_cache)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_pipeline_cache)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1647,7 +1764,9 @@ inline ktl::api::result
 get_pipeline_cache_data(ktl::api::device _device, ktl::api::pipeline_cache _pipeline_cache, ktl::usize * _p_data_size,
                         void * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_cache_data)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_cache_data)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1659,7 +1778,9 @@ inline ktl::api::result
 merge_pipeline_caches(ktl::api::device _device, ktl::api::pipeline_cache _dst_cache, ktl::u32 _src_cache_count,
                       const ktl::api::pipeline_cache * _p_src_caches)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::merge_pipeline_caches)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::merge_pipeline_caches)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1672,7 +1793,9 @@ create_pipeline_binaries_khr(ktl::api::device _device, const ktl::api::pipeline_
                              const ktl::api::allocation_callbacks *       _p_allocator,
                              ktl::api::pipeline_binary_handles_info_khr * _p_binaries)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_pipeline_binaries_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_pipeline_binaries_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1684,7 +1807,9 @@ inline void
 destroy_pipeline_binary_khr(ktl::api::device _device, ktl::api::pipeline_binary_khr _pipeline_binary,
                             const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_pipeline_binary_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_pipeline_binary_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1696,7 +1821,9 @@ inline ktl::api::result
 get_pipeline_key_khr(ktl::api::device _device, const ktl::api::pipeline_create_info_khr * _p_pipeline_create_info,
                      ktl::api::pipeline_binary_key_khr * _p_pipeline_key)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_key_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_key_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1709,7 +1836,9 @@ get_pipeline_binary_data_khr(ktl::api::device _device, const ktl::api::pipeline_
                              ktl::api::pipeline_binary_key_khr * _p_pipeline_binary_key,
                              ktl::usize * _p_pipeline_binary_data_size, void * _p_pipeline_binary_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_binary_data_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_binary_data_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1724,7 +1853,8 @@ release_captured_pipeline_data_khr(ktl::api::device                             
                                    const ktl::api::allocation_callbacks *                    _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_captured_pipeline_data_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_captured_pipeline_data_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1737,7 +1867,9 @@ create_graphics_pipelines(ktl::api::device _device, ktl::api::pipeline_cache _pi
                           ktl::u32 _create_info_count, const ktl::api::graphics_pipeline_create_info * _p_create_infos,
                           const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_graphics_pipelines)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_graphics_pipelines)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1751,7 +1883,9 @@ create_compute_pipelines(ktl::api::device _device, ktl::api::pipeline_cache _pip
                          ktl::u32 _create_info_count, const ktl::api::compute_pipeline_create_info * _p_create_infos,
                          const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_compute_pipelines)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_compute_pipelines)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1764,8 +1898,10 @@ inline ktl::api::result
 get_device_subpass_shading_max_workgroup_size_huawei(ktl::api::device _device, ktl::api::render_pass _renderpass,
                                                      ktl::api::extent_2d * _p_max_workgroup_size)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_subpass_shading_max_workgroup_size_huawei)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_device_subpass_shading_max_workgroup_size_huawei)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1777,7 +1913,9 @@ inline void
 destroy_pipeline(ktl::api::device _device, ktl::api::pipeline _pipeline,
                  const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_pipeline)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_pipeline)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1790,7 +1928,9 @@ create_pipeline_layout(ktl::api::device _device, const ktl::api::pipeline_layout
                        const ktl::api::allocation_callbacks * _p_allocator,
                        ktl::api::pipeline_layout *            _p_pipeline_layout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_pipeline_layout)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_pipeline_layout)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1802,7 +1942,9 @@ inline void
 destroy_pipeline_layout(ktl::api::device _device, ktl::api::pipeline_layout _pipeline_layout,
                         const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_pipeline_layout)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_pipeline_layout)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1814,7 +1956,9 @@ inline ktl::api::result
 create_sampler(ktl::api::device _device, const ktl::api::sampler_create_info * _p_create_info,
                const ktl::api::allocation_callbacks * _p_allocator, ktl::api::sampler * _p_sampler)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_sampler)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_sampler)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1826,7 +1970,9 @@ inline void
 destroy_sampler(ktl::api::device _device, ktl::api::sampler _sampler,
                 const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_sampler)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_sampler)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1840,7 +1986,9 @@ create_descriptor_set_layout(ktl::api::device                                   
                              const ktl::api::allocation_callbacks *              _p_allocator,
                              ktl::api::descriptor_set_layout *                   _p_set_layout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_descriptor_set_layout)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_descriptor_set_layout)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1852,7 +2000,9 @@ inline void
 destroy_descriptor_set_layout(ktl::api::device _device, ktl::api::descriptor_set_layout _descriptor_set_layout,
                               const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_descriptor_set_layout)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_descriptor_set_layout)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1865,7 +2015,9 @@ create_descriptor_pool(ktl::api::device _device, const ktl::api::descriptor_pool
                        const ktl::api::allocation_callbacks * _p_allocator,
                        ktl::api::descriptor_pool *            _p_descriptor_pool)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_descriptor_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_descriptor_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1877,7 +2029,9 @@ inline void
 destroy_descriptor_pool(ktl::api::device _device, ktl::api::descriptor_pool _descriptor_pool,
                         const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_descriptor_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_descriptor_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1889,7 +2043,9 @@ inline ktl::api::result
 reset_descriptor_pool(ktl::api::device _device, ktl::api::descriptor_pool _descriptor_pool,
                       ktl::api::descriptor_pool_reset_flags _flags)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_descriptor_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_descriptor_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1901,7 +2057,9 @@ inline ktl::api::result
 allocate_descriptor_sets(ktl::api::device _device, const ktl::api::descriptor_set_allocate_info * _p_allocate_info,
                          ktl::api::descriptor_set * _p_descriptor_sets)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::allocate_descriptor_sets)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::allocate_descriptor_sets)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1913,7 +2071,9 @@ inline ktl::api::result
 free_descriptor_sets(ktl::api::device _device, ktl::api::descriptor_pool _descriptor_pool,
                      ktl::u32 _descriptor_set_count, const ktl::api::descriptor_set * _p_descriptor_sets)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::free_descriptor_sets)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::free_descriptor_sets)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1926,7 +2086,9 @@ update_descriptor_sets(ktl::api::device _device, ktl::u32 _descriptor_write_coun
                        const ktl::api::write_descriptor_set * _p_descriptor_writes, ktl::u32 _descriptor_copy_count,
                        const ktl::api::copy_descriptor_set * _p_descriptor_copies)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_descriptor_sets)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_descriptor_sets)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1939,7 +2101,9 @@ inline ktl::api::result
 create_framebuffer(ktl::api::device _device, const ktl::api::framebuffer_create_info * _p_create_info,
                    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::framebuffer * _p_framebuffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_framebuffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_framebuffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1951,7 +2115,9 @@ inline void
 destroy_framebuffer(ktl::api::device _device, ktl::api::framebuffer _framebuffer,
                     const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_framebuffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_framebuffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1963,7 +2129,9 @@ inline ktl::api::result
 create_render_pass(ktl::api::device _device, const ktl::api::render_pass_create_info * _p_create_info,
                    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::render_pass * _p_render_pass)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_render_pass)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_render_pass)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1975,7 +2143,9 @@ inline void
 destroy_render_pass(ktl::api::device _device, ktl::api::render_pass _render_pass,
                     const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_render_pass)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_render_pass)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1987,7 +2157,9 @@ inline void
 get_render_area_granularity(ktl::api::device _device, ktl::api::render_pass _render_pass,
                             ktl::api::extent_2d * _p_granularity)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_render_area_granularity)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_render_area_granularity)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -1999,7 +2171,9 @@ inline void
 get_rendering_area_granularity(ktl::api::device _device, const ktl::api::rendering_area_info * _p_rendering_area_info,
                                ktl::api::extent_2d * _p_granularity)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_rendering_area_granularity)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_rendering_area_granularity)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2013,7 +2187,8 @@ get_rendering_area_granularity_khr(ktl::api::device                      _device
                                    ktl::api::extent_2d *                 _p_granularity)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_rendering_area_granularity_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_rendering_area_granularity_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2025,7 +2200,9 @@ inline ktl::api::result
 create_command_pool(ktl::api::device _device, const ktl::api::command_pool_create_info * _p_create_info,
                     const ktl::api::allocation_callbacks * _p_allocator, ktl::api::command_pool * _p_command_pool)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_command_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_command_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2037,7 +2214,9 @@ inline void
 destroy_command_pool(ktl::api::device _device, ktl::api::command_pool _command_pool,
                      const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_command_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_command_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2049,7 +2228,9 @@ inline ktl::api::result
 reset_command_pool(ktl::api::device _device, ktl::api::command_pool _command_pool,
                    ktl::api::command_pool_reset_flags _flags)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_command_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_command_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2061,7 +2242,9 @@ inline ktl::api::result
 allocate_command_buffers(ktl::api::device _device, const ktl::api::command_buffer_allocate_info * _p_allocate_info,
                          ktl::api::command_buffer * _p_command_buffers)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::allocate_command_buffers)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::allocate_command_buffers)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2073,7 +2256,9 @@ inline void
 free_command_buffers(ktl::api::device _device, ktl::api::command_pool _command_pool, ktl::u32 _command_buffer_count,
                      const ktl::api::command_buffer * _p_command_buffers)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::free_command_buffers)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::free_command_buffers)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2085,7 +2270,9 @@ inline ktl::api::result
 begin_command_buffer(ktl::api::command_buffer                    _command_buffer,
                      const ktl::api::command_buffer_begin_info * _p_begin_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::begin_command_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::begin_command_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2096,7 +2283,9 @@ begin_command_buffer(ktl::api::command_buffer                    _command_buffer
 inline ktl::api::result
 end_command_buffer(ktl::api::command_buffer _command_buffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::end_command_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::end_command_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2107,7 +2296,9 @@ end_command_buffer(ktl::api::command_buffer _command_buffer)
 inline ktl::api::result
 reset_command_buffer(ktl::api::command_buffer _command_buffer, ktl::api::command_buffer_reset_flags _flags)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_command_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_command_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2119,7 +2310,9 @@ inline void
 cmd_bind_pipeline(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_bind_point _pipeline_bind_point,
                   ktl::api::pipeline _pipeline)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_pipeline)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_pipeline)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2131,7 +2324,8 @@ inline void
 cmd_set_primitive_restart_index_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _primitive_restart_index)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_restart_index_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_restart_index_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2144,7 +2338,9 @@ cmd_set_attachment_feedback_loop_enable_ext(ktl::api::command_buffer     _comman
                                             ktl::api::image_aspect_flags _aspect_mask)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_attachment_feedback_loop_enable_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_attachment_feedback_loop_enable_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2156,7 +2352,9 @@ inline void
 cmd_set_viewport(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport, ktl::u32 _viewport_count,
                  const ktl::api::viewport * _p_viewports)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2168,7 +2366,9 @@ inline void
 cmd_set_scissor(ktl::api::command_buffer _command_buffer, ktl::u32 _first_scissor, ktl::u32 _scissor_count,
                 const ktl::api::rect_2d * _p_scissors)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_scissor)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_scissor)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2179,7 +2379,9 @@ cmd_set_scissor(ktl::api::command_buffer _command_buffer, ktl::u32 _first_scisso
 inline void
 cmd_set_line_width(ktl::api::command_buffer _command_buffer, float _line_width)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_width)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_width)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2191,7 +2393,9 @@ inline void
 cmd_set_depth_bias(ktl::api::command_buffer _command_buffer, float _depth_bias_constant_factor, float _depth_bias_clamp,
                    float _depth_bias_slope_factor)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2203,7 +2407,9 @@ cmd_set_depth_bias(ktl::api::command_buffer _command_buffer, float _depth_bias_c
 inline void
 cmd_set_blend_constants(ktl::api::command_buffer _command_buffer, const float _blend_constants[4])
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_blend_constants)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_blend_constants)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2214,7 +2420,9 @@ cmd_set_blend_constants(ktl::api::command_buffer _command_buffer, const float _b
 inline void
 cmd_set_depth_bounds(ktl::api::command_buffer _command_buffer, float _min_depth_bounds, float _max_depth_bounds)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bounds)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bounds)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2226,7 +2434,9 @@ inline void
 cmd_set_stencil_compare_mask(ktl::api::command_buffer _command_buffer, ktl::api::stencil_face_flags _face_mask,
                              ktl::u32 _compare_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_compare_mask)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_compare_mask)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2238,7 +2448,9 @@ inline void
 cmd_set_stencil_write_mask(ktl::api::command_buffer _command_buffer, ktl::api::stencil_face_flags _face_mask,
                            ktl::u32 _write_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_write_mask)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_write_mask)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2250,7 +2462,9 @@ inline void
 cmd_set_stencil_reference(ktl::api::command_buffer _command_buffer, ktl::api::stencil_face_flags _face_mask,
                           ktl::u32 _reference)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_reference)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_reference)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2264,7 +2478,9 @@ cmd_bind_descriptor_sets(ktl::api::command_buffer _command_buffer, ktl::api::pip
                          const ktl::api::descriptor_set * _p_descriptor_sets, ktl::u32 _dynamic_offset_count,
                          const ktl::u32 * _p_dynamic_offsets)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_sets)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_sets)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2278,7 +2494,9 @@ inline void
 cmd_bind_index_buffer(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset,
                       ktl::api::index_type _index_type)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2290,7 +2508,9 @@ inline void
 cmd_bind_vertex_buffers(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count,
                         const ktl::api::buffer * _p_buffers, const ktl::api::dvsize * _p_offsets)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2302,7 +2522,8 @@ inline void
 cmd_draw(ktl::api::command_buffer _command_buffer, ktl::u32 _vertex_count, ktl::u32 _instance_count,
          ktl::u32 _first_vertex, ktl::u32 _first_instance)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw)] : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2314,7 +2535,9 @@ inline void
 cmd_draw_indexed(ktl::api::command_buffer _command_buffer, ktl::u32 _index_count, ktl::u32 _instance_count,
                  ktl::u32 _first_index, ktl::i32 _vertex_offset, ktl::u32 _first_instance)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2328,7 +2551,9 @@ cmd_draw_multi_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _draw_coun
                    const ktl::api::multi_draw_info_ext * _p_vertex_info, ktl::u32 _instance_count,
                    ktl::u32 _first_instance, ktl::u32 _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_multi_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_multi_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2342,7 +2567,9 @@ cmd_draw_multi_indexed_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _d
                            const ktl::api::multi_draw_indexed_info_ext * _p_index_info, ktl::u32 _instance_count,
                            ktl::u32 _first_instance, ktl::u32 _stride, const ktl::i32 * _p_vertex_offset)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_multi_indexed_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_multi_indexed_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2355,7 +2582,9 @@ inline void
 cmd_draw_indirect(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset,
                   ktl::u32 _draw_count, ktl::u32 _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2367,7 +2596,9 @@ inline void
 cmd_draw_indexed_indirect(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset,
                           ktl::u32 _draw_count, ktl::u32 _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2379,7 +2610,8 @@ inline void
 cmd_dispatch(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x, ktl::u32 _group_count_y,
              ktl::u32 _group_count_z)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch)];
+    ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch)]
+                                                   : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2390,7 +2622,9 @@ cmd_dispatch(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x, 
 inline void
 cmd_dispatch_indirect(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_indirect)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_indirect)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2401,7 +2635,9 @@ cmd_dispatch_indirect(ktl::api::command_buffer _command_buffer, ktl::api::buffer
 inline void
 cmd_subpass_shading_huawei(ktl::api::command_buffer _command_buffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_subpass_shading_huawei)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_subpass_shading_huawei)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2413,7 +2649,9 @@ inline void
 cmd_draw_cluster_huawei(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x, ktl::u32 _group_count_y,
                         ktl::u32 _group_count_z)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_cluster_huawei)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_cluster_huawei)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2426,7 +2664,8 @@ cmd_draw_cluster_indirect_huawei(ktl::api::command_buffer _command_buffer, ktl::
                                  ktl::api::dvsize _offset)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_cluster_indirect_huawei)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_cluster_indirect_huawei)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2439,7 +2678,9 @@ cmd_update_pipeline_indirect_buffer_nv(ktl::api::command_buffer      _command_bu
                                        ktl::api::pipeline_bind_point _pipeline_bind_point, ktl::api::pipeline _pipeline)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_update_pipeline_indirect_buffer_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_update_pipeline_indirect_buffer_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2451,7 +2692,9 @@ inline void
 cmd_copy_buffer(ktl::api::command_buffer _command_buffer, ktl::api::buffer _src_buffer, ktl::api::buffer _dst_buffer,
                 ktl::u32 _region_count, const ktl::api::buffer_copy * _p_regions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2465,7 +2708,9 @@ cmd_copy_image(ktl::api::command_buffer _command_buffer, ktl::api::image _src_im
                ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count,
                const ktl::api::image_copy * _p_regions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2480,7 +2725,9 @@ cmd_blit_image(ktl::api::command_buffer _command_buffer, ktl::api::image _src_im
                ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count,
                const ktl::api::image_blit * _p_regions, ktl::api::filter _filter)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2494,7 +2741,9 @@ cmd_copy_buffer_to_image(ktl::api::command_buffer _command_buffer, ktl::api::buf
                          ktl::api::image _dst_image, ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count,
                          const ktl::api::buffer_image_copy * _p_regions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_to_image)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_to_image)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2508,7 +2757,9 @@ cmd_copy_image_to_buffer(ktl::api::command_buffer _command_buffer, ktl::api::ima
                          ktl::api::image_layout _src_image_layout, ktl::api::buffer _dst_buffer, ktl::u32 _region_count,
                          const ktl::api::buffer_image_copy * _p_regions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2521,7 +2772,9 @@ inline void
 cmd_copy_memory_indirect_nv(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _copy_buffer_address,
                             ktl::u32 _copy_count, ktl::u32 _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_indirect_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_indirect_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2533,7 +2786,9 @@ inline void
 cmd_copy_memory_indirect_khr(ktl::api::command_buffer                        _command_buffer,
                              const ktl::api::copy_memory_indirect_info_khr * _p_copy_memory_indirect_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_indirect_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_indirect_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2548,7 +2803,8 @@ cmd_copy_memory_to_image_indirect_nv(ktl::api::command_buffer _command_buffer, k
                                      const ktl::api::image_subresource_layers * _p_image_subresources)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_image_indirect_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_image_indirect_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2563,7 +2819,8 @@ cmd_copy_memory_to_image_indirect_khr(
     const ktl::api::copy_memory_to_image_indirect_info_khr * _p_copy_memory_to_image_indirect_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_image_indirect_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_image_indirect_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2575,7 +2832,9 @@ inline void
 cmd_update_buffer(ktl::api::command_buffer _command_buffer, ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset,
                   ktl::api::dvsize _data_size, const void * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_update_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_update_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2587,7 +2846,9 @@ inline void
 cmd_fill_buffer(ktl::api::command_buffer _command_buffer, ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset,
                 ktl::api::dvsize _size, ktl::u32 _data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_fill_buffer)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_fill_buffer)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2600,7 +2861,9 @@ cmd_clear_color_image(ktl::api::command_buffer _command_buffer, ktl::api::image 
                       ktl::api::image_layout _image_layout, const ktl::api::clear_color_value * _p_color,
                       ktl::u32 _range_count, const ktl::api::image_subresource_range * _p_ranges)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_clear_color_image)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_clear_color_image)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2614,7 +2877,9 @@ cmd_clear_depth_stencil_image(ktl::api::command_buffer _command_buffer, ktl::api
                               const ktl::api::clear_depth_stencil_value * _p_depth_stencil, ktl::u32 _range_count,
                               const ktl::api::image_subresource_range * _p_ranges)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_clear_depth_stencil_image)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_clear_depth_stencil_image)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2628,7 +2893,9 @@ cmd_clear_attachments(ktl::api::command_buffer _command_buffer, ktl::u32 _attach
                       const ktl::api::clear_attachment * _p_attachments, ktl::u32 _rect_count,
                       const ktl::api::clear_rect * _p_rects)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_clear_attachments)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_clear_attachments)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2642,7 +2909,9 @@ cmd_resolve_image(ktl::api::command_buffer _command_buffer, ktl::api::image _src
                   ktl::api::image_layout _dst_image_layout, ktl::u32 _region_count,
                   const ktl::api::image_resolve * _p_regions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_resolve_image)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_resolve_image)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2655,7 +2924,9 @@ inline void
 cmd_set_event(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
               ktl::api::pipeline_stage_flags _stage_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_event)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_event)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2667,7 +2938,9 @@ inline void
 cmd_reset_event(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
                 ktl::api::pipeline_stage_flags _stage_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_event)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_event)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2683,7 +2956,9 @@ cmd_wait_events(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count,
                 const ktl::api::buffer_memory_barrier * _p_buffer_memory_barriers, ktl::u32 _image_memory_barrier_count,
                 const ktl::api::image_memory_barrier * _p_image_memory_barriers)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_wait_events)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_wait_events)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2702,7 +2977,9 @@ cmd_pipeline_barrier(ktl::api::command_buffer _command_buffer, ktl::api::pipelin
                      ktl::u32                                _image_memory_barrier_count,
                      const ktl::api::image_memory_barrier *  _p_image_memory_barriers)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2716,7 +2993,9 @@ inline void
 cmd_begin_query(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _query,
                 ktl::api::query_control_flags _flags)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_query)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_query)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2727,7 +3006,9 @@ cmd_begin_query(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _
 inline void
 cmd_end_query(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _query)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_query)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_query)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2741,7 +3022,8 @@ cmd_begin_conditional_rendering_ext(
     const ktl::api::conditional_rendering_begin_info_ext * _p_conditional_rendering_begin)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_conditional_rendering_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_conditional_rendering_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2753,7 +3035,8 @@ inline void
 cmd_end_conditional_rendering_ext(ktl::api::command_buffer _command_buffer)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_conditional_rendering_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_conditional_rendering_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2765,7 +3048,9 @@ inline void
 cmd_begin_custom_resolve_ext(ktl::api::command_buffer                        _command_buffer,
                              const ktl::api::begin_custom_resolve_info_ext * _p_begin_custom_resolve_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_custom_resolve_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_custom_resolve_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2777,7 +3062,9 @@ inline void
 cmd_reset_query_pool(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _first_query,
                      ktl::u32 _query_count)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_query_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_query_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2789,7 +3076,9 @@ inline void
 cmd_write_timestamp(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flag_bits _pipeline_stage,
                     ktl::api::query_pool _query_pool, ktl::u32 _query)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_timestamp)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_timestamp)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2802,7 +3091,9 @@ cmd_copy_query_pool_results(ktl::api::command_buffer _command_buffer, ktl::api::
                             ktl::u32 _first_query, ktl::u32 _query_count, ktl::api::buffer _dst_buffer,
                             ktl::api::dvsize _dst_offset, ktl::api::dvsize _stride, ktl::api::query_result_flags _flags)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_query_pool_results)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_query_pool_results)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2815,7 +3106,9 @@ inline void
 cmd_push_constants(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_layout _layout,
                    ktl::api::shader_stage_flags _stage_flags, ktl::u32 _offset, ktl::u32 _size, const void * _p_values)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_constants)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_constants)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2828,7 +3121,9 @@ cmd_begin_render_pass(ktl::api::command_buffer                 _command_buffer,
                       const ktl::api::render_pass_begin_info * _p_render_pass_begin,
                       ktl::api::subpass_contents               _contents)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_render_pass)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_render_pass)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2839,7 +3134,9 @@ cmd_begin_render_pass(ktl::api::command_buffer                 _command_buffer,
 inline void
 cmd_next_subpass(ktl::api::command_buffer _command_buffer, ktl::api::subpass_contents _contents)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_next_subpass)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_next_subpass)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2850,7 +3147,9 @@ cmd_next_subpass(ktl::api::command_buffer _command_buffer, ktl::api::subpass_con
 inline void
 cmd_end_render_pass(ktl::api::command_buffer _command_buffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2862,7 +3161,9 @@ inline void
 cmd_execute_commands(ktl::api::command_buffer _command_buffer, ktl::u32 _command_buffer_count,
                      const ktl::api::command_buffer * _p_command_buffers)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_execute_commands)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_execute_commands)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2875,7 +3176,9 @@ create_android_surface_khr(ktl::api::instance                                _in
                            const ktl::api::android_surface_create_info_khr * _p_create_info,
                            const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_android_surface_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_android_surface_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2887,7 +3190,9 @@ inline ktl::api::result
 create_surface_ohos(ktl::api::instance _instance, const ktl::api::surface_create_info_ohos * _p_create_info,
                     const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_surface_ohos)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_surface_ohos)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2900,7 +3205,9 @@ get_physical_device_display_properties_khr(ktl::api::physical_device _physical_d
                                            ktl::api::display_properties_khr * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_properties_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_properties_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2914,7 +3221,9 @@ get_physical_device_display_plane_properties_khr(ktl::api::physical_device      
                                                  ktl::api::display_plane_properties_khr * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_plane_properties_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_plane_properties_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2928,7 +3237,9 @@ get_display_plane_supported_displays_khr(ktl::api::physical_device _physical_dev
                                          ktl::u32 * _p_display_count, ktl::api::display_khr * _p_displays)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_plane_supported_displays_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_plane_supported_displays_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2941,7 +3252,9 @@ inline ktl::api::result
 get_display_mode_properties_khr(ktl::api::physical_device _physical_device, ktl::api::display_khr _display,
                                 ktl::u32 * _p_property_count, ktl::api::display_mode_properties_khr * _p_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_mode_properties_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_mode_properties_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2954,7 +3267,9 @@ create_display_mode_khr(ktl::api::physical_device _physical_device, ktl::api::di
                         const ktl::api::display_mode_create_info_khr * _p_create_info,
                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::display_mode_khr * _p_mode)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_display_mode_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_display_mode_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2967,7 +3282,8 @@ get_display_plane_capabilities_khr(ktl::api::physical_device _physical_device, k
                                    ktl::u32 _plane_index, ktl::api::display_plane_capabilities_khr * _p_capabilities)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_plane_capabilities_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_plane_capabilities_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2982,7 +3298,8 @@ create_display_plane_surface_khr(ktl::api::instance                             
                                  ktl::api::surface_khr *                           _p_surface)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_display_plane_surface_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_display_plane_surface_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -2996,7 +3313,9 @@ create_shared_swapchains_khr(ktl::api::device _device, ktl::u32 _swapchain_count
                              const ktl::api::allocation_callbacks *      _p_allocator,
                              ktl::api::swapchain_khr *                   _p_swapchains)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_shared_swapchains_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_shared_swapchains_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3009,7 +3328,9 @@ inline void
 destroy_surface_khr(ktl::api::instance _instance, ktl::api::surface_khr _surface,
                     const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_surface_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_surface_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3022,7 +3343,9 @@ get_physical_device_surface_support_khr(ktl::api::physical_device _physical_devi
                                         ktl::api::surface_khr _surface, ktl::api::bool32 * _p_supported)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_support_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_support_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3036,7 +3359,9 @@ get_physical_device_surface_capabilities_khr(ktl::api::physical_device _physical
                                              ktl::api::surface_capabilities_khr * _p_surface_capabilities)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3050,7 +3375,9 @@ get_physical_device_surface_formats_khr(ktl::api::physical_device _physical_devi
                                         ktl::api::surface_format_khr * _p_surface_formats)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_formats_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_formats_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3065,7 +3392,9 @@ get_physical_device_surface_present_modes_khr(ktl::api::physical_device _physica
                                               ktl::api::present_mode_khr * _p_present_modes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_present_modes_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_present_modes_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3078,7 +3407,9 @@ inline ktl::api::result
 create_swapchain_khr(ktl::api::device _device, const ktl::api::swapchain_create_info_khr * _p_create_info,
                      const ktl::api::allocation_callbacks * _p_allocator, ktl::api::swapchain_khr * _p_swapchain)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_swapchain_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_swapchain_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3090,7 +3421,9 @@ inline void
 destroy_swapchain_khr(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                       const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_swapchain_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_swapchain_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3102,7 +3435,9 @@ inline ktl::api::result
 get_swapchain_images_khr(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                          ktl::u32 * _p_swapchain_image_count, ktl::api::image * _p_swapchain_images)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_images_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_images_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3114,7 +3449,9 @@ inline ktl::api::result
 acquire_next_image_khr(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::u64 _timeout,
                        ktl::api::semaphore _semaphore, ktl::api::fence _fence, ktl::u32 * _p_image_index)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_next_image_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_next_image_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3125,7 +3462,9 @@ acquire_next_image_khr(ktl::api::device _device, ktl::api::swapchain_khr _swapch
 inline ktl::api::result
 queue_present_khr(ktl::api::queue _queue, const ktl::api::present_info_khr * _p_present_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_present_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_present_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3137,7 +3476,9 @@ inline ktl::api::result
 create_vi_surface_nn(ktl::api::instance _instance, const ktl::api::vi_surface_create_info_nn * _p_create_info,
                      const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_vi_surface_nn)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_vi_surface_nn)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3150,7 +3491,9 @@ create_wayland_surface_khr(ktl::api::instance                                _in
                            const ktl::api::wayland_surface_create_info_khr * _p_create_info,
                            const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_wayland_surface_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_wayland_surface_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3162,8 +3505,10 @@ inline ktl::api::bool32
 get_physical_device_wayland_presentation_support_khr(ktl::api::physical_device _physical_device,
                                                      ktl::u32 _queue_family_index, ktl::api::wayland_display * _display)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_wayland_presentation_support_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_wayland_presentation_support_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3176,7 +3521,9 @@ inline ktl::api::result
 create_ubm_surface_sec(ktl::api::instance _instance, const ktl::api::ubm_surface_create_info_sec * _p_create_info,
                        const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_ubm_surface_sec)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_ubm_surface_sec)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3189,7 +3536,9 @@ get_physical_device_ubm_presentation_support_sec(ktl::api::physical_device _phys
                                                  ktl::u32 _queue_family_index, ktl::api::ubm_device * _device)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_ubm_presentation_support_sec)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_ubm_presentation_support_sec)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3201,7 +3550,9 @@ inline ktl::api::result
 create_win32_surface_khr(ktl::api::instance _instance, const ktl::api::win32_surface_create_info_khr * _p_create_info,
                          const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_win32_surface_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_win32_surface_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3214,7 +3565,9 @@ get_physical_device_win32_presentation_support_khr(ktl::api::physical_device _ph
                                                    ktl::u32                  _queue_family_index)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_win32_presentation_support_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_win32_presentation_support_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3226,7 +3579,9 @@ inline ktl::api::result
 create_xlib_surface_khr(ktl::api::instance _instance, const ktl::api::xlib_surface_create_info_khr * _p_create_info,
                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_xlib_surface_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_xlib_surface_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3240,7 +3595,9 @@ get_physical_device_xlib_presentation_support_khr(ktl::api::physical_device _phy
                                                   ktl::api::xlib_visual_id _visual_id)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_xlib_presentation_support_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_xlib_presentation_support_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3253,7 +3610,9 @@ inline ktl::api::result
 create_xcb_surface_khr(ktl::api::instance _instance, const ktl::api::xcb_surface_create_info_khr * _p_create_info,
                        const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_xcb_surface_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_xcb_surface_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3267,7 +3626,9 @@ get_physical_device_xcb_presentation_support_khr(ktl::api::physical_device _phys
                                                  ktl::api::xcb_visual_id _visual_id)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_xcb_presentation_support_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_xcb_presentation_support_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3281,7 +3642,9 @@ create_direct_fb_surface_ext(ktl::api::instance                                 
                              const ktl::api::direct_fb_surface_create_info_ext * _p_create_info,
                              const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_direct_fb_surface_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_direct_fb_surface_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3293,8 +3656,10 @@ inline ktl::api::bool32
 get_physical_device_direct_fb_presentation_support_ext(ktl::api::physical_device _physical_device,
                                                        ktl::u32 _queue_family_index, ktl::api::directfb * _dfb)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_direct_fb_presentation_support_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_direct_fb_presentation_support_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3310,7 +3675,8 @@ create_imagepipe_surface_fuchsia(ktl::api::instance                             
                                  ktl::api::surface_khr *                                 _p_surface)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_imagepipe_surface_fuchsia)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_imagepipe_surface_fuchsia)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3325,7 +3691,8 @@ create_stream_descriptor_surface_ggp(ktl::api::instance                         
                                      ktl::api::surface_khr *                                     _p_surface)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_stream_descriptor_surface_ggp)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_stream_descriptor_surface_ggp)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3337,7 +3704,9 @@ inline ktl::api::result
 create_screen_surface_qnx(ktl::api::instance _instance, const ktl::api::screen_surface_create_info_qnx * _p_create_info,
                           const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_screen_surface_qnx)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_screen_surface_qnx)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3350,7 +3719,9 @@ get_physical_device_screen_presentation_support_qnx(ktl::api::physical_device _p
                                                     ktl::u32 _queue_family_index, ktl::api::screen_window * _window)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_screen_presentation_support_qnx)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_screen_presentation_support_qnx)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3366,7 +3737,8 @@ create_debug_report_callback_ext(ktl::api::instance                             
                                  ktl::api::debug_report_callback_ext *                   _p_callback)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_debug_report_callback_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_debug_report_callback_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3379,7 +3751,8 @@ destroy_debug_report_callback_ext(ktl::api::instance _instance, ktl::api::debug_
                                   const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_debug_report_callback_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_debug_report_callback_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3392,7 +3765,9 @@ debug_report_message_ext(ktl::api::instance _instance, ktl::api::debug_report_fl
                          ktl::api::debug_report_object_type_ext _object_type, ktl::u64 _object, ktl::usize _location,
                          ktl::i32 _message_code, const char * _p_layer_prefix, const char * _p_message)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::debug_report_message_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::debug_report_message_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3406,7 +3781,8 @@ debug_marker_set_object_name_ext(ktl::api::device                               
                                  const ktl::api::debug_marker_object_name_info_ext * _p_name_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::debug_marker_set_object_name_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::debug_marker_set_object_name_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3418,7 +3794,9 @@ inline ktl::api::result
 debug_marker_set_object_tag_ext(ktl::api::device                                   _device,
                                 const ktl::api::debug_marker_object_tag_info_ext * _p_tag_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::debug_marker_set_object_tag_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::debug_marker_set_object_tag_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3430,7 +3808,9 @@ inline void
 cmd_debug_marker_begin_ext(ktl::api::command_buffer                       _command_buffer,
                            const ktl::api::debug_marker_marker_info_ext * _p_marker_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_debug_marker_begin_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_debug_marker_begin_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3441,7 +3821,9 @@ cmd_debug_marker_begin_ext(ktl::api::command_buffer                       _comma
 inline void
 cmd_debug_marker_end_ext(ktl::api::command_buffer _command_buffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_debug_marker_end_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_debug_marker_end_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3453,7 +3835,9 @@ inline void
 cmd_debug_marker_insert_ext(ktl::api::command_buffer                       _command_buffer,
                             const ktl::api::debug_marker_marker_info_ext * _p_marker_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_debug_marker_insert_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_debug_marker_insert_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3468,8 +3852,10 @@ get_physical_device_external_image_format_properties_nv(
     ktl::api::external_memory_handle_type_flags_nv  _external_handle_type,
     ktl::api::external_image_format_properties_nv * _p_external_image_format_properties)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_image_format_properties_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_external_image_format_properties_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3484,7 +3870,9 @@ get_memory_win32_handle_nv(ktl::api::device _device, ktl::api::device_memory _me
                            ktl::api::external_memory_handle_type_flags_nv _handle_type,
                            ktl::api::win32_handle *                       _p_handle)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win32_handle_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win32_handle_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3497,7 +3885,8 @@ cmd_execute_generated_commands_nv(ktl::api::command_buffer _command_buffer, ktl:
                                   const ktl::api::generated_commands_info_nv * _p_generated_commands_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_execute_generated_commands_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_execute_generated_commands_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3510,7 +3899,8 @@ cmd_preprocess_generated_commands_nv(ktl::api::command_buffer                   
                                      const ktl::api::generated_commands_info_nv * _p_generated_commands_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_preprocess_generated_commands_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_preprocess_generated_commands_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3524,7 +3914,8 @@ cmd_bind_pipeline_shader_group_nv(ktl::api::command_buffer      _command_buffer,
                                   ktl::u32 _group_index)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_pipeline_shader_group_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_pipeline_shader_group_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3538,7 +3929,9 @@ get_generated_commands_memory_requirements_nv(ktl::api::device                  
                                               ktl::api::memory_requirements_2 * _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_generated_commands_memory_requirements_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_generated_commands_memory_requirements_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3553,7 +3946,8 @@ create_indirect_commands_layout_nv(ktl::api::device                             
                                    ktl::api::indirect_commands_layout_nv * _p_indirect_commands_layout)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_indirect_commands_layout_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_indirect_commands_layout_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3568,7 +3962,8 @@ destroy_indirect_commands_layout_nv(ktl::api::device                       _devi
                                     const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_indirect_commands_layout_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_indirect_commands_layout_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3581,7 +3976,8 @@ cmd_execute_generated_commands_ext(ktl::api::command_buffer _command_buffer, ktl
                                    const ktl::api::generated_commands_info_ext * _p_generated_commands_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_execute_generated_commands_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_execute_generated_commands_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3595,7 +3991,8 @@ cmd_preprocess_generated_commands_ext(ktl::api::command_buffer                  
                                       ktl::api::command_buffer                      _state_command_buffer)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_preprocess_generated_commands_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_preprocess_generated_commands_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3610,7 +4007,9 @@ get_generated_commands_memory_requirements_ext(
     ktl::api::memory_requirements_2 * _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_generated_commands_memory_requirements_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_generated_commands_memory_requirements_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3625,7 +4024,8 @@ create_indirect_commands_layout_ext(ktl::api::device                            
                                     ktl::api::indirect_commands_layout_ext * _p_indirect_commands_layout)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_indirect_commands_layout_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_indirect_commands_layout_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3640,7 +4040,8 @@ destroy_indirect_commands_layout_ext(ktl::api::device                       _dev
                                      const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_indirect_commands_layout_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_indirect_commands_layout_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3655,7 +4056,8 @@ create_indirect_execution_set_ext(ktl::api::device                              
                                   ktl::api::indirect_execution_set_ext *                   _p_indirect_execution_set)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_indirect_execution_set_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_indirect_execution_set_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3670,7 +4072,8 @@ destroy_indirect_execution_set_ext(ktl::api::device                       _devic
                                    const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_indirect_execution_set_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_indirect_execution_set_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3685,7 +4088,9 @@ update_indirect_execution_set_pipeline_ext(
     const ktl::api::write_indirect_execution_set_pipeline_ext * _p_execution_set_writes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_indirect_execution_set_pipeline_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_indirect_execution_set_pipeline_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3701,7 +4106,9 @@ update_indirect_execution_set_shader_ext(
     const ktl::api::write_indirect_execution_set_shader_ext * _p_execution_set_writes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_indirect_execution_set_shader_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_indirect_execution_set_shader_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3714,7 +4121,9 @@ inline void
 get_physical_device_features_2(ktl::api::physical_device              _physical_device,
                                ktl::api::physical_device_features_2 * _p_features)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_features_2)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_features_2)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3727,7 +4136,8 @@ get_physical_device_features_2_khr(ktl::api::physical_device              _physi
                                    ktl::api::physical_device_features_2 * _p_features)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_features_2_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_features_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3740,7 +4150,8 @@ get_physical_device_properties_2(ktl::api::physical_device                _physi
                                  ktl::api::physical_device_properties_2 * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_properties_2)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_properties_2)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3753,7 +4164,8 @@ get_physical_device_properties_2_khr(ktl::api::physical_device                _p
                                      ktl::api::physical_device_properties_2 * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_properties_2_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_properties_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3766,7 +4178,9 @@ get_physical_device_format_properties_2(ktl::api::physical_device _physical_devi
                                         ktl::api::format_properties_2 * _p_format_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_format_properties_2)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_format_properties_2)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3779,7 +4193,9 @@ get_physical_device_format_properties_2_khr(ktl::api::physical_device _physical_
                                             ktl::api::format_properties_2 * _p_format_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_format_properties_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_format_properties_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3794,7 +4210,9 @@ get_physical_device_image_format_properties_2(
     ktl::api::image_format_properties_2 *                 _p_image_format_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_image_format_properties_2)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_image_format_properties_2)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3810,7 +4228,9 @@ get_physical_device_image_format_properties_2_khr(
     ktl::api::image_format_properties_2 *                 _p_image_format_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_image_format_properties_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_image_format_properties_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3825,7 +4245,9 @@ get_physical_device_queue_family_properties_2(ktl::api::physical_device         
                                               ktl::api::queue_family_properties_2 * _p_queue_family_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_queue_family_properties_2)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_queue_family_properties_2)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3840,7 +4262,9 @@ get_physical_device_queue_family_properties_2_khr(ktl::api::physical_device     
                                                   ktl::api::queue_family_properties_2 * _p_queue_family_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_queue_family_properties_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_queue_family_properties_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3854,7 +4278,9 @@ get_physical_device_memory_properties_2(ktl::api::physical_device               
                                         ktl::api::physical_device_memory_properties_2 * _p_memory_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_memory_properties_2)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_memory_properties_2)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3867,7 +4293,9 @@ get_physical_device_memory_properties_2_khr(ktl::api::physical_device           
                                             ktl::api::physical_device_memory_properties_2 * _p_memory_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_memory_properties_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_memory_properties_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3881,8 +4309,10 @@ get_physical_device_sparse_image_format_properties_2(
     const ktl::api::physical_device_sparse_image_format_info_2 * _p_format_info, ktl::u32 * _p_property_count,
     ktl::api::sparse_image_format_properties_2 * _p_properties)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sparse_image_format_properties_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_sparse_image_format_properties_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3897,8 +4327,10 @@ get_physical_device_sparse_image_format_properties_2_khr(
     const ktl::api::physical_device_sparse_image_format_info_2 * _p_format_info, ktl::u32 * _p_property_count,
     ktl::api::sparse_image_format_properties_2 * _p_properties)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sparse_image_format_properties_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_sparse_image_format_properties_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3912,7 +4344,9 @@ cmd_push_descriptor_set(ktl::api::command_buffer _command_buffer, ktl::api::pipe
                         ktl::api::pipeline_layout _layout, ktl::u32 _set, ktl::u32 _descriptor_write_count,
                         const ktl::api::write_descriptor_set * _p_descriptor_writes)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3927,7 +4361,9 @@ cmd_push_descriptor_set_khr(ktl::api::command_buffer      _command_buffer,
                             ktl::u32 _set, ktl::u32 _descriptor_write_count,
                             const ktl::api::write_descriptor_set * _p_descriptor_writes)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3940,7 +4376,9 @@ inline void
 trim_command_pool(ktl::api::device _device, ktl::api::command_pool _command_pool,
                   ktl::api::command_pool_trim_flags _flags)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::trim_command_pool)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::trim_command_pool)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3952,7 +4390,9 @@ inline void
 trim_command_pool_khr(ktl::api::device _device, ktl::api::command_pool _command_pool,
                       ktl::api::command_pool_trim_flags _flags)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::trim_command_pool_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::trim_command_pool_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3967,7 +4407,9 @@ get_physical_device_external_buffer_properties(
     ktl::api::external_buffer_properties *                 _p_external_buffer_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_buffer_properties)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_buffer_properties)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3983,7 +4425,9 @@ get_physical_device_external_buffer_properties_khr(
     ktl::api::external_buffer_properties *                 _p_external_buffer_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_buffer_properties_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_buffer_properties_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -3997,7 +4441,9 @@ get_memory_win32_handle_khr(ktl::api::device                                   _
                             const ktl::api::memory_get_win32_handle_info_khr * _p_get_win32_handle_info,
                             ktl::api::win32_handle *                           _p_handle)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win32_handle_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win32_handle_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4012,7 +4458,9 @@ get_memory_win32_handle_properties_khr(ktl::api::device                         
                                        ktl::api::memory_win32_handle_properties_khr * _p_memory_win32_handle_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win32_handle_properties_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win32_handle_properties_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4024,7 +4472,9 @@ get_memory_win32_handle_properties_khr(ktl::api::device                         
 inline ktl::api::result
 get_memory_fd_khr(ktl::api::device _device, const ktl::api::memory_get_fd_info_khr * _p_get_fd_info, int * _p_fd)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_fd_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_fd_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4036,7 +4486,9 @@ inline ktl::api::result
 get_memory_fd_properties_khr(ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type,
                              int _fd, ktl::api::memory_fd_properties_khr * _p_memory_fd_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_fd_properties_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_fd_properties_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4050,7 +4502,8 @@ get_memory_zircon_handle_fuchsia(ktl::api::device                               
                                  ktl::api::zx_handle *                                   _p_zircon_handle)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_zircon_handle_fuchsia)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_zircon_handle_fuchsia)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4065,7 +4518,9 @@ get_memory_zircon_handle_properties_fuchsia(
     ktl::api::memory_zircon_handle_properties_fuchsia * _p_memory_zircon_handle_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_zircon_handle_properties_fuchsia)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_zircon_handle_properties_fuchsia)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4079,7 +4534,9 @@ get_memory_remote_address_nv(ktl::api::device                                   
                              const ktl::api::memory_get_remote_address_info_nv * _p_memory_get_remote_address_info,
                              ktl::api::remote_address_nv *                       _p_address)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_remote_address_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_remote_address_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4094,7 +4551,9 @@ get_physical_device_external_semaphore_properties(
     ktl::api::external_semaphore_properties *                 _p_external_semaphore_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_semaphore_properties)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_semaphore_properties)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4109,8 +4568,10 @@ get_physical_device_external_semaphore_properties_khr(
     const ktl::api::physical_device_external_semaphore_info * _p_external_semaphore_info,
     ktl::api::external_semaphore_properties *                 _p_external_semaphore_properties)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_semaphore_properties_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_external_semaphore_properties_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4124,7 +4585,9 @@ get_semaphore_win32_handle_khr(ktl::api::device                                 
                                const ktl::api::semaphore_get_win32_handle_info_khr * _p_get_win32_handle_info,
                                ktl::api::win32_handle *                              _p_handle)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_win32_handle_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_win32_handle_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4138,7 +4601,8 @@ import_semaphore_win32_handle_khr(
     const ktl::api::import_semaphore_win32_handle_info_khr * _p_import_semaphore_win32_handle_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_semaphore_win32_handle_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_semaphore_win32_handle_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4149,7 +4613,9 @@ import_semaphore_win32_handle_khr(
 inline ktl::api::result
 get_semaphore_fd_khr(ktl::api::device _device, const ktl::api::semaphore_get_fd_info_khr * _p_get_fd_info, int * _p_fd)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_fd_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_fd_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4161,7 +4627,9 @@ inline ktl::api::result
 import_semaphore_fd_khr(ktl::api::device                               _device,
                         const ktl::api::import_semaphore_fd_info_khr * _p_import_semaphore_fd_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_semaphore_fd_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_semaphore_fd_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4175,7 +4643,8 @@ get_semaphore_zircon_handle_fuchsia(
     ktl::api::zx_handle * _p_zircon_handle)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_zircon_handle_fuchsia)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_zircon_handle_fuchsia)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4189,7 +4658,9 @@ import_semaphore_zircon_handle_fuchsia(
     const ktl::api::import_semaphore_zircon_handle_info_fuchsia * _p_import_semaphore_zircon_handle_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_semaphore_zircon_handle_fuchsia)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_semaphore_zircon_handle_fuchsia)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4204,7 +4675,9 @@ get_physical_device_external_fence_properties(
     ktl::api::external_fence_properties *                 _p_external_fence_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_fence_properties)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_fence_properties)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4220,7 +4693,9 @@ get_physical_device_external_fence_properties_khr(
     ktl::api::external_fence_properties *                 _p_external_fence_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_fence_properties_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_fence_properties_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4234,7 +4709,9 @@ get_fence_win32_handle_khr(ktl::api::device                                  _de
                            const ktl::api::fence_get_win32_handle_info_khr * _p_get_win32_handle_info,
                            ktl::api::win32_handle *                          _p_handle)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_win32_handle_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_win32_handle_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4246,7 +4723,9 @@ inline ktl::api::result
 import_fence_win32_handle_khr(ktl::api::device                                     _device,
                               const ktl::api::import_fence_win32_handle_info_khr * _p_import_fence_win32_handle_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_fence_win32_handle_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_fence_win32_handle_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4257,7 +4736,9 @@ import_fence_win32_handle_khr(ktl::api::device                                  
 inline ktl::api::result
 get_fence_fd_khr(ktl::api::device _device, const ktl::api::fence_get_fd_info_khr * _p_get_fd_info, int * _p_fd)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_fd_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_fd_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4268,7 +4749,9 @@ get_fence_fd_khr(ktl::api::device _device, const ktl::api::fence_get_fd_info_khr
 inline ktl::api::result
 import_fence_fd_khr(ktl::api::device _device, const ktl::api::import_fence_fd_info_khr * _p_import_fence_fd_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_fence_fd_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_fence_fd_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4279,7 +4762,9 @@ import_fence_fd_khr(ktl::api::device _device, const ktl::api::import_fence_fd_in
 inline ktl::api::result
 release_display_ext(ktl::api::physical_device _physical_device, ktl::api::display_khr _display)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_display_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_display_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4291,7 +4776,9 @@ inline ktl::api::result
 acquire_xlib_display_ext(ktl::api::physical_device _physical_device, ktl::api::xlib_display * _dpy,
                          ktl::api::display_khr _display)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_xlib_display_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_xlib_display_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4303,7 +4790,9 @@ inline ktl::api::result
 get_randr_output_display_ext(ktl::api::physical_device _physical_device, ktl::api::xlib_display * _dpy,
                              ktl::api::xlib_rr_output _rr_output, ktl::api::display_khr * _p_display)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_randr_output_display_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_randr_output_display_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4314,7 +4803,9 @@ get_randr_output_display_ext(ktl::api::physical_device _physical_device, ktl::ap
 inline ktl::api::result
 acquire_winrt_display_nv(ktl::api::physical_device _physical_device, ktl::api::display_khr _display)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_winrt_display_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_winrt_display_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4326,7 +4817,9 @@ inline ktl::api::result
 get_winrt_display_nv(ktl::api::physical_device _physical_device, ktl::u32 _device_relative_id,
                      ktl::api::display_khr * _p_display)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_winrt_display_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_winrt_display_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4338,7 +4831,9 @@ inline ktl::api::result
 display_power_control_ext(ktl::api::device _device, ktl::api::display_khr _display,
                           const ktl::api::display_power_info_ext * _p_display_power_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::display_power_control_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::display_power_control_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4350,7 +4845,9 @@ inline ktl::api::result
 register_device_event_ext(ktl::api::device _device, const ktl::api::device_event_info_ext * _p_device_event_info,
                           const ktl::api::allocation_callbacks * _p_allocator, ktl::api::fence * _p_fence)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::register_device_event_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::register_device_event_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4363,7 +4860,9 @@ register_display_event_ext(ktl::api::device _device, ktl::api::display_khr _disp
                            const ktl::api::display_event_info_ext * _p_display_event_info,
                            const ktl::api::allocation_callbacks * _p_allocator, ktl::api::fence * _p_fence)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::register_display_event_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::register_display_event_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4375,7 +4874,9 @@ inline ktl::api::result
 get_swapchain_counter_ext(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                           ktl::api::surface_counter_flag_bits_ext _counter, ktl::u64 * _p_counter_value)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_counter_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_counter_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4389,7 +4890,9 @@ get_physical_device_surface_capabilities_2_ext(ktl::api::physical_device        
                                                ktl::api::surface_capabilities_2_ext * _p_surface_capabilities)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_2_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_2_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4403,7 +4906,8 @@ enumerate_physical_device_groups(ktl::api::instance _instance, ktl::u32 * _p_phy
                                  ktl::api::physical_device_group_properties * _p_physical_device_group_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_physical_device_groups)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_physical_device_groups)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4417,7 +4921,8 @@ enumerate_physical_device_groups_khr(ktl::api::instance _instance, ktl::u32 * _p
                                      ktl::api::physical_device_group_properties * _p_physical_device_group_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_physical_device_groups_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::enumerate_physical_device_groups_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4432,7 +4937,8 @@ get_device_group_peer_memory_features(ktl::api::device _device, ktl::u32 _heap_i
                                       ktl::api::peer_memory_feature_flags * _p_peer_memory_features)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_peer_memory_features)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_peer_memory_features)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4447,7 +4953,9 @@ get_device_group_peer_memory_features_khr(ktl::api::device _device, ktl::u32 _he
                                           ktl::api::peer_memory_feature_flags * _p_peer_memory_features)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_peer_memory_features_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_peer_memory_features_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4460,7 +4968,9 @@ inline ktl::api::result
 bind_buffer_memory_2(ktl::api::device _device, ktl::u32 _bind_info_count,
                      const ktl::api::bind_buffer_memory_info * _p_bind_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_buffer_memory_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_buffer_memory_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4472,7 +4982,9 @@ inline ktl::api::result
 bind_buffer_memory_2_khr(ktl::api::device _device, ktl::u32 _bind_info_count,
                          const ktl::api::bind_buffer_memory_info * _p_bind_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_buffer_memory_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_buffer_memory_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4484,7 +4996,9 @@ inline ktl::api::result
 bind_image_memory_2(ktl::api::device _device, ktl::u32 _bind_info_count,
                     const ktl::api::bind_image_memory_info * _p_bind_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_image_memory_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_image_memory_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4496,7 +5010,9 @@ inline ktl::api::result
 bind_image_memory_2_khr(ktl::api::device _device, ktl::u32 _bind_info_count,
                         const ktl::api::bind_image_memory_info * _p_bind_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_image_memory_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_image_memory_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4507,7 +5023,9 @@ bind_image_memory_2_khr(ktl::api::device _device, ktl::u32 _bind_info_count,
 inline void
 cmd_set_device_mask(ktl::api::command_buffer _command_buffer, ktl::u32 _device_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_device_mask)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_device_mask)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4518,7 +5036,9 @@ cmd_set_device_mask(ktl::api::command_buffer _command_buffer, ktl::u32 _device_m
 inline void
 cmd_set_device_mask_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _device_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_device_mask_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_device_mask_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4531,7 +5051,9 @@ get_device_group_present_capabilities_khr(
     ktl::api::device _device, ktl::api::device_group_present_capabilities_khr * _p_device_group_present_capabilities)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_present_capabilities_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_present_capabilities_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4544,7 +5066,9 @@ get_device_group_surface_present_modes_khr(ktl::api::device _device, ktl::api::s
                                            ktl::api::device_group_present_mode_flags_khr * _p_modes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_surface_present_modes_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_surface_present_modes_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4556,7 +5080,9 @@ inline ktl::api::result
 acquire_next_image_2_khr(ktl::api::device _device, const ktl::api::acquire_next_image_info_khr * _p_acquire_info,
                          ktl::u32 * _p_image_index)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_next_image_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_next_image_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4568,7 +5094,9 @@ inline void
 cmd_dispatch_base(ktl::api::command_buffer _command_buffer, ktl::u32 _base_group_x, ktl::u32 _base_group_y,
                   ktl::u32 _base_group_z, ktl::u32 _group_count_x, ktl::u32 _group_count_y, ktl::u32 _group_count_z)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_base)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_base)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4581,7 +5109,9 @@ inline void
 cmd_dispatch_base_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _base_group_x, ktl::u32 _base_group_y,
                       ktl::u32 _base_group_z, ktl::u32 _group_count_x, ktl::u32 _group_count_y, ktl::u32 _group_count_z)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_base_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_base_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4595,7 +5125,9 @@ get_physical_device_present_rectangles_khr(ktl::api::physical_device _physical_d
                                            ktl::u32 * _p_rect_count, ktl::api::rect_2d * _p_rects)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_present_rectangles_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_present_rectangles_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4610,7 +5142,8 @@ create_descriptor_update_template(ktl::api::device                              
                                   ktl::api::descriptor_update_template * _p_descriptor_update_template)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_descriptor_update_template)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_descriptor_update_template)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4626,7 +5159,8 @@ create_descriptor_update_template_khr(ktl::api::device                          
                                       ktl::api::descriptor_update_template * _p_descriptor_update_template)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_descriptor_update_template_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_descriptor_update_template_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4641,7 +5175,8 @@ destroy_descriptor_update_template(ktl::api::device                       _devic
                                    const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_descriptor_update_template)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_descriptor_update_template)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4655,7 +5190,9 @@ destroy_descriptor_update_template_khr(ktl::api::device                       _d
                                        const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_descriptor_update_template_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_descriptor_update_template_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4669,7 +5206,8 @@ update_descriptor_set_with_template(ktl::api::device _device, ktl::api::descript
                                     const void *                         _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_descriptor_set_with_template)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_descriptor_set_with_template)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4684,7 +5222,9 @@ update_descriptor_set_with_template_khr(ktl::api::device _device, ktl::api::desc
                                         const void *                         _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_descriptor_set_with_template_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::update_descriptor_set_with_template_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4699,7 +5239,8 @@ cmd_push_descriptor_set_with_template(ktl::api::command_buffer             _comm
                                       ktl::api::pipeline_layout _layout, ktl::u32 _set, const void * _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4714,7 +5255,9 @@ cmd_push_descriptor_set_with_template_khr(ktl::api::command_buffer             _
                                           ktl::api::pipeline_layout _layout, ktl::u32 _set, const void * _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4727,7 +5270,9 @@ inline void
 set_hdr_metadata_ext(ktl::api::device _device, ktl::u32 _swapchain_count, const ktl::api::swapchain_khr * _p_swapchains,
                      const ktl::api::hdr_metadata_ext * _p_metadata)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_hdr_metadata_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_hdr_metadata_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4738,7 +5283,9 @@ set_hdr_metadata_ext(ktl::api::device _device, ktl::u32 _swapchain_count, const 
 inline ktl::api::result
 get_swapchain_status_khr(ktl::api::device _device, ktl::api::swapchain_khr _swapchain)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_status_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_status_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4751,7 +5298,8 @@ get_refresh_cycle_duration_google(ktl::api::device _device, ktl::api::swapchain_
                                   ktl::api::refresh_cycle_duration_google * _p_display_timing_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_refresh_cycle_duration_google)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_refresh_cycle_duration_google)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4765,7 +5313,8 @@ get_past_presentation_timing_google(ktl::api::device _device, ktl::api::swapchai
                                     ktl::api::past_presentation_timing_google * _p_presentation_timings)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_past_presentation_timing_google)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_past_presentation_timing_google)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4778,7 +5327,9 @@ inline ktl::api::result
 create_ios_surface_mvk(ktl::api::instance _instance, const ktl::api::ios_surface_create_info_mvk * _p_create_info,
                        const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_ios_surface_mvk)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_ios_surface_mvk)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4790,7 +5341,9 @@ inline ktl::api::result
 create_macos_surface_mvk(ktl::api::instance _instance, const ktl::api::macos_surface_create_info_mvk * _p_create_info,
                          const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_macos_surface_mvk)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_macos_surface_mvk)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4802,7 +5355,9 @@ inline ktl::api::result
 create_metal_surface_ext(ktl::api::instance _instance, const ktl::api::metal_surface_create_info_ext * _p_create_info,
                          const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_metal_surface_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_metal_surface_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4814,7 +5369,9 @@ inline void
 cmd_set_viewport_w_scaling_nv(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport,
                               ktl::u32 _viewport_count, const ktl::api::viewport_w_scaling_nv * _p_viewport_w_scalings)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_w_scaling_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_w_scaling_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4827,7 +5384,9 @@ inline void
 cmd_set_discard_rectangle_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_discard_rectangle,
                               ktl::u32 _discard_rectangle_count, const ktl::api::rect_2d * _p_discard_rectangles)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_discard_rectangle_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_discard_rectangle_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4841,7 +5400,8 @@ cmd_set_discard_rectangle_enable_ext(ktl::api::command_buffer _command_buffer,
                                      ktl::api::bool32         _discard_rectangle_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_discard_rectangle_enable_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_discard_rectangle_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4854,7 +5414,8 @@ cmd_set_discard_rectangle_mode_ext(ktl::api::command_buffer             _command
                                    ktl::api::discard_rectangle_mode_ext _discard_rectangle_mode)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_discard_rectangle_mode_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_discard_rectangle_mode_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4866,7 +5427,9 @@ inline void
 cmd_set_sample_locations_ext(ktl::api::command_buffer                    _command_buffer,
                              const ktl::api::sample_locations_info_ext * _p_sample_locations_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_sample_locations_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_sample_locations_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4880,7 +5443,9 @@ get_physical_device_multisample_properties_ext(ktl::api::physical_device        
                                                ktl::api::multisample_properties_ext * _p_multisample_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_multisample_properties_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_multisample_properties_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4895,7 +5460,9 @@ get_physical_device_surface_capabilities_2_khr(ktl::api::physical_device        
                                                ktl::api::surface_capabilities_2_khr * _p_surface_capabilities)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4911,7 +5478,9 @@ get_physical_device_surface_formats_2_khr(ktl::api::physical_device             
                                           ktl::api::surface_format_2_khr *                     _p_surface_formats)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_formats_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_formats_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4925,7 +5494,9 @@ get_physical_device_display_properties_2_khr(ktl::api::physical_device _physical
                                              ktl::api::display_properties_2_khr * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_properties_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_properties_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4939,7 +5510,9 @@ get_physical_device_display_plane_properties_2_khr(ktl::api::physical_device    
                                                    ktl::api::display_plane_properties_2_khr * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_plane_properties_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_plane_properties_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4953,7 +5526,8 @@ get_display_mode_properties_2_khr(ktl::api::physical_device _physical_device, kt
                                   ktl::u32 * _p_property_count, ktl::api::display_mode_properties_2_khr * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_mode_properties_2_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_mode_properties_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4967,7 +5541,8 @@ get_display_plane_capabilities_2_khr(ktl::api::physical_device                  
                                      ktl::api::display_plane_capabilities_2_khr * _p_capabilities)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_plane_capabilities_2_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_plane_capabilities_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4980,7 +5555,8 @@ get_buffer_memory_requirements_2(ktl::api::device _device, const ktl::api::buffe
                                  ktl::api::memory_requirements_2 * _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_memory_requirements_2)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_memory_requirements_2)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -4994,7 +5570,8 @@ get_buffer_memory_requirements_2_khr(ktl::api::device                           
                                      ktl::api::memory_requirements_2 *                   _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_memory_requirements_2_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_memory_requirements_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5006,7 +5583,9 @@ inline void
 get_image_memory_requirements_2(ktl::api::device _device, const ktl::api::image_memory_requirements_info_2 * _p_info,
                                 ktl::api::memory_requirements_2 * _p_memory_requirements)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_memory_requirements_2)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_memory_requirements_2)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5020,7 +5599,8 @@ get_image_memory_requirements_2_khr(ktl::api::device                            
                                     ktl::api::memory_requirements_2 *                  _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_memory_requirements_2_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_memory_requirements_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5035,7 +5615,9 @@ get_image_sparse_memory_requirements_2(ktl::api::device                         
                                        ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_sparse_memory_requirements_2)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_sparse_memory_requirements_2)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5051,7 +5633,9 @@ get_image_sparse_memory_requirements_2_khr(ktl::api::device                     
                                            ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_sparse_memory_requirements_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_sparse_memory_requirements_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5066,7 +5650,8 @@ get_device_buffer_memory_requirements(ktl::api::device                          
                                       ktl::api::memory_requirements_2 *                   _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_buffer_memory_requirements)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_buffer_memory_requirements)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5080,7 +5665,9 @@ get_device_buffer_memory_requirements_khr(ktl::api::device                      
                                           ktl::api::memory_requirements_2 *                   _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_buffer_memory_requirements_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_buffer_memory_requirements_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5094,7 +5681,8 @@ get_device_image_memory_requirements(ktl::api::device                           
                                      ktl::api::memory_requirements_2 *                  _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_memory_requirements)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_memory_requirements)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5108,7 +5696,9 @@ get_device_image_memory_requirements_khr(ktl::api::device                       
                                          ktl::api::memory_requirements_2 *                  _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_memory_requirements_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_memory_requirements_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5123,7 +5713,9 @@ get_device_image_sparse_memory_requirements(
     ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_sparse_memory_requirements)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_sparse_memory_requirements)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5139,7 +5731,9 @@ get_device_image_sparse_memory_requirements_khr(
     ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_sparse_memory_requirements_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_sparse_memory_requirements_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5154,7 +5748,9 @@ create_sampler_ycbcr_conversion(ktl::api::device                                
                                 const ktl::api::allocation_callbacks *                 _p_allocator,
                                 ktl::api::sampler_ycbcr_conversion *                   _p_ycbcr_conversion)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_sampler_ycbcr_conversion)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_sampler_ycbcr_conversion)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5169,7 +5765,8 @@ create_sampler_ycbcr_conversion_khr(ktl::api::device                            
                                     ktl::api::sampler_ycbcr_conversion *                   _p_ycbcr_conversion)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_sampler_ycbcr_conversion_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_sampler_ycbcr_conversion_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5182,7 +5779,8 @@ destroy_sampler_ycbcr_conversion(ktl::api::device _device, ktl::api::sampler_ycb
                                  const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_sampler_ycbcr_conversion)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_sampler_ycbcr_conversion)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5195,7 +5793,8 @@ destroy_sampler_ycbcr_conversion_khr(ktl::api::device _device, ktl::api::sampler
                                      const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_sampler_ycbcr_conversion_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_sampler_ycbcr_conversion_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5207,7 +5806,9 @@ inline void
 get_device_queue_2(ktl::api::device _device, const ktl::api::device_queue_info_2 * _p_queue_info,
                    ktl::api::queue * _p_queue)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_queue_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_queue_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5220,7 +5821,9 @@ create_validation_cache_ext(ktl::api::device _device, const ktl::api::validation
                             const ktl::api::allocation_callbacks * _p_allocator,
                             ktl::api::validation_cache_ext *       _p_validation_cache)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_validation_cache_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_validation_cache_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5232,7 +5835,9 @@ inline void
 destroy_validation_cache_ext(ktl::api::device _device, ktl::api::validation_cache_ext _validation_cache,
                              const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_validation_cache_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_validation_cache_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5244,7 +5849,9 @@ inline ktl::api::result
 get_validation_cache_data_ext(ktl::api::device _device, ktl::api::validation_cache_ext _validation_cache,
                               ktl::usize * _p_data_size, void * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_validation_cache_data_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_validation_cache_data_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5256,7 +5863,9 @@ inline ktl::api::result
 merge_validation_caches_ext(ktl::api::device _device, ktl::api::validation_cache_ext _dst_cache,
                             ktl::u32 _src_cache_count, const ktl::api::validation_cache_ext * _p_src_caches)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::merge_validation_caches_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::merge_validation_caches_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5270,7 +5879,8 @@ get_descriptor_set_layout_support(ktl::api::device                              
                                   ktl::api::descriptor_set_layout_support *           _p_support)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_support)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_support)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5284,7 +5894,8 @@ get_descriptor_set_layout_support_khr(ktl::api::device                          
                                       ktl::api::descriptor_set_layout_support *           _p_support)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_support_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_support_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5297,7 +5908,9 @@ get_shader_info_amd(ktl::api::device _device, ktl::api::pipeline _pipeline,
                     ktl::api::shader_stage_flag_bits _shader_stage, ktl::api::shader_info_type_amd _info_type,
                     ktl::usize * _p_info_size, void * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_info_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_info_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5309,7 +5922,9 @@ inline void
 set_local_dimming_amd(ktl::api::device _device, ktl::api::swapchain_khr _swap_chain,
                       ktl::api::bool32 _local_dimming_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_local_dimming_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_local_dimming_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5323,7 +5938,9 @@ get_physical_device_calibrateable_time_domains_khr(ktl::api::physical_device   _
                                                    ktl::api::time_domain_khr * _p_time_domains)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_calibrateable_time_domains_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_calibrateable_time_domains_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5338,7 +5955,9 @@ get_physical_device_calibrateable_time_domains_ext(ktl::api::physical_device   _
                                                    ktl::api::time_domain_khr * _p_time_domains)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_calibrateable_time_domains_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_calibrateable_time_domains_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5352,7 +5971,9 @@ get_calibrated_timestamps_khr(ktl::api::device _device, ktl::u32 _timestamp_coun
                               const ktl::api::calibrated_timestamp_info_khr * _p_timestamp_infos,
                               ktl::u64 * _p_timestamps, ktl::u64 * _p_max_deviation)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_calibrated_timestamps_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_calibrated_timestamps_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5366,7 +5987,9 @@ get_calibrated_timestamps_ext(ktl::api::device _device, ktl::u32 _timestamp_coun
                               const ktl::api::calibrated_timestamp_info_khr * _p_timestamp_infos,
                               ktl::u64 * _p_timestamps, ktl::u64 * _p_max_deviation)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_calibrated_timestamps_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_calibrated_timestamps_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5379,7 +6002,9 @@ inline ktl::api::result
 set_debug_utils_object_name_ext(ktl::api::device                                   _device,
                                 const ktl::api::debug_utils_object_name_info_ext * _p_name_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_debug_utils_object_name_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_debug_utils_object_name_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5390,7 +6015,9 @@ set_debug_utils_object_name_ext(ktl::api::device                                
 inline ktl::api::result
 set_debug_utils_object_tag_ext(ktl::api::device _device, const ktl::api::debug_utils_object_tag_info_ext * _p_tag_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_debug_utils_object_tag_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_debug_utils_object_tag_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5402,7 +6029,8 @@ inline void
 queue_begin_debug_utils_label_ext(ktl::api::queue _queue, const ktl::api::debug_utils_label_ext * _p_label_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_begin_debug_utils_label_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_begin_debug_utils_label_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5413,7 +6041,9 @@ queue_begin_debug_utils_label_ext(ktl::api::queue _queue, const ktl::api::debug_
 inline void
 queue_end_debug_utils_label_ext(ktl::api::queue _queue)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_end_debug_utils_label_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_end_debug_utils_label_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5425,7 +6055,8 @@ inline void
 queue_insert_debug_utils_label_ext(ktl::api::queue _queue, const ktl::api::debug_utils_label_ext * _p_label_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_insert_debug_utils_label_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_insert_debug_utils_label_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5437,7 +6068,9 @@ inline void
 cmd_begin_debug_utils_label_ext(ktl::api::command_buffer                _command_buffer,
                                 const ktl::api::debug_utils_label_ext * _p_label_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_debug_utils_label_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_debug_utils_label_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5448,7 +6081,9 @@ cmd_begin_debug_utils_label_ext(ktl::api::command_buffer                _command
 inline void
 cmd_end_debug_utils_label_ext(ktl::api::command_buffer _command_buffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_debug_utils_label_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_debug_utils_label_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5461,7 +6096,8 @@ cmd_insert_debug_utils_label_ext(ktl::api::command_buffer                _comman
                                  const ktl::api::debug_utils_label_ext * _p_label_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_insert_debug_utils_label_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_insert_debug_utils_label_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5476,7 +6112,8 @@ create_debug_utils_messenger_ext(ktl::api::instance                             
                                  ktl::api::debug_utils_messenger_ext *                   _p_messenger)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_debug_utils_messenger_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_debug_utils_messenger_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5489,7 +6126,8 @@ destroy_debug_utils_messenger_ext(ktl::api::instance _instance, ktl::api::debug_
                                   const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_debug_utils_messenger_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_debug_utils_messenger_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5503,7 +6141,9 @@ submit_debug_utils_message_ext(ktl::api::instance                               
                                ktl::api::debug_utils_message_type_flags_ext              _message_types,
                                const ktl::api::debug_utils_messenger_callback_data_ext * _p_callback_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::submit_debug_utils_message_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::submit_debug_utils_message_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5518,7 +6158,9 @@ get_memory_host_pointer_properties_ext(ktl::api::device                         
                                        ktl::api::memory_host_pointer_properties_ext * _p_memory_host_pointer_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_host_pointer_properties_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_host_pointer_properties_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5532,7 +6174,9 @@ cmd_write_buffer_marker_amd(ktl::api::command_buffer           _command_buffer,
                             ktl::api::pipeline_stage_flag_bits _pipeline_stage, ktl::api::buffer _dst_buffer,
                             ktl::api::dvsize _dst_offset, ktl::u32 _marker)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_buffer_marker_amd)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_buffer_marker_amd)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5544,7 +6188,9 @@ inline ktl::api::result
 create_render_pass_2(ktl::api::device _device, const ktl::api::render_pass_create_info_2 * _p_create_info,
                      const ktl::api::allocation_callbacks * _p_allocator, ktl::api::render_pass * _p_render_pass)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_render_pass_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_render_pass_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5556,7 +6202,9 @@ inline ktl::api::result
 create_render_pass_2_khr(ktl::api::device _device, const ktl::api::render_pass_create_info_2 * _p_create_info,
                          const ktl::api::allocation_callbacks * _p_allocator, ktl::api::render_pass * _p_render_pass)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_render_pass_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_render_pass_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5569,7 +6217,9 @@ cmd_begin_render_pass_2(ktl::api::command_buffer                 _command_buffer
                         const ktl::api::render_pass_begin_info * _p_render_pass_begin,
                         const ktl::api::subpass_begin_info *     _p_subpass_begin_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_render_pass_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_render_pass_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5582,7 +6232,9 @@ cmd_begin_render_pass_2_khr(ktl::api::command_buffer                 _command_bu
                             const ktl::api::render_pass_begin_info * _p_render_pass_begin,
                             const ktl::api::subpass_begin_info *     _p_subpass_begin_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_render_pass_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_render_pass_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5594,7 +6246,9 @@ inline void
 cmd_next_subpass_2(ktl::api::command_buffer _command_buffer, const ktl::api::subpass_begin_info * _p_subpass_begin_info,
                    const ktl::api::subpass_end_info * _p_subpass_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_next_subpass_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_next_subpass_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5607,7 +6261,9 @@ cmd_next_subpass_2_khr(ktl::api::command_buffer             _command_buffer,
                        const ktl::api::subpass_begin_info * _p_subpass_begin_info,
                        const ktl::api::subpass_end_info *   _p_subpass_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_next_subpass_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_next_subpass_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5618,7 +6274,9 @@ cmd_next_subpass_2_khr(ktl::api::command_buffer             _command_buffer,
 inline void
 cmd_end_render_pass_2(ktl::api::command_buffer _command_buffer, const ktl::api::subpass_end_info * _p_subpass_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5630,7 +6288,9 @@ inline void
 cmd_end_render_pass_2_khr(ktl::api::command_buffer           _command_buffer,
                           const ktl::api::subpass_end_info * _p_subpass_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5641,7 +6301,9 @@ cmd_end_render_pass_2_khr(ktl::api::command_buffer           _command_buffer,
 inline ktl::api::result
 get_semaphore_counter_value(ktl::api::device _device, ktl::api::semaphore _semaphore, ktl::u64 * _p_value)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_counter_value)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_counter_value)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5652,7 +6314,9 @@ get_semaphore_counter_value(ktl::api::device _device, ktl::api::semaphore _semap
 inline ktl::api::result
 get_semaphore_counter_value_khr(ktl::api::device _device, ktl::api::semaphore _semaphore, ktl::u64 * _p_value)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_counter_value_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_counter_value_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5663,7 +6327,9 @@ get_semaphore_counter_value_khr(ktl::api::device _device, ktl::api::semaphore _s
 inline ktl::api::result
 wait_semaphores(ktl::api::device _device, const ktl::api::semaphore_wait_info * _p_wait_info, ktl::u64 _timeout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_semaphores)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_semaphores)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5674,7 +6340,9 @@ wait_semaphores(ktl::api::device _device, const ktl::api::semaphore_wait_info * 
 inline ktl::api::result
 wait_semaphores_khr(ktl::api::device _device, const ktl::api::semaphore_wait_info * _p_wait_info, ktl::u64 _timeout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_semaphores_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_semaphores_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5685,7 +6353,9 @@ wait_semaphores_khr(ktl::api::device _device, const ktl::api::semaphore_wait_inf
 inline ktl::api::result
 signal_semaphore(ktl::api::device _device, const ktl::api::semaphore_signal_info * _p_signal_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::signal_semaphore)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::signal_semaphore)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5696,7 +6366,9 @@ signal_semaphore(ktl::api::device _device, const ktl::api::semaphore_signal_info
 inline ktl::api::result
 signal_semaphore_khr(ktl::api::device _device, const ktl::api::semaphore_signal_info * _p_signal_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::signal_semaphore_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::signal_semaphore_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5709,7 +6381,9 @@ get_android_hardware_buffer_properties_android(ktl::api::device _device, const A
                                                ktl::api::android_hardware_buffer_properties_android * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_android_hardware_buffer_properties_android)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_android_hardware_buffer_properties_android)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5723,7 +6397,9 @@ get_memory_android_hardware_buffer_android(ktl::api::device                     
                                            AHardwareBuffer **                                                _p_buffer)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_android_hardware_buffer_android)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_android_hardware_buffer_android)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5736,7 +6412,9 @@ cmd_draw_indirect_count(ktl::api::command_buffer _command_buffer, ktl::api::buff
                         ktl::api::buffer _count_buffer, ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count,
                         ktl::u32 _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5750,7 +6428,9 @@ cmd_draw_indirect_count_khr(ktl::api::command_buffer _command_buffer, ktl::api::
                             ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
                             ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5764,7 +6444,9 @@ cmd_draw_indirect_count_amd(ktl::api::command_buffer _command_buffer, ktl::api::
                             ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
                             ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_amd)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_amd)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5778,7 +6460,9 @@ cmd_draw_indexed_indirect_count(ktl::api::command_buffer _command_buffer, ktl::a
                                 ktl::api::dvsize _offset, ktl::api::buffer _count_buffer,
                                 ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5793,7 +6477,8 @@ cmd_draw_indexed_indirect_count_khr(ktl::api::command_buffer _command_buffer, kt
                                     ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5808,7 +6493,8 @@ cmd_draw_indexed_indirect_count_amd(ktl::api::command_buffer _command_buffer, kt
                                     ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_amd)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_amd)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5820,7 +6506,9 @@ cmd_draw_indexed_indirect_count_amd(ktl::api::command_buffer _command_buffer, kt
 inline void
 cmd_set_checkpoint_nv(ktl::api::command_buffer _command_buffer, const void * _p_checkpoint_marker)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_checkpoint_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_checkpoint_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5832,7 +6520,9 @@ inline void
 get_queue_checkpoint_data_nv(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count,
                              ktl::api::checkpoint_data_nv * _p_checkpoint_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_queue_checkpoint_data_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_queue_checkpoint_data_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5846,7 +6536,9 @@ cmd_bind_transform_feedback_buffers_ext(ktl::api::command_buffer _command_buffer
                                         const ktl::api::dvsize * _p_offsets, const ktl::api::dvsize * _p_sizes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_transform_feedback_buffers_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_transform_feedback_buffers_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5861,7 +6553,8 @@ cmd_begin_transform_feedback_ext(ktl::api::command_buffer _command_buffer, ktl::
                                  const ktl::api::dvsize * _p_counter_buffer_offsets)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_transform_feedback_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_transform_feedback_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5875,7 +6568,9 @@ cmd_end_transform_feedback_ext(ktl::api::command_buffer _command_buffer, ktl::u3
                                ktl::u32 _counter_buffer_count, const ktl::api::buffer * _p_counter_buffers,
                                const ktl::api::dvsize * _p_counter_buffer_offsets)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_transform_feedback_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_transform_feedback_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5888,7 +6583,9 @@ inline void
 cmd_begin_query_indexed_ext(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _query,
                             ktl::api::query_control_flags _flags, ktl::u32 _index)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_query_indexed_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_query_indexed_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5900,7 +6597,9 @@ inline void
 cmd_end_query_indexed_ext(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _query,
                           ktl::u32 _index)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_query_indexed_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_query_indexed_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5915,7 +6614,8 @@ cmd_draw_indirect_byte_count_ext(ktl::api::command_buffer _command_buffer, ktl::
                                  ktl::u32 _vertex_stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_byte_count_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_byte_count_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5929,7 +6629,9 @@ inline void
 cmd_set_exclusive_scissor_nv(ktl::api::command_buffer _command_buffer, ktl::u32 _first_exclusive_scissor,
                              ktl::u32 _exclusive_scissor_count, const ktl::api::rect_2d * _p_exclusive_scissors)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_exclusive_scissor_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_exclusive_scissor_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5944,7 +6646,8 @@ cmd_set_exclusive_scissor_enable_nv(ktl::api::command_buffer _command_buffer, kt
                                     const ktl::api::bool32 * _p_exclusive_scissor_enables)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_exclusive_scissor_enable_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_exclusive_scissor_enable_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5957,7 +6660,9 @@ inline void
 cmd_bind_shading_rate_image_nv(ktl::api::command_buffer _command_buffer, ktl::api::image_view _image_view,
                                ktl::api::image_layout _image_layout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_shading_rate_image_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_shading_rate_image_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5971,7 +6676,9 @@ cmd_set_viewport_shading_rate_palette_nv(ktl::api::command_buffer _command_buffe
                                          const ktl::api::shading_rate_palette_nv * _p_shading_rate_palettes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_shading_rate_palette_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_shading_rate_palette_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5986,7 +6693,9 @@ cmd_set_coarse_sample_order_nv(ktl::api::command_buffer                        _
                                ktl::u32                                        _custom_sample_order_count,
                                const ktl::api::coarse_sample_order_custom_nv * _p_custom_sample_orders)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coarse_sample_order_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coarse_sample_order_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -5998,7 +6707,9 @@ cmd_set_coarse_sample_order_nv(ktl::api::command_buffer                        _
 inline void
 cmd_draw_mesh_tasks_nv(ktl::api::command_buffer _command_buffer, ktl::u32 _task_count, ktl::u32 _first_task)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6010,7 +6721,9 @@ inline void
 cmd_draw_mesh_tasks_indirect_nv(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
                                 ktl::api::dvsize _offset, ktl::u32 _draw_count, ktl::u32 _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6024,7 +6737,8 @@ cmd_draw_mesh_tasks_indirect_count_nv(ktl::api::command_buffer _command_buffer, 
                                       ktl::api::dvsize _count_buffer_offset, ktl::u32 _max_draw_count, ktl::u32 _stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_count_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_count_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6037,7 +6751,9 @@ inline void
 cmd_draw_mesh_tasks_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _group_count_x, ktl::u32 _group_count_y,
                         ktl::u32 _group_count_z)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6050,7 +6766,8 @@ cmd_draw_mesh_tasks_indirect_ext(ktl::api::command_buffer _command_buffer, ktl::
                                  ktl::api::dvsize _offset, ktl::u32 _draw_count, ktl::u32 _stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6065,7 +6782,9 @@ cmd_draw_mesh_tasks_indirect_count_ext(ktl::api::command_buffer _command_buffer,
                                        ktl::u32 _stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_count_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_count_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6077,7 +6796,9 @@ cmd_draw_mesh_tasks_indirect_count_ext(ktl::api::command_buffer _command_buffer,
 inline ktl::api::result
 compile_deferred_nv(ktl::api::device _device, ktl::api::pipeline _pipeline, ktl::u32 _shader)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::compile_deferred_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::compile_deferred_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6092,7 +6813,8 @@ create_acceleration_structure_nv(ktl::api::device                               
                                  ktl::api::acceleration_structure_nv *                   _p_acceleration_structure)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_acceleration_structure_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_acceleration_structure_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6105,7 +6827,9 @@ inline void
 cmd_bind_invocation_mask_huawei(ktl::api::command_buffer _command_buffer, ktl::api::image_view _image_view,
                                 ktl::api::image_layout _image_layout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_invocation_mask_huawei)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_invocation_mask_huawei)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6119,7 +6843,8 @@ destroy_acceleration_structure_khr(ktl::api::device                       _devic
                                    const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_acceleration_structure_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_acceleration_structure_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6132,7 +6857,8 @@ destroy_acceleration_structure_nv(ktl::api::device _device, ktl::api::accelerati
                                   const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_acceleration_structure_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_acceleration_structure_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6146,7 +6872,9 @@ get_acceleration_structure_memory_requirements_nv(
     ktl::api::memory_requirements_2 * _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_acceleration_structure_memory_requirements_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_acceleration_structure_memory_requirements_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6159,7 +6887,8 @@ bind_acceleration_structure_memory_nv(ktl::api::device _device, ktl::u32 _bind_i
                                       const ktl::api::bind_acceleration_structure_memory_info_nv * _p_bind_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_acceleration_structure_memory_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_acceleration_structure_memory_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6173,7 +6902,8 @@ cmd_copy_acceleration_structure_nv(ktl::api::command_buffer _command_buffer, ktl
                                    ktl::api::copy_acceleration_structure_mode_khr _mode)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_acceleration_structure_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_acceleration_structure_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6186,7 +6916,8 @@ cmd_copy_acceleration_structure_khr(ktl::api::command_buffer                    
                                     const ktl::api::copy_acceleration_structure_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_acceleration_structure_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_acceleration_structure_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6198,7 +6929,9 @@ inline ktl::api::result
 copy_acceleration_structure_khr(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
                                 const ktl::api::copy_acceleration_structure_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_acceleration_structure_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_acceleration_structure_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6211,7 +6944,9 @@ cmd_copy_acceleration_structure_to_memory_khr(ktl::api::command_buffer _command_
                                               const ktl::api::copy_acceleration_structure_to_memory_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_acceleration_structure_to_memory_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_acceleration_structure_to_memory_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6225,7 +6960,9 @@ copy_acceleration_structure_to_memory_khr(ktl::api::device                 _devi
                                           const ktl::api::copy_acceleration_structure_to_memory_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_acceleration_structure_to_memory_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_acceleration_structure_to_memory_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6238,7 +6975,9 @@ cmd_copy_memory_to_acceleration_structure_khr(ktl::api::command_buffer _command_
                                               const ktl::api::copy_memory_to_acceleration_structure_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_acceleration_structure_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_acceleration_structure_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6252,7 +6991,9 @@ copy_memory_to_acceleration_structure_khr(ktl::api::device                 _devi
                                           const ktl::api::copy_memory_to_acceleration_structure_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_memory_to_acceleration_structure_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_memory_to_acceleration_structure_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6267,7 +7008,9 @@ cmd_write_acceleration_structures_properties_khr(
     ktl::api::query_pool _query_pool, ktl::u32 _first_query)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_acceleration_structures_properties_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_acceleration_structures_properties_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6285,7 +7028,9 @@ cmd_write_acceleration_structures_properties_nv(ktl::api::command_buffer _comman
                                                 ktl::u32 _first_query)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_acceleration_structures_properties_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_acceleration_structures_properties_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6304,7 +7049,8 @@ cmd_build_acceleration_structure_nv(ktl::api::command_buffer                    
                                     ktl::api::dvsize _scratch_offset)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_acceleration_structure_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_acceleration_structure_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6320,7 +7066,9 @@ write_acceleration_structures_properties_khr(ktl::api::device _device, ktl::u32 
                                              ktl::usize _stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::write_acceleration_structures_properties_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::write_acceleration_structures_properties_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6337,7 +7085,9 @@ cmd_trace_rays_khr(ktl::api::command_buffer                            _command_
                    const ktl::api::strided_device_address_region_khr * _p_callable_shader_binding_table,
                    ktl::u32 _width, ktl::u32 _height, ktl::u32 _depth)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6356,7 +7106,9 @@ cmd_trace_rays_nv(ktl::api::command_buffer _command_buffer, ktl::api::buffer _ra
                   ktl::api::dvsize _callable_shader_binding_offset, ktl::api::dvsize _callable_shader_binding_stride,
                   ktl::u32 _width, ktl::u32 _height, ktl::u32 _depth)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6374,7 +7126,9 @@ get_ray_tracing_shader_group_handles_khr(ktl::api::device _device, ktl::api::pip
                                          ktl::u32 _group_count, ktl::usize _data_size, void * _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_ray_tracing_shader_group_handles_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_ray_tracing_shader_group_handles_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6388,7 +7142,9 @@ get_ray_tracing_shader_group_handles_nv(ktl::api::device _device, ktl::api::pipe
                                         ktl::u32 _group_count, ktl::usize _data_size, void * _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_ray_tracing_shader_group_handles_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_ray_tracing_shader_group_handles_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6402,8 +7158,10 @@ get_ray_tracing_capture_replay_shader_group_handles_khr(ktl::api::device _device
                                                         ktl::u32 _first_group, ktl::u32 _group_count,
                                                         ktl::usize _data_size, void * _p_data)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_ray_tracing_capture_replay_shader_group_handles_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_ray_tracing_capture_replay_shader_group_handles_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6418,7 +7176,8 @@ get_acceleration_structure_handle_nv(ktl::api::device                    _device
                                      void * _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_acceleration_structure_handle_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_acceleration_structure_handle_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6432,7 +7191,9 @@ create_ray_tracing_pipelines_nv(ktl::api::device _device, ktl::api::pipeline_cac
                                 const ktl::api::ray_tracing_pipeline_create_info_nv * _p_create_infos,
                                 const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_ray_tracing_pipelines_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_ray_tracing_pipelines_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6448,7 +7209,8 @@ create_ray_tracing_pipelines_khr(ktl::api::device _device, ktl::api::deferred_op
                                  const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_ray_tracing_pipelines_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_ray_tracing_pipelines_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6462,8 +7224,10 @@ get_physical_device_cooperative_matrix_properties_nv(ktl::api::physical_device  
                                                      ktl::u32 *                                   _p_property_count,
                                                      ktl::api::cooperative_matrix_properties_nv * _p_properties)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_cooperative_matrix_properties_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_cooperative_matrix_properties_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6480,7 +7244,9 @@ cmd_trace_rays_indirect_khr(ktl::api::command_buffer                            
                             const ktl::api::strided_device_address_region_khr * _p_callable_shader_binding_table,
                             ktl::api::dvaddr                                    _indirect_device_address)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_indirect_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_indirect_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6493,7 +7259,9 @@ cmd_trace_rays_indirect_khr(ktl::api::command_buffer                            
 inline void
 cmd_trace_rays_indirect_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _indirect_device_address)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_indirect_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_indirect_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6507,7 +7275,9 @@ get_cluster_acceleration_structure_build_sizes_nv(
     ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_cluster_acceleration_structure_build_sizes_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_cluster_acceleration_structure_build_sizes_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6520,8 +7290,10 @@ cmd_build_cluster_acceleration_structure_indirect_nv(
     ktl::api::command_buffer                                          _command_buffer,
     const ktl::api::cluster_acceleration_structure_commands_info_nv * _p_command_infos)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_cluster_acceleration_structure_indirect_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::cmd_build_cluster_acceleration_structure_indirect_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6535,7 +7307,9 @@ get_device_acceleration_structure_compatibility_khr(
     ktl::api::acceleration_structure_compatibility_khr * _p_compatibility)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_acceleration_structure_compatibility_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_acceleration_structure_compatibility_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6548,7 +7322,9 @@ get_ray_tracing_shader_group_stack_size_khr(ktl::api::device _device, ktl::api::
                                             ktl::api::shader_group_shader_khr _group_shader)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_ray_tracing_shader_group_stack_size_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_ray_tracing_shader_group_stack_size_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6560,7 +7336,9 @@ inline void
 cmd_set_ray_tracing_pipeline_stack_size_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _pipeline_stack_size)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_ray_tracing_pipeline_stack_size_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_ray_tracing_pipeline_stack_size_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6571,7 +7349,9 @@ cmd_set_ray_tracing_pipeline_stack_size_khr(ktl::api::command_buffer _command_bu
 inline ktl::u32
 get_image_view_handle_nvx(ktl::api::device _device, const ktl::api::image_view_handle_info_nvx * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_handle_nvx)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_handle_nvx)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6582,7 +7362,9 @@ get_image_view_handle_nvx(ktl::api::device _device, const ktl::api::image_view_h
 inline ktl::u64
 get_image_view_handle_64_nvx(ktl::api::device _device, const ktl::api::image_view_handle_info_nvx * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_handle_64_nvx)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_handle_64_nvx)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6594,7 +7376,9 @@ inline ktl::api::result
 get_image_view_address_nvx(ktl::api::device _device, ktl::api::image_view _image_view,
                            ktl::api::image_view_address_properties_nvx * _p_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_address_nvx)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_address_nvx)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6607,7 +7391,9 @@ get_device_combined_image_sampler_index_nvx(ktl::api::device _device, ktl::u64 _
                                             ktl::u64 _sampler_index)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_combined_image_sampler_index_nvx)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_combined_image_sampler_index_nvx)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6622,7 +7408,9 @@ get_physical_device_surface_present_modes_2_ext(ktl::api::physical_device       
                                                 ktl::api::present_mode_khr * _p_present_modes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_present_modes_2_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_present_modes_2_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6637,7 +7425,9 @@ get_device_group_surface_present_modes_2_ext(ktl::api::device                   
                                              ktl::api::device_group_present_mode_flags_khr *      _p_modes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_surface_present_modes_2_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_surface_present_modes_2_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6649,7 +7439,9 @@ inline ktl::api::result
 acquire_full_screen_exclusive_mode_ext(ktl::api::device _device, ktl::api::swapchain_khr _swapchain)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_full_screen_exclusive_mode_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_full_screen_exclusive_mode_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6661,7 +7453,9 @@ inline ktl::api::result
 release_full_screen_exclusive_mode_ext(ktl::api::device _device, ktl::api::swapchain_khr _swapchain)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_full_screen_exclusive_mode_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_full_screen_exclusive_mode_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6675,8 +7469,11 @@ enumerate_physical_device_queue_family_performance_query_counters_khr(
     ktl::api::performance_counter_khr *             _p_counters,
     ktl::api::performance_counter_description_khr * _p_counter_descriptions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::enumerate_physical_device_queue_family_performance_query_counters_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(
+                  ktl::api::command::enumerate_physical_device_queue_family_performance_query_counters_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6690,8 +7487,10 @@ get_physical_device_queue_family_performance_query_passes_khr(
     ktl::api::physical_device                                _physical_device,
     const ktl::api::query_pool_performance_create_info_khr * _p_performance_query_create_info, ktl::u32 * _p_num_passes)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_physical_device_queue_family_performance_query_passes_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(
+                                ktl::api::command::get_physical_device_queue_family_performance_query_passes_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6703,7 +7502,9 @@ get_physical_device_queue_family_performance_query_passes_khr(
 inline ktl::api::result
 acquire_profiling_lock_khr(ktl::api::device _device, const ktl::api::acquire_profiling_lock_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_profiling_lock_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_profiling_lock_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6714,7 +7515,9 @@ acquire_profiling_lock_khr(ktl::api::device _device, const ktl::api::acquire_pro
 inline void
 release_profiling_lock_khr(ktl::api::device _device)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_profiling_lock_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_profiling_lock_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6727,7 +7530,9 @@ get_image_drm_format_modifier_properties_ext(ktl::api::device _device, ktl::api:
                                              ktl::api::image_drm_format_modifier_properties_ext * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_drm_format_modifier_properties_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_drm_format_modifier_properties_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6739,7 +7544,8 @@ inline ktl::u64
 get_buffer_opaque_capture_address(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_opaque_capture_address)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_opaque_capture_address)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6751,7 +7557,8 @@ inline ktl::u64
 get_buffer_opaque_capture_address_khr(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_opaque_capture_address_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_opaque_capture_address_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6762,7 +7569,9 @@ get_buffer_opaque_capture_address_khr(ktl::api::device _device, const ktl::api::
 inline ktl::api::dvaddr
 get_buffer_device_address(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_device_address)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_device_address)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6773,7 +7582,9 @@ get_buffer_device_address(ktl::api::device _device, const ktl::api::buffer_devic
 inline ktl::api::dvaddr
 get_buffer_device_address_khr(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_device_address_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_device_address_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6784,7 +7595,9 @@ get_buffer_device_address_khr(ktl::api::device _device, const ktl::api::buffer_d
 inline ktl::api::dvaddr
 get_buffer_device_address_ext(ktl::api::device _device, const ktl::api::buffer_device_address_info * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_device_address_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_device_address_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6797,7 +7610,9 @@ create_headless_surface_ext(ktl::api::instance                                 _
                             const ktl::api::headless_surface_create_info_ext * _p_create_info,
                             const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_headless_surface_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_headless_surface_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6810,8 +7625,11 @@ get_physical_device_supported_framebuffer_mixed_samples_combinations_nv(
     ktl::api::physical_device _physical_device, ktl::u32 * _p_combination_count,
     ktl::api::framebuffer_mixed_samples_combination_nv * _p_combinations)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(
+                  ktl::api::command::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6825,7 +7643,8 @@ initialize_performance_api_intel(ktl::api::device                               
                                  const ktl::api::initialize_performance_api_info_intel * _p_initialize_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::initialize_performance_api_intel)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::initialize_performance_api_intel)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6837,7 +7656,8 @@ inline void
 uninitialize_performance_api_intel(ktl::api::device _device)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::uninitialize_performance_api_intel)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::uninitialize_performance_api_intel)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6850,7 +7670,8 @@ cmd_set_performance_marker_intel(ktl::api::command_buffer                       
                                  const ktl::api::performance_marker_info_intel * _p_marker_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_performance_marker_intel)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_performance_marker_intel)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6863,7 +7684,9 @@ cmd_set_performance_stream_marker_intel(ktl::api::command_buffer                
                                         const ktl::api::performance_stream_marker_info_intel * _p_marker_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_performance_stream_marker_intel)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_performance_stream_marker_intel)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6876,7 +7699,8 @@ cmd_set_performance_override_intel(ktl::api::command_buffer                     
                                    const ktl::api::performance_override_info_intel * _p_override_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_performance_override_intel)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_performance_override_intel)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6890,7 +7714,9 @@ acquire_performance_configuration_intel(ktl::api::device                        
                                         ktl::api::performance_configuration_intel *                    _p_configuration)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_performance_configuration_intel)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_performance_configuration_intel)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6903,7 +7729,9 @@ release_performance_configuration_intel(ktl::api::device                        
                                         ktl::api::performance_configuration_intel _configuration)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_performance_configuration_intel)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_performance_configuration_intel)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6916,7 +7744,9 @@ queue_set_performance_configuration_intel(ktl::api::queue                       
                                           ktl::api::performance_configuration_intel _configuration)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_set_performance_configuration_intel)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_set_performance_configuration_intel)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6928,7 +7758,9 @@ inline ktl::api::result
 get_performance_parameter_intel(ktl::api::device _device, ktl::api::performance_parameter_type_intel _parameter,
                                 ktl::api::performance_value_intel * _p_value)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_performance_parameter_intel)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_performance_parameter_intel)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6941,7 +7773,9 @@ get_device_memory_opaque_capture_address(ktl::api::device                       
                                          const ktl::api::device_memory_opaque_capture_address_info * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_memory_opaque_capture_address)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_memory_opaque_capture_address)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6954,7 +7788,9 @@ get_device_memory_opaque_capture_address_khr(ktl::api::device                   
                                              const ktl::api::device_memory_opaque_capture_address_info * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_memory_opaque_capture_address_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_memory_opaque_capture_address_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6968,7 +7804,9 @@ get_pipeline_executable_properties_khr(ktl::api::device _device, const ktl::api:
                                        ktl::api::pipeline_executable_properties_khr * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_executable_properties_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_executable_properties_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6984,7 +7822,9 @@ get_pipeline_executable_statistics_khr(ktl::api::device                         
                                        ktl::api::pipeline_executable_statistic_khr *  _p_statistics)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_executable_statistics_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_executable_statistics_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -6999,8 +7839,10 @@ get_pipeline_executable_internal_representations_khr(
     ktl::u32 *                                                  _p_internal_representation_count,
     ktl::api::pipeline_executable_internal_representation_khr * _p_internal_representations)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_executable_internal_representations_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_pipeline_executable_internal_representations_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7013,7 +7855,9 @@ inline void
 cmd_set_line_stipple(ktl::api::command_buffer _command_buffer, ktl::u32 _line_stipple_factor,
                      ktl::u16 _line_stipple_pattern)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7025,7 +7869,9 @@ inline void
 cmd_set_line_stipple_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _line_stipple_factor,
                          ktl::u16 _line_stipple_pattern)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7037,7 +7883,9 @@ inline void
 cmd_set_line_stipple_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _line_stipple_factor,
                          ktl::u16 _line_stipple_pattern)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7050,7 +7898,8 @@ get_physical_device_tool_properties(ktl::api::physical_device _physical_device, 
                                     ktl::api::physical_device_tool_properties * _p_tool_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_tool_properties)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_tool_properties)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7063,7 +7912,9 @@ get_physical_device_tool_properties_ext(ktl::api::physical_device _physical_devi
                                         ktl::api::physical_device_tool_properties * _p_tool_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_tool_properties_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_tool_properties_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7078,7 +7929,8 @@ create_acceleration_structure_khr(ktl::api::device                              
                                   ktl::api::acceleration_structure_khr *                   _p_acceleration_structure)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_acceleration_structure_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_acceleration_structure_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7094,7 +7946,8 @@ cmd_build_acceleration_structures_khr(
     const ktl::api::acceleration_structure_build_range_info_khr * const * _pp_build_range_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_acceleration_structures_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_acceleration_structures_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7111,7 +7964,9 @@ cmd_build_acceleration_structures_indirect_khr(
     const ktl::u32 * const * _pp_max_primitive_counts)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_acceleration_structures_indirect_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_acceleration_structures_indirect_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7128,7 +7983,8 @@ build_acceleration_structures_khr(
     const ktl::api::acceleration_structure_build_range_info_khr * const * _pp_build_range_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::build_acceleration_structures_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::build_acceleration_structures_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7142,7 +7998,9 @@ get_acceleration_structure_device_address_khr(ktl::api::device                  
                                               const ktl::api::acceleration_structure_device_address_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_acceleration_structure_device_address_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_acceleration_structure_device_address_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7154,7 +8012,9 @@ inline ktl::api::result
 create_deferred_operation_khr(ktl::api::device _device, const ktl::api::allocation_callbacks * _p_allocator,
                               ktl::api::deferred_operation_khr * _p_deferred_operation)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_deferred_operation_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_deferred_operation_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7166,7 +8026,9 @@ inline void
 destroy_deferred_operation_khr(ktl::api::device _device, ktl::api::deferred_operation_khr _operation,
                                const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_deferred_operation_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_deferred_operation_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7178,7 +8040,9 @@ inline ktl::u32
 get_deferred_operation_max_concurrency_khr(ktl::api::device _device, ktl::api::deferred_operation_khr _operation)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_deferred_operation_max_concurrency_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_deferred_operation_max_concurrency_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7190,7 +8054,8 @@ inline ktl::api::result
 get_deferred_operation_result_khr(ktl::api::device _device, ktl::api::deferred_operation_khr _operation)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_deferred_operation_result_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_deferred_operation_result_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7201,7 +8066,9 @@ get_deferred_operation_result_khr(ktl::api::device _device, ktl::api::deferred_o
 inline ktl::api::result
 deferred_operation_join_khr(ktl::api::device _device, ktl::api::deferred_operation_khr _operation)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::deferred_operation_join_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::deferred_operation_join_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7215,7 +8082,9 @@ get_pipeline_indirect_memory_requirements_nv(ktl::api::device                   
                                              ktl::api::memory_requirements_2 *              _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_indirect_memory_requirements_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_indirect_memory_requirements_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7228,7 +8097,9 @@ get_pipeline_indirect_device_address_nv(ktl::api::device                        
                                         const ktl::api::pipeline_indirect_device_address_info_nv * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_indirect_device_address_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_indirect_device_address_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7239,7 +8110,9 @@ get_pipeline_indirect_device_address_nv(ktl::api::device                        
 inline void
 anti_lag_update_amd(ktl::api::device _device, const ktl::api::anti_lag_data_amd * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::anti_lag_update_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::anti_lag_update_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7250,7 +8123,9 @@ anti_lag_update_amd(ktl::api::device _device, const ktl::api::anti_lag_data_amd 
 inline void
 cmd_set_cull_mode(ktl::api::command_buffer _command_buffer, ktl::api::cull_mode_flags _cull_mode)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_cull_mode)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_cull_mode)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7261,7 +8136,9 @@ cmd_set_cull_mode(ktl::api::command_buffer _command_buffer, ktl::api::cull_mode_
 inline void
 cmd_set_cull_mode_ext(ktl::api::command_buffer _command_buffer, ktl::api::cull_mode_flags _cull_mode)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_cull_mode_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_cull_mode_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7272,7 +8149,9 @@ cmd_set_cull_mode_ext(ktl::api::command_buffer _command_buffer, ktl::api::cull_m
 inline void
 cmd_set_front_face(ktl::api::command_buffer _command_buffer, ktl::api::front_face _front_face)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_front_face)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_front_face)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7283,7 +8162,9 @@ cmd_set_front_face(ktl::api::command_buffer _command_buffer, ktl::api::front_fac
 inline void
 cmd_set_front_face_ext(ktl::api::command_buffer _command_buffer, ktl::api::front_face _front_face)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_front_face_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_front_face_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7294,7 +8175,9 @@ cmd_set_front_face_ext(ktl::api::command_buffer _command_buffer, ktl::api::front
 inline void
 cmd_set_primitive_topology(ktl::api::command_buffer _command_buffer, ktl::api::primitive_topology _primitive_topology)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_topology)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_topology)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7306,7 +8189,9 @@ inline void
 cmd_set_primitive_topology_ext(ktl::api::command_buffer     _command_buffer,
                                ktl::api::primitive_topology _primitive_topology)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_topology_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_topology_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7318,7 +8203,9 @@ inline void
 cmd_set_viewport_with_count(ktl::api::command_buffer _command_buffer, ktl::u32 _viewport_count,
                             const ktl::api::viewport * _p_viewports)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_with_count)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_with_count)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7330,7 +8217,9 @@ inline void
 cmd_set_viewport_with_count_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _viewport_count,
                                 const ktl::api::viewport * _p_viewports)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_with_count_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_with_count_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7342,7 +8231,9 @@ inline void
 cmd_set_scissor_with_count(ktl::api::command_buffer _command_buffer, ktl::u32 _scissor_count,
                            const ktl::api::rect_2d * _p_scissors)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_scissor_with_count)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_scissor_with_count)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7354,7 +8245,9 @@ inline void
 cmd_set_scissor_with_count_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _scissor_count,
                                const ktl::api::rect_2d * _p_scissors)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_scissor_with_count_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_scissor_with_count_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7366,7 +8259,9 @@ inline void
 cmd_bind_index_buffer_2(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset,
                         ktl::api::dvsize _size, ktl::api::index_type _index_type)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7378,7 +8273,9 @@ inline void
 cmd_bind_index_buffer_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
                             ktl::api::dvsize _offset, ktl::api::dvsize _size, ktl::api::index_type _index_type)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7391,7 +8288,9 @@ cmd_bind_vertex_buffers_2(ktl::api::command_buffer _command_buffer, ktl::u32 _fi
                           const ktl::api::buffer * _p_buffers, const ktl::api::dvsize * _p_offsets,
                           const ktl::api::dvsize * _p_sizes, const ktl::api::dvsize * _p_strides)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7406,7 +8305,9 @@ cmd_bind_vertex_buffers_2_ext(ktl::api::command_buffer _command_buffer, ktl::u32
                               const ktl::api::dvsize * _p_offsets, const ktl::api::dvsize * _p_sizes,
                               const ktl::api::dvsize * _p_strides)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_2_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_2_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7418,7 +8319,9 @@ cmd_bind_vertex_buffers_2_ext(ktl::api::command_buffer _command_buffer, ktl::u32
 inline void
 cmd_set_depth_test_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_test_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_test_enable)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_test_enable)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7429,7 +8332,9 @@ cmd_set_depth_test_enable(ktl::api::command_buffer _command_buffer, ktl::api::bo
 inline void
 cmd_set_depth_test_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_test_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_test_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_test_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7440,7 +8345,9 @@ cmd_set_depth_test_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api
 inline void
 cmd_set_depth_write_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_write_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_write_enable)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_write_enable)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7451,7 +8358,9 @@ cmd_set_depth_write_enable(ktl::api::command_buffer _command_buffer, ktl::api::b
 inline void
 cmd_set_depth_write_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_write_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_write_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_write_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7462,7 +8371,9 @@ cmd_set_depth_write_enable_ext(ktl::api::command_buffer _command_buffer, ktl::ap
 inline void
 cmd_set_depth_compare_op(ktl::api::command_buffer _command_buffer, ktl::api::compare_op _depth_compare_op)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_compare_op)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_compare_op)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7473,7 +8384,9 @@ cmd_set_depth_compare_op(ktl::api::command_buffer _command_buffer, ktl::api::com
 inline void
 cmd_set_depth_compare_op_ext(ktl::api::command_buffer _command_buffer, ktl::api::compare_op _depth_compare_op)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_compare_op_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_compare_op_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7485,7 +8398,8 @@ inline void
 cmd_set_depth_bounds_test_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_bounds_test_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bounds_test_enable)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bounds_test_enable)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7498,7 +8412,8 @@ cmd_set_depth_bounds_test_enable_ext(ktl::api::command_buffer _command_buffer,
                                      ktl::api::bool32         _depth_bounds_test_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bounds_test_enable_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bounds_test_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7509,7 +8424,9 @@ cmd_set_depth_bounds_test_enable_ext(ktl::api::command_buffer _command_buffer,
 inline void
 cmd_set_stencil_test_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _stencil_test_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_test_enable)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_test_enable)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7520,7 +8437,9 @@ cmd_set_stencil_test_enable(ktl::api::command_buffer _command_buffer, ktl::api::
 inline void
 cmd_set_stencil_test_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _stencil_test_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_test_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_test_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7533,7 +8452,9 @@ cmd_set_stencil_op(ktl::api::command_buffer _command_buffer, ktl::api::stencil_f
                    ktl::api::stencil_op _fail_op, ktl::api::stencil_op _pass_op, ktl::api::stencil_op _depth_fail_op,
                    ktl::api::compare_op _compare_op)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_op)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_op)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7546,7 +8467,9 @@ cmd_set_stencil_op_ext(ktl::api::command_buffer _command_buffer, ktl::api::stenc
                        ktl::api::stencil_op _fail_op, ktl::api::stencil_op _pass_op,
                        ktl::api::stencil_op _depth_fail_op, ktl::api::compare_op _compare_op)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_op_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_stencil_op_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7559,7 +8482,8 @@ inline void
 cmd_set_patch_control_points_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _patch_control_points)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_patch_control_points_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_patch_control_points_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7571,7 +8495,8 @@ inline void
 cmd_set_rasterizer_discard_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _rasterizer_discard_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rasterizer_discard_enable)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rasterizer_discard_enable)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7584,7 +8509,8 @@ cmd_set_rasterizer_discard_enable_ext(ktl::api::command_buffer _command_buffer,
                                       ktl::api::bool32         _rasterizer_discard_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rasterizer_discard_enable_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rasterizer_discard_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7595,7 +8521,9 @@ cmd_set_rasterizer_discard_enable_ext(ktl::api::command_buffer _command_buffer,
 inline void
 cmd_set_depth_bias_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_bias_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_enable)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_enable)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7606,7 +8534,9 @@ cmd_set_depth_bias_enable(ktl::api::command_buffer _command_buffer, ktl::api::bo
 inline void
 cmd_set_depth_bias_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_bias_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7617,7 +8547,9 @@ cmd_set_depth_bias_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api
 inline void
 cmd_set_logic_op_ext(ktl::api::command_buffer _command_buffer, ktl::api::logic_op _logic_op)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_logic_op_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_logic_op_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7629,7 +8561,8 @@ inline void
 cmd_set_primitive_restart_enable(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _primitive_restart_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_restart_enable)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_restart_enable)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7642,7 +8575,8 @@ cmd_set_primitive_restart_enable_ext(ktl::api::command_buffer _command_buffer,
                                      ktl::api::bool32         _primitive_restart_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_restart_enable_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_primitive_restart_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7655,7 +8589,9 @@ cmd_set_tessellation_domain_origin_ext(ktl::api::command_buffer             _com
                                        ktl::api::tessellation_domain_origin _domain_origin)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_tessellation_domain_origin_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_tessellation_domain_origin_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7666,7 +8602,9 @@ cmd_set_tessellation_domain_origin_ext(ktl::api::command_buffer             _com
 inline void
 cmd_set_depth_clamp_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_clamp_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_clamp_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_clamp_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7677,7 +8615,9 @@ cmd_set_depth_clamp_enable_ext(ktl::api::command_buffer _command_buffer, ktl::ap
 inline void
 cmd_set_polygon_mode_ext(ktl::api::command_buffer _command_buffer, ktl::api::polygon_mode _polygon_mode)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_polygon_mode_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_polygon_mode_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7690,7 +8630,8 @@ cmd_set_rasterization_samples_ext(ktl::api::command_buffer         _command_buff
                                   ktl::api::sample_count_flag_bits _rasterization_samples)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rasterization_samples_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rasterization_samples_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7702,7 +8643,9 @@ inline void
 cmd_set_sample_mask_ext(ktl::api::command_buffer _command_buffer, ktl::api::sample_count_flag_bits _samples,
                         const ktl::api::spmask * _p_sample_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_sample_mask_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_sample_mask_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7715,7 +8658,8 @@ cmd_set_alpha_to_coverage_enable_ext(ktl::api::command_buffer _command_buffer,
                                      ktl::api::bool32         _alpha_to_coverage_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_alpha_to_coverage_enable_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_alpha_to_coverage_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7726,7 +8670,9 @@ cmd_set_alpha_to_coverage_enable_ext(ktl::api::command_buffer _command_buffer,
 inline void
 cmd_set_alpha_to_one_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _alpha_to_one_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_alpha_to_one_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_alpha_to_one_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7737,7 +8683,9 @@ cmd_set_alpha_to_one_enable_ext(ktl::api::command_buffer _command_buffer, ktl::a
 inline void
 cmd_set_logic_op_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _logic_op_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_logic_op_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_logic_op_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7749,7 +8697,9 @@ inline void
 cmd_set_color_blend_enable_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_attachment,
                                ktl::u32 _attachment_count, const ktl::api::bool32 * _p_color_blend_enables)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_blend_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_blend_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7764,7 +8714,8 @@ cmd_set_color_blend_equation_ext(ktl::api::command_buffer _command_buffer, ktl::
                                  const ktl::api::color_blend_equation_ext * _p_color_blend_equations)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_blend_equation_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_blend_equation_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7777,7 +8728,9 @@ inline void
 cmd_set_color_write_mask_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_attachment,
                              ktl::u32 _attachment_count, const ktl::api::color_component_flags * _p_color_write_masks)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_write_mask_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_write_mask_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7790,7 +8743,8 @@ inline void
 cmd_set_rasterization_stream_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _rasterization_stream)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rasterization_stream_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rasterization_stream_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7804,7 +8758,9 @@ cmd_set_conservative_rasterization_mode_ext(
     ktl::api::conservative_rasterization_mode_ext _conservative_rasterization_mode)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_conservative_rasterization_mode_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_conservative_rasterization_mode_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7817,7 +8773,9 @@ cmd_set_extra_primitive_overestimation_size_ext(ktl::api::command_buffer _comman
                                                 float                    _extra_primitive_overestimation_size)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_extra_primitive_overestimation_size_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_extra_primitive_overestimation_size_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7829,7 +8787,9 @@ cmd_set_extra_primitive_overestimation_size_ext(ktl::api::command_buffer _comman
 inline void
 cmd_set_depth_clip_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _depth_clip_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_clip_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_clip_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7841,7 +8801,8 @@ inline void
 cmd_set_sample_locations_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _sample_locations_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_sample_locations_enable_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_sample_locations_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7855,7 +8816,8 @@ cmd_set_color_blend_advanced_ext(ktl::api::command_buffer _command_buffer, ktl::
                                  const ktl::api::color_blend_advanced_ext * _p_color_blend_advanced)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_blend_advanced_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_blend_advanced_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7869,7 +8831,8 @@ cmd_set_provoking_vertex_mode_ext(ktl::api::command_buffer            _command_b
                                   ktl::api::provoking_vertex_mode_ext _provoking_vertex_mode)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_provoking_vertex_mode_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_provoking_vertex_mode_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7882,7 +8845,8 @@ cmd_set_line_rasterization_mode_ext(ktl::api::command_buffer              _comma
                                     ktl::api::line_rasterization_mode_ext _line_rasterization_mode)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_rasterization_mode_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_rasterization_mode_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7893,7 +8857,9 @@ cmd_set_line_rasterization_mode_ext(ktl::api::command_buffer              _comma
 inline void
 cmd_set_line_stipple_enable_ext(ktl::api::command_buffer _command_buffer, ktl::api::bool32 _stippled_line_enable)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_line_stipple_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7906,7 +8872,9 @@ cmd_set_depth_clip_negative_one_to_one_ext(ktl::api::command_buffer _command_buf
                                            ktl::api::bool32         _negative_one_to_one)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_clip_negative_one_to_one_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_clip_negative_one_to_one_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7919,7 +8887,8 @@ cmd_set_viewport_w_scaling_enable_nv(ktl::api::command_buffer _command_buffer,
                                      ktl::api::bool32         _viewport_w_scaling_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_w_scaling_enable_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_w_scaling_enable_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7931,7 +8900,9 @@ inline void
 cmd_set_viewport_swizzle_nv(ktl::api::command_buffer _command_buffer, ktl::u32 _first_viewport,
                             ktl::u32 _viewport_count, const ktl::api::viewport_swizzle_nv * _p_viewport_swizzles)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_swizzle_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_viewport_swizzle_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7945,7 +8916,8 @@ cmd_set_coverage_to_color_enable_nv(ktl::api::command_buffer _command_buffer,
                                     ktl::api::bool32         _coverage_to_color_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_to_color_enable_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_to_color_enable_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7957,7 +8929,8 @@ inline void
 cmd_set_coverage_to_color_location_nv(ktl::api::command_buffer _command_buffer, ktl::u32 _coverage_to_color_location)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_to_color_location_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_to_color_location_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7970,7 +8943,8 @@ cmd_set_coverage_modulation_mode_nv(ktl::api::command_buffer              _comma
                                     ktl::api::coverage_modulation_mode_nv _coverage_modulation_mode)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_modulation_mode_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_modulation_mode_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7983,7 +8957,9 @@ cmd_set_coverage_modulation_table_enable_nv(ktl::api::command_buffer _command_bu
                                             ktl::api::bool32         _coverage_modulation_table_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_modulation_table_enable_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_modulation_table_enable_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -7997,7 +8973,8 @@ cmd_set_coverage_modulation_table_nv(ktl::api::command_buffer _command_buffer,
                                      const float *            _p_coverage_modulation_table)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_modulation_table_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_modulation_table_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8011,7 +8988,8 @@ cmd_set_shading_rate_image_enable_nv(ktl::api::command_buffer _command_buffer,
                                      ktl::api::bool32         _shading_rate_image_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_shading_rate_image_enable_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_shading_rate_image_enable_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8024,7 +9002,8 @@ cmd_set_coverage_reduction_mode_nv(ktl::api::command_buffer             _command
                                    ktl::api::coverage_reduction_mode_nv _coverage_reduction_mode)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_reduction_mode_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_coverage_reduction_mode_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8037,7 +9016,9 @@ cmd_set_representative_fragment_test_enable_nv(ktl::api::command_buffer _command
                                                ktl::api::bool32         _representative_fragment_test_enable)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_representative_fragment_test_enable_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_representative_fragment_test_enable_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8051,7 +9032,9 @@ create_private_data_slot(ktl::api::device _device, const ktl::api::private_data_
                          const ktl::api::allocation_callbacks * _p_allocator,
                          ktl::api::private_data_slot *          _p_private_data_slot)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_private_data_slot)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_private_data_slot)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8064,7 +9047,9 @@ create_private_data_slot_ext(ktl::api::device _device, const ktl::api::private_d
                              const ktl::api::allocation_callbacks * _p_allocator,
                              ktl::api::private_data_slot *          _p_private_data_slot)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_private_data_slot_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_private_data_slot_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8076,7 +9061,9 @@ inline void
 destroy_private_data_slot(ktl::api::device _device, ktl::api::private_data_slot _private_data_slot,
                           const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_private_data_slot)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_private_data_slot)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8088,7 +9075,9 @@ inline void
 destroy_private_data_slot_ext(ktl::api::device _device, ktl::api::private_data_slot _private_data_slot,
                               const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_private_data_slot_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_private_data_slot_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8100,7 +9089,9 @@ inline ktl::api::result
 set_private_data(ktl::api::device _device, ktl::api::object_type _object_type, ktl::u64 _object_handle,
                  ktl::api::private_data_slot _private_data_slot, ktl::u64 _data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_private_data)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_private_data)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8112,7 +9103,9 @@ inline ktl::api::result
 set_private_data_ext(ktl::api::device _device, ktl::api::object_type _object_type, ktl::u64 _object_handle,
                      ktl::api::private_data_slot _private_data_slot, ktl::u64 _data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_private_data_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_private_data_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8124,7 +9117,9 @@ inline void
 get_private_data(ktl::api::device _device, ktl::api::object_type _object_type, ktl::u64 _object_handle,
                  ktl::api::private_data_slot _private_data_slot, ktl::u64 * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_private_data)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_private_data)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8136,7 +9131,9 @@ inline void
 get_private_data_ext(ktl::api::device _device, ktl::api::object_type _object_type, ktl::u64 _object_handle,
                      ktl::api::private_data_slot _private_data_slot, ktl::u64 * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_private_data_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_private_data_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8147,7 +9144,9 @@ get_private_data_ext(ktl::api::device _device, ktl::api::object_type _object_typ
 inline void
 cmd_copy_buffer_2(ktl::api::command_buffer _command_buffer, const ktl::api::copy_buffer_info_2 * _p_copy_buffer_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8159,7 +9158,9 @@ inline void
 cmd_copy_buffer_2_khr(ktl::api::command_buffer             _command_buffer,
                       const ktl::api::copy_buffer_info_2 * _p_copy_buffer_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8170,7 +9171,9 @@ cmd_copy_buffer_2_khr(ktl::api::command_buffer             _command_buffer,
 inline void
 cmd_copy_image_2(ktl::api::command_buffer _command_buffer, const ktl::api::copy_image_info_2 * _p_copy_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8181,7 +9184,9 @@ cmd_copy_image_2(ktl::api::command_buffer _command_buffer, const ktl::api::copy_
 inline void
 cmd_copy_image_2_khr(ktl::api::command_buffer _command_buffer, const ktl::api::copy_image_info_2 * _p_copy_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8192,7 +9197,9 @@ cmd_copy_image_2_khr(ktl::api::command_buffer _command_buffer, const ktl::api::c
 inline void
 cmd_blit_image_2(ktl::api::command_buffer _command_buffer, const ktl::api::blit_image_info_2 * _p_blit_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8203,7 +9210,9 @@ cmd_blit_image_2(ktl::api::command_buffer _command_buffer, const ktl::api::blit_
 inline void
 cmd_blit_image_2_khr(ktl::api::command_buffer _command_buffer, const ktl::api::blit_image_info_2 * _p_blit_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8215,7 +9224,9 @@ inline void
 cmd_copy_buffer_to_image_2(ktl::api::command_buffer                      _command_buffer,
                            const ktl::api::copy_buffer_to_image_info_2 * _p_copy_buffer_to_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_to_image_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_to_image_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8227,7 +9238,9 @@ inline void
 cmd_copy_buffer_to_image_2_khr(ktl::api::command_buffer                      _command_buffer,
                                const ktl::api::copy_buffer_to_image_info_2 * _p_copy_buffer_to_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_to_image_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_to_image_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8239,7 +9252,9 @@ inline void
 cmd_copy_image_to_buffer_2(ktl::api::command_buffer                      _command_buffer,
                            const ktl::api::copy_image_to_buffer_info_2 * _p_copy_image_to_buffer_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_buffer_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_buffer_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8251,7 +9266,9 @@ inline void
 cmd_copy_image_to_buffer_2_khr(ktl::api::command_buffer                      _command_buffer,
                                const ktl::api::copy_image_to_buffer_info_2 * _p_copy_image_to_buffer_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_buffer_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_buffer_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8263,7 +9280,9 @@ inline void
 cmd_resolve_image_2(ktl::api::command_buffer               _command_buffer,
                     const ktl::api::resolve_image_info_2 * _p_resolve_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_resolve_image_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_resolve_image_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8275,7 +9294,9 @@ inline void
 cmd_resolve_image_2_khr(ktl::api::command_buffer               _command_buffer,
                         const ktl::api::resolve_image_info_2 * _p_resolve_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_resolve_image_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_resolve_image_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8289,7 +9310,8 @@ cmd_set_fragment_shading_rate_khr(ktl::api::command_buffer                      
                                   const ktl::api::fragment_shading_rate_combiner_op_khr _combiner_ops[2])
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_fragment_shading_rate_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_fragment_shading_rate_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8303,7 +9325,9 @@ get_physical_device_fragment_shading_rates_khr(
     ktl::api::physical_device_fragment_shading_rate_khr * _p_fragment_shading_rates)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_fragment_shading_rates_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_fragment_shading_rates_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8318,7 +9342,8 @@ cmd_set_fragment_shading_rate_enum_nv(ktl::api::command_buffer                  
                                       const ktl::api::fragment_shading_rate_combiner_op_khr _combiner_ops[2])
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_fragment_shading_rate_enum_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_fragment_shading_rate_enum_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8333,7 +9358,9 @@ get_acceleration_structure_build_sizes_khr(
     const ktl::u32 * _p_max_primitive_counts, ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_acceleration_structure_build_sizes_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_acceleration_structure_build_sizes_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8348,7 +9375,9 @@ cmd_set_vertex_input_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _ver
                          ktl::u32                                                   _vertex_attribute_description_count,
                          const ktl::api::vertex_input_attribute_description_2_ext * _p_vertex_attribute_descriptions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_vertex_input_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_vertex_input_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8362,7 +9391,9 @@ inline void
 cmd_set_color_write_enable_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _attachment_count,
                                const ktl::api::bool32 * _p_color_write_enables)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_write_enable_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_color_write_enable_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8374,7 +9405,9 @@ inline void
 cmd_set_event_2(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
                 const ktl::api::dependency_info * _p_dependency_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_event_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_event_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8386,7 +9419,9 @@ inline void
 cmd_set_event_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
                     const ktl::api::dependency_info * _p_dependency_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_event_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_event_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8398,7 +9433,9 @@ inline void
 cmd_reset_event_2(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
                   ktl::api::pipeline_stage_flags_2 _stage_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_event_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_event_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8410,7 +9447,9 @@ inline void
 cmd_reset_event_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
                       ktl::api::pipeline_stage_flags_2 _stage_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_event_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_event_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8422,7 +9461,9 @@ inline void
 cmd_wait_events_2(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count, const ktl::api::event * _p_events,
                   const ktl::api::dependency_info * _p_dependency_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_wait_events_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_wait_events_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8434,7 +9475,9 @@ inline void
 cmd_wait_events_2_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count,
                       const ktl::api::event * _p_events, const ktl::api::dependency_info * _p_dependency_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_wait_events_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_wait_events_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8445,7 +9488,9 @@ cmd_wait_events_2_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _event_
 inline void
 cmd_pipeline_barrier_2(ktl::api::command_buffer _command_buffer, const ktl::api::dependency_info * _p_dependency_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8457,7 +9502,9 @@ inline void
 cmd_pipeline_barrier_2_khr(ktl::api::command_buffer          _command_buffer,
                            const ktl::api::dependency_info * _p_dependency_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8469,7 +9516,9 @@ inline ktl::api::result
 queue_submit_2(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::submit_info_2 * _p_submits,
                ktl::api::fence _fence)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_submit_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_submit_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8481,7 +9530,9 @@ inline ktl::api::result
 queue_submit_2_khr(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::submit_info_2 * _p_submits,
                    ktl::api::fence _fence)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_submit_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_submit_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8493,7 +9544,9 @@ inline void
 cmd_write_timestamp_2(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage,
                       ktl::api::query_pool _query_pool, ktl::u32 _query)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_timestamp_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_timestamp_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8505,7 +9558,9 @@ inline void
 cmd_write_timestamp_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage,
                           ktl::api::query_pool _query_pool, ktl::u32 _query)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_timestamp_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_timestamp_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8517,7 +9572,9 @@ inline void
 cmd_write_buffer_marker_2_amd(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage,
                               ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset, ktl::u32 _marker)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_buffer_marker_2_amd)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_buffer_marker_2_amd)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8529,7 +9586,9 @@ inline void
 get_queue_checkpoint_data_2_nv(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count,
                                ktl::api::checkpoint_data_2_nv * _p_checkpoint_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_queue_checkpoint_data_2_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_queue_checkpoint_data_2_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8540,7 +9599,9 @@ get_queue_checkpoint_data_2_nv(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_
 inline ktl::api::result
 copy_memory_to_image(ktl::api::device _device, const ktl::api::copy_memory_to_image_info * _p_copy_memory_to_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_memory_to_image)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_memory_to_image)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8552,7 +9613,9 @@ inline ktl::api::result
 copy_memory_to_image_ext(ktl::api::device                            _device,
                          const ktl::api::copy_memory_to_image_info * _p_copy_memory_to_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_memory_to_image_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_memory_to_image_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8563,7 +9626,9 @@ copy_memory_to_image_ext(ktl::api::device                            _device,
 inline ktl::api::result
 copy_image_to_memory(ktl::api::device _device, const ktl::api::copy_image_to_memory_info * _p_copy_image_to_memory_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_memory)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_memory)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8575,7 +9640,9 @@ inline ktl::api::result
 copy_image_to_memory_ext(ktl::api::device                            _device,
                          const ktl::api::copy_image_to_memory_info * _p_copy_image_to_memory_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_memory_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_memory_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8586,7 +9653,9 @@ copy_image_to_memory_ext(ktl::api::device                            _device,
 inline ktl::api::result
 copy_image_to_image(ktl::api::device _device, const ktl::api::copy_image_to_image_info * _p_copy_image_to_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_image)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_image)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8598,7 +9667,9 @@ inline ktl::api::result
 copy_image_to_image_ext(ktl::api::device                           _device,
                         const ktl::api::copy_image_to_image_info * _p_copy_image_to_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_image_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_image_to_image_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8610,7 +9681,9 @@ inline ktl::api::result
 transition_image_layout(ktl::api::device _device, ktl::u32 _transition_count,
                         const ktl::api::host_image_layout_transition_info * _p_transitions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::transition_image_layout)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::transition_image_layout)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8622,7 +9695,9 @@ inline ktl::api::result
 transition_image_layout_ext(ktl::api::device _device, ktl::u32 _transition_count,
                             const ktl::api::host_image_layout_transition_info * _p_transitions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::transition_image_layout_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::transition_image_layout_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8634,7 +9709,9 @@ inline void
 cmd_decompress_memory_nv(ktl::api::command_buffer _command_buffer, ktl::u32 _decompress_region_count,
                          const ktl::api::decompress_memory_region_nv * _p_decompress_memory_regions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_decompress_memory_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_decompress_memory_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8648,7 +9725,9 @@ cmd_decompress_memory_indirect_count_nv(ktl::api::command_buffer _command_buffer
                                         ktl::api::dvaddr _indirect_commands_count_address, ktl::u32 _stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_decompress_memory_indirect_count_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_decompress_memory_indirect_count_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8662,8 +9741,10 @@ get_partitioned_acceleration_structures_build_sizes_nv(
     ktl::api::device _device, const ktl::api::partitioned_acceleration_structure_instances_input_nv * _p_info,
     ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_partitioned_acceleration_structures_build_sizes_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_partitioned_acceleration_structures_build_sizes_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8677,7 +9758,9 @@ cmd_build_partitioned_acceleration_structures_nv(
     const ktl::api::build_partitioned_acceleration_structure_info_nv * _p_build_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_partitioned_acceleration_structures_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_partitioned_acceleration_structures_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8689,7 +9772,9 @@ inline void
 cmd_decompress_memory_ext(ktl::api::command_buffer                     _command_buffer,
                           const ktl::api::decompress_memory_info_ext * _p_decompress_memory_info_ext)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_decompress_memory_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_decompress_memory_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8705,7 +9790,9 @@ cmd_decompress_memory_indirect_count_ext(ktl::api::command_buffer               
                                          ktl::u32 _max_decompression_count, ktl::u32 _stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_decompress_memory_indirect_count_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_decompress_memory_indirect_count_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8719,7 +9806,9 @@ inline ktl::api::result
 create_cu_module_nvx(ktl::api::device _device, const ktl::api::cu_module_create_info_nvx * _p_create_info,
                      const ktl::api::allocation_callbacks * _p_allocator, ktl::api::cu_module_nvx * _p_module)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_cu_module_nvx)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_cu_module_nvx)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8731,7 +9820,9 @@ inline ktl::api::result
 create_cu_function_nvx(ktl::api::device _device, const ktl::api::cu_function_create_info_nvx * _p_create_info,
                        const ktl::api::allocation_callbacks * _p_allocator, ktl::api::cu_function_nvx * _p_function)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_cu_function_nvx)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_cu_function_nvx)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8743,7 +9834,9 @@ inline void
 destroy_cu_module_nvx(ktl::api::device _device, ktl::api::cu_module_nvx _module,
                       const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_cu_module_nvx)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_cu_module_nvx)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8755,7 +9848,9 @@ inline void
 destroy_cu_function_nvx(ktl::api::device _device, ktl::api::cu_function_nvx _function,
                         const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_cu_function_nvx)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_cu_function_nvx)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8766,7 +9861,9 @@ destroy_cu_function_nvx(ktl::api::device _device, ktl::api::cu_function_nvx _fun
 inline void
 cmd_cu_launch_kernel_nvx(ktl::api::command_buffer _command_buffer, const ktl::api::cu_launch_info_nvx * _p_launch_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_cu_launch_kernel_nvx)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_cu_launch_kernel_nvx)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8779,7 +9876,8 @@ get_descriptor_set_layout_size_ext(ktl::api::device _device, ktl::api::descripto
                                    ktl::api::dvsize * _p_layout_size_in_bytes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_size_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_size_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8792,7 +9890,9 @@ get_descriptor_set_layout_binding_offset_ext(ktl::api::device _device, ktl::api:
                                              ktl::u32 _binding, ktl::api::dvsize * _p_offset)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_binding_offset_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_binding_offset_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8804,7 +9904,9 @@ inline void
 get_descriptor_ext(ktl::api::device _device, const ktl::api::descriptor_get_info_ext * _p_descriptor_info,
                    ktl::usize _data_size, void * _p_descriptor)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8816,7 +9918,9 @@ inline void
 cmd_bind_descriptor_buffers_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _buffer_count,
                                 const ktl::api::descriptor_buffer_binding_info_ext * _p_binding_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_buffers_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_buffers_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8831,7 +9935,8 @@ cmd_set_descriptor_buffer_offsets_ext(ktl::api::command_buffer      _command_buf
                                       const ktl::u32 * _p_buffer_indices, const ktl::api::dvsize * _p_offsets)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_descriptor_buffer_offsets_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_descriptor_buffer_offsets_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8846,7 +9951,9 @@ cmd_bind_descriptor_buffer_embedded_samplers_ext(ktl::api::command_buffer      _
                                                  ktl::api::pipeline_layout _layout, ktl::u32 _set)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8861,7 +9968,9 @@ get_buffer_opaque_capture_descriptor_data_ext(ktl::api::device                  
                                               void *                                                    _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_opaque_capture_descriptor_data_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_opaque_capture_descriptor_data_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8875,7 +9984,9 @@ get_image_opaque_capture_descriptor_data_ext(ktl::api::device                   
                                              void *                                                   _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_opaque_capture_descriptor_data_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_opaque_capture_descriptor_data_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8889,7 +10000,9 @@ get_image_view_opaque_capture_descriptor_data_ext(ktl::api::device              
                                                   void *                                                        _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_opaque_capture_descriptor_data_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_opaque_capture_descriptor_data_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8903,7 +10016,9 @@ get_sampler_opaque_capture_descriptor_data_ext(ktl::api::device                 
                                                void *                                                     _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_sampler_opaque_capture_descriptor_data_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_sampler_opaque_capture_descriptor_data_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8916,8 +10031,10 @@ get_acceleration_structure_opaque_capture_descriptor_data_ext(
     ktl::api::device _device, const ktl::api::acceleration_structure_capture_descriptor_data_info_ext * _p_info,
     void * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_acceleration_structure_opaque_capture_descriptor_data_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(
+                                ktl::api::command::get_acceleration_structure_opaque_capture_descriptor_data_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8928,7 +10045,9 @@ get_acceleration_structure_opaque_capture_descriptor_data_ext(
 inline void
 set_device_memory_priority_ext(ktl::api::device _device, ktl::api::device_memory _memory, float _priority)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_device_memory_priority_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_device_memory_priority_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8939,7 +10058,9 @@ set_device_memory_priority_ext(ktl::api::device _device, ktl::api::device_memory
 inline ktl::api::result
 acquire_drm_display_ext(ktl::api::physical_device _physical_device, ktl::i32 _drm_fd, ktl::api::display_khr _display)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_drm_display_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_drm_display_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8951,7 +10072,9 @@ inline ktl::api::result
 get_drm_display_ext(ktl::api::physical_device _physical_device, ktl::i32 _drm_fd, ktl::u32 _connector_id,
                     ktl::api::display_khr * _display)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_drm_display_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_drm_display_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8963,7 +10086,9 @@ inline ktl::api::result
 wait_for_present_2_khr(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                        const ktl::api::present_wait_2_info_khr * _p_present_wait_2_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_for_present_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_for_present_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8975,7 +10100,9 @@ inline ktl::api::result
 wait_for_present_khr(ktl::api::device _device, ktl::api::swapchain_khr _swapchain, ktl::u64 _present_id,
                      ktl::u64 _timeout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_for_present_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_for_present_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -8990,7 +10117,8 @@ create_buffer_collection_fuchsia(ktl::api::device                               
                                  ktl::api::buffer_collection_fuchsia *                   _p_collection)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_buffer_collection_fuchsia)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_buffer_collection_fuchsia)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9004,7 +10132,9 @@ set_buffer_collection_buffer_constraints_fuchsia(
     const ktl::api::buffer_constraints_info_fuchsia * _p_buffer_constraints_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_buffer_collection_buffer_constraints_fuchsia)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_buffer_collection_buffer_constraints_fuchsia)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9019,7 +10149,9 @@ set_buffer_collection_image_constraints_fuchsia(
     const ktl::api::image_constraints_info_fuchsia * _p_image_constraints_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_buffer_collection_image_constraints_fuchsia)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_buffer_collection_image_constraints_fuchsia)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9032,7 +10164,8 @@ destroy_buffer_collection_fuchsia(ktl::api::device _device, ktl::api::buffer_col
                                   const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_buffer_collection_fuchsia)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_buffer_collection_fuchsia)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9045,7 +10178,9 @@ get_buffer_collection_properties_fuchsia(ktl::api::device _device, ktl::api::buf
                                          ktl::api::buffer_collection_properties_fuchsia * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_collection_properties_fuchsia)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_collection_properties_fuchsia)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9057,7 +10192,9 @@ inline ktl::api::result
 create_cuda_module_nv(ktl::api::device _device, const ktl::api::cuda_module_create_info_nv * _p_create_info,
                       const ktl::api::allocation_callbacks * _p_allocator, ktl::api::cuda_module_nv * _p_module)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_cuda_module_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_cuda_module_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9069,7 +10206,9 @@ inline ktl::api::result
 get_cuda_module_cache_nv(ktl::api::device _device, ktl::api::cuda_module_nv _module, ktl::usize * _p_cache_size,
                          void * _p_cache_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_cuda_module_cache_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_cuda_module_cache_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9081,7 +10220,9 @@ inline ktl::api::result
 create_cuda_function_nv(ktl::api::device _device, const ktl::api::cuda_function_create_info_nv * _p_create_info,
                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::cuda_function_nv * _p_function)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_cuda_function_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_cuda_function_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9093,7 +10234,9 @@ inline void
 destroy_cuda_module_nv(ktl::api::device _device, ktl::api::cuda_module_nv _module,
                        const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_cuda_module_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_cuda_module_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9105,7 +10248,9 @@ inline void
 destroy_cuda_function_nv(ktl::api::device _device, ktl::api::cuda_function_nv _function,
                          const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_cuda_function_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_cuda_function_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9117,7 +10262,9 @@ inline void
 cmd_cuda_launch_kernel_nv(ktl::api::command_buffer              _command_buffer,
                           const ktl::api::cuda_launch_info_nv * _p_launch_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_cuda_launch_kernel_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_cuda_launch_kernel_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9128,7 +10275,9 @@ cmd_cuda_launch_kernel_nv(ktl::api::command_buffer              _command_buffer,
 inline void
 cmd_begin_rendering(ktl::api::command_buffer _command_buffer, const ktl::api::rendering_info * _p_rendering_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_rendering)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_rendering)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9139,7 +10288,9 @@ cmd_begin_rendering(ktl::api::command_buffer _command_buffer, const ktl::api::re
 inline void
 cmd_begin_rendering_khr(ktl::api::command_buffer _command_buffer, const ktl::api::rendering_info * _p_rendering_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_rendering_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_rendering_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9150,7 +10301,9 @@ cmd_begin_rendering_khr(ktl::api::command_buffer _command_buffer, const ktl::api
 inline void
 cmd_end_rendering(ktl::api::command_buffer _command_buffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9162,7 +10315,9 @@ inline void
 cmd_end_rendering_2_khr(ktl::api::command_buffer                 _command_buffer,
                         const ktl::api::rendering_end_info_khr * _p_rendering_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9174,7 +10329,9 @@ inline void
 cmd_end_rendering_2_ext(ktl::api::command_buffer                 _command_buffer,
                         const ktl::api::rendering_end_info_khr * _p_rendering_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_2_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_2_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9185,7 +10342,9 @@ cmd_end_rendering_2_ext(ktl::api::command_buffer                 _command_buffer
 inline void
 cmd_end_rendering_khr(ktl::api::command_buffer _command_buffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9199,7 +10358,9 @@ get_descriptor_set_layout_host_mapping_info_valve(
     ktl::api::descriptor_set_layout_host_mapping_info_valve * _p_host_mapping)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_host_mapping_info_valve)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_layout_host_mapping_info_valve)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9212,7 +10373,8 @@ get_descriptor_set_host_mapping_valve(ktl::api::device _device, ktl::api::descri
                                       void ** _pp_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_host_mapping_valve)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_descriptor_set_host_mapping_valve)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9224,7 +10386,9 @@ inline ktl::api::result
 create_micromap_ext(ktl::api::device _device, const ktl::api::micromap_create_info_ext * _p_create_info,
                     const ktl::api::allocation_callbacks * _p_allocator, ktl::api::micromap_ext * _p_micromap)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_micromap_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_micromap_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9236,7 +10400,9 @@ inline void
 cmd_build_micromaps_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _info_count,
                         const ktl::api::micromap_build_info_ext * _p_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_micromaps_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_build_micromaps_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9248,7 +10414,9 @@ inline ktl::api::result
 build_micromaps_ext(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
                     ktl::u32 _info_count, const ktl::api::micromap_build_info_ext * _p_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::build_micromaps_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::build_micromaps_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9260,7 +10428,9 @@ inline void
 destroy_micromap_ext(ktl::api::device _device, ktl::api::micromap_ext _micromap,
                      const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_micromap_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_micromap_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9271,7 +10441,9 @@ destroy_micromap_ext(ktl::api::device _device, ktl::api::micromap_ext _micromap,
 inline void
 cmd_copy_micromap_ext(ktl::api::command_buffer _command_buffer, const ktl::api::copy_micromap_info_ext * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_micromap_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_micromap_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9283,7 +10455,9 @@ inline ktl::api::result
 copy_micromap_ext(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
                   const ktl::api::copy_micromap_info_ext * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_micromap_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_micromap_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9295,7 +10469,9 @@ inline void
 cmd_copy_micromap_to_memory_ext(ktl::api::command_buffer                           _command_buffer,
                                 const ktl::api::copy_micromap_to_memory_info_ext * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_micromap_to_memory_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_micromap_to_memory_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9307,7 +10483,9 @@ inline ktl::api::result
 copy_micromap_to_memory_ext(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
                             const ktl::api::copy_micromap_to_memory_info_ext * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_micromap_to_memory_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_micromap_to_memory_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9319,7 +10497,9 @@ inline void
 cmd_copy_memory_to_micromap_ext(ktl::api::command_buffer                           _command_buffer,
                                 const ktl::api::copy_memory_to_micromap_info_ext * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_micromap_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_micromap_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9331,7 +10511,9 @@ inline ktl::api::result
 copy_memory_to_micromap_ext(ktl::api::device _device, ktl::api::deferred_operation_khr _deferred_operation,
                             const ktl::api::copy_memory_to_micromap_info_ext * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_memory_to_micromap_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::copy_memory_to_micromap_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9345,7 +10527,8 @@ cmd_write_micromaps_properties_ext(ktl::api::command_buffer _command_buffer, ktl
                                    ktl::api::query_pool _query_pool, ktl::u32 _first_query)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_micromaps_properties_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_micromaps_properties_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9359,7 +10542,9 @@ write_micromaps_properties_ext(ktl::api::device _device, ktl::u32 _micromap_coun
                                const ktl::api::micromap_ext * _p_micromaps, ktl::api::query_type _query_type,
                                ktl::usize _data_size, void * _p_data, ktl::usize _stride)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::write_micromaps_properties_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::write_micromaps_properties_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9374,7 +10559,8 @@ get_device_micromap_compatibility_ext(ktl::api::device                          
                                       ktl::api::acceleration_structure_compatibility_khr * _p_compatibility)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_micromap_compatibility_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_micromap_compatibility_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9387,7 +10573,9 @@ get_micromap_build_sizes_ext(ktl::api::device _device, ktl::api::acceleration_st
                              const ktl::api::micromap_build_info_ext * _p_build_info,
                              ktl::api::micromap_build_sizes_info_ext * _p_size_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_micromap_build_sizes_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_micromap_build_sizes_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9400,7 +10588,8 @@ get_shader_module_identifier_ext(ktl::api::device _device, ktl::api::shader_modu
                                  ktl::api::shader_module_identifier_ext * _p_identifier)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_module_identifier_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_module_identifier_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9414,7 +10603,9 @@ get_shader_module_create_info_identifier_ext(ktl::api::device                   
                                              ktl::api::shader_module_identifier_ext *    _p_identifier)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_module_create_info_identifier_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_module_create_info_identifier_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9427,7 +10618,9 @@ get_image_subresource_layout_2(ktl::api::device _device, ktl::api::image _image,
                                const ktl::api::image_subresource_2 * _p_subresource,
                                ktl::api::subresource_layout_2 *      _p_layout)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9441,7 +10634,8 @@ get_image_subresource_layout_2_khr(ktl::api::device _device, ktl::api::image _im
                                    ktl::api::subresource_layout_2 *      _p_layout)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9455,7 +10649,8 @@ get_image_subresource_layout_2_ext(ktl::api::device _device, ktl::api::image _im
                                    ktl::api::subresource_layout_2 *      _p_layout)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9467,7 +10662,9 @@ inline ktl::api::result
 get_pipeline_properties_ext(ktl::api::device _device, const ktl::api::pipeline_info_khr * _p_pipeline_info,
                             ktl::api::base_out_structure * _p_pipeline_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_properties_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_pipeline_properties_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9478,7 +10675,9 @@ get_pipeline_properties_ext(ktl::api::device _device, const ktl::api::pipeline_i
 inline void
 export_metal_objects_ext(ktl::api::device _device, ktl::api::export_metal_objects_info_ext * _p_metal_objects_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::export_metal_objects_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::export_metal_objects_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9490,7 +10689,9 @@ inline void
 cmd_bind_tile_memory_qcom(ktl::api::command_buffer                     _command_buffer,
                           const ktl::api::tile_memory_bind_info_qcom * _p_tile_memory_bind_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_tile_memory_qcom)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_tile_memory_qcom)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9503,7 +10704,8 @@ get_framebuffer_tile_properties_qcom(ktl::api::device _device, ktl::api::framebu
                                      ktl::u32 * _p_properties_count, ktl::api::tile_properties_qcom * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_framebuffer_tile_properties_qcom)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_framebuffer_tile_properties_qcom)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9516,7 +10718,9 @@ get_dynamic_rendering_tile_properties_qcom(ktl::api::device _device, const ktl::
                                            ktl::api::tile_properties_qcom * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_dynamic_rendering_tile_properties_qcom)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_dynamic_rendering_tile_properties_qcom)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9531,7 +10735,9 @@ get_physical_device_optical_flow_image_formats_nv(
     ktl::api::optical_flow_image_format_properties_nv * _p_image_format_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_optical_flow_image_formats_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_optical_flow_image_formats_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9546,7 +10752,9 @@ create_optical_flow_session_nv(ktl::api::device                                 
                                const ktl::api::allocation_callbacks *                _p_allocator,
                                ktl::api::optical_flow_session_nv *                   _p_session)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_optical_flow_session_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_optical_flow_session_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9558,7 +10766,9 @@ inline void
 destroy_optical_flow_session_nv(ktl::api::device _device, ktl::api::optical_flow_session_nv _session,
                                 const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_optical_flow_session_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_optical_flow_session_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9572,7 +10782,8 @@ bind_optical_flow_session_image_nv(ktl::api::device _device, ktl::api::optical_f
                                    ktl::api::image_view _view, ktl::api::image_layout _layout)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_optical_flow_session_image_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_optical_flow_session_image_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9584,7 +10795,9 @@ inline void
 cmd_optical_flow_execute_nv(ktl::api::command_buffer _command_buffer, ktl::api::optical_flow_session_nv _session,
                             const ktl::api::optical_flow_execute_info_nv * _p_execute_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_optical_flow_execute_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_optical_flow_execute_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9596,7 +10809,9 @@ inline ktl::api::result
 get_device_fault_info_ext(ktl::api::device _device, ktl::api::device_fault_counts_ext * _p_fault_counts,
                           ktl::api::device_fault_info_ext * _p_fault_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_fault_info_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_fault_info_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9608,7 +10823,9 @@ inline ktl::api::result
 get_device_fault_reports_khr(ktl::api::device _device, ktl::u64 _timeout, ktl::u32 * _p_fault_counts,
                              ktl::api::device_fault_info_khr * _p_fault_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_fault_reports_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_fault_reports_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9619,7 +10836,9 @@ get_device_fault_reports_khr(ktl::api::device _device, ktl::u64 _timeout, ktl::u
 inline ktl::api::result
 get_device_fault_debug_info_khr(ktl::api::device _device, ktl::api::device_fault_debug_info_khr * _p_debug_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_fault_debug_info_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_fault_debug_info_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9631,7 +10850,9 @@ inline void
 cmd_set_depth_bias_2_ext(ktl::api::command_buffer              _command_buffer,
                          const ktl::api::depth_bias_info_ext * _p_depth_bias_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_2_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_2_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9643,7 +10864,9 @@ inline ktl::api::result
 release_swapchain_images_khr(ktl::api::device                                    _device,
                              const ktl::api::release_swapchain_images_info_khr * _p_release_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_swapchain_images_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_swapchain_images_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9655,7 +10878,9 @@ inline ktl::api::result
 release_swapchain_images_ext(ktl::api::device                                    _device,
                              const ktl::api::release_swapchain_images_info_khr * _p_release_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_swapchain_images_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::release_swapchain_images_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9668,7 +10893,8 @@ get_device_image_subresource_layout(ktl::api::device _device, const ktl::api::de
                                     ktl::api::subresource_layout_2 * _p_layout)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_subresource_layout)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_subresource_layout)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9682,7 +10908,9 @@ get_device_image_subresource_layout_khr(ktl::api::device                        
                                         ktl::api::subresource_layout_2 *                _p_layout)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_subresource_layout_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_image_subresource_layout_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9693,7 +10921,8 @@ get_device_image_subresource_layout_khr(ktl::api::device                        
 inline ktl::api::result
 map_memory_2(ktl::api::device _device, const ktl::api::memory_map_info * _p_memory_map_info, void ** _pp_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory_2)]
+                                                   : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9704,7 +10933,9 @@ map_memory_2(ktl::api::device _device, const ktl::api::memory_map_info * _p_memo
 inline ktl::api::result
 map_memory_2_khr(ktl::api::device _device, const ktl::api::memory_map_info * _p_memory_map_info, void ** _pp_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9715,7 +10946,9 @@ map_memory_2_khr(ktl::api::device _device, const ktl::api::memory_map_info * _p_
 inline ktl::api::result
 unmap_memory_2(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_memory_unmap_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9726,7 +10959,9 @@ unmap_memory_2(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_
 inline ktl::api::result
 unmap_memory_2_khr(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_memory_unmap_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9739,7 +10974,9 @@ create_shaders_ext(ktl::api::device _device, ktl::u32 _create_info_count,
                    const ktl::api::shader_create_info_ext * _p_create_infos,
                    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::shader_ext * _p_shaders)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_shaders_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_shaders_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9751,7 +10988,9 @@ inline void
 destroy_shader_ext(ktl::api::device _device, ktl::api::shader_ext _shader,
                    const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_shader_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_shader_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9763,7 +11002,9 @@ inline ktl::api::result
 get_shader_binary_data_ext(ktl::api::device _device, ktl::api::shader_ext _shader, ktl::usize * _p_data_size,
                            void * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_binary_data_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_binary_data_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9775,7 +11016,9 @@ inline void
 cmd_bind_shaders_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _stage_count,
                      const ktl::api::shader_stage_flag_bits * _p_stages, const ktl::api::shader_ext * _p_shaders)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_shaders_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_shaders_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9788,7 +11031,9 @@ set_swapchain_present_timing_queue_size_ext(ktl::api::device _device, ktl::api::
                                             ktl::u32 _size)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_swapchain_present_timing_queue_size_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_swapchain_present_timing_queue_size_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9802,7 +11047,8 @@ get_swapchain_timing_properties_ext(ktl::api::device _device, ktl::api::swapchai
                                     ktl::u64 *                                  _p_swapchain_timing_properties_counter)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_timing_properties_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_timing_properties_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9818,7 +11064,9 @@ get_swapchain_time_domain_properties_ext(
     ktl::u64 *                                       _p_time_domains_counter)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_time_domain_properties_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_time_domain_properties_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9833,7 +11081,8 @@ get_past_presentation_timing_ext(
     ktl::api::past_presentation_timing_properties_ext * _p_past_presentation_timing_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_past_presentation_timing_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_past_presentation_timing_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9847,7 +11096,8 @@ get_screen_buffer_properties_qnx(ktl::api::device _device, const ktl::api::scree
                                  ktl::api::screen_buffer_properties_qnx * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_screen_buffer_properties_qnx)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_screen_buffer_properties_qnx)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9860,8 +11110,10 @@ get_physical_device_cooperative_matrix_properties_khr(ktl::api::physical_device 
                                                       ktl::u32 *                                    _p_property_count,
                                                       ktl::api::cooperative_matrix_properties_khr * _p_properties)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_cooperative_matrix_properties_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_cooperative_matrix_properties_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9876,8 +11128,10 @@ get_physical_device_cooperative_matrix_properties_2_ext(
     const ktl::api::physical_device_cooperative_matrix_info_2_ext * _p_cooperative_matrix_info,
     ktl::u32 * _p_property_count, ktl::api::cooperative_matrix_properties_2_ext * _p_properties)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_cooperative_matrix_properties_2_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_cooperative_matrix_properties_2_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9891,7 +11145,9 @@ get_execution_graph_pipeline_scratch_size_amdx(ktl::api::device _device, ktl::ap
                                                ktl::api::execution_graph_pipeline_scratch_size_amdx * _p_size_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_execution_graph_pipeline_scratch_size_amdx)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_execution_graph_pipeline_scratch_size_amdx)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9905,7 +11161,9 @@ get_execution_graph_pipeline_node_index_amdx(ktl::api::device _device, ktl::api:
                                              ktl::u32 * _p_node_index)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_execution_graph_pipeline_node_index_amdx)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_execution_graph_pipeline_node_index_amdx)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9922,7 +11180,8 @@ create_execution_graph_pipelines_amdx(ktl::api::device _device, ktl::api::pipeli
                                       ktl::api::pipeline *                                        _p_pipelines)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_execution_graph_pipelines_amdx)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_execution_graph_pipelines_amdx)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9936,7 +11195,9 @@ cmd_initialize_graph_scratch_memory_amdx(ktl::api::command_buffer _command_buffe
                                          ktl::api::dvaddr _scratch, ktl::api::dvsize _scratch_size)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_initialize_graph_scratch_memory_amdx)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_initialize_graph_scratch_memory_amdx)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9949,7 +11210,9 @@ inline void
 cmd_dispatch_graph_amdx(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _scratch,
                         ktl::api::dvsize _scratch_size, const ktl::api::dispatch_graph_count_info_amdx * _p_count_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_graph_amdx)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_graph_amdx)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9963,7 +11226,8 @@ cmd_dispatch_graph_indirect_amdx(ktl::api::command_buffer _command_buffer, ktl::
                                  const ktl::api::dispatch_graph_count_info_amdx * _p_count_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_graph_indirect_amdx)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_graph_indirect_amdx)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9976,7 +11240,9 @@ cmd_dispatch_graph_indirect_count_amdx(ktl::api::command_buffer _command_buffer,
                                        ktl::api::dvsize _scratch_size, ktl::api::dvaddr _count_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_graph_indirect_count_amdx)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_graph_indirect_count_amdx)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -9988,7 +11254,9 @@ inline ktl::api::result
 create_gpa_session_amd(ktl::api::device _device, const ktl::api::gpa_session_create_info_amd * _p_create_info,
                        const ktl::api::allocation_callbacks * _p_allocator, ktl::api::gpa_session_amd * _p_gpa_session)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_gpa_session_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_gpa_session_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10000,7 +11268,9 @@ inline void
 destroy_gpa_session_amd(ktl::api::device _device, ktl::api::gpa_session_amd _gpa_session,
                         const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_gpa_session_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_gpa_session_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10011,7 +11281,9 @@ destroy_gpa_session_amd(ktl::api::device _device, ktl::api::gpa_session_amd _gpa
 inline ktl::api::result
 set_gpa_device_clock_mode_amd(ktl::api::device _device, ktl::api::gpa_device_clock_mode_info_amd * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_gpa_device_clock_mode_amd)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_gpa_device_clock_mode_amd)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10022,7 +11294,9 @@ set_gpa_device_clock_mode_amd(ktl::api::device _device, ktl::api::gpa_device_clo
 inline ktl::api::result
 get_gpa_device_clock_info_amd(ktl::api::device _device, ktl::api::gpa_device_get_clock_info_amd * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_gpa_device_clock_info_amd)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_gpa_device_clock_info_amd)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10033,7 +11307,9 @@ get_gpa_device_clock_info_amd(ktl::api::device _device, ktl::api::gpa_device_get
 inline ktl::api::result
 cmd_begin_gpa_session_amd(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_gpa_session_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_gpa_session_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10044,7 +11320,9 @@ cmd_begin_gpa_session_amd(ktl::api::command_buffer _command_buffer, ktl::api::gp
 inline ktl::api::result
 cmd_end_gpa_session_amd(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_gpa_session_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_gpa_session_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10056,7 +11334,9 @@ inline ktl::api::result
 cmd_begin_gpa_sample_amd(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session,
                          const ktl::api::gpa_sample_begin_info_amd * _p_gpa_sample_begin_info, ktl::u32 * _p_sample_id)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_gpa_sample_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_gpa_sample_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10068,7 +11348,9 @@ inline void
 cmd_end_gpa_sample_amd(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session,
                        ktl::u32 _sample_id)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_gpa_sample_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_gpa_sample_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10079,7 +11361,9 @@ cmd_end_gpa_sample_amd(ktl::api::command_buffer _command_buffer, ktl::api::gpa_s
 inline ktl::api::result
 get_gpa_session_status_amd(ktl::api::device _device, ktl::api::gpa_session_amd _gpa_session)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_gpa_session_status_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_gpa_session_status_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10091,7 +11375,9 @@ inline ktl::api::result
 get_gpa_session_results_amd(ktl::api::device _device, ktl::api::gpa_session_amd _gpa_session, ktl::u32 _sample_id,
                             ktl::usize * _p_size_in_bytes, void * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_gpa_session_results_amd)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_gpa_session_results_amd)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10102,7 +11388,9 @@ get_gpa_session_results_amd(ktl::api::device _device, ktl::api::gpa_session_amd 
 inline ktl::api::result
 reset_gpa_session_amd(ktl::api::device _device, ktl::api::gpa_session_amd _gpa_session)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_gpa_session_amd)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::reset_gpa_session_amd)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10114,7 +11402,8 @@ inline void
 cmd_copy_gpa_session_results_amd(ktl::api::command_buffer _command_buffer, ktl::api::gpa_session_amd _gpa_session)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_gpa_session_results_amd)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_gpa_session_results_amd)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10126,7 +11415,9 @@ inline void
 cmd_bind_descriptor_sets_2(ktl::api::command_buffer                    _command_buffer,
                            const ktl::api::bind_descriptor_sets_info * _p_bind_descriptor_sets_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_sets_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_sets_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10138,7 +11429,9 @@ inline void
 cmd_bind_descriptor_sets_2_khr(ktl::api::command_buffer                    _command_buffer,
                                const ktl::api::bind_descriptor_sets_info * _p_bind_descriptor_sets_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_sets_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_sets_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10150,7 +11443,9 @@ inline void
 cmd_push_constants_2(ktl::api::command_buffer              _command_buffer,
                      const ktl::api::push_constants_info * _p_push_constants_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_constants_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_constants_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10162,7 +11457,9 @@ inline void
 cmd_push_constants_2_khr(ktl::api::command_buffer              _command_buffer,
                          const ktl::api::push_constants_info * _p_push_constants_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_constants_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_constants_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10174,7 +11471,9 @@ inline void
 cmd_push_descriptor_set_2(ktl::api::command_buffer                   _command_buffer,
                           const ktl::api::push_descriptor_set_info * _p_push_descriptor_set_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_2)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_2)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10186,7 +11485,9 @@ inline void
 cmd_push_descriptor_set_2_khr(ktl::api::command_buffer                   _command_buffer,
                               const ktl::api::push_descriptor_set_info * _p_push_descriptor_set_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10200,7 +11501,9 @@ cmd_push_descriptor_set_with_template_2(
     const ktl::api::push_descriptor_set_with_template_info * _p_push_descriptor_set_with_template_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_2)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_2)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10215,7 +11518,9 @@ cmd_push_descriptor_set_with_template_2_khr(
     const ktl::api::push_descriptor_set_with_template_info * _p_push_descriptor_set_with_template_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_2_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_2_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10230,7 +11535,9 @@ cmd_set_descriptor_buffer_offsets_2_ext(
     const ktl::api::set_descriptor_buffer_offsets_info_ext * _p_set_descriptor_buffer_offsets_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_descriptor_buffer_offsets_2_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_descriptor_buffer_offsets_2_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10244,7 +11551,9 @@ cmd_bind_descriptor_buffer_embedded_samplers_2_ext(ktl::api::command_buffer _com
                                                        _p_bind_descriptor_buffer_embedded_samplers_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10257,7 +11566,9 @@ inline ktl::api::result
 set_latency_sleep_mode_nv(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                           const ktl::api::latency_sleep_mode_info_nv * _p_sleep_mode_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_sleep_mode_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_sleep_mode_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10269,7 +11580,9 @@ inline ktl::api::result
 latency_sleep_nv(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                  const ktl::api::latency_sleep_info_nv * _p_sleep_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::latency_sleep_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::latency_sleep_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10281,7 +11594,9 @@ inline void
 set_latency_marker_nv(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                       const ktl::api::set_latency_marker_info_nv * _p_latency_marker_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_marker_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_marker_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10293,7 +11608,9 @@ inline void
 get_latency_timings_nv(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                        ktl::api::get_latency_marker_info_nv * _p_latency_marker_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_latency_timings_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_latency_timings_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10304,7 +11621,9 @@ get_latency_timings_nv(ktl::api::device _device, ktl::api::swapchain_khr _swapch
 inline void
 queue_notify_out_of_band_nv(ktl::api::queue _queue, const ktl::api::out_of_band_queue_type_info_nv * _p_queue_type_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_notify_out_of_band_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_notify_out_of_band_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10317,7 +11636,8 @@ set_latency_sleep_mode_legacy_nv(ktl::api::device _device, ktl::api::bool32 _low
                                  ktl::api::bool32 _low_latency_boost, ktl::u32 _minimum_interval_us)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_sleep_mode_legacy_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_sleep_mode_legacy_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10329,7 +11649,9 @@ set_latency_sleep_mode_legacy_nv(ktl::api::device _device, ktl::api::bool32 _low
 inline void
 latency_sleep_legacy_nv(ktl::api::device _device, ktl::api::semaphore _signal_semaphore, ktl::u64 _value)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::latency_sleep_legacy_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::latency_sleep_legacy_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10340,7 +11662,9 @@ latency_sleep_legacy_nv(ktl::api::device _device, ktl::api::semaphore _signal_se
 inline void
 set_latency_marker_legacy_nv(ktl::api::device _device, ktl::u64 _frame_id, ktl::u32 _marker)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_marker_legacy_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::set_latency_marker_legacy_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10351,7 +11675,9 @@ set_latency_marker_legacy_nv(ktl::api::device _device, ktl::u64 _frame_id, ktl::
 inline void
 get_latency_timings_legacy_nv(ktl::api::device _device, void * _p_timings)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_latency_timings_legacy_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_latency_timings_legacy_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10363,7 +11689,8 @@ inline void
 queue_notify_out_of_band_legacy_nv(ktl::api::queue _queue, ktl::u32 _queue_type)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_notify_out_of_band_legacy_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_notify_out_of_band_legacy_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10374,7 +11701,9 @@ queue_notify_out_of_band_legacy_nv(ktl::api::queue _queue, ktl::u32 _queue_type)
 inline void
 get_sleep_status_legacy_nv(ktl::api::device _device, ktl::api::bool32 * _p_low_latency_mode)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_sleep_status_legacy_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_sleep_status_legacy_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10386,7 +11715,8 @@ inline void
 shutdown_latency_device_legacy_nv(ktl::api::device _device)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::shutdown_latency_device_legacy_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::shutdown_latency_device_legacy_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10399,7 +11729,9 @@ cmd_set_rendering_attachment_locations(ktl::api::command_buffer                 
                                        const ktl::api::rendering_attachment_location_info * _p_location_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_attachment_locations)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_attachment_locations)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10412,7 +11744,9 @@ cmd_set_rendering_attachment_locations_khr(ktl::api::command_buffer             
                                            const ktl::api::rendering_attachment_location_info * _p_location_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_attachment_locations_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_attachment_locations_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10426,7 +11760,9 @@ cmd_set_rendering_input_attachment_indices(
     const ktl::api::rendering_input_attachment_index_info * _p_input_attachment_index_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_input_attachment_indices)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_input_attachment_indices)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10440,7 +11776,9 @@ cmd_set_rendering_input_attachment_indices_khr(
     const ktl::api::rendering_input_attachment_index_info * _p_input_attachment_index_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_input_attachment_indices_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_rendering_input_attachment_indices_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10453,7 +11791,9 @@ cmd_set_depth_clamp_range_ext(ktl::api::command_buffer                _command_b
                               ktl::api::depth_clamp_mode_ext          _depth_clamp_mode,
                               const ktl::api::depth_clamp_range_ext * _p_depth_clamp_range)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_clamp_range_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_clamp_range_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10466,8 +11806,11 @@ get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv(
     ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
     ktl::api::cooperative_matrix_flexible_dimensions_properties_nv * _p_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(
+                  ktl::api::command::get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10481,7 +11824,9 @@ get_memory_metal_handle_ext(ktl::api::device                                   _
                             const ktl::api::memory_get_metal_handle_info_ext * _p_get_metal_handle_info,
                             void **                                            _p_handle)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_metal_handle_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_metal_handle_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10496,7 +11841,9 @@ get_memory_metal_handle_properties_ext(ktl::api::device                         
                                        ktl::api::memory_metal_handle_properties_ext * _p_memory_metal_handle_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_metal_handle_properties_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_metal_handle_properties_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10510,8 +11857,10 @@ get_physical_device_cooperative_vector_properties_nv(ktl::api::physical_device  
                                                      ktl::u32 *                                   _p_property_count,
                                                      ktl::api::cooperative_vector_properties_nv * _p_properties)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_cooperative_vector_properties_nv)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_physical_device_cooperative_vector_properties_nv)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10525,7 +11874,8 @@ convert_cooperative_vector_matrix_nv(ktl::api::device                           
                                      const ktl::api::convert_cooperative_vector_matrix_info_nv * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::convert_cooperative_vector_matrix_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::convert_cooperative_vector_matrix_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10538,7 +11888,9 @@ cmd_convert_cooperative_vector_matrix_nv(ktl::api::command_buffer _command_buffe
                                          const ktl::api::convert_cooperative_vector_matrix_info_nv * _p_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_convert_cooperative_vector_matrix_nv)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_convert_cooperative_vector_matrix_nv)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10550,7 +11902,9 @@ inline void
 cmd_dispatch_tile_qcom(ktl::api::command_buffer                  _command_buffer,
                        const ktl::api::dispatch_tile_info_qcom * _p_dispatch_tile_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_tile_qcom)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_tile_qcom)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10563,7 +11917,8 @@ cmd_begin_per_tile_execution_qcom(ktl::api::command_buffer                   _co
                                   const ktl::api::per_tile_begin_info_qcom * _p_per_tile_begin_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_per_tile_execution_qcom)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_per_tile_execution_qcom)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10575,7 +11930,9 @@ inline void
 cmd_end_per_tile_execution_qcom(ktl::api::command_buffer                 _command_buffer,
                                 const ktl::api::per_tile_end_info_qcom * _p_per_tile_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_per_tile_execution_qcom)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_per_tile_execution_qcom)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10590,7 +11947,8 @@ create_external_compute_queue_nv(ktl::api::device                               
                                  ktl::api::external_compute_queue_nv *                   _p_external_queue)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_external_compute_queue_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_external_compute_queue_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10603,7 +11961,8 @@ destroy_external_compute_queue_nv(ktl::api::device _device, ktl::api::external_c
                                   const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_external_compute_queue_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_external_compute_queue_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10616,7 +11975,8 @@ get_external_compute_queue_data_nv(ktl::api::external_compute_queue_nv          
                                    ktl::api::external_compute_queue_data_params_nv * _params, void * _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_external_compute_queue_data_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_external_compute_queue_data_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10629,8 +11989,10 @@ enumerate_physical_device_shader_instrumentation_metrics_arm(
     ktl::api::physical_device _physical_device, ktl::u32 * _p_description_count,
     ktl::api::shader_instrumentation_metric_description_arm * _p_descriptions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::enumerate_physical_device_shader_instrumentation_metrics_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(
+                                ktl::api::command::enumerate_physical_device_shader_instrumentation_metrics_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10646,7 +12008,8 @@ create_shader_instrumentation_arm(ktl::api::device                              
                                   ktl::api::shader_instrumentation_arm *                   _p_instrumentation)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_shader_instrumentation_arm)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_shader_instrumentation_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10659,7 +12022,8 @@ destroy_shader_instrumentation_arm(ktl::api::device _device, ktl::api::shader_in
                                    const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_shader_instrumentation_arm)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_shader_instrumentation_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10672,7 +12036,8 @@ cmd_begin_shader_instrumentation_arm(ktl::api::command_buffer             _comma
                                      ktl::api::shader_instrumentation_arm _instrumentation)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_shader_instrumentation_arm)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_shader_instrumentation_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10684,7 +12049,8 @@ inline void
 cmd_end_shader_instrumentation_arm(ktl::api::command_buffer _command_buffer)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_shader_instrumentation_arm)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_shader_instrumentation_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10698,7 +12064,8 @@ get_shader_instrumentation_values_arm(ktl::api::device _device, ktl::api::shader
                                       ktl::api::shader_instrumentation_values_flags_arm _flags)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_instrumentation_values_arm)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_shader_instrumentation_values_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10712,7 +12079,9 @@ clear_shader_instrumentation_metrics_arm(ktl::api::device                     _d
                                          ktl::api::shader_instrumentation_arm _instrumentation)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::clear_shader_instrumentation_metrics_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::clear_shader_instrumentation_metrics_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10724,7 +12093,9 @@ inline ktl::api::result
 create_tensor_arm(ktl::api::device _device, const ktl::api::tensor_create_info_arm * _p_create_info,
                   const ktl::api::allocation_callbacks * _p_allocator, ktl::api::tensor_arm * _p_tensor)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_tensor_arm)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_tensor_arm)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10736,7 +12107,9 @@ inline void
 destroy_tensor_arm(ktl::api::device _device, ktl::api::tensor_arm _tensor,
                    const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_tensor_arm)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_tensor_arm)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10748,7 +12121,9 @@ inline ktl::api::result
 create_tensor_view_arm(ktl::api::device _device, const ktl::api::tensor_view_create_info_arm * _p_create_info,
                        const ktl::api::allocation_callbacks * _p_allocator, ktl::api::tensor_view_arm * _p_view)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_tensor_view_arm)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_tensor_view_arm)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10760,7 +12135,9 @@ inline void
 destroy_tensor_view_arm(ktl::api::device _device, ktl::api::tensor_view_arm _tensor_view,
                         const ktl::api::allocation_callbacks * _p_allocator)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_tensor_view_arm)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_tensor_view_arm)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10774,7 +12151,8 @@ get_tensor_memory_requirements_arm(ktl::api::device                             
                                    ktl::api::memory_requirements_2 *                     _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_tensor_memory_requirements_arm)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_tensor_memory_requirements_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10786,7 +12164,9 @@ inline ktl::api::result
 bind_tensor_memory_arm(ktl::api::device _device, ktl::u32 _bind_info_count,
                        const ktl::api::bind_tensor_memory_info_arm * _p_bind_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_tensor_memory_arm)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_tensor_memory_arm)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10800,7 +12180,9 @@ get_device_tensor_memory_requirements_arm(ktl::api::device                      
                                           ktl::api::memory_requirements_2 * _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_tensor_memory_requirements_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_tensor_memory_requirements_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10812,7 +12194,9 @@ inline void
 cmd_copy_tensor_arm(ktl::api::command_buffer               _command_buffer,
                     const ktl::api::copy_tensor_info_arm * _p_copy_tensor_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_tensor_arm)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_tensor_arm)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10826,7 +12210,9 @@ get_tensor_opaque_capture_descriptor_data_arm(ktl::api::device                  
                                               void *                                                    _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_tensor_opaque_capture_descriptor_data_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_tensor_opaque_capture_descriptor_data_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10839,7 +12225,9 @@ get_tensor_view_opaque_capture_descriptor_data_arm(
     ktl::api::device _device, const ktl::api::tensor_view_capture_descriptor_data_info_arm * _p_info, void * _p_data)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_tensor_view_opaque_capture_descriptor_data_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_tensor_view_opaque_capture_descriptor_data_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10854,7 +12242,9 @@ get_physical_device_external_tensor_properties_arm(
     ktl::api::external_tensor_properties_arm *                 _p_external_tensor_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_tensor_properties_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_external_tensor_properties_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10869,7 +12259,9 @@ create_data_graph_pipelines_arm(ktl::api::device _device, ktl::api::deferred_ope
                                 const ktl::api::data_graph_pipeline_create_info_arm * _p_create_infos,
                                 const ktl::api::allocation_callbacks * _p_allocator, ktl::api::pipeline * _p_pipelines)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_data_graph_pipelines_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_data_graph_pipelines_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10885,7 +12277,9 @@ create_data_graph_pipeline_session_arm(ktl::api::device                         
                                        ktl::api::data_graph_pipeline_session_arm *                   _p_session)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_data_graph_pipeline_session_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_data_graph_pipeline_session_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10899,8 +12293,10 @@ get_data_graph_pipeline_session_bind_point_requirements_arm(
     ktl::u32 *                                                         _p_bind_point_requirement_count,
     ktl::api::data_graph_pipeline_session_bind_point_requirement_arm * _p_bind_point_requirements)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_data_graph_pipeline_session_bind_point_requirements_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(
+                                ktl::api::command::get_data_graph_pipeline_session_bind_point_requirements_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10914,8 +12310,10 @@ get_data_graph_pipeline_session_memory_requirements_arm(
     ktl::api::device _device, const ktl::api::data_graph_pipeline_session_memory_requirements_info_arm * _p_info,
     ktl::api::memory_requirements_2 * _p_memory_requirements)
 {
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_data_graph_pipeline_session_memory_requirements_arm)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(
+                                           ktl::api::command::get_data_graph_pipeline_session_memory_requirements_arm)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10929,7 +12327,9 @@ bind_data_graph_pipeline_session_memory_arm(
     const ktl::api::bind_data_graph_pipeline_session_memory_info_arm * _p_bind_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_data_graph_pipeline_session_memory_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_data_graph_pipeline_session_memory_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10942,7 +12342,9 @@ destroy_data_graph_pipeline_session_arm(ktl::api::device _device, ktl::api::data
                                         const ktl::api::allocation_callbacks * _p_allocator)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_data_graph_pipeline_session_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_data_graph_pipeline_session_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10955,7 +12357,9 @@ cmd_dispatch_data_graph_arm(ktl::api::command_buffer                            
                             ktl::api::data_graph_pipeline_session_arm               _session,
                             const ktl::api::data_graph_pipeline_dispatch_info_arm * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_data_graph_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_data_graph_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10970,7 +12374,9 @@ get_data_graph_pipeline_available_properties_arm(ktl::api::device               
                                                  ktl::api::data_graph_pipeline_property_arm *   _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_data_graph_pipeline_available_properties_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_data_graph_pipeline_available_properties_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -10986,7 +12392,9 @@ get_data_graph_pipeline_properties_arm(ktl::api::device                         
                                        ktl::api::data_graph_pipeline_property_query_result_arm * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_data_graph_pipeline_properties_arm)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_data_graph_pipeline_properties_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11001,8 +12409,10 @@ get_physical_device_queue_family_data_graph_properties_arm(
     ktl::u32 *                                         _p_queue_family_data_graph_property_count,
     ktl::api::queue_family_data_graph_properties_arm * _p_queue_family_data_graph_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_physical_device_queue_family_data_graph_properties_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(
+                                ktl::api::command::get_physical_device_queue_family_data_graph_properties_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11020,8 +12430,11 @@ get_physical_device_queue_family_data_graph_processing_engine_properties_arm(
     ktl::api::queue_family_data_graph_processing_engine_properties_arm *
         _p_queue_family_data_graph_processing_engine_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_physical_device_queue_family_data_graph_processing_engine_properties_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(
+                  ktl::api::command::get_physical_device_queue_family_data_graph_processing_engine_properties_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11036,7 +12449,8 @@ get_native_buffer_properties_ohos(ktl::api::device _device, const OH_NativeBuffe
                                   ktl::api::native_buffer_properties_ohos * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_native_buffer_properties_ohos)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_native_buffer_properties_ohos)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11048,7 +12462,9 @@ inline ktl::api::result
 get_memory_native_buffer_ohos(ktl::api::device _device, const ktl::api::memory_get_native_buffer_info_ohos * _p_info,
                               OH_NativeBuffer ** _p_buffer)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_native_buffer_ohos)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_native_buffer_ohos)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11059,7 +12475,9 @@ get_memory_native_buffer_ohos(ktl::api::device _device, const ktl::api::memory_g
 inline ktl::api::result
 queue_set_perf_hint_qcom(ktl::api::queue _queue, const ktl::api::perf_hint_info_qcom * _p_perf_hint_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_set_perf_hint_qcom)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_set_perf_hint_qcom)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11073,8 +12491,11 @@ enumerate_physical_device_queue_family_performance_counters_by_region_arm(
     ktl::api::performance_counter_arm *             _p_counters,
     ktl::api::performance_counter_description_arm * _p_counter_descriptions)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::enumerate_physical_device_queue_family_performance_counters_by_region_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(
+                  ktl::api::command::enumerate_physical_device_queue_family_performance_counters_by_region_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11088,7 +12509,8 @@ cmd_set_compute_occupancy_priority_nv(ktl::api::command_buffer                  
                                       const ktl::api::compute_occupancy_priority_parameters_nv * _p_parameters)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_compute_occupancy_priority_nv)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_compute_occupancy_priority_nv)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11101,7 +12523,9 @@ write_sampler_descriptors_ext(ktl::api::device _device, ktl::u32 _sampler_count,
                               const ktl::api::sampler_create_info *    _p_samplers,
                               const ktl::api::host_address_range_ext * _p_descriptors)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::write_sampler_descriptors_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::write_sampler_descriptors_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11114,7 +12538,9 @@ write_resource_descriptors_ext(ktl::api::device _device, ktl::u32 _resource_coun
                                const ktl::api::resource_descriptor_info_ext * _p_resources,
                                const ktl::api::host_address_range_ext *       _p_descriptors)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::write_resource_descriptors_ext)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::write_resource_descriptors_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11125,7 +12551,9 @@ write_resource_descriptors_ext(ktl::api::device _device, ktl::u32 _resource_coun
 inline void
 cmd_bind_sampler_heap_ext(ktl::api::command_buffer _command_buffer, const ktl::api::bind_heap_info_ext * _p_bind_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_sampler_heap_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_sampler_heap_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11136,7 +12564,9 @@ cmd_bind_sampler_heap_ext(ktl::api::command_buffer _command_buffer, const ktl::a
 inline void
 cmd_bind_resource_heap_ext(ktl::api::command_buffer _command_buffer, const ktl::api::bind_heap_info_ext * _p_bind_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_resource_heap_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_resource_heap_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11147,7 +12577,9 @@ cmd_bind_resource_heap_ext(ktl::api::command_buffer _command_buffer, const ktl::
 inline void
 cmd_push_data_ext(ktl::api::command_buffer _command_buffer, const ktl::api::push_data_info_ext * _p_push_data_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_data_ext)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_data_ext)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11161,7 +12593,8 @@ register_custom_border_color_ext(ktl::api::device                               
                                  ktl::api::bool32 _request_index, ktl::u32 * _p_index)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::register_custom_border_color_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::register_custom_border_color_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11173,7 +12606,8 @@ inline void
 unregister_custom_border_color_ext(ktl::api::device _device, ktl::u32 _index)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unregister_custom_border_color_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unregister_custom_border_color_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11186,7 +12620,8 @@ get_image_opaque_capture_data_ext(ktl::api::device _device, ktl::u32 _image_coun
                                   ktl::api::host_address_range_ext * _p_datas)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_opaque_capture_data_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_opaque_capture_data_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11199,7 +12634,9 @@ get_physical_device_descriptor_size_ext(ktl::api::physical_device _physical_devi
                                         ktl::api::descriptor_type _descriptor_type)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_descriptor_size_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_descriptor_size_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11212,7 +12649,8 @@ get_tensor_opaque_capture_data_arm(ktl::api::device _device, ktl::u32 _tensor_co
                                    const ktl::api::tensor_arm * _p_tensors, ktl::api::host_address_range_ext * _p_datas)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_tensor_opaque_capture_data_arm)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_tensor_opaque_capture_data_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11224,7 +12662,9 @@ inline void
 cmd_copy_memory_khr(ktl::api::command_buffer                      _command_buffer,
                     const ktl::api::copy_device_memory_info_khr * _p_copy_memory_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11236,7 +12676,9 @@ inline void
 cmd_copy_memory_to_image_khr(ktl::api::command_buffer                            _command_buffer,
                              const ktl::api::copy_device_memory_image_info_khr * _p_copy_memory_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_image_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_memory_to_image_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11248,7 +12690,9 @@ inline void
 cmd_copy_image_to_memory_khr(ktl::api::command_buffer                            _command_buffer,
                              const ktl::api::copy_device_memory_image_info_khr * _p_copy_memory_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_memory_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_memory_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11260,7 +12704,9 @@ inline void
 cmd_update_memory_khr(ktl::api::command_buffer _command_buffer, const ktl::api::device_address_range_khr * _p_dst_range,
                       ktl::api::address_command_flags_khr _dst_flags, ktl::api::dvsize _data_size, const void * _p_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_update_memory_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_update_memory_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11272,7 +12718,9 @@ inline void
 cmd_fill_memory_khr(ktl::api::command_buffer _command_buffer, const ktl::api::device_address_range_khr * _p_dst_range,
                     ktl::api::address_command_flags_khr _dst_flags, ktl::u32 _data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_fill_memory_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_fill_memory_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11288,7 +12736,9 @@ cmd_copy_query_pool_results_to_memory_khr(ktl::api::command_buffer _command_buff
                                           ktl::api::query_result_flags                       _query_result_flags)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_query_pool_results_to_memory_khr)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_query_pool_results_to_memory_khr)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11303,7 +12753,8 @@ cmd_begin_conditional_rendering_2_ext(
     const ktl::api::conditional_rendering_begin_info_2_ext * _p_conditional_rendering_begin)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_conditional_rendering_2_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_conditional_rendering_2_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11317,7 +12768,9 @@ cmd_bind_transform_feedback_buffers_2_ext(ktl::api::command_buffer _command_buff
                                           const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_binding_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_transform_feedback_buffers_2_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_transform_feedback_buffers_2_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11332,7 +12785,8 @@ cmd_begin_transform_feedback_2_ext(ktl::api::command_buffer _command_buffer, ktl
                                    const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_counter_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_transform_feedback_2_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_transform_feedback_2_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11347,7 +12801,8 @@ cmd_end_transform_feedback_2_ext(ktl::api::command_buffer _command_buffer, ktl::
                                  const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_counter_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_transform_feedback_2_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_transform_feedback_2_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11363,7 +12818,8 @@ cmd_draw_indirect_byte_count_2_ext(ktl::api::command_buffer _command_buffer, ktl
                                    ktl::u32 _counter_offset, ktl::u32 _vertex_stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_byte_count_2_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_byte_count_2_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11376,7 +12832,9 @@ inline void
 cmd_write_marker_to_memory_amd(ktl::api::command_buffer                 _command_buffer,
                                const ktl::api::memory_marker_info_amd * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_marker_to_memory_amd)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_marker_to_memory_amd)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11388,7 +12846,9 @@ inline void
 cmd_bind_index_buffer_3_khr(ktl::api::command_buffer                       _command_buffer,
                             const ktl::api::bind_index_buffer_3_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_3_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_3_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11400,7 +12860,9 @@ inline void
 cmd_bind_vertex_buffers_3_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
                               ktl::u32 _binding_count, const ktl::api::bind_vertex_buffer_3_info_khr * _p_binding_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_3_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_3_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11411,7 +12873,9 @@ cmd_bind_vertex_buffers_3_khr(ktl::api::command_buffer _command_buffer, ktl::u32
 inline void
 cmd_draw_indirect_2_khr(ktl::api::command_buffer _command_buffer, const ktl::api::draw_indirect_2_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_2_khr)];
+    ktl::loader::proc_type ptr = ptable != nullptr
+                                     ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_2_khr)]
+                                     : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11423,7 +12887,9 @@ inline void
 cmd_draw_indexed_indirect_2_khr(ktl::api::command_buffer                   _command_buffer,
                                 const ktl::api::draw_indirect_2_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11435,7 +12901,9 @@ inline void
 cmd_draw_indirect_count_2_khr(ktl::api::command_buffer                         _command_buffer,
                               const ktl::api::draw_indirect_count_2_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11448,7 +12916,8 @@ cmd_draw_indexed_indirect_count_2_khr(ktl::api::command_buffer                  
                                       const ktl::api::draw_indirect_count_2_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_2_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11461,7 +12930,8 @@ cmd_draw_mesh_tasks_indirect_2_ext(ktl::api::command_buffer                   _c
                                    const ktl::api::draw_indirect_2_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_2_ext)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_2_ext)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11474,7 +12944,9 @@ cmd_draw_mesh_tasks_indirect_count_2_ext(ktl::api::command_buffer               
                                          const ktl::api::draw_indirect_count_2_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2_ext)];
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2_ext)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11486,7 +12958,9 @@ inline void
 cmd_dispatch_indirect_2_khr(ktl::api::command_buffer                       _command_buffer,
                             const ktl::api::dispatch_indirect_2_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_indirect_2_khr)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_indirect_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11501,7 +12975,8 @@ create_acceleration_structure_2_khr(ktl::api::device                            
                                     ktl::api::acceleration_structure_khr * _p_acceleration_structure)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_acceleration_structure_2_khr)];
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_acceleration_structure_2_khr)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11516,8 +12991,11 @@ get_physical_device_queue_family_data_graph_engine_operation_properties_arm(
     const ktl::api::queue_family_data_graph_properties_arm * _p_queue_family_data_graph_properties,
     ktl::api::base_out_structure *                           _p_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_physical_device_queue_family_data_graph_engine_operation_properties_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(
+                  ktl::api::command::get_physical_device_queue_family_data_graph_engine_operation_properties_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11530,7 +13008,9 @@ inline void
 cmd_set_dispatch_parameters_arm(ktl::api::command_buffer                  _command_buffer,
                                 const ktl::api::dispatch_parameters_arm * _p_dispatch_parameters)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_dispatch_parameters_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_dispatch_parameters_arm)]
+                          : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
@@ -11546,8 +13026,11 @@ get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm(
     ktl::u32 *                                                      _p_format_count,
     ktl::api::data_graph_optical_flow_image_format_properties_arm * _p_image_format_properties)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm)];
+    ktl::loader::proc_type ptr =
+        ptable != nullptr
+            ? (*ptable)[static_cast< ktl::u32 >(
+                  ktl::api::command::get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm)]
+            : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();

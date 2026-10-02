@@ -96,7 +96,8 @@ namespace ktl::api
 {{
 static constexpr ktl::usize pfn_table_size = {len(_commands)};
 using pfn_table = std::array< ktl::loader::proc_type, pfn_table_size >;
-inline pfn_table * ptable = nullptr;           
+// set by the user to a loaded table: commands abort while it is null or their slot is proc_null
+inline pfn_table * ptable = nullptr;
 
 """)
     # every alias has its own slot: vkGet*ProcAddr resolves core and extension names under different conditions
@@ -108,7 +109,9 @@ inline pfn_table * ptable = nullptr;
     for command in _commands:
         _file.write(f"inline {command.tppe} {command.pfn[4:]}({make_params(command.fields)})\n{{\n")
 
-        _file.write(f"""ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::{command.pfn[4:]})];
+        # null ptable (before setup or after reset) reads as an unloaded command and aborts instead of a crash;
+        # one check keeps the hot path one branch longer only, two checks also move the frame setup into it
+        _file.write(f"""ktl::loader::proc_type ptr = ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::{command.pfn[4:]})] : ktl::loader::proc_null;
 if (ptr == ktl::loader::proc_null) [[unlikely]]
 {{
 std::abort();
