@@ -3,6 +3,7 @@ from name_rules import *
 from utils import is_vulkan_video, make_vulkan_value
 from typing import TextIO
 from cpp_meta import FEATURE_META
+from api_filter import is_vulkan_api, vulkan_features, vulkan_requires
 
 
 def process_enums(_root, _enums) -> str:
@@ -10,7 +11,7 @@ def process_enums(_root, _enums) -> str:
 
     for enum in _root.findall("enum"):
         extend = enum.get("extends")
-        if extend is not None:
+        if extend is not None and is_vulkan_api(enum):
             target = next((e for e in _enums if e.name == make_cpp_name(extend)), None)
             if not target:
                 continue
@@ -125,13 +126,13 @@ match(ktl::api::feature _feature) noexcept
 def extract(_root, _enums, _commands) -> list:
     features = []
 
-    for feature in _root.findall("feature"):
+    for feature in vulkan_features(_root):
         name = make_cpp_name(feature.get("name"))
         if is_vulkan_video(name):
             continue
 
         extensions = []
-        for require in feature.findall("require"):
+        for require in vulkan_requires(feature):
             if extension := process_enums(require, _enums):
                 extensions.append(extension)
             #commands = process_commands(require, _commands)

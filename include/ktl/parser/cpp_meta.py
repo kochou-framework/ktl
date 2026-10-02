@@ -142,11 +142,12 @@ EXTENSION_META = """template < ktl::api::extension >
 struct extension
 {
     static constexpr std::string_view      raw_name    = {};
-    static constexpr bool                  is_instance = {}; 
+    static constexpr bool                  is_instance = {};
     static constexpr ktl::meta::dependency promoted    = {};
 
-    static constexpr std::array< ktl::api::command, 0 >       commands  = {};
-    static constexpr std::array< ktl::meta::version_deps, 0 > deps      = {};
+    static constexpr std::array< ktl::api::command, 0 >              commands             = {};
+    static constexpr std::span< ktl::meta::requirement const >       depends              = {};
+    static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
 };
 
 struct any_extension
@@ -155,8 +156,13 @@ struct any_extension
     bool                  is_instance = {};
     ktl::meta::dependency promoted    = {};
 
-    std::span< ktl::api::command const >       commands = {};
-    std::span< ktl::meta::version_deps const > deps     = {};
+    // commands of <require> without depends
+    std::span< ktl::api::command const > commands = {};
+    // any of the requirements is enough, every dependency of a requirement is needed;
+    // extension without depends has one empty requirement
+    std::span< ktl::meta::requirement const > depends = {};
+    // commands of <require depends="...">, available when their depends are met
+    std::span< ktl::meta::conditional_command const > conditional_commands = {};
 };
 
 template < ktl::api::extension EXTENSION >
@@ -168,5 +174,6 @@ extension_cast() noexcept
             extension::is_instance,
             extension::promoted,
             extension::commands,
-            extension::deps};
+            extension::depends,
+            extension::conditional_commands};
 }"""

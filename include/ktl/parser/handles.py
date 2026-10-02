@@ -1,6 +1,7 @@
 from vk_types import VkHandle
 from name_rules import *
 from utils import is_vulkan_video
+from api_filter import is_vulkan_type
 from typing import TextIO
 from cpp_meta import HANDLE_META
 
@@ -116,6 +117,8 @@ def extract(_root) -> list:
 
     types = _root.find("types")
     for src in types.findall("type[@category='handle']"):
+        if not is_vulkan_type(_root, src):
+            continue
         alias = make_cpp_name(src.get("alias"))
         if alias:
             name = make_cpp_name(src.get("name"))

@@ -1,6 +1,7 @@
 from vk_types import VkEnum, VkEnumField
 from name_rules import *
 from utils import is_vulkan_video
+from api_filter import is_vulkan_api, is_vulkan_type, excluded_names
 from typing import TextIO
 from cpp_meta import ENUM_META
 
@@ -34,6 +35,8 @@ def extract_enum_impl(_root) -> VkEnum | None:
 
     fields = []
     for src in _root.findall("enum"):
+        if not is_vulkan_api(src):
+            continue
         field, new_direction = extract_field_impl(src, name, underling_type)
         direction = new_direction if direction else direction
         fields.append(field)
@@ -87,7 +90,7 @@ def extract(root) -> list:
     enums = []
 
     for src in root.findall("enums"):
-        if src.get("type") in ("enum", "bitmask"):
+        if src.get("type") in ("enum", "bitmask") and src.get("name") not in excluded_names(root):
             if result := extract_enum_impl(src):
                 enums.append(result)
 
@@ -99,6 +102,8 @@ def extract_aliased(root) -> list:
 
     types = root.find("types")
     for src in types.findall("type[@category='enum']"):
+        if not is_vulkan_type(root, src):
+            continue
         if alias := make_cpp_name(src.get("alias")):
             enums.append(VkEnum(make_cpp_name(src.get("name")), None, None, alias))
 

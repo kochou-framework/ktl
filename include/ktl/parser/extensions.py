@@ -3,6 +3,7 @@ from name_rules import *
 from utils import is_vulkan_video, make_vulkan_value
 from typing import TextIO
 from cpp_meta import EXTENSION_META
+from api_filter import is_vulkan_api, vulkan_extensions, vulkan_requires
 
 
 from dataclasses import dataclass
@@ -56,6 +57,8 @@ def parse_depends(_depends: str) -> DepNode:
 
         if name.startswith("VK_VERSION_"):
             return VkDependency(version=name)
+        elif "::" in name: # feature boolean: VkPhysicalDevice...Features::member
+            return VkDependency(feature=name)
         else:
             cpp_name = f"ktl::api::extension::{make_cpp_name(name)}" if 'make_cpp_name' in globals() else name
             return VkDependency(extension=cpp_name)
@@ -98,56 +101,55 @@ def parse_depends(_depends: str) -> DepNode:
     return res
 
 
-def resolve_for_version(node: DepNode, target: Tuple[int, int]) -> Optional[list[str]]:
-    if isinstance(node, VkDependency):
-        # Обработка атомарной зависимости
-        if node.is_version():
-            # Проверяем версию
-            ver_tuple = node.get_version_tuple()
-            if ver_tuple and target >= ver_tuple:
-                return []  # Версия покрыта, требований нет
-            return None  # Версия не покрыта, эта ветка не работает
-        else:
-            # Расширение или фича: требует явного включения
-            name = node.get_name()
-            if name:
-                return [name]
-            return []  # Пустая зависимость считаем выполненной
+def make_dnf(_node: DepNode) -> list[list[VkDependency]]:
+    if isinstance(_node, VkDependency):
+        return [[_node]]
+    if isinstance(_node, OrGroup):
+        return [alternative for option in _node.options for alternative in make_dnf(option)]
+    result = [[]]
+    for requirement in _node.requirements:
+        result = [lhs + rhs for lhs in result for rhs in make_dnf(requirement)]
+    return result
 
-    if isinstance(node, AndGroup):
-        reqs = []
-        for child in node.requirements:
-            child_reqs = resolve_for_version(child, target)
-            if child_reqs is None:
-                return None  # Любое невыполненное условие AND ломает всю группу
-            reqs.extend(child_reqs)
-        return reqs
 
-    if isinstance(node, OrGroup):
-        best = None
-        for child in node.options:
-            child_reqs = resolve_for_version(child, target)
-            if child_reqs is not None:
-                # Предпочитаем более короткие списки (версии дают [], расширения [ext])
-                if best is None or len(child_reqs) < len(best):
-                    best = child_reqs
-                if len(best) == 0:
-                    return []  # Версия покрыла условие, дальше не ищем
-        return best
-    
-    return None  # Неизвестный тип узла
+def make_requirements(_depends: str | None) -> list[list[str]]:
+    """
+    depends expression as DNF: any of the requirements is enough, every dependency of a requirement is needed.
+    Versions are monotone (1.3 implies 1.2): a requirement keeps only its highest version
+    and is dropped when a weaker requirement exists. No depends is one empty requirement.
+    """
+    if not _depends:
+        return [[]]
 
-def extract_requirements(depends_str: str, versions: list[Tuple[int, int]]) -> dict[str, list[str]]:
-    """Возвращает словарь { версия: [требуемые расширения] }."""
-    ast = parse_depends(depends_str)
-    if ast == "":
-        return {f"VK_VERSION_{v[0]}_{v[1]}": [] for v in versions}
+    requirements = []
+    for alternative in make_dnf(parse_depends(_depends)):
+        version = (1, 0)
+        extensions = []
+        for dependency in alternative:
+            if dependency.feature:
+                raise ValueError(f"feature dependency {dependency.feature} in {_depends!r} is not supported")
+            if dependency.version:
+                version = max(version, dependency.get_version_tuple())
+            elif dependency.extension not in extensions:
+                extensions.append(dependency.extension)
+        if (version, extensions) not in requirements:
+            requirements.append((version, extensions))
 
-    result = {}
-    for v in versions:
-        key = f"version_{v[0]}_{v[1]}"
-        reqs = resolve_for_version(ast, v)
-        result[key] = reqs if reqs is not None else ["UNSATISFIABLE"]
+    def is_weaker(_lhs, _rhs) -> bool:
+        return _lhs[0] <= _rhs[0] and set(_lhs[1]) <= set(_rhs[1])
+
+    result = []
+    for requirement in requirements:
+        if any(other is not requirement and is_weaker(other, requirement) for other in requirements):
+            continue
+        version, extensions = requirement
+        dependencies = list(extensions)
+        if version > (1, 0):
+            cpp_version = make_version(f"VK_VERSION_{version[0]}_{version[1]}")
+            if cpp_version is None:
+                raise ValueError(f"unknown version {version} in {_depends!r}")
+            dependencies.insert(0, cpp_version)
+        result.append(dependencies)
     return result
 
 
@@ -170,22 +172,25 @@ def fill_meta(_file: TextIO, _extensions: list) -> None:
 
 """)
     for extension in _extensions:
-        deps = ""
-        if extension.deps:
-            deps = "{"
-            for version, value in extension.deps.items():
-                # unsatisfiable version has no dependencies, deps_size must match the list
-                is_allowed = value != ['UNSATISFIABLE']
-                items = value if is_allowed else []
-                deps += f"{{ktl::api::{version}, {"true" if is_allowed else "false"}, {len(items)}, {{{",".join(items)}}}}},"
-            if deps[-1] == ',':
-                deps = deps[:-1]
-            deps += "}"
-        commands = ""
-        for cmd in extension.commands:
-            commands += f"{cmd},"
-        if len(commands) > 0 and commands[-1] == ',':
-            commands = commands[:-1]
+        # requirements point into the dependency pool, depends and conditions point into the requirement pool
+        dependencies = []
+        requirements = []
+        ranges = {}
+
+        def add_requirements(_requirements: list[list[str]]) -> str:
+            key = tuple(tuple(requirement) for requirement in _requirements)
+            if key not in ranges:
+                ranges[key] = (len(requirements), len(_requirements))
+                for requirement in _requirements:
+                    requirements.append(f"std::span{{dependencies}}.subspan({len(dependencies)}, {len(requirement)})"
+                                        if requirement else "ktl::meta::requirement{}")
+                    dependencies.extend(requirement)
+            offset, count = ranges[key]
+            return f"std::span{{requirements}}.subspan({offset}, {count})"
+
+        depends = add_requirements(extension.depends)
+        conditional_commands = [f"ktl::meta::conditional_command{{{command}, {add_requirements(condition)}}}"
+                                for command, condition in extension.conditional_commands]
         _file.write(f"""
 template <>
 struct extension< ktl::api::extension::{extension.name} >
@@ -194,8 +199,12 @@ struct extension< ktl::api::extension::{extension.name} >
     static constexpr bool                      is_instance = {"true" if extension.is_instance else "false"};
     static constexpr ktl::meta::dependency     promoted    = {{{extension.promoted}}};
 
-    static constexpr std::array< ktl::api::command, {len(extension.commands)} > commands = {{{commands}}};
-    static constexpr std::array< ktl::meta::version_deps, {len(extension.deps)} > deps   = {{{deps}}};
+    static constexpr std::array< ktl::api::command, {len(extension.commands)} > commands = {{{",".join(extension.commands)}}};
+
+    static constexpr std::array< ktl::meta::dependency, {len(dependencies)} > dependencies = {{{",".join(dependencies)}}};
+    static constexpr std::array< ktl::meta::requirement, {len(requirements)} > requirements = {{{",".join(requirements)}}};
+    static constexpr std::span< ktl::meta::requirement const > depends = {depends};
+    static constexpr std::array< ktl::meta::conditional_command, {len(conditional_commands)} > conditional_commands = {{{",".join(conditional_commands)}}};
 }};
 """)
 
@@ -217,7 +226,6 @@ extension_cast(ktl::api::extension _extension)
 """)
     for extension in _extensions:
         _file.write(f'if (_extension == ktl::api::extension::{extension.name}) {{ return extension_cast< ktl::api::extension::{extension.name} >(); }}\n')
-    # TODO
     _file.write("return ktl::meta::any_extension{};")
     _file.write("}\n")
 
@@ -227,25 +235,22 @@ extension_cast(ktl::api::extension _extension)
 def extract(root, enums) -> list:
     extensions = []
 
-    for extension in root.findall(".//extension"):
+    for extension in vulkan_extensions(root):
         name = extension.get("name")
         if is_vulkan_video(name):
             continue
 
         number = extension.get("number")
         tppe = extension.get("type")
-        depends = extension.get("depends")
+        depends = make_requirements(extension.get("depends"))
         commands = []
-        req = ""
-        if depends:
-            versions = [(1,0), (1,1), (1,2), (1,3), (1,4)]
-            req = extract_requirements(depends, versions)
+        conditions = {} # command from <require depends="..."> -> depends of every such block
 
-        for require in extension.findall("require"):
+        for require in vulkan_requires(extension):
             # enums
             for enum in require.findall("enum"):
                 extend = enum.get("extends")
-                if extend:
+                if extend and is_vulkan_api(enum):
                     target = next((e for e in enums if e.name == make_cpp_name(extend)), None)
                     if not target:
                         continue
@@ -275,7 +280,16 @@ def extract(root, enums) -> list:
             for command in require.findall("command"):
                 if is_vulkan_video(command.get("name")):
                     continue
-                commands.append(f"ktl::api::command::{make_cpp_name(command.get("name"))}")
+                command_name = f"ktl::api::command::{make_cpp_name(command.get("name"))}"
+                if require.get("depends"):
+                    conditions.setdefault(command_name, []).append(require.get("depends"))
+                elif command_name not in commands:
+                    commands.append(command_name)
+
+        # command required by several blocks is available when any of them is, unconditional block wins
+        conditional_commands = [(command, make_requirements(",".join(f"({d})" for d in blocks)))
+                                for command, blocks in conditions.items() if command not in commands]
+
         promoted = extension.get("promotedto") or None
         if not promoted:
             promoted = ""
@@ -289,7 +303,8 @@ def extract(root, enums) -> list:
                                       "ktl::api::version_1_0",
                                       True if tppe == "instance" else False,
                                       promoted,
-                                      req,
-                                      commands))
+                                      depends,
+                                      commands,
+                                      conditional_commands))
 
     return extensions

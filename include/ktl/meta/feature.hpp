@@ -660,36 +660,6 @@ struct feature< ktl::api::feature::inherited_queries >
     static constexpr ktl::usize offsetof_field = offsetof(ktl::api::physical_device_features, inherited_queries);
 };
 template <>
-struct feature< ktl::api::feature::sci_buf_import_nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_buf_import_nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_memory_sci_buf_features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_memory_sci_buf_features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_memory_sci_buf_features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_memory_sci_buf_features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_memory_sci_buf_features_nv, sci_buf_import_nv);
-};
-template <>
-struct feature< ktl::api::feature::sci_buf_export_nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_buf_export_nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_memory_sci_buf_features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_memory_sci_buf_features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_memory_sci_buf_features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_memory_sci_buf_features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_memory_sci_buf_features_nv, sci_buf_export_nv);
-};
-template <>
 struct feature< ktl::api::feature::device_generated_commands_nv >
 {
     static constexpr ktl::api::feature        value   = ktl::api::feature::device_generated_commands_nv;
@@ -836,126 +806,6 @@ struct feature< ktl::api::feature::variable_pointers >
     static constexpr ktl::usize offsetof_pnext = offsetof(ktl::api::physical_device_variable_pointers_features, pnext);
     static constexpr ktl::usize offsetof_field =
         offsetof(ktl::api::physical_device_variable_pointers_features, variable_pointers);
-};
-template <>
-struct feature< ktl::api::feature::sci_sync_fence_nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_sync_fence_nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_sci_sync_features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_sci_sync_features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, sci_sync_fence_nv);
-};
-template <>
-struct feature< ktl::api::feature::sci_sync_semaphore_nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_sync_semaphore_nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_sci_sync_features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_sci_sync_features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, sci_sync_semaphore_nv);
-};
-template <>
-struct feature< ktl::api::feature::sci_sync_import_nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_sync_import_nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_sci_sync_features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_sci_sync_features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, sci_sync_import_nv);
-};
-template <>
-struct feature< ktl::api::feature::sci_sync_export_nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_sync_export_nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_sci_sync_features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_sci_sync_features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_sci_sync_features_nv, sci_sync_export_nv);
-};
-template <>
-struct feature< ktl::api::feature::sci_sync_fence_2nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_sync_fence_2nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_sci_sync_2features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_sci_sync_2features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, sci_sync_fence_2nv);
-};
-template <>
-struct feature< ktl::api::feature::sci_sync_semaphore_2nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_sync_semaphore_2nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_sci_sync_2features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_sci_sync_2features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, sci_sync_semaphore_2nv);
-};
-template <>
-struct feature< ktl::api::feature::sci_sync_import_2nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_sync_import_2nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_sci_sync_2features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_sci_sync_2features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, sci_sync_import_2nv);
-};
-template <>
-struct feature< ktl::api::feature::sci_sync_export_2nv >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::sci_sync_export_2nv;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype =
-        ktl::api::structure_type::v_physical_device_external_sci_sync_2features_nv;
-    static constexpr ktl::usize sizeof_struct = sizeof(ktl::api::physical_device_external_sci_sync_2features_nv);
-    static constexpr ktl::usize offsetof_stype =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, stype);
-    static constexpr ktl::usize offsetof_pnext =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_external_sci_sync_2features_nv, sci_sync_export_2nv);
 };
 template <>
 struct feature< ktl::api::feature::multiview >
@@ -5397,18 +5247,6 @@ struct feature< ktl::api::feature::unified_image_layouts_video_khr >
         offsetof(ktl::api::physical_device_unified_image_layouts_features_khr, unified_image_layouts_video_khr);
 };
 template <>
-struct feature< ktl::api::feature::shader_atomic_instructions_10 >
-{
-    static constexpr ktl::api::feature        value   = ktl::api::feature::shader_atomic_instructions_10;
-    static constexpr bool                     is_core = false;
-    static constexpr ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_vulkan_sc_10features;
-    static constexpr ktl::usize               sizeof_struct = sizeof(ktl::api::physical_device_vulkan_sc_10features);
-    static constexpr ktl::usize offsetof_stype = offsetof(ktl::api::physical_device_vulkan_sc_10features, stype);
-    static constexpr ktl::usize offsetof_pnext = offsetof(ktl::api::physical_device_vulkan_sc_10features, pnext);
-    static constexpr ktl::usize offsetof_field =
-        offsetof(ktl::api::physical_device_vulkan_sc_10features, shader_atomic_instructions_10);
-};
-template <>
 struct feature< ktl::api::feature::primitives_generated_query_ext >
 {
     static constexpr ktl::api::feature        value   = ktl::api::feature::primitives_generated_query_ext;
@@ -8541,10 +8379,6 @@ match(ktl::api::feature _feature) noexcept
         return ktl::meta::feature_cast< ktl::api::feature::variable_multisample_rate >();
     case ktl::api::feature::inherited_queries:
         return ktl::meta::feature_cast< ktl::api::feature::inherited_queries >();
-    case ktl::api::feature::sci_buf_import_nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_buf_import_nv >();
-    case ktl::api::feature::sci_buf_export_nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_buf_export_nv >();
     case ktl::api::feature::device_generated_commands_nv:
         return ktl::meta::feature_cast< ktl::api::feature::device_generated_commands_nv >();
     case ktl::api::feature::push_constant_bank_nv:
@@ -8565,22 +8399,6 @@ match(ktl::api::feature _feature) noexcept
         return ktl::meta::feature_cast< ktl::api::feature::variable_pointers_storage_buffer >();
     case ktl::api::feature::variable_pointers:
         return ktl::meta::feature_cast< ktl::api::feature::variable_pointers >();
-    case ktl::api::feature::sci_sync_fence_nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_sync_fence_nv >();
-    case ktl::api::feature::sci_sync_semaphore_nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_sync_semaphore_nv >();
-    case ktl::api::feature::sci_sync_import_nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_sync_import_nv >();
-    case ktl::api::feature::sci_sync_export_nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_sync_export_nv >();
-    case ktl::api::feature::sci_sync_fence_2nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_sync_fence_2nv >();
-    case ktl::api::feature::sci_sync_semaphore_2nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_sync_semaphore_2nv >();
-    case ktl::api::feature::sci_sync_import_2nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_sync_import_2nv >();
-    case ktl::api::feature::sci_sync_export_2nv:
-        return ktl::meta::feature_cast< ktl::api::feature::sci_sync_export_2nv >();
     case ktl::api::feature::multiview:
         return ktl::meta::feature_cast< ktl::api::feature::multiview >();
     case ktl::api::feature::multiview_geometry_shader:
@@ -9194,8 +9012,6 @@ match(ktl::api::feature _feature) noexcept
         return ktl::meta::feature_cast< ktl::api::feature::unified_image_layouts_khr >();
     case ktl::api::feature::unified_image_layouts_video_khr:
         return ktl::meta::feature_cast< ktl::api::feature::unified_image_layouts_video_khr >();
-    case ktl::api::feature::shader_atomic_instructions_10:
-        return ktl::meta::feature_cast< ktl::api::feature::shader_atomic_instructions_10 >();
     case ktl::api::feature::primitives_generated_query_ext:
         return ktl::meta::feature_cast< ktl::api::feature::primitives_generated_query_ext >();
     case ktl::api::feature::primitives_generated_query_with_rasterizer_discard_ext:

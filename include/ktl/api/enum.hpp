@@ -165,15 +165,12 @@ enum class pipeline_bind_point : ktl::u32
 };
 enum class pipeline_cache_header_version : ktl::u32
 {
-    v_one                 = 1,
-    v_safety_critical_one = 1000298001,
-    v_data_graph_qcom     = 1000629000
+    v_one             = 1,
+    v_data_graph_qcom = 1000629000
 };
 enum class pipeline_cache_create_flag_bits : ktl::u32
 {
     v_externally_synchronized_bit           = (1U << 0),
-    v_read_only_bit                         = (1U << 1),
-    v_use_application_storage_bit           = (1U << 2),
     v_internally_synchronized_merge_bit_khr = (1U << 3),
     v_externally_synchronized_bit_ext       = v_externally_synchronized_bit
 };
@@ -1007,15 +1004,6 @@ enum class structure_type : ktl::u32
     v_physical_device_dynamic_rendering_local_read_features                       = 1000232000,
     v_rendering_attachment_location_info                                          = 1000232001,
     v_rendering_input_attachment_index_info                                       = 1000232002,
-    v_physical_device_vulkan_sc_10features                                        = 1000298000,
-    v_physical_device_vulkan_sc_10properties                                      = 1000298001,
-    v_device_object_reservation_create_info                                       = 1000298002,
-    v_command_pool_memory_reservation_create_info                                 = 1000298003,
-    v_command_pool_memory_consumption                                             = 1000298004,
-    v_pipeline_pool_size                                                          = 1000298005,
-    v_fault_data                                                                  = 1000298007,
-    v_fault_callback_info                                                         = 1000298008,
-    v_pipeline_offline_create_info                                                = 1000298010,
     v_swapchain_create_info_khr                                                   = 1000001000,
     v_present_info_khr                                                            = 1000001001,
     v_device_group_present_capabilities_khr                                       = 1000060007,
@@ -1032,9 +1020,6 @@ enum class structure_type : ktl::u32
     v_wayland_surface_create_info_khr                                             = 1000006000,
     v_android_surface_create_info_khr                                             = 1000008000,
     v_win_32surface_create_info_khr                                               = 1000009000,
-    v_native_buffer_android                                                       = 1000010000,
-    v_swapchain_image_create_info_android                                         = 1000010001,
-    v_physical_device_presentation_properties_android                             = 1000010002,
     v_debug_report_callback_create_info_ext                                       = 1000011000,
     v_pipeline_rasterization_state_rasterization_order_amd                        = 1000018000,
     v_debug_marker_object_name_info_ext                                           = 1000022000,
@@ -1072,7 +1057,6 @@ enum class structure_type : ktl::u32
     v_texture_lod_gather_format_properties_amd                                    = 1000041000,
     v_stream_descriptor_surface_create_info_ggp                                   = 1000049000,
     v_physical_device_corner_sampled_image_features_nv                            = 1000050000,
-    v_private_vendor_info_placeholder_offset_0nv                                  = 1000051000,
     v_external_memory_image_create_info_nv                                        = 1000056000,
     v_export_memory_allocate_info_nv                                              = 1000056001,
     v_import_memory_win_32handle_info_nv                                          = 1000057000,
@@ -1131,7 +1115,6 @@ enum class structure_type : ktl::u32
     v_acquire_profiling_lock_info_khr                                             = 1000116004,
     v_performance_counter_khr                                                     = 1000116005,
     v_performance_counter_description_khr                                         = 1000116006,
-    v_performance_query_reservation_info_khr                                      = 1000116007,
     v_physical_device_surface_info_2khr                                           = 1000119000,
     v_surface_capabilities_2khr                                                   = 1000119001,
     v_surface_format_2khr                                                         = 1000119002,
@@ -1385,7 +1368,6 @@ enum class structure_type : ktl::u32
     v_cuda_launch_info_nv                                                         = 1000307002,
     v_physical_device_cuda_kernel_launch_features_nv                              = 1000307003,
     v_physical_device_cuda_kernel_launch_properties_nv                            = 1000307004,
-    v_refresh_object_list_khr                                                     = 1000308000,
     v_physical_device_tile_shading_features_qcom                                  = 1000309000,
     v_physical_device_tile_shading_properties_qcom                                = 1000309001,
     v_render_pass_tile_shading_create_info_qcom                                   = 1000309002,
@@ -1496,19 +1478,6 @@ enum class structure_type : ktl::u32
     v_physical_device_external_memory_rdma_features_nv                            = 1000371001,
     v_pipeline_properties_identifier_ext                                          = 1000372000,
     v_physical_device_pipeline_properties_features_ext                            = 1000372001,
-    v_import_fence_sci_sync_info_nv                                               = 1000373000,
-    v_export_fence_sci_sync_info_nv                                               = 1000373001,
-    v_fence_get_sci_sync_info_nv                                                  = 1000373002,
-    v_sci_sync_attributes_info_nv                                                 = 1000373003,
-    v_import_semaphore_sci_sync_info_nv                                           = 1000373004,
-    v_export_semaphore_sci_sync_info_nv                                           = 1000373005,
-    v_semaphore_get_sci_sync_info_nv                                              = 1000373006,
-    v_physical_device_external_sci_sync_features_nv                               = 1000373007,
-    v_import_memory_sci_buf_info_nv                                               = 1000374000,
-    v_export_memory_sci_buf_info_nv                                               = 1000374001,
-    v_memory_get_sci_buf_info_nv                                                  = 1000374002,
-    v_memory_sci_buf_properties_nv                                                = 1000374003,
-    v_physical_device_external_memory_sci_buf_features_nv                         = 1000374004,
     v_physical_device_frame_boundary_features_ext                                 = 1000375000,
     v_frame_boundary_ext                                                          = 1000375001,
     v_physical_device_multisampled_render_to_single_sampled_features_ext          = 1000376000,
@@ -1573,7 +1542,6 @@ enum class structure_type : ktl::u32
     v_acceleration_structure_geometry_spheres_data_nv                             = 1000429010,
     v_physical_device_linear_color_attachment_features_nv                         = 1000430000,
     v_physical_device_shader_maximal_reconvergence_features_khr                   = 1000434000,
-    v_application_parameters_ext                                                  = 1000435000,
     v_physical_device_image_compression_control_swapchain_features_ext            = 1000437000,
     v_physical_device_image_processing_features_qcom                              = 1000440000,
     v_physical_device_image_processing_properties_qcom                            = 1000440001,
@@ -1674,10 +1642,6 @@ enum class structure_type : ktl::u32
     v_swapchain_present_scaling_create_info_khr                                   = 1000275004,
     v_release_swapchain_images_info_khr                                           = 1000275005,
     v_physical_device_multiview_per_view_viewports_features_qcom                  = 1000488000,
-    v_semaphore_sci_sync_pool_create_info_nv                                      = 1000489000,
-    v_semaphore_sci_sync_create_info_nv                                           = 1000489001,
-    v_physical_device_external_sci_sync_2features_nv                              = 1000489002,
-    v_device_semaphore_sci_sync_pool_reservation_create_info_nv                   = 1000489003,
     v_physical_device_ray_tracing_invocation_reorder_features_nv                  = 1000490000,
     v_physical_device_ray_tracing_invocation_reorder_properties_nv                = 1000490001,
     v_physical_device_cooperative_vector_features_nv                              = 1000491000,
@@ -1836,9 +1800,6 @@ enum class structure_type : ktl::u32
     v_physical_device_maintenance_9properties_khr                                 = 1000584001,
     v_queue_family_ownership_transfer_properties_khr                              = 1000584002,
     v_surface_create_info_ohos                                                    = 1000685000,
-    v_native_buffer_ohos                                                          = 1000453001,
-    v_swapchain_image_create_info_ohos                                            = 1000453002,
-    v_physical_device_presentation_properties_ohos                                = 1000453003,
     v_physical_device_hdr_vivid_features_huawei                                   = 1000590000,
     v_hdr_vivid_dynamic_metadata_huawei                                           = 1000590001,
     v_physical_device_cooperative_matrix_2features_nv                             = 1000593000,
@@ -2162,7 +2123,6 @@ enum class structure_type : ktl::u32
     v_physical_device_present_mode_fifo_latest_ready_features_ext =
         v_physical_device_present_mode_fifo_latest_ready_features_khr,
     v_pipeline_info_ext                                   = v_pipeline_info_khr,
-    v_physical_device_external_sci_buf_features_nv        = v_physical_device_external_memory_sci_buf_features_nv,
     v_physical_device_global_priority_query_features_ext  = v_physical_device_global_priority_query_features,
     v_queue_family_global_priority_properties_ext         = v_queue_family_global_priority_properties,
     v_physical_device_maintenance_4features_khr           = v_physical_device_maintenance_4features,
@@ -2244,8 +2204,6 @@ enum class result : ktl::i32
     v_error_fragmentation                                 = -1000161000,
     v_pipeline_compile_required                           = 1000297000,
     v_error_not_permitted                                 = -1000174001,
-    v_error_invalid_pipeline_cache_data                   = -1000298000,
-    v_error_no_pipeline_match                             = -1000298001,
     v_error_surface_lost_khr                              = -1000000000,
     v_error_native_window_in_use_khr                      = -1000000001,
     v_suboptimal_khr                                      = 1000001003,
@@ -2438,7 +2396,6 @@ enum class object_type : ktl::u32
     v_optical_flow_session_nv         = 1000464000,
     v_shader_ext                      = 1000482000,
     v_pipeline_binary_khr             = 1000483000,
-    v_semaphore_sci_sync_pool_nv      = 1000489000,
     v_data_graph_pipeline_session_arm = 1000507000,
     v_external_compute_queue_nv       = 1000556000,
     v_indirect_commands_layout_ext    = 1000572000,
@@ -2488,14 +2445,8 @@ enum class queue_flag_bits : ktl::u32
     v_transfer_bit        = (1U << 2),
     v_sparse_binding_bit  = (1U << 3),
     v_protected_bit       = (1U << 4),
-    v_reserved_7bit_qcom  = (1U << 7),
     v_optical_flow_bit_nv = (1U << 8),
-    v_data_graph_bit_arm  = (1U << 10),
-    v_reserved_12bit_ext  = (1U << 12),
-    v_reserved_9bit_ext   = (1U << 9),
-    v_reserved_13bit_ext  = (1U << 13),
-    v_reserved_11bit_arm  = (1U << 11),
-    v_reserved_14bit_ext  = (1U << 14)
+    v_data_graph_bit_arm  = (1U << 10)
 };
 enum class cull_mode_flag_bits : ktl::u32
 {
@@ -2506,15 +2457,12 @@ enum class cull_mode_flag_bits : ktl::u32
 };
 enum class render_pass_create_flag_bits : ktl::u32
 {
-    v_reserved_3bit_img                    = (1U << 3),
-    v_reserved_0bit_khr                    = (1U << 0),
     v_transform_bit_qcom                   = (1U << 1),
     v_per_layer_fragment_density_bit_valve = (1U << 2)
 };
 enum class device_queue_create_flag_bits : ktl::u32
 {
     v_protected_bit                   = (1U << 0),
-    v_reserved_1bit_qcom              = (1U << 1),
     v_internally_synchronized_bit_khr = (1U << 2)
 };
 enum class memory_property_flag_bits : ktl::u32
@@ -2533,7 +2481,6 @@ enum class memory_heap_flag_bits : ktl::u32
 {
     v_device_local_bit       = (1U << 0),
     v_multi_instance_bit     = (1U << 1),
-    v_seu_safe_bit           = (1U << 2),
     v_tile_memory_bit_qcom   = (1U << 3),
     v_multi_instance_bit_khr = v_multi_instance_bit
 };
@@ -2636,15 +2583,9 @@ enum class buffer_usage_flag_bits_2 : ktl::u64
     v_2push_descriptors_descriptor_buffer_bit_ext           = (1ULL << 26),
     v_2compressed_data_dgf_1bit_amdx                        = (1ULL << 33),
     v_2data_graph_foreign_descriptor_bit_arm                = (1ULL << 29),
-    v_2reserved_34bit_ext                                   = (1ULL << 34),
     v_2tile_memory_bit_qcom                                 = (1ULL << 27),
     v_2memory_decompression_bit_ext                         = (1ULL << 32),
     v_2preprocess_buffer_bit_ext                            = (1ULL << 31),
-    v_2reserved_18bit_ext                                   = (1ULL << 18),
-    v_2reserved_30bit_ext                                   = (1ULL << 30),
-    v_2reserved_35bit_khr                                   = (1ULL << 35),
-    v_2reserved_36bit_khr                                   = (1ULL << 36),
-    v_2reserved_37bit_huawei                                = (1ULL << 37),
     v_2transfer_src_bit_khr                                 = v_2transfer_src_bit,
     v_2transfer_dst_bit_khr                                 = v_2transfer_dst_bit,
     v_2uniform_texel_buffer_bit_khr                         = v_2uniform_texel_buffer_bit,
@@ -2664,7 +2605,6 @@ enum class buffer_create_flag_bits : ktl::u32
     v_sparse_aliased_bit                       = (1U << 2),
     v_protected_bit                            = (1U << 3),
     v_device_address_capture_replay_bit        = (1U << 4),
-    v_reserved_7bit_img                        = (1U << 7),
     v_descriptor_buffer_capture_replay_bit_ext = (1U << 5),
     v_device_address_capture_replay_bit_ext    = v_device_address_capture_replay_bit,
     v_device_address_capture_replay_bit_khr    = v_device_address_capture_replay_bit
@@ -2689,8 +2629,6 @@ enum class shader_stage_flag_bits : ktl::u32
     v_mesh_bit_ext                = (1U << 7),
     v_subpass_shading_bit_huawei  = (1U << 14),
     v_cluster_culling_bit_huawei  = (1U << 19),
-    v_reserved_15bit_nv           = (1U << 15),
-    v_reserved_16bit_huawei       = (1U << 16),
     v_raygen_bit_nv               = v_raygen_bit_khr,
     v_any_hit_bit_nv              = v_any_hit_bit_khr,
     v_closest_hit_bit_nv          = v_closest_hit_bit_khr,
@@ -2717,14 +2655,8 @@ enum class image_usage_flag_bits : ktl::u32
     v_invocation_mask_bit_huawei               = (1U << 18),
     v_sample_weight_bit_qcom                   = (1U << 20),
     v_sample_block_match_bit_qcom              = (1U << 21),
-    v_reserved_24bit_coreavi                   = (1U << 24),
     v_tensor_aliasing_bit_arm                  = (1U << 23),
-    v_reserved_28bit_ext                       = (1U << 28),
     v_tile_memory_bit_qcom                     = (1U << 27),
-    v_reserved_29bit_khr                       = (1U << 29),
-    v_reserved_30bit_khr                       = (1U << 30),
-    v_reserved_16bit_huawei                    = (1U << 16),
-    v_reserved_17bit_huawei                    = (1U << 17),
     v_shading_rate_image_bit_nv                = v_fragment_shading_rate_attachment_bit_khr,
     v_host_transfer_bit_ext                    = v_host_transfer_bit
 };
@@ -2738,13 +2670,6 @@ enum class image_usage_flag_bits_2khr : ktl::u64
     v_2depth_stencil_attachment_bit_khr            = (1ULL << 5),
     v_2transient_attachment_bit_khr                = (1ULL << 6),
     v_2input_attachment_bit_khr                    = (1ULL << 7),
-    v_2reserved_31bit_ext                          = (1ULL << 31),
-    v_2reserved_24bit_coreavi                      = (1ULL << 24),
-    v_2reserved_28bit_ext                          = (1ULL << 28),
-    v_2reserved_29bit_khr                          = (1ULL << 29),
-    v_2reserved_30bit_khr                          = (1ULL << 30),
-    v_2reserved_16bit_huawei                       = (1ULL << 16),
-    v_2reserved_27bit_huawei                       = (1ULL << 17),
     v_2fragment_shading_rate_attachment_bit_khr    = (1ULL << 8),
     v_2fragment_density_map_bit_ext                = (1ULL << 9),
     v_2video_decode_dst_bit_khr                    = (1ULL << 10),
@@ -2778,7 +2703,6 @@ enum class image_create_flag_bits : ktl::u32
     v_protected_bit                                 = (1U << 11),
     v_disjoint_bit                                  = (1U << 9),
     v_corner_sampled_bit_nv                         = (1U << 13),
-    v_reserved_21bit_img                            = (1U << 21),
     v_descriptor_heap_capture_replay_bit_ext        = (1U << 16),
     v_sample_locations_compatible_depth_bit_ext     = (1U << 12),
     v_subsampled_bit_ext                            = (1U << 14),
@@ -2786,7 +2710,6 @@ enum class image_create_flag_bits : ktl::u32
     v_2d_view_compatible_bit_ext                    = (1U << 17),
     v_fragment_density_map_offset_bit_ext           = (1U << 15),
     v_alias_single_layer_descriptor_bit_khr         = (1U << 22),
-    v_reserved_19bit_nv                             = (1U << 19),
     v_split_instance_bind_regions_bit_khr           = v_split_instance_bind_regions_bit,
     v_2d_array_compatible_bit_khr                   = v_2d_array_compatible_bit,
     v_block_texel_view_compatible_bit_khr           = v_block_texel_view_compatible_bit,
@@ -2803,7 +2726,6 @@ enum class image_create_flag_bits_2khr : ktl::u64
     v_2sparse_aliased_bit_khr                        = (1ULL << 2),
     v_2mutable_format_bit_khr                        = (1ULL << 3),
     v_2cube_compatible_bit_khr                       = (1ULL << 4),
-    v_2reserved_21bit_img                            = (1ULL << 21),
     v_2alias_single_layer_descriptor_bit_khr         = (1ULL << 22),
     v_22d_array_compatible_bit_khr                   = (1ULL << 5),
     v_2split_instance_bind_regions_bit_khr           = (1ULL << 6),
@@ -2819,8 +2741,7 @@ enum class image_create_flag_bits_2khr : ktl::u64
     v_2descriptor_buffer_capture_replay_bit_ext      = (1ULL << 16),
     v_22d_view_compatible_bit_ext                    = (1ULL << 17),
     v_2multisampled_render_to_single_sampled_bit_ext = (1ULL << 18),
-    v_2video_profile_independent_bit_khr             = (1ULL << 20),
-    v_2reserved_19bit_nv                             = (1ULL << 19)
+    v_2video_profile_independent_bit_khr             = (1ULL << 20)
 };
 enum class image_view_create_flag_bits : ktl::u32
 {
@@ -2894,10 +2815,8 @@ enum class pipeline_create_flag_bits_2 : ktl::u64
     v_2early_return_on_failure_bit                               = (1ULL << 9),
     v_2no_protected_access_bit                                   = (1ULL << 27),
     v_2protected_access_only_bit                                 = (1ULL << 30),
-    v_2reserved_46bit_img                                        = (1ULL << 46),
     v_2execution_graph_bit_amdx                                  = (1ULL << 32),
     v_2descriptor_heap_bit_ext                                   = (1ULL << 36),
-    v_reserved_44bit_khr                                         = (1ULL << 44),
     v_2ray_tracing_allow_spheres_and_linear_swept_spheres_bit_nv = (1ULL << 33),
     v_2enable_legacy_dithering_bit_ext                           = (1ULL << 34),
     v_2defer_compile_bit_nv                                      = (1ULL << 5),
@@ -2925,15 +2844,10 @@ enum class pipeline_create_flag_bits_2 : ktl::u64
     v_2instrument_shaders_bit_arm                                = (1ULL << 39),
     v_2capture_data_bit_khr                                      = (1ULL << 31),
     v_2indirect_bindable_bit_ext                                 = (1ULL << 38),
-    v_2reserved_35bit_khr                                        = (1ULL << 35),
     v_2per_layer_fragment_density_bit_valve                      = (1ULL << 40),
     v_2ray_tracing_opacity_micromap_bit_khr                      = (1ULL << 24),
     v_2opacity_micromap_disallow_mixed_special_index_bit_khr     = (1ULL << 41),
     v_264bit_indexing_bit_ext                                    = (1ULL << 43),
-    v_2reserved_45bit_ext                                        = (1ULL << 45),
-    v_2reserved_47bit_amd                                        = (1ULL << 47),
-    v_2reserved_48bit_huawei                                     = (1ULL << 48),
-    v_2reserved_42bit_khr                                        = (1ULL << 42),
     v_2ray_tracing_skip_built_in_primitives_bit_khr              = v_2ray_tracing_skip_triangles_bit_khr,
     v_2ray_tracing_opacity_micromap_bit_ext                      = v_2ray_tracing_opacity_micromap_bit_khr,
     v_2disable_optimization_bit_khr                              = v_2disable_optimization_bit,
@@ -2950,7 +2864,6 @@ enum class pipeline_shader_stage_create_flag_bits : ktl::u32
 {
     v_allow_varying_subgroup_size_bit     = (1U << 0),
     v_require_full_subgroups_bit          = (1U << 1),
-    v_reserved_3bit_khr                   = (1U << 3),
     v_allow_varying_subgroup_size_bit_ext = v_allow_varying_subgroup_size_bit,
     v_require_full_subgroups_bit_ext      = v_require_full_subgroups_bit
 };
@@ -3028,9 +2941,7 @@ enum class command_buffer_usage_flag_bits : ktl::u32
 {
     v_one_time_submit_bit      = (1U << 0),
     v_render_pass_continue_bit = (1U << 1),
-    v_simultaneous_use_bit     = (1U << 2),
-    v_reserved_3bit_huawei     = (1U << 3),
-    v_reserved_4bit_huawei     = (1U << 4)
+    v_simultaneous_use_bit     = (1U << 2)
 };
 enum class query_pipeline_statistic_flag_bits : ktl::u32
 {
@@ -3067,7 +2978,6 @@ enum class image_aspect_flag_bits : ktl::u32
     v_memory_plane_1bit_ext = (1U << 8),
     v_memory_plane_2bit_ext = (1U << 9),
     v_memory_plane_3bit_ext = (1U << 10),
-    v_reserved_11bit_huawei = (1U << 11),
     v_plane_0bit_khr        = v_plane_0bit,
     v_plane_1bit_khr        = v_plane_1bit,
     v_plane_2bit_khr        = v_plane_2bit,
@@ -3128,8 +3038,7 @@ enum class command_pool_create_flag_bits : ktl::u32
 };
 enum class command_pool_reset_flag_bits : ktl::u32
 {
-    v_release_resources_bit = (1U << 0),
-    v_reserved_1bit_coreavi = (1U << 1)
+    v_release_resources_bit = (1U << 0)
 };
 enum class command_buffer_reset_flag_bits : ktl::u32
 {
@@ -3175,7 +3084,6 @@ enum class dependency_flag_bits : ktl::u32
     v_feedback_loop_bit_ext                                  = (1U << 3),
     v_queue_family_ownership_transfer_use_all_stages_bit_khr = (1U << 5),
     v_asymmetric_event_bit_khr                               = (1U << 6),
-    v_extension_586bit_img                                   = (1U << 4),
     v_view_local_bit_khr                                     = v_view_local_bit,
     v_device_group_bit_khr                                   = v_device_group_bit
 };
@@ -3255,10 +3163,6 @@ enum class display_surface_stereo_type_nv : ktl::u32
     v_onboard_din_nv        = 1,
     v_hdmi_3d_nv            = 2,
     v_inband_displayport_nv = 3
-};
-enum class swapchain_image_usage_flag_bits_android : ktl::u32
-{
-    v_shared_bit_android = (1U << 0)
 };
 enum class time_domain_khr : ktl::u32
 {
@@ -3511,7 +3415,6 @@ enum class external_memory_handle_type_flag_bits : ktl::u32
     v_host_mapped_foreign_memory_bit_ext  = (1U << 8),
     v_zircon_vmo_bit_fuchsia              = (1U << 11),
     v_rdma_address_bit_nv                 = (1U << 12),
-    v_sci_buf_bit_nv                      = (1U << 13),
     v_oh_native_buffer_bit_ohos           = (1U << 15),
     v_screen_buffer_bit_qnx               = (1U << 14),
     v_mtlbuffer_bit_ext                   = (1U << 16),
@@ -3542,7 +3445,6 @@ enum class external_semaphore_handle_type_flag_bits : ktl::u32
     v_d_3d_12fence_bit         = (1U << 3),
     v_sync_fd_bit              = (1U << 4),
     v_zircon_event_bit_fuchsia = (1U << 7),
-    v_sci_sync_obj_bit_nv      = (1U << 5),
     v_d_3d_11fence_bit         = v_d_3d_12fence_bit,
     v_opaque_fd_bit_khr        = v_opaque_fd_bit,
     v_opaque_win_32bit_khr     = v_opaque_win_32bit,
@@ -3568,8 +3470,6 @@ enum class external_fence_handle_type_flag_bits : ktl::u32
     v_opaque_win_32bit         = (1U << 1),
     v_opaque_win_32kmt_bit     = (1U << 2),
     v_sync_fd_bit              = (1U << 3),
-    v_sci_sync_obj_bit_nv      = (1U << 4),
-    v_sci_sync_fence_bit_nv    = (1U << 5),
     v_opaque_fd_bit_khr        = v_opaque_fd_bit,
     v_opaque_win_32bit_khr     = v_opaque_win_32bit,
     v_opaque_win_32kmt_bit_khr = v_opaque_win_32kmt_bit,
@@ -3640,13 +3540,10 @@ enum class swapchain_create_flag_bits_khr : ktl::u32
     v_protected_bit_khr                             = (1U << 1),
     v_mutable_format_bit_khr                        = (1U << 2),
     v_present_timing_bit_ext                        = (1U << 9),
-    v_reserved_5bit_ext                             = (1U << 5),
-    v_reserved_4bit_ext                             = (1U << 4),
     v_present_id_2bit_khr                           = (1U << 6),
     v_present_wait_2bit_khr                         = (1U << 7),
     v_deferred_memory_allocation_bit_khr            = (1U << 3),
     v_multisampled_render_to_single_sampled_bit_ext = (1U << 8),
-    v_reserved_10bit_huawei                         = (1U << 10),
     v_deferred_memory_allocation_bit_ext            = v_deferred_memory_allocation_bit_khr
 };
 enum class viewport_coordinate_swizzle_nv : ktl::u32
@@ -3802,7 +3699,6 @@ enum class descriptor_binding_flag_bits : ktl::u32
     v_update_unused_while_pending_bit     = (1U << 1),
     v_partially_bound_bit                 = (1U << 2),
     v_variable_descriptor_count_bit       = (1U << 3),
-    v_reserved_4bit_qcom                  = (1U << 4),
     v_update_after_bind_bit_ext           = v_update_after_bind_bit,
     v_update_unused_while_pending_bit_ext = v_update_unused_while_pending_bit,
     v_partially_bound_bit_ext             = v_partially_bound_bit,
@@ -3948,9 +3844,6 @@ enum class build_acceleration_structure_flag_bits_khr : ktl::u32
     v_allow_opacity_micromap_update_bit_khr                 = (1U << 6),
     v_allow_disable_opacity_micromaps_bit_khr               = (1U << 7),
     v_micromap_lossy_bit_khr                                = (1U << 10),
-    v_reserved_15bit_ext                                    = (1U << 15),
-    v_reserved_14bit_ext                                    = (1U << 14),
-    v_reserved_13bit_amd                                    = (1U << 13),
     v_allow_update_bit_nv                                   = v_allow_update_bit_khr,
     v_allow_compaction_bit_nv                               = v_allow_compaction_bit_khr,
     v_prefer_fast_trace_bit_nv                              = v_prefer_fast_trace_bit_khr,
@@ -4126,9 +4019,6 @@ enum class acquire_profiling_lock_flag_bits_khr : ktl::u32
 enum class shader_core_properties_flag_bits_amd : ktl::u32
 {
 };
-enum class refresh_object_flag_bits_khr : ktl::u32
-{
-};
 enum class performance_configuration_type_intel : ktl::u32
 {
     v_command_queue_metrics_discovery_activated_intel = 0
@@ -4192,27 +4082,6 @@ enum class shader_module_create_flag_bits : ktl::u32
 enum class pipeline_compiler_control_flag_bits_amd : ktl::u32
 {
 };
-enum class fault_level : ktl::u32
-{
-    v_unassigned  = 0,
-    v_critical    = 1,
-    v_recoverable = 2,
-    v_warning     = 3
-};
-enum class fault_type : ktl::u32
-{
-    v_invalid             = 0,
-    v_unassigned          = 1,
-    v_implementation      = 2,
-    v_system              = 3,
-    v_physical_device     = 4,
-    v_command_buffer_full = 5,
-    v_invalid_api_usage   = 6
-};
-enum class fault_query_behavior : ktl::u32
-{
-    v_get_and_clear_all_faults = 0
-};
 enum class tool_purpose_flag_bits : ktl::u32
 {
     v_validation_bit              = (1U << 0),
@@ -4227,10 +4096,6 @@ enum class tool_purpose_flag_bits : ktl::u32
     v_tracing_bit_ext             = v_tracing_bit,
     v_additional_features_bit_ext = v_additional_features_bit,
     v_modifying_features_bit_ext  = v_modifying_features_bit
-};
-enum class pipeline_match_control : ktl::u32
-{
-    v_application_uuid_exact_match = 0
 };
 enum class fragment_shading_rate_combiner_op_khr : ktl::u32
 {
@@ -4302,9 +4167,6 @@ enum class access_flag_bits_2 : ktl::u64
     v_2shader_storage_write_bit                      = (1ULL << 34),
     v_2sampler_heap_read_bit_ext                     = (1ULL << 57),
     v_2resource_heap_read_bit_ext                    = (1ULL << 58),
-    v_2reserved_46bit_intel                          = (1ULL << 46),
-    v_2reserved_53bit_khr                            = (1ULL << 53),
-    v_2reserved_54bit_khr                            = (1ULL << 54),
     v_2shader_tile_attachment_read_bit_qcom          = (1ULL << 51),
     v_2shader_tile_attachment_write_bit_qcom         = (1ULL << 52),
     v_2transform_feedback_write_bit_ext              = (1ULL << 25),
@@ -4329,14 +4191,6 @@ enum class access_flag_bits_2 : ktl::u64
     v_2data_graph_write_bit_arm                      = (1ULL << 48),
     v_2memory_decompression_read_bit_ext             = (1ULL << 55),
     v_2memory_decompression_write_bit_ext            = (1ULL << 56),
-    v_2reserved_62bit_ext                            = (1ULL << 62),
-    v_2reserved_63bit_ext                            = (1ULL << 63),
-    v_2reserved_60bit_khr                            = (1ULL << 60),
-    v_2reserved_61bit_khr                            = (1ULL << 61),
-    v_2reserved_28bit_amd                            = (1ULL << 28),
-    v_2reserved_29bit_amd                            = (1ULL << 29),
-    v_2reserved_49bit_arm                            = (1ULL << 49),
-    v_2reserved_50bit_arm                            = (1ULL << 50),
     v_2none_khr                                      = v_2none,
     v_2indirect_command_read_bit_khr                 = v_2indirect_command_read_bit,
     v_2index_read_bit_khr                            = v_2index_read_bit,
@@ -4391,7 +4245,6 @@ enum class pipeline_stage_flag_bits_2 : ktl::u64
     v_2index_input_bit                           = (1ULL << 36),
     v_2vertex_attribute_input_bit                = (1ULL << 37),
     v_2pre_rasterization_shaders_bit             = (1ULL << 38),
-    v_2reserved_50bit_khr                        = (1ULL << 50),
     v_2transform_feedback_bit_ext                = (1ULL << 24),
     v_2conditional_rendering_bit_ext             = (1ULL << 18),
     v_2command_preprocess_bit_ext                = (1ULL << 17),
@@ -4411,11 +4264,6 @@ enum class pipeline_stage_flag_bits_2 : ktl::u64
     v_2data_graph_bit_arm                        = (1ULL << 42),
     v_2copy_indirect_bit_khr                     = (1ULL << 46),
     v_2memory_decompression_bit_ext              = (1ULL << 45),
-    v_2reserved_49bit_ext                        = (1ULL << 49),
-    v_2reserved_47bit_khr                        = (1ULL << 47),
-    v_2reserved_31bit_amd                        = (1ULL << 31),
-    v_2reserved_43bit_arm                        = (1ULL << 43),
-    v_2reserved_48bit_huawei                     = (1ULL << 48),
     v_2transfer_bit                              = v_2all_transfer_bit,
     v_2none_khr                                  = v_2none,
     v_2top_of_pipe_bit_khr                       = v_2top_of_pipe_bit,
@@ -4466,25 +4314,10 @@ enum class pipeline_layout_create_flag_bits : ktl::u32
     v_independent_sets_bit_ext = (1U << 1),
     v_no_task_shader_bit_khr   = (1U << 2)
 };
-enum class sci_sync_client_type_nv : ktl::u32
-{
-    v_signaler_nv        = 0,
-    v_waiter_nv          = 1,
-    v_signaler_waiter_nv = 2
-};
-enum class sci_sync_primitive_type_nv : ktl::u32
-{
-    v_fence_nv     = 0,
-    v_semaphore_nv = 1
-};
 enum class provoking_vertex_mode_ext : ktl::u32
 {
     v_first_vertex_ext = 0,
     v_last_vertex_ext  = 1
-};
-enum class pipeline_cache_validation_version : ktl::u32
-{
-    v_safety_critical_one = 1
 };
 enum class acceleration_structure_motion_instance_type_nv : ktl::u32
 {
@@ -4663,7 +4496,6 @@ enum class format_feature_flag_bits_2 : ktl::u64
     v_2optical_flow_vector_bit_nv                                                  = (1ULL << 41),
     v_2optical_flow_cost_bit_nv                                                    = (1ULL << 42),
     v_2tensor_data_graph_bit_arm                                                   = (1ULL << 48),
-    v_2reserved_60bit_ext                                                          = (1ULL << 60),
     v_2copy_image_indirect_dst_bit_khr                                             = (1ULL << 59),
     v_2sampled_image_filter_linear_2d_bit_img                                      = (1ULL << 45),
     v_2depth_copy_on_compute_queue_bit_khr                                         = (1ULL << 52),
@@ -4673,8 +4505,6 @@ enum class format_feature_flag_bits_2 : ktl::u64
     v_2data_graph_optical_flow_image_bit_arm                                       = (1ULL << 56),
     v_2data_graph_optical_flow_vector_bit_arm                                      = (1ULL << 57),
     v_2data_graph_optical_flow_cost_bit_arm                                        = (1ULL << 58),
-    v_2reserved_47bit_arm                                                          = (1ULL << 47),
-    v_2reserved_61bit_huawei                                                       = (1ULL << 61),
     v_2host_image_transfer_bit_ext                                                 = v_2host_image_transfer_bit,
     v_2sampled_image_bit_khr                                                       = v_2sampled_image_bit,
     v_2storage_image_bit_khr                                                       = v_2storage_image_bit,
@@ -4715,16 +4545,12 @@ enum class rendering_flag_bits : ktl::u32
     v_contents_secondary_command_buffers_bit       = (1U << 0),
     v_suspending_bit                               = (1U << 1),
     v_resuming_bit                                 = (1U << 2),
-    v_reserved_9bit_img                            = (1U << 9),
     v_enable_legacy_dithering_bit_ext              = (1U << 3),
     v_contents_inline_bit_khr                      = (1U << 4),
     v_per_layer_fragment_density_bit_valve         = (1U << 5),
     v_fragment_region_bit_ext                      = (1U << 6),
     v_custom_resolve_bit_ext                       = (1U << 7),
     v_local_read_concurrent_access_control_bit_khr = (1U << 8),
-    v_reserved_10bit_valve                         = (1U << 10),
-    v_reserved_11bit_valve                         = (1U << 11),
-    v_reserved_12bit_valve                         = (1U << 12),
     v_contents_secondary_command_buffers_bit_khr   = v_contents_secondary_command_buffers_bit,
     v_suspending_bit_khr                           = v_suspending_bit,
     v_resuming_bit_khr                             = v_resuming_bit,
@@ -4741,8 +4567,7 @@ enum class export_metal_object_type_flag_bits_ext : ktl::u32
 };
 enum class instance_create_flag_bits : ktl::u32
 {
-    v_enumerate_portability_bit_khr = (1U << 0),
-    v_reserved_616bit_ext           = (1U << 1)
+    v_enumerate_portability_bit_khr = (1U << 0)
 };
 enum class image_compression_flag_bits_ext : ktl::u32
 {
@@ -4979,9 +4804,7 @@ enum class displacement_micromap_format_nv : ktl::u32
 enum class shader_create_flag_bits_ext : ktl::u32
 {
     v_link_stage_bit_ext                                    = (1U << 0),
-    v_reserved_17bit_img                                    = (1U << 17),
     v_descriptor_heap_bit_ext                               = (1U << 10),
-    v_reserved_16bit_khr                                    = (1U << 16),
     v_instrument_shader_bit_arm                             = (1U << 11),
     v_allow_varying_subgroup_size_bit_ext                   = (1U << 1),
     v_require_full_subgroups_bit_ext                        = (1U << 2),
@@ -4990,8 +4813,6 @@ enum class shader_create_flag_bits_ext : ktl::u32
     v_fragment_shading_rate_attachment_bit_ext              = (1U << 5),
     v_fragment_density_map_attachment_bit_ext               = (1U << 6),
     v_indirect_bindable_bit_ext                             = (1U << 7),
-    v_reserved_8bit_ext                                     = (1U << 8),
-    v_reserved_9bit_ext                                     = (1U << 9),
     v_opacity_micromap_disallow_mixed_special_index_bit_ext = (1U << 12),
     v_64bit_indexing_bit_ext                                = (1U << 15),
     v_independent_sets_bit_khr                              = (1U << 18)
@@ -5104,7 +4925,6 @@ enum class compressed_triangle_format_amdx : ktl::u32
 };
 enum class wayland_surface_create_flag_bits_khr : ktl::u32
 {
-    v_disable_color_management = (1U << 0)
 };
 enum class depth_clamp_mode_ext : ktl::u32
 {
@@ -5221,10 +5041,6 @@ enum class throttle_hint_type_sec : ktl::u32
     v_default_sec = 0,
     v_low_sec     = 1,
     v_high_sec    = 2
-};
-enum class swapchain_image_usage_flag_bits_ohos : ktl::u32
-{
-    v_shared_bit_ohos = (1U << 0)
 };
 enum class descriptor_mapping_source_ext : ktl::u32
 {

@@ -169,5 +169,6 @@ class VkEntension:
     version: str
     is_instance: bool
     promoted: str | None
-    deps: dict[str, list[VkDependency]]
-    commands: list
+    depends: list[list[str]] # any of the requirements, every dependency of a requirement
+    commands: list[str]
+    conditional_commands: list[tuple[str, list[list[str]]]]

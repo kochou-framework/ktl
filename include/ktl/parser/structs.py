@@ -4,6 +4,7 @@ from utils import is_vulkan_video
 from typing import TextIO
 from decl import parse_decl, make_decl_type, make_declaration
 from utils import sort_by_dependencies
+from api_filter import is_vulkan_api, is_vulkan_type
 
 import re
 
@@ -78,7 +79,7 @@ def extract_struct_impl(_root) -> tuple:
     feature_names = []
     fields = []
     for field in _root.findall("member"):
-        if not field.get("api") == "vulkansc":
+        if is_vulkan_api(field):
             result = extract_struct_field_impl(field, name, is_feature)
             fields.append(result)
             if result.tppe == "ktl::api::bool32" and is_feature:
@@ -138,6 +139,8 @@ def extract(_root) -> tuple:
 
     types = _root.find("types")
     for src in types.findall("type"):
+        if not is_vulkan_type(_root, src):
+            continue
         if src.get("category") == "struct":
             if alias := make_cpp_name(src.get("alias")):
                 name = make_cpp_name(src.get("name"))

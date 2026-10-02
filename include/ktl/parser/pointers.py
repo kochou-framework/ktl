@@ -3,6 +3,7 @@ from name_rules import *
 from utils import is_vulkan_video
 from typing import TextIO
 from commands import extract_return_type_impl, extract_command_fields_impl, make_params
+from api_filter import is_vulkan_type
 
 
 def extract_pointer_impl(_root) -> VkFunction | None:
@@ -38,6 +39,8 @@ def extract(_root) -> list:
 
     types = _root.find("types")
     for pointer in types.findall("type[@category='funcpointer']"):
+        if not is_vulkan_type(_root, pointer):
+            continue
         if result := extract_pointer_impl(pointer):
             pointers.append(result)
 

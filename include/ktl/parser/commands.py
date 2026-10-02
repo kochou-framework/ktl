@@ -3,6 +3,7 @@ from name_rules import *
 from utils import is_vulkan_video
 from typing import TextIO
 from decl import parse_decl, make_decl_type, make_declaration
+from api_filter import is_vulkan_api, excluded_names, vulkan_features, vulkan_requires
 
 
 def extract_command_field_impl(_root) -> VkFunctionField:
@@ -17,7 +18,7 @@ def extract_return_type_impl(_proto) -> str:
 
 def extract_command_fields_impl(_root) -> list:
     # same parameter can be declared separately for vulkan and vulkansc
-    return [extract_command_field_impl(param) for param in _root.findall("param") if param.get("api") != "vulkansc"]
+    return [extract_command_field_impl(param) for param in _root.findall("param") if is_vulkan_api(param)]
 
 
 def make_params(_fields: list) -> str:
@@ -53,7 +54,7 @@ def extract_dispatchable_levels(_root) -> dict:
 
 def extract_command_level_impl(_root, _levels: dict) -> str:
     # level is the one of the dispatchable object passed by value as the first parameter, otherwise command is global
-    params = [param for param in _root.findall("param") if param.get("api") != "vulkansc"]
+    params = [param for param in _root.findall("param") if is_vulkan_api(param)]
     if params:
         decl = parse_decl(params[0])
         if decl.pointer_count == 0 and decl.tppe in _levels:
@@ -228,7 +229,8 @@ def extract(_root) -> list:
 
     root = _root.find("commands")
     for command in root.findall("command"):
-        if command.get("api") == "vulkansc":
+        name = command.get("name") or command.findtext("proto/name")
+        if not is_vulkan_api(command) or name in excluded_names(_root):
             continue
         if result := extract_command_impl(command, levels):
             commands.append(result)
@@ -246,7 +248,7 @@ def extract(_root) -> list:
 
 def extract_version_commands_impl(_root) -> list:
     commands = []
-    for require in _root.findall("require"):
+    for require in vulkan_requires(_root):
         for cmd in require.findall("command"):
             commands.append(f"ktl::api::command::{make_cpp_name(cmd.get("name"))}")
 
@@ -262,7 +264,7 @@ def extract_version_commands(_root) -> dict:
     commands["ktl::api::version_1_3"] = []
     commands["ktl::api::version_1_4"] = []
 
-    for feature in _root.findall("feature"):
+    for feature in vulkan_features(_root):
         name = feature.get("name")
         if name.startswith("VK_BASE_VERSION") or name.startswith("VK_COMPUTE_VERSION") or name.startswith("VK_GRAPHICS_VERSION"):
             cmds = extract_version_commands_impl(feature)

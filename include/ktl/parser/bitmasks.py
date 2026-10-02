@@ -2,6 +2,7 @@ from vk_types import VkBitMask
 from name_rules import *
 from typing import TextIO
 from dataclasses import replace
+from api_filter import is_vulkan_type
 
 
 def extract_bitmask_impl(_root) -> VkBitMask:
@@ -33,6 +34,9 @@ def extract(_root) -> list:
 
     types = _root.find("types")
     for src in types.findall("type[@category='bitmask']"):
+        # bitmask can be declared separately for vulkan and vulkansc
+        if not is_vulkan_type(_root, src):
+            continue
         if alias := make_cpp_name(src.get("alias")):
             found = next((h for h in bitmasks if h.name == alias), None)
             bitmask = replace(found, name=make_cpp_name(src.get("name")))

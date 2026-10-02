@@ -9,7 +9,7 @@
 
 namespace ktl::api
 {
-static constexpr ktl::usize pfn_table_size = 849;
+static constexpr ktl::usize pfn_table_size = 826;
 using pfn_table                            = std::array< ktl::loader::proc_type, pfn_table_size >;
 inline pfn_table * ptable                  = nullptr;
 
@@ -267,603 +267,580 @@ enum class command : ktl::u32
     get_memory_zircon_handle_fuchsia                                             = 249,
     get_memory_zircon_handle_properties_fuchsia                                  = 250,
     get_memory_remote_address_nv                                                 = 251,
-    get_memory_sci_buf_nv                                                        = 252,
-    get_physical_device_external_memory_sci_buf_properties_nv                    = 253,
-    get_physical_device_sci_buf_attributes_nv                                    = 254,
-    get_physical_device_external_semaphore_properties                            = 255,
-    get_physical_device_external_semaphore_properties_khr                        = 256,
-    get_semaphore_win_32handle_khr                                               = 257,
-    import_semaphore_win_32handle_khr                                            = 258,
-    get_semaphore_fd_khr                                                         = 259,
-    import_semaphore_fd_khr                                                      = 260,
-    get_semaphore_zircon_handle_fuchsia                                          = 261,
-    import_semaphore_zircon_handle_fuchsia                                       = 262,
-    get_physical_device_external_fence_properties                                = 263,
-    get_physical_device_external_fence_properties_khr                            = 264,
-    get_fence_win_32handle_khr                                                   = 265,
-    import_fence_win_32handle_khr                                                = 266,
-    get_fence_fd_khr                                                             = 267,
-    import_fence_fd_khr                                                          = 268,
-    get_fence_sci_sync_fence_nv                                                  = 269,
-    get_fence_sci_sync_obj_nv                                                    = 270,
-    import_fence_sci_sync_fence_nv                                               = 271,
-    import_fence_sci_sync_obj_nv                                                 = 272,
-    get_semaphore_sci_sync_obj_nv                                                = 273,
-    import_semaphore_sci_sync_obj_nv                                             = 274,
-    get_physical_device_sci_sync_attributes_nv                                   = 275,
-    create_semaphore_sci_sync_pool_nv                                            = 276,
-    destroy_semaphore_sci_sync_pool_nv                                           = 277,
-    release_display_ext                                                          = 278,
-    acquire_xlib_display_ext                                                     = 279,
-    get_rand_r_output_display_ext                                                = 280,
-    acquire_winrt_display_nv                                                     = 281,
-    get_winrt_display_nv                                                         = 282,
-    display_power_control_ext                                                    = 283,
-    register_device_event_ext                                                    = 284,
-    register_display_event_ext                                                   = 285,
-    get_swapchain_counter_ext                                                    = 286,
-    get_physical_device_surface_capabilities_2ext                                = 287,
-    enumerate_physical_device_groups                                             = 288,
-    enumerate_physical_device_groups_khr                                         = 289,
-    get_device_group_peer_memory_features                                        = 290,
-    get_device_group_peer_memory_features_khr                                    = 291,
-    bind_buffer_memory_2                                                         = 292,
-    bind_buffer_memory_2khr                                                      = 293,
-    bind_image_memory_2                                                          = 294,
-    bind_image_memory_2khr                                                       = 295,
-    cmd_set_device_mask                                                          = 296,
-    cmd_set_device_mask_khr                                                      = 297,
-    get_device_group_present_capabilities_khr                                    = 298,
-    get_device_group_surface_present_modes_khr                                   = 299,
-    acquire_next_image_2khr                                                      = 300,
-    cmd_dispatch_base                                                            = 301,
-    cmd_dispatch_base_khr                                                        = 302,
-    get_physical_device_present_rectangles_khr                                   = 303,
-    create_descriptor_update_template                                            = 304,
-    create_descriptor_update_template_khr                                        = 305,
-    destroy_descriptor_update_template                                           = 306,
-    destroy_descriptor_update_template_khr                                       = 307,
-    update_descriptor_set_with_template                                          = 308,
-    update_descriptor_set_with_template_khr                                      = 309,
-    cmd_push_descriptor_set_with_template                                        = 310,
-    cmd_push_descriptor_set_with_template_khr                                    = 311,
-    set_hdr_metadata_ext                                                         = 312,
-    get_swapchain_status_khr                                                     = 313,
-    get_refresh_cycle_duration_google                                            = 314,
-    get_past_presentation_timing_google                                          = 315,
-    create_ios_surface_mvk                                                       = 316,
-    create_mac_os_surface_mvk                                                    = 317,
-    create_metal_surface_ext                                                     = 318,
-    cmd_set_viewport_w_scaling_nv                                                = 319,
-    cmd_set_discard_rectangle_ext                                                = 320,
-    cmd_set_discard_rectangle_enable_ext                                         = 321,
-    cmd_set_discard_rectangle_mode_ext                                           = 322,
-    cmd_set_sample_locations_ext                                                 = 323,
-    get_physical_device_multisample_properties_ext                               = 324,
-    get_physical_device_surface_capabilities_2khr                                = 325,
-    get_physical_device_surface_formats_2khr                                     = 326,
-    get_physical_device_display_properties_2khr                                  = 327,
-    get_physical_device_display_plane_properties_2khr                            = 328,
-    get_display_mode_properties_2khr                                             = 329,
-    get_display_plane_capabilities_2khr                                          = 330,
-    get_buffer_memory_requirements_2                                             = 331,
-    get_buffer_memory_requirements_2khr                                          = 332,
-    get_image_memory_requirements_2                                              = 333,
-    get_image_memory_requirements_2khr                                           = 334,
-    get_image_sparse_memory_requirements_2                                       = 335,
-    get_image_sparse_memory_requirements_2khr                                    = 336,
-    get_device_buffer_memory_requirements                                        = 337,
-    get_device_buffer_memory_requirements_khr                                    = 338,
-    get_device_image_memory_requirements                                         = 339,
-    get_device_image_memory_requirements_khr                                     = 340,
-    get_device_image_sparse_memory_requirements                                  = 341,
-    get_device_image_sparse_memory_requirements_khr                              = 342,
-    create_sampler_ycbcr_conversion                                              = 343,
-    create_sampler_ycbcr_conversion_khr                                          = 344,
-    destroy_sampler_ycbcr_conversion                                             = 345,
-    destroy_sampler_ycbcr_conversion_khr                                         = 346,
-    get_device_queue_2                                                           = 347,
-    create_validation_cache_ext                                                  = 348,
-    destroy_validation_cache_ext                                                 = 349,
-    get_validation_cache_data_ext                                                = 350,
-    merge_validation_caches_ext                                                  = 351,
-    get_descriptor_set_layout_support                                            = 352,
-    get_descriptor_set_layout_support_khr                                        = 353,
-    get_swapchain_gralloc_usage_android                                          = 354,
-    get_swapchain_gralloc_usage_2android                                         = 355,
-    acquire_image_android                                                        = 356,
-    queue_signal_release_image_android                                           = 357,
-    get_shader_info_amd                                                          = 358,
-    set_local_dimming_amd                                                        = 359,
-    get_physical_device_calibrateable_time_domains_khr                           = 360,
-    get_physical_device_calibrateable_time_domains_ext                           = 361,
-    get_calibrated_timestamps_khr                                                = 362,
-    get_calibrated_timestamps_ext                                                = 363,
-    set_debug_utils_object_name_ext                                              = 364,
-    set_debug_utils_object_tag_ext                                               = 365,
-    queue_begin_debug_utils_label_ext                                            = 366,
-    queue_end_debug_utils_label_ext                                              = 367,
-    queue_insert_debug_utils_label_ext                                           = 368,
-    cmd_begin_debug_utils_label_ext                                              = 369,
-    cmd_end_debug_utils_label_ext                                                = 370,
-    cmd_insert_debug_utils_label_ext                                             = 371,
-    create_debug_utils_messenger_ext                                             = 372,
-    destroy_debug_utils_messenger_ext                                            = 373,
-    submit_debug_utils_message_ext                                               = 374,
-    get_memory_host_pointer_properties_ext                                       = 375,
-    cmd_write_buffer_marker_amd                                                  = 376,
-    create_render_pass_2                                                         = 377,
-    create_render_pass_2khr                                                      = 378,
-    cmd_begin_render_pass_2                                                      = 379,
-    cmd_begin_render_pass_2khr                                                   = 380,
-    cmd_next_subpass_2                                                           = 381,
-    cmd_next_subpass_2khr                                                        = 382,
-    cmd_end_render_pass_2                                                        = 383,
-    cmd_end_render_pass_2khr                                                     = 384,
-    get_semaphore_counter_value                                                  = 385,
-    get_semaphore_counter_value_khr                                              = 386,
-    wait_semaphores                                                              = 387,
-    wait_semaphores_khr                                                          = 388,
-    signal_semaphore                                                             = 389,
-    signal_semaphore_khr                                                         = 390,
-    get_android_hardware_buffer_properties_android                               = 391,
-    get_memory_android_hardware_buffer_android                                   = 392,
-    cmd_draw_indirect_count                                                      = 393,
-    cmd_draw_indirect_count_khr                                                  = 394,
-    cmd_draw_indirect_count_amd                                                  = 395,
-    cmd_draw_indexed_indirect_count                                              = 396,
-    cmd_draw_indexed_indirect_count_khr                                          = 397,
-    cmd_draw_indexed_indirect_count_amd                                          = 398,
-    cmd_set_checkpoint_nv                                                        = 399,
-    get_queue_checkpoint_data_nv                                                 = 400,
-    cmd_bind_transform_feedback_buffers_ext                                      = 401,
-    cmd_begin_transform_feedback_ext                                             = 402,
-    cmd_end_transform_feedback_ext                                               = 403,
-    cmd_begin_query_indexed_ext                                                  = 404,
-    cmd_end_query_indexed_ext                                                    = 405,
-    cmd_draw_indirect_byte_count_ext                                             = 406,
-    cmd_set_exclusive_scissor_nv                                                 = 407,
-    cmd_set_exclusive_scissor_enable_nv                                          = 408,
-    cmd_bind_shading_rate_image_nv                                               = 409,
-    cmd_set_viewport_shading_rate_palette_nv                                     = 410,
-    cmd_set_coarse_sample_order_nv                                               = 411,
-    cmd_draw_mesh_tasks_nv                                                       = 412,
-    cmd_draw_mesh_tasks_indirect_nv                                              = 413,
-    cmd_draw_mesh_tasks_indirect_count_nv                                        = 414,
-    cmd_draw_mesh_tasks_ext                                                      = 415,
-    cmd_draw_mesh_tasks_indirect_ext                                             = 416,
-    cmd_draw_mesh_tasks_indirect_count_ext                                       = 417,
-    compile_deferred_nv                                                          = 418,
-    create_acceleration_structure_nv                                             = 419,
-    cmd_bind_invocation_mask_huawei                                              = 420,
-    destroy_acceleration_structure_khr                                           = 421,
-    destroy_acceleration_structure_nv                                            = 422,
-    get_acceleration_structure_memory_requirements_nv                            = 423,
-    bind_acceleration_structure_memory_nv                                        = 424,
-    cmd_copy_acceleration_structure_nv                                           = 425,
-    cmd_copy_acceleration_structure_khr                                          = 426,
-    copy_acceleration_structure_khr                                              = 427,
-    cmd_copy_acceleration_structure_to_memory_khr                                = 428,
-    copy_acceleration_structure_to_memory_khr                                    = 429,
-    cmd_copy_memory_to_acceleration_structure_khr                                = 430,
-    copy_memory_to_acceleration_structure_khr                                    = 431,
-    cmd_write_acceleration_structures_properties_khr                             = 432,
-    cmd_write_acceleration_structures_properties_nv                              = 433,
-    cmd_build_acceleration_structure_nv                                          = 434,
-    write_acceleration_structures_properties_khr                                 = 435,
-    cmd_trace_rays_khr                                                           = 436,
-    cmd_trace_rays_nv                                                            = 437,
-    get_ray_tracing_shader_group_handles_khr                                     = 438,
-    get_ray_tracing_shader_group_handles_nv                                      = 439,
-    get_ray_tracing_capture_replay_shader_group_handles_khr                      = 440,
-    get_acceleration_structure_handle_nv                                         = 441,
-    create_ray_tracing_pipelines_nv                                              = 442,
-    create_ray_tracing_pipelines_khr                                             = 443,
-    get_physical_device_cooperative_matrix_properties_nv                         = 444,
-    cmd_trace_rays_indirect_khr                                                  = 445,
-    cmd_trace_rays_indirect_2khr                                                 = 446,
-    get_cluster_acceleration_structure_build_sizes_nv                            = 447,
-    cmd_build_cluster_acceleration_structure_indirect_nv                         = 448,
-    get_device_acceleration_structure_compatibility_khr                          = 449,
-    get_ray_tracing_shader_group_stack_size_khr                                  = 450,
-    cmd_set_ray_tracing_pipeline_stack_size_khr                                  = 451,
-    get_image_view_handle_nvx                                                    = 452,
-    get_image_view_handle_64nvx                                                  = 453,
-    get_image_view_address_nvx                                                   = 454,
-    get_device_combined_image_sampler_index_nvx                                  = 455,
-    get_physical_device_surface_present_modes_2ext                               = 456,
-    get_device_group_surface_present_modes_2ext                                  = 457,
-    acquire_full_screen_exclusive_mode_ext                                       = 458,
-    release_full_screen_exclusive_mode_ext                                       = 459,
-    enumerate_physical_device_queue_family_performance_query_counters_khr        = 460,
-    get_physical_device_queue_family_performance_query_passes_khr                = 461,
-    acquire_profiling_lock_khr                                                   = 462,
-    release_profiling_lock_khr                                                   = 463,
-    get_image_drm_format_modifier_properties_ext                                 = 464,
-    get_buffer_opaque_capture_address                                            = 465,
-    get_buffer_opaque_capture_address_khr                                        = 466,
-    get_buffer_device_address                                                    = 467,
-    get_buffer_device_address_khr                                                = 468,
-    get_buffer_device_address_ext                                                = 469,
-    create_headless_surface_ext                                                  = 470,
-    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv      = 471,
-    initialize_performance_api_intel                                             = 472,
-    uninitialize_performance_api_intel                                           = 473,
-    cmd_set_performance_marker_intel                                             = 474,
-    cmd_set_performance_stream_marker_intel                                      = 475,
-    cmd_set_performance_override_intel                                           = 476,
-    acquire_performance_configuration_intel                                      = 477,
-    release_performance_configuration_intel                                      = 478,
-    queue_set_performance_configuration_intel                                    = 479,
-    get_performance_parameter_intel                                              = 480,
-    get_device_memory_opaque_capture_address                                     = 481,
-    get_device_memory_opaque_capture_address_khr                                 = 482,
-    get_pipeline_executable_properties_khr                                       = 483,
-    get_pipeline_executable_statistics_khr                                       = 484,
-    get_pipeline_executable_internal_representations_khr                         = 485,
-    cmd_set_line_stipple                                                         = 486,
-    cmd_set_line_stipple_khr                                                     = 487,
-    cmd_set_line_stipple_ext                                                     = 488,
-    get_fault_data                                                               = 489,
-    get_physical_device_tool_properties                                          = 490,
-    get_physical_device_tool_properties_ext                                      = 491,
-    create_acceleration_structure_khr                                            = 492,
-    cmd_build_acceleration_structures_khr                                        = 493,
-    cmd_build_acceleration_structures_indirect_khr                               = 494,
-    build_acceleration_structures_khr                                            = 495,
-    get_acceleration_structure_device_address_khr                                = 496,
-    create_deferred_operation_khr                                                = 497,
-    destroy_deferred_operation_khr                                               = 498,
-    get_deferred_operation_max_concurrency_khr                                   = 499,
-    get_deferred_operation_result_khr                                            = 500,
-    deferred_operation_join_khr                                                  = 501,
-    get_pipeline_indirect_memory_requirements_nv                                 = 502,
-    get_pipeline_indirect_device_address_nv                                      = 503,
-    anti_lag_update_amd                                                          = 504,
-    cmd_set_cull_mode                                                            = 505,
-    cmd_set_cull_mode_ext                                                        = 506,
-    cmd_set_front_face                                                           = 507,
-    cmd_set_front_face_ext                                                       = 508,
-    cmd_set_primitive_topology                                                   = 509,
-    cmd_set_primitive_topology_ext                                               = 510,
-    cmd_set_viewport_with_count                                                  = 511,
-    cmd_set_viewport_with_count_ext                                              = 512,
-    cmd_set_scissor_with_count                                                   = 513,
-    cmd_set_scissor_with_count_ext                                               = 514,
-    cmd_bind_index_buffer_2                                                      = 515,
-    cmd_bind_index_buffer_2khr                                                   = 516,
-    cmd_bind_vertex_buffers_2                                                    = 517,
-    cmd_bind_vertex_buffers_2ext                                                 = 518,
-    cmd_set_depth_test_enable                                                    = 519,
-    cmd_set_depth_test_enable_ext                                                = 520,
-    cmd_set_depth_write_enable                                                   = 521,
-    cmd_set_depth_write_enable_ext                                               = 522,
-    cmd_set_depth_compare_op                                                     = 523,
-    cmd_set_depth_compare_op_ext                                                 = 524,
-    cmd_set_depth_bounds_test_enable                                             = 525,
-    cmd_set_depth_bounds_test_enable_ext                                         = 526,
-    cmd_set_stencil_test_enable                                                  = 527,
-    cmd_set_stencil_test_enable_ext                                              = 528,
-    cmd_set_stencil_op                                                           = 529,
-    cmd_set_stencil_op_ext                                                       = 530,
-    cmd_set_patch_control_points_ext                                             = 531,
-    cmd_set_rasterizer_discard_enable                                            = 532,
-    cmd_set_rasterizer_discard_enable_ext                                        = 533,
-    cmd_set_depth_bias_enable                                                    = 534,
-    cmd_set_depth_bias_enable_ext                                                = 535,
-    cmd_set_logic_op_ext                                                         = 536,
-    cmd_set_primitive_restart_enable                                             = 537,
-    cmd_set_primitive_restart_enable_ext                                         = 538,
-    cmd_set_tessellation_domain_origin_ext                                       = 539,
-    cmd_set_depth_clamp_enable_ext                                               = 540,
-    cmd_set_polygon_mode_ext                                                     = 541,
-    cmd_set_rasterization_samples_ext                                            = 542,
-    cmd_set_sample_mask_ext                                                      = 543,
-    cmd_set_alpha_to_coverage_enable_ext                                         = 544,
-    cmd_set_alpha_to_one_enable_ext                                              = 545,
-    cmd_set_logic_op_enable_ext                                                  = 546,
-    cmd_set_color_blend_enable_ext                                               = 547,
-    cmd_set_color_blend_equation_ext                                             = 548,
-    cmd_set_color_write_mask_ext                                                 = 549,
-    cmd_set_rasterization_stream_ext                                             = 550,
-    cmd_set_conservative_rasterization_mode_ext                                  = 551,
-    cmd_set_extra_primitive_overestimation_size_ext                              = 552,
-    cmd_set_depth_clip_enable_ext                                                = 553,
-    cmd_set_sample_locations_enable_ext                                          = 554,
-    cmd_set_color_blend_advanced_ext                                             = 555,
-    cmd_set_provoking_vertex_mode_ext                                            = 556,
-    cmd_set_line_rasterization_mode_ext                                          = 557,
-    cmd_set_line_stipple_enable_ext                                              = 558,
-    cmd_set_depth_clip_negative_one_to_one_ext                                   = 559,
-    cmd_set_viewport_w_scaling_enable_nv                                         = 560,
-    cmd_set_viewport_swizzle_nv                                                  = 561,
-    cmd_set_coverage_to_color_enable_nv                                          = 562,
-    cmd_set_coverage_to_color_location_nv                                        = 563,
-    cmd_set_coverage_modulation_mode_nv                                          = 564,
-    cmd_set_coverage_modulation_table_enable_nv                                  = 565,
-    cmd_set_coverage_modulation_table_nv                                         = 566,
-    cmd_set_shading_rate_image_enable_nv                                         = 567,
-    cmd_set_coverage_reduction_mode_nv                                           = 568,
-    cmd_set_representative_fragment_test_enable_nv                               = 569,
-    create_private_data_slot                                                     = 570,
-    create_private_data_slot_ext                                                 = 571,
-    destroy_private_data_slot                                                    = 572,
-    destroy_private_data_slot_ext                                                = 573,
-    set_private_data                                                             = 574,
-    set_private_data_ext                                                         = 575,
-    get_private_data                                                             = 576,
-    get_private_data_ext                                                         = 577,
-    cmd_copy_buffer_2                                                            = 578,
-    cmd_copy_buffer_2khr                                                         = 579,
-    cmd_copy_image_2                                                             = 580,
-    cmd_copy_image_2khr                                                          = 581,
-    cmd_blit_image_2                                                             = 582,
-    cmd_blit_image_2khr                                                          = 583,
-    cmd_copy_buffer_to_image_2                                                   = 584,
-    cmd_copy_buffer_to_image_2khr                                                = 585,
-    cmd_copy_image_to_buffer_2                                                   = 586,
-    cmd_copy_image_to_buffer_2khr                                                = 587,
-    cmd_resolve_image_2                                                          = 588,
-    cmd_resolve_image_2khr                                                       = 589,
-    cmd_refresh_objects_khr                                                      = 590,
-    get_physical_device_refreshable_object_types_khr                             = 591,
-    cmd_set_fragment_shading_rate_khr                                            = 592,
-    get_physical_device_fragment_shading_rates_khr                               = 593,
-    cmd_set_fragment_shading_rate_enum_nv                                        = 594,
-    get_acceleration_structure_build_sizes_khr                                   = 595,
-    cmd_set_vertex_input_ext                                                     = 596,
-    cmd_set_color_write_enable_ext                                               = 597,
-    cmd_set_event_2                                                              = 598,
-    cmd_set_event_2khr                                                           = 599,
-    cmd_reset_event_2                                                            = 600,
-    cmd_reset_event_2khr                                                         = 601,
-    cmd_wait_events_2                                                            = 602,
-    cmd_wait_events_2khr                                                         = 603,
-    cmd_pipeline_barrier_2                                                       = 604,
-    cmd_pipeline_barrier_2khr                                                    = 605,
-    queue_submit_2                                                               = 606,
-    queue_submit_2khr                                                            = 607,
-    cmd_write_timestamp_2                                                        = 608,
-    cmd_write_timestamp_2khr                                                     = 609,
-    cmd_write_buffer_marker_2amd                                                 = 610,
-    get_queue_checkpoint_data_2nv                                                = 611,
-    copy_memory_to_image                                                         = 612,
-    copy_memory_to_image_ext                                                     = 613,
-    copy_image_to_memory                                                         = 614,
-    copy_image_to_memory_ext                                                     = 615,
-    copy_image_to_image                                                          = 616,
-    copy_image_to_image_ext                                                      = 617,
-    transition_image_layout                                                      = 618,
-    transition_image_layout_ext                                                  = 619,
-    get_command_pool_memory_consumption                                          = 620,
-    cmd_decompress_memory_nv                                                     = 621,
-    cmd_decompress_memory_indirect_count_nv                                      = 622,
-    get_partitioned_acceleration_structures_build_sizes_nv                       = 623,
-    cmd_build_partitioned_acceleration_structures_nv                             = 624,
-    cmd_decompress_memory_ext                                                    = 625,
-    cmd_decompress_memory_indirect_count_ext                                     = 626,
-    create_cu_module_nvx                                                         = 627,
-    create_cu_function_nvx                                                       = 628,
-    destroy_cu_module_nvx                                                        = 629,
-    destroy_cu_function_nvx                                                      = 630,
-    cmd_cu_launch_kernel_nvx                                                     = 631,
-    get_descriptor_set_layout_size_ext                                           = 632,
-    get_descriptor_set_layout_binding_offset_ext                                 = 633,
-    get_descriptor_ext                                                           = 634,
-    cmd_bind_descriptor_buffers_ext                                              = 635,
-    cmd_set_descriptor_buffer_offsets_ext                                        = 636,
-    cmd_bind_descriptor_buffer_embedded_samplers_ext                             = 637,
-    get_buffer_opaque_capture_descriptor_data_ext                                = 638,
-    get_image_opaque_capture_descriptor_data_ext                                 = 639,
-    get_image_view_opaque_capture_descriptor_data_ext                            = 640,
-    get_sampler_opaque_capture_descriptor_data_ext                               = 641,
-    get_acceleration_structure_opaque_capture_descriptor_data_ext                = 642,
-    set_device_memory_priority_ext                                               = 643,
-    acquire_drm_display_ext                                                      = 644,
-    get_drm_display_ext                                                          = 645,
-    wait_for_present_2khr                                                        = 646,
-    wait_for_present_khr                                                         = 647,
-    create_buffer_collection_fuchsia                                             = 648,
-    set_buffer_collection_buffer_constraints_fuchsia                             = 649,
-    set_buffer_collection_image_constraints_fuchsia                              = 650,
-    destroy_buffer_collection_fuchsia                                            = 651,
-    get_buffer_collection_properties_fuchsia                                     = 652,
-    create_cuda_module_nv                                                        = 653,
-    get_cuda_module_cache_nv                                                     = 654,
-    create_cuda_function_nv                                                      = 655,
-    destroy_cuda_module_nv                                                       = 656,
-    destroy_cuda_function_nv                                                     = 657,
-    cmd_cuda_launch_kernel_nv                                                    = 658,
-    cmd_begin_rendering                                                          = 659,
-    cmd_begin_rendering_khr                                                      = 660,
-    cmd_end_rendering                                                            = 661,
-    cmd_end_rendering_2khr                                                       = 662,
-    cmd_end_rendering_2ext                                                       = 663,
-    cmd_end_rendering_khr                                                        = 664,
-    get_descriptor_set_layout_host_mapping_info_valve                            = 665,
-    get_descriptor_set_host_mapping_valve                                        = 666,
-    create_micromap_ext                                                          = 667,
-    cmd_build_micromaps_ext                                                      = 668,
-    build_micromaps_ext                                                          = 669,
-    destroy_micromap_ext                                                         = 670,
-    cmd_copy_micromap_ext                                                        = 671,
-    copy_micromap_ext                                                            = 672,
-    cmd_copy_micromap_to_memory_ext                                              = 673,
-    copy_micromap_to_memory_ext                                                  = 674,
-    cmd_copy_memory_to_micromap_ext                                              = 675,
-    copy_memory_to_micromap_ext                                                  = 676,
-    cmd_write_micromaps_properties_ext                                           = 677,
-    write_micromaps_properties_ext                                               = 678,
-    get_device_micromap_compatibility_ext                                        = 679,
-    get_micromap_build_sizes_ext                                                 = 680,
-    get_shader_module_identifier_ext                                             = 681,
-    get_shader_module_create_info_identifier_ext                                 = 682,
-    get_image_subresource_layout_2                                               = 683,
-    get_image_subresource_layout_2khr                                            = 684,
-    get_image_subresource_layout_2ext                                            = 685,
-    get_pipeline_properties_ext                                                  = 686,
-    export_metal_objects_ext                                                     = 687,
-    cmd_bind_tile_memory_qcom                                                    = 688,
-    get_framebuffer_tile_properties_qcom                                         = 689,
-    get_dynamic_rendering_tile_properties_qcom                                   = 690,
-    get_physical_device_optical_flow_image_formats_nv                            = 691,
-    create_optical_flow_session_nv                                               = 692,
-    destroy_optical_flow_session_nv                                              = 693,
-    bind_optical_flow_session_image_nv                                           = 694,
-    cmd_optical_flow_execute_nv                                                  = 695,
-    get_device_fault_info_ext                                                    = 696,
-    get_device_fault_reports_khr                                                 = 697,
-    get_device_fault_debug_info_khr                                              = 698,
-    cmd_set_depth_bias_2ext                                                      = 699,
-    release_swapchain_images_khr                                                 = 700,
-    release_swapchain_images_ext                                                 = 701,
-    get_device_image_subresource_layout                                          = 702,
-    get_device_image_subresource_layout_khr                                      = 703,
-    map_memory_2                                                                 = 704,
-    map_memory_2khr                                                              = 705,
-    unmap_memory_2                                                               = 706,
-    unmap_memory_2khr                                                            = 707,
-    create_shaders_ext                                                           = 708,
-    destroy_shader_ext                                                           = 709,
-    get_shader_binary_data_ext                                                   = 710,
-    cmd_bind_shaders_ext                                                         = 711,
-    set_swapchain_present_timing_queue_size_ext                                  = 712,
-    get_swapchain_timing_properties_ext                                          = 713,
-    get_swapchain_time_domain_properties_ext                                     = 714,
-    get_past_presentation_timing_ext                                             = 715,
-    get_screen_buffer_properties_qnx                                             = 716,
-    get_physical_device_cooperative_matrix_properties_khr                        = 717,
-    get_physical_device_cooperative_matrix_properties_2ext                       = 718,
-    get_execution_graph_pipeline_scratch_size_amdx                               = 719,
-    get_execution_graph_pipeline_node_index_amdx                                 = 720,
-    create_execution_graph_pipelines_amdx                                        = 721,
-    cmd_initialize_graph_scratch_memory_amdx                                     = 722,
-    cmd_dispatch_graph_amdx                                                      = 723,
-    cmd_dispatch_graph_indirect_amdx                                             = 724,
-    cmd_dispatch_graph_indirect_count_amdx                                       = 725,
-    create_gpa_session_amd                                                       = 726,
-    destroy_gpa_session_amd                                                      = 727,
-    set_gpa_device_clock_mode_amd                                                = 728,
-    get_gpa_device_clock_info_amd                                                = 729,
-    cmd_begin_gpa_session_amd                                                    = 730,
-    cmd_end_gpa_session_amd                                                      = 731,
-    cmd_begin_gpa_sample_amd                                                     = 732,
-    cmd_end_gpa_sample_amd                                                       = 733,
-    get_gpa_session_status_amd                                                   = 734,
-    get_gpa_session_results_amd                                                  = 735,
-    reset_gpa_session_amd                                                        = 736,
-    cmd_copy_gpa_session_results_amd                                             = 737,
-    cmd_bind_descriptor_sets_2                                                   = 738,
-    cmd_bind_descriptor_sets_2khr                                                = 739,
-    cmd_push_constants_2                                                         = 740,
-    cmd_push_constants_2khr                                                      = 741,
-    cmd_push_descriptor_set_2                                                    = 742,
-    cmd_push_descriptor_set_2khr                                                 = 743,
-    cmd_push_descriptor_set_with_template_2                                      = 744,
-    cmd_push_descriptor_set_with_template_2khr                                   = 745,
-    cmd_set_descriptor_buffer_offsets_2ext                                       = 746,
-    cmd_bind_descriptor_buffer_embedded_samplers_2ext                            = 747,
-    set_latency_sleep_mode_nv                                                    = 748,
-    latency_sleep_nv                                                             = 749,
-    set_latency_marker_nv                                                        = 750,
-    get_latency_timings_nv                                                       = 751,
-    queue_notify_out_of_band_nv                                                  = 752,
-    set_latency_sleep_mode_legacy_nv                                             = 753,
-    latency_sleep_legacy_nv                                                      = 754,
-    set_latency_marker_legacy_nv                                                 = 755,
-    get_latency_timings_legacy_nv                                                = 756,
-    queue_notify_out_of_band_legacy_nv                                           = 757,
-    get_sleep_status_legacy_nv                                                   = 758,
-    shutdown_latency_device_legacy_nv                                            = 759,
-    cmd_set_rendering_attachment_locations                                       = 760,
-    cmd_set_rendering_attachment_locations_khr                                   = 761,
-    cmd_set_rendering_input_attachment_indices                                   = 762,
-    cmd_set_rendering_input_attachment_indices_khr                               = 763,
-    cmd_set_depth_clamp_range_ext                                                = 764,
-    get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv     = 765,
-    get_memory_metal_handle_ext                                                  = 766,
-    get_memory_metal_handle_properties_ext                                       = 767,
-    get_physical_device_cooperative_vector_properties_nv                         = 768,
-    convert_cooperative_vector_matrix_nv                                         = 769,
-    cmd_convert_cooperative_vector_matrix_nv                                     = 770,
-    cmd_dispatch_tile_qcom                                                       = 771,
-    cmd_begin_per_tile_execution_qcom                                            = 772,
-    cmd_end_per_tile_execution_qcom                                              = 773,
-    create_external_compute_queue_nv                                             = 774,
-    destroy_external_compute_queue_nv                                            = 775,
-    get_external_compute_queue_data_nv                                           = 776,
-    enumerate_physical_device_shader_instrumentation_metrics_arm                 = 777,
-    create_shader_instrumentation_arm                                            = 778,
-    destroy_shader_instrumentation_arm                                           = 779,
-    cmd_begin_shader_instrumentation_arm                                         = 780,
-    cmd_end_shader_instrumentation_arm                                           = 781,
-    get_shader_instrumentation_values_arm                                        = 782,
-    clear_shader_instrumentation_metrics_arm                                     = 783,
-    create_tensor_arm                                                            = 784,
-    destroy_tensor_arm                                                           = 785,
-    create_tensor_view_arm                                                       = 786,
-    destroy_tensor_view_arm                                                      = 787,
-    get_tensor_memory_requirements_arm                                           = 788,
-    bind_tensor_memory_arm                                                       = 789,
-    get_device_tensor_memory_requirements_arm                                    = 790,
-    cmd_copy_tensor_arm                                                          = 791,
-    get_tensor_opaque_capture_descriptor_data_arm                                = 792,
-    get_tensor_view_opaque_capture_descriptor_data_arm                           = 793,
-    get_physical_device_external_tensor_properties_arm                           = 794,
-    create_data_graph_pipelines_arm                                              = 795,
-    create_data_graph_pipeline_session_arm                                       = 796,
-    get_data_graph_pipeline_session_bind_point_requirements_arm                  = 797,
-    get_data_graph_pipeline_session_memory_requirements_arm                      = 798,
-    bind_data_graph_pipeline_session_memory_arm                                  = 799,
-    destroy_data_graph_pipeline_session_arm                                      = 800,
-    cmd_dispatch_data_graph_arm                                                  = 801,
-    get_data_graph_pipeline_available_properties_arm                             = 802,
-    get_data_graph_pipeline_properties_arm                                       = 803,
-    get_physical_device_queue_family_data_graph_properties_arm                   = 804,
-    get_physical_device_queue_family_data_graph_processing_engine_properties_arm = 805,
-    get_native_buffer_properties_ohos                                            = 806,
-    get_memory_native_buffer_ohos                                                = 807,
-    get_swapchain_gralloc_usage_ohos                                             = 808,
-    acquire_image_ohos                                                           = 809,
-    queue_signal_release_image_ohos                                              = 810,
-    queue_set_perf_hint_qcom                                                     = 811,
-    enumerate_physical_device_queue_family_performance_counters_by_region_arm    = 812,
-    cmd_set_compute_occupancy_priority_nv                                        = 813,
-    write_sampler_descriptors_ext                                                = 814,
-    write_resource_descriptors_ext                                               = 815,
-    cmd_bind_sampler_heap_ext                                                    = 816,
-    cmd_bind_resource_heap_ext                                                   = 817,
-    cmd_push_data_ext                                                            = 818,
-    register_custom_border_color_ext                                             = 819,
-    unregister_custom_border_color_ext                                           = 820,
-    get_image_opaque_capture_data_ext                                            = 821,
-    get_physical_device_descriptor_size_ext                                      = 822,
-    get_tensor_opaque_capture_data_arm                                           = 823,
-    cmd_copy_memory_khr                                                          = 824,
-    cmd_copy_memory_to_image_khr                                                 = 825,
-    cmd_copy_image_to_memory_khr                                                 = 826,
-    cmd_update_memory_khr                                                        = 827,
-    cmd_fill_memory_khr                                                          = 828,
-    cmd_copy_query_pool_results_to_memory_khr                                    = 829,
-    cmd_begin_conditional_rendering_2ext                                         = 830,
-    cmd_bind_transform_feedback_buffers_2ext                                     = 831,
-    cmd_begin_transform_feedback_2ext                                            = 832,
-    cmd_end_transform_feedback_2ext                                              = 833,
-    cmd_draw_indirect_byte_count_2ext                                            = 834,
-    cmd_write_marker_to_memory_amd                                               = 835,
-    cmd_bind_index_buffer_3khr                                                   = 836,
-    cmd_bind_vertex_buffers_3khr                                                 = 837,
-    cmd_draw_indirect_2khr                                                       = 838,
-    cmd_draw_indexed_indirect_2khr                                               = 839,
-    cmd_draw_indirect_count_2khr                                                 = 840,
-    cmd_draw_indexed_indirect_count_2khr                                         = 841,
-    cmd_draw_mesh_tasks_indirect_2ext                                            = 842,
-    cmd_draw_mesh_tasks_indirect_count_2ext                                      = 843,
-    cmd_dispatch_indirect_2khr                                                   = 844,
-    create_acceleration_structure_2khr                                           = 845,
-    get_physical_device_queue_family_data_graph_engine_operation_properties_arm  = 846,
-    cmd_set_dispatch_parameters_arm                                              = 847,
-    get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm   = 848,
+    get_physical_device_external_semaphore_properties                            = 252,
+    get_physical_device_external_semaphore_properties_khr                        = 253,
+    get_semaphore_win_32handle_khr                                               = 254,
+    import_semaphore_win_32handle_khr                                            = 255,
+    get_semaphore_fd_khr                                                         = 256,
+    import_semaphore_fd_khr                                                      = 257,
+    get_semaphore_zircon_handle_fuchsia                                          = 258,
+    import_semaphore_zircon_handle_fuchsia                                       = 259,
+    get_physical_device_external_fence_properties                                = 260,
+    get_physical_device_external_fence_properties_khr                            = 261,
+    get_fence_win_32handle_khr                                                   = 262,
+    import_fence_win_32handle_khr                                                = 263,
+    get_fence_fd_khr                                                             = 264,
+    import_fence_fd_khr                                                          = 265,
+    release_display_ext                                                          = 266,
+    acquire_xlib_display_ext                                                     = 267,
+    get_rand_r_output_display_ext                                                = 268,
+    acquire_winrt_display_nv                                                     = 269,
+    get_winrt_display_nv                                                         = 270,
+    display_power_control_ext                                                    = 271,
+    register_device_event_ext                                                    = 272,
+    register_display_event_ext                                                   = 273,
+    get_swapchain_counter_ext                                                    = 274,
+    get_physical_device_surface_capabilities_2ext                                = 275,
+    enumerate_physical_device_groups                                             = 276,
+    enumerate_physical_device_groups_khr                                         = 277,
+    get_device_group_peer_memory_features                                        = 278,
+    get_device_group_peer_memory_features_khr                                    = 279,
+    bind_buffer_memory_2                                                         = 280,
+    bind_buffer_memory_2khr                                                      = 281,
+    bind_image_memory_2                                                          = 282,
+    bind_image_memory_2khr                                                       = 283,
+    cmd_set_device_mask                                                          = 284,
+    cmd_set_device_mask_khr                                                      = 285,
+    get_device_group_present_capabilities_khr                                    = 286,
+    get_device_group_surface_present_modes_khr                                   = 287,
+    acquire_next_image_2khr                                                      = 288,
+    cmd_dispatch_base                                                            = 289,
+    cmd_dispatch_base_khr                                                        = 290,
+    get_physical_device_present_rectangles_khr                                   = 291,
+    create_descriptor_update_template                                            = 292,
+    create_descriptor_update_template_khr                                        = 293,
+    destroy_descriptor_update_template                                           = 294,
+    destroy_descriptor_update_template_khr                                       = 295,
+    update_descriptor_set_with_template                                          = 296,
+    update_descriptor_set_with_template_khr                                      = 297,
+    cmd_push_descriptor_set_with_template                                        = 298,
+    cmd_push_descriptor_set_with_template_khr                                    = 299,
+    set_hdr_metadata_ext                                                         = 300,
+    get_swapchain_status_khr                                                     = 301,
+    get_refresh_cycle_duration_google                                            = 302,
+    get_past_presentation_timing_google                                          = 303,
+    create_ios_surface_mvk                                                       = 304,
+    create_mac_os_surface_mvk                                                    = 305,
+    create_metal_surface_ext                                                     = 306,
+    cmd_set_viewport_w_scaling_nv                                                = 307,
+    cmd_set_discard_rectangle_ext                                                = 308,
+    cmd_set_discard_rectangle_enable_ext                                         = 309,
+    cmd_set_discard_rectangle_mode_ext                                           = 310,
+    cmd_set_sample_locations_ext                                                 = 311,
+    get_physical_device_multisample_properties_ext                               = 312,
+    get_physical_device_surface_capabilities_2khr                                = 313,
+    get_physical_device_surface_formats_2khr                                     = 314,
+    get_physical_device_display_properties_2khr                                  = 315,
+    get_physical_device_display_plane_properties_2khr                            = 316,
+    get_display_mode_properties_2khr                                             = 317,
+    get_display_plane_capabilities_2khr                                          = 318,
+    get_buffer_memory_requirements_2                                             = 319,
+    get_buffer_memory_requirements_2khr                                          = 320,
+    get_image_memory_requirements_2                                              = 321,
+    get_image_memory_requirements_2khr                                           = 322,
+    get_image_sparse_memory_requirements_2                                       = 323,
+    get_image_sparse_memory_requirements_2khr                                    = 324,
+    get_device_buffer_memory_requirements                                        = 325,
+    get_device_buffer_memory_requirements_khr                                    = 326,
+    get_device_image_memory_requirements                                         = 327,
+    get_device_image_memory_requirements_khr                                     = 328,
+    get_device_image_sparse_memory_requirements                                  = 329,
+    get_device_image_sparse_memory_requirements_khr                              = 330,
+    create_sampler_ycbcr_conversion                                              = 331,
+    create_sampler_ycbcr_conversion_khr                                          = 332,
+    destroy_sampler_ycbcr_conversion                                             = 333,
+    destroy_sampler_ycbcr_conversion_khr                                         = 334,
+    get_device_queue_2                                                           = 335,
+    create_validation_cache_ext                                                  = 336,
+    destroy_validation_cache_ext                                                 = 337,
+    get_validation_cache_data_ext                                                = 338,
+    merge_validation_caches_ext                                                  = 339,
+    get_descriptor_set_layout_support                                            = 340,
+    get_descriptor_set_layout_support_khr                                        = 341,
+    get_shader_info_amd                                                          = 342,
+    set_local_dimming_amd                                                        = 343,
+    get_physical_device_calibrateable_time_domains_khr                           = 344,
+    get_physical_device_calibrateable_time_domains_ext                           = 345,
+    get_calibrated_timestamps_khr                                                = 346,
+    get_calibrated_timestamps_ext                                                = 347,
+    set_debug_utils_object_name_ext                                              = 348,
+    set_debug_utils_object_tag_ext                                               = 349,
+    queue_begin_debug_utils_label_ext                                            = 350,
+    queue_end_debug_utils_label_ext                                              = 351,
+    queue_insert_debug_utils_label_ext                                           = 352,
+    cmd_begin_debug_utils_label_ext                                              = 353,
+    cmd_end_debug_utils_label_ext                                                = 354,
+    cmd_insert_debug_utils_label_ext                                             = 355,
+    create_debug_utils_messenger_ext                                             = 356,
+    destroy_debug_utils_messenger_ext                                            = 357,
+    submit_debug_utils_message_ext                                               = 358,
+    get_memory_host_pointer_properties_ext                                       = 359,
+    cmd_write_buffer_marker_amd                                                  = 360,
+    create_render_pass_2                                                         = 361,
+    create_render_pass_2khr                                                      = 362,
+    cmd_begin_render_pass_2                                                      = 363,
+    cmd_begin_render_pass_2khr                                                   = 364,
+    cmd_next_subpass_2                                                           = 365,
+    cmd_next_subpass_2khr                                                        = 366,
+    cmd_end_render_pass_2                                                        = 367,
+    cmd_end_render_pass_2khr                                                     = 368,
+    get_semaphore_counter_value                                                  = 369,
+    get_semaphore_counter_value_khr                                              = 370,
+    wait_semaphores                                                              = 371,
+    wait_semaphores_khr                                                          = 372,
+    signal_semaphore                                                             = 373,
+    signal_semaphore_khr                                                         = 374,
+    get_android_hardware_buffer_properties_android                               = 375,
+    get_memory_android_hardware_buffer_android                                   = 376,
+    cmd_draw_indirect_count                                                      = 377,
+    cmd_draw_indirect_count_khr                                                  = 378,
+    cmd_draw_indirect_count_amd                                                  = 379,
+    cmd_draw_indexed_indirect_count                                              = 380,
+    cmd_draw_indexed_indirect_count_khr                                          = 381,
+    cmd_draw_indexed_indirect_count_amd                                          = 382,
+    cmd_set_checkpoint_nv                                                        = 383,
+    get_queue_checkpoint_data_nv                                                 = 384,
+    cmd_bind_transform_feedback_buffers_ext                                      = 385,
+    cmd_begin_transform_feedback_ext                                             = 386,
+    cmd_end_transform_feedback_ext                                               = 387,
+    cmd_begin_query_indexed_ext                                                  = 388,
+    cmd_end_query_indexed_ext                                                    = 389,
+    cmd_draw_indirect_byte_count_ext                                             = 390,
+    cmd_set_exclusive_scissor_nv                                                 = 391,
+    cmd_set_exclusive_scissor_enable_nv                                          = 392,
+    cmd_bind_shading_rate_image_nv                                               = 393,
+    cmd_set_viewport_shading_rate_palette_nv                                     = 394,
+    cmd_set_coarse_sample_order_nv                                               = 395,
+    cmd_draw_mesh_tasks_nv                                                       = 396,
+    cmd_draw_mesh_tasks_indirect_nv                                              = 397,
+    cmd_draw_mesh_tasks_indirect_count_nv                                        = 398,
+    cmd_draw_mesh_tasks_ext                                                      = 399,
+    cmd_draw_mesh_tasks_indirect_ext                                             = 400,
+    cmd_draw_mesh_tasks_indirect_count_ext                                       = 401,
+    compile_deferred_nv                                                          = 402,
+    create_acceleration_structure_nv                                             = 403,
+    cmd_bind_invocation_mask_huawei                                              = 404,
+    destroy_acceleration_structure_khr                                           = 405,
+    destroy_acceleration_structure_nv                                            = 406,
+    get_acceleration_structure_memory_requirements_nv                            = 407,
+    bind_acceleration_structure_memory_nv                                        = 408,
+    cmd_copy_acceleration_structure_nv                                           = 409,
+    cmd_copy_acceleration_structure_khr                                          = 410,
+    copy_acceleration_structure_khr                                              = 411,
+    cmd_copy_acceleration_structure_to_memory_khr                                = 412,
+    copy_acceleration_structure_to_memory_khr                                    = 413,
+    cmd_copy_memory_to_acceleration_structure_khr                                = 414,
+    copy_memory_to_acceleration_structure_khr                                    = 415,
+    cmd_write_acceleration_structures_properties_khr                             = 416,
+    cmd_write_acceleration_structures_properties_nv                              = 417,
+    cmd_build_acceleration_structure_nv                                          = 418,
+    write_acceleration_structures_properties_khr                                 = 419,
+    cmd_trace_rays_khr                                                           = 420,
+    cmd_trace_rays_nv                                                            = 421,
+    get_ray_tracing_shader_group_handles_khr                                     = 422,
+    get_ray_tracing_shader_group_handles_nv                                      = 423,
+    get_ray_tracing_capture_replay_shader_group_handles_khr                      = 424,
+    get_acceleration_structure_handle_nv                                         = 425,
+    create_ray_tracing_pipelines_nv                                              = 426,
+    create_ray_tracing_pipelines_khr                                             = 427,
+    get_physical_device_cooperative_matrix_properties_nv                         = 428,
+    cmd_trace_rays_indirect_khr                                                  = 429,
+    cmd_trace_rays_indirect_2khr                                                 = 430,
+    get_cluster_acceleration_structure_build_sizes_nv                            = 431,
+    cmd_build_cluster_acceleration_structure_indirect_nv                         = 432,
+    get_device_acceleration_structure_compatibility_khr                          = 433,
+    get_ray_tracing_shader_group_stack_size_khr                                  = 434,
+    cmd_set_ray_tracing_pipeline_stack_size_khr                                  = 435,
+    get_image_view_handle_nvx                                                    = 436,
+    get_image_view_handle_64nvx                                                  = 437,
+    get_image_view_address_nvx                                                   = 438,
+    get_device_combined_image_sampler_index_nvx                                  = 439,
+    get_physical_device_surface_present_modes_2ext                               = 440,
+    get_device_group_surface_present_modes_2ext                                  = 441,
+    acquire_full_screen_exclusive_mode_ext                                       = 442,
+    release_full_screen_exclusive_mode_ext                                       = 443,
+    enumerate_physical_device_queue_family_performance_query_counters_khr        = 444,
+    get_physical_device_queue_family_performance_query_passes_khr                = 445,
+    acquire_profiling_lock_khr                                                   = 446,
+    release_profiling_lock_khr                                                   = 447,
+    get_image_drm_format_modifier_properties_ext                                 = 448,
+    get_buffer_opaque_capture_address                                            = 449,
+    get_buffer_opaque_capture_address_khr                                        = 450,
+    get_buffer_device_address                                                    = 451,
+    get_buffer_device_address_khr                                                = 452,
+    get_buffer_device_address_ext                                                = 453,
+    create_headless_surface_ext                                                  = 454,
+    get_physical_device_supported_framebuffer_mixed_samples_combinations_nv      = 455,
+    initialize_performance_api_intel                                             = 456,
+    uninitialize_performance_api_intel                                           = 457,
+    cmd_set_performance_marker_intel                                             = 458,
+    cmd_set_performance_stream_marker_intel                                      = 459,
+    cmd_set_performance_override_intel                                           = 460,
+    acquire_performance_configuration_intel                                      = 461,
+    release_performance_configuration_intel                                      = 462,
+    queue_set_performance_configuration_intel                                    = 463,
+    get_performance_parameter_intel                                              = 464,
+    get_device_memory_opaque_capture_address                                     = 465,
+    get_device_memory_opaque_capture_address_khr                                 = 466,
+    get_pipeline_executable_properties_khr                                       = 467,
+    get_pipeline_executable_statistics_khr                                       = 468,
+    get_pipeline_executable_internal_representations_khr                         = 469,
+    cmd_set_line_stipple                                                         = 470,
+    cmd_set_line_stipple_khr                                                     = 471,
+    cmd_set_line_stipple_ext                                                     = 472,
+    get_physical_device_tool_properties                                          = 473,
+    get_physical_device_tool_properties_ext                                      = 474,
+    create_acceleration_structure_khr                                            = 475,
+    cmd_build_acceleration_structures_khr                                        = 476,
+    cmd_build_acceleration_structures_indirect_khr                               = 477,
+    build_acceleration_structures_khr                                            = 478,
+    get_acceleration_structure_device_address_khr                                = 479,
+    create_deferred_operation_khr                                                = 480,
+    destroy_deferred_operation_khr                                               = 481,
+    get_deferred_operation_max_concurrency_khr                                   = 482,
+    get_deferred_operation_result_khr                                            = 483,
+    deferred_operation_join_khr                                                  = 484,
+    get_pipeline_indirect_memory_requirements_nv                                 = 485,
+    get_pipeline_indirect_device_address_nv                                      = 486,
+    anti_lag_update_amd                                                          = 487,
+    cmd_set_cull_mode                                                            = 488,
+    cmd_set_cull_mode_ext                                                        = 489,
+    cmd_set_front_face                                                           = 490,
+    cmd_set_front_face_ext                                                       = 491,
+    cmd_set_primitive_topology                                                   = 492,
+    cmd_set_primitive_topology_ext                                               = 493,
+    cmd_set_viewport_with_count                                                  = 494,
+    cmd_set_viewport_with_count_ext                                              = 495,
+    cmd_set_scissor_with_count                                                   = 496,
+    cmd_set_scissor_with_count_ext                                               = 497,
+    cmd_bind_index_buffer_2                                                      = 498,
+    cmd_bind_index_buffer_2khr                                                   = 499,
+    cmd_bind_vertex_buffers_2                                                    = 500,
+    cmd_bind_vertex_buffers_2ext                                                 = 501,
+    cmd_set_depth_test_enable                                                    = 502,
+    cmd_set_depth_test_enable_ext                                                = 503,
+    cmd_set_depth_write_enable                                                   = 504,
+    cmd_set_depth_write_enable_ext                                               = 505,
+    cmd_set_depth_compare_op                                                     = 506,
+    cmd_set_depth_compare_op_ext                                                 = 507,
+    cmd_set_depth_bounds_test_enable                                             = 508,
+    cmd_set_depth_bounds_test_enable_ext                                         = 509,
+    cmd_set_stencil_test_enable                                                  = 510,
+    cmd_set_stencil_test_enable_ext                                              = 511,
+    cmd_set_stencil_op                                                           = 512,
+    cmd_set_stencil_op_ext                                                       = 513,
+    cmd_set_patch_control_points_ext                                             = 514,
+    cmd_set_rasterizer_discard_enable                                            = 515,
+    cmd_set_rasterizer_discard_enable_ext                                        = 516,
+    cmd_set_depth_bias_enable                                                    = 517,
+    cmd_set_depth_bias_enable_ext                                                = 518,
+    cmd_set_logic_op_ext                                                         = 519,
+    cmd_set_primitive_restart_enable                                             = 520,
+    cmd_set_primitive_restart_enable_ext                                         = 521,
+    cmd_set_tessellation_domain_origin_ext                                       = 522,
+    cmd_set_depth_clamp_enable_ext                                               = 523,
+    cmd_set_polygon_mode_ext                                                     = 524,
+    cmd_set_rasterization_samples_ext                                            = 525,
+    cmd_set_sample_mask_ext                                                      = 526,
+    cmd_set_alpha_to_coverage_enable_ext                                         = 527,
+    cmd_set_alpha_to_one_enable_ext                                              = 528,
+    cmd_set_logic_op_enable_ext                                                  = 529,
+    cmd_set_color_blend_enable_ext                                               = 530,
+    cmd_set_color_blend_equation_ext                                             = 531,
+    cmd_set_color_write_mask_ext                                                 = 532,
+    cmd_set_rasterization_stream_ext                                             = 533,
+    cmd_set_conservative_rasterization_mode_ext                                  = 534,
+    cmd_set_extra_primitive_overestimation_size_ext                              = 535,
+    cmd_set_depth_clip_enable_ext                                                = 536,
+    cmd_set_sample_locations_enable_ext                                          = 537,
+    cmd_set_color_blend_advanced_ext                                             = 538,
+    cmd_set_provoking_vertex_mode_ext                                            = 539,
+    cmd_set_line_rasterization_mode_ext                                          = 540,
+    cmd_set_line_stipple_enable_ext                                              = 541,
+    cmd_set_depth_clip_negative_one_to_one_ext                                   = 542,
+    cmd_set_viewport_w_scaling_enable_nv                                         = 543,
+    cmd_set_viewport_swizzle_nv                                                  = 544,
+    cmd_set_coverage_to_color_enable_nv                                          = 545,
+    cmd_set_coverage_to_color_location_nv                                        = 546,
+    cmd_set_coverage_modulation_mode_nv                                          = 547,
+    cmd_set_coverage_modulation_table_enable_nv                                  = 548,
+    cmd_set_coverage_modulation_table_nv                                         = 549,
+    cmd_set_shading_rate_image_enable_nv                                         = 550,
+    cmd_set_coverage_reduction_mode_nv                                           = 551,
+    cmd_set_representative_fragment_test_enable_nv                               = 552,
+    create_private_data_slot                                                     = 553,
+    create_private_data_slot_ext                                                 = 554,
+    destroy_private_data_slot                                                    = 555,
+    destroy_private_data_slot_ext                                                = 556,
+    set_private_data                                                             = 557,
+    set_private_data_ext                                                         = 558,
+    get_private_data                                                             = 559,
+    get_private_data_ext                                                         = 560,
+    cmd_copy_buffer_2                                                            = 561,
+    cmd_copy_buffer_2khr                                                         = 562,
+    cmd_copy_image_2                                                             = 563,
+    cmd_copy_image_2khr                                                          = 564,
+    cmd_blit_image_2                                                             = 565,
+    cmd_blit_image_2khr                                                          = 566,
+    cmd_copy_buffer_to_image_2                                                   = 567,
+    cmd_copy_buffer_to_image_2khr                                                = 568,
+    cmd_copy_image_to_buffer_2                                                   = 569,
+    cmd_copy_image_to_buffer_2khr                                                = 570,
+    cmd_resolve_image_2                                                          = 571,
+    cmd_resolve_image_2khr                                                       = 572,
+    cmd_set_fragment_shading_rate_khr                                            = 573,
+    get_physical_device_fragment_shading_rates_khr                               = 574,
+    cmd_set_fragment_shading_rate_enum_nv                                        = 575,
+    get_acceleration_structure_build_sizes_khr                                   = 576,
+    cmd_set_vertex_input_ext                                                     = 577,
+    cmd_set_color_write_enable_ext                                               = 578,
+    cmd_set_event_2                                                              = 579,
+    cmd_set_event_2khr                                                           = 580,
+    cmd_reset_event_2                                                            = 581,
+    cmd_reset_event_2khr                                                         = 582,
+    cmd_wait_events_2                                                            = 583,
+    cmd_wait_events_2khr                                                         = 584,
+    cmd_pipeline_barrier_2                                                       = 585,
+    cmd_pipeline_barrier_2khr                                                    = 586,
+    queue_submit_2                                                               = 587,
+    queue_submit_2khr                                                            = 588,
+    cmd_write_timestamp_2                                                        = 589,
+    cmd_write_timestamp_2khr                                                     = 590,
+    cmd_write_buffer_marker_2amd                                                 = 591,
+    get_queue_checkpoint_data_2nv                                                = 592,
+    copy_memory_to_image                                                         = 593,
+    copy_memory_to_image_ext                                                     = 594,
+    copy_image_to_memory                                                         = 595,
+    copy_image_to_memory_ext                                                     = 596,
+    copy_image_to_image                                                          = 597,
+    copy_image_to_image_ext                                                      = 598,
+    transition_image_layout                                                      = 599,
+    transition_image_layout_ext                                                  = 600,
+    cmd_decompress_memory_nv                                                     = 601,
+    cmd_decompress_memory_indirect_count_nv                                      = 602,
+    get_partitioned_acceleration_structures_build_sizes_nv                       = 603,
+    cmd_build_partitioned_acceleration_structures_nv                             = 604,
+    cmd_decompress_memory_ext                                                    = 605,
+    cmd_decompress_memory_indirect_count_ext                                     = 606,
+    create_cu_module_nvx                                                         = 607,
+    create_cu_function_nvx                                                       = 608,
+    destroy_cu_module_nvx                                                        = 609,
+    destroy_cu_function_nvx                                                      = 610,
+    cmd_cu_launch_kernel_nvx                                                     = 611,
+    get_descriptor_set_layout_size_ext                                           = 612,
+    get_descriptor_set_layout_binding_offset_ext                                 = 613,
+    get_descriptor_ext                                                           = 614,
+    cmd_bind_descriptor_buffers_ext                                              = 615,
+    cmd_set_descriptor_buffer_offsets_ext                                        = 616,
+    cmd_bind_descriptor_buffer_embedded_samplers_ext                             = 617,
+    get_buffer_opaque_capture_descriptor_data_ext                                = 618,
+    get_image_opaque_capture_descriptor_data_ext                                 = 619,
+    get_image_view_opaque_capture_descriptor_data_ext                            = 620,
+    get_sampler_opaque_capture_descriptor_data_ext                               = 621,
+    get_acceleration_structure_opaque_capture_descriptor_data_ext                = 622,
+    set_device_memory_priority_ext                                               = 623,
+    acquire_drm_display_ext                                                      = 624,
+    get_drm_display_ext                                                          = 625,
+    wait_for_present_2khr                                                        = 626,
+    wait_for_present_khr                                                         = 627,
+    create_buffer_collection_fuchsia                                             = 628,
+    set_buffer_collection_buffer_constraints_fuchsia                             = 629,
+    set_buffer_collection_image_constraints_fuchsia                              = 630,
+    destroy_buffer_collection_fuchsia                                            = 631,
+    get_buffer_collection_properties_fuchsia                                     = 632,
+    create_cuda_module_nv                                                        = 633,
+    get_cuda_module_cache_nv                                                     = 634,
+    create_cuda_function_nv                                                      = 635,
+    destroy_cuda_module_nv                                                       = 636,
+    destroy_cuda_function_nv                                                     = 637,
+    cmd_cuda_launch_kernel_nv                                                    = 638,
+    cmd_begin_rendering                                                          = 639,
+    cmd_begin_rendering_khr                                                      = 640,
+    cmd_end_rendering                                                            = 641,
+    cmd_end_rendering_2khr                                                       = 642,
+    cmd_end_rendering_2ext                                                       = 643,
+    cmd_end_rendering_khr                                                        = 644,
+    get_descriptor_set_layout_host_mapping_info_valve                            = 645,
+    get_descriptor_set_host_mapping_valve                                        = 646,
+    create_micromap_ext                                                          = 647,
+    cmd_build_micromaps_ext                                                      = 648,
+    build_micromaps_ext                                                          = 649,
+    destroy_micromap_ext                                                         = 650,
+    cmd_copy_micromap_ext                                                        = 651,
+    copy_micromap_ext                                                            = 652,
+    cmd_copy_micromap_to_memory_ext                                              = 653,
+    copy_micromap_to_memory_ext                                                  = 654,
+    cmd_copy_memory_to_micromap_ext                                              = 655,
+    copy_memory_to_micromap_ext                                                  = 656,
+    cmd_write_micromaps_properties_ext                                           = 657,
+    write_micromaps_properties_ext                                               = 658,
+    get_device_micromap_compatibility_ext                                        = 659,
+    get_micromap_build_sizes_ext                                                 = 660,
+    get_shader_module_identifier_ext                                             = 661,
+    get_shader_module_create_info_identifier_ext                                 = 662,
+    get_image_subresource_layout_2                                               = 663,
+    get_image_subresource_layout_2khr                                            = 664,
+    get_image_subresource_layout_2ext                                            = 665,
+    get_pipeline_properties_ext                                                  = 666,
+    export_metal_objects_ext                                                     = 667,
+    cmd_bind_tile_memory_qcom                                                    = 668,
+    get_framebuffer_tile_properties_qcom                                         = 669,
+    get_dynamic_rendering_tile_properties_qcom                                   = 670,
+    get_physical_device_optical_flow_image_formats_nv                            = 671,
+    create_optical_flow_session_nv                                               = 672,
+    destroy_optical_flow_session_nv                                              = 673,
+    bind_optical_flow_session_image_nv                                           = 674,
+    cmd_optical_flow_execute_nv                                                  = 675,
+    get_device_fault_info_ext                                                    = 676,
+    get_device_fault_reports_khr                                                 = 677,
+    get_device_fault_debug_info_khr                                              = 678,
+    cmd_set_depth_bias_2ext                                                      = 679,
+    release_swapchain_images_khr                                                 = 680,
+    release_swapchain_images_ext                                                 = 681,
+    get_device_image_subresource_layout                                          = 682,
+    get_device_image_subresource_layout_khr                                      = 683,
+    map_memory_2                                                                 = 684,
+    map_memory_2khr                                                              = 685,
+    unmap_memory_2                                                               = 686,
+    unmap_memory_2khr                                                            = 687,
+    create_shaders_ext                                                           = 688,
+    destroy_shader_ext                                                           = 689,
+    get_shader_binary_data_ext                                                   = 690,
+    cmd_bind_shaders_ext                                                         = 691,
+    set_swapchain_present_timing_queue_size_ext                                  = 692,
+    get_swapchain_timing_properties_ext                                          = 693,
+    get_swapchain_time_domain_properties_ext                                     = 694,
+    get_past_presentation_timing_ext                                             = 695,
+    get_screen_buffer_properties_qnx                                             = 696,
+    get_physical_device_cooperative_matrix_properties_khr                        = 697,
+    get_physical_device_cooperative_matrix_properties_2ext                       = 698,
+    get_execution_graph_pipeline_scratch_size_amdx                               = 699,
+    get_execution_graph_pipeline_node_index_amdx                                 = 700,
+    create_execution_graph_pipelines_amdx                                        = 701,
+    cmd_initialize_graph_scratch_memory_amdx                                     = 702,
+    cmd_dispatch_graph_amdx                                                      = 703,
+    cmd_dispatch_graph_indirect_amdx                                             = 704,
+    cmd_dispatch_graph_indirect_count_amdx                                       = 705,
+    create_gpa_session_amd                                                       = 706,
+    destroy_gpa_session_amd                                                      = 707,
+    set_gpa_device_clock_mode_amd                                                = 708,
+    get_gpa_device_clock_info_amd                                                = 709,
+    cmd_begin_gpa_session_amd                                                    = 710,
+    cmd_end_gpa_session_amd                                                      = 711,
+    cmd_begin_gpa_sample_amd                                                     = 712,
+    cmd_end_gpa_sample_amd                                                       = 713,
+    get_gpa_session_status_amd                                                   = 714,
+    get_gpa_session_results_amd                                                  = 715,
+    reset_gpa_session_amd                                                        = 716,
+    cmd_copy_gpa_session_results_amd                                             = 717,
+    cmd_bind_descriptor_sets_2                                                   = 718,
+    cmd_bind_descriptor_sets_2khr                                                = 719,
+    cmd_push_constants_2                                                         = 720,
+    cmd_push_constants_2khr                                                      = 721,
+    cmd_push_descriptor_set_2                                                    = 722,
+    cmd_push_descriptor_set_2khr                                                 = 723,
+    cmd_push_descriptor_set_with_template_2                                      = 724,
+    cmd_push_descriptor_set_with_template_2khr                                   = 725,
+    cmd_set_descriptor_buffer_offsets_2ext                                       = 726,
+    cmd_bind_descriptor_buffer_embedded_samplers_2ext                            = 727,
+    set_latency_sleep_mode_nv                                                    = 728,
+    latency_sleep_nv                                                             = 729,
+    set_latency_marker_nv                                                        = 730,
+    get_latency_timings_nv                                                       = 731,
+    queue_notify_out_of_band_nv                                                  = 732,
+    set_latency_sleep_mode_legacy_nv                                             = 733,
+    latency_sleep_legacy_nv                                                      = 734,
+    set_latency_marker_legacy_nv                                                 = 735,
+    get_latency_timings_legacy_nv                                                = 736,
+    queue_notify_out_of_band_legacy_nv                                           = 737,
+    get_sleep_status_legacy_nv                                                   = 738,
+    shutdown_latency_device_legacy_nv                                            = 739,
+    cmd_set_rendering_attachment_locations                                       = 740,
+    cmd_set_rendering_attachment_locations_khr                                   = 741,
+    cmd_set_rendering_input_attachment_indices                                   = 742,
+    cmd_set_rendering_input_attachment_indices_khr                               = 743,
+    cmd_set_depth_clamp_range_ext                                                = 744,
+    get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv     = 745,
+    get_memory_metal_handle_ext                                                  = 746,
+    get_memory_metal_handle_properties_ext                                       = 747,
+    get_physical_device_cooperative_vector_properties_nv                         = 748,
+    convert_cooperative_vector_matrix_nv                                         = 749,
+    cmd_convert_cooperative_vector_matrix_nv                                     = 750,
+    cmd_dispatch_tile_qcom                                                       = 751,
+    cmd_begin_per_tile_execution_qcom                                            = 752,
+    cmd_end_per_tile_execution_qcom                                              = 753,
+    create_external_compute_queue_nv                                             = 754,
+    destroy_external_compute_queue_nv                                            = 755,
+    get_external_compute_queue_data_nv                                           = 756,
+    enumerate_physical_device_shader_instrumentation_metrics_arm                 = 757,
+    create_shader_instrumentation_arm                                            = 758,
+    destroy_shader_instrumentation_arm                                           = 759,
+    cmd_begin_shader_instrumentation_arm                                         = 760,
+    cmd_end_shader_instrumentation_arm                                           = 761,
+    get_shader_instrumentation_values_arm                                        = 762,
+    clear_shader_instrumentation_metrics_arm                                     = 763,
+    create_tensor_arm                                                            = 764,
+    destroy_tensor_arm                                                           = 765,
+    create_tensor_view_arm                                                       = 766,
+    destroy_tensor_view_arm                                                      = 767,
+    get_tensor_memory_requirements_arm                                           = 768,
+    bind_tensor_memory_arm                                                       = 769,
+    get_device_tensor_memory_requirements_arm                                    = 770,
+    cmd_copy_tensor_arm                                                          = 771,
+    get_tensor_opaque_capture_descriptor_data_arm                                = 772,
+    get_tensor_view_opaque_capture_descriptor_data_arm                           = 773,
+    get_physical_device_external_tensor_properties_arm                           = 774,
+    create_data_graph_pipelines_arm                                              = 775,
+    create_data_graph_pipeline_session_arm                                       = 776,
+    get_data_graph_pipeline_session_bind_point_requirements_arm                  = 777,
+    get_data_graph_pipeline_session_memory_requirements_arm                      = 778,
+    bind_data_graph_pipeline_session_memory_arm                                  = 779,
+    destroy_data_graph_pipeline_session_arm                                      = 780,
+    cmd_dispatch_data_graph_arm                                                  = 781,
+    get_data_graph_pipeline_available_properties_arm                             = 782,
+    get_data_graph_pipeline_properties_arm                                       = 783,
+    get_physical_device_queue_family_data_graph_properties_arm                   = 784,
+    get_physical_device_queue_family_data_graph_processing_engine_properties_arm = 785,
+    get_native_buffer_properties_ohos                                            = 786,
+    get_memory_native_buffer_ohos                                                = 787,
+    queue_set_perf_hint_qcom                                                     = 788,
+    enumerate_physical_device_queue_family_performance_counters_by_region_arm    = 789,
+    cmd_set_compute_occupancy_priority_nv                                        = 790,
+    write_sampler_descriptors_ext                                                = 791,
+    write_resource_descriptors_ext                                               = 792,
+    cmd_bind_sampler_heap_ext                                                    = 793,
+    cmd_bind_resource_heap_ext                                                   = 794,
+    cmd_push_data_ext                                                            = 795,
+    register_custom_border_color_ext                                             = 796,
+    unregister_custom_border_color_ext                                           = 797,
+    get_image_opaque_capture_data_ext                                            = 798,
+    get_physical_device_descriptor_size_ext                                      = 799,
+    get_tensor_opaque_capture_data_arm                                           = 800,
+    cmd_copy_memory_khr                                                          = 801,
+    cmd_copy_memory_to_image_khr                                                 = 802,
+    cmd_copy_image_to_memory_khr                                                 = 803,
+    cmd_update_memory_khr                                                        = 804,
+    cmd_fill_memory_khr                                                          = 805,
+    cmd_copy_query_pool_results_to_memory_khr                                    = 806,
+    cmd_begin_conditional_rendering_2ext                                         = 807,
+    cmd_bind_transform_feedback_buffers_2ext                                     = 808,
+    cmd_begin_transform_feedback_2ext                                            = 809,
+    cmd_end_transform_feedback_2ext                                              = 810,
+    cmd_draw_indirect_byte_count_2ext                                            = 811,
+    cmd_write_marker_to_memory_amd                                               = 812,
+    cmd_bind_index_buffer_3khr                                                   = 813,
+    cmd_bind_vertex_buffers_3khr                                                 = 814,
+    cmd_draw_indirect_2khr                                                       = 815,
+    cmd_draw_indexed_indirect_2khr                                               = 816,
+    cmd_draw_indirect_count_2khr                                                 = 817,
+    cmd_draw_indexed_indirect_count_2khr                                         = 818,
+    cmd_draw_mesh_tasks_indirect_2ext                                            = 819,
+    cmd_draw_mesh_tasks_indirect_count_2ext                                      = 820,
+    cmd_dispatch_indirect_2khr                                                   = 821,
+    create_acceleration_structure_2khr                                           = 822,
+    get_physical_device_queue_family_data_graph_engine_operation_properties_arm  = 823,
+    cmd_set_dispatch_parameters_arm                                              = 824,
+    get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm   = 825,
 };
 
 inline ktl::api::result
@@ -4110,46 +4087,6 @@ get_memory_remote_address_nv(ktl::api::device                                   
     return ((pfn_get_memory_remote_address_nv)ptr)(_device, _p_memory_get_remote_address_info, _p_address);
 }
 
-inline ktl::api::result
-get_memory_sci_buf_nv(ktl::api::device _device, const ktl::api::memory_get_sci_buf_info_nv * _p_get_sci_buf_info,
-                      ktl::api::nvsci_buf_obj * _p_handle)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_sci_buf_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_memory_sci_buf_nv)ptr)(_device, _p_get_sci_buf_info, _p_handle);
-}
-
-inline ktl::api::result
-get_physical_device_external_memory_sci_buf_properties_nv(
-    ktl::api::physical_device _physical_device, ktl::api::external_memory_handle_type_flag_bits _handle_type,
-    ktl::api::nvsci_buf_obj _handle, ktl::api::memory_sci_buf_properties_nv * _p_memory_sci_buf_properties)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(
-        ktl::api::command::get_physical_device_external_memory_sci_buf_properties_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_physical_device_external_memory_sci_buf_properties_nv)ptr)(_physical_device, _handle_type, _handle,
-                                                                                _p_memory_sci_buf_properties);
-}
-
-inline ktl::api::result
-get_physical_device_sci_buf_attributes_nv(ktl::api::physical_device     _physical_device,
-                                          ktl::api::nvsci_buf_attr_list _p_attributes)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sci_buf_attributes_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_physical_device_sci_buf_attributes_nv)ptr)(_physical_device, _p_attributes);
-}
-
 inline void
 get_physical_device_external_semaphore_properties(
     ktl::api::physical_device                                 _physical_device,
@@ -4337,122 +4274,6 @@ import_fence_fd_khr(ktl::api::device _device, const ktl::api::import_fence_fd_in
         std::abort();
     }
     return ((pfn_import_fence_fd_khr)ptr)(_device, _p_import_fence_fd_info);
-}
-
-inline ktl::api::result
-get_fence_sci_sync_fence_nv(ktl::api::device                             _device,
-                            const ktl::api::fence_get_sci_sync_info_nv * _p_get_sci_sync_handle_info, void * _p_handle)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_sci_sync_fence_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_fence_sci_sync_fence_nv)ptr)(_device, _p_get_sci_sync_handle_info, _p_handle);
-}
-
-inline ktl::api::result
-get_fence_sci_sync_obj_nv(ktl::api::device                             _device,
-                          const ktl::api::fence_get_sci_sync_info_nv * _p_get_sci_sync_handle_info, void * _p_handle)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_sci_sync_obj_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_fence_sci_sync_obj_nv)ptr)(_device, _p_get_sci_sync_handle_info, _p_handle);
-}
-
-inline ktl::api::result
-import_fence_sci_sync_fence_nv(ktl::api::device                                _device,
-                               const ktl::api::import_fence_sci_sync_info_nv * _p_import_fence_sci_sync_info)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_fence_sci_sync_fence_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_import_fence_sci_sync_fence_nv)ptr)(_device, _p_import_fence_sci_sync_info);
-}
-
-inline ktl::api::result
-import_fence_sci_sync_obj_nv(ktl::api::device                                _device,
-                             const ktl::api::import_fence_sci_sync_info_nv * _p_import_fence_sci_sync_info)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_fence_sci_sync_obj_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_import_fence_sci_sync_obj_nv)ptr)(_device, _p_import_fence_sci_sync_info);
-}
-
-inline ktl::api::result
-get_semaphore_sci_sync_obj_nv(ktl::api::device                                 _device,
-                              const ktl::api::semaphore_get_sci_sync_info_nv * _p_get_sci_sync_info, void * _p_handle)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_sci_sync_obj_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_semaphore_sci_sync_obj_nv)ptr)(_device, _p_get_sci_sync_info, _p_handle);
-}
-
-inline ktl::api::result
-import_semaphore_sci_sync_obj_nv(ktl::api::device                                    _device,
-                                 const ktl::api::import_semaphore_sci_sync_info_nv * _p_import_semaphore_sci_sync_info)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_semaphore_sci_sync_obj_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_import_semaphore_sci_sync_obj_nv)ptr)(_device, _p_import_semaphore_sci_sync_info);
-}
-
-inline ktl::api::result
-get_physical_device_sci_sync_attributes_nv(ktl::api::physical_device                     _physical_device,
-                                           const ktl::api::sci_sync_attributes_info_nv * _p_sci_sync_attributes_info,
-                                           ktl::api::nvsci_sync_attr_list                _p_attributes)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sci_sync_attributes_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_physical_device_sci_sync_attributes_nv)ptr)(_physical_device, _p_sci_sync_attributes_info,
-                                                                 _p_attributes);
-}
-
-inline ktl::api::result
-create_semaphore_sci_sync_pool_nv(ktl::api::device                                         _device,
-                                  const ktl::api::semaphore_sci_sync_pool_create_info_nv * _p_create_info,
-                                  const ktl::api::allocation_callbacks *                   _p_allocator,
-                                  ktl::api::semaphore_sci_sync_pool_nv *                   _p_semaphore_pool)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_semaphore_sci_sync_pool_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_create_semaphore_sci_sync_pool_nv)ptr)(_device, _p_create_info, _p_allocator, _p_semaphore_pool);
-}
-
-inline void
-destroy_semaphore_sci_sync_pool_nv(ktl::api::device _device, ktl::api::semaphore_sci_sync_pool_nv _semaphore_pool,
-                                   const ktl::api::allocation_callbacks * _p_allocator)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::destroy_semaphore_sci_sync_pool_nv)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_destroy_semaphore_sci_sync_pool_nv)ptr)(_device, _semaphore_pool, _p_allocator);
 }
 
 inline ktl::api::result
@@ -5468,62 +5289,6 @@ get_descriptor_set_layout_support_khr(ktl::api::device                          
         std::abort();
     }
     return ((pfn_get_descriptor_set_layout_support_khr)ptr)(_device, _p_create_info, _p_support);
-}
-
-inline ktl::api::result
-get_swapchain_gralloc_usage_android(ktl::api::device _device, ktl::api::format _format,
-                                    ktl::api::image_usage_flags _image_usage, int * _gralloc_usage)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_gralloc_usage_android)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_swapchain_gralloc_usage_android)ptr)(_device, _format, _image_usage, _gralloc_usage);
-}
-
-inline ktl::api::result
-get_swapchain_gralloc_usage_2android(ktl::api::device _device, ktl::api::format _format,
-                                     ktl::api::image_usage_flags                   _image_usage,
-                                     ktl::api::swapchain_image_usage_flags_android _swapchain_image_usage,
-                                     ktl::u64 * _gralloc_consumer_usage, ktl::u64 * _gralloc_producer_usage)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_gralloc_usage_2android)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_swapchain_gralloc_usage_2android)ptr)(_device, _format, _image_usage, _swapchain_image_usage,
-                                                           _gralloc_consumer_usage, _gralloc_producer_usage);
-}
-
-inline ktl::api::result
-acquire_image_android(ktl::api::device _device, ktl::api::image _image, int _native_fence_fd,
-                      ktl::api::semaphore _semaphore, ktl::api::fence _fence)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_image_android)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_acquire_image_android)ptr)(_device, _image, _native_fence_fd, _semaphore, _fence);
-}
-
-inline ktl::api::result
-queue_signal_release_image_android(ktl::api::queue _queue, ktl::u32 _wait_semaphore_count,
-                                   const ktl::api::semaphore * _p_wait_semaphores, ktl::api::image _image,
-                                   int * _p_native_fence_fd)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_signal_release_image_android)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_queue_signal_release_image_android)ptr)(_queue, _wait_semaphore_count, _p_wait_semaphores, _image,
-                                                         _p_native_fence_fd);
 }
 
 inline ktl::api::result
@@ -7280,18 +7045,6 @@ cmd_set_line_stipple_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _lin
 }
 
 inline ktl::api::result
-get_fault_data(ktl::api::device _device, ktl::api::fault_query_behavior _fault_query_behavior,
-               ktl::api::bool32 * _p_unrecorded_faults, ktl::u32 * _p_fault_count, ktl::api::fault_data * _p_faults)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fault_data)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_fault_data)ptr)(_device, _fault_query_behavior, _p_unrecorded_faults, _p_fault_count, _p_faults);
-}
-
-inline ktl::api::result
 get_physical_device_tool_properties(ktl::api::physical_device _physical_device, ktl::u32 * _p_tool_count,
                                     ktl::api::physical_device_tool_properties * _p_tool_properties)
 {
@@ -8528,33 +8281,6 @@ cmd_resolve_image_2khr(ktl::api::command_buffer               _command_buffer,
 }
 
 inline void
-cmd_refresh_objects_khr(ktl::api::command_buffer                  _command_buffer,
-                        const ktl::api::refresh_object_list_khr * _p_refresh_objects)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_refresh_objects_khr)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_cmd_refresh_objects_khr)ptr)(_command_buffer, _p_refresh_objects);
-}
-
-inline ktl::api::result
-get_physical_device_refreshable_object_types_khr(ktl::api::physical_device _physical_device,
-                                                 ktl::u32 *                _p_refreshable_object_type_count,
-                                                 ktl::api::object_type *   _p_refreshable_object_types)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_refreshable_object_types_khr)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_physical_device_refreshable_object_types_khr)ptr)(
-        _physical_device, _p_refreshable_object_type_count, _p_refreshable_object_types);
-}
-
-inline void
 cmd_set_fragment_shading_rate_khr(ktl::api::command_buffer                              _command_buffer,
                                   const ktl::api::extent_2d *                           _p_fragment_size,
                                   const ktl::api::fragment_shading_rate_combiner_op_khr _combiner_ops[2])
@@ -8899,20 +8625,6 @@ transition_image_layout_ext(ktl::api::device _device, ktl::u32 _transition_count
         std::abort();
     }
     return ((pfn_transition_image_layout_ext)ptr)(_device, _transition_count, _p_transitions);
-}
-
-inline void
-get_command_pool_memory_consumption(ktl::api::device _device, ktl::api::command_pool _command_pool,
-                                    ktl::api::command_buffer                    _command_buffer,
-                                    ktl::api::command_pool_memory_consumption * _p_consumption)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_command_pool_memory_consumption)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_command_pool_memory_consumption)ptr)(_device, _command_pool, _command_buffer, _p_consumption);
 }
 
 inline void
@@ -11339,45 +11051,6 @@ get_memory_native_buffer_ohos(ktl::api::device _device, const ktl::api::memory_g
         std::abort();
     }
     return ((pfn_get_memory_native_buffer_ohos)ptr)(_device, _p_info, _p_buffer);
-}
-
-inline ktl::api::result
-get_swapchain_gralloc_usage_ohos(ktl::api::device _device, ktl::api::format _format,
-                                 ktl::api::image_usage_flags _image_usage, ktl::u64 * _gralloc_usage)
-{
-    ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_swapchain_gralloc_usage_ohos)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_get_swapchain_gralloc_usage_ohos)ptr)(_device, _format, _image_usage, _gralloc_usage);
-}
-
-inline ktl::api::result
-acquire_image_ohos(ktl::api::device _device, ktl::api::image _image, ktl::i32 _native_fence_fd,
-                   ktl::api::semaphore _semaphore, ktl::api::fence _fence)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_image_ohos)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_acquire_image_ohos)ptr)(_device, _image, _native_fence_fd, _semaphore, _fence);
-}
-
-inline ktl::api::result
-queue_signal_release_image_ohos(ktl::api::queue _queue, ktl::u32 _wait_semaphore_count,
-                                const ktl::api::semaphore * _p_wait_semaphores, ktl::api::image _image,
-                                ktl::i32 * _p_native_fence_fd)
-{
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_signal_release_image_ohos)];
-    if (ptr == ktl::loader::proc_null) [[unlikely]]
-    {
-        std::abort();
-    }
-    return ((pfn_queue_signal_release_image_ohos)ptr)(_queue, _wait_semaphore_count, _p_wait_semaphores, _image,
-                                                      _p_native_fence_fd);
 }
 
 inline ktl::api::result

@@ -614,17 +614,6 @@ struct handle_meta< debug_utils_messenger_ext >
 };
 
 template <>
-struct handle_meta< semaphore_sci_sync_pool_nv >
-{
-    using parent = opaque_device;
-    using type   = opaque_semaphore_sci_sync_pool_nv;
-    enum : std::underlying_type_t< ktl::api::object_type >
-    {
-        object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_semaphore_sci_sync_pool_nv)
-    };
-};
-
-template <>
 struct handle_meta< cuda_module_nv >
 {
     using parent = opaque_device;
@@ -1572,23 +1561,6 @@ struct formatter< ktl::api::debug_utils_messenger_ext, char >
     template < typename FormatContext >
     auto
     format(const ktl::api::debug_utils_messenger_ext & _handle, FormatContext & ctx) const
-    {
-        auto ptr = reinterpret_cast< std::uintptr_t >(_handle);
-        return std::format_to(ctx.out(), "0x{:x}", ptr);
-    }
-};
-template <>
-struct formatter< ktl::api::semaphore_sci_sync_pool_nv, char >
-{
-    constexpr auto
-    parse(format_parse_context & ctx)
-    {
-        return ctx.begin();
-    }
-
-    template < typename FormatContext >
-    auto
-    format(const ktl::api::semaphore_sci_sync_pool_nv & _handle, FormatContext & ctx) const
     {
         auto ptr = reinterpret_cast< std::uintptr_t >(_handle);
         return std::format_to(ctx.out(), "0x{:x}", ptr);

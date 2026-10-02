@@ -418,21 +418,6 @@ struct pipeline_cache_header_version_one
     ktl::u32                                device_id;
     ktl::u8                                 pipeline_cache_uuid[KTL_API_UUID_SIZE];
 };
-struct pipeline_cache_stage_validation_index_entry
-{
-    ktl::u64 code_size;
-    ktl::u64 code_offset;
-};
-struct pipeline_cache_safety_critical_index_entry
-{
-    ktl::u8  pipeline_identifier[KTL_API_UUID_SIZE];
-    ktl::u64 pipeline_memory_size;
-    ktl::u64 json_size;
-    ktl::u64 json_offset;
-    ktl::u32 stage_index_count;
-    ktl::u32 stage_index_stride;
-    ktl::u64 stage_index_offset;
-};
 struct pipeline_cache_header_version_data_graph_qcom
 {
     ktl::u32                                   header_size;
@@ -976,15 +961,6 @@ struct layer_setting_ext
     ktl::u32                         value_count = {};
     const void *                     p_values;
 };
-struct application_parameters_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_application_parameters_ext;
-    const void *             pnext = {};
-    ktl::u32                 vendor_id;
-    ktl::u32                 device_id = {};
-    ktl::u32                 key;
-    ktl::u64                 value;
-};
 struct pipeline_rasterization_state_rasterization_order_amd
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_rasterization_state_rasterization_order_amd;
@@ -1060,39 +1036,6 @@ struct export_memory_win_32handle_info_nv
     const void *                                pnext = {};
     const ktl::api::win32_security_attributes * p_attributes = {};
     ktl::api::win32_dword                       dw_access    = {};
-};
-struct export_memory_sci_buf_info_nv
-{
-    ktl::api::structure_type      stype = ktl::api::structure_type::v_export_memory_sci_buf_info_nv;
-    const void *                  pnext = {};
-    ktl::api::nvsci_buf_attr_list p_attributes;
-};
-struct import_memory_sci_buf_info_nv
-{
-    ktl::api::structure_type                        stype = ktl::api::structure_type::v_import_memory_sci_buf_info_nv;
-    const void *                                    pnext = {};
-    ktl::api::external_memory_handle_type_flag_bits handle_type;
-    ktl::api::nvsci_buf_obj                         handle;
-};
-struct memory_get_sci_buf_info_nv
-{
-    ktl::api::structure_type                        stype = ktl::api::structure_type::v_memory_get_sci_buf_info_nv;
-    const void *                                    pnext = {};
-    ktl::api::device_memory                         memory;
-    ktl::api::external_memory_handle_type_flag_bits handle_type;
-};
-struct memory_sci_buf_properties_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_memory_sci_buf_properties_nv;
-    const void *             pnext = {};
-    ktl::u32                 memory_type_bits;
-};
-struct physical_device_external_memory_sci_buf_features_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_external_memory_sci_buf_features_nv;
-    void *                   pnext = {};
-    ktl::api::bool32         sci_buf_import_nv;
-    ktl::api::bool32         sci_buf_export_nv;
 };
 struct win_32keyed_mutex_acquire_release_info_nv
 {
@@ -1668,93 +1611,6 @@ struct fence_get_fd_info_khr
     const void *                                   pnext = {};
     ktl::api::fence                                fence;
     ktl::api::external_fence_handle_type_flag_bits handle_type;
-};
-struct export_fence_sci_sync_info_nv
-{
-    ktl::api::structure_type       stype = ktl::api::structure_type::v_export_fence_sci_sync_info_nv;
-    const void *                   pnext = {};
-    ktl::api::nvsci_sync_attr_list p_attributes;
-};
-struct import_fence_sci_sync_info_nv
-{
-    ktl::api::structure_type                       stype = ktl::api::structure_type::v_import_fence_sci_sync_info_nv;
-    const void *                                   pnext = {};
-    ktl::api::fence                                fence;
-    ktl::api::external_fence_handle_type_flag_bits handle_type;
-    void *                                         handle;
-};
-struct fence_get_sci_sync_info_nv
-{
-    ktl::api::structure_type                       stype = ktl::api::structure_type::v_fence_get_sci_sync_info_nv;
-    const void *                                   pnext = {};
-    ktl::api::fence                                fence;
-    ktl::api::external_fence_handle_type_flag_bits handle_type;
-};
-struct export_semaphore_sci_sync_info_nv
-{
-    ktl::api::structure_type       stype = ktl::api::structure_type::v_export_semaphore_sci_sync_info_nv;
-    const void *                   pnext = {};
-    ktl::api::nvsci_sync_attr_list p_attributes;
-};
-struct import_semaphore_sci_sync_info_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_import_semaphore_sci_sync_info_nv;
-    const void *             pnext = {};
-    ktl::api::semaphore      semaphore;
-    ktl::api::external_semaphore_handle_type_flag_bits handle_type;
-    void *                                             handle;
-};
-struct semaphore_get_sci_sync_info_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_semaphore_get_sci_sync_info_nv;
-    const void *             pnext = {};
-    ktl::api::semaphore      semaphore;
-    ktl::api::external_semaphore_handle_type_flag_bits handle_type;
-};
-struct sci_sync_attributes_info_nv
-{
-    ktl::api::structure_type             stype = ktl::api::structure_type::v_sci_sync_attributes_info_nv;
-    const void *                         pnext = {};
-    ktl::api::sci_sync_client_type_nv    client_type;
-    ktl::api::sci_sync_primitive_type_nv primitive_type;
-};
-struct physical_device_external_sci_sync_features_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_external_sci_sync_features_nv;
-    void *                   pnext = {};
-    ktl::api::bool32         sci_sync_fence_nv;
-    ktl::api::bool32         sci_sync_semaphore_nv;
-    ktl::api::bool32         sci_sync_import_nv;
-    ktl::api::bool32         sci_sync_export_nv;
-};
-struct physical_device_external_sci_sync_2features_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_external_sci_sync_2features_nv;
-    void *                   pnext = {};
-    ktl::api::bool32         sci_sync_fence_2nv;
-    ktl::api::bool32         sci_sync_semaphore_2nv;
-    ktl::api::bool32         sci_sync_import_2nv;
-    ktl::api::bool32         sci_sync_export_2nv;
-};
-struct semaphore_sci_sync_pool_create_info_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_semaphore_sci_sync_pool_create_info_nv;
-    const void *             pnext = {};
-    ktl::api::nvsci_sync_obj handle;
-};
-struct semaphore_sci_sync_create_info_nv
-{
-    ktl::api::structure_type             stype = ktl::api::structure_type::v_semaphore_sci_sync_create_info_nv;
-    const void *                         pnext = {};
-    ktl::api::semaphore_sci_sync_pool_nv semaphore_pool;
-    const ktl::api::nvsci_sync_fence *   p_fence;
-};
-struct device_semaphore_sci_sync_pool_reservation_create_info_nv
-{
-    ktl::api::structure_type stype =
-        ktl::api::structure_type::v_device_semaphore_sci_sync_pool_reservation_create_info_nv;
-    const void * pnext = {};
-    ktl::u32     semaphore_sci_sync_pool_request_count;
 };
 struct physical_device_multiview_features
 {
@@ -2621,23 +2477,6 @@ struct physical_device_host_query_reset_features
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_host_query_reset_features;
     void *                   pnext = {};
     ktl::api::bool32         host_query_reset;
-};
-struct native_buffer_usage_2android
-{
-    ktl::u64 consumer;
-    ktl::u64 producer;
-};
-struct swapchain_image_create_info_android
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_swapchain_image_create_info_android;
-    const void *             pnext = {};
-    ktl::api::swapchain_image_usage_flags_android usage;
-};
-struct physical_device_presentation_properties_android
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_presentation_properties_android;
-    void *                   pnext = {};
-    ktl::api::bool32         shared_image;
 };
 struct shader_resource_usage_amd
 {
@@ -3907,12 +3746,6 @@ struct performance_query_submit_info_khr
     const void *             pnext = {};
     ktl::u32                 counter_pass_index;
 };
-struct performance_query_reservation_info_khr
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_performance_query_reservation_info_khr;
-    const void *             pnext = {};
-    ktl::u32                 max_performance_queries_per_pool;
-};
 struct headless_surface_create_info_ext
 {
     ktl::api::structure_type                    stype = ktl::api::structure_type::v_headless_surface_create_info_ext;
@@ -4496,13 +4329,6 @@ struct gpa_session_create_info_amd
     const void *              pnext                 = {};
     ktl::api::gpa_session_amd secondary_copy_source = {};
 };
-struct fault_data
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_fault_data;
-    void *                   pnext = {};
-    ktl::api::fault_level    fault_level;
-    ktl::api::fault_type     fault_type;
-};
 struct physical_device_tool_properties
 {
     ktl::api::structure_type     stype = ktl::api::structure_type::v_physical_device_tool_properties;
@@ -4612,12 +4438,6 @@ struct pipeline_library_create_info_khr
     const void *               pnext         = {};
     ktl::u32                   library_count = {};
     const ktl::api::pipeline * p_libraries;
-};
-struct refresh_object_khr
-{
-    ktl::api::object_type              object_type;
-    ktl::u64                           object_handle;
-    ktl::api::refresh_object_flags_khr flags = {};
 };
 struct physical_device_extended_dynamic_state_features_ext
 {
@@ -4770,14 +4590,6 @@ struct device_diagnostics_config_create_info_nv
     ktl::api::structure_type stype = ktl::api::structure_type::v_device_diagnostics_config_create_info_nv;
     const void *             pnext = {};
     ktl::api::device_diagnostics_config_flags_nv flags = {};
-};
-struct pipeline_offline_create_info
-{
-    ktl::api::structure_type         stype = ktl::api::structure_type::v_pipeline_offline_create_info;
-    const void *                     pnext = {};
-    ktl::u8                          pipeline_identifier[KTL_API_UUID_SIZE];
-    ktl::api::pipeline_match_control match_control;
-    ktl::api::dvsize                 pool_entry_size;
 };
 struct physical_device_zero_initialize_workgroup_memory_features
 {
@@ -5302,57 +5114,6 @@ struct host_image_copy_device_performance_query
     void *                   pnext = {};
     ktl::api::bool32         optimal_device_access;
     ktl::api::bool32         identical_memory_layout;
-};
-struct physical_device_vulkan_sc_10properties
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_vulkan_sc_10properties;
-    void *                   pnext = {};
-    ktl::api::bool32         device_no_dynamic_host_allocations;
-    ktl::api::bool32         device_destroy_frees_memory;
-    ktl::api::bool32         command_pool_multiple_command_buffers_recording;
-    ktl::api::bool32         command_pool_reset_command_buffer;
-    ktl::api::bool32         command_buffer_simultaneous_use;
-    ktl::api::bool32         secondary_command_buffer_null_or_imageless_framebuffer;
-    ktl::api::bool32         recycle_descriptor_set_memory;
-    ktl::api::bool32         recycle_pipeline_memory;
-    ktl::u32                 max_render_pass_subpasses;
-    ktl::u32                 max_render_pass_dependencies;
-    ktl::u32                 max_subpass_input_attachments;
-    ktl::u32                 max_subpass_preserve_attachments;
-    ktl::u32                 max_framebuffer_attachments;
-    ktl::u32                 max_descriptor_set_layout_bindings;
-    ktl::u32                 max_query_fault_count;
-    ktl::u32                 max_callback_fault_count;
-    ktl::u32                 max_command_pool_command_buffers;
-    ktl::api::dvsize         max_command_buffer_size;
-};
-struct pipeline_pool_size
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_pool_size;
-    const void *             pnext = {};
-    ktl::api::dvsize         pool_entry_size;
-    ktl::u32                 pool_entry_count;
-};
-struct command_pool_memory_reservation_create_info
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_command_pool_memory_reservation_create_info;
-    const void *             pnext = {};
-    ktl::api::dvsize         command_pool_reserved_size;
-    ktl::u32                 command_pool_max_command_buffers;
-};
-struct command_pool_memory_consumption
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_command_pool_memory_consumption;
-    void *                   pnext = {};
-    ktl::api::dvsize         command_pool_allocated;
-    ktl::api::dvsize         command_pool_reserved_size;
-    ktl::api::dvsize         command_buffer_allocated;
-};
-struct physical_device_vulkan_sc_10features
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_vulkan_sc_10features;
-    void *                   pnext = {};
-    ktl::api::bool32         shader_atomic_instructions_10;
 };
 struct physical_device_primitives_generated_query_features_ext
 {
@@ -7965,24 +7726,6 @@ struct physical_device_shader_untyped_pointers_features_khr
     void *                   pnext = {};
     ktl::api::bool32         shader_untyped_pointers_khr;
 };
-struct native_buffer_ohos
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_native_buffer_ohos;
-    const void *             pnext = {};
-    OHBufferHandle *         handle;
-};
-struct swapchain_image_create_info_ohos
-{
-    ktl::api::structure_type                   stype = ktl::api::structure_type::v_swapchain_image_create_info_ohos;
-    const void *                               pnext = {};
-    ktl::api::swapchain_image_usage_flags_ohos usage;
-};
-struct physical_device_presentation_properties_ohos
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_presentation_properties_ohos;
-    void *                   pnext = {};
-    ktl::api::bool32         shared_image;
-};
 struct physical_device_shader_64bit_indexing_features_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_shader_64bit_indexing_features_ext;
@@ -9130,15 +8873,6 @@ struct pipeline_depth_stencil_state_create_info
     float                                               min_depth_bounds;
     float                                               max_depth_bounds;
 };
-struct pipeline_cache_header_version_safety_critical_one
-{
-    ktl::api::pipeline_cache_header_version_one header_version_one;
-    ktl::api::pipeline_cache_validation_version validation_version;
-    ktl::u32                                    implementation_data;
-    ktl::u32                                    pipeline_index_count;
-    ktl::u32                                    pipeline_index_stride;
-    ktl::u64                                    pipeline_index_offset;
-};
 struct pipeline_layout_create_info
 {
     ktl::api::structure_type                stype            = ktl::api::structure_type::v_pipeline_layout_create_info;
@@ -9576,16 +9310,6 @@ struct physical_device_layered_api_properties_list_khr
     ktl::u32                 layered_api_count                            = {};
     ktl::api::physical_device_layered_api_properties_khr * p_layered_apis = {};
 };
-struct native_buffer_android
-{
-    ktl::api::structure_type               stype = ktl::api::structure_type::v_native_buffer_android;
-    const void *                           pnext = {};
-    const void *                           handle;
-    int                                    stride;
-    int                                    format;
-    int                                    usage;
-    ktl::api::native_buffer_usage_2android usage_2;
-};
 struct shader_statistics_info_amd
 {
     ktl::api::shader_stage_flags        shader_stage_mask;
@@ -9734,14 +9458,6 @@ struct gpa_sample_begin_info_amd
     ktl::api::dvsize                        sq_thread_trace_device_memory_limit;
     ktl::api::pipeline_stage_flags          timing_pre_sample  = {};
     ktl::api::pipeline_stage_flags          timing_post_sample = {};
-};
-struct fault_callback_info
-{
-    ktl::api::structure_type              stype       = ktl::api::structure_type::v_fault_callback_info;
-    const void *                          pnext       = {};
-    ktl::u32                              fault_count = {};
-    ktl::api::fault_data *                p_faults    = {};
-    ktl::api::pfn_fault_callback_function pfn_fault_callback;
 };
 struct copy_acceleration_structure_to_memory_info_khr
 {
@@ -9913,13 +9629,6 @@ struct acceleration_structure_matrix_motion_instance_nv
     ktl::api::geometry_instance_flags_khr flags : 8 = {};
     ktl::u64                              acceleration_structure_reference;
 };
-struct refresh_object_list_khr
-{
-    ktl::api::structure_type             stype = ktl::api::structure_type::v_refresh_object_list_khr;
-    const void *                         pnext = {};
-    ktl::u32                             object_count;
-    const ktl::api::refresh_object_khr * p_objects;
-};
 struct build_partitioned_acceleration_structure_info_nv
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_build_partitioned_acceleration_structure_info_nv;
@@ -9976,52 +9685,6 @@ struct submit_info_2
     const ktl::api::command_buffer_submit_info * p_command_buffer_infos;
     ktl::u32                                     signal_semaphore_info_count = {};
     const ktl::api::semaphore_submit_info *      p_signal_semaphore_infos;
-};
-struct device_object_reservation_create_info
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_device_object_reservation_create_info;
-    const void *             pnext = {};
-    ktl::u32                 pipeline_cache_create_info_count = {};
-    const ktl::api::pipeline_cache_create_info * p_pipeline_cache_create_infos;
-    ktl::u32                                     pipeline_pool_size_count = {};
-    const ktl::api::pipeline_pool_size *         p_pipeline_pool_sizes;
-    ktl::u32                                     semaphore_request_count                     = {};
-    ktl::u32                                     command_buffer_request_count                = {};
-    ktl::u32                                     fence_request_count                         = {};
-    ktl::u32                                     device_memory_request_count                 = {};
-    ktl::u32                                     buffer_request_count                        = {};
-    ktl::u32                                     image_request_count                         = {};
-    ktl::u32                                     event_request_count                         = {};
-    ktl::u32                                     query_pool_request_count                    = {};
-    ktl::u32                                     buffer_view_request_count                   = {};
-    ktl::u32                                     image_view_request_count                    = {};
-    ktl::u32                                     layered_image_view_request_count            = {};
-    ktl::u32                                     pipeline_cache_request_count                = {};
-    ktl::u32                                     pipeline_layout_request_count               = {};
-    ktl::u32                                     render_pass_request_count                   = {};
-    ktl::u32                                     graphics_pipeline_request_count             = {};
-    ktl::u32                                     compute_pipeline_request_count              = {};
-    ktl::u32                                     descriptor_set_layout_request_count         = {};
-    ktl::u32                                     sampler_request_count                       = {};
-    ktl::u32                                     descriptor_pool_request_count               = {};
-    ktl::u32                                     descriptor_set_request_count                = {};
-    ktl::u32                                     framebuffer_request_count                   = {};
-    ktl::u32                                     command_pool_request_count                  = {};
-    ktl::u32                                     sampler_ycbcr_conversion_request_count      = {};
-    ktl::u32                                     surface_request_count                       = {};
-    ktl::u32                                     swapchain_request_count                     = {};
-    ktl::u32                                     display_mode_request_count                  = {};
-    ktl::u32                                     subpass_description_request_count           = {};
-    ktl::u32                                     attachment_description_request_count        = {};
-    ktl::u32                                     descriptor_set_layout_binding_request_count = {};
-    ktl::u32                                     descriptor_set_layout_binding_limit;
-    ktl::u32                                     max_image_view_mip_levels;
-    ktl::u32                                     max_image_view_array_layers;
-    ktl::u32                                     max_layered_image_view_mip_levels;
-    ktl::u32                                     max_occlusion_queries_per_pool;
-    ktl::u32                                     max_pipeline_statistics_queries_per_pool;
-    ktl::u32                                     max_timestamp_queries_per_pool;
-    ktl::u32                                     max_immutable_samplers_per_descriptor_set_layout;
 };
 union descriptor_data_ext
 {

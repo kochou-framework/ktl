@@ -3,6 +3,7 @@
 
 #include <compare>
 #include <cstdlib>
+#include <span>
 #include <variant>
 
 #include <ktl/api.hpp>
@@ -85,12 +86,14 @@ private:
     std::variant< ktl::api::extension, ktl::api::feature, ktl::api::version, bool > dependency_;
 };
 
-struct version_deps
+// one alternative of a depends expression: every dependency is needed
+using requirement = std::span< ktl::meta::dependency const >;
+
+// command of <require depends="...">: available when any of the requirements is met
+struct conditional_command
 {
-    ktl::api::version                        version;
-    bool                                     is_allowed;
-    ktl::usize                               deps_size;
-    std::array< ktl::meta::dependency, 128 > deps;
+    ktl::api::command                         command;
+    std::span< ktl::meta::requirement const > depends;
 };
 } // namespace ktl::meta
 

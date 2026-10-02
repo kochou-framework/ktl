@@ -1,6 +1,7 @@
 from vk_types import VkConstant
 from name_rules import *
 from typing import TextIO
+from api_filter import is_vulkan_api
 
 
 def fill_definition(_file: TextIO, _constants: list) -> None:
@@ -31,6 +32,8 @@ def extract(_root) -> list:
 
     for src in _root.findall("enums[@type='constants']"):
         for constant in src.findall("enum"):
+            if not is_vulkan_api(constant):
+                continue
             if result := extract_constant_impl(constant):
                 constants.append(result)
 

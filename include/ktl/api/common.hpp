@@ -312,7 +312,6 @@ enum class display_plane_alpha_flag_bits_khr : ktl::u32;
 enum class composite_alpha_flag_bits_khr : ktl::u32;
 enum class surface_transform_flag_bits_khr : ktl::u32;
 enum class display_surface_stereo_type_nv : ktl::u32;
-enum class swapchain_image_usage_flag_bits_android : ktl::u32;
 enum class time_domain_khr : ktl::u32;
 enum class debug_report_flag_bits_ext : ktl::u32;
 enum class debug_report_object_type_ext : ktl::u32;
@@ -404,7 +403,6 @@ enum class performance_counter_storage_khr : ktl::u32;
 enum class performance_counter_description_flag_bits_khr : ktl::u32;
 enum class acquire_profiling_lock_flag_bits_khr : ktl::u32;
 enum class shader_core_properties_flag_bits_amd : ktl::u32;
-enum class refresh_object_flag_bits_khr : ktl::u32;
 enum class performance_configuration_type_intel : ktl::u32;
 enum class query_pool_sampling_mode_intel : ktl::u32;
 enum class performance_override_type_intel : ktl::u32;
@@ -415,11 +413,7 @@ enum class pipeline_executable_statistic_format_khr : ktl::u32;
 enum class line_rasterization_mode : ktl::u32;
 enum class shader_module_create_flag_bits : ktl::u32;
 enum class pipeline_compiler_control_flag_bits_amd : ktl::u32;
-enum class fault_level : ktl::u32;
-enum class fault_type : ktl::u32;
-enum class fault_query_behavior : ktl::u32;
 enum class tool_purpose_flag_bits : ktl::u32;
-enum class pipeline_match_control : ktl::u32;
 enum class fragment_shading_rate_combiner_op_khr : ktl::u32;
 enum class fragment_shading_rate_nv : ktl::u32;
 enum class fragment_shading_rate_type_nv : ktl::u32;
@@ -429,10 +423,7 @@ enum class pipeline_stage_flag_bits_2 : ktl::u64;
 enum class submit_flag_bits : ktl::u32;
 enum class event_create_flag_bits : ktl::u32;
 enum class pipeline_layout_create_flag_bits : ktl::u32;
-enum class sci_sync_client_type_nv : ktl::u32;
-enum class sci_sync_primitive_type_nv : ktl::u32;
 enum class provoking_vertex_mode_ext : ktl::u32;
-enum class pipeline_cache_validation_version : ktl::u32;
 enum class acceleration_structure_motion_instance_type_nv : ktl::u32;
 enum class pipeline_color_blend_state_create_flag_bits : ktl::u32;
 enum class pipeline_depth_stencil_state_create_flag_bits : ktl::u32;
@@ -520,7 +511,6 @@ enum class physical_device_data_graph_operation_type_arm : ktl::u32;
 enum class data_graph_model_cache_type_qcom : ktl::u32;
 enum class perf_hint_type_qcom : ktl::u32;
 enum class throttle_hint_type_sec : ktl::u32;
-enum class swapchain_image_usage_flag_bits_ohos : ktl::u32;
 enum class descriptor_mapping_source_ext : ktl::u32;
 enum class spirv_resource_type_flag_bits_ext : ktl::u32;
 enum class gpa_sq_shader_stage_flag_bits_amd : ktl::u32;
@@ -715,8 +705,6 @@ struct opaque_debug_report_callback_ext;
 using debug_report_callback_ext = opaque_debug_report_callback_ext *;
 struct opaque_debug_utils_messenger_ext;
 using debug_utils_messenger_ext = opaque_debug_utils_messenger_ext *;
-struct opaque_semaphore_sci_sync_pool_nv;
-using semaphore_sci_sync_pool_nv = opaque_semaphore_sci_sync_pool_nv *;
 struct opaque_cuda_module_nv;
 using cuda_module_nv = opaque_cuda_module_nv *;
 struct opaque_cuda_function_nv;
@@ -781,8 +769,6 @@ struct pipeline_dynamic_state_create_info;
 struct stencil_op_state;
 struct pipeline_cache_create_info;
 struct pipeline_cache_header_version_one;
-struct pipeline_cache_stage_validation_index_entry;
-struct pipeline_cache_safety_critical_index_entry;
 struct pipeline_cache_header_version_data_graph_qcom;
 struct push_constant_range;
 struct pipeline_binary_handles_info_khr;
@@ -834,7 +820,6 @@ struct debug_report_callback_create_info_ext;
 struct validation_flags_ext;
 struct validation_features_ext;
 struct layer_setting_ext;
-struct application_parameters_ext;
 struct pipeline_rasterization_state_rasterization_order_amd;
 struct debug_marker_object_name_info_ext;
 struct debug_marker_object_tag_info_ext;
@@ -846,11 +831,6 @@ struct external_memory_image_create_info_nv;
 struct export_memory_allocate_info_nv;
 struct import_memory_win_32handle_info_nv;
 struct export_memory_win_32handle_info_nv;
-struct export_memory_sci_buf_info_nv;
-struct import_memory_sci_buf_info_nv;
-struct memory_get_sci_buf_info_nv;
-struct memory_sci_buf_properties_nv;
-struct physical_device_external_memory_sci_buf_features_nv;
 struct win_32keyed_mutex_acquire_release_info_nv;
 struct physical_device_device_generated_commands_features_nv;
 struct push_constant_bank_info_nv;
@@ -928,18 +908,6 @@ struct export_fence_win_32handle_info_khr;
 struct fence_get_win_32handle_info_khr;
 struct import_fence_fd_info_khr;
 struct fence_get_fd_info_khr;
-struct export_fence_sci_sync_info_nv;
-struct import_fence_sci_sync_info_nv;
-struct fence_get_sci_sync_info_nv;
-struct export_semaphore_sci_sync_info_nv;
-struct import_semaphore_sci_sync_info_nv;
-struct semaphore_get_sci_sync_info_nv;
-struct sci_sync_attributes_info_nv;
-struct physical_device_external_sci_sync_features_nv;
-struct physical_device_external_sci_sync_2features_nv;
-struct semaphore_sci_sync_pool_create_info_nv;
-struct semaphore_sci_sync_create_info_nv;
-struct device_semaphore_sci_sync_pool_reservation_create_info_nv;
 struct physical_device_multiview_features;
 struct physical_device_multiview_properties;
 struct render_pass_multiview_create_info;
@@ -1062,9 +1030,6 @@ struct physical_device_shader_draw_parameters_features;
 struct physical_device_shader_float_16int_8features;
 struct physical_device_float_controls_properties;
 struct physical_device_host_query_reset_features;
-struct native_buffer_usage_2android;
-struct swapchain_image_create_info_android;
-struct physical_device_presentation_properties_android;
 struct shader_resource_usage_amd;
 struct physical_device_elapsed_timer_query_features_qcom;
 struct device_queue_global_priority_create_info;
@@ -1220,7 +1185,6 @@ struct query_pool_performance_create_info_khr;
 union performance_counter_result_khr;
 struct acquire_profiling_lock_info_khr;
 struct performance_query_submit_info_khr;
-struct performance_query_reservation_info_khr;
 struct headless_surface_create_info_ext;
 struct physical_device_coverage_reduction_mode_features_nv;
 struct pipeline_coverage_reduction_state_create_info_nv;
@@ -1279,7 +1243,6 @@ struct gpa_perf_counter_amd;
 struct gpa_device_clock_mode_info_amd;
 struct gpa_device_get_clock_info_amd;
 struct gpa_session_create_info_amd;
-struct fault_data;
 struct physical_device_tool_properties;
 struct physical_device_custom_border_color_properties_ext;
 struct physical_device_custom_border_color_features_ext;
@@ -1296,7 +1259,6 @@ struct acceleration_structure_version_info_khr;
 struct copy_acceleration_structure_info_khr;
 struct ray_tracing_pipeline_interface_create_info_khr;
 struct pipeline_library_create_info_khr;
-struct refresh_object_khr;
 struct physical_device_extended_dynamic_state_features_ext;
 struct physical_device_extended_dynamic_state_2features_ext;
 struct physical_device_extended_dynamic_state_3features_ext;
@@ -1315,7 +1277,6 @@ struct write_descriptor_set_partitioned_acceleration_structure_nv;
 struct partitioned_acceleration_structure_instances_input_nv;
 struct physical_device_diagnostics_config_features_nv;
 struct device_diagnostics_config_create_info_nv;
-struct pipeline_offline_create_info;
 struct physical_device_zero_initialize_workgroup_memory_features;
 struct physical_device_shader_subgroup_uniform_control_flow_features_khr;
 struct physical_device_robustness_2features_khr;
@@ -1386,11 +1347,6 @@ struct physical_device_host_image_copy_features;
 struct physical_device_host_image_copy_properties;
 struct subresource_host_memcpy_size;
 struct host_image_copy_device_performance_query;
-struct physical_device_vulkan_sc_10properties;
-struct pipeline_pool_size;
-struct command_pool_memory_reservation_create_info;
-struct command_pool_memory_consumption;
-struct physical_device_vulkan_sc_10features;
 struct physical_device_primitives_generated_query_features_ext;
 struct physical_device_legacy_dithering_features_ext;
 struct physical_device_multisampled_render_to_single_sampled_features_ext;
@@ -1736,9 +1692,6 @@ struct queue_family_data_graph_processing_engine_properties_arm;
 struct physical_device_pipeline_cache_incremental_mode_features_sec;
 struct physical_device_data_graph_model_features_qcom;
 struct physical_device_shader_untyped_pointers_features_khr;
-struct native_buffer_ohos;
-struct swapchain_image_create_info_ohos;
-struct physical_device_presentation_properties_ohos;
 struct physical_device_shader_64bit_indexing_features_ext;
 struct native_buffer_usage_ohos;
 struct native_buffer_properties_ohos;
@@ -1878,7 +1831,6 @@ using pipeline_create_flags_2create_info_khr = pipeline_create_flags_2create_inf
 struct pipeline_vertex_input_state_create_info;
 struct pipeline_color_blend_state_create_info;
 struct pipeline_depth_stencil_state_create_info;
-struct pipeline_cache_header_version_safety_critical_one;
 struct pipeline_layout_create_info;
 struct indirect_commands_push_constant_token_ext;
 struct pipeline_binary_keys_and_data_khr;
@@ -1898,10 +1850,9 @@ struct physical_device_properties;
 struct display_plane_properties_2khr;
 struct surface_format_2khr;
 struct layer_settings_create_info_ext;
-using physical_device_external_sci_buf_features_nv = physical_device_external_memory_sci_buf_features_nv;
-using device_private_data_create_info_ext          = device_private_data_create_info;
-using private_data_slot_create_info_ext            = private_data_slot_create_info;
-using physical_device_private_data_features_ext    = physical_device_private_data_features;
+using device_private_data_create_info_ext       = device_private_data_create_info;
+using private_data_slot_create_info_ext         = private_data_slot_create_info;
+using physical_device_private_data_features_ext = physical_device_private_data_features;
 struct cluster_acceleration_structure_instantiate_cluster_info_nv;
 struct build_partitioned_acceleration_structure_indirect_command_nv;
 struct cluster_acceleration_structure_build_triangle_cluster_info_nv;
@@ -1995,7 +1946,6 @@ using physical_device_shader_float_16int_8features_khr = physical_device_shader_
 using physical_device_float_16int_8features_khr        = physical_device_shader_float_16int_8features;
 using physical_device_float_controls_properties_khr    = physical_device_float_controls_properties;
 using physical_device_host_query_reset_features_ext    = physical_device_host_query_reset_features;
-struct native_buffer_android;
 struct shader_statistics_info_amd;
 using device_queue_global_priority_create_info_khr       = device_queue_global_priority_create_info;
 using device_queue_global_priority_create_info_ext       = device_queue_global_priority_create_info;
@@ -2092,7 +2042,6 @@ using physical_device_pipeline_creation_cache_control_features_ext =
     physical_device_pipeline_creation_cache_control_features;
 struct physical_device_gpa_properties_amd;
 struct gpa_sample_begin_info_amd;
-struct fault_callback_info;
 using physical_device_tool_properties_ext = physical_device_tool_properties;
 struct copy_acceleration_structure_to_memory_info_khr;
 struct copy_micromap_to_memory_info_ext;
@@ -2113,7 +2062,6 @@ using transform_matrix_nv = transform_matrix_khr;
 struct acceleration_structure_instance_khr;
 struct partitioned_acceleration_structure_write_instance_data_nv;
 struct acceleration_structure_matrix_motion_instance_nv;
-struct refresh_object_list_khr;
 struct build_partitioned_acceleration_structure_info_nv;
 using physical_device_zero_initialize_workgroup_memory_features_khr =
     physical_device_zero_initialize_workgroup_memory_features;
@@ -2133,12 +2081,11 @@ using semaphore_submit_info_khr  = semaphore_submit_info;
 struct render_pass_stripe_submit_info_arm;
 using command_buffer_submit_info_khr = command_buffer_submit_info;
 struct submit_info_2;
-using physical_device_synchronization_2features_khr  = physical_device_synchronization_2features;
-using physical_device_host_image_copy_features_ext   = physical_device_host_image_copy_features;
-using physical_device_host_image_copy_properties_ext = physical_device_host_image_copy_properties;
-using subresource_host_memcpy_size_ext               = subresource_host_memcpy_size;
-using host_image_copy_device_performance_query_ext   = host_image_copy_device_performance_query;
-struct device_object_reservation_create_info;
+using physical_device_synchronization_2features_khr          = physical_device_synchronization_2features;
+using physical_device_host_image_copy_features_ext           = physical_device_host_image_copy_features;
+using physical_device_host_image_copy_properties_ext         = physical_device_host_image_copy_properties;
+using subresource_host_memcpy_size_ext                       = subresource_host_memcpy_size;
+using host_image_copy_device_performance_query_ext           = host_image_copy_device_performance_query;
 using physical_device_pipeline_protected_access_features_ext = physical_device_pipeline_protected_access_features;
 union descriptor_data_ext;
 using physical_device_shader_integer_dot_product_features_khr   = physical_device_shader_integer_dot_product_features;
@@ -2393,9 +2340,7 @@ using sampler_create_flags                                       = ktl::api::fla
 using pipeline_layout_create_flags                               = ktl::api::flag32;
 using pipeline_cache_create_flags                                = ktl::api::flag32;
 using pipeline_depth_stencil_state_create_flags                  = ktl::api::flag32;
-using pipeline_depth_stencil_state_create_flags                  = ktl::api::flag32;
 using pipeline_dynamic_state_create_flags                        = ktl::api::flag32;
-using pipeline_color_blend_state_create_flags                    = ktl::api::flag32;
 using pipeline_color_blend_state_create_flags                    = ktl::api::flag32;
 using pipeline_multisample_state_create_flags                    = ktl::api::flag32;
 using pipeline_rasterization_state_create_flags                  = ktl::api::flag32;
@@ -2474,7 +2419,6 @@ using semaphore_wait_flags_khr                                   = ktl::api::fla
 using pipeline_compiler_control_flags_amd                        = ktl::api::flag32;
 using shader_core_properties_flags_amd                           = ktl::api::flag32;
 using device_diagnostics_config_flags_nv                         = ktl::api::flag32;
-using refresh_object_flags_khr                                   = ktl::api::flag32;
 using access_flags_2                                             = ktl::api::flag64;
 using access_flags_2khr                                          = ktl::api::flag64;
 using pipeline_stage_flags_2                                     = ktl::api::flag64;
@@ -2582,7 +2526,6 @@ using resolve_mode_flags                                         = ktl::api::fla
 using resolve_mode_flags_khr                                     = ktl::api::flag32;
 using pipeline_rasterization_state_stream_create_flags_ext       = ktl::api::flag32;
 using pipeline_rasterization_depth_clip_state_create_flags_ext   = ktl::api::flag32;
-using swapchain_image_usage_flags_android                        = ktl::api::flag32;
 using tool_purpose_flags                                         = ktl::api::flag32;
 using tool_purpose_flags_ext                                     = ktl::api::flag32;
 using submit_flags                                               = ktl::api::flag32;
@@ -2615,7 +2558,6 @@ using surface_create_flags_ohos                                  = ktl::api::fla
 using present_stage_flags_ext                                    = ktl::api::flag32;
 using past_presentation_timing_flags_ext                         = ktl::api::flag32;
 using present_timing_info_flags_ext                              = ktl::api::flag32;
-using swapchain_image_usage_flags_ohos                           = ktl::api::flag32;
 using performance_counter_description_flags_arm                  = ktl::api::flag32;
 using shader_instrumentation_values_flags_arm                    = ktl::api::flag32;
 using data_graph_tosa_quality_flags_arm                          = ktl::api::flag32;
@@ -2685,8 +2627,6 @@ using pfn_debug_utils_messenger_callback_ext = ktl::api::bool32 (*)(
     ktl::api::debug_utils_message_severity_flag_bits_ext      _message_severity,
     ktl::api::debug_utils_message_type_flags_ext              _message_types,
     const ktl::api::debug_utils_messenger_callback_data_ext * _p_callback_data, void * _p_user_data);
-using pfn_fault_callback_function = void (*)(ktl::api::bool32 _unrecorded_faults, ktl::u32 _fault_count,
-                                             const ktl::api::fault_data * _p_faults);
 using pfn_device_memory_report_callback_ext =
     void (*)(const ktl::api::device_memory_report_callback_data_ext * _p_callback_data, void * _p_user_data);
 using pfn_get_instance_proc_addr_lunarg = ktl::api::pfn_void_function (*)(ktl::api::instance _instance,
@@ -3381,14 +3321,6 @@ using pfn_get_memory_zircon_handle_properties_fuchsia =
 using pfn_get_memory_remote_address_nv = ktl::api::result (*)(
     ktl::api::device _device, const ktl::api::memory_get_remote_address_info_nv * _p_memory_get_remote_address_info,
     ktl::api::remote_address_nv * _p_address);
-using pfn_get_memory_sci_buf_nv = ktl::api::result (*)(ktl::api::device                             _device,
-                                                       const ktl::api::memory_get_sci_buf_info_nv * _p_get_sci_buf_info,
-                                                       ktl::api::nvsci_buf_obj *                    _p_handle);
-using pfn_get_physical_device_external_memory_sci_buf_properties_nv = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, ktl::api::external_memory_handle_type_flag_bits _handle_type,
-    ktl::api::nvsci_buf_obj _handle, ktl::api::memory_sci_buf_properties_nv * _p_memory_sci_buf_properties);
-using pfn_get_physical_device_sci_buf_attributes_nv = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                                           ktl::api::nvsci_buf_attr_list _p_attributes);
 using pfn_get_physical_device_external_semaphore_properties =
     void (*)(ktl::api::physical_device                                 _physical_device,
              const ktl::api::physical_device_external_semaphore_info * _p_external_semaphore_info,
@@ -3425,42 +3357,18 @@ using pfn_get_fence_fd_khr = ktl::api::result (*)(ktl::api::device              
                                                   const ktl::api::fence_get_fd_info_khr * _p_get_fd_info, int * _p_fd);
 using pfn_import_fence_fd_khr =
     ktl::api::result (*)(ktl::api::device _device, const ktl::api::import_fence_fd_info_khr * _p_import_fence_fd_info);
-using pfn_get_fence_sci_sync_fence_nv =
-    ktl::api::result (*)(ktl::api::device                             _device,
-                         const ktl::api::fence_get_sci_sync_info_nv * _p_get_sci_sync_handle_info, void * _p_handle);
-using pfn_get_fence_sci_sync_obj_nv =
-    ktl::api::result (*)(ktl::api::device                             _device,
-                         const ktl::api::fence_get_sci_sync_info_nv * _p_get_sci_sync_handle_info, void * _p_handle);
-using pfn_import_fence_sci_sync_fence_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::import_fence_sci_sync_info_nv * _p_import_fence_sci_sync_info);
-using pfn_import_fence_sci_sync_obj_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::import_fence_sci_sync_info_nv * _p_import_fence_sci_sync_info);
-using pfn_get_semaphore_sci_sync_obj_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::semaphore_get_sci_sync_info_nv * _p_get_sci_sync_info, void * _p_handle);
-using pfn_import_semaphore_sci_sync_obj_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::import_semaphore_sci_sync_info_nv * _p_import_semaphore_sci_sync_info);
-using pfn_get_physical_device_sci_sync_attributes_nv =
-    ktl::api::result (*)(ktl::api::physical_device                     _physical_device,
-                         const ktl::api::sci_sync_attributes_info_nv * _p_sci_sync_attributes_info,
-                         ktl::api::nvsci_sync_attr_list                _p_attributes);
-using pfn_create_semaphore_sci_sync_pool_nv = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::semaphore_sci_sync_pool_create_info_nv * _p_create_info,
-    const ktl::api::allocation_callbacks * _p_allocator, ktl::api::semaphore_sci_sync_pool_nv * _p_semaphore_pool);
-using pfn_destroy_semaphore_sci_sync_pool_nv = void (*)(ktl::api::device                       _device,
-                                                        ktl::api::semaphore_sci_sync_pool_nv   _semaphore_pool,
-                                                        const ktl::api::allocation_callbacks * _p_allocator);
-using pfn_release_display_ext                = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+using pfn_release_display_ext           = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                      ktl::api::display_khr     _display);
-using pfn_acquire_xlib_display_ext           = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+using pfn_acquire_xlib_display_ext      = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                           ktl::api::xlib_display *  _dpy,
                                                           ktl::api::display_khr     _display);
-using pfn_get_rand_r_output_display_ext      = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+using pfn_get_rand_r_output_display_ext = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                                ktl::api::xlib_display *  _dpy,
                                                                ktl::api::xlib_rr_output  _rr_output,
                                                                ktl::api::display_khr *   _p_display);
-using pfn_acquire_winrt_display_nv           = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+using pfn_acquire_winrt_display_nv      = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                           ktl::api::display_khr     _display);
-using pfn_get_winrt_display_nv               = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+using pfn_get_winrt_display_nv          = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                       ktl::u32 _device_relative_id, ktl::api::display_khr * _p_display);
 using pfn_display_power_control_ext =
     ktl::api::result (*)(ktl::api::device _device, ktl::api::display_khr _display,
@@ -3633,20 +3541,6 @@ using pfn_get_descriptor_set_layout_support =
     void (*)(ktl::api::device _device, const ktl::api::descriptor_set_layout_create_info * _p_create_info,
              ktl::api::descriptor_set_layout_support * _p_support);
 using pfn_get_descriptor_set_layout_support_khr = pfn_get_descriptor_set_layout_support;
-using pfn_get_swapchain_gralloc_usage_android = ktl::api::result (*)(ktl::api::device _device, ktl::api::format _format,
-                                                                     ktl::api::image_usage_flags _image_usage,
-                                                                     int *                       _gralloc_usage);
-using pfn_get_swapchain_gralloc_usage_2android =
-    ktl::api::result (*)(ktl::api::device _device, ktl::api::format _format, ktl::api::image_usage_flags _image_usage,
-                         ktl::api::swapchain_image_usage_flags_android _swapchain_image_usage,
-                         ktl::u64 * _gralloc_consumer_usage, ktl::u64 * _gralloc_producer_usage);
-using pfn_acquire_image_android              = ktl::api::result (*)(ktl::api::device _device, ktl::api::image _image,
-                                                       int _native_fence_fd, ktl::api::semaphore _semaphore,
-                                                       ktl::api::fence _fence);
-using pfn_queue_signal_release_image_android = ktl::api::result (*)(ktl::api::queue             _queue,
-                                                                    ktl::u32                    _wait_semaphore_count,
-                                                                    const ktl::api::semaphore * _p_wait_semaphores,
-                                                                    ktl::api::image _image, int * _p_native_fence_fd);
 using pfn_get_shader_info_amd   = ktl::api::result (*)(ktl::api::device _device, ktl::api::pipeline _pipeline,
                                                      ktl::api::shader_stage_flag_bits _shader_stage,
                                                      ktl::api::shader_info_type_amd   _info_type,
@@ -4000,10 +3894,6 @@ using pfn_cmd_set_line_stipple     = void (*)(ktl::api::command_buffer _command_
                                           ktl::u16 _line_stipple_pattern);
 using pfn_cmd_set_line_stipple_khr = pfn_cmd_set_line_stipple;
 using pfn_cmd_set_line_stipple_ext = pfn_cmd_set_line_stipple;
-using pfn_get_fault_data           = ktl::api::result (*)(ktl::api::device               _device,
-                                                ktl::api::fault_query_behavior _fault_query_behavior,
-                                                ktl::api::bool32 * _p_unrecorded_faults, ktl::u32 * _p_fault_count,
-                                                ktl::api::fault_data * _p_faults);
 using pfn_get_physical_device_tool_properties =
     ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_tool_count,
                          ktl::api::physical_device_tool_properties * _p_tool_properties);
@@ -4204,11 +4094,6 @@ using pfn_cmd_copy_image_to_buffer_2khr = pfn_cmd_copy_image_to_buffer_2;
 using pfn_cmd_resolve_image_2           = void (*)(ktl::api::command_buffer               _command_buffer,
                                          const ktl::api::resolve_image_info_2 * _p_resolve_image_info);
 using pfn_cmd_resolve_image_2khr        = pfn_cmd_resolve_image_2;
-using pfn_cmd_refresh_objects_khr       = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                             const ktl::api::refresh_object_list_khr * _p_refresh_objects);
-using pfn_get_physical_device_refreshable_object_types_khr =
-    ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_refreshable_object_type_count,
-                         ktl::api::object_type * _p_refreshable_object_types);
 using pfn_cmd_set_fragment_shading_rate_khr =
     void (*)(ktl::api::command_buffer _command_buffer, const ktl::api::extent_2d * _p_fragment_size,
              const ktl::api::fragment_shading_rate_combiner_op_khr _combiner_ops[2]);
@@ -4267,10 +4152,7 @@ using pfn_copy_image_to_image_ext = pfn_copy_image_to_image;
 using pfn_transition_image_layout =
     ktl::api::result (*)(ktl::api::device _device, ktl::u32 _transition_count,
                          const ktl::api::host_image_layout_transition_info * _p_transitions);
-using pfn_transition_image_layout_ext         = pfn_transition_image_layout;
-using pfn_get_command_pool_memory_consumption = void (*)(ktl::api::device _device, ktl::api::command_pool _command_pool,
-                                                         ktl::api::command_buffer                    _command_buffer,
-                                                         ktl::api::command_pool_memory_consumption * _p_consumption);
+using pfn_transition_image_layout_ext = pfn_transition_image_layout;
 using pfn_cmd_decompress_memory_nv =
     void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _decompress_region_count,
              const ktl::api::decompress_memory_region_nv * _p_decompress_memory_regions);
@@ -4758,16 +4640,7 @@ using pfn_get_native_buffer_properties_ohos = ktl::api::result (*)(
 using pfn_get_memory_native_buffer_ohos =
     ktl::api::result (*)(ktl::api::device _device, const ktl::api::memory_get_native_buffer_info_ohos * _p_info,
                          OH_NativeBuffer ** _p_buffer);
-using pfn_get_swapchain_gralloc_usage_ohos = ktl::api::result (*)(ktl::api::device _device, ktl::api::format _format,
-                                                                  ktl::api::image_usage_flags _image_usage,
-                                                                  ktl::u64 *                  _gralloc_usage);
-using pfn_acquire_image_ohos               = ktl::api::result (*)(ktl::api::device _device, ktl::api::image _image,
-                                                    ktl::i32 _native_fence_fd, ktl::api::semaphore _semaphore,
-                                                    ktl::api::fence _fence);
-using pfn_queue_signal_release_image_ohos = ktl::api::result (*)(ktl::api::queue _queue, ktl::u32 _wait_semaphore_count,
-                                                                 const ktl::api::semaphore * _p_wait_semaphores,
-                                                                 ktl::api::image _image, ktl::i32 * _p_native_fence_fd);
-using pfn_queue_set_perf_hint_qcom        = ktl::api::result (*)(ktl::api::queue                       _queue,
+using pfn_queue_set_perf_hint_qcom = ktl::api::result (*)(ktl::api::queue                       _queue,
                                                           const ktl::api::perf_hint_info_qcom * _p_perf_hint_info);
 using pfn_enumerate_physical_device_queue_family_performance_counters_by_region_arm =
     ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index,

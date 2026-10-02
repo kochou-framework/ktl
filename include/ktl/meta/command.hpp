@@ -517,12 +517,6 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetMemoryZirconHandlePropertiesFUCHSIA";
     case ktl::api::command::get_memory_remote_address_nv:
         return "vkGetMemoryRemoteAddressNV";
-    case ktl::api::command::get_memory_sci_buf_nv:
-        return "vkGetMemorySciBufNV";
-    case ktl::api::command::get_physical_device_external_memory_sci_buf_properties_nv:
-        return "vkGetPhysicalDeviceExternalMemorySciBufPropertiesNV";
-    case ktl::api::command::get_physical_device_sci_buf_attributes_nv:
-        return "vkGetPhysicalDeviceSciBufAttributesNV";
     case ktl::api::command::get_physical_device_external_semaphore_properties:
         return "vkGetPhysicalDeviceExternalSemaphoreProperties";
     case ktl::api::command::get_physical_device_external_semaphore_properties_khr:
@@ -551,24 +545,6 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetFenceFdKHR";
     case ktl::api::command::import_fence_fd_khr:
         return "vkImportFenceFdKHR";
-    case ktl::api::command::get_fence_sci_sync_fence_nv:
-        return "vkGetFenceSciSyncFenceNV";
-    case ktl::api::command::get_fence_sci_sync_obj_nv:
-        return "vkGetFenceSciSyncObjNV";
-    case ktl::api::command::import_fence_sci_sync_fence_nv:
-        return "vkImportFenceSciSyncFenceNV";
-    case ktl::api::command::import_fence_sci_sync_obj_nv:
-        return "vkImportFenceSciSyncObjNV";
-    case ktl::api::command::get_semaphore_sci_sync_obj_nv:
-        return "vkGetSemaphoreSciSyncObjNV";
-    case ktl::api::command::import_semaphore_sci_sync_obj_nv:
-        return "vkImportSemaphoreSciSyncObjNV";
-    case ktl::api::command::get_physical_device_sci_sync_attributes_nv:
-        return "vkGetPhysicalDeviceSciSyncAttributesNV";
-    case ktl::api::command::create_semaphore_sci_sync_pool_nv:
-        return "vkCreateSemaphoreSciSyncPoolNV";
-    case ktl::api::command::destroy_semaphore_sci_sync_pool_nv:
-        return "vkDestroySemaphoreSciSyncPoolNV";
     case ktl::api::command::release_display_ext:
         return "vkReleaseDisplayEXT";
     case ktl::api::command::acquire_xlib_display_ext:
@@ -721,14 +697,6 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetDescriptorSetLayoutSupport";
     case ktl::api::command::get_descriptor_set_layout_support_khr:
         return "vkGetDescriptorSetLayoutSupportKHR";
-    case ktl::api::command::get_swapchain_gralloc_usage_android:
-        return "vkGetSwapchainGrallocUsageANDROID";
-    case ktl::api::command::get_swapchain_gralloc_usage_2android:
-        return "vkGetSwapchainGrallocUsage2ANDROID";
-    case ktl::api::command::acquire_image_android:
-        return "vkAcquireImageANDROID";
-    case ktl::api::command::queue_signal_release_image_android:
-        return "vkQueueSignalReleaseImageANDROID";
     case ktl::api::command::get_shader_info_amd:
         return "vkGetShaderInfoAMD";
     case ktl::api::command::set_local_dimming_amd:
@@ -991,8 +959,6 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdSetLineStippleKHR";
     case ktl::api::command::cmd_set_line_stipple_ext:
         return "vkCmdSetLineStippleEXT";
-    case ktl::api::command::get_fault_data:
-        return "vkGetFaultData";
     case ktl::api::command::get_physical_device_tool_properties:
         return "vkGetPhysicalDeviceToolProperties";
     case ktl::api::command::get_physical_device_tool_properties_ext:
@@ -1193,10 +1159,6 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdResolveImage2";
     case ktl::api::command::cmd_resolve_image_2khr:
         return "vkCmdResolveImage2KHR";
-    case ktl::api::command::cmd_refresh_objects_khr:
-        return "vkCmdRefreshObjectsKHR";
-    case ktl::api::command::get_physical_device_refreshable_object_types_khr:
-        return "vkGetPhysicalDeviceRefreshableObjectTypesKHR";
     case ktl::api::command::cmd_set_fragment_shading_rate_khr:
         return "vkCmdSetFragmentShadingRateKHR";
     case ktl::api::command::get_physical_device_fragment_shading_rates_khr:
@@ -1253,8 +1215,6 @@ raw_command(ktl::api::command _command) noexcept
         return "vkTransitionImageLayout";
     case ktl::api::command::transition_image_layout_ext:
         return "vkTransitionImageLayoutEXT";
-    case ktl::api::command::get_command_pool_memory_consumption:
-        return "vkGetCommandPoolMemoryConsumption";
     case ktl::api::command::cmd_decompress_memory_nv:
         return "vkCmdDecompressMemoryNV";
     case ktl::api::command::cmd_decompress_memory_indirect_count_nv:
@@ -1629,12 +1589,6 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetNativeBufferPropertiesOHOS";
     case ktl::api::command::get_memory_native_buffer_ohos:
         return "vkGetMemoryNativeBufferOHOS";
-    case ktl::api::command::get_swapchain_gralloc_usage_ohos:
-        return "vkGetSwapchainGrallocUsageOHOS";
-    case ktl::api::command::acquire_image_ohos:
-        return "vkAcquireImageOHOS";
-    case ktl::api::command::queue_signal_release_image_ohos:
-        return "vkQueueSignalReleaseImageOHOS";
     case ktl::api::command::queue_set_perf_hint_qcom:
         return "vkQueueSetPerfHintQCOM";
     case ktl::api::command::enumerate_physical_device_queue_family_performance_counters_by_region_arm:
@@ -1811,13 +1765,10 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_physical_device_sparse_image_format_properties_2khr:
     case ktl::api::command::get_physical_device_external_buffer_properties:
     case ktl::api::command::get_physical_device_external_buffer_properties_khr:
-    case ktl::api::command::get_physical_device_external_memory_sci_buf_properties_nv:
-    case ktl::api::command::get_physical_device_sci_buf_attributes_nv:
     case ktl::api::command::get_physical_device_external_semaphore_properties:
     case ktl::api::command::get_physical_device_external_semaphore_properties_khr:
     case ktl::api::command::get_physical_device_external_fence_properties:
     case ktl::api::command::get_physical_device_external_fence_properties_khr:
-    case ktl::api::command::get_physical_device_sci_sync_attributes_nv:
     case ktl::api::command::release_display_ext:
     case ktl::api::command::acquire_xlib_display_ext:
     case ktl::api::command::get_rand_r_output_display_ext:
@@ -1841,7 +1792,6 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv:
     case ktl::api::command::get_physical_device_tool_properties:
     case ktl::api::command::get_physical_device_tool_properties_ext:
-    case ktl::api::command::get_physical_device_refreshable_object_types_khr:
     case ktl::api::command::get_physical_device_fragment_shading_rates_khr:
     case ktl::api::command::acquire_drm_display_ext:
     case ktl::api::command::get_drm_display_ext:
@@ -2043,7 +1993,6 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_memory_zircon_handle_fuchsia:
     case ktl::api::command::get_memory_zircon_handle_properties_fuchsia:
     case ktl::api::command::get_memory_remote_address_nv:
-    case ktl::api::command::get_memory_sci_buf_nv:
     case ktl::api::command::get_semaphore_win_32handle_khr:
     case ktl::api::command::import_semaphore_win_32handle_khr:
     case ktl::api::command::get_semaphore_fd_khr:
@@ -2054,14 +2003,6 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::import_fence_win_32handle_khr:
     case ktl::api::command::get_fence_fd_khr:
     case ktl::api::command::import_fence_fd_khr:
-    case ktl::api::command::get_fence_sci_sync_fence_nv:
-    case ktl::api::command::get_fence_sci_sync_obj_nv:
-    case ktl::api::command::import_fence_sci_sync_fence_nv:
-    case ktl::api::command::import_fence_sci_sync_obj_nv:
-    case ktl::api::command::get_semaphore_sci_sync_obj_nv:
-    case ktl::api::command::import_semaphore_sci_sync_obj_nv:
-    case ktl::api::command::create_semaphore_sci_sync_pool_nv:
-    case ktl::api::command::destroy_semaphore_sci_sync_pool_nv:
     case ktl::api::command::display_power_control_ext:
     case ktl::api::command::register_device_event_ext:
     case ktl::api::command::register_display_event_ext:
@@ -2119,10 +2060,6 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::merge_validation_caches_ext:
     case ktl::api::command::get_descriptor_set_layout_support:
     case ktl::api::command::get_descriptor_set_layout_support_khr:
-    case ktl::api::command::get_swapchain_gralloc_usage_android:
-    case ktl::api::command::get_swapchain_gralloc_usage_2android:
-    case ktl::api::command::acquire_image_android:
-    case ktl::api::command::queue_signal_release_image_android:
     case ktl::api::command::get_shader_info_amd:
     case ktl::api::command::set_local_dimming_amd:
     case ktl::api::command::get_calibrated_timestamps_khr:
@@ -2243,7 +2180,6 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::cmd_set_line_stipple:
     case ktl::api::command::cmd_set_line_stipple_khr:
     case ktl::api::command::cmd_set_line_stipple_ext:
-    case ktl::api::command::get_fault_data:
     case ktl::api::command::create_acceleration_structure_khr:
     case ktl::api::command::cmd_build_acceleration_structures_khr:
     case ktl::api::command::cmd_build_acceleration_structures_indirect_khr:
@@ -2342,7 +2278,6 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::cmd_copy_image_to_buffer_2khr:
     case ktl::api::command::cmd_resolve_image_2:
     case ktl::api::command::cmd_resolve_image_2khr:
-    case ktl::api::command::cmd_refresh_objects_khr:
     case ktl::api::command::cmd_set_fragment_shading_rate_khr:
     case ktl::api::command::cmd_set_fragment_shading_rate_enum_nv:
     case ktl::api::command::get_acceleration_structure_build_sizes_khr:
@@ -2370,7 +2305,6 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::copy_image_to_image_ext:
     case ktl::api::command::transition_image_layout:
     case ktl::api::command::transition_image_layout_ext:
-    case ktl::api::command::get_command_pool_memory_consumption:
     case ktl::api::command::cmd_decompress_memory_nv:
     case ktl::api::command::cmd_decompress_memory_indirect_count_nv:
     case ktl::api::command::get_partitioned_acceleration_structures_build_sizes_nv:
@@ -2547,9 +2481,6 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_data_graph_pipeline_properties_arm:
     case ktl::api::command::get_native_buffer_properties_ohos:
     case ktl::api::command::get_memory_native_buffer_ohos:
-    case ktl::api::command::get_swapchain_gralloc_usage_ohos:
-    case ktl::api::command::acquire_image_ohos:
-    case ktl::api::command::queue_signal_release_image_ohos:
     case ktl::api::command::queue_set_perf_hint_qcom:
     case ktl::api::command::cmd_set_compute_occupancy_priority_nv:
     case ktl::api::command::write_sampler_descriptors_ext:
