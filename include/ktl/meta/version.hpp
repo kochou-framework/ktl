@@ -2,6 +2,7 @@
 #define KTL_META_VERSION_HPP
 
 #include <array>
+#include <span>
 
 #include <ktl/api.hpp>
 #include <ktl/api/version.hpp>

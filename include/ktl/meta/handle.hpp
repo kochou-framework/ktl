@@ -1,6 +1,7 @@
 #ifndef KTL_META_HANDLE_HPP
 #define KTL_META_HANDLE_HPP
 
+#include <format>
 #include <type_traits>
 
 #include <ktl/api.hpp>

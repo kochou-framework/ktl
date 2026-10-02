@@ -1,5 +1,8 @@
 #ifndef KTL_API_FEATURE_HPP
 #define KTL_API_FEATURE_HPP
+
+#include <ktl/type.hpp>
+
 namespace ktl::api
 {
 enum class feature : ktl::u32

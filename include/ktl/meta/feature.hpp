@@ -1,6 +1,9 @@
 #ifndef KTL_META_FEATURE_HPP
 #define KTL_META_FEATURE_HPP
 
+#include <cstddef>
+#include <cstdlib>
+
 #include <ktl/api.hpp>
 namespace ktl::meta
 {
@@ -9598,6 +9601,7 @@ match(ktl::api::feature _feature) noexcept
     case ktl::api::feature::buffer_device_address_allocation_alignment_valve:
         return ktl::meta::feature_cast< ktl::api::feature::buffer_device_address_allocation_alignment_valve >();
     }
+    std::abort();
 }
 } // namespace ktl::meta
 #endif

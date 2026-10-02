@@ -199,15 +199,15 @@ struct extension< ktl::api::extension::{extension.name} >
 }};
 """)
 
+    # unknown name (newer driver, filtered extension) must not turn into extension{} == khr_surface
     _file.write("""
-inline constexpr ktl::api::extension
+inline constexpr std::optional< ktl::api::extension >
 extension_from_raw(std::string_view _extension)
 {
 """)
     for extension in _extensions:
         _file.write(f'if (_extension == "{extension.raw}") {{ return ktl::api::extension::{extension.name}; }}\n')
-    # TODO
-    _file.write("return ktl::api::extension{};")
+    _file.write("return std::nullopt;")
     _file.write("}\n")
 
     _file.write("""

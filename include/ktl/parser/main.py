@@ -24,6 +24,7 @@ API_FORMATS_HEADER_FILE    = f"{API_DIR}format.hpp"
 API_COMMANDS_HEADER_FILE   = f"{API_DIR}command.hpp"
 API_FEATURES_HEADER_FILE   = f"{API_DIR}feature.hpp"
 API_EXTENSIONS_HEADER_FILE = f"{API_DIR}extension.hpp"
+API_LAYERS_HEADER_FILE     = f"{API_DIR}layer.hpp"
 API_HEADER_FILE        = "api.hpp"
 
 META_ENUMS_HEADER_FILE      = f"{META_DIR}enum.hpp"
@@ -34,6 +35,7 @@ META_COMMANDS_HEADER_FILE   = f"{META_DIR}command.hpp"
 META_FEATURES_HEADER_FILE   = f"{META_DIR}feature.hpp"
 META_EXTENSIONS_HEADER_FILE = f"{META_DIR}extension.hpp"
 META_VERSION_HEADER_FILE    = f"{META_DIR}version.hpp"
+META_LAYERS_HEADER_FILE     = f"{META_DIR}layer.hpp"
 META_HEADER_FILE            = "meta.hpp"
 
 
@@ -95,7 +97,8 @@ def main(_root):
                      API_STRUCTS_HEADER_FILE,
                      API_COMMANDS_HEADER_FILE,
                      API_FEATURES_HEADER_FILE,
-                     API_EXTENSIONS_HEADER_FILE)
+                     API_EXTENSIONS_HEADER_FILE,
+                     API_LAYERS_HEADER_FILE)
     headers.fill_meta(META_HEADER_FILE,
                       META_EXTENSIONS_HEADER_FILE,
                       META_FEATURES_HEADER_FILE,
@@ -103,7 +106,8 @@ def main(_root):
                       META_HANDLES_HEADER_FILE,
                       META_ENUMS_HEADER_FILE,
                       META_COMMANDS_HEADER_FILE,
-                      META_VERSION_HEADER_FILE)
+                      META_VERSION_HEADER_FILE,
+                      META_LAYERS_HEADER_FILE)
 
 
 if __name__ == "__main__":

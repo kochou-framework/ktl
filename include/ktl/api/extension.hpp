@@ -1,5 +1,8 @@
 #ifndef KTL_API_EXTENSION_HPP
 #define KTL_API_EXTENSION_HPP
+
+#include <ktl/type.hpp>
+
 namespace ktl::api
 {
 enum class extension : ktl::u32

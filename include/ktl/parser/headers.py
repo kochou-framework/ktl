@@ -88,6 +88,7 @@ def fill_handles(_api_include: str,
         file.write(f"""#ifndef {header_guard}
 #define {header_guard}
 
+#include <format>
 #include <type_traits>
 
 #include <ktl/{_api_include}>
@@ -106,19 +107,13 @@ def fill_structs(_api_include: str,
     if not header_guard:
         print("headers.fill_structs header_guard is None")
         return
-    api_guard = make_header_guard(_api_include)
-    if not api_guard:
-        print("headers.fill_structs api_guard is None")
-        return
-    
+
     with open(_filename, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
 #define {header_guard}
 
-#ifndef {api_guard}
-#include "{_common_include}"
-#include "{_enums_include}"
-#endif
+#include <ktl/{_common_include}>
+#include <ktl/{_enums_include}>
 
 """)
         structs.fill_implementation(file, _structs)
@@ -167,6 +162,7 @@ def fill_commands(_api_include: str,
 #define {header_guard}
 
 #include <array>
+#include <cstdlib>
 
 #include <ktl/loader.hpp>
 #include <ktl/{_api_include}>
@@ -205,6 +201,9 @@ def fill_features(_api_include: str,
     with open(_api_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
 #define {header_guard}
+
+#include <ktl/type.hpp>
+
 """)
         features.fill_implementation(file, _features)
         file.write("\n#endif\n")
@@ -217,6 +216,9 @@ def fill_features(_api_include: str,
     with open(_meta_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
 #define {header_guard}
+
+#include <cstddef>
+#include <cstdlib>
 
 #include <ktl/{_api_include}>
 """)
@@ -235,6 +237,9 @@ def fill_extensions(_api_include: str,
     with open(_api_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {api_header_guard}
 #define {api_header_guard}
+
+#include <ktl/type.hpp>
+
 """)
         extensions.fill_implementation(file, _extensions)
         file.write("\n#endif\n")
@@ -247,7 +252,10 @@ def fill_extensions(_api_include: str,
         file.write(f"""#ifndef {meta_header_guard}
 #define {meta_header_guard}
 
+#include <array>
+#include <optional>
 #include <span>
+#include <string_view>
 
 #include <ktl/{_api_include}>
 #include <ktl/meta/dependency.hpp>
@@ -270,6 +278,7 @@ def fill_version(_api_include: str,
 #define {meta_header_guard}
 
 #include <array>
+#include <span>
 
 #include <ktl/{_api_include}>
 #include <ktl/api/version.hpp>
@@ -285,12 +294,14 @@ def fill_api(_filename,
              _structs_include,
              _commands_include,
              _features_include,
-             _extensions_include) -> None:
+             _extensions_include,
+             _layers_include) -> None:
     header_guard = make_header_guard(_filename)
     if not header_guard:
         print("headers.fill_extensions header_guard is None")
         return
 
+    # layer.hpp is written by hand, the generator only includes it
     with open(_filename, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
 #define {header_guard}
@@ -301,6 +312,7 @@ def fill_api(_filename,
 #include "{_commands_include}"
 #include "{_features_include}"
 #include "{_extensions_include}"
+#include "{_layers_include}"
 
 #endif
 """)
@@ -312,12 +324,14 @@ def fill_meta(_filename: str,
               _meta_handle: str,
               _meta_enum: str,
               _meta_command: str,
-              _meta_version: str) -> None:
+              _meta_version: str,
+              _meta_layer: str) -> None:
     header_guard = make_header_guard(_filename)
     if not header_guard:
         print("headers.fill_extensions header_guard is None")
         return
 
+    # layer.hpp is written by hand, the generator only includes it
     with open(_filename, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
 #define {header_guard}
@@ -329,6 +343,7 @@ def fill_meta(_filename: str,
 // #include "{_meta_enum}"
 #include "{_meta_command}"
 #include "{_meta_version}"
+#include "{_meta_layer}"
 
 #endif
 """)

@@ -1,7 +1,10 @@
 #ifndef KTL_META_EXTENSION_HPP
 #define KTL_META_EXTENSION_HPP
 
+#include <array>
+#include <optional>
 #include <span>
+#include <string_view>
 
 #include <ktl/api.hpp>
 #include <ktl/api/version.hpp>
@@ -10846,7 +10849,7 @@ struct extension< ktl::api::extension::khr_extension_716 >
     static constexpr std::array< ktl::meta::version_deps, 0 > deps     = {};
 };
 
-inline constexpr ktl::api::extension
+inline constexpr std::optional< ktl::api::extension >
 extension_from_raw(std::string_view _extension)
 {
     if (_extension == "VK_KHR_surface")
@@ -13649,7 +13652,7 @@ extension_from_raw(std::string_view _extension)
     {
         return ktl::api::extension::khr_extension_716;
     }
-    return ktl::api::extension{};
+    return std::nullopt;
 }
 
 inline constexpr ktl::meta::any_extension

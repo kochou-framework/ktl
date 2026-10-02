@@ -2,6 +2,7 @@
 #define KTL_API_COMMAND_HPP
 
 #include <array>
+#include <cstdlib>
 
 #include <ktl/api.hpp>
 #include <ktl/loader.hpp>

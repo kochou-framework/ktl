@@ -7,6 +7,7 @@
 #include "meta/handle.hpp"
 // #include "meta/enum.hpp"
 #include "meta/command.hpp"
+#include "meta/layer.hpp"
 #include "meta/version.hpp"
 
 #endif

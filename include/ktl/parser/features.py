@@ -66,8 +66,6 @@ def fill_meta(_file: TextIO, _features: list) -> None:
 
 """)
     for feature in _features:
-        if feature.stype == "physical_device_texture_compression_astchdr_features":
-            feature.stype = "physical_device_texture_compression_astc_hdr_features"
         if feature.struct == "physical_device_features":
             _file.write(f"""
 template <>
@@ -88,7 +86,7 @@ struct feature< ktl::api::feature::{feature.name} >
 {{
     static constexpr ktl::api::feature        value          = ktl::api::feature::{feature.name};
     static constexpr bool                     is_core        = false;
-    static constexpr ktl::api::structure_type stype          = ktl::api::structure_type::v_{feature.stype};
+    static constexpr ktl::api::structure_type stype          = {feature.stype};
     static constexpr ktl::usize               sizeof_struct  = sizeof(ktl::api::{feature.struct});
     static constexpr ktl::usize               offsetof_stype = offsetof(ktl::api::{feature.struct}, stype);
     static constexpr ktl::usize               offsetof_pnext = offsetof(ktl::api::{feature.struct}, pnext);
@@ -121,7 +119,8 @@ match(ktl::api::feature _feature) noexcept
 """)
     for feature in _features:
         _file.write(f"case ktl::api::feature::{feature.name}:\nreturn ktl::meta::feature_cast< ktl::api::feature::{feature.name} >();\n")
-    _file.write("}}}")
+    # value outside of the enum, falling off a non-void function is UB
+    _file.write("}\nstd::abort();\n}\n}")
 
 def extract(_root, _enums, _commands) -> list:
     features = []

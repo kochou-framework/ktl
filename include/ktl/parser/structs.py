@@ -75,14 +75,20 @@ def extract_struct_impl(_root) -> tuple:
         return None, None
 
     is_feature = is_feature_struct(_root)
-    features = []
+    feature_names = []
     fields = []
     for field in _root.findall("member"):
         if not field.get("api") == "vulkansc":
             result = extract_struct_field_impl(field, name, is_feature)
             fields.append(result)
             if result.tppe == "ktl::api::bool32" and is_feature:
-                features.append(VkFeature(result.name, name, name))
+                feature_names.append(result.name)
+
+    # stype is taken from values="VK_STRUCTURE_TYPE_..." of sType, VkPhysicalDeviceFeatures has no sType
+    stype = next((field.default_value for field in fields if field.name == "stype"), None)
+    if feature_names and stype is None and name != "physical_device_features":
+        raise ValueError(f"feature struct {name} has no sType value")
+    features = [VkFeature(feature, stype, name) for feature in feature_names]
 
     return VkStruct(name, fields, False, None), features
 
