@@ -160,3 +160,80 @@ extension_cast() noexcept
             extension::depends,
             extension::conditional_commands};
 }"""
+
+
+# api/version.hpp: VERSION_META, the constants of every version (commands.fill_versions), VERSION_STD
+VERSION_META = """struct version
+{
+    ktl::u32 variant;
+    ktl::u32 major;
+    ktl::u32 minor;
+    ktl::u32 patch;
+
+    constexpr version() noexcept : variant(0), major(0), minor(0), patch(0) {}
+
+    constexpr explicit version(ktl::u32 _version) noexcept
+        : variant((_version >> 29U) & 0x7U), major((_version >> 22U) & 0x7FU), minor((_version >> 12U) & 0x3FFU),
+          patch(_version & 0xFFFU)
+    {
+    }
+    constexpr explicit version(ktl::u32 _variant, ktl::u32 _major, ktl::u32 _minor, ktl::u32 _patch) noexcept
+        : variant(_variant), major(_major), minor(_minor), patch(_patch)
+    {
+    }
+
+    constexpr ktl::u32
+    operator()() const noexcept
+    {
+        return (variant << 29U) | (major << 22U) | (minor << 12U) | patch;
+    }
+
+    constexpr explicit
+    operator ktl::u32() const noexcept
+    {
+        return operator()();
+    }
+
+    constexpr std::strong_ordering
+    operator<=>(version _rhs) const noexcept
+    {
+        return operator()() <=> _rhs.operator()();
+    }
+
+    constexpr bool
+    operator==(version _rhs) const noexcept
+    {
+        return operator()() == _rhs.operator()();
+    }
+};"""
+
+
+VERSION_STD = """namespace std
+{
+template <>
+struct hash< ktl::api::version >
+{
+    [[nodiscard]] ktl::usize
+    operator()(ktl::api::version _version) const noexcept
+    {
+        return static_cast< ktl::usize >(_version());
+    }
+};
+
+template <>
+struct formatter< ktl::api::version, char >
+{
+    constexpr auto
+    parse(format_parse_context & ctx)
+    {
+        return ctx.begin();
+    }
+
+    template < typename FormatContext >
+    auto
+    format(const ktl::api::version _version, FormatContext & ctx) const
+    {
+        return std::format_to(ctx.out(), "{}.{}.{}", _version.major, _version.minor, _version.patch);
+    }
+};
+} // namespace std"""

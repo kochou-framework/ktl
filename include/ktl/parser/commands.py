@@ -2,7 +2,7 @@ from vk_types import VkFunction, VkFunctionField
 from name_rules import *
 from typing import TextIO
 from decl import parse_decl, make_decl_type, make_declaration
-from api_filter import is_vulkan_api, excluded_names, vulkan_features, vulkan_requires
+from api_filter import is_vulkan_api, excluded_names, vulkan_features, vulkan_requires, feature_version, vulkan_versions
 
 
 def extract_command_field_impl(_root) -> VkFunctionField:
@@ -123,6 +123,14 @@ return (({command.pfn})ptr)(""")
     _file.write("}\n")
 
 
+def fill_versions(_file: TextIO, _versions) -> None:
+    # api/version.hpp: a constant for every vulkan version of vk.xml and all of them in common_versions
+    for major, minor in _versions:
+        _file.write(f"static constexpr ktl::api::version version_{major}_{minor}(0, {major}, {minor}, 0);\n")
+    names = ", ".join(f"version_{major}_{minor}" for major, minor in _versions)
+    _file.write(f"static constexpr std::array< ktl::api::version, {len(_versions)} > common_versions = {{{names}}};\n")
+
+
 def fill_meta(_file: TextIO, _version_commands):
     _file.write("""
 namespace ktl::meta
@@ -135,7 +143,7 @@ struct version
     for version, commands in _version_commands.items():
         _file.write(f"""
 template <>
-struct version< {version} >
+struct version< {make_version(version)} >
 {{
     static constexpr std::array< ktl::api::command, {len(commands)} > commands = {{
 """)
@@ -149,27 +157,16 @@ struct version< {version} >
 inline constexpr std::span< const ktl::api::command >
 get_commands_by_version(ktl::api::version _version) noexcept
 {
-    if (_version == ktl::api::version_1_0)
-    {
-        return ktl::meta::version< ktl::api::version_1_0 >::commands;
-    }
-    if (_version == ktl::api::version_1_1)
-    {
-        return ktl::meta::version< ktl::api::version_1_1 >::commands;
-    }
-    if (_version == ktl::api::version_1_2)
-    {
-        return ktl::meta::version< ktl::api::version_1_2 >::commands;
-    }
-    if (_version == ktl::api::version_1_3)
-    {
-        return ktl::meta::version< ktl::api::version_1_3 >::commands;
-    }
-    if (_version == ktl::api::version_1_4)
-    {
-        return ktl::meta::version< ktl::api::version_1_4 >::commands;
-    }
-    return {};
+    // patch adds no commands: 1.3.250 has the commands of 1.3; variant other than 0 is not vulkan
+    const ktl::api::version rounded(_version.variant, _version.major, _version.minor, 0);
+""")
+    for version in _version_commands:
+        _file.write(f"""    if (rounded == {make_version(version)})
+    {{
+        return ktl::meta::version< {make_version(version)} >::commands;
+    }}
+""")
+    _file.write("""    return {};
 }
 """)
     _file.write("}")
@@ -254,28 +251,9 @@ def extract_version_commands_impl(_root) -> list:
 
 
 def extract_version_commands(_root) -> dict:
-    commands = {}
-    commands["ktl::api::version_1_0"] = []
-    commands["ktl::api::version_1_1"] = []
-    commands["ktl::api::version_1_2"] = []
-    commands["ktl::api::version_1_3"] = []
-    commands["ktl::api::version_1_4"] = []
-
+    # (major, minor) -> commands added by the version, from every feature of its number:
+    # VK_BASE_VERSION_1_3, VK_COMPUTE_VERSION_1_3, VK_GRAPHICS_VERSION_1_3 and VK_VERSION_1_3
+    commands = {version: [] for version in vulkan_versions(_root)}
     for feature in vulkan_features(_root):
-        name = feature.get("name")
-        if name.startswith("VK_BASE_VERSION") or name.startswith("VK_COMPUTE_VERSION") or name.startswith("VK_GRAPHICS_VERSION"):
-            cmds = extract_version_commands_impl(feature)
-            vers = name[-3:]
-            if vers == "1_0":
-                commands["ktl::api::version_1_0"] += cmds
-            if vers == "1_1":
-                commands["ktl::api::version_1_1"] += cmds
-            if vers == "1_2":
-                commands["ktl::api::version_1_2"] += cmds
-            if vers == "1_3":
-                commands["ktl::api::version_1_3"] += cmds
-            if vers == "1_4":
-                commands["ktl::api::version_1_4"] += cmds
-    
-    # print(commands)
+        commands[feature_version(feature)] += extract_version_commands_impl(feature)
     return commands

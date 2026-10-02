@@ -2,7 +2,7 @@ from vk_types import VkExtension
 from name_rules import *
 from typing import TextIO
 from cpp_meta import EXTENSION_META
-from api_filter import vulkan_extensions, vulkan_requires
+from api_filter import vulkan_extensions, vulkan_requires, vulkan_versions
 import enums
 
 
@@ -21,8 +21,7 @@ class VkDependency:
     def get_version_tuple(self) -> Optional[Tuple[int, int]]:
         if not self.version:
             return None
-        parts = self.version.replace("VK_VERSION_", "").split("_")
-        return (int(parts[0]), int(parts[1]))
+        return parse_version(self.version)
     
     def get_name(self) -> str:
         return self.extension or self.version or self.feature or ""
@@ -55,7 +54,7 @@ def parse_depends(_depends: str) -> DepNode:
         
         name = s[start:pos[0]]
 
-        if name.startswith("VK_VERSION_"):
+        if parse_version(name): # VK_VERSION_1_3 or VK_BASE_VERSION_1_3
             return VkDependency(version=name)
         elif "::" in name: # feature boolean: VkPhysicalDevice...Features::member
             return VkDependency(feature=name)
@@ -111,11 +110,12 @@ def make_dnf(_node: DepNode) -> list[list[VkDependency]]:
     return result
 
 
-def make_requirements(_depends: str | None) -> list[list[str]]:
+def make_requirements(_depends: str | None, _versions: tuple) -> list[list[str]]:
     """
     depends expression as DNF: any of the requirements is enough, every dependency of a requirement is needed.
     Versions are monotone (1.3 implies 1.2): a requirement keeps only its highest version
     and is dropped when a weaker requirement exists. No depends is one empty requirement.
+    _versions are the vulkan versions of vk.xml, any other version is an error.
     """
     if not _depends:
         return [[]]
@@ -128,6 +128,8 @@ def make_requirements(_depends: str | None) -> list[list[str]]:
             if dependency.feature:
                 raise ValueError(f"feature dependency {dependency.feature} in {_depends!r} is not supported")
             if dependency.version:
+                if dependency.get_version_tuple() not in _versions:
+                    raise ValueError(f"unknown version {dependency.version} in {_depends!r}")
                 version = max(version, dependency.get_version_tuple())
             elif dependency.extension not in extensions:
                 extensions.append(dependency.extension)
@@ -145,10 +147,7 @@ def make_requirements(_depends: str | None) -> list[list[str]]:
         version, extensions = requirement
         dependencies = list(extensions)
         if version > (1, 0):
-            cpp_version = make_version(f"VK_VERSION_{version[0]}_{version[1]}")
-            if cpp_version is None:
-                raise ValueError(f"unknown version {version} in {_depends!r}")
-            dependencies.insert(0, cpp_version)
+            dependencies.insert(0, make_version(version))
         result.append(dependencies)
     return result
 
@@ -234,12 +233,13 @@ extension_cast(ktl::api::extension _extension)
 
 def extract(root, _enums) -> list:
     extensions = []
+    versions = vulkan_versions(root)
 
     for extension in vulkan_extensions(root):
         name = extension.get("name")
         number = extension.get("number")
         tppe = extension.get("type")
-        depends = make_requirements(extension.get("depends"))
+        depends = make_requirements(extension.get("depends"), versions)
         commands = []
         conditions = {} # command from <require depends="..."> -> depends of every such block
 
@@ -254,15 +254,15 @@ def extract(root, _enums) -> list:
                     commands.append(command_name)
 
         # command required by several blocks is available when any of them is, unconditional block wins
-        conditional_commands = [(command, make_requirements(",".join(f"({d})" for d in blocks)))
+        conditional_commands = [(command, make_requirements(",".join(f"({d})" for d in blocks), versions))
                                 for command, blocks in conditions.items() if command not in commands]
 
-        promoted = extension.get("promotedto") or None
-        if not promoted:
-            promoted = ""
-        elif promoted.startswith("VK_VERSION"):
-            promoted = make_version(promoted)
-        else:
+        promoted = extension.get("promotedto") or ""
+        if version := parse_version(promoted):
+            if version not in versions:
+                raise ValueError(f"{name} is promoted to unknown version {promoted}")
+            promoted = make_version(version)
+        elif promoted:
             promoted = f"ktl::api::extension::{make_cpp_name(promoted)}"
 
         extensions.append(VkExtension(make_cpp_name(name),

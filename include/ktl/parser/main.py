@@ -23,6 +23,7 @@ API_COMMANDS_HEADER_FILE   = f"{API_DIR}command.hpp"
 API_FEATURES_HEADER_FILE   = f"{API_DIR}feature.hpp"
 API_EXTENSIONS_HEADER_FILE = f"{API_DIR}extension.hpp"
 API_LAYERS_HEADER_FILE     = f"{API_DIR}layer.hpp"
+API_VERSION_HEADER_FILE    = f"{API_DIR}version.hpp"
 API_HEADER_FILE        = "api.hpp"
 
 META_ENUMS_HEADER_FILE      = f"{META_DIR}enum.hpp"
@@ -83,6 +84,7 @@ def main(_root):
                             META_EXTENSIONS_HEADER_FILE,
                             EXTENSIONS)
     headers.fill_version(API_HEADER_FILE,
+                         API_VERSION_HEADER_FILE,
                          META_VERSION_HEADER_FILE,
                          VERSION_COMMANDS)
     headers.fill_api(API_HEADER_FILE,

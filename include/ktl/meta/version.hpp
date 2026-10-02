@@ -48,23 +48,25 @@ ktl::api::command::map_memory_2,ktl::api::command::unmap_memory_2,ktl::api::comm
 inline constexpr std::span< const ktl::api::command >
 get_commands_by_version(ktl::api::version _version) noexcept
 {
-    if (_version == ktl::api::version_1_0)
+    // patch adds no commands: 1.3.250 has the commands of 1.3; variant other than 0 is not vulkan
+    const ktl::api::version rounded(_version.variant, _version.major, _version.minor, 0);
+    if (rounded == ktl::api::version_1_0)
     {
         return ktl::meta::version< ktl::api::version_1_0 >::commands;
     }
-    if (_version == ktl::api::version_1_1)
+    if (rounded == ktl::api::version_1_1)
     {
         return ktl::meta::version< ktl::api::version_1_1 >::commands;
     }
-    if (_version == ktl::api::version_1_2)
+    if (rounded == ktl::api::version_1_2)
     {
         return ktl::meta::version< ktl::api::version_1_2 >::commands;
     }
-    if (_version == ktl::api::version_1_3)
+    if (rounded == ktl::api::version_1_3)
     {
         return ktl::meta::version< ktl::api::version_1_3 >::commands;
     }
-    if (_version == ktl::api::version_1_4)
+    if (rounded == ktl::api::version_1_4)
     {
         return ktl::meta::version< ktl::api::version_1_4 >::commands;
     }

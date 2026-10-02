@@ -10,6 +10,7 @@ import commands
 import features
 import extensions
 import platforms
+from cpp_meta import VERSION_META, VERSION_STD
 
 
 def make_header_guard(_filename: str) -> str | None:
@@ -256,8 +257,35 @@ def fill_extensions(_api_include: str,
 
 
 def fill_version(_api_include: str,
+                 _api_file: str,
                  _meta_file: str,
-                 _version_commands: list) -> None:
+                 _version_commands: dict) -> None:
+    # api/version.hpp: ktl::api::version and the vulkan versions of vk.xml
+    api_header_guard = make_header_guard(_api_file)
+    with open(_api_file, "w", encoding="utf-8") as file:
+        file.write(f"""#ifndef {api_header_guard}
+#define {api_header_guard}
+
+#include <array>
+#include <compare>
+#include <format>
+#include <functional>
+
+#include <ktl/type.hpp>
+
+namespace ktl::api
+{{
+{VERSION_META}
+
+""")
+        commands.fill_versions(file, list(_version_commands))
+        file.write(f"""}} // namespace ktl::api
+
+{VERSION_STD}
+
+#endif
+""")
+
     meta_header_guard = make_header_guard(_meta_file)
     if not meta_header_guard:
         print("headers.fill_extensions meta_header_guard is None")
@@ -270,7 +298,7 @@ def fill_version(_api_include: str,
 #include <span>
 
 #include <ktl/{_api_include}>
-#include <ktl/api/version.hpp>
+#include <ktl/{_api_file}>
 
 """)
         commands.fill_meta(file, _version_commands)

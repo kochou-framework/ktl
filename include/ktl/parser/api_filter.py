@@ -18,6 +18,18 @@ def vulkan_features(_root) -> list:
     return [feature for feature in _root.findall("feature") if is_vulkan_api(feature)]
 
 
+def feature_version(_feature) -> tuple[int, int]:
+    # number="1.3" of VK_BASE_VERSION_1_3, VK_COMPUTE_VERSION_1_3, VK_GRAPHICS_VERSION_1_3 and VK_VERSION_1_3
+    major, minor = _feature.get("number").split(".")
+    return int(major), int(minor)
+
+
+@functools.cache
+def vulkan_versions(_root) -> tuple:
+    # every vulkan version of vk.xml, ascending: ktl::api::version_X_Y, common_versions and meta::version<> are made of it
+    return tuple(sorted({feature_version(feature) for feature in vulkan_features(_root)}))
+
+
 def vulkan_extensions(_root) -> list:
     return [extension for extension in _root.find("extensions").findall("extension") if is_vulkan_extension(extension)]
 

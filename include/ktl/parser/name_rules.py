@@ -3,19 +3,17 @@ from utils import c_name_to_cpp
 from type_cast import cast_type, DEFAULT_NEGATIVE_TYPE, DEFAULT_POSITIVE_TYPE
 
 
-def make_version(_src: str) -> str | None:
-    match _src:
-        case "VK_VERSION_1_0":
-            return "ktl::api::version_1_0"
-        case "VK_VERSION_1_1":
-            return "ktl::api::version_1_1"
-        case "VK_VERSION_1_2":
-            return "ktl::api::version_1_2"
-        case "VK_VERSION_1_3":
-            return "ktl::api::version_1_3"
-        case "VK_VERSION_1_4":
-            return "ktl::api::version_1_4"
-    return None
+_VERSION = re.compile(r"VK_(?:BASE_|COMPUTE_|GRAPHICS_)?VERSION_(\d+)_(\d+)")
+
+
+def parse_version(_src: str) -> tuple[int, int] | None:
+    # VK_VERSION_1_3 and the parts of a version: VK_BASE_VERSION_1_3, VK_COMPUTE_VERSION_1_3, VK_GRAPHICS_VERSION_1_3
+    match = _VERSION.fullmatch(_src)
+    return (int(match.group(1)), int(match.group(2))) if match else None
+
+
+def make_version(_version: tuple[int, int]) -> str:
+    return f"ktl::api::version_{_version[0]}_{_version[1]}"
 
 
 def make_cpp_name(src: str) -> str | None:
