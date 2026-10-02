@@ -210,7 +210,7 @@ struct extension< ktl::api::extension::{extension.name} >
     # unknown name (newer driver, filtered extension) must not turn into extension{} == khr_surface
     _file.write("""
 inline constexpr std::optional< ktl::api::extension >
-extension_from_raw(std::string_view _extension)
+extension_from_raw(std::string_view _extension) noexcept
 {
 """)
     for extension in _extensions:
@@ -220,13 +220,15 @@ extension_from_raw(std::string_view _extension)
 
     _file.write("""
 inline constexpr ktl::meta::any_extension
-extension_cast(ktl::api::extension _extension)
+extension_cast(ktl::api::extension _extension) noexcept
 {
+    switch (_extension)
+    {
 """)
     for extension in _extensions:
-        _file.write(f'if (_extension == ktl::api::extension::{extension.name}) {{ return extension_cast< ktl::api::extension::{extension.name} >(); }}\n')
-    _file.write("return ktl::meta::any_extension{};")
-    _file.write("}\n")
+        _file.write(f"case ktl::api::extension::{extension.name}:\nreturn extension_cast< ktl::api::extension::{extension.name} >();\n")
+    # value outside of the enum, falling off a non-void function is UB
+    _file.write("}\nstd::abort();\n}\n")
 
     _file.write("}\n")
 

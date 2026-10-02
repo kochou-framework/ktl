@@ -2,6 +2,7 @@
 #define KTL_META_EXTENSION_HPP
 
 #include <array>
+#include <cstdlib>
 #include <optional>
 #include <span>
 #include <string_view>
@@ -8475,7 +8476,7 @@ struct extension< ktl::api::extension::valve_buffer_device_address_allocation_al
 };
 
 inline constexpr std::optional< ktl::api::extension >
-extension_from_raw(std::string_view _extension)
+extension_from_raw(std::string_view _extension) noexcept
 {
     if (_extension == "VK_KHR_surface")
     {
@@ -10325,1853 +10326,934 @@ extension_from_raw(std::string_view _extension)
 }
 
 inline constexpr ktl::meta::any_extension
-extension_cast(ktl::api::extension _extension)
+extension_cast(ktl::api::extension _extension) noexcept
 {
-    if (_extension == ktl::api::extension::khr_surface)
+    switch (_extension)
     {
+    case ktl::api::extension::khr_surface:
         return extension_cast< ktl::api::extension::khr_surface >();
-    }
-    if (_extension == ktl::api::extension::khr_swapchain)
-    {
+    case ktl::api::extension::khr_swapchain:
         return extension_cast< ktl::api::extension::khr_swapchain >();
-    }
-    if (_extension == ktl::api::extension::khr_display)
-    {
+    case ktl::api::extension::khr_display:
         return extension_cast< ktl::api::extension::khr_display >();
-    }
-    if (_extension == ktl::api::extension::khr_display_swapchain)
-    {
+    case ktl::api::extension::khr_display_swapchain:
         return extension_cast< ktl::api::extension::khr_display_swapchain >();
-    }
-    if (_extension == ktl::api::extension::khr_xlib_surface)
-    {
+    case ktl::api::extension::khr_xlib_surface:
         return extension_cast< ktl::api::extension::khr_xlib_surface >();
-    }
-    if (_extension == ktl::api::extension::khr_xcb_surface)
-    {
+    case ktl::api::extension::khr_xcb_surface:
         return extension_cast< ktl::api::extension::khr_xcb_surface >();
-    }
-    if (_extension == ktl::api::extension::khr_wayland_surface)
-    {
+    case ktl::api::extension::khr_wayland_surface:
         return extension_cast< ktl::api::extension::khr_wayland_surface >();
-    }
-    if (_extension == ktl::api::extension::khr_android_surface)
-    {
+    case ktl::api::extension::khr_android_surface:
         return extension_cast< ktl::api::extension::khr_android_surface >();
-    }
-    if (_extension == ktl::api::extension::khr_win32_surface)
-    {
+    case ktl::api::extension::khr_win32_surface:
         return extension_cast< ktl::api::extension::khr_win32_surface >();
-    }
-    if (_extension == ktl::api::extension::ext_debug_report)
-    {
+    case ktl::api::extension::ext_debug_report:
         return extension_cast< ktl::api::extension::ext_debug_report >();
-    }
-    if (_extension == ktl::api::extension::nv_glsl_shader)
-    {
+    case ktl::api::extension::nv_glsl_shader:
         return extension_cast< ktl::api::extension::nv_glsl_shader >();
-    }
-    if (_extension == ktl::api::extension::ext_depth_range_unrestricted)
-    {
+    case ktl::api::extension::ext_depth_range_unrestricted:
         return extension_cast< ktl::api::extension::ext_depth_range_unrestricted >();
-    }
-    if (_extension == ktl::api::extension::khr_sampler_mirror_clamp_to_edge)
-    {
+    case ktl::api::extension::khr_sampler_mirror_clamp_to_edge:
         return extension_cast< ktl::api::extension::khr_sampler_mirror_clamp_to_edge >();
-    }
-    if (_extension == ktl::api::extension::img_filter_cubic)
-    {
+    case ktl::api::extension::img_filter_cubic:
         return extension_cast< ktl::api::extension::img_filter_cubic >();
-    }
-    if (_extension == ktl::api::extension::amd_rasterization_order)
-    {
+    case ktl::api::extension::amd_rasterization_order:
         return extension_cast< ktl::api::extension::amd_rasterization_order >();
-    }
-    if (_extension == ktl::api::extension::amd_shader_trinary_minmax)
-    {
+    case ktl::api::extension::amd_shader_trinary_minmax:
         return extension_cast< ktl::api::extension::amd_shader_trinary_minmax >();
-    }
-    if (_extension == ktl::api::extension::amd_shader_explicit_vertex_parameter)
-    {
+    case ktl::api::extension::amd_shader_explicit_vertex_parameter:
         return extension_cast< ktl::api::extension::amd_shader_explicit_vertex_parameter >();
-    }
-    if (_extension == ktl::api::extension::ext_debug_marker)
-    {
+    case ktl::api::extension::ext_debug_marker:
         return extension_cast< ktl::api::extension::ext_debug_marker >();
-    }
-    if (_extension == ktl::api::extension::amd_gcn_shader)
-    {
+    case ktl::api::extension::amd_gcn_shader:
         return extension_cast< ktl::api::extension::amd_gcn_shader >();
-    }
-    if (_extension == ktl::api::extension::nv_dedicated_allocation)
-    {
+    case ktl::api::extension::nv_dedicated_allocation:
         return extension_cast< ktl::api::extension::nv_dedicated_allocation >();
-    }
-    if (_extension == ktl::api::extension::ext_transform_feedback)
-    {
+    case ktl::api::extension::ext_transform_feedback:
         return extension_cast< ktl::api::extension::ext_transform_feedback >();
-    }
-    if (_extension == ktl::api::extension::nvx_binary_import)
-    {
+    case ktl::api::extension::nvx_binary_import:
         return extension_cast< ktl::api::extension::nvx_binary_import >();
-    }
-    if (_extension == ktl::api::extension::nvx_image_view_handle)
-    {
+    case ktl::api::extension::nvx_image_view_handle:
         return extension_cast< ktl::api::extension::nvx_image_view_handle >();
-    }
-    if (_extension == ktl::api::extension::amd_draw_indirect_count)
-    {
+    case ktl::api::extension::amd_draw_indirect_count:
         return extension_cast< ktl::api::extension::amd_draw_indirect_count >();
-    }
-    if (_extension == ktl::api::extension::amd_negative_viewport_height)
-    {
+    case ktl::api::extension::amd_negative_viewport_height:
         return extension_cast< ktl::api::extension::amd_negative_viewport_height >();
-    }
-    if (_extension == ktl::api::extension::amd_gpu_shader_half_float)
-    {
+    case ktl::api::extension::amd_gpu_shader_half_float:
         return extension_cast< ktl::api::extension::amd_gpu_shader_half_float >();
-    }
-    if (_extension == ktl::api::extension::amd_shader_ballot)
-    {
+    case ktl::api::extension::amd_shader_ballot:
         return extension_cast< ktl::api::extension::amd_shader_ballot >();
-    }
-    if (_extension == ktl::api::extension::amd_texture_gather_bias_lod)
-    {
+    case ktl::api::extension::amd_texture_gather_bias_lod:
         return extension_cast< ktl::api::extension::amd_texture_gather_bias_lod >();
-    }
-    if (_extension == ktl::api::extension::amd_shader_info)
-    {
+    case ktl::api::extension::amd_shader_info:
         return extension_cast< ktl::api::extension::amd_shader_info >();
-    }
-    if (_extension == ktl::api::extension::khr_dynamic_rendering)
-    {
+    case ktl::api::extension::khr_dynamic_rendering:
         return extension_cast< ktl::api::extension::khr_dynamic_rendering >();
-    }
-    if (_extension == ktl::api::extension::amd_shader_image_load_store_lod)
-    {
+    case ktl::api::extension::amd_shader_image_load_store_lod:
         return extension_cast< ktl::api::extension::amd_shader_image_load_store_lod >();
-    }
-    if (_extension == ktl::api::extension::ggp_stream_descriptor_surface)
-    {
+    case ktl::api::extension::ggp_stream_descriptor_surface:
         return extension_cast< ktl::api::extension::ggp_stream_descriptor_surface >();
-    }
-    if (_extension == ktl::api::extension::nv_corner_sampled_image)
-    {
+    case ktl::api::extension::nv_corner_sampled_image:
         return extension_cast< ktl::api::extension::nv_corner_sampled_image >();
-    }
-    if (_extension == ktl::api::extension::khr_multiview)
-    {
+    case ktl::api::extension::khr_multiview:
         return extension_cast< ktl::api::extension::khr_multiview >();
-    }
-    if (_extension == ktl::api::extension::img_format_pvrtc)
-    {
+    case ktl::api::extension::img_format_pvrtc:
         return extension_cast< ktl::api::extension::img_format_pvrtc >();
-    }
-    if (_extension == ktl::api::extension::nv_external_memory_capabilities)
-    {
+    case ktl::api::extension::nv_external_memory_capabilities:
         return extension_cast< ktl::api::extension::nv_external_memory_capabilities >();
-    }
-    if (_extension == ktl::api::extension::nv_external_memory)
-    {
+    case ktl::api::extension::nv_external_memory:
         return extension_cast< ktl::api::extension::nv_external_memory >();
-    }
-    if (_extension == ktl::api::extension::nv_external_memory_win32)
-    {
+    case ktl::api::extension::nv_external_memory_win32:
         return extension_cast< ktl::api::extension::nv_external_memory_win32 >();
-    }
-    if (_extension == ktl::api::extension::nv_win32_keyed_mutex)
-    {
+    case ktl::api::extension::nv_win32_keyed_mutex:
         return extension_cast< ktl::api::extension::nv_win32_keyed_mutex >();
-    }
-    if (_extension == ktl::api::extension::khr_get_physical_device_properties2)
-    {
+    case ktl::api::extension::khr_get_physical_device_properties2:
         return extension_cast< ktl::api::extension::khr_get_physical_device_properties2 >();
-    }
-    if (_extension == ktl::api::extension::khr_device_group)
-    {
+    case ktl::api::extension::khr_device_group:
         return extension_cast< ktl::api::extension::khr_device_group >();
-    }
-    if (_extension == ktl::api::extension::ext_validation_flags)
-    {
+    case ktl::api::extension::ext_validation_flags:
         return extension_cast< ktl::api::extension::ext_validation_flags >();
-    }
-    if (_extension == ktl::api::extension::nn_vi_surface)
-    {
+    case ktl::api::extension::nn_vi_surface:
         return extension_cast< ktl::api::extension::nn_vi_surface >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_draw_parameters)
-    {
+    case ktl::api::extension::khr_shader_draw_parameters:
         return extension_cast< ktl::api::extension::khr_shader_draw_parameters >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_subgroup_ballot)
-    {
+    case ktl::api::extension::ext_shader_subgroup_ballot:
         return extension_cast< ktl::api::extension::ext_shader_subgroup_ballot >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_subgroup_vote)
-    {
+    case ktl::api::extension::ext_shader_subgroup_vote:
         return extension_cast< ktl::api::extension::ext_shader_subgroup_vote >();
-    }
-    if (_extension == ktl::api::extension::ext_texture_compression_astc_hdr)
-    {
+    case ktl::api::extension::ext_texture_compression_astc_hdr:
         return extension_cast< ktl::api::extension::ext_texture_compression_astc_hdr >();
-    }
-    if (_extension == ktl::api::extension::ext_astc_decode_mode)
-    {
+    case ktl::api::extension::ext_astc_decode_mode:
         return extension_cast< ktl::api::extension::ext_astc_decode_mode >();
-    }
-    if (_extension == ktl::api::extension::ext_pipeline_robustness)
-    {
+    case ktl::api::extension::ext_pipeline_robustness:
         return extension_cast< ktl::api::extension::ext_pipeline_robustness >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance1)
-    {
+    case ktl::api::extension::khr_maintenance1:
         return extension_cast< ktl::api::extension::khr_maintenance1 >();
-    }
-    if (_extension == ktl::api::extension::khr_device_group_creation)
-    {
+    case ktl::api::extension::khr_device_group_creation:
         return extension_cast< ktl::api::extension::khr_device_group_creation >();
-    }
-    if (_extension == ktl::api::extension::khr_external_memory_capabilities)
-    {
+    case ktl::api::extension::khr_external_memory_capabilities:
         return extension_cast< ktl::api::extension::khr_external_memory_capabilities >();
-    }
-    if (_extension == ktl::api::extension::khr_external_memory)
-    {
+    case ktl::api::extension::khr_external_memory:
         return extension_cast< ktl::api::extension::khr_external_memory >();
-    }
-    if (_extension == ktl::api::extension::khr_external_memory_win32)
-    {
+    case ktl::api::extension::khr_external_memory_win32:
         return extension_cast< ktl::api::extension::khr_external_memory_win32 >();
-    }
-    if (_extension == ktl::api::extension::khr_external_memory_fd)
-    {
+    case ktl::api::extension::khr_external_memory_fd:
         return extension_cast< ktl::api::extension::khr_external_memory_fd >();
-    }
-    if (_extension == ktl::api::extension::khr_win32_keyed_mutex)
-    {
+    case ktl::api::extension::khr_win32_keyed_mutex:
         return extension_cast< ktl::api::extension::khr_win32_keyed_mutex >();
-    }
-    if (_extension == ktl::api::extension::khr_external_semaphore_capabilities)
-    {
+    case ktl::api::extension::khr_external_semaphore_capabilities:
         return extension_cast< ktl::api::extension::khr_external_semaphore_capabilities >();
-    }
-    if (_extension == ktl::api::extension::khr_external_semaphore)
-    {
+    case ktl::api::extension::khr_external_semaphore:
         return extension_cast< ktl::api::extension::khr_external_semaphore >();
-    }
-    if (_extension == ktl::api::extension::khr_external_semaphore_win32)
-    {
+    case ktl::api::extension::khr_external_semaphore_win32:
         return extension_cast< ktl::api::extension::khr_external_semaphore_win32 >();
-    }
-    if (_extension == ktl::api::extension::khr_external_semaphore_fd)
-    {
+    case ktl::api::extension::khr_external_semaphore_fd:
         return extension_cast< ktl::api::extension::khr_external_semaphore_fd >();
-    }
-    if (_extension == ktl::api::extension::khr_push_descriptor)
-    {
+    case ktl::api::extension::khr_push_descriptor:
         return extension_cast< ktl::api::extension::khr_push_descriptor >();
-    }
-    if (_extension == ktl::api::extension::ext_conditional_rendering)
-    {
+    case ktl::api::extension::ext_conditional_rendering:
         return extension_cast< ktl::api::extension::ext_conditional_rendering >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_float16_int8)
-    {
+    case ktl::api::extension::khr_shader_float16_int8:
         return extension_cast< ktl::api::extension::khr_shader_float16_int8 >();
-    }
-    if (_extension == ktl::api::extension::khr_16bit_storage)
-    {
+    case ktl::api::extension::khr_16bit_storage:
         return extension_cast< ktl::api::extension::khr_16bit_storage >();
-    }
-    if (_extension == ktl::api::extension::khr_incremental_present)
-    {
+    case ktl::api::extension::khr_incremental_present:
         return extension_cast< ktl::api::extension::khr_incremental_present >();
-    }
-    if (_extension == ktl::api::extension::khr_descriptor_update_template)
-    {
+    case ktl::api::extension::khr_descriptor_update_template:
         return extension_cast< ktl::api::extension::khr_descriptor_update_template >();
-    }
-    if (_extension == ktl::api::extension::nv_clip_space_w_scaling)
-    {
+    case ktl::api::extension::nv_clip_space_w_scaling:
         return extension_cast< ktl::api::extension::nv_clip_space_w_scaling >();
-    }
-    if (_extension == ktl::api::extension::ext_direct_mode_display)
-    {
+    case ktl::api::extension::ext_direct_mode_display:
         return extension_cast< ktl::api::extension::ext_direct_mode_display >();
-    }
-    if (_extension == ktl::api::extension::ext_acquire_xlib_display)
-    {
+    case ktl::api::extension::ext_acquire_xlib_display:
         return extension_cast< ktl::api::extension::ext_acquire_xlib_display >();
-    }
-    if (_extension == ktl::api::extension::ext_display_surface_counter)
-    {
+    case ktl::api::extension::ext_display_surface_counter:
         return extension_cast< ktl::api::extension::ext_display_surface_counter >();
-    }
-    if (_extension == ktl::api::extension::ext_display_control)
-    {
+    case ktl::api::extension::ext_display_control:
         return extension_cast< ktl::api::extension::ext_display_control >();
-    }
-    if (_extension == ktl::api::extension::google_display_timing)
-    {
+    case ktl::api::extension::google_display_timing:
         return extension_cast< ktl::api::extension::google_display_timing >();
-    }
-    if (_extension == ktl::api::extension::nv_sample_mask_override_coverage)
-    {
+    case ktl::api::extension::nv_sample_mask_override_coverage:
         return extension_cast< ktl::api::extension::nv_sample_mask_override_coverage >();
-    }
-    if (_extension == ktl::api::extension::nv_geometry_shader_passthrough)
-    {
+    case ktl::api::extension::nv_geometry_shader_passthrough:
         return extension_cast< ktl::api::extension::nv_geometry_shader_passthrough >();
-    }
-    if (_extension == ktl::api::extension::nv_viewport_array2)
-    {
+    case ktl::api::extension::nv_viewport_array2:
         return extension_cast< ktl::api::extension::nv_viewport_array2 >();
-    }
-    if (_extension == ktl::api::extension::nvx_multiview_per_view_attributes)
-    {
+    case ktl::api::extension::nvx_multiview_per_view_attributes:
         return extension_cast< ktl::api::extension::nvx_multiview_per_view_attributes >();
-    }
-    if (_extension == ktl::api::extension::nv_viewport_swizzle)
-    {
+    case ktl::api::extension::nv_viewport_swizzle:
         return extension_cast< ktl::api::extension::nv_viewport_swizzle >();
-    }
-    if (_extension == ktl::api::extension::ext_discard_rectangles)
-    {
+    case ktl::api::extension::ext_discard_rectangles:
         return extension_cast< ktl::api::extension::ext_discard_rectangles >();
-    }
-    if (_extension == ktl::api::extension::ext_conservative_rasterization)
-    {
+    case ktl::api::extension::ext_conservative_rasterization:
         return extension_cast< ktl::api::extension::ext_conservative_rasterization >();
-    }
-    if (_extension == ktl::api::extension::ext_depth_clip_enable)
-    {
+    case ktl::api::extension::ext_depth_clip_enable:
         return extension_cast< ktl::api::extension::ext_depth_clip_enable >();
-    }
-    if (_extension == ktl::api::extension::ext_swapchain_colorspace)
-    {
+    case ktl::api::extension::ext_swapchain_colorspace:
         return extension_cast< ktl::api::extension::ext_swapchain_colorspace >();
-    }
-    if (_extension == ktl::api::extension::ext_hdr_metadata)
-    {
+    case ktl::api::extension::ext_hdr_metadata:
         return extension_cast< ktl::api::extension::ext_hdr_metadata >();
-    }
-    if (_extension == ktl::api::extension::khr_imageless_framebuffer)
-    {
+    case ktl::api::extension::khr_imageless_framebuffer:
         return extension_cast< ktl::api::extension::khr_imageless_framebuffer >();
-    }
-    if (_extension == ktl::api::extension::khr_create_renderpass2)
-    {
+    case ktl::api::extension::khr_create_renderpass2:
         return extension_cast< ktl::api::extension::khr_create_renderpass2 >();
-    }
-    if (_extension == ktl::api::extension::img_relaxed_line_rasterization)
-    {
+    case ktl::api::extension::img_relaxed_line_rasterization:
         return extension_cast< ktl::api::extension::img_relaxed_line_rasterization >();
-    }
-    if (_extension == ktl::api::extension::khr_shared_presentable_image)
-    {
+    case ktl::api::extension::khr_shared_presentable_image:
         return extension_cast< ktl::api::extension::khr_shared_presentable_image >();
-    }
-    if (_extension == ktl::api::extension::khr_external_fence_capabilities)
-    {
+    case ktl::api::extension::khr_external_fence_capabilities:
         return extension_cast< ktl::api::extension::khr_external_fence_capabilities >();
-    }
-    if (_extension == ktl::api::extension::khr_external_fence)
-    {
+    case ktl::api::extension::khr_external_fence:
         return extension_cast< ktl::api::extension::khr_external_fence >();
-    }
-    if (_extension == ktl::api::extension::khr_external_fence_win32)
-    {
+    case ktl::api::extension::khr_external_fence_win32:
         return extension_cast< ktl::api::extension::khr_external_fence_win32 >();
-    }
-    if (_extension == ktl::api::extension::khr_external_fence_fd)
-    {
+    case ktl::api::extension::khr_external_fence_fd:
         return extension_cast< ktl::api::extension::khr_external_fence_fd >();
-    }
-    if (_extension == ktl::api::extension::khr_performance_query)
-    {
+    case ktl::api::extension::khr_performance_query:
         return extension_cast< ktl::api::extension::khr_performance_query >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance2)
-    {
+    case ktl::api::extension::khr_maintenance2:
         return extension_cast< ktl::api::extension::khr_maintenance2 >();
-    }
-    if (_extension == ktl::api::extension::khr_get_surface_capabilities2)
-    {
+    case ktl::api::extension::khr_get_surface_capabilities2:
         return extension_cast< ktl::api::extension::khr_get_surface_capabilities2 >();
-    }
-    if (_extension == ktl::api::extension::khr_variable_pointers)
-    {
+    case ktl::api::extension::khr_variable_pointers:
         return extension_cast< ktl::api::extension::khr_variable_pointers >();
-    }
-    if (_extension == ktl::api::extension::khr_get_display_properties2)
-    {
+    case ktl::api::extension::khr_get_display_properties2:
         return extension_cast< ktl::api::extension::khr_get_display_properties2 >();
-    }
-    if (_extension == ktl::api::extension::mvk_ios_surface)
-    {
+    case ktl::api::extension::mvk_ios_surface:
         return extension_cast< ktl::api::extension::mvk_ios_surface >();
-    }
-    if (_extension == ktl::api::extension::mvk_macos_surface)
-    {
+    case ktl::api::extension::mvk_macos_surface:
         return extension_cast< ktl::api::extension::mvk_macos_surface >();
-    }
-    if (_extension == ktl::api::extension::ext_external_memory_dma_buf)
-    {
+    case ktl::api::extension::ext_external_memory_dma_buf:
         return extension_cast< ktl::api::extension::ext_external_memory_dma_buf >();
-    }
-    if (_extension == ktl::api::extension::ext_queue_family_foreign)
-    {
+    case ktl::api::extension::ext_queue_family_foreign:
         return extension_cast< ktl::api::extension::ext_queue_family_foreign >();
-    }
-    if (_extension == ktl::api::extension::khr_dedicated_allocation)
-    {
+    case ktl::api::extension::khr_dedicated_allocation:
         return extension_cast< ktl::api::extension::khr_dedicated_allocation >();
-    }
-    if (_extension == ktl::api::extension::ext_debug_utils)
-    {
+    case ktl::api::extension::ext_debug_utils:
         return extension_cast< ktl::api::extension::ext_debug_utils >();
-    }
-    if (_extension == ktl::api::extension::android_external_memory_android_hardware_buffer)
-    {
+    case ktl::api::extension::android_external_memory_android_hardware_buffer:
         return extension_cast< ktl::api::extension::android_external_memory_android_hardware_buffer >();
-    }
-    if (_extension == ktl::api::extension::ext_sampler_filter_minmax)
-    {
+    case ktl::api::extension::ext_sampler_filter_minmax:
         return extension_cast< ktl::api::extension::ext_sampler_filter_minmax >();
-    }
-    if (_extension == ktl::api::extension::khr_storage_buffer_storage_class)
-    {
+    case ktl::api::extension::khr_storage_buffer_storage_class:
         return extension_cast< ktl::api::extension::khr_storage_buffer_storage_class >();
-    }
-    if (_extension == ktl::api::extension::amd_gpu_shader_int16)
-    {
+    case ktl::api::extension::amd_gpu_shader_int16:
         return extension_cast< ktl::api::extension::amd_gpu_shader_int16 >();
-    }
-    if (_extension == ktl::api::extension::amd_gpa_interface)
-    {
+    case ktl::api::extension::amd_gpa_interface:
         return extension_cast< ktl::api::extension::amd_gpa_interface >();
-    }
-    if (_extension == ktl::api::extension::amdx_shader_enqueue)
-    {
+    case ktl::api::extension::amdx_shader_enqueue:
         return extension_cast< ktl::api::extension::amdx_shader_enqueue >();
-    }
-    if (_extension == ktl::api::extension::ext_descriptor_heap)
-    {
+    case ktl::api::extension::ext_descriptor_heap:
         return extension_cast< ktl::api::extension::ext_descriptor_heap >();
-    }
-    if (_extension == ktl::api::extension::amd_mixed_attachment_samples)
-    {
+    case ktl::api::extension::amd_mixed_attachment_samples:
         return extension_cast< ktl::api::extension::amd_mixed_attachment_samples >();
-    }
-    if (_extension == ktl::api::extension::amd_shader_fragment_mask)
-    {
+    case ktl::api::extension::amd_shader_fragment_mask:
         return extension_cast< ktl::api::extension::amd_shader_fragment_mask >();
-    }
-    if (_extension == ktl::api::extension::ext_inline_uniform_block)
-    {
+    case ktl::api::extension::ext_inline_uniform_block:
         return extension_cast< ktl::api::extension::ext_inline_uniform_block >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_stencil_export)
-    {
+    case ktl::api::extension::ext_shader_stencil_export:
         return extension_cast< ktl::api::extension::ext_shader_stencil_export >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_bfloat16)
-    {
+    case ktl::api::extension::khr_shader_bfloat16:
         return extension_cast< ktl::api::extension::khr_shader_bfloat16 >();
-    }
-    if (_extension == ktl::api::extension::ext_sample_locations)
-    {
+    case ktl::api::extension::ext_sample_locations:
         return extension_cast< ktl::api::extension::ext_sample_locations >();
-    }
-    if (_extension == ktl::api::extension::khr_relaxed_block_layout)
-    {
+    case ktl::api::extension::khr_relaxed_block_layout:
         return extension_cast< ktl::api::extension::khr_relaxed_block_layout >();
-    }
-    if (_extension == ktl::api::extension::khr_get_memory_requirements2)
-    {
+    case ktl::api::extension::khr_get_memory_requirements2:
         return extension_cast< ktl::api::extension::khr_get_memory_requirements2 >();
-    }
-    if (_extension == ktl::api::extension::khr_image_format_list)
-    {
+    case ktl::api::extension::khr_image_format_list:
         return extension_cast< ktl::api::extension::khr_image_format_list >();
-    }
-    if (_extension == ktl::api::extension::ext_blend_operation_advanced)
-    {
+    case ktl::api::extension::ext_blend_operation_advanced:
         return extension_cast< ktl::api::extension::ext_blend_operation_advanced >();
-    }
-    if (_extension == ktl::api::extension::nv_fragment_coverage_to_color)
-    {
+    case ktl::api::extension::nv_fragment_coverage_to_color:
         return extension_cast< ktl::api::extension::nv_fragment_coverage_to_color >();
-    }
-    if (_extension == ktl::api::extension::khr_acceleration_structure)
-    {
+    case ktl::api::extension::khr_acceleration_structure:
         return extension_cast< ktl::api::extension::khr_acceleration_structure >();
-    }
-    if (_extension == ktl::api::extension::khr_ray_tracing_pipeline)
-    {
+    case ktl::api::extension::khr_ray_tracing_pipeline:
         return extension_cast< ktl::api::extension::khr_ray_tracing_pipeline >();
-    }
-    if (_extension == ktl::api::extension::khr_ray_query)
-    {
+    case ktl::api::extension::khr_ray_query:
         return extension_cast< ktl::api::extension::khr_ray_query >();
-    }
-    if (_extension == ktl::api::extension::nv_framebuffer_mixed_samples)
-    {
+    case ktl::api::extension::nv_framebuffer_mixed_samples:
         return extension_cast< ktl::api::extension::nv_framebuffer_mixed_samples >();
-    }
-    if (_extension == ktl::api::extension::nv_fill_rectangle)
-    {
+    case ktl::api::extension::nv_fill_rectangle:
         return extension_cast< ktl::api::extension::nv_fill_rectangle >();
-    }
-    if (_extension == ktl::api::extension::nv_shader_sm_builtins)
-    {
+    case ktl::api::extension::nv_shader_sm_builtins:
         return extension_cast< ktl::api::extension::nv_shader_sm_builtins >();
-    }
-    if (_extension == ktl::api::extension::ext_post_depth_coverage)
-    {
+    case ktl::api::extension::ext_post_depth_coverage:
         return extension_cast< ktl::api::extension::ext_post_depth_coverage >();
-    }
-    if (_extension == ktl::api::extension::khr_sampler_ycbcr_conversion)
-    {
+    case ktl::api::extension::khr_sampler_ycbcr_conversion:
         return extension_cast< ktl::api::extension::khr_sampler_ycbcr_conversion >();
-    }
-    if (_extension == ktl::api::extension::khr_bind_memory2)
-    {
+    case ktl::api::extension::khr_bind_memory2:
         return extension_cast< ktl::api::extension::khr_bind_memory2 >();
-    }
-    if (_extension == ktl::api::extension::ext_image_drm_format_modifier)
-    {
+    case ktl::api::extension::ext_image_drm_format_modifier:
         return extension_cast< ktl::api::extension::ext_image_drm_format_modifier >();
-    }
-    if (_extension == ktl::api::extension::ext_validation_cache)
-    {
+    case ktl::api::extension::ext_validation_cache:
         return extension_cast< ktl::api::extension::ext_validation_cache >();
-    }
-    if (_extension == ktl::api::extension::ext_descriptor_indexing)
-    {
+    case ktl::api::extension::ext_descriptor_indexing:
         return extension_cast< ktl::api::extension::ext_descriptor_indexing >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_viewport_index_layer)
-    {
+    case ktl::api::extension::ext_shader_viewport_index_layer:
         return extension_cast< ktl::api::extension::ext_shader_viewport_index_layer >();
-    }
-    if (_extension == ktl::api::extension::khr_portability_subset)
-    {
+    case ktl::api::extension::khr_portability_subset:
         return extension_cast< ktl::api::extension::khr_portability_subset >();
-    }
-    if (_extension == ktl::api::extension::nv_shading_rate_image)
-    {
+    case ktl::api::extension::nv_shading_rate_image:
         return extension_cast< ktl::api::extension::nv_shading_rate_image >();
-    }
-    if (_extension == ktl::api::extension::nv_ray_tracing)
-    {
+    case ktl::api::extension::nv_ray_tracing:
         return extension_cast< ktl::api::extension::nv_ray_tracing >();
-    }
-    if (_extension == ktl::api::extension::nv_representative_fragment_test)
-    {
+    case ktl::api::extension::nv_representative_fragment_test:
         return extension_cast< ktl::api::extension::nv_representative_fragment_test >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance3)
-    {
+    case ktl::api::extension::khr_maintenance3:
         return extension_cast< ktl::api::extension::khr_maintenance3 >();
-    }
-    if (_extension == ktl::api::extension::khr_draw_indirect_count)
-    {
+    case ktl::api::extension::khr_draw_indirect_count:
         return extension_cast< ktl::api::extension::khr_draw_indirect_count >();
-    }
-    if (_extension == ktl::api::extension::ext_filter_cubic)
-    {
+    case ktl::api::extension::ext_filter_cubic:
         return extension_cast< ktl::api::extension::ext_filter_cubic >();
-    }
-    if (_extension == ktl::api::extension::qcom_render_pass_shader_resolve)
-    {
+    case ktl::api::extension::qcom_render_pass_shader_resolve:
         return extension_cast< ktl::api::extension::qcom_render_pass_shader_resolve >();
-    }
-    if (_extension == ktl::api::extension::qcom_cooperative_matrix_conversion)
-    {
+    case ktl::api::extension::qcom_cooperative_matrix_conversion:
         return extension_cast< ktl::api::extension::qcom_cooperative_matrix_conversion >();
-    }
-    if (_extension == ktl::api::extension::qcom_elapsed_timer_query)
-    {
+    case ktl::api::extension::qcom_elapsed_timer_query:
         return extension_cast< ktl::api::extension::qcom_elapsed_timer_query >();
-    }
-    if (_extension == ktl::api::extension::ext_global_priority)
-    {
+    case ktl::api::extension::ext_global_priority:
         return extension_cast< ktl::api::extension::ext_global_priority >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_subgroup_extended_types)
-    {
+    case ktl::api::extension::khr_shader_subgroup_extended_types:
         return extension_cast< ktl::api::extension::khr_shader_subgroup_extended_types >();
-    }
-    if (_extension == ktl::api::extension::khr_8bit_storage)
-    {
+    case ktl::api::extension::khr_8bit_storage:
         return extension_cast< ktl::api::extension::khr_8bit_storage >();
-    }
-    if (_extension == ktl::api::extension::ext_external_memory_host)
-    {
+    case ktl::api::extension::ext_external_memory_host:
         return extension_cast< ktl::api::extension::ext_external_memory_host >();
-    }
-    if (_extension == ktl::api::extension::amd_buffer_marker)
-    {
+    case ktl::api::extension::amd_buffer_marker:
         return extension_cast< ktl::api::extension::amd_buffer_marker >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_atomic_int64)
-    {
+    case ktl::api::extension::khr_shader_atomic_int64:
         return extension_cast< ktl::api::extension::khr_shader_atomic_int64 >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_clock)
-    {
+    case ktl::api::extension::khr_shader_clock:
         return extension_cast< ktl::api::extension::khr_shader_clock >();
-    }
-    if (_extension == ktl::api::extension::amd_pipeline_compiler_control)
-    {
+    case ktl::api::extension::amd_pipeline_compiler_control:
         return extension_cast< ktl::api::extension::amd_pipeline_compiler_control >();
-    }
-    if (_extension == ktl::api::extension::ext_calibrated_timestamps)
-    {
+    case ktl::api::extension::ext_calibrated_timestamps:
         return extension_cast< ktl::api::extension::ext_calibrated_timestamps >();
-    }
-    if (_extension == ktl::api::extension::amd_shader_core_properties)
-    {
+    case ktl::api::extension::amd_shader_core_properties:
         return extension_cast< ktl::api::extension::amd_shader_core_properties >();
-    }
-    if (_extension == ktl::api::extension::khr_global_priority)
-    {
+    case ktl::api::extension::khr_global_priority:
         return extension_cast< ktl::api::extension::khr_global_priority >();
-    }
-    if (_extension == ktl::api::extension::amd_memory_overallocation_behavior)
-    {
+    case ktl::api::extension::amd_memory_overallocation_behavior:
         return extension_cast< ktl::api::extension::amd_memory_overallocation_behavior >();
-    }
-    if (_extension == ktl::api::extension::ext_vertex_attribute_divisor)
-    {
+    case ktl::api::extension::ext_vertex_attribute_divisor:
         return extension_cast< ktl::api::extension::ext_vertex_attribute_divisor >();
-    }
-    if (_extension == ktl::api::extension::ggp_frame_token)
-    {
+    case ktl::api::extension::ggp_frame_token:
         return extension_cast< ktl::api::extension::ggp_frame_token >();
-    }
-    if (_extension == ktl::api::extension::ext_pipeline_creation_feedback)
-    {
+    case ktl::api::extension::ext_pipeline_creation_feedback:
         return extension_cast< ktl::api::extension::ext_pipeline_creation_feedback >();
-    }
-    if (_extension == ktl::api::extension::khr_driver_properties)
-    {
+    case ktl::api::extension::khr_driver_properties:
         return extension_cast< ktl::api::extension::khr_driver_properties >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_float_controls)
-    {
+    case ktl::api::extension::khr_shader_float_controls:
         return extension_cast< ktl::api::extension::khr_shader_float_controls >();
-    }
-    if (_extension == ktl::api::extension::nv_shader_subgroup_partitioned)
-    {
+    case ktl::api::extension::nv_shader_subgroup_partitioned:
         return extension_cast< ktl::api::extension::nv_shader_subgroup_partitioned >();
-    }
-    if (_extension == ktl::api::extension::khr_depth_stencil_resolve)
-    {
+    case ktl::api::extension::khr_depth_stencil_resolve:
         return extension_cast< ktl::api::extension::khr_depth_stencil_resolve >();
-    }
-    if (_extension == ktl::api::extension::khr_swapchain_mutable_format)
-    {
+    case ktl::api::extension::khr_swapchain_mutable_format:
         return extension_cast< ktl::api::extension::khr_swapchain_mutable_format >();
-    }
-    if (_extension == ktl::api::extension::nv_compute_shader_derivatives)
-    {
+    case ktl::api::extension::nv_compute_shader_derivatives:
         return extension_cast< ktl::api::extension::nv_compute_shader_derivatives >();
-    }
-    if (_extension == ktl::api::extension::nv_mesh_shader)
-    {
+    case ktl::api::extension::nv_mesh_shader:
         return extension_cast< ktl::api::extension::nv_mesh_shader >();
-    }
-    if (_extension == ktl::api::extension::nv_fragment_shader_barycentric)
-    {
+    case ktl::api::extension::nv_fragment_shader_barycentric:
         return extension_cast< ktl::api::extension::nv_fragment_shader_barycentric >();
-    }
-    if (_extension == ktl::api::extension::nv_shader_image_footprint)
-    {
+    case ktl::api::extension::nv_shader_image_footprint:
         return extension_cast< ktl::api::extension::nv_shader_image_footprint >();
-    }
-    if (_extension == ktl::api::extension::nv_scissor_exclusive)
-    {
+    case ktl::api::extension::nv_scissor_exclusive:
         return extension_cast< ktl::api::extension::nv_scissor_exclusive >();
-    }
-    if (_extension == ktl::api::extension::nv_device_diagnostic_checkpoints)
-    {
+    case ktl::api::extension::nv_device_diagnostic_checkpoints:
         return extension_cast< ktl::api::extension::nv_device_diagnostic_checkpoints >();
-    }
-    if (_extension == ktl::api::extension::khr_timeline_semaphore)
-    {
+    case ktl::api::extension::khr_timeline_semaphore:
         return extension_cast< ktl::api::extension::khr_timeline_semaphore >();
-    }
-    if (_extension == ktl::api::extension::ext_present_timing)
-    {
+    case ktl::api::extension::ext_present_timing:
         return extension_cast< ktl::api::extension::ext_present_timing >();
-    }
-    if (_extension == ktl::api::extension::intel_shader_integer_functions2)
-    {
+    case ktl::api::extension::intel_shader_integer_functions2:
         return extension_cast< ktl::api::extension::intel_shader_integer_functions2 >();
-    }
-    if (_extension == ktl::api::extension::intel_performance_query)
-    {
+    case ktl::api::extension::intel_performance_query:
         return extension_cast< ktl::api::extension::intel_performance_query >();
-    }
-    if (_extension == ktl::api::extension::khr_vulkan_memory_model)
-    {
+    case ktl::api::extension::khr_vulkan_memory_model:
         return extension_cast< ktl::api::extension::khr_vulkan_memory_model >();
-    }
-    if (_extension == ktl::api::extension::ext_pci_bus_info)
-    {
+    case ktl::api::extension::ext_pci_bus_info:
         return extension_cast< ktl::api::extension::ext_pci_bus_info >();
-    }
-    if (_extension == ktl::api::extension::amd_display_native_hdr)
-    {
+    case ktl::api::extension::amd_display_native_hdr:
         return extension_cast< ktl::api::extension::amd_display_native_hdr >();
-    }
-    if (_extension == ktl::api::extension::fuchsia_imagepipe_surface)
-    {
+    case ktl::api::extension::fuchsia_imagepipe_surface:
         return extension_cast< ktl::api::extension::fuchsia_imagepipe_surface >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_terminate_invocation)
-    {
+    case ktl::api::extension::khr_shader_terminate_invocation:
         return extension_cast< ktl::api::extension::khr_shader_terminate_invocation >();
-    }
-    if (_extension == ktl::api::extension::ext_metal_surface)
-    {
+    case ktl::api::extension::ext_metal_surface:
         return extension_cast< ktl::api::extension::ext_metal_surface >();
-    }
-    if (_extension == ktl::api::extension::ext_fragment_density_map)
-    {
+    case ktl::api::extension::ext_fragment_density_map:
         return extension_cast< ktl::api::extension::ext_fragment_density_map >();
-    }
-    if (_extension == ktl::api::extension::ext_scalar_block_layout)
-    {
+    case ktl::api::extension::ext_scalar_block_layout:
         return extension_cast< ktl::api::extension::ext_scalar_block_layout >();
-    }
-    if (_extension == ktl::api::extension::google_hlsl_functionality1)
-    {
+    case ktl::api::extension::google_hlsl_functionality1:
         return extension_cast< ktl::api::extension::google_hlsl_functionality1 >();
-    }
-    if (_extension == ktl::api::extension::google_decorate_string)
-    {
+    case ktl::api::extension::google_decorate_string:
         return extension_cast< ktl::api::extension::google_decorate_string >();
-    }
-    if (_extension == ktl::api::extension::ext_subgroup_size_control)
-    {
+    case ktl::api::extension::ext_subgroup_size_control:
         return extension_cast< ktl::api::extension::ext_subgroup_size_control >();
-    }
-    if (_extension == ktl::api::extension::khr_fragment_shading_rate)
-    {
+    case ktl::api::extension::khr_fragment_shading_rate:
         return extension_cast< ktl::api::extension::khr_fragment_shading_rate >();
-    }
-    if (_extension == ktl::api::extension::amd_shader_core_properties2)
-    {
+    case ktl::api::extension::amd_shader_core_properties2:
         return extension_cast< ktl::api::extension::amd_shader_core_properties2 >();
-    }
-    if (_extension == ktl::api::extension::amd_device_coherent_memory)
-    {
+    case ktl::api::extension::amd_device_coherent_memory:
         return extension_cast< ktl::api::extension::amd_device_coherent_memory >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_constant_data)
-    {
+    case ktl::api::extension::khr_shader_constant_data:
         return extension_cast< ktl::api::extension::khr_shader_constant_data >();
-    }
-    if (_extension == ktl::api::extension::khr_dynamic_rendering_local_read)
-    {
+    case ktl::api::extension::khr_dynamic_rendering_local_read:
         return extension_cast< ktl::api::extension::khr_dynamic_rendering_local_read >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_abort)
-    {
+    case ktl::api::extension::khr_shader_abort:
         return extension_cast< ktl::api::extension::khr_shader_abort >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_image_atomic_int64)
-    {
+    case ktl::api::extension::ext_shader_image_atomic_int64:
         return extension_cast< ktl::api::extension::ext_shader_image_atomic_int64 >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_quad_control)
-    {
+    case ktl::api::extension::khr_shader_quad_control:
         return extension_cast< ktl::api::extension::khr_shader_quad_control >();
-    }
-    if (_extension == ktl::api::extension::khr_spirv_1_4)
-    {
+    case ktl::api::extension::khr_spirv_1_4:
         return extension_cast< ktl::api::extension::khr_spirv_1_4 >();
-    }
-    if (_extension == ktl::api::extension::ext_memory_budget)
-    {
+    case ktl::api::extension::ext_memory_budget:
         return extension_cast< ktl::api::extension::ext_memory_budget >();
-    }
-    if (_extension == ktl::api::extension::ext_memory_priority)
-    {
+    case ktl::api::extension::ext_memory_priority:
         return extension_cast< ktl::api::extension::ext_memory_priority >();
-    }
-    if (_extension == ktl::api::extension::khr_surface_protected_capabilities)
-    {
+    case ktl::api::extension::khr_surface_protected_capabilities:
         return extension_cast< ktl::api::extension::khr_surface_protected_capabilities >();
-    }
-    if (_extension == ktl::api::extension::nv_dedicated_allocation_image_aliasing)
-    {
+    case ktl::api::extension::nv_dedicated_allocation_image_aliasing:
         return extension_cast< ktl::api::extension::nv_dedicated_allocation_image_aliasing >();
-    }
-    if (_extension == ktl::api::extension::khr_separate_depth_stencil_layouts)
-    {
+    case ktl::api::extension::khr_separate_depth_stencil_layouts:
         return extension_cast< ktl::api::extension::khr_separate_depth_stencil_layouts >();
-    }
-    if (_extension == ktl::api::extension::ext_buffer_device_address)
-    {
+    case ktl::api::extension::ext_buffer_device_address:
         return extension_cast< ktl::api::extension::ext_buffer_device_address >();
-    }
-    if (_extension == ktl::api::extension::ext_tooling_info)
-    {
+    case ktl::api::extension::ext_tooling_info:
         return extension_cast< ktl::api::extension::ext_tooling_info >();
-    }
-    if (_extension == ktl::api::extension::ext_separate_stencil_usage)
-    {
+    case ktl::api::extension::ext_separate_stencil_usage:
         return extension_cast< ktl::api::extension::ext_separate_stencil_usage >();
-    }
-    if (_extension == ktl::api::extension::ext_validation_features)
-    {
+    case ktl::api::extension::ext_validation_features:
         return extension_cast< ktl::api::extension::ext_validation_features >();
-    }
-    if (_extension == ktl::api::extension::khr_present_wait)
-    {
+    case ktl::api::extension::khr_present_wait:
         return extension_cast< ktl::api::extension::khr_present_wait >();
-    }
-    if (_extension == ktl::api::extension::nv_cooperative_matrix)
-    {
+    case ktl::api::extension::nv_cooperative_matrix:
         return extension_cast< ktl::api::extension::nv_cooperative_matrix >();
-    }
-    if (_extension == ktl::api::extension::nv_coverage_reduction_mode)
-    {
+    case ktl::api::extension::nv_coverage_reduction_mode:
         return extension_cast< ktl::api::extension::nv_coverage_reduction_mode >();
-    }
-    if (_extension == ktl::api::extension::ext_fragment_shader_interlock)
-    {
+    case ktl::api::extension::ext_fragment_shader_interlock:
         return extension_cast< ktl::api::extension::ext_fragment_shader_interlock >();
-    }
-    if (_extension == ktl::api::extension::ext_ycbcr_image_arrays)
-    {
+    case ktl::api::extension::ext_ycbcr_image_arrays:
         return extension_cast< ktl::api::extension::ext_ycbcr_image_arrays >();
-    }
-    if (_extension == ktl::api::extension::khr_uniform_buffer_standard_layout)
-    {
+    case ktl::api::extension::khr_uniform_buffer_standard_layout:
         return extension_cast< ktl::api::extension::khr_uniform_buffer_standard_layout >();
-    }
-    if (_extension == ktl::api::extension::ext_provoking_vertex)
-    {
+    case ktl::api::extension::ext_provoking_vertex:
         return extension_cast< ktl::api::extension::ext_provoking_vertex >();
-    }
-    if (_extension == ktl::api::extension::ext_full_screen_exclusive)
-    {
+    case ktl::api::extension::ext_full_screen_exclusive:
         return extension_cast< ktl::api::extension::ext_full_screen_exclusive >();
-    }
-    if (_extension == ktl::api::extension::ext_headless_surface)
-    {
+    case ktl::api::extension::ext_headless_surface:
         return extension_cast< ktl::api::extension::ext_headless_surface >();
-    }
-    if (_extension == ktl::api::extension::khr_buffer_device_address)
-    {
+    case ktl::api::extension::khr_buffer_device_address:
         return extension_cast< ktl::api::extension::khr_buffer_device_address >();
-    }
-    if (_extension == ktl::api::extension::ext_line_rasterization)
-    {
+    case ktl::api::extension::ext_line_rasterization:
         return extension_cast< ktl::api::extension::ext_line_rasterization >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_atomic_float)
-    {
+    case ktl::api::extension::ext_shader_atomic_float:
         return extension_cast< ktl::api::extension::ext_shader_atomic_float >();
-    }
-    if (_extension == ktl::api::extension::ext_host_query_reset)
-    {
+    case ktl::api::extension::ext_host_query_reset:
         return extension_cast< ktl::api::extension::ext_host_query_reset >();
-    }
-    if (_extension == ktl::api::extension::ext_index_type_uint8)
-    {
+    case ktl::api::extension::ext_index_type_uint8:
         return extension_cast< ktl::api::extension::ext_index_type_uint8 >();
-    }
-    if (_extension == ktl::api::extension::ext_extended_dynamic_state)
-    {
+    case ktl::api::extension::ext_extended_dynamic_state:
         return extension_cast< ktl::api::extension::ext_extended_dynamic_state >();
-    }
-    if (_extension == ktl::api::extension::khr_deferred_host_operations)
-    {
+    case ktl::api::extension::khr_deferred_host_operations:
         return extension_cast< ktl::api::extension::khr_deferred_host_operations >();
-    }
-    if (_extension == ktl::api::extension::khr_pipeline_executable_properties)
-    {
+    case ktl::api::extension::khr_pipeline_executable_properties:
         return extension_cast< ktl::api::extension::khr_pipeline_executable_properties >();
-    }
-    if (_extension == ktl::api::extension::ext_host_image_copy)
-    {
+    case ktl::api::extension::ext_host_image_copy:
         return extension_cast< ktl::api::extension::ext_host_image_copy >();
-    }
-    if (_extension == ktl::api::extension::khr_map_memory2)
-    {
+    case ktl::api::extension::khr_map_memory2:
         return extension_cast< ktl::api::extension::khr_map_memory2 >();
-    }
-    if (_extension == ktl::api::extension::ext_map_memory_placed)
-    {
+    case ktl::api::extension::ext_map_memory_placed:
         return extension_cast< ktl::api::extension::ext_map_memory_placed >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_atomic_float2)
-    {
+    case ktl::api::extension::ext_shader_atomic_float2:
         return extension_cast< ktl::api::extension::ext_shader_atomic_float2 >();
-    }
-    if (_extension == ktl::api::extension::ext_surface_maintenance1)
-    {
+    case ktl::api::extension::ext_surface_maintenance1:
         return extension_cast< ktl::api::extension::ext_surface_maintenance1 >();
-    }
-    if (_extension == ktl::api::extension::ext_swapchain_maintenance1)
-    {
+    case ktl::api::extension::ext_swapchain_maintenance1:
         return extension_cast< ktl::api::extension::ext_swapchain_maintenance1 >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_demote_to_helper_invocation)
-    {
+    case ktl::api::extension::ext_shader_demote_to_helper_invocation:
         return extension_cast< ktl::api::extension::ext_shader_demote_to_helper_invocation >();
-    }
-    if (_extension == ktl::api::extension::nv_device_generated_commands)
-    {
+    case ktl::api::extension::nv_device_generated_commands:
         return extension_cast< ktl::api::extension::nv_device_generated_commands >();
-    }
-    if (_extension == ktl::api::extension::nv_inherited_viewport_scissor)
-    {
+    case ktl::api::extension::nv_inherited_viewport_scissor:
         return extension_cast< ktl::api::extension::nv_inherited_viewport_scissor >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_integer_dot_product)
-    {
+    case ktl::api::extension::khr_shader_integer_dot_product:
         return extension_cast< ktl::api::extension::khr_shader_integer_dot_product >();
-    }
-    if (_extension == ktl::api::extension::ext_texel_buffer_alignment)
-    {
+    case ktl::api::extension::ext_texel_buffer_alignment:
         return extension_cast< ktl::api::extension::ext_texel_buffer_alignment >();
-    }
-    if (_extension == ktl::api::extension::qcom_render_pass_transform)
-    {
+    case ktl::api::extension::qcom_render_pass_transform:
         return extension_cast< ktl::api::extension::qcom_render_pass_transform >();
-    }
-    if (_extension == ktl::api::extension::ext_depth_bias_control)
-    {
+    case ktl::api::extension::ext_depth_bias_control:
         return extension_cast< ktl::api::extension::ext_depth_bias_control >();
-    }
-    if (_extension == ktl::api::extension::ext_device_memory_report)
-    {
+    case ktl::api::extension::ext_device_memory_report:
         return extension_cast< ktl::api::extension::ext_device_memory_report >();
-    }
-    if (_extension == ktl::api::extension::ext_acquire_drm_display)
-    {
+    case ktl::api::extension::ext_acquire_drm_display:
         return extension_cast< ktl::api::extension::ext_acquire_drm_display >();
-    }
-    if (_extension == ktl::api::extension::ext_robustness2)
-    {
+    case ktl::api::extension::ext_robustness2:
         return extension_cast< ktl::api::extension::ext_robustness2 >();
-    }
-    if (_extension == ktl::api::extension::ext_custom_border_color)
-    {
+    case ktl::api::extension::ext_custom_border_color:
         return extension_cast< ktl::api::extension::ext_custom_border_color >();
-    }
-    if (_extension == ktl::api::extension::ext_texture_compression_astc_3d)
-    {
+    case ktl::api::extension::ext_texture_compression_astc_3d:
         return extension_cast< ktl::api::extension::ext_texture_compression_astc_3d >();
-    }
-    if (_extension == ktl::api::extension::google_user_type)
-    {
+    case ktl::api::extension::google_user_type:
         return extension_cast< ktl::api::extension::google_user_type >();
-    }
-    if (_extension == ktl::api::extension::khr_pipeline_library)
-    {
+    case ktl::api::extension::khr_pipeline_library:
         return extension_cast< ktl::api::extension::khr_pipeline_library >();
-    }
-    if (_extension == ktl::api::extension::nv_present_barrier)
-    {
+    case ktl::api::extension::nv_present_barrier:
         return extension_cast< ktl::api::extension::nv_present_barrier >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_non_semantic_info)
-    {
+    case ktl::api::extension::khr_shader_non_semantic_info:
         return extension_cast< ktl::api::extension::khr_shader_non_semantic_info >();
-    }
-    if (_extension == ktl::api::extension::khr_present_id)
-    {
+    case ktl::api::extension::khr_present_id:
         return extension_cast< ktl::api::extension::khr_present_id >();
-    }
-    if (_extension == ktl::api::extension::ext_private_data)
-    {
+    case ktl::api::extension::ext_private_data:
         return extension_cast< ktl::api::extension::ext_private_data >();
-    }
-    if (_extension == ktl::api::extension::ext_pipeline_creation_cache_control)
-    {
+    case ktl::api::extension::ext_pipeline_creation_cache_control:
         return extension_cast< ktl::api::extension::ext_pipeline_creation_cache_control >();
-    }
-    if (_extension == ktl::api::extension::nv_device_diagnostics_config)
-    {
+    case ktl::api::extension::nv_device_diagnostics_config:
         return extension_cast< ktl::api::extension::nv_device_diagnostics_config >();
-    }
-    if (_extension == ktl::api::extension::qcom_render_pass_store_ops)
-    {
+    case ktl::api::extension::qcom_render_pass_store_ops:
         return extension_cast< ktl::api::extension::qcom_render_pass_store_ops >();
-    }
-    if (_extension == ktl::api::extension::qcom_queue_perf_hint)
-    {
+    case ktl::api::extension::qcom_queue_perf_hint:
         return extension_cast< ktl::api::extension::qcom_queue_perf_hint >();
-    }
-    if (_extension == ktl::api::extension::qcom_image_processing3)
-    {
+    case ktl::api::extension::qcom_image_processing3:
         return extension_cast< ktl::api::extension::qcom_image_processing3 >();
-    }
-    if (_extension == ktl::api::extension::qcom_shader_multiple_wait_queues)
-    {
+    case ktl::api::extension::qcom_shader_multiple_wait_queues:
         return extension_cast< ktl::api::extension::qcom_shader_multiple_wait_queues >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_split_barrier)
-    {
+    case ktl::api::extension::ext_shader_split_barrier:
         return extension_cast< ktl::api::extension::ext_shader_split_barrier >();
-    }
-    if (_extension == ktl::api::extension::nv_cuda_kernel_launch)
-    {
+    case ktl::api::extension::nv_cuda_kernel_launch:
         return extension_cast< ktl::api::extension::nv_cuda_kernel_launch >();
-    }
-    if (_extension == ktl::api::extension::qcom_tile_shading)
-    {
+    case ktl::api::extension::qcom_tile_shading:
         return extension_cast< ktl::api::extension::qcom_tile_shading >();
-    }
-    if (_extension == ktl::api::extension::nv_low_latency)
-    {
+    case ktl::api::extension::nv_low_latency:
         return extension_cast< ktl::api::extension::nv_low_latency >();
-    }
-    if (_extension == ktl::api::extension::ext_metal_objects)
-    {
+    case ktl::api::extension::ext_metal_objects:
         return extension_cast< ktl::api::extension::ext_metal_objects >();
-    }
-    if (_extension == ktl::api::extension::khr_synchronization2)
-    {
+    case ktl::api::extension::khr_synchronization2:
         return extension_cast< ktl::api::extension::khr_synchronization2 >();
-    }
-    if (_extension == ktl::api::extension::ext_descriptor_buffer)
-    {
+    case ktl::api::extension::ext_descriptor_buffer:
         return extension_cast< ktl::api::extension::ext_descriptor_buffer >();
-    }
-    if (_extension == ktl::api::extension::khr_device_address_commands)
-    {
+    case ktl::api::extension::khr_device_address_commands:
         return extension_cast< ktl::api::extension::khr_device_address_commands >();
-    }
-    if (_extension == ktl::api::extension::ext_graphics_pipeline_library)
-    {
+    case ktl::api::extension::ext_graphics_pipeline_library:
         return extension_cast< ktl::api::extension::ext_graphics_pipeline_library >();
-    }
-    if (_extension == ktl::api::extension::amd_shader_early_and_late_fragment_tests)
-    {
+    case ktl::api::extension::amd_shader_early_and_late_fragment_tests:
         return extension_cast< ktl::api::extension::amd_shader_early_and_late_fragment_tests >();
-    }
-    if (_extension == ktl::api::extension::khr_fragment_shader_barycentric)
-    {
+    case ktl::api::extension::khr_fragment_shader_barycentric:
         return extension_cast< ktl::api::extension::khr_fragment_shader_barycentric >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_subgroup_uniform_control_flow)
-    {
+    case ktl::api::extension::khr_shader_subgroup_uniform_control_flow:
         return extension_cast< ktl::api::extension::khr_shader_subgroup_uniform_control_flow >();
-    }
-    if (_extension == ktl::api::extension::khr_zero_initialize_workgroup_memory)
-    {
+    case ktl::api::extension::khr_zero_initialize_workgroup_memory:
         return extension_cast< ktl::api::extension::khr_zero_initialize_workgroup_memory >();
-    }
-    if (_extension == ktl::api::extension::nv_fragment_shading_rate_enums)
-    {
+    case ktl::api::extension::nv_fragment_shading_rate_enums:
         return extension_cast< ktl::api::extension::nv_fragment_shading_rate_enums >();
-    }
-    if (_extension == ktl::api::extension::nv_ray_tracing_motion_blur)
-    {
+    case ktl::api::extension::nv_ray_tracing_motion_blur:
         return extension_cast< ktl::api::extension::nv_ray_tracing_motion_blur >();
-    }
-    if (_extension == ktl::api::extension::ext_mesh_shader)
-    {
+    case ktl::api::extension::ext_mesh_shader:
         return extension_cast< ktl::api::extension::ext_mesh_shader >();
-    }
-    if (_extension == ktl::api::extension::ext_ycbcr_2plane_444_formats)
-    {
+    case ktl::api::extension::ext_ycbcr_2plane_444_formats:
         return extension_cast< ktl::api::extension::ext_ycbcr_2plane_444_formats >();
-    }
-    if (_extension == ktl::api::extension::ext_fragment_density_map2)
-    {
+    case ktl::api::extension::ext_fragment_density_map2:
         return extension_cast< ktl::api::extension::ext_fragment_density_map2 >();
-    }
-    if (_extension == ktl::api::extension::qcom_rotated_copy_commands)
-    {
+    case ktl::api::extension::qcom_rotated_copy_commands:
         return extension_cast< ktl::api::extension::qcom_rotated_copy_commands >();
-    }
-    if (_extension == ktl::api::extension::ext_image_robustness)
-    {
+    case ktl::api::extension::ext_image_robustness:
         return extension_cast< ktl::api::extension::ext_image_robustness >();
-    }
-    if (_extension == ktl::api::extension::khr_workgroup_memory_explicit_layout)
-    {
+    case ktl::api::extension::khr_workgroup_memory_explicit_layout:
         return extension_cast< ktl::api::extension::khr_workgroup_memory_explicit_layout >();
-    }
-    if (_extension == ktl::api::extension::khr_copy_commands2)
-    {
+    case ktl::api::extension::khr_copy_commands2:
         return extension_cast< ktl::api::extension::khr_copy_commands2 >();
-    }
-    if (_extension == ktl::api::extension::ext_image_compression_control)
-    {
+    case ktl::api::extension::ext_image_compression_control:
         return extension_cast< ktl::api::extension::ext_image_compression_control >();
-    }
-    if (_extension == ktl::api::extension::ext_attachment_feedback_loop_layout)
-    {
+    case ktl::api::extension::ext_attachment_feedback_loop_layout:
         return extension_cast< ktl::api::extension::ext_attachment_feedback_loop_layout >();
-    }
-    if (_extension == ktl::api::extension::ext_4444_formats)
-    {
+    case ktl::api::extension::ext_4444_formats:
         return extension_cast< ktl::api::extension::ext_4444_formats >();
-    }
-    if (_extension == ktl::api::extension::ext_device_fault)
-    {
+    case ktl::api::extension::ext_device_fault:
         return extension_cast< ktl::api::extension::ext_device_fault >();
-    }
-    if (_extension == ktl::api::extension::arm_rasterization_order_attachment_access)
-    {
+    case ktl::api::extension::arm_rasterization_order_attachment_access:
         return extension_cast< ktl::api::extension::arm_rasterization_order_attachment_access >();
-    }
-    if (_extension == ktl::api::extension::ext_rgba10x6_formats)
-    {
+    case ktl::api::extension::ext_rgba10x6_formats:
         return extension_cast< ktl::api::extension::ext_rgba10x6_formats >();
-    }
-    if (_extension == ktl::api::extension::nv_acquire_winrt_display)
-    {
+    case ktl::api::extension::nv_acquire_winrt_display:
         return extension_cast< ktl::api::extension::nv_acquire_winrt_display >();
-    }
-    if (_extension == ktl::api::extension::ext_directfb_surface)
-    {
+    case ktl::api::extension::ext_directfb_surface:
         return extension_cast< ktl::api::extension::ext_directfb_surface >();
-    }
-    if (_extension == ktl::api::extension::valve_mutable_descriptor_type)
-    {
+    case ktl::api::extension::valve_mutable_descriptor_type:
         return extension_cast< ktl::api::extension::valve_mutable_descriptor_type >();
-    }
-    if (_extension == ktl::api::extension::ext_vertex_input_dynamic_state)
-    {
+    case ktl::api::extension::ext_vertex_input_dynamic_state:
         return extension_cast< ktl::api::extension::ext_vertex_input_dynamic_state >();
-    }
-    if (_extension == ktl::api::extension::ext_physical_device_drm)
-    {
+    case ktl::api::extension::ext_physical_device_drm:
         return extension_cast< ktl::api::extension::ext_physical_device_drm >();
-    }
-    if (_extension == ktl::api::extension::ext_device_address_binding_report)
-    {
+    case ktl::api::extension::ext_device_address_binding_report:
         return extension_cast< ktl::api::extension::ext_device_address_binding_report >();
-    }
-    if (_extension == ktl::api::extension::ext_depth_clip_control)
-    {
+    case ktl::api::extension::ext_depth_clip_control:
         return extension_cast< ktl::api::extension::ext_depth_clip_control >();
-    }
-    if (_extension == ktl::api::extension::ext_primitive_topology_list_restart)
-    {
+    case ktl::api::extension::ext_primitive_topology_list_restart:
         return extension_cast< ktl::api::extension::ext_primitive_topology_list_restart >();
-    }
-    if (_extension == ktl::api::extension::khr_format_feature_flags2)
-    {
+    case ktl::api::extension::khr_format_feature_flags2:
         return extension_cast< ktl::api::extension::khr_format_feature_flags2 >();
-    }
-    if (_extension == ktl::api::extension::ext_present_mode_fifo_latest_ready)
-    {
+    case ktl::api::extension::ext_present_mode_fifo_latest_ready:
         return extension_cast< ktl::api::extension::ext_present_mode_fifo_latest_ready >();
-    }
-    if (_extension == ktl::api::extension::fuchsia_external_memory)
-    {
+    case ktl::api::extension::fuchsia_external_memory:
         return extension_cast< ktl::api::extension::fuchsia_external_memory >();
-    }
-    if (_extension == ktl::api::extension::fuchsia_external_semaphore)
-    {
+    case ktl::api::extension::fuchsia_external_semaphore:
         return extension_cast< ktl::api::extension::fuchsia_external_semaphore >();
-    }
-    if (_extension == ktl::api::extension::fuchsia_buffer_collection)
-    {
+    case ktl::api::extension::fuchsia_buffer_collection:
         return extension_cast< ktl::api::extension::fuchsia_buffer_collection >();
-    }
-    if (_extension == ktl::api::extension::huawei_subpass_shading)
-    {
+    case ktl::api::extension::huawei_subpass_shading:
         return extension_cast< ktl::api::extension::huawei_subpass_shading >();
-    }
-    if (_extension == ktl::api::extension::huawei_invocation_mask)
-    {
+    case ktl::api::extension::huawei_invocation_mask:
         return extension_cast< ktl::api::extension::huawei_invocation_mask >();
-    }
-    if (_extension == ktl::api::extension::nv_external_memory_rdma)
-    {
+    case ktl::api::extension::nv_external_memory_rdma:
         return extension_cast< ktl::api::extension::nv_external_memory_rdma >();
-    }
-    if (_extension == ktl::api::extension::ext_pipeline_properties)
-    {
+    case ktl::api::extension::ext_pipeline_properties:
         return extension_cast< ktl::api::extension::ext_pipeline_properties >();
-    }
-    if (_extension == ktl::api::extension::ext_frame_boundary)
-    {
+    case ktl::api::extension::ext_frame_boundary:
         return extension_cast< ktl::api::extension::ext_frame_boundary >();
-    }
-    if (_extension == ktl::api::extension::ext_multisampled_render_to_single_sampled)
-    {
+    case ktl::api::extension::ext_multisampled_render_to_single_sampled:
         return extension_cast< ktl::api::extension::ext_multisampled_render_to_single_sampled >();
-    }
-    if (_extension == ktl::api::extension::ext_extended_dynamic_state2)
-    {
+    case ktl::api::extension::ext_extended_dynamic_state2:
         return extension_cast< ktl::api::extension::ext_extended_dynamic_state2 >();
-    }
-    if (_extension == ktl::api::extension::qnx_screen_surface)
-    {
+    case ktl::api::extension::qnx_screen_surface:
         return extension_cast< ktl::api::extension::qnx_screen_surface >();
-    }
-    if (_extension == ktl::api::extension::ext_color_write_enable)
-    {
+    case ktl::api::extension::ext_color_write_enable:
         return extension_cast< ktl::api::extension::ext_color_write_enable >();
-    }
-    if (_extension == ktl::api::extension::ext_primitives_generated_query)
-    {
+    case ktl::api::extension::ext_primitives_generated_query:
         return extension_cast< ktl::api::extension::ext_primitives_generated_query >();
-    }
-    if (_extension == ktl::api::extension::khr_ray_tracing_maintenance1)
-    {
+    case ktl::api::extension::khr_ray_tracing_maintenance1:
         return extension_cast< ktl::api::extension::khr_ray_tracing_maintenance1 >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_untyped_pointers)
-    {
+    case ktl::api::extension::khr_shader_untyped_pointers:
         return extension_cast< ktl::api::extension::khr_shader_untyped_pointers >();
-    }
-    if (_extension == ktl::api::extension::ext_global_priority_query)
-    {
+    case ktl::api::extension::ext_global_priority_query:
         return extension_cast< ktl::api::extension::ext_global_priority_query >();
-    }
-    if (_extension == ktl::api::extension::ext_image_view_min_lod)
-    {
+    case ktl::api::extension::ext_image_view_min_lod:
         return extension_cast< ktl::api::extension::ext_image_view_min_lod >();
-    }
-    if (_extension == ktl::api::extension::ext_multi_draw)
-    {
+    case ktl::api::extension::ext_multi_draw:
         return extension_cast< ktl::api::extension::ext_multi_draw >();
-    }
-    if (_extension == ktl::api::extension::ext_image_2d_view_of_3d)
-    {
+    case ktl::api::extension::ext_image_2d_view_of_3d:
         return extension_cast< ktl::api::extension::ext_image_2d_view_of_3d >();
-    }
-    if (_extension == ktl::api::extension::khr_portability_enumeration)
-    {
+    case ktl::api::extension::khr_portability_enumeration:
         return extension_cast< ktl::api::extension::khr_portability_enumeration >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_tile_image)
-    {
+    case ktl::api::extension::ext_shader_tile_image:
         return extension_cast< ktl::api::extension::ext_shader_tile_image >();
-    }
-    if (_extension == ktl::api::extension::ext_opacity_micromap)
-    {
+    case ktl::api::extension::ext_opacity_micromap:
         return extension_cast< ktl::api::extension::ext_opacity_micromap >();
-    }
-    if (_extension == ktl::api::extension::nv_displacement_micromap)
-    {
+    case ktl::api::extension::nv_displacement_micromap:
         return extension_cast< ktl::api::extension::nv_displacement_micromap >();
-    }
-    if (_extension == ktl::api::extension::ext_load_store_op_none)
-    {
+    case ktl::api::extension::ext_load_store_op_none:
         return extension_cast< ktl::api::extension::ext_load_store_op_none >();
-    }
-    if (_extension == ktl::api::extension::huawei_cluster_culling_shader)
-    {
+    case ktl::api::extension::huawei_cluster_culling_shader:
         return extension_cast< ktl::api::extension::huawei_cluster_culling_shader >();
-    }
-    if (_extension == ktl::api::extension::ext_border_color_swizzle)
-    {
+    case ktl::api::extension::ext_border_color_swizzle:
         return extension_cast< ktl::api::extension::ext_border_color_swizzle >();
-    }
-    if (_extension == ktl::api::extension::ext_pageable_device_local_memory)
-    {
+    case ktl::api::extension::ext_pageable_device_local_memory:
         return extension_cast< ktl::api::extension::ext_pageable_device_local_memory >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance4)
-    {
+    case ktl::api::extension::khr_maintenance4:
         return extension_cast< ktl::api::extension::khr_maintenance4 >();
-    }
-    if (_extension == ktl::api::extension::arm_shader_core_properties)
-    {
+    case ktl::api::extension::arm_shader_core_properties:
         return extension_cast< ktl::api::extension::arm_shader_core_properties >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_subgroup_rotate)
-    {
+    case ktl::api::extension::khr_shader_subgroup_rotate:
         return extension_cast< ktl::api::extension::khr_shader_subgroup_rotate >();
-    }
-    if (_extension == ktl::api::extension::arm_scheduling_controls)
-    {
+    case ktl::api::extension::arm_scheduling_controls:
         return extension_cast< ktl::api::extension::arm_scheduling_controls >();
-    }
-    if (_extension == ktl::api::extension::ext_image_sliced_view_of_3d)
-    {
+    case ktl::api::extension::ext_image_sliced_view_of_3d:
         return extension_cast< ktl::api::extension::ext_image_sliced_view_of_3d >();
-    }
-    if (_extension == ktl::api::extension::valve_descriptor_set_host_mapping)
-    {
+    case ktl::api::extension::valve_descriptor_set_host_mapping:
         return extension_cast< ktl::api::extension::valve_descriptor_set_host_mapping >();
-    }
-    if (_extension == ktl::api::extension::ext_depth_clamp_zero_one)
-    {
+    case ktl::api::extension::ext_depth_clamp_zero_one:
         return extension_cast< ktl::api::extension::ext_depth_clamp_zero_one >();
-    }
-    if (_extension == ktl::api::extension::ext_non_seamless_cube_map)
-    {
+    case ktl::api::extension::ext_non_seamless_cube_map:
         return extension_cast< ktl::api::extension::ext_non_seamless_cube_map >();
-    }
-    if (_extension == ktl::api::extension::arm_render_pass_striped)
-    {
+    case ktl::api::extension::arm_render_pass_striped:
         return extension_cast< ktl::api::extension::arm_render_pass_striped >();
-    }
-    if (_extension == ktl::api::extension::qcom_fragment_density_map_offset)
-    {
+    case ktl::api::extension::qcom_fragment_density_map_offset:
         return extension_cast< ktl::api::extension::qcom_fragment_density_map_offset >();
-    }
-    if (_extension == ktl::api::extension::nv_copy_memory_indirect)
-    {
+    case ktl::api::extension::nv_copy_memory_indirect:
         return extension_cast< ktl::api::extension::nv_copy_memory_indirect >();
-    }
-    if (_extension == ktl::api::extension::nv_memory_decompression)
-    {
+    case ktl::api::extension::nv_memory_decompression:
         return extension_cast< ktl::api::extension::nv_memory_decompression >();
-    }
-    if (_extension == ktl::api::extension::nv_device_generated_commands_compute)
-    {
+    case ktl::api::extension::nv_device_generated_commands_compute:
         return extension_cast< ktl::api::extension::nv_device_generated_commands_compute >();
-    }
-    if (_extension == ktl::api::extension::nv_ray_tracing_linear_swept_spheres)
-    {
+    case ktl::api::extension::nv_ray_tracing_linear_swept_spheres:
         return extension_cast< ktl::api::extension::nv_ray_tracing_linear_swept_spheres >();
-    }
-    if (_extension == ktl::api::extension::nv_linear_color_attachment)
-    {
+    case ktl::api::extension::nv_linear_color_attachment:
         return extension_cast< ktl::api::extension::nv_linear_color_attachment >();
-    }
-    if (_extension == ktl::api::extension::google_surfaceless_query)
-    {
+    case ktl::api::extension::google_surfaceless_query:
         return extension_cast< ktl::api::extension::google_surfaceless_query >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_maximal_reconvergence)
-    {
+    case ktl::api::extension::khr_shader_maximal_reconvergence:
         return extension_cast< ktl::api::extension::khr_shader_maximal_reconvergence >();
-    }
-    if (_extension == ktl::api::extension::ext_image_compression_control_swapchain)
-    {
+    case ktl::api::extension::ext_image_compression_control_swapchain:
         return extension_cast< ktl::api::extension::ext_image_compression_control_swapchain >();
-    }
-    if (_extension == ktl::api::extension::qcom_image_processing)
-    {
+    case ktl::api::extension::qcom_image_processing:
         return extension_cast< ktl::api::extension::qcom_image_processing >();
-    }
-    if (_extension == ktl::api::extension::ext_nested_command_buffer)
-    {
+    case ktl::api::extension::ext_nested_command_buffer:
         return extension_cast< ktl::api::extension::ext_nested_command_buffer >();
-    }
-    if (_extension == ktl::api::extension::ohos_external_memory)
-    {
+    case ktl::api::extension::ohos_external_memory:
         return extension_cast< ktl::api::extension::ohos_external_memory >();
-    }
-    if (_extension == ktl::api::extension::ext_external_memory_acquire_unmodified)
-    {
+    case ktl::api::extension::ext_external_memory_acquire_unmodified:
         return extension_cast< ktl::api::extension::ext_external_memory_acquire_unmodified >();
-    }
-    if (_extension == ktl::api::extension::ext_extended_dynamic_state3)
-    {
+    case ktl::api::extension::ext_extended_dynamic_state3:
         return extension_cast< ktl::api::extension::ext_extended_dynamic_state3 >();
-    }
-    if (_extension == ktl::api::extension::ext_subpass_merge_feedback)
-    {
+    case ktl::api::extension::ext_subpass_merge_feedback:
         return extension_cast< ktl::api::extension::ext_subpass_merge_feedback >();
-    }
-    if (_extension == ktl::api::extension::lunarg_direct_driver_loading)
-    {
+    case ktl::api::extension::lunarg_direct_driver_loading:
         return extension_cast< ktl::api::extension::lunarg_direct_driver_loading >();
-    }
-    if (_extension == ktl::api::extension::arm_tensors)
-    {
+    case ktl::api::extension::arm_tensors:
         return extension_cast< ktl::api::extension::arm_tensors >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_module_identifier)
-    {
+    case ktl::api::extension::ext_shader_module_identifier:
         return extension_cast< ktl::api::extension::ext_shader_module_identifier >();
-    }
-    if (_extension == ktl::api::extension::ext_rasterization_order_attachment_access)
-    {
+    case ktl::api::extension::ext_rasterization_order_attachment_access:
         return extension_cast< ktl::api::extension::ext_rasterization_order_attachment_access >();
-    }
-    if (_extension == ktl::api::extension::nv_optical_flow)
-    {
+    case ktl::api::extension::nv_optical_flow:
         return extension_cast< ktl::api::extension::nv_optical_flow >();
-    }
-    if (_extension == ktl::api::extension::ext_legacy_dithering)
-    {
+    case ktl::api::extension::ext_legacy_dithering:
         return extension_cast< ktl::api::extension::ext_legacy_dithering >();
-    }
-    if (_extension == ktl::api::extension::ext_pipeline_protected_access)
-    {
+    case ktl::api::extension::ext_pipeline_protected_access:
         return extension_cast< ktl::api::extension::ext_pipeline_protected_access >();
-    }
-    if (_extension == ktl::api::extension::android_external_format_resolve)
-    {
+    case ktl::api::extension::android_external_format_resolve:
         return extension_cast< ktl::api::extension::android_external_format_resolve >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance5)
-    {
+    case ktl::api::extension::khr_maintenance5:
         return extension_cast< ktl::api::extension::khr_maintenance5 >();
-    }
-    if (_extension == ktl::api::extension::amd_anti_lag)
-    {
+    case ktl::api::extension::amd_anti_lag:
         return extension_cast< ktl::api::extension::amd_anti_lag >();
-    }
-    if (_extension == ktl::api::extension::amdx_dense_geometry_format)
-    {
+    case ktl::api::extension::amdx_dense_geometry_format:
         return extension_cast< ktl::api::extension::amdx_dense_geometry_format >();
-    }
-    if (_extension == ktl::api::extension::khr_present_id2)
-    {
+    case ktl::api::extension::khr_present_id2:
         return extension_cast< ktl::api::extension::khr_present_id2 >();
-    }
-    if (_extension == ktl::api::extension::khr_present_wait2)
-    {
+    case ktl::api::extension::khr_present_wait2:
         return extension_cast< ktl::api::extension::khr_present_wait2 >();
-    }
-    if (_extension == ktl::api::extension::khr_ray_tracing_position_fetch)
-    {
+    case ktl::api::extension::khr_ray_tracing_position_fetch:
         return extension_cast< ktl::api::extension::khr_ray_tracing_position_fetch >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_object)
-    {
+    case ktl::api::extension::ext_shader_object:
         return extension_cast< ktl::api::extension::ext_shader_object >();
-    }
-    if (_extension == ktl::api::extension::khr_pipeline_binary)
-    {
+    case ktl::api::extension::khr_pipeline_binary:
         return extension_cast< ktl::api::extension::khr_pipeline_binary >();
-    }
-    if (_extension == ktl::api::extension::qcom_tile_properties)
-    {
+    case ktl::api::extension::qcom_tile_properties:
         return extension_cast< ktl::api::extension::qcom_tile_properties >();
-    }
-    if (_extension == ktl::api::extension::sec_amigo_profiling)
-    {
+    case ktl::api::extension::sec_amigo_profiling:
         return extension_cast< ktl::api::extension::sec_amigo_profiling >();
-    }
-    if (_extension == ktl::api::extension::khr_surface_maintenance1)
-    {
+    case ktl::api::extension::khr_surface_maintenance1:
         return extension_cast< ktl::api::extension::khr_surface_maintenance1 >();
-    }
-    if (_extension == ktl::api::extension::khr_swapchain_maintenance1)
-    {
+    case ktl::api::extension::khr_swapchain_maintenance1:
         return extension_cast< ktl::api::extension::khr_swapchain_maintenance1 >();
-    }
-    if (_extension == ktl::api::extension::qcom_multiview_per_view_viewports)
-    {
+    case ktl::api::extension::qcom_multiview_per_view_viewports:
         return extension_cast< ktl::api::extension::qcom_multiview_per_view_viewports >();
-    }
-    if (_extension == ktl::api::extension::nv_ray_tracing_invocation_reorder)
-    {
+    case ktl::api::extension::nv_ray_tracing_invocation_reorder:
         return extension_cast< ktl::api::extension::nv_ray_tracing_invocation_reorder >();
-    }
-    if (_extension == ktl::api::extension::nv_cooperative_vector)
-    {
+    case ktl::api::extension::nv_cooperative_vector:
         return extension_cast< ktl::api::extension::nv_cooperative_vector >();
-    }
-    if (_extension == ktl::api::extension::nv_extended_sparse_address_space)
-    {
+    case ktl::api::extension::nv_extended_sparse_address_space:
         return extension_cast< ktl::api::extension::nv_extended_sparse_address_space >();
-    }
-    if (_extension == ktl::api::extension::ext_mutable_descriptor_type)
-    {
+    case ktl::api::extension::ext_mutable_descriptor_type:
         return extension_cast< ktl::api::extension::ext_mutable_descriptor_type >();
-    }
-    if (_extension == ktl::api::extension::ext_legacy_vertex_attributes)
-    {
+    case ktl::api::extension::ext_legacy_vertex_attributes:
         return extension_cast< ktl::api::extension::ext_legacy_vertex_attributes >();
-    }
-    if (_extension == ktl::api::extension::ext_layer_settings)
-    {
+    case ktl::api::extension::ext_layer_settings:
         return extension_cast< ktl::api::extension::ext_layer_settings >();
-    }
-    if (_extension == ktl::api::extension::arm_shader_core_builtins)
-    {
+    case ktl::api::extension::arm_shader_core_builtins:
         return extension_cast< ktl::api::extension::arm_shader_core_builtins >();
-    }
-    if (_extension == ktl::api::extension::ext_pipeline_library_group_handles)
-    {
+    case ktl::api::extension::ext_pipeline_library_group_handles:
         return extension_cast< ktl::api::extension::ext_pipeline_library_group_handles >();
-    }
-    if (_extension == ktl::api::extension::ext_dynamic_rendering_unused_attachments)
-    {
+    case ktl::api::extension::ext_dynamic_rendering_unused_attachments:
         return extension_cast< ktl::api::extension::ext_dynamic_rendering_unused_attachments >();
-    }
-    if (_extension == ktl::api::extension::khr_internally_synchronized_queues)
-    {
+    case ktl::api::extension::khr_internally_synchronized_queues:
         return extension_cast< ktl::api::extension::khr_internally_synchronized_queues >();
-    }
-    if (_extension == ktl::api::extension::nv_low_latency2)
-    {
+    case ktl::api::extension::nv_low_latency2:
         return extension_cast< ktl::api::extension::nv_low_latency2 >();
-    }
-    if (_extension == ktl::api::extension::khr_cooperative_matrix)
-    {
+    case ktl::api::extension::khr_cooperative_matrix:
         return extension_cast< ktl::api::extension::khr_cooperative_matrix >();
-    }
-    if (_extension == ktl::api::extension::arm_data_graph)
-    {
+    case ktl::api::extension::arm_data_graph:
         return extension_cast< ktl::api::extension::arm_data_graph >();
-    }
-    if (_extension == ktl::api::extension::arm_data_graph_instruction_set_tosa)
-    {
+    case ktl::api::extension::arm_data_graph_instruction_set_tosa:
         return extension_cast< ktl::api::extension::arm_data_graph_instruction_set_tosa >();
-    }
-    if (_extension == ktl::api::extension::qcom_multiview_per_view_render_areas)
-    {
+    case ktl::api::extension::qcom_multiview_per_view_render_areas:
         return extension_cast< ktl::api::extension::qcom_multiview_per_view_render_areas >();
-    }
-    if (_extension == ktl::api::extension::khr_compute_shader_derivatives)
-    {
+    case ktl::api::extension::khr_compute_shader_derivatives:
         return extension_cast< ktl::api::extension::khr_compute_shader_derivatives >();
-    }
-    if (_extension == ktl::api::extension::nv_per_stage_descriptor_set)
-    {
+    case ktl::api::extension::nv_per_stage_descriptor_set:
         return extension_cast< ktl::api::extension::nv_per_stage_descriptor_set >();
-    }
-    if (_extension == ktl::api::extension::qcom_image_processing2)
-    {
+    case ktl::api::extension::qcom_image_processing2:
         return extension_cast< ktl::api::extension::qcom_image_processing2 >();
-    }
-    if (_extension == ktl::api::extension::qcom_filter_cubic_weights)
-    {
+    case ktl::api::extension::qcom_filter_cubic_weights:
         return extension_cast< ktl::api::extension::qcom_filter_cubic_weights >();
-    }
-    if (_extension == ktl::api::extension::qcom_ycbcr_degamma)
-    {
+    case ktl::api::extension::qcom_ycbcr_degamma:
         return extension_cast< ktl::api::extension::qcom_ycbcr_degamma >();
-    }
-    if (_extension == ktl::api::extension::qcom_filter_cubic_clamp)
-    {
+    case ktl::api::extension::qcom_filter_cubic_clamp:
         return extension_cast< ktl::api::extension::qcom_filter_cubic_clamp >();
-    }
-    if (_extension == ktl::api::extension::ext_attachment_feedback_loop_dynamic_state)
-    {
+    case ktl::api::extension::ext_attachment_feedback_loop_dynamic_state:
         return extension_cast< ktl::api::extension::ext_attachment_feedback_loop_dynamic_state >();
-    }
-    if (_extension == ktl::api::extension::khr_vertex_attribute_divisor)
-    {
+    case ktl::api::extension::khr_vertex_attribute_divisor:
         return extension_cast< ktl::api::extension::khr_vertex_attribute_divisor >();
-    }
-    if (_extension == ktl::api::extension::khr_load_store_op_none)
-    {
+    case ktl::api::extension::khr_load_store_op_none:
         return extension_cast< ktl::api::extension::khr_load_store_op_none >();
-    }
-    if (_extension == ktl::api::extension::khr_unified_image_layouts)
-    {
+    case ktl::api::extension::khr_unified_image_layouts:
         return extension_cast< ktl::api::extension::khr_unified_image_layouts >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_float_controls2)
-    {
+    case ktl::api::extension::khr_shader_float_controls2:
         return extension_cast< ktl::api::extension::khr_shader_float_controls2 >();
-    }
-    if (_extension == ktl::api::extension::qnx_external_memory_screen_buffer)
-    {
+    case ktl::api::extension::qnx_external_memory_screen_buffer:
         return extension_cast< ktl::api::extension::qnx_external_memory_screen_buffer >();
-    }
-    if (_extension == ktl::api::extension::msft_layered_driver)
-    {
+    case ktl::api::extension::msft_layered_driver:
         return extension_cast< ktl::api::extension::msft_layered_driver >();
-    }
-    if (_extension == ktl::api::extension::khr_index_type_uint8)
-    {
+    case ktl::api::extension::khr_index_type_uint8:
         return extension_cast< ktl::api::extension::khr_index_type_uint8 >();
-    }
-    if (_extension == ktl::api::extension::khr_line_rasterization)
-    {
+    case ktl::api::extension::khr_line_rasterization:
         return extension_cast< ktl::api::extension::khr_line_rasterization >();
-    }
-    if (_extension == ktl::api::extension::khr_calibrated_timestamps)
-    {
+    case ktl::api::extension::khr_calibrated_timestamps:
         return extension_cast< ktl::api::extension::khr_calibrated_timestamps >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_expect_assume)
-    {
+    case ktl::api::extension::khr_shader_expect_assume:
         return extension_cast< ktl::api::extension::khr_shader_expect_assume >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance6)
-    {
+    case ktl::api::extension::khr_maintenance6:
         return extension_cast< ktl::api::extension::khr_maintenance6 >();
-    }
-    if (_extension == ktl::api::extension::nv_descriptor_pool_overallocation)
-    {
+    case ktl::api::extension::nv_descriptor_pool_overallocation:
         return extension_cast< ktl::api::extension::nv_descriptor_pool_overallocation >();
-    }
-    if (_extension == ktl::api::extension::qcom_tile_memory_heap)
-    {
+    case ktl::api::extension::qcom_tile_memory_heap:
         return extension_cast< ktl::api::extension::qcom_tile_memory_heap >();
-    }
-    if (_extension == ktl::api::extension::khr_copy_memory_indirect)
-    {
+    case ktl::api::extension::khr_copy_memory_indirect:
         return extension_cast< ktl::api::extension::khr_copy_memory_indirect >();
-    }
-    if (_extension == ktl::api::extension::ext_memory_decompression)
-    {
+    case ktl::api::extension::ext_memory_decompression:
         return extension_cast< ktl::api::extension::ext_memory_decompression >();
-    }
-    if (_extension == ktl::api::extension::nv_display_stereo)
-    {
+    case ktl::api::extension::nv_display_stereo:
         return extension_cast< ktl::api::extension::nv_display_stereo >();
-    }
-    if (_extension == ktl::api::extension::nv_raw_access_chains)
-    {
+    case ktl::api::extension::nv_raw_access_chains:
         return extension_cast< ktl::api::extension::nv_raw_access_chains >();
-    }
-    if (_extension == ktl::api::extension::nv_external_compute_queue)
-    {
+    case ktl::api::extension::nv_external_compute_queue:
         return extension_cast< ktl::api::extension::nv_external_compute_queue >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_relaxed_extended_instruction)
-    {
+    case ktl::api::extension::khr_shader_relaxed_extended_instruction:
         return extension_cast< ktl::api::extension::khr_shader_relaxed_extended_instruction >();
-    }
-    if (_extension == ktl::api::extension::nv_command_buffer_inheritance)
-    {
+    case ktl::api::extension::nv_command_buffer_inheritance:
         return extension_cast< ktl::api::extension::nv_command_buffer_inheritance >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance7)
-    {
+    case ktl::api::extension::khr_maintenance7:
         return extension_cast< ktl::api::extension::khr_maintenance7 >();
-    }
-    if (_extension == ktl::api::extension::nv_shader_atomic_float16_vector)
-    {
+    case ktl::api::extension::nv_shader_atomic_float16_vector:
         return extension_cast< ktl::api::extension::nv_shader_atomic_float16_vector >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_replicated_composites)
-    {
+    case ktl::api::extension::ext_shader_replicated_composites:
         return extension_cast< ktl::api::extension::ext_shader_replicated_composites >();
-    }
-    if (_extension == ktl::api::extension::arm_tensor_controls)
-    {
+    case ktl::api::extension::arm_tensor_controls:
         return extension_cast< ktl::api::extension::arm_tensor_controls >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_float8)
-    {
+    case ktl::api::extension::ext_shader_float8:
         return extension_cast< ktl::api::extension::ext_shader_float8 >();
-    }
-    if (_extension == ktl::api::extension::nv_ray_tracing_validation)
-    {
+    case ktl::api::extension::nv_ray_tracing_validation:
         return extension_cast< ktl::api::extension::nv_ray_tracing_validation >();
-    }
-    if (_extension == ktl::api::extension::nv_cluster_acceleration_structure)
-    {
+    case ktl::api::extension::nv_cluster_acceleration_structure:
         return extension_cast< ktl::api::extension::nv_cluster_acceleration_structure >();
-    }
-    if (_extension == ktl::api::extension::nv_partitioned_acceleration_structure)
-    {
+    case ktl::api::extension::nv_partitioned_acceleration_structure:
         return extension_cast< ktl::api::extension::nv_partitioned_acceleration_structure >();
-    }
-    if (_extension == ktl::api::extension::ext_device_generated_commands)
-    {
+    case ktl::api::extension::ext_device_generated_commands:
         return extension_cast< ktl::api::extension::ext_device_generated_commands >();
-    }
-    if (_extension == ktl::api::extension::khr_device_fault)
-    {
+    case ktl::api::extension::khr_device_fault:
         return extension_cast< ktl::api::extension::khr_device_fault >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance8)
-    {
+    case ktl::api::extension::khr_maintenance8:
         return extension_cast< ktl::api::extension::khr_maintenance8 >();
-    }
-    if (_extension == ktl::api::extension::mesa_image_alignment_control)
-    {
+    case ktl::api::extension::mesa_image_alignment_control:
         return extension_cast< ktl::api::extension::mesa_image_alignment_control >();
-    }
-    if (_extension == ktl::api::extension::khr_shader_fma)
-    {
+    case ktl::api::extension::khr_shader_fma:
         return extension_cast< ktl::api::extension::khr_shader_fma >();
-    }
-    if (_extension == ktl::api::extension::nv_push_constant_bank)
-    {
+    case ktl::api::extension::nv_push_constant_bank:
         return extension_cast< ktl::api::extension::nv_push_constant_bank >();
-    }
-    if (_extension == ktl::api::extension::ext_ray_tracing_invocation_reorder)
-    {
+    case ktl::api::extension::ext_ray_tracing_invocation_reorder:
         return extension_cast< ktl::api::extension::ext_ray_tracing_invocation_reorder >();
-    }
-    if (_extension == ktl::api::extension::ext_depth_clamp_control)
-    {
+    case ktl::api::extension::ext_depth_clamp_control:
         return extension_cast< ktl::api::extension::ext_depth_clamp_control >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance9)
-    {
+    case ktl::api::extension::khr_maintenance9:
         return extension_cast< ktl::api::extension::khr_maintenance9 >();
-    }
-    if (_extension == ktl::api::extension::ohos_surface)
-    {
+    case ktl::api::extension::ohos_surface:
         return extension_cast< ktl::api::extension::ohos_surface >();
-    }
-    if (_extension == ktl::api::extension::huawei_hdr_vivid)
-    {
+    case ktl::api::extension::huawei_hdr_vivid:
         return extension_cast< ktl::api::extension::huawei_hdr_vivid >();
-    }
-    if (_extension == ktl::api::extension::nv_cooperative_matrix2)
-    {
+    case ktl::api::extension::nv_cooperative_matrix2:
         return extension_cast< ktl::api::extension::nv_cooperative_matrix2 >();
-    }
-    if (_extension == ktl::api::extension::arm_pipeline_opacity_micromap)
-    {
+    case ktl::api::extension::arm_pipeline_opacity_micromap:
         return extension_cast< ktl::api::extension::arm_pipeline_opacity_micromap >();
-    }
-    if (_extension == ktl::api::extension::img_filter_linear_2d)
-    {
+    case ktl::api::extension::img_filter_linear_2d:
         return extension_cast< ktl::api::extension::img_filter_linear_2d >();
-    }
-    if (_extension == ktl::api::extension::ext_external_memory_metal)
-    {
+    case ktl::api::extension::ext_external_memory_metal:
         return extension_cast< ktl::api::extension::ext_external_memory_metal >();
-    }
-    if (_extension == ktl::api::extension::khr_depth_clamp_zero_one)
-    {
+    case ktl::api::extension::khr_depth_clamp_zero_one:
         return extension_cast< ktl::api::extension::khr_depth_clamp_zero_one >();
-    }
-    if (_extension == ktl::api::extension::arm_performance_counters_by_region)
-    {
+    case ktl::api::extension::arm_performance_counters_by_region:
         return extension_cast< ktl::api::extension::arm_performance_counters_by_region >();
-    }
-    if (_extension == ktl::api::extension::arm_shader_instrumentation)
-    {
+    case ktl::api::extension::arm_shader_instrumentation:
         return extension_cast< ktl::api::extension::arm_shader_instrumentation >();
-    }
-    if (_extension == ktl::api::extension::ext_vertex_attribute_robustness)
-    {
+    case ktl::api::extension::ext_vertex_attribute_robustness:
         return extension_cast< ktl::api::extension::ext_vertex_attribute_robustness >();
-    }
-    if (_extension == ktl::api::extension::arm_format_pack)
-    {
+    case ktl::api::extension::arm_format_pack:
         return extension_cast< ktl::api::extension::arm_format_pack >();
-    }
-    if (_extension == ktl::api::extension::valve_fragment_density_map_layered)
-    {
+    case ktl::api::extension::valve_fragment_density_map_layered:
         return extension_cast< ktl::api::extension::valve_fragment_density_map_layered >();
-    }
-    if (_extension == ktl::api::extension::khr_robustness2)
-    {
+    case ktl::api::extension::khr_robustness2:
         return extension_cast< ktl::api::extension::khr_robustness2 >();
-    }
-    if (_extension == ktl::api::extension::nv_present_metering)
-    {
+    case ktl::api::extension::nv_present_metering:
         return extension_cast< ktl::api::extension::nv_present_metering >();
-    }
-    if (_extension == ktl::api::extension::ext_multisampled_render_to_swapchain)
-    {
+    case ktl::api::extension::ext_multisampled_render_to_swapchain:
         return extension_cast< ktl::api::extension::ext_multisampled_render_to_swapchain >();
-    }
-    if (_extension == ktl::api::extension::ext_fragment_density_map_offset)
-    {
+    case ktl::api::extension::ext_fragment_density_map_offset:
         return extension_cast< ktl::api::extension::ext_fragment_density_map_offset >();
-    }
-    if (_extension == ktl::api::extension::ext_zero_initialize_device_memory)
-    {
+    case ktl::api::extension::ext_zero_initialize_device_memory:
         return extension_cast< ktl::api::extension::ext_zero_initialize_device_memory >();
-    }
-    if (_extension == ktl::api::extension::khr_present_mode_fifo_latest_ready)
-    {
+    case ktl::api::extension::khr_present_mode_fifo_latest_ready:
         return extension_cast< ktl::api::extension::khr_present_mode_fifo_latest_ready >();
-    }
-    if (_extension == ktl::api::extension::khr_opacity_micromap)
-    {
+    case ktl::api::extension::khr_opacity_micromap:
         return extension_cast< ktl::api::extension::khr_opacity_micromap >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_64bit_indexing)
-    {
+    case ktl::api::extension::ext_shader_64bit_indexing:
         return extension_cast< ktl::api::extension::ext_shader_64bit_indexing >();
-    }
-    if (_extension == ktl::api::extension::ext_custom_resolve)
-    {
+    case ktl::api::extension::ext_custom_resolve:
         return extension_cast< ktl::api::extension::ext_custom_resolve >();
-    }
-    if (_extension == ktl::api::extension::qcom_data_graph_model)
-    {
+    case ktl::api::extension::qcom_data_graph_model:
         return extension_cast< ktl::api::extension::qcom_data_graph_model >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance10)
-    {
+    case ktl::api::extension::khr_maintenance10:
         return extension_cast< ktl::api::extension::khr_maintenance10 >();
-    }
-    if (_extension == ktl::api::extension::arm_data_graph_optical_flow)
-    {
+    case ktl::api::extension::arm_data_graph_optical_flow:
         return extension_cast< ktl::api::extension::arm_data_graph_optical_flow >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_long_vector)
-    {
+    case ktl::api::extension::ext_shader_long_vector:
         return extension_cast< ktl::api::extension::ext_shader_long_vector >();
-    }
-    if (_extension == ktl::api::extension::sec_pipeline_cache_incremental_mode)
-    {
+    case ktl::api::extension::sec_pipeline_cache_incremental_mode:
         return extension_cast< ktl::api::extension::sec_pipeline_cache_incremental_mode >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_uniform_buffer_unsized_array)
-    {
+    case ktl::api::extension::ext_shader_uniform_buffer_unsized_array:
         return extension_cast< ktl::api::extension::ext_shader_uniform_buffer_unsized_array >();
-    }
-    if (_extension == ktl::api::extension::nv_compute_occupancy_priority)
-    {
+    case ktl::api::extension::nv_compute_occupancy_priority:
         return extension_cast< ktl::api::extension::nv_compute_occupancy_priority >();
-    }
-    if (_extension == ktl::api::extension::khr_pipeline_library_group_handles)
-    {
+    case ktl::api::extension::khr_pipeline_library_group_handles:
         return extension_cast< ktl::api::extension::khr_pipeline_library_group_handles >();
-    }
-    if (_extension == ktl::api::extension::khr_maintenance11)
-    {
+    case ktl::api::extension::khr_maintenance11:
         return extension_cast< ktl::api::extension::khr_maintenance11 >();
-    }
-    if (_extension == ktl::api::extension::ext_cooperative_matrix_maintenance1)
-    {
+    case ktl::api::extension::ext_cooperative_matrix_maintenance1:
         return extension_cast< ktl::api::extension::ext_cooperative_matrix_maintenance1 >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_subgroup_partitioned)
-    {
+    case ktl::api::extension::ext_shader_subgroup_partitioned:
         return extension_cast< ktl::api::extension::ext_shader_subgroup_partitioned >();
-    }
-    if (_extension == ktl::api::extension::sec_ubm_surface)
-    {
+    case ktl::api::extension::sec_ubm_surface:
         return extension_cast< ktl::api::extension::sec_ubm_surface >();
-    }
-    if (_extension == ktl::api::extension::khr_extended_flags)
-    {
+    case ktl::api::extension::khr_extended_flags:
         return extension_cast< ktl::api::extension::khr_extended_flags >();
-    }
-    if (_extension == ktl::api::extension::ext_shader_ocp_microscaling_types)
-    {
+    case ktl::api::extension::ext_shader_ocp_microscaling_types:
         return extension_cast< ktl::api::extension::ext_shader_ocp_microscaling_types >();
-    }
-    if (_extension == ktl::api::extension::valve_shader_mixed_float_dot_product)
-    {
+    case ktl::api::extension::valve_shader_mixed_float_dot_product:
         return extension_cast< ktl::api::extension::valve_shader_mixed_float_dot_product >();
-    }
-    if (_extension == ktl::api::extension::sec_throttle_hint)
-    {
+    case ktl::api::extension::sec_throttle_hint:
         return extension_cast< ktl::api::extension::sec_throttle_hint >();
-    }
-    if (_extension == ktl::api::extension::arm_data_graph_neural_accelerator_statistics)
-    {
+    case ktl::api::extension::arm_data_graph_neural_accelerator_statistics:
         return extension_cast< ktl::api::extension::arm_data_graph_neural_accelerator_statistics >();
-    }
-    if (_extension == ktl::api::extension::ext_primitive_restart_index)
-    {
+    case ktl::api::extension::ext_primitive_restart_index:
         return extension_cast< ktl::api::extension::ext_primitive_restart_index >();
-    }
-    if (_extension == ktl::api::extension::ext_image_tiling_control)
-    {
+    case ktl::api::extension::ext_image_tiling_control:
         return extension_cast< ktl::api::extension::ext_image_tiling_control >();
-    }
-    if (_extension == ktl::api::extension::nv_cooperative_matrix_decode_vector)
-    {
+    case ktl::api::extension::nv_cooperative_matrix_decode_vector:
         return extension_cast< ktl::api::extension::nv_cooperative_matrix_decode_vector >();
-    }
-    if (_extension == ktl::api::extension::nv_private_data_base_handle)
-    {
+    case ktl::api::extension::nv_private_data_base_handle:
         return extension_cast< ktl::api::extension::nv_private_data_base_handle >();
-    }
-    if (_extension == ktl::api::extension::intel_device_info)
-    {
+    case ktl::api::extension::intel_device_info:
         return extension_cast< ktl::api::extension::intel_device_info >();
-    }
-    if (_extension == ktl::api::extension::valve_buffer_device_address_allocation_alignment)
-    {
+    case ktl::api::extension::valve_buffer_device_address_allocation_alignment:
         return extension_cast< ktl::api::extension::valve_buffer_device_address_allocation_alignment >();
     }
-    return ktl::meta::any_extension{};
+    std::abort();
 }
 } // namespace ktl::meta
 

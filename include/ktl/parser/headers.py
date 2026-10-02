@@ -210,6 +210,7 @@ def fill_extensions(_api_include: str,
 #define {meta_header_guard}
 
 #include <array>
+#include <cstdlib>
 #include <optional>
 #include <span>
 #include <string_view>
