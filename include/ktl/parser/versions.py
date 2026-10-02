@@ -97,7 +97,7 @@ def write_definitions(_file: TextIO, _model) -> None:
 """)
 
 
-def write_meta(_file: TextIO, _model):
+def write_meta(_file: TextIO, _model) -> None:
     _file.write("""
 namespace ktl::meta
 {
@@ -113,8 +113,8 @@ struct version< {make_version(version)} >
 {{
     static constexpr std::array< ktl::api::command, {len(commands)} > commands = {{
 """)
-        _file.write(",".join(f"ktl::api::command::{make_cpp_name(command)}" for command in commands))
-        _file.write("};};\n")
+        _file.write(",\n".join(f"        ktl::api::command::{make_cpp_name(command)}" for command in commands))
+        _file.write("\n    };\n};\n")
     _file.write("""
 inline constexpr std::span< const ktl::api::command >
 get_commands_by_version(ktl::api::version _version) noexcept

@@ -16,13 +16,13 @@ def load_member(_root, _struct: str, _is_feature: bool, _vendors: tuple) -> Memb
 
 
 def sort_by_dependencies(_structs: dict) -> dict:
-    # Kahn's algorithm: a struct goes after the struct it aliases and the structs of its members,
-    # a pointer to the struct itself needs no definition
+    # Kahn's algorithm: a struct goes after the struct it aliases and the structs of its members by value,
+    # a pointer needs only the declaration from common.hpp
     dependents = {name: [] for name in _structs}
     degree = dict.fromkeys(_structs, 0)
     for name, struct in _structs.items():
         dependencies = {struct.alias} if struct.alias else set()
-        dependencies |= {member.tppe for member in struct.members if member.pointer_count == 0 or member.tppe != name}
+        dependencies |= {member.tppe for member in struct.members if member.pointer_count == 0}
         for dependency in dependencies & _structs.keys():
             dependents[dependency].append(name)
             degree[name] += 1

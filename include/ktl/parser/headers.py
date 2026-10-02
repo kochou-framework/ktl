@@ -6,7 +6,7 @@ import enums
 import handles
 import structs
 import bitmasks
-import pointers
+import funcpointers
 import commands
 import features
 import extensions
@@ -64,7 +64,7 @@ def generate(_model) -> dict[str, str]:
                                 handles.write_declarations,
                                 structs.write_declarations,
                                 bitmasks.write_declarations,
-                                pointers.write_declarations,
+                                funcpointers.write_declarations,
                                 commands.write_declarations),
         API_ENUMS: make_header(API_ENUMS, f"#include <ktl/{API_COMMON}>\n\n", _model, enums.write_definitions),
         META_HANDLES: make_header(META_HANDLES, f"""#include <cstdint>
@@ -101,6 +101,7 @@ def generate(_model) -> dict[str, str]:
 #include <cstdlib>
 
 #include <ktl/{API}>
+
 """, _model, features.write_meta),
         API_EXTENSIONS: make_header(API_EXTENSIONS, "#include <ktl/type.hpp>\n\n", _model, extensions.write_definitions),
         META_EXTENSIONS: make_header(META_EXTENSIONS, f"""#include <array>

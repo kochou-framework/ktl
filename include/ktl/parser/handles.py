@@ -23,7 +23,7 @@ def write_declarations(_file: TextIO, _model) -> None:
 """)
     for handle in _model.handles.values():
         if handle.alias:
-            _file.write(f"using {handle.name} = {make_cpp_name(handle.alias)};\n\n")
+            _file.write(f"using {handle.name} = {make_cpp_name(handle.alias)};\n")
         else:
             _file.write(f"""struct opaque_{handle.name};
 using {handle.name} = opaque_{handle.name} *;

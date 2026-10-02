@@ -138,7 +138,7 @@ def load_format(_root) -> Format:
                   planes)
 
 
-def write_meta(_file: TextIO, _model):
+def write_meta(_file: TextIO, _model) -> None:
     _file.write(f"""namespace ktl::meta
 {{
 {FORMAT_META}

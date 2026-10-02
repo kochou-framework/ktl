@@ -10,8 +10,8 @@ def write_declarations(_file: TextIO, _model) -> None:
 namespace ktl::api
 {
 """)
-    for pointer in _model.funcpointers.values():
-        _file.write(f"using pfn_{pointer.name} = {_model.declare(pointer.result)}(*)({make_params(_model, pointer.params)});\n")
+    for funcpointer in _model.funcpointers.values():
+        _file.write(f"using pfn_{funcpointer.name} = {_model.declare(funcpointer.result)}(*)({make_params(_model, funcpointer.params)});\n")
     _file.write("}\n")
 
 
@@ -25,5 +25,5 @@ def load(_root, _model) -> None:
 
 
 def resolve(_model) -> None:
-    for pointer in _model.funcpointers.values():
-        check_function(_model, pointer)
+    for funcpointer in _model.funcpointers.values():
+        check_function(_model, funcpointer)

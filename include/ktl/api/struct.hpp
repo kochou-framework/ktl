@@ -94,6 +94,30 @@ struct device_queue_create_info
     ktl::u32                            queue_count;
     const float *                       p_queue_priorities;
 };
+struct device_create_info
+{
+    ktl::api::structure_type                   stype                   = ktl::api::structure_type::v_device_create_info;
+    const void *                               pnext                   = {};
+    ktl::api::device_create_flags              flags                   = {};
+    ktl::u32                                   queue_create_info_count = {};
+    const ktl::api::device_queue_create_info * p_queue_create_infos;
+    ktl::u32                                   enabled_layer_count = {};
+    const char * const *                       pp_enabled_layer_names;
+    ktl::u32                                   enabled_extension_count = {};
+    const char * const *                       pp_enabled_extension_names;
+    const ktl::api::physical_device_features * p_enabled_features = {};
+};
+struct instance_create_info
+{
+    ktl::api::structure_type           stype               = ktl::api::structure_type::v_instance_create_info;
+    const void *                       pnext               = {};
+    ktl::api::instance_create_flags    flags               = {};
+    const ktl::api::application_info * p_application_info  = {};
+    ktl::u32                           enabled_layer_count = {};
+    const char * const *               pp_enabled_layer_names;
+    ktl::u32                           enabled_extension_count = {};
+    const char * const *               pp_enabled_extension_names;
+};
 struct memory_allocate_info
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_memory_allocate_info;
@@ -142,6 +166,19 @@ struct descriptor_image_info
     ktl::api::sampler      sampler;
     ktl::api::image_view   image_view;
     ktl::api::image_layout image_layout;
+};
+struct write_descriptor_set
+{
+    ktl::api::structure_type                 stype = ktl::api::structure_type::v_write_descriptor_set;
+    const void *                             pnext = {};
+    ktl::api::descriptor_set                 dst_set;
+    ktl::u32                                 dst_binding;
+    ktl::u32                                 dst_array_element;
+    ktl::u32                                 descriptor_count;
+    ktl::api::descriptor_type                descriptor_type;
+    const ktl::api::descriptor_image_info *  p_image_info;
+    const ktl::api::descriptor_buffer_info * p_buffer_info;
+    const ktl::api::buffer_view *            p_texel_buffer_view;
 };
 struct copy_descriptor_set
 {
@@ -256,6 +293,39 @@ struct sparse_memory_bind
     ktl::api::dvsize                   memory_offset;
     ktl::api::sparse_memory_bind_flags flags = {};
 };
+struct sparse_buffer_memory_bind_info
+{
+    ktl::api::buffer                     buffer;
+    ktl::u32                             bind_count;
+    const ktl::api::sparse_memory_bind * p_binds;
+};
+struct sparse_image_opaque_memory_bind_info
+{
+    ktl::api::image                      image;
+    ktl::u32                             bind_count;
+    const ktl::api::sparse_memory_bind * p_binds;
+};
+struct sparse_image_memory_bind_info
+{
+    ktl::api::image                            image;
+    ktl::u32                                   bind_count;
+    const ktl::api::sparse_image_memory_bind * p_binds;
+};
+struct bind_sparse_info
+{
+    ktl::api::structure_type                               stype = ktl::api::structure_type::v_bind_sparse_info;
+    const void *                                           pnext = {};
+    ktl::u32                                               wait_semaphore_count = {};
+    const ktl::api::semaphore *                            p_wait_semaphores;
+    ktl::u32                                               buffer_bind_count = {};
+    const ktl::api::sparse_buffer_memory_bind_info *       p_buffer_binds;
+    ktl::u32                                               image_opaque_bind_count = {};
+    const ktl::api::sparse_image_opaque_memory_bind_info * p_image_opaque_binds;
+    ktl::u32                                               image_bind_count = {};
+    const ktl::api::sparse_image_memory_bind_info *        p_image_binds;
+    ktl::u32                                               signal_semaphore_count = {};
+    const ktl::api::semaphore *                            p_signal_semaphores;
+};
 struct strided_device_address_range_khr
 {
     ktl::api::dvaddr address = {};
@@ -284,10 +354,27 @@ struct descriptor_set_layout_binding
     ktl::api::shader_stage_flags stage_flags;
     const ktl::api::sampler *    p_immutable_samplers = {};
 };
+struct descriptor_set_layout_create_info
+{
+    ktl::api::structure_type                     stype = ktl::api::structure_type::v_descriptor_set_layout_create_info;
+    const void *                                 pnext = {};
+    ktl::api::descriptor_set_layout_create_flags flags = {};
+    ktl::u32                                     binding_count = {};
+    const ktl::api::descriptor_set_layout_binding * p_bindings;
+};
 struct descriptor_pool_size
 {
     ktl::api::descriptor_type type;
     ktl::u32                  descriptor_count;
+};
+struct descriptor_pool_create_info
+{
+    ktl::api::structure_type               stype = ktl::api::structure_type::v_descriptor_pool_create_info;
+    const void *                           pnext = {};
+    ktl::api::descriptor_pool_create_flags flags = {};
+    ktl::u32                               max_sets;
+    ktl::u32                               pool_size_count = {};
+    const ktl::api::descriptor_pool_size * p_pool_sizes;
 };
 struct descriptor_set_allocate_info
 {
@@ -302,6 +389,23 @@ struct specialization_map_entry
     ktl::u32   constant_id;
     ktl::u32   offset;
     ktl::usize size;
+};
+struct specialization_info
+{
+    ktl::u32                                   map_entry_count = {};
+    const ktl::api::specialization_map_entry * p_map_entries;
+    ktl::usize                                 data_size = {};
+    const void *                               p_data;
+};
+struct pipeline_shader_stage_create_info
+{
+    ktl::api::structure_type                     stype = ktl::api::structure_type::v_pipeline_shader_stage_create_info;
+    const void *                                 pnext = {};
+    ktl::api::pipeline_shader_stage_create_flags flags = {};
+    ktl::api::shader_stage_flag_bits             stage;
+    ktl::api::shader_module                      module = {};
+    const char *                                 p_name;
+    const ktl::api::specialization_info *        p_specialization_info = {};
 };
 struct compute_pipeline_indirect_buffer_info_nv
 {
@@ -330,6 +434,16 @@ struct vertex_input_attribute_description
     ktl::api::format format;
     ktl::u32         offset;
 };
+struct pipeline_vertex_input_state_create_info
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_vertex_input_state_create_info;
+    const void *             pnext = {};
+    ktl::api::pipeline_vertex_input_state_create_flags   flags                            = {};
+    ktl::u32                                             vertex_binding_description_count = {};
+    const ktl::api::vertex_input_binding_description *   p_vertex_binding_descriptions;
+    ktl::u32                                             vertex_attribute_description_count = {};
+    const ktl::api::vertex_input_attribute_description * p_vertex_attribute_descriptions;
+};
 struct pipeline_input_assembly_state_create_info
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_input_assembly_state_create_info;
@@ -344,6 +458,16 @@ struct pipeline_tessellation_state_create_info
     const void *             pnext = {};
     ktl::api::pipeline_tessellation_state_create_flags flags = {};
     ktl::u32                                           patch_control_points;
+};
+struct pipeline_viewport_state_create_info
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_viewport_state_create_info;
+    const void *             pnext = {};
+    ktl::api::pipeline_viewport_state_create_flags flags          = {};
+    ktl::u32                                       viewport_count = {};
+    const ktl::api::viewport *                     p_viewports    = {};
+    ktl::u32                                       scissor_count  = {};
+    const ktl::api::rect_2d *                      p_scissors     = {};
 };
 struct pipeline_rasterization_state_create_info
 {
@@ -384,6 +508,17 @@ struct pipeline_color_blend_attachment_state
     ktl::api::blend_op              alpha_blend_op;
     ktl::api::color_component_flags color_write_mask = {};
 };
+struct pipeline_color_blend_state_create_info
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_color_blend_state_create_info;
+    const void *             pnext = {};
+    ktl::api::pipeline_color_blend_state_create_flags       flags = {};
+    ktl::api::bool32                                        logic_op_enable;
+    ktl::api::logic_op                                      logic_op;
+    ktl::u32                                                attachment_count = {};
+    const ktl::api::pipeline_color_blend_attachment_state * p_attachments    = {};
+    float                                                   blend_constants[4];
+};
 struct pipeline_dynamic_state_create_info
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_dynamic_state_create_info;
@@ -401,6 +536,28 @@ struct stencil_op_state
     ktl::u32             compare_mask;
     ktl::u32             write_mask;
     ktl::u32             reference;
+};
+struct graphics_pipeline_create_info
+{
+    ktl::api::structure_type        stype       = ktl::api::structure_type::v_graphics_pipeline_create_info;
+    const void *                    pnext       = {};
+    ktl::api::pipeline_create_flags flags       = {};
+    ktl::u32                        stage_count = {};
+    const ktl::api::pipeline_shader_stage_create_info *         p_stages               = {};
+    const ktl::api::pipeline_vertex_input_state_create_info *   p_vertex_input_state   = {};
+    const ktl::api::pipeline_input_assembly_state_create_info * p_input_assembly_state = {};
+    const ktl::api::pipeline_tessellation_state_create_info *   p_tessellation_state   = {};
+    const ktl::api::pipeline_viewport_state_create_info *       p_viewport_state       = {};
+    const ktl::api::pipeline_rasterization_state_create_info *  p_rasterization_state  = {};
+    const ktl::api::pipeline_multisample_state_create_info *    p_multisample_state    = {};
+    const ktl::api::pipeline_depth_stencil_state_create_info *  p_depth_stencil_state  = {};
+    const ktl::api::pipeline_color_blend_state_create_info *    p_color_blend_state    = {};
+    const ktl::api::pipeline_dynamic_state_create_info *        p_dynamic_state        = {};
+    ktl::api::pipeline_layout                                   layout                 = {};
+    ktl::api::render_pass                                       render_pass            = {};
+    ktl::u32                                                    subpass;
+    ktl::api::pipeline                                          base_pipeline_handle = {};
+    ktl::i32                                                    base_pipeline_index;
 };
 struct pipeline_cache_create_info
 {
@@ -432,6 +589,14 @@ struct push_constant_range
     ktl::u32                     offset;
     ktl::u32                     size;
 };
+struct pipeline_binary_create_info_khr
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_binary_create_info_khr;
+    const void *             pnext = {};
+    const ktl::api::pipeline_binary_keys_and_data_khr * p_keys_and_data_info   = {};
+    ktl::api::pipeline                                  pipeline               = {};
+    const ktl::api::pipeline_create_info_khr *          p_pipeline_create_info = {};
+};
 struct pipeline_binary_handles_info_khr
 {
     ktl::api::structure_type        stype = ktl::api::structure_type::v_pipeline_binary_handles_info_khr;
@@ -443,6 +608,12 @@ struct pipeline_binary_data_khr
 {
     ktl::usize data_size;
     void *     p_data;
+};
+struct pipeline_binary_keys_and_data_khr
+{
+    ktl::u32                                   binary_count;
+    const ktl::api::pipeline_binary_key_khr *  p_pipeline_binary_keys;
+    const ktl::api::pipeline_binary_data_khr * p_pipeline_binary_data;
 };
 struct pipeline_binary_key_khr
 {
@@ -474,6 +645,16 @@ struct pipeline_create_info_khr
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_create_info_khr;
     void *                   pnext;
+};
+struct pipeline_layout_create_info
+{
+    ktl::api::structure_type                stype            = ktl::api::structure_type::v_pipeline_layout_create_info;
+    const void *                            pnext            = {};
+    ktl::api::pipeline_layout_create_flags  flags            = {};
+    ktl::u32                                set_layout_count = {};
+    const ktl::api::descriptor_set_layout * p_set_layouts;
+    ktl::u32                                push_constant_range_count = {};
+    const ktl::api::push_constant_range *   p_push_constant_ranges;
 };
 struct sampler_create_info
 {
@@ -522,6 +703,13 @@ struct command_buffer_inheritance_info
     ktl::api::query_control_flags            query_flags         = {};
     ktl::api::query_pipeline_statistic_flags pipeline_statistics = {};
 };
+struct command_buffer_begin_info
+{
+    ktl::api::structure_type                          stype = ktl::api::structure_type::v_command_buffer_begin_info;
+    const void *                                      pnext = {};
+    ktl::api::command_buffer_usage_flags              flags = {};
+    const ktl::api::command_buffer_inheritance_info * p_inheritance_info = {};
+};
 union clear_color_value
 {
     float    float32[4];
@@ -550,6 +738,19 @@ struct attachment_reference
     ktl::u32               attachment;
     ktl::api::image_layout layout;
 };
+struct subpass_description
+{
+    ktl::api::subpass_description_flags    flags = {};
+    ktl::api::pipeline_bind_point          pipeline_bind_point;
+    ktl::u32                               input_attachment_count = {};
+    const ktl::api::attachment_reference * p_input_attachments;
+    ktl::u32                               color_attachment_count = {};
+    const ktl::api::attachment_reference * p_color_attachments;
+    const ktl::api::attachment_reference * p_resolve_attachments      = {};
+    const ktl::api::attachment_reference * p_depth_stencil_attachment = {};
+    ktl::u32                               preserve_attachment_count  = {};
+    const ktl::u32 *                       p_preserve_attachments;
+};
 struct subpass_dependency
 {
     ktl::u32                       src_subpass;
@@ -559,6 +760,18 @@ struct subpass_dependency
     ktl::api::access_flags         src_access_mask  = {};
     ktl::api::access_flags         dst_access_mask  = {};
     ktl::api::dependency_flags     dependency_flags = {};
+};
+struct render_pass_create_info
+{
+    ktl::api::structure_type                 stype            = ktl::api::structure_type::v_render_pass_create_info;
+    const void *                             pnext            = {};
+    ktl::api::render_pass_create_flags       flags            = {};
+    ktl::u32                                 attachment_count = {};
+    const ktl::api::attachment_description * p_attachments;
+    ktl::u32                                 subpass_count;
+    const ktl::api::subpass_description *    p_subpasses;
+    ktl::u32                                 dependency_count = {};
+    const ktl::api::subpass_dependency *     p_dependencies;
 };
 struct event_create_info
 {
@@ -953,6 +1166,13 @@ struct validation_features_ext
     ktl::u32                                         disabled_validation_feature_count = {};
     const ktl::api::validation_feature_disable_ext * p_disabled_validation_features;
 };
+struct layer_settings_create_info_ext
+{
+    ktl::api::structure_type            stype         = ktl::api::structure_type::v_layer_settings_create_info_ext;
+    const void *                        pnext         = {};
+    ktl::u32                            setting_count = {};
+    const ktl::api::layer_setting_ext * p_settings;
+};
 struct layer_setting_ext
 {
     const char *                     p_layer_name;
@@ -1207,11 +1427,35 @@ struct cluster_acceleration_structure_move_objects_input_nv
     ktl::api::bool32                                 no_move_overlap;
     ktl::api::dvsize                                 max_moved_bytes;
 };
+union cluster_acceleration_structure_op_input_nv
+{
+    ktl::api::cluster_acceleration_structure_clusters_bottom_level_input_nv * p_clusters_bottom_level;
+    ktl::api::cluster_acceleration_structure_triangle_cluster_input_nv *      p_triangle_clusters;
+    ktl::api::cluster_acceleration_structure_move_objects_input_nv *          p_move_objects;
+};
 struct physical_device_multi_draw_properties_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_multi_draw_properties_ext;
     void *                   pnext = {};
     ktl::u32                 max_multi_draw_count;
+};
+struct graphics_shader_group_create_info_nv
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_graphics_shader_group_create_info_nv;
+    const void *             pnext = {};
+    ktl::u32                 stage_count;
+    const ktl::api::pipeline_shader_stage_create_info *       p_stages;
+    const ktl::api::pipeline_vertex_input_state_create_info * p_vertex_input_state = {};
+    const ktl::api::pipeline_tessellation_state_create_info * p_tessellation_state = {};
+};
+struct graphics_pipeline_shader_groups_create_info_nv
+{
+    ktl::api::structure_type stype       = ktl::api::structure_type::v_graphics_pipeline_shader_groups_create_info_nv;
+    const void *             pnext       = {};
+    ktl::u32                 group_count = {};
+    const ktl::api::graphics_shader_group_create_info_nv * p_groups;
+    ktl::u32                                               pipeline_count = {};
+    const ktl::api::pipeline *                             p_pipelines;
 };
 struct bind_shader_group_indirect_command_nv
 {
@@ -1255,6 +1499,35 @@ struct indirect_commands_layout_token_nv
     ktl::u32                                  index_type_count     = {};
     const ktl::api::index_type *              p_index_types;
     const ktl::u32 *                          p_index_type_values;
+};
+struct indirect_commands_layout_create_info_nv
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_indirect_commands_layout_create_info_nv;
+    const void *             pnext = {};
+    ktl::api::indirect_commands_layout_usage_flags_nv   flags = {};
+    ktl::api::pipeline_bind_point                       pipeline_bind_point;
+    ktl::u32                                            token_count;
+    const ktl::api::indirect_commands_layout_token_nv * p_tokens;
+    ktl::u32                                            stream_count;
+    const ktl::u32 *                                    p_stream_strides;
+};
+struct generated_commands_info_nv
+{
+    ktl::api::structure_type                      stype = ktl::api::structure_type::v_generated_commands_info_nv;
+    const void *                                  pnext = {};
+    ktl::api::pipeline_bind_point                 pipeline_bind_point;
+    ktl::api::pipeline                            pipeline = {};
+    ktl::api::indirect_commands_layout_nv         indirect_commands_layout;
+    ktl::u32                                      stream_count;
+    const ktl::api::indirect_commands_stream_nv * p_streams;
+    ktl::u32                                      sequences_count;
+    ktl::api::buffer                              preprocess_buffer;
+    ktl::api::dvsize                              preprocess_offset;
+    ktl::api::dvsize                              preprocess_size;
+    ktl::api::buffer                              sequences_count_buffer = {};
+    ktl::api::dvsize                              sequences_count_offset;
+    ktl::api::buffer                              sequences_index_buffer = {};
+    ktl::api::dvsize                              sequences_index_offset;
 };
 struct generated_commands_memory_requirements_info_nv
 {
@@ -1308,6 +1581,18 @@ struct conformance_version
     ktl::u8 minor;
     ktl::u8 subminor;
     ktl::u8 patch;
+};
+struct present_regions_khr
+{
+    ktl::api::structure_type             stype = ktl::api::structure_type::v_present_regions_khr;
+    const void *                         pnext = {};
+    ktl::u32                             swapchain_count;
+    const ktl::api::present_region_khr * p_regions = {};
+};
+struct present_region_khr
+{
+    ktl::u32                         rectangle_count = {};
+    const ktl::api::rect_layer_khr * p_rectangles    = {};
 };
 struct physical_device_variable_pointers_features
 {
@@ -1700,6 +1985,23 @@ struct bind_image_memory_info
     ktl::api::device_memory  memory;
     ktl::api::dvsize         memory_offset;
 };
+struct bind_image_memory_device_group_info
+{
+    ktl::api::structure_type  stype              = ktl::api::structure_type::v_bind_image_memory_device_group_info;
+    const void *              pnext              = {};
+    ktl::u32                  device_index_count = {};
+    const ktl::u32 *          p_device_indices;
+    ktl::u32                  split_instance_bind_region_count = {};
+    const ktl::api::rect_2d * p_split_instance_bind_regions;
+};
+struct device_group_render_pass_begin_info
+{
+    ktl::api::structure_type  stype = ktl::api::structure_type::v_device_group_render_pass_begin_info;
+    const void *              pnext = {};
+    ktl::u32                  device_mask;
+    ktl::u32                  device_render_area_count = {};
+    const ktl::api::rect_2d * p_device_render_areas;
+};
 struct device_group_command_buffer_begin_info
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_device_group_command_buffer_begin_info;
@@ -1783,6 +2085,19 @@ struct descriptor_update_template_entry
     ktl::api::descriptor_type descriptor_type;
     ktl::usize                offset;
     ktl::usize                stride;
+};
+struct descriptor_update_template_create_info
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_descriptor_update_template_create_info;
+    const void *             pnext = {};
+    ktl::api::descriptor_update_template_create_flags  flags = {};
+    ktl::u32                                           descriptor_update_entry_count;
+    const ktl::api::descriptor_update_template_entry * p_descriptor_update_entries;
+    ktl::api::descriptor_update_template_type          template_type;
+    ktl::api::descriptor_set_layout                    descriptor_set_layout;
+    ktl::api::pipeline_bind_point                      pipeline_bind_point;
+    ktl::api::pipeline_layout                          pipeline_layout;
+    ktl::u32                                           set;
 };
 struct xy_color_ext
 {
@@ -1878,6 +2193,34 @@ struct past_presentation_timing_info_ext
     ktl::api::past_presentation_timing_flags_ext flags = {};
     ktl::api::swapchain_khr                      swapchain;
 };
+struct past_presentation_timing_properties_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_past_presentation_timing_properties_ext;
+    void *                   pnext = {};
+    ktl::u64                 timing_properties_counter;
+    ktl::u64                 time_domains_counter;
+    ktl::u32                 presentation_timing_count;
+    ktl::api::past_presentation_timing_ext * p_presentation_timings;
+};
+struct past_presentation_timing_ext
+{
+    ktl::api::structure_type           stype = ktl::api::structure_type::v_past_presentation_timing_ext;
+    void *                             pnext = {};
+    ktl::u64                           present_id;
+    ktl::u64                           target_time;
+    ktl::u32                           present_stage_count;
+    ktl::api::present_stage_time_ext * p_present_stages;
+    ktl::api::time_domain_khr          time_domain;
+    ktl::u64                           time_domain_id;
+    ktl::api::bool32                   report_complete;
+};
+struct present_timings_info_ext
+{
+    ktl::api::structure_type                  stype = ktl::api::structure_type::v_present_timings_info_ext;
+    const void *                              pnext = {};
+    ktl::u32                                  swapchain_count;
+    const ktl::api::present_timing_info_ext * p_timing_infos = {};
+};
 struct present_timing_info_ext
 {
     ktl::api::structure_type                stype = ktl::api::structure_type::v_present_timing_info_ext;
@@ -1927,6 +2270,13 @@ struct past_presentation_timing_google
     ktl::u64 earliest_present_time;
     ktl::u64 present_margin;
 };
+struct present_times_info_google
+{
+    ktl::api::structure_type              stype = ktl::api::structure_type::v_present_times_info_google;
+    const void *                          pnext = {};
+    ktl::u32                              swapchain_count;
+    const ktl::api::present_time_google * p_times = {};
+};
 struct present_time_google
 {
     ktl::u32 present_id;
@@ -1958,6 +2308,14 @@ struct viewport_w_scaling_nv
     float xcoeff;
     float ycoeff;
 };
+struct pipeline_viewport_w_scaling_state_create_info_nv
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_viewport_w_scaling_state_create_info_nv;
+    const void *             pnext = {};
+    ktl::api::bool32         viewport_w_scaling_enable;
+    ktl::u32                 viewport_count;
+    const ktl::api::viewport_w_scaling_nv * p_viewport_w_scalings = {};
+};
 struct viewport_swizzle_nv
 {
     ktl::api::viewport_coordinate_swizzle_nv x;
@@ -1965,11 +2323,28 @@ struct viewport_swizzle_nv
     ktl::api::viewport_coordinate_swizzle_nv z;
     ktl::api::viewport_coordinate_swizzle_nv w;
 };
+struct pipeline_viewport_swizzle_state_create_info_nv
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_viewport_swizzle_state_create_info_nv;
+    const void *             pnext = {};
+    ktl::api::pipeline_viewport_swizzle_state_create_flags_nv flags = {};
+    ktl::u32                                                  viewport_count;
+    const ktl::api::viewport_swizzle_nv *                     p_viewport_swizzles;
+};
 struct physical_device_discard_rectangle_properties_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_discard_rectangle_properties_ext;
     void *                   pnext = {};
     ktl::u32                 max_discard_rectangles;
+};
+struct pipeline_discard_rectangle_state_create_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_discard_rectangle_state_create_info_ext;
+    const void *             pnext = {};
+    ktl::api::pipeline_discard_rectangle_state_create_flags_ext flags = {};
+    ktl::api::discard_rectangle_mode_ext                        discard_rectangle_mode;
+    ktl::u32                                                    discard_rectangle_count = {};
+    const ktl::api::rect_2d *                                   p_discard_rectangles;
 };
 struct physical_device_multiview_per_view_attributes_properties_nvx
 {
@@ -1983,6 +2358,13 @@ struct input_attachment_aspect_reference
     ktl::u32                     subpass;
     ktl::u32                     input_attachment_index;
     ktl::api::image_aspect_flags aspect_mask;
+};
+struct render_pass_input_attachment_aspect_create_info
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_input_attachment_aspect_create_info;
+    const void *             pnext = {};
+    ktl::u32                 aspect_reference_count;
+    const ktl::api::input_attachment_aspect_reference * p_aspect_references;
 };
 struct physical_device_surface_info_2_khr
 {
@@ -2052,6 +2434,12 @@ struct buffer_memory_requirements_info_2
     const void *             pnext = {};
     ktl::api::buffer         buffer;
 };
+struct device_buffer_memory_requirements
+{
+    ktl::api::structure_type             stype = ktl::api::structure_type::v_device_buffer_memory_requirements;
+    const void *                         pnext = {};
+    const ktl::api::buffer_create_info * p_create_info;
+};
 struct image_memory_requirements_info_2
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_image_memory_requirements_info_2;
@@ -2063,6 +2451,13 @@ struct image_sparse_memory_requirements_info_2
     ktl::api::structure_type stype = ktl::api::structure_type::v_image_sparse_memory_requirements_info_2;
     const void *             pnext = {};
     ktl::api::image          image;
+};
+struct device_image_memory_requirements
+{
+    ktl::api::structure_type            stype = ktl::api::structure_type::v_device_image_memory_requirements;
+    const void *                        pnext = {};
+    const ktl::api::image_create_info * p_create_info;
+    ktl::api::image_aspect_flag_bits    plane_aspect = {};
 };
 struct physical_device_point_clipping_properties
 {
@@ -2198,6 +2593,15 @@ struct sample_location_ext
 {
     float x;
     float y;
+};
+struct render_pass_sample_locations_begin_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_sample_locations_begin_info_ext;
+    const void *             pnext = {};
+    ktl::u32                 attachment_initial_sample_locations_count = {};
+    const ktl::api::attachment_sample_locations_ext * p_attachment_initial_sample_locations;
+    ktl::u32                                          post_subpass_sample_locations_count = {};
+    const ktl::api::subpass_sample_locations_ext *    p_post_subpass_sample_locations;
 };
 struct sampler_reduction_mode_create_info
 {
@@ -2366,6 +2770,13 @@ struct physical_device_maintenance_7_properties_khr
     ktl::u32                 max_descriptor_set_update_after_bind_total_uniform_buffers_dynamic;
     ktl::u32                 max_descriptor_set_update_after_bind_total_storage_buffers_dynamic;
     ktl::u32                 max_descriptor_set_update_after_bind_total_buffers_dynamic;
+};
+struct physical_device_layered_api_properties_list_khr
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_layered_api_properties_list_khr;
+    void *                   pnext = {};
+    ktl::u32                 layered_api_count                            = {};
+    ktl::api::physical_device_layered_api_properties_khr * p_layered_apis = {};
 };
 struct physical_device_layered_api_properties_khr
 {
@@ -2545,6 +2956,21 @@ struct debug_utils_messenger_create_info_ext
     ktl::api::debug_utils_message_type_flags_ext     message_type;
     ktl::api::pfn_debug_utils_messenger_callback_ext pfn_user_callback;
     void *                                           p_user_data = {};
+};
+struct debug_utils_messenger_callback_data_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_debug_utils_messenger_callback_data_ext;
+    const void *             pnext = {};
+    ktl::api::debug_utils_messenger_callback_data_flags_ext flags             = {};
+    const char *                                            p_message_id_name = {};
+    ktl::i32                                                message_id_number;
+    const char *                                            p_message         = {};
+    ktl::u32                                                queue_label_count = {};
+    const ktl::api::debug_utils_label_ext *                 p_queue_labels;
+    ktl::u32                                                cmd_buf_label_count = {};
+    const ktl::api::debug_utils_label_ext *                 p_cmd_buf_labels;
+    ktl::u32                                                object_count = {};
+    const ktl::api::debug_utils_object_name_info_ext *      p_objects;
 };
 struct physical_device_device_memory_report_features_ext
 {
@@ -2743,6 +3169,22 @@ struct attachment_reference_2
     ktl::api::image_layout       layout;
     ktl::api::image_aspect_flags aspect_mask;
 };
+struct subpass_description_2
+{
+    ktl::api::structure_type                 stype = ktl::api::structure_type::v_subpass_description_2;
+    const void *                             pnext = {};
+    ktl::api::subpass_description_flags      flags = {};
+    ktl::api::pipeline_bind_point            pipeline_bind_point;
+    ktl::u32                                 view_mask;
+    ktl::u32                                 input_attachment_count = {};
+    const ktl::api::attachment_reference_2 * p_input_attachments;
+    ktl::u32                                 color_attachment_count = {};
+    const ktl::api::attachment_reference_2 * p_color_attachments;
+    const ktl::api::attachment_reference_2 * p_resolve_attachments      = {};
+    const ktl::api::attachment_reference_2 * p_depth_stencil_attachment = {};
+    ktl::u32                                 preserve_attachment_count  = {};
+    const ktl::u32 *                         p_preserve_attachments;
+};
 struct subpass_dependency_2
 {
     ktl::api::structure_type       stype = ktl::api::structure_type::v_subpass_dependency_2;
@@ -2755,6 +3197,20 @@ struct subpass_dependency_2
     ktl::api::access_flags         dst_access_mask  = {};
     ktl::api::dependency_flags     dependency_flags = {};
     ktl::i32                       view_offset;
+};
+struct render_pass_create_info_2
+{
+    ktl::api::structure_type                   stype            = ktl::api::structure_type::v_render_pass_create_info_2;
+    const void *                               pnext            = {};
+    ktl::api::render_pass_create_flags         flags            = {};
+    ktl::u32                                   attachment_count = {};
+    const ktl::api::attachment_description_2 * p_attachments;
+    ktl::u32                                   subpass_count;
+    const ktl::api::subpass_description_2 *    p_subpasses;
+    ktl::u32                                   dependency_count = {};
+    const ktl::api::subpass_dependency_2 *     p_dependencies;
+    ktl::u32                                   correlated_view_mask_count = {};
+    const ktl::u32 *                           p_correlated_view_masks;
 };
 struct subpass_begin_info
 {
@@ -2815,6 +3271,13 @@ struct vertex_input_binding_divisor_description
 {
     ktl::u32 binding;
     ktl::u32 divisor;
+};
+struct pipeline_vertex_input_divisor_state_create_info
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_vertex_input_divisor_state_create_info;
+    const void *             pnext = {};
+    ktl::u32                 vertex_binding_divisor_count;
+    const ktl::api::vertex_input_binding_divisor_description * p_vertex_binding_divisors;
 };
 struct physical_device_vertex_attribute_divisor_properties_ext
 {
@@ -2970,6 +3433,14 @@ struct physical_device_depth_stencil_resolve_properties
     ktl::api::bool32             independent_resolve_none;
     ktl::api::bool32             independent_resolve;
 };
+struct subpass_description_depth_stencil_resolve
+{
+    ktl::api::structure_type         stype = ktl::api::structure_type::v_subpass_description_depth_stencil_resolve;
+    const void *                     pnext = {};
+    ktl::api::resolve_mode_flag_bits depth_resolve_mode;
+    ktl::api::resolve_mode_flag_bits stencil_resolve_mode;
+    const ktl::api::attachment_reference_2 * p_depth_stencil_resolve_attachment = {};
+};
 struct image_view_astc_decode_mode_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_image_view_astc_decode_mode_ext;
@@ -3030,6 +3501,14 @@ struct physical_device_exclusive_scissor_features_nv
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_exclusive_scissor_features_nv;
     void *                   pnext = {};
     ktl::api::bool32         exclusive_scissor_nv;
+};
+struct pipeline_viewport_exclusive_scissor_state_create_info_nv
+{
+    ktl::api::structure_type stype =
+        ktl::api::structure_type::v_pipeline_viewport_exclusive_scissor_state_create_info_nv;
+    const void *              pnext                   = {};
+    ktl::u32                  exclusive_scissor_count = {};
+    const ktl::api::rect_2d * p_exclusive_scissors;
 };
 struct physical_device_corner_sampled_image_features_nv
 {
@@ -3102,6 +3581,15 @@ struct shading_rate_palette_nv
     ktl::u32                                        shading_rate_palette_entry_count;
     const ktl::api::shading_rate_palette_entry_nv * p_shading_rate_palette_entries;
 };
+struct pipeline_viewport_shading_rate_image_state_create_info_nv
+{
+    ktl::api::structure_type stype =
+        ktl::api::structure_type::v_pipeline_viewport_shading_rate_image_state_create_info_nv;
+    const void *                              pnext = {};
+    ktl::api::bool32                          shading_rate_image_enable;
+    ktl::u32                                  viewport_count = {};
+    const ktl::api::shading_rate_palette_nv * p_shading_rate_palettes;
+};
 struct physical_device_shading_rate_image_features_nv
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_shading_rate_image_features_nv;
@@ -3120,6 +3608,22 @@ struct coarse_sample_location_nv
     ktl::u32 pixel_x;
     ktl::u32 pixel_y;
     ktl::u32 sample;
+};
+struct coarse_sample_order_custom_nv
+{
+    ktl::api::shading_rate_palette_entry_nv     shading_rate;
+    ktl::u32                                    sample_count;
+    ktl::u32                                    sample_location_count;
+    const ktl::api::coarse_sample_location_nv * p_sample_locations;
+};
+struct pipeline_viewport_coarse_sample_order_state_create_info_nv
+{
+    ktl::api::structure_type stype =
+        ktl::api::structure_type::v_pipeline_viewport_coarse_sample_order_state_create_info_nv;
+    const void *                                    pnext = {};
+    ktl::api::coarse_sample_order_type_nv           sample_order_type;
+    ktl::u32                                        custom_sample_order_count = {};
+    const ktl::api::coarse_sample_order_custom_nv * p_custom_sample_orders;
 };
 struct physical_device_mesh_shader_features_nv
 {
@@ -3221,6 +3725,37 @@ struct ray_tracing_shader_group_create_info_khr
     ktl::u32                                    intersection_shader;
     const void *                                p_shader_group_capture_replay_handle = {};
 };
+struct ray_tracing_pipeline_create_info_nv
+{
+    ktl::api::structure_type        stype = ktl::api::structure_type::v_ray_tracing_pipeline_create_info_nv;
+    const void *                    pnext = {};
+    ktl::api::pipeline_create_flags flags = {};
+    ktl::u32                        stage_count;
+    const ktl::api::pipeline_shader_stage_create_info *       p_stages;
+    ktl::u32                                                  group_count;
+    const ktl::api::ray_tracing_shader_group_create_info_nv * p_groups;
+    ktl::u32                                                  max_recursion_depth;
+    ktl::api::pipeline_layout                                 layout               = {};
+    ktl::api::pipeline                                        base_pipeline_handle = {};
+    ktl::i32                                                  base_pipeline_index;
+};
+struct ray_tracing_pipeline_create_info_khr
+{
+    ktl::api::structure_type        stype       = ktl::api::structure_type::v_ray_tracing_pipeline_create_info_khr;
+    const void *                    pnext       = {};
+    ktl::api::pipeline_create_flags flags       = {};
+    ktl::u32                        stage_count = {};
+    const ktl::api::pipeline_shader_stage_create_info *              p_stages;
+    ktl::u32                                                         group_count = {};
+    const ktl::api::ray_tracing_shader_group_create_info_khr *       p_groups;
+    ktl::u32                                                         max_pipeline_ray_recursion_depth;
+    const ktl::api::pipeline_library_create_info_khr *               p_library_info       = {};
+    const ktl::api::ray_tracing_pipeline_interface_create_info_khr * p_library_interface  = {};
+    const ktl::api::pipeline_dynamic_state_create_info *             p_dynamic_state      = {};
+    ktl::api::pipeline_layout                                        layout               = {};
+    ktl::api::pipeline                                               base_pipeline_handle = {};
+    ktl::i32                                                         base_pipeline_index;
+};
 struct geometry_triangles_nv
 {
     ktl::api::structure_type stype       = ktl::api::structure_type::v_geometry_triangles_nv;
@@ -3245,6 +3780,16 @@ struct geometry_aabb_nv
     ktl::u32                 num_aabbs;
     ktl::u32                 stride;
     ktl::api::dvsize         offset;
+};
+struct acceleration_structure_info_nv
+{
+    ktl::api::structure_type                         stype = ktl::api::structure_type::v_acceleration_structure_info_nv;
+    const void *                                     pnext = {};
+    ktl::api::acceleration_structure_type_nv         type;
+    ktl::api::build_acceleration_structure_flags_khr flags          = {};
+    ktl::u32                                         instance_count = {};
+    ktl::u32                                         geometry_count = {};
+    const ktl::api::geometry_nv *                    p_geometries;
 };
 struct bind_acceleration_structure_memory_info_nv
 {
@@ -3378,6 +3923,13 @@ struct physical_device_ray_tracing_maintenance_1_features_khr
     ktl::api::bool32         ray_tracing_maintenance_1_khr;
     ktl::api::bool32         ray_tracing_pipeline_trace_rays_indirect_2_khr;
 };
+struct drm_format_modifier_properties_list_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_drm_format_modifier_properties_list_ext;
+    void *                   pnext = {};
+    ktl::u32                 drm_format_modifier_count                              = {};
+    ktl::api::drm_format_modifier_properties_ext * p_drm_format_modifier_properties = {};
+};
 struct drm_format_modifier_properties_ext
 {
     ktl::u64                       drm_format_modifier;
@@ -3399,6 +3951,14 @@ struct image_drm_format_modifier_list_create_info_ext
     const void *             pnext = {};
     ktl::u32                 drm_format_modifier_count;
     const ktl::u64 *         p_drm_format_modifiers;
+};
+struct image_drm_format_modifier_explicit_create_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_image_drm_format_modifier_explicit_create_info_ext;
+    const void *             pnext = {};
+    ktl::u64                 drm_format_modifier;
+    ktl::u32                 drm_format_modifier_plane_count;
+    const ktl::api::subresource_layout * p_plane_layouts;
 };
 struct image_drm_format_modifier_properties_ext
 {
@@ -3453,6 +4013,13 @@ struct physical_device_fragment_density_map_2_properties_ext
     ktl::api::bool32         subsampled_coarse_reconstruction_early_access;
     ktl::u32                 max_subsampled_array_layers;
     ktl::u32                 max_descriptor_set_subsampled_samplers;
+};
+struct render_pass_fragment_density_map_offset_end_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_fragment_density_map_offset_end_info_ext;
+    const void *             pnext = {};
+    ktl::u32                 fragment_density_offset_count = {};
+    const ktl::api::offset_2d * p_fragment_density_offsets;
 };
 struct physical_device_scalar_block_layout_features
 {
@@ -3566,6 +4133,13 @@ struct physical_device_imageless_framebuffer_features
     void *                   pnext = {};
     ktl::api::bool32         imageless_framebuffer;
 };
+struct framebuffer_attachments_create_info
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_framebuffer_attachments_create_info;
+    const void *             pnext = {};
+    ktl::u32                 attachment_image_info_count = {};
+    const ktl::api::framebuffer_attachment_image_info * p_attachment_image_infos;
+};
 struct framebuffer_attachment_image_info
 {
     ktl::api::structure_type     stype = ktl::api::structure_type::v_framebuffer_attachment_image_info;
@@ -3648,6 +4222,14 @@ struct pipeline_creation_feedback
 {
     ktl::api::pipeline_creation_feedback_flags flags;
     ktl::u64                                   duration;
+};
+struct pipeline_creation_feedback_create_info
+{
+    ktl::api::structure_type               stype = ktl::api::structure_type::v_pipeline_creation_feedback_create_info;
+    const void *                           pnext = {};
+    ktl::api::pipeline_creation_feedback * p_pipeline_creation_feedback;
+    ktl::u32                               pipeline_stage_creation_feedback_count = {};
+    ktl::api::pipeline_creation_feedback * p_pipeline_stage_creation_feedbacks;
 };
 struct surface_full_screen_exclusive_info_ext
 {
@@ -4294,6 +4876,16 @@ struct physical_device_gpa_features_amd
     ktl::api::bool32         sq_thread_tracing_amd;
     ktl::api::bool32         clock_modes_amd;
 };
+struct physical_device_gpa_properties_amd
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_gpa_properties_amd;
+    void *                   pnext = {};
+    ktl::api::physical_device_gpa_properties_flags_amd flags;
+    ktl::api::dvsize                                   max_sqtt_se_buffer_size;
+    ktl::u32                                           shader_engine_count;
+    ktl::u32                                           perf_block_count;
+    ktl::api::gpa_perf_block_properties_amd *          p_perf_blocks;
+};
 struct physical_device_gpa_properties_2_amd
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_gpa_properties_2_amd;
@@ -4305,6 +4897,25 @@ struct gpa_perf_counter_amd
     ktl::api::gpa_perf_block_amd block_type;
     ktl::u32                     block_instance;
     ktl::u32                     event_id;
+};
+struct gpa_sample_begin_info_amd
+{
+    ktl::api::structure_type                stype = ktl::api::structure_type::v_gpa_sample_begin_info_amd;
+    const void *                            pnext = {};
+    ktl::api::gpa_sample_type_amd           sample_type;
+    ktl::api::bool32                        sample_internal_operations;
+    ktl::api::bool32                        cache_flush_on_counter_collection;
+    ktl::api::bool32                        sq_shader_mask_enable;
+    ktl::api::gpa_sq_shader_stage_flags_amd sq_shader_mask = {};
+    ktl::u32                                perf_counter_count;
+    const ktl::api::gpa_perf_counter_amd *  p_perf_counters;
+    ktl::u32                                streaming_perf_trace_sample_interval;
+    ktl::api::dvsize                        perf_counter_device_memory_limit;
+    ktl::api::bool32                        sq_thread_trace_enable;
+    ktl::api::bool32                        sq_thread_trace_suppress_instruction_tokens;
+    ktl::api::dvsize                        sq_thread_trace_device_memory_limit;
+    ktl::api::pipeline_stage_flags          timing_pre_sample  = {};
+    ktl::api::pipeline_stage_flags          timing_post_sample = {};
 };
 struct gpa_device_clock_mode_info_amd
 {
@@ -4698,6 +5309,69 @@ struct buffer_copy_2
     ktl::api::dvsize         dst_offset;
     ktl::api::dvsize         size;
 };
+struct copy_buffer_info_2
+{
+    ktl::api::structure_type        stype = ktl::api::structure_type::v_copy_buffer_info_2;
+    const void *                    pnext = {};
+    ktl::api::buffer                src_buffer;
+    ktl::api::buffer                dst_buffer;
+    ktl::u32                        region_count;
+    const ktl::api::buffer_copy_2 * p_regions;
+};
+struct copy_image_info_2
+{
+    ktl::api::structure_type       stype = ktl::api::structure_type::v_copy_image_info_2;
+    const void *                   pnext = {};
+    ktl::api::image                src_image;
+    ktl::api::image_layout         src_image_layout;
+    ktl::api::image                dst_image;
+    ktl::api::image_layout         dst_image_layout;
+    ktl::u32                       region_count;
+    const ktl::api::image_copy_2 * p_regions;
+};
+struct blit_image_info_2
+{
+    ktl::api::structure_type       stype = ktl::api::structure_type::v_blit_image_info_2;
+    const void *                   pnext = {};
+    ktl::api::image                src_image;
+    ktl::api::image_layout         src_image_layout;
+    ktl::api::image                dst_image;
+    ktl::api::image_layout         dst_image_layout;
+    ktl::u32                       region_count;
+    const ktl::api::image_blit_2 * p_regions;
+    ktl::api::filter               filter;
+};
+struct copy_buffer_to_image_info_2
+{
+    ktl::api::structure_type              stype = ktl::api::structure_type::v_copy_buffer_to_image_info_2;
+    const void *                          pnext = {};
+    ktl::api::buffer                      src_buffer;
+    ktl::api::image                       dst_image;
+    ktl::api::image_layout                dst_image_layout;
+    ktl::u32                              region_count;
+    const ktl::api::buffer_image_copy_2 * p_regions;
+};
+struct copy_image_to_buffer_info_2
+{
+    ktl::api::structure_type              stype = ktl::api::structure_type::v_copy_image_to_buffer_info_2;
+    const void *                          pnext = {};
+    ktl::api::image                       src_image;
+    ktl::api::image_layout                src_image_layout;
+    ktl::api::buffer                      dst_buffer;
+    ktl::u32                              region_count;
+    const ktl::api::buffer_image_copy_2 * p_regions;
+};
+struct resolve_image_info_2
+{
+    ktl::api::structure_type          stype = ktl::api::structure_type::v_resolve_image_info_2;
+    const void *                      pnext = {};
+    ktl::api::image                   src_image;
+    ktl::api::image_layout            src_image_layout;
+    ktl::api::image                   dst_image;
+    ktl::api::image_layout            dst_image_layout;
+    ktl::u32                          region_count;
+    const ktl::api::image_resolve_2 * p_regions;
+};
 struct physical_device_shader_image_atomic_int64_features_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_shader_image_atomic_int64_features_ext;
@@ -4796,6 +5470,13 @@ struct mutable_descriptor_type_list_ext
     ktl::u32                          descriptor_type_count = {};
     const ktl::api::descriptor_type * p_descriptor_types;
 };
+struct mutable_descriptor_type_create_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_mutable_descriptor_type_create_info_ext;
+    const void *             pnext = {};
+    ktl::u32                 mutable_descriptor_type_list_count = {};
+    const ktl::api::mutable_descriptor_type_list_ext * p_mutable_descriptor_type_lists;
+};
 struct physical_device_depth_clip_control_features_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_depth_clip_control_features_ext;
@@ -4891,6 +5572,22 @@ struct indirect_execution_set_shader_layout_info_ext
     ktl::u32                 set_layout_count = {};
     const ktl::api::descriptor_set_layout * p_set_layouts;
 };
+struct indirect_execution_set_shader_info_ext
+{
+    ktl::api::structure_type     stype = ktl::api::structure_type::v_indirect_execution_set_shader_info_ext;
+    const void *                 pnext = {};
+    ktl::u32                     shader_count;
+    const ktl::api::shader_ext * p_initial_shaders;
+    const ktl::api::indirect_execution_set_shader_layout_info_ext * p_set_layout_infos = {};
+    ktl::u32                                                        max_shader_count;
+    ktl::u32                                                        push_constant_range_count = {};
+    const ktl::api::push_constant_range *                           p_push_constant_ranges;
+};
+union indirect_execution_set_info_ext
+{
+    const ktl::api::indirect_execution_set_pipeline_info_ext * p_pipeline_info;
+    const ktl::api::indirect_execution_set_shader_info_ext *   p_shader_info;
+};
 struct generated_commands_info_ext
 {
     ktl::api::structure_type               stype = ktl::api::structure_type::v_generated_commands_info_ext;
@@ -4919,6 +5616,17 @@ struct write_indirect_execution_set_shader_ext
     const void *             pnext = {};
     ktl::u32                 index;
     ktl::api::shader_ext     shader;
+};
+struct indirect_commands_layout_create_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_indirect_commands_layout_create_info_ext;
+    const void *             pnext = {};
+    ktl::api::indirect_commands_layout_usage_flags_ext   flags = {};
+    ktl::api::shader_stage_flags                         shader_stages;
+    ktl::u32                                             indirect_stride;
+    ktl::api::pipeline_layout                            pipeline_layout = {};
+    ktl::u32                                             token_count;
+    const ktl::api::indirect_commands_layout_token_ext * p_tokens;
 };
 struct draw_indirect_count_indirect_command_ext
 {
@@ -4951,6 +5659,13 @@ struct indirect_commands_execution_set_token_ext
     ktl::api::indirect_execution_set_info_type_ext type;
     ktl::api::shader_stage_flags                   shader_stages;
 };
+union indirect_commands_token_data_ext
+{
+    const ktl::api::indirect_commands_push_constant_token_ext * p_push_constant;
+    const ktl::api::indirect_commands_vertex_buffer_token_ext * p_vertex_buffer;
+    const ktl::api::indirect_commands_index_buffer_token_ext *  p_index_buffer;
+    const ktl::api::indirect_commands_execution_set_token_ext * p_execution_set;
+};
 struct pipeline_viewport_depth_clip_control_create_info_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_viewport_depth_clip_control_create_info_ext;
@@ -4962,6 +5677,13 @@ struct physical_device_depth_clamp_control_features_ext
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_depth_clamp_control_features_ext;
     void *                   pnext = {};
     ktl::api::bool32         depth_clamp_control_ext;
+};
+struct pipeline_viewport_depth_clamp_control_create_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_viewport_depth_clamp_control_create_info_ext;
+    const void *             pnext = {};
+    ktl::api::depth_clamp_mode_ext          depth_clamp_mode;
+    const ktl::api::depth_clamp_range_ext * p_depth_clamp_range = {};
 };
 struct physical_device_vertex_input_dynamic_state_features_ext
 {
@@ -5044,6 +5766,18 @@ struct memory_barrier_access_flags_3_khr
     ktl::api::access_flags_3_khr src_access_mask_3 = {};
     ktl::api::access_flags_3_khr dst_access_mask_3 = {};
 };
+struct dependency_info
+{
+    ktl::api::structure_type                  stype                = ktl::api::structure_type::v_dependency_info;
+    const void *                              pnext                = {};
+    ktl::api::dependency_flags                dependency_flags     = {};
+    ktl::u32                                  memory_barrier_count = {};
+    const ktl::api::memory_barrier_2 *        p_memory_barriers;
+    ktl::u32                                  buffer_memory_barrier_count = {};
+    const ktl::api::buffer_memory_barrier_2 * p_buffer_memory_barriers;
+    ktl::u32                                  image_memory_barrier_count = {};
+    const ktl::api::image_memory_barrier_2 *  p_image_memory_barriers;
+};
 struct semaphore_submit_info
 {
     ktl::api::structure_type         stype = ktl::api::structure_type::v_semaphore_submit_info;
@@ -5059,6 +5793,18 @@ struct command_buffer_submit_info
     const void *             pnext = {};
     ktl::api::command_buffer command_buffer;
     ktl::u32                 device_mask;
+};
+struct submit_info_2
+{
+    ktl::api::structure_type                     stype                     = ktl::api::structure_type::v_submit_info_2;
+    const void *                                 pnext                     = {};
+    ktl::api::submit_flags                       flags                     = {};
+    ktl::u32                                     wait_semaphore_info_count = {};
+    const ktl::api::semaphore_submit_info *      p_wait_semaphore_infos;
+    ktl::u32                                     command_buffer_info_count = {};
+    const ktl::api::command_buffer_submit_info * p_command_buffer_infos;
+    ktl::u32                                     signal_semaphore_info_count = {};
+    const ktl::api::semaphore_submit_info *      p_signal_semaphore_infos;
 };
 struct queue_family_checkpoint_properties_2_nv
 {
@@ -5102,6 +5848,38 @@ struct physical_device_host_image_copy_properties
     ktl::api::image_layout * p_copy_dst_layouts                            = {};
     ktl::u8                  optimal_tiling_layout_uuid[KTL_API_UUID_SIZE] = {};
     ktl::api::bool32         identical_memory_type_requirements;
+};
+struct copy_memory_to_image_info
+{
+    ktl::api::structure_type               stype = ktl::api::structure_type::v_copy_memory_to_image_info;
+    const void *                           pnext = {};
+    ktl::api::host_image_copy_flags        flags = {};
+    ktl::api::image                        dst_image;
+    ktl::api::image_layout                 dst_image_layout;
+    ktl::u32                               region_count;
+    const ktl::api::memory_to_image_copy * p_regions;
+};
+struct copy_image_to_memory_info
+{
+    ktl::api::structure_type               stype = ktl::api::structure_type::v_copy_image_to_memory_info;
+    const void *                           pnext = {};
+    ktl::api::host_image_copy_flags        flags = {};
+    ktl::api::image                        src_image;
+    ktl::api::image_layout                 src_image_layout;
+    ktl::u32                               region_count;
+    const ktl::api::image_to_memory_copy * p_regions;
+};
+struct copy_image_to_image_info
+{
+    ktl::api::structure_type        stype = ktl::api::structure_type::v_copy_image_to_image_info;
+    const void *                    pnext = {};
+    ktl::api::host_image_copy_flags flags = {};
+    ktl::api::image                 src_image;
+    ktl::api::image_layout          src_image_layout;
+    ktl::api::image                 dst_image;
+    ktl::api::image_layout          dst_image_layout;
+    ktl::u32                        region_count;
+    const ktl::api::image_copy_2 *  p_regions;
 };
 struct subresource_host_memcpy_size
 {
@@ -5181,6 +5959,14 @@ struct physical_device_inherited_viewport_scissor_features_nv
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_inherited_viewport_scissor_features_nv;
     void *                   pnext = {};
     ktl::api::bool32         inherited_viewport_scissor_2d_nv;
+};
+struct command_buffer_inheritance_viewport_scissor_info_nv
+{
+    ktl::api::structure_type   stype = ktl::api::structure_type::v_command_buffer_inheritance_viewport_scissor_info_nv;
+    const void *               pnext = {};
+    ktl::api::bool32           viewport_scissor_2d;
+    ktl::u32                   viewport_depth_count;
+    const ktl::api::viewport * p_viewport_depths;
 };
 struct physical_device_ycbcr_2_plane_444_formats_features_ext
 {
@@ -5321,6 +6107,19 @@ struct descriptor_buffer_binding_push_descriptor_buffer_handle_ext
         ktl::api::structure_type::v_descriptor_buffer_binding_push_descriptor_buffer_handle_ext;
     const void *     pnext = {};
     ktl::api::buffer buffer;
+};
+union descriptor_data_ext
+{
+    const ktl::api::sampler *                     p_sampler;
+    const ktl::api::descriptor_image_info *       p_combined_image_sampler;
+    const ktl::api::descriptor_image_info *       p_input_attachment_image;
+    const ktl::api::descriptor_image_info *       p_sampled_image;
+    const ktl::api::descriptor_image_info *       p_storage_image;
+    const ktl::api::descriptor_address_info_ext * p_uniform_texel_buffer;
+    const ktl::api::descriptor_address_info_ext * p_storage_texel_buffer;
+    const ktl::api::descriptor_address_info_ext * p_uniform_buffer;
+    const ktl::api::descriptor_address_info_ext * p_storage_buffer;
+    ktl::api::dvaddr                              acceleration_structure;
 };
 struct buffer_capture_descriptor_data_info_ext
 {
@@ -5583,6 +6382,13 @@ struct format_properties_4_khr
     ktl::api::format_feature_flags_4_khr linear_tiling_features  = {};
     ktl::api::format_feature_flags_4_khr optimal_tiling_features = {};
     ktl::api::format_feature_flags_4_khr buffer_features         = {};
+};
+struct drm_format_modifier_properties_list_2_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_drm_format_modifier_properties_list_2_ext;
+    void *                   pnext = {};
+    ktl::u32                 drm_format_modifier_count                                = {};
+    ktl::api::drm_format_modifier_properties_2_ext * p_drm_format_modifier_properties = {};
 };
 struct drm_format_modifier_properties_2_ext
 {
@@ -5851,17 +6657,40 @@ struct render_pass_creation_feedback_info_ext
 {
     ktl::u32 post_merge_subpass_count;
 };
+struct render_pass_creation_feedback_create_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_creation_feedback_create_info_ext;
+    const void *             pnext = {};
+    ktl::api::render_pass_creation_feedback_info_ext * p_render_pass_feedback;
+};
 struct render_pass_subpass_feedback_info_ext
 {
     ktl::api::subpass_merge_status_ext subpass_merge_status;
     char                               description[KTL_API_MAX_DESCRIPTION_SIZE];
     ktl::u32                           post_merge_index;
 };
+struct render_pass_subpass_feedback_create_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_subpass_feedback_create_info_ext;
+    const void *             pnext = {};
+    ktl::api::render_pass_subpass_feedback_info_ext * p_subpass_feedback;
+};
 struct physical_device_subpass_merge_feedback_features_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_subpass_merge_feedback_features_ext;
     void *                   pnext = {};
     ktl::api::bool32         subpass_merge_feedback_ext;
+};
+struct acceleration_structure_geometry_micromap_data_khr
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_acceleration_structure_geometry_micromap_data_khr;
+    const void *             pnext = {};
+    ktl::u32                 usage_counts_count                 = {};
+    const ktl::api::micromap_usage_khr *         p_usage_counts = {};
+    const ktl::api::micromap_usage_khr * const * pp_usage_counts;
+    ktl::api::dvaddr                             data;
+    ktl::api::dvaddr                             triangle_array;
+    ktl::api::dvsize                             triangle_array_stride;
 };
 struct micromap_create_info_ext
 {
@@ -6247,6 +7076,14 @@ struct optical_flow_session_create_private_data_info_nv
     ktl::u32                 size;
     const void *             p_private_data;
 };
+struct optical_flow_execute_info_nv
+{
+    ktl::api::structure_type                stype        = ktl::api::structure_type::v_optical_flow_execute_info_nv;
+    void *                                  pnext        = {};
+    ktl::api::optical_flow_execute_flags_nv flags        = {};
+    ktl::u32                                region_count = {};
+    const ktl::api::rect_2d *               p_regions;
+};
 struct physical_device_fault_features_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_fault_features_ext;
@@ -6280,6 +7117,15 @@ struct device_fault_counts_ext
     ktl::u32                 address_info_count = {};
     ktl::u32                 vendor_info_count  = {};
     ktl::api::dvsize         vendor_binary_size = {};
+};
+struct device_fault_info_ext
+{
+    ktl::api::structure_type                  stype = ktl::api::structure_type::v_device_fault_info_ext;
+    void *                                    pnext = {};
+    char                                      description[KTL_API_MAX_DESCRIPTION_SIZE];
+    ktl::api::device_fault_address_info_khr * p_address_infos      = {};
+    ktl::api::device_fault_vendor_info_khr *  p_vendor_infos       = {};
+    void *                                    p_vendor_binary_data = {};
 };
 struct device_fault_vendor_binary_header_version_one_khr
 {
@@ -6346,6 +7192,14 @@ struct decompress_memory_region_ext
     ktl::api::dvaddr dst_address;
     ktl::api::dvsize compressed_size;
     ktl::api::dvsize decompressed_size;
+};
+struct decompress_memory_info_ext
+{
+    ktl::api::structure_type                        stype = ktl::api::structure_type::v_decompress_memory_info_ext;
+    const void *                                    pnext = {};
+    ktl::api::memory_decompression_method_flags_ext decompression_method;
+    ktl::u32                                        region_count;
+    const ktl::api::decompress_memory_region_ext *  p_regions;
 };
 struct physical_device_shader_core_builtins_properties_arm
 {
@@ -6512,6 +7366,14 @@ struct direct_driver_loading_info_lunarg
     ktl::api::direct_driver_loading_flags_lunarg flags;
     ktl::api::pfn_get_instance_proc_addr_lunarg  pfn_get_instance_proc_addr;
 };
+struct direct_driver_loading_list_lunarg
+{
+    ktl::api::structure_type                    stype = ktl::api::structure_type::v_direct_driver_loading_list_lunarg;
+    const void *                                pnext = {};
+    ktl::api::direct_driver_loading_mode_lunarg mode;
+    ktl::u32                                    driver_count;
+    const ktl::api::direct_driver_loading_info_lunarg * p_drivers;
+};
 struct physical_device_multiview_per_view_viewports_features_qcom
 {
     ktl::api::structure_type stype =
@@ -6525,6 +7387,13 @@ struct physical_device_ray_tracing_position_fetch_features_khr
         ktl::api::structure_type::v_physical_device_ray_tracing_position_fetch_features_khr;
     void *           pnext = {};
     ktl::api::bool32 ray_tracing_position_fetch_khr;
+};
+struct device_image_subresource_info
+{
+    ktl::api::structure_type              stype = ktl::api::structure_type::v_device_image_subresource_info;
+    const void *                          pnext = {};
+    const ktl::api::image_create_info *   p_create_info;
+    const ktl::api::image_subresource_2 * p_subresource;
 };
 struct physical_device_shader_core_properties_arm
 {
@@ -6540,6 +7409,14 @@ struct physical_device_multiview_per_view_render_areas_features_qcom
         ktl::api::structure_type::v_physical_device_multiview_per_view_render_areas_features_qcom;
     void *           pnext = {};
     ktl::api::bool32 multiview_per_view_render_areas_qcom;
+};
+struct multiview_per_view_render_areas_render_pass_begin_info_qcom
+{
+    ktl::api::structure_type stype =
+        ktl::api::structure_type::v_multiview_per_view_render_areas_render_pass_begin_info_qcom;
+    const void *              pnext                      = {};
+    ktl::u32                  per_view_render_area_count = {};
+    const ktl::api::rect_2d * p_per_view_render_areas;
 };
 struct query_low_latency_support_nv
 {
@@ -6575,6 +7452,23 @@ struct physical_device_shader_object_properties_ext
     void *                   pnext = {};
     ktl::u8                  shader_binary_uuid[KTL_API_UUID_SIZE];
     ktl::u32                 shader_binary_version;
+};
+struct shader_create_info_ext
+{
+    ktl::api::structure_type                stype = ktl::api::structure_type::v_shader_create_info_ext;
+    const void *                            pnext = {};
+    ktl::api::shader_create_flags_ext       flags = {};
+    ktl::api::shader_stage_flag_bits        stage;
+    ktl::api::shader_stage_flags            next_stage = {};
+    ktl::api::shader_code_type_ext          code_type;
+    ktl::usize                              code_size;
+    const void *                            p_code;
+    const char *                            p_name           = {};
+    ktl::u32                                set_layout_count = {};
+    const ktl::api::descriptor_set_layout * p_set_layouts;
+    ktl::u32                                push_constant_range_count = {};
+    const ktl::api::push_constant_range *   p_push_constant_ranges;
+    const ktl::api::specialization_info *   p_specialization_info = {};
 };
 struct physical_device_shader_tile_image_features_ext
 {
@@ -6692,6 +7586,18 @@ struct physical_device_shader_enqueue_features_amdx
     ktl::api::bool32         shader_enqueue_amdx;
     ktl::api::bool32         shader_mesh_enqueue_amdx;
 };
+struct execution_graph_pipeline_create_info_amdx
+{
+    ktl::api::structure_type        stype       = ktl::api::structure_type::v_execution_graph_pipeline_create_info_amdx;
+    const void *                    pnext       = {};
+    ktl::api::pipeline_create_flags flags       = {};
+    ktl::u32                        stage_count = {};
+    const ktl::api::pipeline_shader_stage_create_info * p_stages             = {};
+    const ktl::api::pipeline_library_create_info_khr *  p_library_info       = {};
+    ktl::api::pipeline_layout                           layout               = {};
+    ktl::api::pipeline                                  base_pipeline_handle = {};
+    ktl::i32                                            base_pipeline_index;
+};
 struct pipeline_shader_stage_node_create_info_amdx
 {
     ktl::api::structure_type stype  = ktl::api::structure_type::v_pipeline_shader_stage_node_create_info_amdx;
@@ -6712,6 +7618,14 @@ struct physical_device_anti_lag_features_amd
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_anti_lag_features_amd;
     void *                   pnext = {};
     ktl::api::bool32         anti_lag_amd;
+};
+struct anti_lag_data_amd
+{
+    ktl::api::structure_type                         stype = ktl::api::structure_type::v_anti_lag_data_amd;
+    const void *                                     pnext = {};
+    ktl::api::anti_lag_mode_amd                      mode;
+    ktl::u32                                         max_fps;
+    const ktl::api::anti_lag_presentation_info_amd * p_presentation_info = {};
 };
 struct anti_lag_presentation_info_amd
 {
@@ -6773,6 +7687,16 @@ struct push_constants_info
     ktl::u32                     offset = {};
     ktl::u32                     size;
     const void *                 p_values;
+};
+struct push_descriptor_set_info
+{
+    ktl::api::structure_type               stype = ktl::api::structure_type::v_push_descriptor_set_info;
+    const void *                           pnext = {};
+    ktl::api::shader_stage_flags           stage_flags;
+    ktl::api::pipeline_layout              layout = {};
+    ktl::u32                               set    = {};
+    ktl::u32                               descriptor_write_count;
+    const ktl::api::write_descriptor_set * p_descriptor_writes;
 };
 struct push_descriptor_set_with_template_info
 {
@@ -6919,6 +7843,13 @@ struct set_latency_marker_info_nv
     ktl::u64                    present_id;
     ktl::api::latency_marker_nv marker;
 };
+struct get_latency_marker_info_nv
+{
+    ktl::api::structure_type                    stype        = ktl::api::structure_type::v_get_latency_marker_info_nv;
+    const void *                                pnext        = {};
+    ktl::u32                                    timing_count = {};
+    ktl::api::latency_timings_frame_report_nv * p_timings    = {};
+};
 struct latency_timings_frame_report_nv
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_latency_timings_frame_report_nv;
@@ -7023,6 +7954,20 @@ struct physical_device_render_pass_striped_features_arm
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_render_pass_striped_features_arm;
     void *                   pnext = {};
     ktl::api::bool32         render_pass_striped_arm;
+};
+struct render_pass_stripe_begin_info_arm
+{
+    ktl::api::structure_type                      stype = ktl::api::structure_type::v_render_pass_stripe_begin_info_arm;
+    const void *                                  pnext = {};
+    ktl::u32                                      stripe_info_count;
+    const ktl::api::render_pass_stripe_info_arm * p_stripe_infos;
+};
+struct render_pass_stripe_submit_info_arm
+{
+    ktl::api::structure_type                stype = ktl::api::structure_type::v_render_pass_stripe_submit_info_arm;
+    const void *                            pnext = {};
+    ktl::u32                                stripe_semaphore_info_count;
+    const ktl::api::semaphore_submit_info * p_stripe_semaphore_infos;
 };
 struct physical_device_pipeline_opacity_micromap_features_arm
 {
@@ -7408,6 +8353,16 @@ struct tensor_description_arm
     const ktl::i64 *                 p_strides = {};
     ktl::api::tensor_usage_flags_arm usage;
 };
+struct tensor_create_info_arm
+{
+    ktl::api::structure_type                 stype = ktl::api::structure_type::v_tensor_create_info_arm;
+    const void *                             pnext = {};
+    ktl::api::tensor_create_flags_arm        flags = {};
+    const ktl::api::tensor_description_arm * p_description;
+    ktl::api::sharing_mode                   sharing_mode;
+    ktl::u32                                 queue_family_index_count = {};
+    const ktl::u32 *                         p_queue_family_indices;
+};
 struct tensor_view_create_info_arm
 {
     ktl::api::structure_type               stype = ktl::api::structure_type::v_tensor_view_create_info_arm;
@@ -7474,6 +8429,13 @@ struct tensor_memory_barrier_arm
     ktl::u32                         dst_queue_family_index;
     ktl::api::tensor_arm             tensor;
 };
+struct tensor_dependency_info_arm
+{
+    ktl::api::structure_type                    stype = ktl::api::structure_type::v_tensor_dependency_info_arm;
+    const void *                                pnext = {};
+    ktl::u32                                    tensor_memory_barrier_count;
+    const ktl::api::tensor_memory_barrier_arm * p_tensor_memory_barriers;
+};
 struct physical_device_tensor_features_arm
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_tensor_features_arm;
@@ -7484,6 +8446,21 @@ struct physical_device_tensor_features_arm
     ktl::api::bool32         shader_storage_tensor_array_non_uniform_indexing_arm;
     ktl::api::bool32         descriptor_binding_storage_tensor_update_after_bind_arm;
     ktl::api::bool32         tensors_arm;
+};
+struct device_tensor_memory_requirements_arm
+{
+    ktl::api::structure_type                 stype = ktl::api::structure_type::v_device_tensor_memory_requirements_arm;
+    const void *                             pnext = {};
+    const ktl::api::tensor_create_info_arm * p_create_info;
+};
+struct copy_tensor_info_arm
+{
+    ktl::api::structure_type          stype = ktl::api::structure_type::v_copy_tensor_info_arm;
+    const void *                      pnext = {};
+    ktl::api::tensor_arm              src_tensor;
+    ktl::api::tensor_arm              dst_tensor;
+    ktl::u32                          region_count;
+    const ktl::api::tensor_copy_arm * p_regions;
 };
 struct tensor_copy_arm
 {
@@ -7539,6 +8516,14 @@ struct frame_boundary_tensors_arm
     const void *                 pnext = {};
     ktl::u32                     tensor_count;
     const ktl::api::tensor_arm * p_tensors;
+};
+struct physical_device_external_tensor_info_arm
+{
+    ktl::api::structure_type          stype = ktl::api::structure_type::v_physical_device_external_tensor_info_arm;
+    const void *                      pnext = {};
+    ktl::api::tensor_create_flags_arm flags = {};
+    const ktl::api::tensor_description_arm *        p_description;
+    ktl::api::external_memory_handle_type_flag_bits handle_type;
 };
 struct external_memory_tensor_create_info_arm
 {
@@ -7605,6 +8590,25 @@ struct data_graph_pipeline_compiler_control_create_info_arm
     ktl::api::structure_type stype = ktl::api::structure_type::v_data_graph_pipeline_compiler_control_create_info_arm;
     const void *             pnext = {};
     const char *             p_vendor_options;
+};
+struct data_graph_pipeline_create_info_arm
+{
+    ktl::api::structure_type          stype = ktl::api::structure_type::v_data_graph_pipeline_create_info_arm;
+    const void *                      pnext = {};
+    ktl::api::pipeline_create_flags_2 flags = {};
+    ktl::api::pipeline_layout         layout;
+    ktl::u32                          resource_info_count = {};
+    const ktl::api::data_graph_pipeline_resource_info_arm * p_resource_infos;
+};
+struct data_graph_pipeline_shader_module_create_info_arm
+{
+    ktl::api::structure_type stype  = ktl::api::structure_type::v_data_graph_pipeline_shader_module_create_info_arm;
+    const void *             pnext  = {};
+    ktl::api::shader_module  module = {};
+    const char *             p_name;
+    const ktl::api::specialization_info *              p_specialization_info = {};
+    ktl::u32                                           constant_count        = {};
+    const ktl::api::data_graph_pipeline_constant_arm * p_constants           = {};
 };
 struct data_graph_pipeline_session_create_info_arm
 {
@@ -7702,12 +8706,25 @@ struct queue_family_data_graph_processing_engine_properties_arm
     ktl::api::external_semaphore_handle_type_flags foreign_semaphore_handle_types;
     ktl::api::external_memory_handle_type_flags    foreign_memory_handle_types;
 };
+struct data_graph_processing_engine_create_info_arm
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_data_graph_processing_engine_create_info_arm;
+    const void *             pnext = {};
+    ktl::u32                 processing_engine_count;
+    ktl::api::physical_device_data_graph_processing_engine_arm * p_processing_engines;
+};
 struct physical_device_pipeline_cache_incremental_mode_features_sec
 {
     ktl::api::structure_type stype =
         ktl::api::structure_type::v_physical_device_pipeline_cache_incremental_mode_features_sec;
     void *           pnext = {};
     ktl::api::bool32 pipeline_cache_incremental_mode_sec;
+};
+struct data_graph_pipeline_builtin_model_create_info_qcom
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_data_graph_pipeline_builtin_model_create_info_qcom;
+    const void *             pnext = {};
+    const ktl::api::physical_device_data_graph_operation_support_arm * p_operation;
 };
 struct physical_device_data_graph_model_features_qcom
 {
@@ -7857,21 +8874,110 @@ struct host_address_range_const_ext
     const void * address;
     ktl::usize   size;
 };
+struct image_descriptor_info_ext
+{
+    ktl::api::structure_type                 stype = ktl::api::structure_type::v_image_descriptor_info_ext;
+    const void *                             pnext = {};
+    const ktl::api::image_view_create_info * p_view;
+    ktl::api::image_layout                   layout;
+};
+union resource_descriptor_data_ext
+{
+    const ktl::api::image_descriptor_info_ext *        p_image;
+    const ktl::api::texel_buffer_descriptor_info_ext * p_texel_buffer;
+    const ktl::api::device_address_range_ext *         p_address_range;
+    const ktl::api::tensor_view_create_info_arm *      p_tensor_arm;
+};
+struct descriptor_mapping_source_constant_offset_ext
+{
+    ktl::u32                              heap_offset;
+    ktl::u32                              heap_array_stride;
+    const ktl::api::sampler_create_info * p_embedded_sampler = {};
+    ktl::u32                              sampler_heap_offset;
+    ktl::u32                              sampler_heap_array_stride;
+};
+struct descriptor_mapping_source_push_index_ext
+{
+    ktl::u32                              heap_offset;
+    ktl::u32                              push_offset;
+    ktl::u32                              heap_index_stride;
+    ktl::u32                              heap_array_stride;
+    const ktl::api::sampler_create_info * p_embedded_sampler = {};
+    ktl::api::bool32                      use_combined_image_sampler_index;
+    ktl::u32                              sampler_heap_offset;
+    ktl::u32                              sampler_push_offset;
+    ktl::u32                              sampler_heap_index_stride;
+    ktl::u32                              sampler_heap_array_stride;
+};
+struct descriptor_mapping_source_indirect_index_ext
+{
+    ktl::u32                              heap_offset;
+    ktl::u32                              push_offset;
+    ktl::u32                              address_offset;
+    ktl::u32                              heap_index_stride;
+    ktl::u32                              heap_array_stride;
+    const ktl::api::sampler_create_info * p_embedded_sampler = {};
+    ktl::api::bool32                      use_combined_image_sampler_index;
+    ktl::u32                              sampler_heap_offset;
+    ktl::u32                              sampler_push_offset;
+    ktl::u32                              sampler_address_offset;
+    ktl::u32                              sampler_heap_index_stride;
+    ktl::u32                              sampler_heap_array_stride;
+};
+struct descriptor_mapping_source_indirect_index_array_ext
+{
+    ktl::u32                              heap_offset;
+    ktl::u32                              push_offset;
+    ktl::u32                              address_offset;
+    ktl::u32                              heap_index_stride;
+    const ktl::api::sampler_create_info * p_embedded_sampler = {};
+    ktl::api::bool32                      use_combined_image_sampler_index;
+    ktl::u32                              sampler_heap_offset;
+    ktl::u32                              sampler_push_offset;
+    ktl::u32                              sampler_address_offset;
+    ktl::u32                              sampler_heap_index_stride;
+};
 struct descriptor_mapping_source_heap_data_ext
 {
     ktl::u32 heap_offset;
     ktl::u32 push_offset;
+};
+struct descriptor_mapping_source_shader_record_index_ext
+{
+    ktl::u32                              heap_offset;
+    ktl::u32                              shader_record_offset;
+    ktl::u32                              heap_index_stride;
+    ktl::u32                              heap_array_stride;
+    const ktl::api::sampler_create_info * p_embedded_sampler = {};
+    ktl::api::bool32                      use_combined_image_sampler_index;
+    ktl::u32                              sampler_heap_offset;
+    ktl::u32                              sampler_shader_record_offset;
+    ktl::u32                              sampler_heap_index_stride;
+    ktl::u32                              sampler_heap_array_stride;
 };
 struct descriptor_mapping_source_indirect_address_ext
 {
     ktl::u32 push_offset;
     ktl::u32 address_offset;
 };
+struct shader_descriptor_set_and_binding_mapping_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_shader_descriptor_set_and_binding_mapping_info_ext;
+    const void *             pnext = {};
+    ktl::u32                 mapping_count = {};
+    const ktl::api::descriptor_set_and_binding_mapping_ext * p_mappings;
+};
 struct sampler_custom_border_color_index_create_info_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_sampler_custom_border_color_index_create_info_ext;
     const void *             pnext = {};
     ktl::u32                 index;
+};
+struct opaque_capture_data_create_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_opaque_capture_data_create_info_ext;
+    const void *             pnext = {};
+    const ktl::api::host_address_range_const_ext * p_data = {};
 };
 struct indirect_commands_layout_push_data_token_nv
 {
@@ -7929,6 +9035,13 @@ struct physical_device_descriptor_heap_properties_ext
     ktl::api::bool32         sparse_descriptor_heaps;
     ktl::api::bool32         protected_descriptor_heaps;
 };
+struct command_buffer_inheritance_descriptor_heap_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_command_buffer_inheritance_descriptor_heap_info_ext;
+    const void *             pnext = {};
+    const ktl::api::bind_heap_info_ext * p_sampler_heap_bind_info  = {};
+    const ktl::api::bind_heap_info_ext * p_resource_heap_bind_info = {};
+};
 struct physical_device_descriptor_heap_tensor_properties_arm
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_descriptor_heap_tensor_properties_arm;
@@ -7974,6 +9087,28 @@ struct device_address_range_khr
     ktl::api::dvaddr address = {};
     ktl::api::dvsize size;
 };
+struct copy_device_memory_info_khr
+{
+    ktl::api::structure_type                 stype = ktl::api::structure_type::v_copy_device_memory_info_khr;
+    const void *                             pnext = {};
+    ktl::u32                                 region_count;
+    const ktl::api::device_memory_copy_khr * p_regions;
+};
+struct copy_device_memory_image_info_khr
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_copy_device_memory_image_info_khr;
+    const void *             pnext = {};
+    ktl::api::image          image;
+    ktl::u32                 region_count;
+    const ktl::api::device_memory_image_copy_khr * p_regions;
+};
+struct memory_range_barriers_info_khr
+{
+    ktl::api::structure_type                   stype = ktl::api::structure_type::v_memory_range_barriers_info_khr;
+    const void *                               pnext = {};
+    ktl::u32                                   memory_range_barrier_count = {};
+    const ktl::api::memory_range_barrier_khr * p_memory_range_barriers;
+};
 struct physical_device_device_address_commands_features_khr
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_device_address_commands_features_khr;
@@ -8009,6 +9144,16 @@ struct data_graph_tosa_name_quality_arm
 {
     char                                        name[KTL_API_MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM];
     ktl::api::data_graph_tosa_quality_flags_arm quality_flags;
+};
+struct queue_family_data_graph_tosa_properties_arm
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_queue_family_data_graph_tosa_properties_arm;
+    void *                   pnext = {};
+    ktl::u32                 profile_count;
+    const ktl::api::data_graph_tosa_name_quality_arm * p_profiles;
+    ktl::u32                                           extension_count;
+    const ktl::api::data_graph_tosa_name_quality_arm * p_extensions;
+    ktl::api::data_graph_tosa_level_arm                level;
 };
 struct data_graph_pipeline_single_node_connection_arm
 {
@@ -8048,6 +9193,14 @@ struct data_graph_optical_flow_image_format_properties_arm
     ktl::api::structure_type stype = ktl::api::structure_type::v_data_graph_optical_flow_image_format_properties_arm;
     void *                   pnext = {};
     ktl::api::format         format;
+};
+struct data_graph_pipeline_single_node_create_info_arm
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_data_graph_pipeline_single_node_create_info_arm;
+    void *                   pnext = {};
+    ktl::api::data_graph_pipeline_node_type_arm                      node_type;
+    ktl::u32                                                         connection_count;
+    const ktl::api::data_graph_pipeline_single_node_connection_arm * p_connections;
 };
 struct data_graph_pipeline_optical_flow_create_info_arm
 {
@@ -8130,13 +9283,6 @@ struct physical_device_info_properties_intel
     ktl::u32                 device_ip_version_arch;
     ktl::u32                 device_ip_version_release;
     ktl::u32                 device_ip_version_revision;
-};
-struct render_pass_fragment_density_map_offset_end_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_fragment_density_map_offset_end_info_ext;
-    const void *             pnext = {};
-    ktl::u32                 fragment_density_offset_count = {};
-    const ktl::api::offset_2d * p_fragment_density_offsets;
 };
 struct rect_2d
 {
@@ -8239,6 +9385,15 @@ struct surface_capabilities_2_ext
     ktl::api::image_usage_flags               supported_usage_flags;
     ktl::api::surface_counter_flags_ext       supported_surface_counters = {};
 };
+struct sample_locations_info_ext
+{
+    ktl::api::structure_type              stype = ktl::api::structure_type::v_sample_locations_info_ext;
+    const void *                          pnext = {};
+    ktl::api::sample_count_flag_bits      sample_locations_per_pixel;
+    ktl::api::extent_2d                   sample_location_grid_size;
+    ktl::u32                              sample_locations_count = {};
+    const ktl::api::sample_location_ext * p_sample_locations;
+};
 struct physical_device_sample_locations_properties_ext
 {
     ktl::api::structure_type     stype = ktl::api::structure_type::v_physical_device_sample_locations_properties_ext;
@@ -8277,6 +9432,13 @@ struct physical_device_fragment_density_map_offset_properties_ext
         ktl::api::structure_type::v_physical_device_fragment_density_map_offset_properties_ext;
     void *              pnext = {};
     ktl::api::extent_2d fragment_density_offset_granularity;
+};
+struct fragment_shading_rate_attachment_info_khr
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_fragment_shading_rate_attachment_info_khr;
+    const void *             pnext = {};
+    const ktl::api::attachment_reference_2 * p_fragment_shading_rate_attachment = {};
+    ktl::api::extent_2d                      shading_rate_attachment_texel_size;
 };
 struct pipeline_fragment_shading_rate_state_create_info_khr
 {
@@ -8450,14 +9612,6 @@ struct tile_properties_qcom
     ktl::api::extent_2d      apron_size;
     ktl::api::offset_2d      origin;
 };
-struct command_buffer_inheritance_viewport_scissor_info_nv
-{
-    ktl::api::structure_type   stype = ktl::api::structure_type::v_command_buffer_inheritance_viewport_scissor_info_nv;
-    const void *               pnext = {};
-    ktl::api::bool32           viewport_scissor_2d;
-    ktl::u32                   viewport_depth_count;
-    const ktl::api::viewport * p_viewport_depths;
-};
 struct sampler_ycbcr_conversion_create_info
 {
     ktl::api::structure_type                 stype = ktl::api::structure_type::v_sampler_ycbcr_conversion_create_info;
@@ -8531,17 +9685,6 @@ struct native_buffer_format_properties_ohos
     ktl::api::chroma_location                suggested_x_chroma_offset;
     ktl::api::chroma_location                suggested_y_chroma_offset;
 };
-struct instance_create_info
-{
-    ktl::api::structure_type           stype               = ktl::api::structure_type::v_instance_create_info;
-    const void *                       pnext               = {};
-    ktl::api::instance_create_flags    flags               = {};
-    const ktl::api::application_info * p_application_info  = {};
-    ktl::u32                           enabled_layer_count = {};
-    const char * const *               pp_enabled_layer_names;
-    ktl::u32                           enabled_extension_count = {};
-    const char * const *               pp_enabled_extension_names;
-};
 struct memory_requirements_2
 {
     ktl::api::structure_type      stype = ktl::api::structure_type::v_memory_requirements_2;
@@ -8560,25 +9703,6 @@ struct format_properties_2
     ktl::api::structure_type    stype = ktl::api::structure_type::v_format_properties_2;
     void *                      pnext = {};
     ktl::api::format_properties format_properties;
-};
-struct write_descriptor_set
-{
-    ktl::api::structure_type                 stype = ktl::api::structure_type::v_write_descriptor_set;
-    const void *                             pnext = {};
-    ktl::api::descriptor_set                 dst_set;
-    ktl::u32                                 dst_binding;
-    ktl::u32                                 dst_array_element;
-    ktl::u32                                 descriptor_count;
-    ktl::api::descriptor_type                descriptor_type;
-    const ktl::api::descriptor_image_info *  p_image_info;
-    const ktl::api::descriptor_buffer_info * p_buffer_info;
-    const ktl::api::buffer_view *            p_texel_buffer_view;
-};
-struct device_buffer_memory_requirements
-{
-    ktl::api::structure_type             stype = ktl::api::structure_type::v_device_buffer_memory_requirements;
-    const void *                         pnext = {};
-    const ktl::api::buffer_create_info * p_create_info;
 };
 struct sparse_image_memory_bind
 {
@@ -8746,31 +9870,11 @@ struct host_image_layout_transition_info
     ktl::api::image_layout            new_layout;
     ktl::api::image_subresource_range subresource_range;
 };
-struct image_drm_format_modifier_explicit_create_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_image_drm_format_modifier_explicit_create_info_ext;
-    const void *             pnext = {};
-    ktl::u64                 drm_format_modifier;
-    ktl::u32                 drm_format_modifier_plane_count;
-    const ktl::api::subresource_layout * p_plane_layouts;
-};
 struct subresource_layout_2
 {
     ktl::api::structure_type     stype = ktl::api::structure_type::v_subresource_layout_2;
     void *                       pnext = {};
     ktl::api::subresource_layout subresource_layout;
-};
-struct sparse_buffer_memory_bind_info
-{
-    ktl::api::buffer                     buffer;
-    ktl::u32                             bind_count;
-    const ktl::api::sparse_memory_bind * p_binds;
-};
-struct sparse_image_opaque_memory_bind_info
-{
-    ktl::api::image                      image;
-    ktl::u32                             bind_count;
-    const ktl::api::sparse_memory_bind * p_binds;
 };
 struct copy_memory_indirect_info_khr
 {
@@ -8808,50 +9912,15 @@ struct draw_indirect_2_info_khr
     ktl::api::address_command_flags_khr        address_flags = {};
     ktl::u32                                   draw_count;
 };
-struct descriptor_set_layout_create_info
+struct compute_pipeline_create_info
 {
-    ktl::api::structure_type                     stype = ktl::api::structure_type::v_descriptor_set_layout_create_info;
-    const void *                                 pnext = {};
-    ktl::api::descriptor_set_layout_create_flags flags = {};
-    ktl::u32                                     binding_count = {};
-    const ktl::api::descriptor_set_layout_binding * p_bindings;
-};
-struct descriptor_pool_create_info
-{
-    ktl::api::structure_type               stype = ktl::api::structure_type::v_descriptor_pool_create_info;
-    const void *                           pnext = {};
-    ktl::api::descriptor_pool_create_flags flags = {};
-    ktl::u32                               max_sets;
-    ktl::u32                               pool_size_count = {};
-    const ktl::api::descriptor_pool_size * p_pool_sizes;
-};
-struct specialization_info
-{
-    ktl::u32                                   map_entry_count = {};
-    const ktl::api::specialization_map_entry * p_map_entries;
-    ktl::usize                                 data_size = {};
-    const void *                               p_data;
-};
-struct pipeline_vertex_input_state_create_info
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_vertex_input_state_create_info;
-    const void *             pnext = {};
-    ktl::api::pipeline_vertex_input_state_create_flags   flags                            = {};
-    ktl::u32                                             vertex_binding_description_count = {};
-    const ktl::api::vertex_input_binding_description *   p_vertex_binding_descriptions;
-    ktl::u32                                             vertex_attribute_description_count = {};
-    const ktl::api::vertex_input_attribute_description * p_vertex_attribute_descriptions;
-};
-struct pipeline_color_blend_state_create_info
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_color_blend_state_create_info;
-    const void *             pnext = {};
-    ktl::api::pipeline_color_blend_state_create_flags       flags = {};
-    ktl::api::bool32                                        logic_op_enable;
-    ktl::api::logic_op                                      logic_op;
-    ktl::u32                                                attachment_count = {};
-    const ktl::api::pipeline_color_blend_attachment_state * p_attachments    = {};
-    float                                                   blend_constants[4];
+    ktl::api::structure_type                    stype = ktl::api::structure_type::v_compute_pipeline_create_info;
+    const void *                                pnext = {};
+    ktl::api::pipeline_create_flags             flags = {};
+    ktl::api::pipeline_shader_stage_create_info stage;
+    ktl::api::pipeline_layout                   layout               = {};
+    ktl::api::pipeline                          base_pipeline_handle = {};
+    ktl::i32                                    base_pipeline_index;
 };
 struct pipeline_depth_stencil_state_create_info
 {
@@ -8868,94 +9937,9 @@ struct pipeline_depth_stencil_state_create_info
     float                                               min_depth_bounds;
     float                                               max_depth_bounds;
 };
-struct pipeline_layout_create_info
-{
-    ktl::api::structure_type                stype            = ktl::api::structure_type::v_pipeline_layout_create_info;
-    const void *                            pnext            = {};
-    ktl::api::pipeline_layout_create_flags  flags            = {};
-    ktl::u32                                set_layout_count = {};
-    const ktl::api::descriptor_set_layout * p_set_layouts;
-    ktl::u32                                push_constant_range_count = {};
-    const ktl::api::push_constant_range *   p_push_constant_ranges;
-};
 struct indirect_commands_push_constant_token_ext
 {
     ktl::api::push_constant_range update_range;
-};
-struct pipeline_binary_keys_and_data_khr
-{
-    ktl::u32                                   binary_count;
-    const ktl::api::pipeline_binary_key_khr *  p_pipeline_binary_keys;
-    const ktl::api::pipeline_binary_data_khr * p_pipeline_binary_data;
-};
-struct descriptor_mapping_source_constant_offset_ext
-{
-    ktl::u32                              heap_offset;
-    ktl::u32                              heap_array_stride;
-    const ktl::api::sampler_create_info * p_embedded_sampler = {};
-    ktl::u32                              sampler_heap_offset;
-    ktl::u32                              sampler_heap_array_stride;
-};
-struct descriptor_mapping_source_push_index_ext
-{
-    ktl::u32                              heap_offset;
-    ktl::u32                              push_offset;
-    ktl::u32                              heap_index_stride;
-    ktl::u32                              heap_array_stride;
-    const ktl::api::sampler_create_info * p_embedded_sampler = {};
-    ktl::api::bool32                      use_combined_image_sampler_index;
-    ktl::u32                              sampler_heap_offset;
-    ktl::u32                              sampler_push_offset;
-    ktl::u32                              sampler_heap_index_stride;
-    ktl::u32                              sampler_heap_array_stride;
-};
-struct descriptor_mapping_source_indirect_index_ext
-{
-    ktl::u32                              heap_offset;
-    ktl::u32                              push_offset;
-    ktl::u32                              address_offset;
-    ktl::u32                              heap_index_stride;
-    ktl::u32                              heap_array_stride;
-    const ktl::api::sampler_create_info * p_embedded_sampler = {};
-    ktl::api::bool32                      use_combined_image_sampler_index;
-    ktl::u32                              sampler_heap_offset;
-    ktl::u32                              sampler_push_offset;
-    ktl::u32                              sampler_address_offset;
-    ktl::u32                              sampler_heap_index_stride;
-    ktl::u32                              sampler_heap_array_stride;
-};
-struct descriptor_mapping_source_indirect_index_array_ext
-{
-    ktl::u32                              heap_offset;
-    ktl::u32                              push_offset;
-    ktl::u32                              address_offset;
-    ktl::u32                              heap_index_stride;
-    const ktl::api::sampler_create_info * p_embedded_sampler = {};
-    ktl::api::bool32                      use_combined_image_sampler_index;
-    ktl::u32                              sampler_heap_offset;
-    ktl::u32                              sampler_push_offset;
-    ktl::u32                              sampler_address_offset;
-    ktl::u32                              sampler_heap_index_stride;
-};
-struct descriptor_mapping_source_shader_record_index_ext
-{
-    ktl::u32                              heap_offset;
-    ktl::u32                              shader_record_offset;
-    ktl::u32                              heap_index_stride;
-    ktl::u32                              heap_array_stride;
-    const ktl::api::sampler_create_info * p_embedded_sampler = {};
-    ktl::api::bool32                      use_combined_image_sampler_index;
-    ktl::u32                              sampler_heap_offset;
-    ktl::u32                              sampler_shader_record_offset;
-    ktl::u32                              sampler_heap_index_stride;
-    ktl::u32                              sampler_heap_array_stride;
-};
-struct command_buffer_begin_info
-{
-    ktl::api::structure_type                          stype = ktl::api::structure_type::v_command_buffer_begin_info;
-    const void *                                      pnext = {};
-    ktl::api::command_buffer_usage_flags              flags = {};
-    const ktl::api::command_buffer_inheritance_info * p_inheritance_info = {};
 };
 struct sampler_custom_border_color_create_info_ext
 {
@@ -8969,37 +9953,11 @@ union clear_value
     ktl::api::clear_color_value         color;
     ktl::api::clear_depth_stencil_value depth_stencil;
 };
-struct subpass_description
-{
-    ktl::api::subpass_description_flags    flags = {};
-    ktl::api::pipeline_bind_point          pipeline_bind_point;
-    ktl::u32                               input_attachment_count = {};
-    const ktl::api::attachment_reference * p_input_attachments;
-    ktl::u32                               color_attachment_count = {};
-    const ktl::api::attachment_reference * p_color_attachments;
-    const ktl::api::attachment_reference * p_resolve_attachments      = {};
-    const ktl::api::attachment_reference * p_depth_stencil_attachment = {};
-    ktl::u32                               preserve_attachment_count  = {};
-    const ktl::u32 *                       p_preserve_attachments;
-};
 struct render_pass_fragment_density_map_create_info_ext
 {
     ktl::api::structure_type       stype = ktl::api::structure_type::v_render_pass_fragment_density_map_create_info_ext;
     const void *                   pnext = {};
     ktl::api::attachment_reference fragment_density_map_attachment;
-};
-struct device_create_info
-{
-    ktl::api::structure_type                   stype                   = ktl::api::structure_type::v_device_create_info;
-    const void *                               pnext                   = {};
-    ktl::api::device_create_flags              flags                   = {};
-    ktl::u32                                   queue_create_info_count = {};
-    const ktl::api::device_queue_create_info * p_queue_create_infos;
-    ktl::u32                                   enabled_layer_count = {};
-    const char * const *                       pp_enabled_layer_names;
-    ktl::u32                                   enabled_extension_count = {};
-    const char * const *                       pp_enabled_extension_names;
-    const ktl::api::physical_device_features * p_enabled_features = {};
 };
 struct physical_device_features_2
 {
@@ -9030,13 +9988,6 @@ struct surface_format_2_khr
     ktl::api::structure_type     stype = ktl::api::structure_type::v_surface_format_2_khr;
     void *                       pnext = {};
     ktl::api::surface_format_khr surface_format;
-};
-struct layer_settings_create_info_ext
-{
-    ktl::api::structure_type            stype         = ktl::api::structure_type::v_layer_settings_create_info_ext;
-    const void *                        pnext         = {};
-    ktl::u32                            setting_count = {};
-    const ktl::api::layer_setting_ext * p_settings;
 };
 struct cluster_acceleration_structure_instantiate_cluster_info_nv
 {
@@ -9095,40 +10046,15 @@ struct cluster_acceleration_structure_build_triangle_cluster_template_info_nv
     ktl::api::dvaddr opacity_micromap_index_buffer    = {};
     ktl::api::dvaddr instantiation_bounding_box_limit = {};
 };
-union cluster_acceleration_structure_op_input_nv
+struct cluster_acceleration_structure_input_info_nv
 {
-    ktl::api::cluster_acceleration_structure_clusters_bottom_level_input_nv * p_clusters_bottom_level;
-    ktl::api::cluster_acceleration_structure_triangle_cluster_input_nv *      p_triangle_clusters;
-    ktl::api::cluster_acceleration_structure_move_objects_input_nv *          p_move_objects;
-};
-struct generated_commands_info_nv
-{
-    ktl::api::structure_type                      stype = ktl::api::structure_type::v_generated_commands_info_nv;
-    const void *                                  pnext = {};
-    ktl::api::pipeline_bind_point                 pipeline_bind_point;
-    ktl::api::pipeline                            pipeline = {};
-    ktl::api::indirect_commands_layout_nv         indirect_commands_layout;
-    ktl::u32                                      stream_count;
-    const ktl::api::indirect_commands_stream_nv * p_streams;
-    ktl::u32                                      sequences_count;
-    ktl::api::buffer                              preprocess_buffer;
-    ktl::api::dvsize                              preprocess_offset;
-    ktl::api::dvsize                              preprocess_size;
-    ktl::api::buffer                              sequences_count_buffer = {};
-    ktl::api::dvsize                              sequences_count_offset;
-    ktl::api::buffer                              sequences_index_buffer = {};
-    ktl::api::dvsize                              sequences_index_offset;
-};
-struct indirect_commands_layout_create_info_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_indirect_commands_layout_create_info_nv;
-    const void *             pnext = {};
-    ktl::api::indirect_commands_layout_usage_flags_nv   flags = {};
-    ktl::api::pipeline_bind_point                       pipeline_bind_point;
-    ktl::u32                                            token_count;
-    const ktl::api::indirect_commands_layout_token_nv * p_tokens;
-    ktl::u32                                            stream_count;
-    const ktl::u32 *                                    p_stream_strides;
+    ktl::api::structure_type stype = ktl::api::structure_type::v_cluster_acceleration_structure_input_info_nv;
+    void *                   pnext = {};
+    ktl::u32                 max_acceleration_structure_count;
+    ktl::api::build_acceleration_structure_flags_khr     flags = {};
+    ktl::api::cluster_acceleration_structure_op_type_nv  op_type;
+    ktl::api::cluster_acceleration_structure_op_mode_nv  op_mode;
+    ktl::api::cluster_acceleration_structure_op_input_nv op_input;
 };
 struct physical_device_driver_properties
 {
@@ -9214,19 +10140,6 @@ struct external_tensor_properties_arm
     const void *                         pnext = {};
     ktl::api::external_memory_properties external_memory_properties;
 };
-struct descriptor_update_template_create_info
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_descriptor_update_template_create_info;
-    const void *             pnext = {};
-    ktl::api::descriptor_update_template_create_flags  flags = {};
-    ktl::u32                                           descriptor_update_entry_count;
-    const ktl::api::descriptor_update_template_entry * p_descriptor_update_entries;
-    ktl::api::descriptor_update_template_type          template_type;
-    ktl::api::descriptor_set_layout                    descriptor_set_layout;
-    ktl::api::pipeline_bind_point                      pipeline_bind_point;
-    ktl::api::pipeline_layout                          pipeline_layout;
-    ktl::u32                                           set;
-};
 struct hdr_metadata_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_hdr_metadata_ext;
@@ -9240,71 +10153,6 @@ struct hdr_metadata_ext
     float                    max_content_light_level;
     float                    max_frame_average_light_level;
 };
-struct past_presentation_timing_ext
-{
-    ktl::api::structure_type           stype = ktl::api::structure_type::v_past_presentation_timing_ext;
-    void *                             pnext = {};
-    ktl::u64                           present_id;
-    ktl::u64                           target_time;
-    ktl::u32                           present_stage_count;
-    ktl::api::present_stage_time_ext * p_present_stages;
-    ktl::api::time_domain_khr          time_domain;
-    ktl::u64                           time_domain_id;
-    ktl::api::bool32                   report_complete;
-};
-struct present_timings_info_ext
-{
-    ktl::api::structure_type                  stype = ktl::api::structure_type::v_present_timings_info_ext;
-    const void *                              pnext = {};
-    ktl::u32                                  swapchain_count;
-    const ktl::api::present_timing_info_ext * p_timing_infos = {};
-};
-struct present_times_info_google
-{
-    ktl::api::structure_type              stype = ktl::api::structure_type::v_present_times_info_google;
-    const void *                          pnext = {};
-    ktl::u32                              swapchain_count;
-    const ktl::api::present_time_google * p_times = {};
-};
-struct pipeline_viewport_w_scaling_state_create_info_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_viewport_w_scaling_state_create_info_nv;
-    const void *             pnext = {};
-    ktl::api::bool32         viewport_w_scaling_enable;
-    ktl::u32                 viewport_count;
-    const ktl::api::viewport_w_scaling_nv * p_viewport_w_scalings = {};
-};
-struct pipeline_viewport_swizzle_state_create_info_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_viewport_swizzle_state_create_info_nv;
-    const void *             pnext = {};
-    ktl::api::pipeline_viewport_swizzle_state_create_flags_nv flags = {};
-    ktl::u32                                                  viewport_count;
-    const ktl::api::viewport_swizzle_nv *                     p_viewport_swizzles;
-};
-struct render_pass_input_attachment_aspect_create_info
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_input_attachment_aspect_create_info;
-    const void *             pnext = {};
-    ktl::u32                 aspect_reference_count;
-    const ktl::api::input_attachment_aspect_reference * p_aspect_references;
-};
-struct sample_locations_info_ext
-{
-    ktl::api::structure_type              stype = ktl::api::structure_type::v_sample_locations_info_ext;
-    const void *                          pnext = {};
-    ktl::api::sample_count_flag_bits      sample_locations_per_pixel;
-    ktl::api::extent_2d                   sample_location_grid_size;
-    ktl::u32                              sample_locations_count = {};
-    const ktl::api::sample_location_ext * p_sample_locations;
-};
-struct physical_device_layered_api_properties_list_khr
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_layered_api_properties_list_khr;
-    void *                   pnext = {};
-    ktl::u32                 layered_api_count                            = {};
-    ktl::api::physical_device_layered_api_properties_khr * p_layered_apis = {};
-};
 struct shader_statistics_info_amd
 {
     ktl::api::shader_stage_flags        shader_stage_mask;
@@ -9315,101 +10163,17 @@ struct shader_statistics_info_amd
     ktl::u32                            num_available_sgprs;
     ktl::u32                            compute_work_group_size[3];
 };
-struct debug_utils_messenger_callback_data_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_debug_utils_messenger_callback_data_ext;
-    const void *             pnext = {};
-    ktl::api::debug_utils_messenger_callback_data_flags_ext flags             = {};
-    const char *                                            p_message_id_name = {};
-    ktl::i32                                                message_id_number;
-    const char *                                            p_message         = {};
-    ktl::u32                                                queue_label_count = {};
-    const ktl::api::debug_utils_label_ext *                 p_queue_labels;
-    ktl::u32                                                cmd_buf_label_count = {};
-    const ktl::api::debug_utils_label_ext *                 p_cmd_buf_labels;
-    ktl::u32                                                object_count = {};
-    const ktl::api::debug_utils_object_name_info_ext *      p_objects;
-};
-struct subpass_description_2
-{
-    ktl::api::structure_type                 stype = ktl::api::structure_type::v_subpass_description_2;
-    const void *                             pnext = {};
-    ktl::api::subpass_description_flags      flags = {};
-    ktl::api::pipeline_bind_point            pipeline_bind_point;
-    ktl::u32                                 view_mask;
-    ktl::u32                                 input_attachment_count = {};
-    const ktl::api::attachment_reference_2 * p_input_attachments;
-    ktl::u32                                 color_attachment_count = {};
-    const ktl::api::attachment_reference_2 * p_color_attachments;
-    const ktl::api::attachment_reference_2 * p_resolve_attachments      = {};
-    const ktl::api::attachment_reference_2 * p_depth_stencil_attachment = {};
-    ktl::u32                                 preserve_attachment_count  = {};
-    const ktl::u32 *                         p_preserve_attachments;
-};
-struct subpass_description_depth_stencil_resolve
-{
-    ktl::api::structure_type         stype = ktl::api::structure_type::v_subpass_description_depth_stencil_resolve;
-    const void *                     pnext = {};
-    ktl::api::resolve_mode_flag_bits depth_resolve_mode;
-    ktl::api::resolve_mode_flag_bits stencil_resolve_mode;
-    const ktl::api::attachment_reference_2 * p_depth_stencil_resolve_attachment = {};
-};
-struct fragment_shading_rate_attachment_info_khr
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_fragment_shading_rate_attachment_info_khr;
-    const void *             pnext = {};
-    const ktl::api::attachment_reference_2 * p_fragment_shading_rate_attachment = {};
-    ktl::api::extent_2d                      shading_rate_attachment_texel_size;
-};
-struct pipeline_vertex_input_divisor_state_create_info
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_vertex_input_divisor_state_create_info;
-    const void *             pnext = {};
-    ktl::u32                 vertex_binding_divisor_count;
-    const ktl::api::vertex_input_binding_divisor_description * p_vertex_binding_divisors;
-};
-struct pipeline_viewport_shading_rate_image_state_create_info_nv
-{
-    ktl::api::structure_type stype =
-        ktl::api::structure_type::v_pipeline_viewport_shading_rate_image_state_create_info_nv;
-    const void *                              pnext = {};
-    ktl::api::bool32                          shading_rate_image_enable;
-    ktl::u32                                  viewport_count = {};
-    const ktl::api::shading_rate_palette_nv * p_shading_rate_palettes;
-};
-struct coarse_sample_order_custom_nv
-{
-    ktl::api::shading_rate_palette_entry_nv     shading_rate;
-    ktl::u32                                    sample_count;
-    ktl::u32                                    sample_location_count;
-    const ktl::api::coarse_sample_location_nv * p_sample_locations;
-};
 struct geometry_data_nv
 {
     ktl::api::geometry_triangles_nv triangles;
     ktl::api::geometry_aabb_nv      aabbs;
 };
-struct drm_format_modifier_properties_list_ext
+struct acceleration_structure_create_info_nv
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_drm_format_modifier_properties_list_ext;
-    void *                   pnext = {};
-    ktl::u32                 drm_format_modifier_count                              = {};
-    ktl::api::drm_format_modifier_properties_ext * p_drm_format_modifier_properties = {};
-};
-struct framebuffer_attachments_create_info
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_framebuffer_attachments_create_info;
-    const void *             pnext = {};
-    ktl::u32                 attachment_image_info_count = {};
-    const ktl::api::framebuffer_attachment_image_info * p_attachment_image_infos;
-};
-struct pipeline_creation_feedback_create_info
-{
-    ktl::api::structure_type               stype = ktl::api::structure_type::v_pipeline_creation_feedback_create_info;
-    const void *                           pnext = {};
-    ktl::api::pipeline_creation_feedback * p_pipeline_creation_feedback;
-    ktl::u32                               pipeline_stage_creation_feedback_count = {};
-    ktl::api::pipeline_creation_feedback * p_pipeline_stage_creation_feedbacks;
+    ktl::api::structure_type                 stype = ktl::api::structure_type::v_acceleration_structure_create_info_nv;
+    const void *                             pnext = {};
+    ktl::api::dvsize                         compacted_size;
+    ktl::api::acceleration_structure_info_nv info;
 };
 struct performance_value_intel
 {
@@ -9425,34 +10189,19 @@ struct pipeline_executable_statistic_khr
     ktl::api::pipeline_executable_statistic_format_khr format;
     ktl::api::pipeline_executable_statistic_value_khr  value;
 };
-struct physical_device_gpa_properties_amd
+struct acceleration_structure_build_geometry_info_khr
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_gpa_properties_amd;
-    void *                   pnext = {};
-    ktl::api::physical_device_gpa_properties_flags_amd flags;
-    ktl::api::dvsize                                   max_sqtt_se_buffer_size;
-    ktl::u32                                           shader_engine_count;
-    ktl::u32                                           perf_block_count;
-    ktl::api::gpa_perf_block_properties_amd *          p_perf_blocks;
-};
-struct gpa_sample_begin_info_amd
-{
-    ktl::api::structure_type                stype = ktl::api::structure_type::v_gpa_sample_begin_info_amd;
-    const void *                            pnext = {};
-    ktl::api::gpa_sample_type_amd           sample_type;
-    ktl::api::bool32                        sample_internal_operations;
-    ktl::api::bool32                        cache_flush_on_counter_collection;
-    ktl::api::bool32                        sq_shader_mask_enable;
-    ktl::api::gpa_sq_shader_stage_flags_amd sq_shader_mask = {};
-    ktl::u32                                perf_counter_count;
-    const ktl::api::gpa_perf_counter_amd *  p_perf_counters;
-    ktl::u32                                streaming_perf_trace_sample_interval;
-    ktl::api::dvsize                        perf_counter_device_memory_limit;
-    ktl::api::bool32                        sq_thread_trace_enable;
-    ktl::api::bool32                        sq_thread_trace_suppress_instruction_tokens;
-    ktl::api::dvsize                        sq_thread_trace_device_memory_limit;
-    ktl::api::pipeline_stage_flags          timing_pre_sample  = {};
-    ktl::api::pipeline_stage_flags          timing_post_sample = {};
+    ktl::api::structure_type stype = ktl::api::structure_type::v_acceleration_structure_build_geometry_info_khr;
+    const void *             pnext = {};
+    ktl::api::acceleration_structure_type_khr                     type;
+    ktl::api::build_acceleration_structure_flags_khr              flags = {};
+    ktl::api::build_acceleration_structure_mode_khr               mode;
+    ktl::api::acceleration_structure_khr                          src_acceleration_structure = {};
+    ktl::api::acceleration_structure_khr                          dst_acceleration_structure = {};
+    ktl::u32                                                      geometry_count             = {};
+    const ktl::api::acceleration_structure_geometry_khr *         p_geometries               = {};
+    const ktl::api::acceleration_structure_geometry_khr * const * pp_geometries;
+    ktl::api::device_or_host_address_khr                          scratch_data;
 };
 struct copy_acceleration_structure_to_memory_info_khr
 {
@@ -9542,6 +10291,22 @@ struct acceleration_structure_geometry_motion_triangles_data_nv
     const void *                               pnext = {};
     ktl::api::device_or_host_address_const_khr vertex_data;
 };
+struct micromap_build_info_ext
+{
+    ktl::api::structure_type                     stype = ktl::api::structure_type::v_micromap_build_info_ext;
+    const void *                                 pnext = {};
+    ktl::api::micromap_type_ext                  type;
+    ktl::api::build_micromap_flags_ext           flags = {};
+    ktl::api::build_micromap_mode_ext            mode;
+    ktl::api::micromap_ext                       dst_micromap       = {};
+    ktl::u32                                     usage_counts_count = {};
+    const ktl::api::micromap_usage_ext *         p_usage_counts     = {};
+    const ktl::api::micromap_usage_ext * const * pp_usage_counts;
+    ktl::api::device_or_host_address_const_khr   data;
+    ktl::api::device_or_host_address_khr         scratch_data;
+    ktl::api::device_or_host_address_const_khr   triangle_array;
+    ktl::api::dvsize                             triangle_array_stride;
+};
 struct copy_memory_to_micromap_info_ext
 {
     ktl::api::structure_type                   stype = ktl::api::structure_type::v_copy_memory_to_micromap_info_ext;
@@ -9549,6 +10314,41 @@ struct copy_memory_to_micromap_info_ext
     ktl::api::device_or_host_address_const_khr src;
     ktl::api::micromap_ext                     dst;
     ktl::api::copy_micromap_mode_ext           mode;
+};
+struct acceleration_structure_triangles_opacity_micromap_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_acceleration_structure_triangles_opacity_micromap_ext;
+    void *                   pnext = {};
+    ktl::api::index_type     index_type;
+    ktl::api::device_or_host_address_const_khr   index_buffer;
+    ktl::api::dvsize                             index_stride;
+    ktl::u32                                     base_triangle;
+    ktl::u32                                     usage_counts_count = {};
+    const ktl::api::micromap_usage_ext *         p_usage_counts     = {};
+    const ktl::api::micromap_usage_ext * const * pp_usage_counts;
+    ktl::api::micromap_ext                       micromap = {};
+};
+struct acceleration_structure_triangles_displacement_micromap_nv
+{
+    ktl::api::structure_type stype =
+        ktl::api::structure_type::v_acceleration_structure_triangles_displacement_micromap_nv;
+    void *                                       pnext = {};
+    ktl::api::format                             displacement_bias_and_scale_format;
+    ktl::api::format                             displacement_vector_format;
+    ktl::api::device_or_host_address_const_khr   displacement_bias_and_scale_buffer;
+    ktl::api::dvsize                             displacement_bias_and_scale_stride;
+    ktl::api::device_or_host_address_const_khr   displacement_vector_buffer;
+    ktl::api::dvsize                             displacement_vector_stride;
+    ktl::api::device_or_host_address_const_khr   displaced_micromap_primitive_flags;
+    ktl::api::dvsize                             displaced_micromap_primitive_flags_stride;
+    ktl::api::index_type                         index_type;
+    ktl::api::device_or_host_address_const_khr   index_buffer;
+    ktl::api::dvsize                             index_stride;
+    ktl::u32                                     base_triangle;
+    ktl::u32                                     usage_counts_count = {};
+    const ktl::api::micromap_usage_ext *         p_usage_counts     = {};
+    const ktl::api::micromap_usage_ext * const * pp_usage_counts;
+    ktl::api::micromap_ext                       micromap = {};
 };
 struct acceleration_structure_dense_geometry_format_triangles_data_amdx
 {
@@ -9635,64 +10435,27 @@ struct build_partitioned_acceleration_structure_info_nv
     ktl::api::dvaddr                                                src_infos;
     ktl::api::dvaddr                                                src_infos_count;
 };
-struct copy_buffer_info_2
+struct indirect_execution_set_create_info_ext
 {
-    ktl::api::structure_type        stype = ktl::api::structure_type::v_copy_buffer_info_2;
-    const void *                    pnext = {};
-    ktl::api::buffer                src_buffer;
-    ktl::api::buffer                dst_buffer;
-    ktl::u32                        region_count;
-    const ktl::api::buffer_copy_2 * p_regions;
-};
-struct mutable_descriptor_type_create_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_mutable_descriptor_type_create_info_ext;
+    ktl::api::structure_type stype = ktl::api::structure_type::v_indirect_execution_set_create_info_ext;
     const void *             pnext = {};
-    ktl::u32                 mutable_descriptor_type_list_count = {};
-    const ktl::api::mutable_descriptor_type_list_ext * p_mutable_descriptor_type_lists;
+    ktl::api::indirect_execution_set_info_type_ext type;
+    ktl::api::indirect_execution_set_info_ext      info;
 };
-struct indirect_execution_set_shader_info_ext
+struct indirect_commands_layout_token_ext
 {
-    ktl::api::structure_type     stype = ktl::api::structure_type::v_indirect_execution_set_shader_info_ext;
-    const void *                 pnext = {};
-    ktl::u32                     shader_count;
-    const ktl::api::shader_ext * p_initial_shaders;
-    const ktl::api::indirect_execution_set_shader_layout_info_ext * p_set_layout_infos = {};
-    ktl::u32                                                        max_shader_count;
-    ktl::u32                                                        push_constant_range_count = {};
-    const ktl::api::push_constant_range *                           p_push_constant_ranges;
+    ktl::api::structure_type                   stype = ktl::api::structure_type::v_indirect_commands_layout_token_ext;
+    const void *                               pnext = {};
+    ktl::api::indirect_commands_token_type_ext type;
+    ktl::api::indirect_commands_token_data_ext data;
+    ktl::u32                                   offset;
 };
-struct render_pass_stripe_submit_info_arm
+struct descriptor_get_info_ext
 {
-    ktl::api::structure_type                stype = ktl::api::structure_type::v_render_pass_stripe_submit_info_arm;
-    const void *                            pnext = {};
-    ktl::u32                                stripe_semaphore_info_count;
-    const ktl::api::semaphore_submit_info * p_stripe_semaphore_infos;
-};
-struct submit_info_2
-{
-    ktl::api::structure_type                     stype                     = ktl::api::structure_type::v_submit_info_2;
-    const void *                                 pnext                     = {};
-    ktl::api::submit_flags                       flags                     = {};
-    ktl::u32                                     wait_semaphore_info_count = {};
-    const ktl::api::semaphore_submit_info *      p_wait_semaphore_infos;
-    ktl::u32                                     command_buffer_info_count = {};
-    const ktl::api::command_buffer_submit_info * p_command_buffer_infos;
-    ktl::u32                                     signal_semaphore_info_count = {};
-    const ktl::api::semaphore_submit_info *      p_signal_semaphore_infos;
-};
-union descriptor_data_ext
-{
-    const ktl::api::sampler *                     p_sampler;
-    const ktl::api::descriptor_image_info *       p_combined_image_sampler;
-    const ktl::api::descriptor_image_info *       p_input_attachment_image;
-    const ktl::api::descriptor_image_info *       p_sampled_image;
-    const ktl::api::descriptor_image_info *       p_storage_image;
-    const ktl::api::descriptor_address_info_ext * p_uniform_texel_buffer;
-    const ktl::api::descriptor_address_info_ext * p_storage_texel_buffer;
-    const ktl::api::descriptor_address_info_ext * p_uniform_buffer;
-    const ktl::api::descriptor_address_info_ext * p_storage_buffer;
-    ktl::api::dvaddr                              acceleration_structure;
+    ktl::api::structure_type      stype = ktl::api::structure_type::v_descriptor_get_info_ext;
+    const void *                  pnext = {};
+    ktl::api::descriptor_type     type;
+    ktl::api::descriptor_data_ext data;
 };
 struct acceleration_structure_srt_motion_instance_nv
 {
@@ -9728,86 +10491,14 @@ struct buffer_constraints_info_fuchsia
     ktl::api::format_feature_flags required_format_features = {};
     ktl::api::buffer_collection_constraints_info_fuchsia buffer_collection_constraints;
 };
-struct drm_format_modifier_properties_list_2_ext
+struct image_constraints_info_fuchsia
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_drm_format_modifier_properties_list_2_ext;
-    void *                   pnext = {};
-    ktl::u32                 drm_format_modifier_count                                = {};
-    ktl::api::drm_format_modifier_properties_2_ext * p_drm_format_modifier_properties = {};
-};
-struct render_pass_creation_feedback_create_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_creation_feedback_create_info_ext;
+    ktl::api::structure_type stype = ktl::api::structure_type::v_image_constraints_info_fuchsia;
     const void *             pnext = {};
-    ktl::api::render_pass_creation_feedback_info_ext * p_render_pass_feedback;
-};
-struct render_pass_subpass_feedback_create_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_subpass_feedback_create_info_ext;
-    const void *             pnext = {};
-    ktl::api::render_pass_subpass_feedback_info_ext * p_subpass_feedback;
-};
-struct acceleration_structure_geometry_micromap_data_khr
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_acceleration_structure_geometry_micromap_data_khr;
-    const void *             pnext = {};
-    ktl::u32                 usage_counts_count                 = {};
-    const ktl::api::micromap_usage_khr *         p_usage_counts = {};
-    const ktl::api::micromap_usage_khr * const * pp_usage_counts;
-    ktl::api::dvaddr                             data;
-    ktl::api::dvaddr                             triangle_array;
-    ktl::api::dvsize                             triangle_array_stride;
-};
-struct micromap_build_info_ext
-{
-    ktl::api::structure_type                     stype = ktl::api::structure_type::v_micromap_build_info_ext;
-    const void *                                 pnext = {};
-    ktl::api::micromap_type_ext                  type;
-    ktl::api::build_micromap_flags_ext           flags = {};
-    ktl::api::build_micromap_mode_ext            mode;
-    ktl::api::micromap_ext                       dst_micromap       = {};
-    ktl::u32                                     usage_counts_count = {};
-    const ktl::api::micromap_usage_ext *         p_usage_counts     = {};
-    const ktl::api::micromap_usage_ext * const * pp_usage_counts;
-    ktl::api::device_or_host_address_const_khr   data;
-    ktl::api::device_or_host_address_khr         scratch_data;
-    ktl::api::device_or_host_address_const_khr   triangle_array;
-    ktl::api::dvsize                             triangle_array_stride;
-};
-struct acceleration_structure_triangles_opacity_micromap_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_acceleration_structure_triangles_opacity_micromap_ext;
-    void *                   pnext = {};
-    ktl::api::index_type     index_type;
-    ktl::api::device_or_host_address_const_khr   index_buffer;
-    ktl::api::dvsize                             index_stride;
-    ktl::u32                                     base_triangle;
-    ktl::u32                                     usage_counts_count = {};
-    const ktl::api::micromap_usage_ext *         p_usage_counts     = {};
-    const ktl::api::micromap_usage_ext * const * pp_usage_counts;
-    ktl::api::micromap_ext                       micromap = {};
-};
-struct acceleration_structure_triangles_displacement_micromap_nv
-{
-    ktl::api::structure_type stype =
-        ktl::api::structure_type::v_acceleration_structure_triangles_displacement_micromap_nv;
-    void *                                       pnext = {};
-    ktl::api::format                             displacement_bias_and_scale_format;
-    ktl::api::format                             displacement_vector_format;
-    ktl::api::device_or_host_address_const_khr   displacement_bias_and_scale_buffer;
-    ktl::api::dvsize                             displacement_bias_and_scale_stride;
-    ktl::api::device_or_host_address_const_khr   displacement_vector_buffer;
-    ktl::api::dvsize                             displacement_vector_stride;
-    ktl::api::device_or_host_address_const_khr   displaced_micromap_primitive_flags;
-    ktl::api::dvsize                             displaced_micromap_primitive_flags_stride;
-    ktl::api::index_type                         index_type;
-    ktl::api::device_or_host_address_const_khr   index_buffer;
-    ktl::api::dvsize                             index_stride;
-    ktl::u32                                     base_triangle;
-    ktl::u32                                     usage_counts_count = {};
-    const ktl::api::micromap_usage_ext *         p_usage_counts     = {};
-    const ktl::api::micromap_usage_ext * const * pp_usage_counts;
-    ktl::api::micromap_ext                       micromap = {};
+    ktl::u32                 format_constraints_count;
+    const ktl::api::image_format_constraints_info_fuchsia * p_format_constraints;
+    ktl::api::buffer_collection_constraints_info_fuchsia    buffer_collection_constraints;
+    ktl::api::image_constraints_info_flags_fuchsia          flags = {};
 };
 struct device_fault_info_khr
 {
@@ -9820,115 +10511,12 @@ struct device_fault_info_khr
     ktl::api::device_fault_address_info_khr instruction_address_info = {};
     ktl::api::device_fault_vendor_info_khr  vendor_info              = {};
 };
-struct device_fault_info_ext
-{
-    ktl::api::structure_type                  stype = ktl::api::structure_type::v_device_fault_info_ext;
-    void *                                    pnext = {};
-    char                                      description[KTL_API_MAX_DESCRIPTION_SIZE];
-    ktl::api::device_fault_address_info_khr * p_address_infos      = {};
-    ktl::api::device_fault_vendor_info_khr *  p_vendor_infos       = {};
-    void *                                    p_vendor_binary_data = {};
-};
-struct decompress_memory_info_ext
-{
-    ktl::api::structure_type                        stype = ktl::api::structure_type::v_decompress_memory_info_ext;
-    const void *                                    pnext = {};
-    ktl::api::memory_decompression_method_flags_ext decompression_method;
-    ktl::u32                                        region_count;
-    const ktl::api::decompress_memory_region_ext *  p_regions;
-};
-struct direct_driver_loading_list_lunarg
-{
-    ktl::api::structure_type                    stype = ktl::api::structure_type::v_direct_driver_loading_list_lunarg;
-    const void *                                pnext = {};
-    ktl::api::direct_driver_loading_mode_lunarg mode;
-    ktl::u32                                    driver_count;
-    const ktl::api::direct_driver_loading_info_lunarg * p_drivers;
-};
-struct anti_lag_data_amd
-{
-    ktl::api::structure_type                         stype = ktl::api::structure_type::v_anti_lag_data_amd;
-    const void *                                     pnext = {};
-    ktl::api::anti_lag_mode_amd                      mode;
-    ktl::u32                                         max_fps;
-    const ktl::api::anti_lag_presentation_info_amd * p_presentation_info = {};
-};
-struct get_latency_marker_info_nv
-{
-    ktl::api::structure_type                    stype        = ktl::api::structure_type::v_get_latency_marker_info_nv;
-    const void *                                pnext        = {};
-    ktl::u32                                    timing_count = {};
-    ktl::api::latency_timings_frame_report_nv * p_timings    = {};
-};
-struct pipeline_viewport_depth_clamp_control_create_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_viewport_depth_clamp_control_create_info_ext;
-    const void *             pnext = {};
-    ktl::api::depth_clamp_mode_ext          depth_clamp_mode;
-    const ktl::api::depth_clamp_range_ext * p_depth_clamp_range = {};
-};
-struct tensor_create_info_arm
-{
-    ktl::api::structure_type                 stype = ktl::api::structure_type::v_tensor_create_info_arm;
-    const void *                             pnext = {};
-    ktl::api::tensor_create_flags_arm        flags = {};
-    const ktl::api::tensor_description_arm * p_description;
-    ktl::api::sharing_mode                   sharing_mode;
-    ktl::u32                                 queue_family_index_count = {};
-    const ktl::u32 *                         p_queue_family_indices;
-};
-struct physical_device_external_tensor_info_arm
-{
-    ktl::api::structure_type          stype = ktl::api::structure_type::v_physical_device_external_tensor_info_arm;
-    const void *                      pnext = {};
-    ktl::api::tensor_create_flags_arm flags = {};
-    const ktl::api::tensor_description_arm *        p_description;
-    ktl::api::external_memory_handle_type_flag_bits handle_type;
-};
-struct tensor_dependency_info_arm
-{
-    ktl::api::structure_type                    stype = ktl::api::structure_type::v_tensor_dependency_info_arm;
-    const void *                                pnext = {};
-    ktl::u32                                    tensor_memory_barrier_count;
-    const ktl::api::tensor_memory_barrier_arm * p_tensor_memory_barriers;
-};
-struct copy_tensor_info_arm
-{
-    ktl::api::structure_type          stype = ktl::api::structure_type::v_copy_tensor_info_arm;
-    const void *                      pnext = {};
-    ktl::api::tensor_arm              src_tensor;
-    ktl::api::tensor_arm              dst_tensor;
-    ktl::u32                          region_count;
-    const ktl::api::tensor_copy_arm * p_regions;
-};
-struct data_graph_pipeline_create_info_arm
-{
-    ktl::api::structure_type          stype = ktl::api::structure_type::v_data_graph_pipeline_create_info_arm;
-    const void *                      pnext = {};
-    ktl::api::pipeline_create_flags_2 flags = {};
-    ktl::api::pipeline_layout         layout;
-    ktl::u32                          resource_info_count = {};
-    const ktl::api::data_graph_pipeline_resource_info_arm * p_resource_infos;
-};
-struct data_graph_processing_engine_create_info_arm
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_data_graph_processing_engine_create_info_arm;
-    const void *             pnext = {};
-    ktl::u32                 processing_engine_count;
-    ktl::api::physical_device_data_graph_processing_engine_arm * p_processing_engines;
-};
 struct queue_family_data_graph_properties_arm
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_queue_family_data_graph_properties_arm;
     void *                   pnext = {};
     ktl::api::physical_device_data_graph_processing_engine_arm engine;
     ktl::api::physical_device_data_graph_operation_support_arm operation;
-};
-struct data_graph_pipeline_builtin_model_create_info_qcom
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_data_graph_pipeline_builtin_model_create_info_qcom;
-    const void *             pnext = {};
-    const ktl::api::physical_device_data_graph_operation_support_arm * p_operation;
 };
 struct push_data_info_ext
 {
@@ -9937,11 +10525,26 @@ struct push_data_info_ext
     ktl::u32                               offset;
     ktl::api::host_address_range_const_ext data;
 };
-struct opaque_capture_data_create_info_ext
+struct resource_descriptor_info_ext
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_opaque_capture_data_create_info_ext;
-    const void *             pnext = {};
-    const ktl::api::host_address_range_const_ext * p_data = {};
+    ktl::api::structure_type               stype = ktl::api::structure_type::v_resource_descriptor_info_ext;
+    const void *                           pnext = {};
+    ktl::api::descriptor_type              type;
+    ktl::api::resource_descriptor_data_ext data;
+};
+union descriptor_mapping_source_data_ext
+{
+    ktl::api::descriptor_mapping_source_constant_offset_ext      constant_offset;
+    ktl::api::descriptor_mapping_source_push_index_ext           push_index;
+    ktl::api::descriptor_mapping_source_indirect_index_ext       indirect_index;
+    ktl::api::descriptor_mapping_source_indirect_index_array_ext indirect_index_array;
+    ktl::api::descriptor_mapping_source_heap_data_ext            heap_data;
+    ktl::u32                                                     push_data_offset;
+    ktl::u32                                                     push_address_offset;
+    ktl::api::descriptor_mapping_source_indirect_address_ext     indirect_address;
+    ktl::api::descriptor_mapping_source_shader_record_index_ext  shader_record_index;
+    ktl::u32                                                     shader_record_data_offset;
+    ktl::u32                                                     shader_record_address_offset;
 };
 struct device_memory_copy_khr
 {
@@ -10036,39 +10639,21 @@ struct memory_marker_info_amd
     ktl::api::address_command_flags_khr  dst_flags = {};
     ktl::u32                             marker;
 };
-struct queue_family_data_graph_tosa_properties_arm
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_queue_family_data_graph_tosa_properties_arm;
-    void *                   pnext = {};
-    ktl::u32                 profile_count;
-    const ktl::api::data_graph_tosa_name_quality_arm * p_profiles;
-    ktl::u32                                           extension_count;
-    const ktl::api::data_graph_tosa_name_quality_arm * p_extensions;
-    ktl::api::data_graph_tosa_level_arm                level;
-};
-struct data_graph_pipeline_single_node_create_info_arm
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_data_graph_pipeline_single_node_create_info_arm;
-    void *                   pnext = {};
-    ktl::api::data_graph_pipeline_node_type_arm                      node_type;
-    ktl::u32                                                         connection_count;
-    const ktl::api::data_graph_pipeline_single_node_connection_arm * p_connections;
-};
 struct clear_rect
 {
     ktl::api::rect_2d rect;
     ktl::u32          base_array_layer;
     ktl::u32          layer_count;
 };
-struct pipeline_viewport_state_create_info
+struct render_pass_begin_info
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_viewport_state_create_info;
-    const void *             pnext = {};
-    ktl::api::pipeline_viewport_state_create_flags flags          = {};
-    ktl::u32                                       viewport_count = {};
-    const ktl::api::viewport *                     p_viewports    = {};
-    ktl::u32                                       scissor_count  = {};
-    const ktl::api::rect_2d *                      p_scissors     = {};
+    ktl::api::structure_type      stype = ktl::api::structure_type::v_render_pass_begin_info;
+    const void *                  pnext = {};
+    ktl::api::render_pass         render_pass;
+    ktl::api::framebuffer         framebuffer;
+    ktl::api::rect_2d             render_area;
+    ktl::u32                      clear_value_count = {};
+    const ktl::api::clear_value * p_clear_values;
 };
 struct display_present_info_khr
 {
@@ -10078,40 +10663,6 @@ struct display_present_info_khr
     ktl::api::rect_2d        dst_rect;
     ktl::api::bool32         persistent;
 };
-struct bind_image_memory_device_group_info
-{
-    ktl::api::structure_type  stype              = ktl::api::structure_type::v_bind_image_memory_device_group_info;
-    const void *              pnext              = {};
-    ktl::u32                  device_index_count = {};
-    const ktl::u32 *          p_device_indices;
-    ktl::u32                  split_instance_bind_region_count = {};
-    const ktl::api::rect_2d * p_split_instance_bind_regions;
-};
-struct device_group_render_pass_begin_info
-{
-    ktl::api::structure_type  stype = ktl::api::structure_type::v_device_group_render_pass_begin_info;
-    const void *              pnext = {};
-    ktl::u32                  device_mask;
-    ktl::u32                  device_render_area_count = {};
-    const ktl::api::rect_2d * p_device_render_areas;
-};
-struct pipeline_discard_rectangle_state_create_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_discard_rectangle_state_create_info_ext;
-    const void *             pnext = {};
-    ktl::api::pipeline_discard_rectangle_state_create_flags_ext flags = {};
-    ktl::api::discard_rectangle_mode_ext                        discard_rectangle_mode;
-    ktl::u32                                                    discard_rectangle_count = {};
-    const ktl::api::rect_2d *                                   p_discard_rectangles;
-};
-struct pipeline_viewport_exclusive_scissor_state_create_info_nv
-{
-    ktl::api::structure_type stype =
-        ktl::api::structure_type::v_pipeline_viewport_exclusive_scissor_state_create_info_nv;
-    const void *              pnext                   = {};
-    ktl::u32                  exclusive_scissor_count = {};
-    const ktl::api::rect_2d * p_exclusive_scissors;
-};
 struct command_buffer_inheritance_render_pass_transform_info_qcom
 {
     ktl::api::structure_type stype =
@@ -10120,21 +10671,18 @@ struct command_buffer_inheritance_render_pass_transform_info_qcom
     ktl::api::surface_transform_flag_bits_khr transform;
     ktl::api::rect_2d                         render_area;
 };
-struct optical_flow_execute_info_nv
+struct rendering_info
 {
-    ktl::api::structure_type                stype        = ktl::api::structure_type::v_optical_flow_execute_info_nv;
-    void *                                  pnext        = {};
-    ktl::api::optical_flow_execute_flags_nv flags        = {};
-    ktl::u32                                region_count = {};
-    const ktl::api::rect_2d *               p_regions;
-};
-struct multiview_per_view_render_areas_render_pass_begin_info_qcom
-{
-    ktl::api::structure_type stype =
-        ktl::api::structure_type::v_multiview_per_view_render_areas_render_pass_begin_info_qcom;
-    const void *              pnext                      = {};
-    ktl::u32                  per_view_render_area_count = {};
-    const ktl::api::rect_2d * p_per_view_render_areas;
+    ktl::api::structure_type                    stype = ktl::api::structure_type::v_rendering_info;
+    const void *                                pnext = {};
+    ktl::api::rendering_flags                   flags = {};
+    ktl::api::rect_2d                           render_area;
+    ktl::u32                                    layer_count;
+    ktl::u32                                    view_mask;
+    ktl::u32                                    color_attachment_count = {};
+    const ktl::api::rendering_attachment_info * p_color_attachments;
+    const ktl::api::rendering_attachment_info * p_depth_attachment   = {};
+    const ktl::api::rendering_attachment_info * p_stencil_attachment = {};
 };
 struct render_pass_stripe_info_arm
 {
@@ -10172,10 +10720,22 @@ struct surface_capabilities_2_khr
     void *                             pnext = {};
     ktl::api::surface_capabilities_khr surface_capabilities;
 };
-struct present_region_khr
+struct attachment_sample_locations_ext
 {
-    ktl::u32                         rectangle_count = {};
-    const ktl::api::rect_layer_khr * p_rectangles    = {};
+    ktl::u32                            attachment_index;
+    ktl::api::sample_locations_info_ext sample_locations_info;
+};
+struct subpass_sample_locations_ext
+{
+    ktl::u32                            subpass_index;
+    ktl::api::sample_locations_info_ext sample_locations_info;
+};
+struct pipeline_sample_locations_state_create_info_ext
+{
+    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_sample_locations_state_create_info_ext;
+    const void *             pnext = {};
+    ktl::api::bool32         sample_locations_enable;
+    ktl::api::sample_locations_info_ext sample_locations_info;
 };
 struct queue_family_properties_2
 {
@@ -10210,13 +10770,6 @@ struct image_format_properties_2
     void *                            pnext = {};
     ktl::api::image_format_properties image_format_properties;
 };
-struct device_image_memory_requirements
-{
-    ktl::api::structure_type            stype = ktl::api::structure_type::v_device_image_memory_requirements;
-    const void *                        pnext = {};
-    const ktl::api::image_create_info * p_create_info;
-    ktl::api::image_aspect_flag_bits    plane_aspect = {};
-};
 struct image_format_constraints_info_fuchsia
 {
     ktl::api::structure_type       stype = ktl::api::structure_type::v_image_format_constraints_info_fuchsia;
@@ -10233,210 +10786,6 @@ struct physical_device_memory_properties_2
     ktl::api::structure_type                    stype = ktl::api::structure_type::v_physical_device_memory_properties_2;
     void *                                      pnext = {};
     ktl::api::physical_device_memory_properties memory_properties;
-};
-struct push_descriptor_set_info
-{
-    ktl::api::structure_type               stype = ktl::api::structure_type::v_push_descriptor_set_info;
-    const void *                           pnext = {};
-    ktl::api::shader_stage_flags           stage_flags;
-    ktl::api::pipeline_layout              layout = {};
-    ktl::u32                               set    = {};
-    ktl::u32                               descriptor_write_count;
-    const ktl::api::write_descriptor_set * p_descriptor_writes;
-};
-struct sparse_image_memory_bind_info
-{
-    ktl::api::image                            image;
-    ktl::u32                                   bind_count;
-    const ktl::api::sparse_image_memory_bind * p_binds;
-};
-struct device_image_subresource_info
-{
-    ktl::api::structure_type              stype = ktl::api::structure_type::v_device_image_subresource_info;
-    const void *                          pnext = {};
-    const ktl::api::image_create_info *   p_create_info;
-    const ktl::api::image_subresource_2 * p_subresource;
-};
-struct copy_image_info_2
-{
-    ktl::api::structure_type       stype = ktl::api::structure_type::v_copy_image_info_2;
-    const void *                   pnext = {};
-    ktl::api::image                src_image;
-    ktl::api::image_layout         src_image_layout;
-    ktl::api::image                dst_image;
-    ktl::api::image_layout         dst_image_layout;
-    ktl::u32                       region_count;
-    const ktl::api::image_copy_2 * p_regions;
-};
-struct copy_image_to_image_info
-{
-    ktl::api::structure_type        stype = ktl::api::structure_type::v_copy_image_to_image_info;
-    const void *                    pnext = {};
-    ktl::api::host_image_copy_flags flags = {};
-    ktl::api::image                 src_image;
-    ktl::api::image_layout          src_image_layout;
-    ktl::api::image                 dst_image;
-    ktl::api::image_layout          dst_image_layout;
-    ktl::u32                        region_count;
-    const ktl::api::image_copy_2 *  p_regions;
-};
-struct blit_image_info_2
-{
-    ktl::api::structure_type       stype = ktl::api::structure_type::v_blit_image_info_2;
-    const void *                   pnext = {};
-    ktl::api::image                src_image;
-    ktl::api::image_layout         src_image_layout;
-    ktl::api::image                dst_image;
-    ktl::api::image_layout         dst_image_layout;
-    ktl::u32                       region_count;
-    const ktl::api::image_blit_2 * p_regions;
-    ktl::api::filter               filter;
-};
-struct copy_buffer_to_image_info_2
-{
-    ktl::api::structure_type              stype = ktl::api::structure_type::v_copy_buffer_to_image_info_2;
-    const void *                          pnext = {};
-    ktl::api::buffer                      src_buffer;
-    ktl::api::image                       dst_image;
-    ktl::api::image_layout                dst_image_layout;
-    ktl::u32                              region_count;
-    const ktl::api::buffer_image_copy_2 * p_regions;
-};
-struct copy_image_to_buffer_info_2
-{
-    ktl::api::structure_type              stype = ktl::api::structure_type::v_copy_image_to_buffer_info_2;
-    const void *                          pnext = {};
-    ktl::api::image                       src_image;
-    ktl::api::image_layout                src_image_layout;
-    ktl::api::buffer                      dst_buffer;
-    ktl::u32                              region_count;
-    const ktl::api::buffer_image_copy_2 * p_regions;
-};
-struct resolve_image_info_2
-{
-    ktl::api::structure_type          stype = ktl::api::structure_type::v_resolve_image_info_2;
-    const void *                      pnext = {};
-    ktl::api::image                   src_image;
-    ktl::api::image_layout            src_image_layout;
-    ktl::api::image                   dst_image;
-    ktl::api::image_layout            dst_image_layout;
-    ktl::u32                          region_count;
-    const ktl::api::image_resolve_2 * p_regions;
-};
-struct copy_memory_to_image_info
-{
-    ktl::api::structure_type               stype = ktl::api::structure_type::v_copy_memory_to_image_info;
-    const void *                           pnext = {};
-    ktl::api::host_image_copy_flags        flags = {};
-    ktl::api::image                        dst_image;
-    ktl::api::image_layout                 dst_image_layout;
-    ktl::u32                               region_count;
-    const ktl::api::memory_to_image_copy * p_regions;
-};
-struct copy_image_to_memory_info
-{
-    ktl::api::structure_type               stype = ktl::api::structure_type::v_copy_image_to_memory_info;
-    const void *                           pnext = {};
-    ktl::api::host_image_copy_flags        flags = {};
-    ktl::api::image                        src_image;
-    ktl::api::image_layout                 src_image_layout;
-    ktl::u32                               region_count;
-    const ktl::api::image_to_memory_copy * p_regions;
-};
-struct image_descriptor_info_ext
-{
-    ktl::api::structure_type                 stype = ktl::api::structure_type::v_image_descriptor_info_ext;
-    const void *                             pnext = {};
-    const ktl::api::image_view_create_info * p_view;
-    ktl::api::image_layout                   layout;
-};
-struct dependency_info
-{
-    ktl::api::structure_type                  stype                = ktl::api::structure_type::v_dependency_info;
-    const void *                              pnext                = {};
-    ktl::api::dependency_flags                dependency_flags     = {};
-    ktl::u32                                  memory_barrier_count = {};
-    const ktl::api::memory_barrier_2 *        p_memory_barriers;
-    ktl::u32                                  buffer_memory_barrier_count = {};
-    const ktl::api::buffer_memory_barrier_2 * p_buffer_memory_barriers;
-    ktl::u32                                  image_memory_barrier_count = {};
-    const ktl::api::image_memory_barrier_2 *  p_image_memory_barriers;
-};
-struct pipeline_shader_stage_create_info
-{
-    ktl::api::structure_type                     stype = ktl::api::structure_type::v_pipeline_shader_stage_create_info;
-    const void *                                 pnext = {};
-    ktl::api::pipeline_shader_stage_create_flags flags = {};
-    ktl::api::shader_stage_flag_bits             stage;
-    ktl::api::shader_module                      module = {};
-    const char *                                 p_name;
-    const ktl::api::specialization_info *        p_specialization_info = {};
-};
-struct shader_create_info_ext
-{
-    ktl::api::structure_type                stype = ktl::api::structure_type::v_shader_create_info_ext;
-    const void *                            pnext = {};
-    ktl::api::shader_create_flags_ext       flags = {};
-    ktl::api::shader_stage_flag_bits        stage;
-    ktl::api::shader_stage_flags            next_stage = {};
-    ktl::api::shader_code_type_ext          code_type;
-    ktl::usize                              code_size;
-    const void *                            p_code;
-    const char *                            p_name           = {};
-    ktl::u32                                set_layout_count = {};
-    const ktl::api::descriptor_set_layout * p_set_layouts;
-    ktl::u32                                push_constant_range_count = {};
-    const ktl::api::push_constant_range *   p_push_constant_ranges;
-    const ktl::api::specialization_info *   p_specialization_info = {};
-};
-struct data_graph_pipeline_shader_module_create_info_arm
-{
-    ktl::api::structure_type stype  = ktl::api::structure_type::v_data_graph_pipeline_shader_module_create_info_arm;
-    const void *             pnext  = {};
-    ktl::api::shader_module  module = {};
-    const char *             p_name;
-    const ktl::api::specialization_info *              p_specialization_info = {};
-    ktl::u32                                           constant_count        = {};
-    const ktl::api::data_graph_pipeline_constant_arm * p_constants           = {};
-};
-union indirect_commands_token_data_ext
-{
-    const ktl::api::indirect_commands_push_constant_token_ext * p_push_constant;
-    const ktl::api::indirect_commands_vertex_buffer_token_ext * p_vertex_buffer;
-    const ktl::api::indirect_commands_index_buffer_token_ext *  p_index_buffer;
-    const ktl::api::indirect_commands_execution_set_token_ext * p_execution_set;
-};
-struct pipeline_binary_create_info_khr
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_binary_create_info_khr;
-    const void *             pnext = {};
-    const ktl::api::pipeline_binary_keys_and_data_khr * p_keys_and_data_info   = {};
-    ktl::api::pipeline                                  pipeline               = {};
-    const ktl::api::pipeline_create_info_khr *          p_pipeline_create_info = {};
-};
-union descriptor_mapping_source_data_ext
-{
-    ktl::api::descriptor_mapping_source_constant_offset_ext      constant_offset;
-    ktl::api::descriptor_mapping_source_push_index_ext           push_index;
-    ktl::api::descriptor_mapping_source_indirect_index_ext       indirect_index;
-    ktl::api::descriptor_mapping_source_indirect_index_array_ext indirect_index_array;
-    ktl::api::descriptor_mapping_source_heap_data_ext            heap_data;
-    ktl::u32                                                     push_data_offset;
-    ktl::u32                                                     push_address_offset;
-    ktl::api::descriptor_mapping_source_indirect_address_ext     indirect_address;
-    ktl::api::descriptor_mapping_source_shader_record_index_ext  shader_record_index;
-    ktl::u32                                                     shader_record_data_offset;
-    ktl::u32                                                     shader_record_address_offset;
-};
-struct render_pass_begin_info
-{
-    ktl::api::structure_type      stype = ktl::api::structure_type::v_render_pass_begin_info;
-    const void *                  pnext = {};
-    ktl::api::render_pass         render_pass;
-    ktl::api::framebuffer         framebuffer;
-    ktl::api::rect_2d             render_area;
-    ktl::u32                      clear_value_count = {};
-    const ktl::api::clear_value * p_clear_values;
 };
 struct clear_attachment
 {
@@ -10457,82 +10806,24 @@ struct rendering_attachment_info
     ktl::api::attachment_store_op    store_op;
     ktl::api::clear_value            clear_value;
 };
-struct render_pass_create_info
-{
-    ktl::api::structure_type                 stype            = ktl::api::structure_type::v_render_pass_create_info;
-    const void *                             pnext            = {};
-    ktl::api::render_pass_create_flags       flags            = {};
-    ktl::u32                                 attachment_count = {};
-    const ktl::api::attachment_description * p_attachments;
-    ktl::u32                                 subpass_count;
-    const ktl::api::subpass_description *    p_subpasses;
-    ktl::u32                                 dependency_count = {};
-    const ktl::api::subpass_dependency *     p_dependencies;
-};
 struct physical_device_properties_2
 {
     ktl::api::structure_type             stype = ktl::api::structure_type::v_physical_device_properties_2;
     void *                               pnext = {};
     ktl::api::physical_device_properties properties;
 };
-struct cluster_acceleration_structure_input_info_nv
+struct cluster_acceleration_structure_commands_info_nv
 {
-    ktl::api::structure_type stype = ktl::api::structure_type::v_cluster_acceleration_structure_input_info_nv;
+    ktl::api::structure_type stype = ktl::api::structure_type::v_cluster_acceleration_structure_commands_info_nv;
     void *                   pnext = {};
-    ktl::u32                 max_acceleration_structure_count;
-    ktl::api::build_acceleration_structure_flags_khr     flags = {};
-    ktl::api::cluster_acceleration_structure_op_type_nv  op_type;
-    ktl::api::cluster_acceleration_structure_op_mode_nv  op_mode;
-    ktl::api::cluster_acceleration_structure_op_input_nv op_input;
-};
-struct past_presentation_timing_properties_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_past_presentation_timing_properties_ext;
-    void *                   pnext = {};
-    ktl::u64                 timing_properties_counter;
-    ktl::u64                 time_domains_counter;
-    ktl::u32                 presentation_timing_count;
-    ktl::api::past_presentation_timing_ext * p_presentation_timings;
-};
-struct attachment_sample_locations_ext
-{
-    ktl::u32                            attachment_index;
-    ktl::api::sample_locations_info_ext sample_locations_info;
-};
-struct subpass_sample_locations_ext
-{
-    ktl::u32                            subpass_index;
-    ktl::api::sample_locations_info_ext sample_locations_info;
-};
-struct pipeline_sample_locations_state_create_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_pipeline_sample_locations_state_create_info_ext;
-    const void *             pnext = {};
-    ktl::api::bool32         sample_locations_enable;
-    ktl::api::sample_locations_info_ext sample_locations_info;
-};
-struct render_pass_create_info_2
-{
-    ktl::api::structure_type                   stype            = ktl::api::structure_type::v_render_pass_create_info_2;
-    const void *                               pnext            = {};
-    ktl::api::render_pass_create_flags         flags            = {};
-    ktl::u32                                   attachment_count = {};
-    const ktl::api::attachment_description_2 * p_attachments;
-    ktl::u32                                   subpass_count;
-    const ktl::api::subpass_description_2 *    p_subpasses;
-    ktl::u32                                   dependency_count = {};
-    const ktl::api::subpass_dependency_2 *     p_dependencies;
-    ktl::u32                                   correlated_view_mask_count = {};
-    const ktl::u32 *                           p_correlated_view_masks;
-};
-struct pipeline_viewport_coarse_sample_order_state_create_info_nv
-{
-    ktl::api::structure_type stype =
-        ktl::api::structure_type::v_pipeline_viewport_coarse_sample_order_state_create_info_nv;
-    const void *                                    pnext = {};
-    ktl::api::coarse_sample_order_type_nv           sample_order_type;
-    ktl::u32                                        custom_sample_order_count = {};
-    const ktl::api::coarse_sample_order_custom_nv * p_custom_sample_orders;
+    ktl::api::cluster_acceleration_structure_input_info_nv               input;
+    ktl::api::dvaddr                                                     dst_implicit_data = {};
+    ktl::api::dvaddr                                                     scratch_data;
+    ktl::api::strided_device_address_region_khr                          dst_addresses_array;
+    ktl::api::strided_device_address_region_khr                          dst_sizes_array;
+    ktl::api::strided_device_address_region_khr                          src_infos_array;
+    ktl::api::dvaddr                                                     src_infos_count          = {};
+    ktl::api::cluster_acceleration_structure_address_resolution_flags_nv address_resolution_flags = {};
 };
 struct geometry_nv
 {
@@ -10548,29 +10839,22 @@ union acceleration_structure_geometry_data_khr
     ktl::api::acceleration_structure_geometry_aabbs_data_khr     aabbs;
     ktl::api::acceleration_structure_geometry_instances_data_khr instances;
 };
-union indirect_execution_set_info_ext
-{
-    const ktl::api::indirect_execution_set_pipeline_info_ext * p_pipeline_info;
-    const ktl::api::indirect_execution_set_shader_info_ext *   p_shader_info;
-};
-struct descriptor_get_info_ext
-{
-    ktl::api::structure_type      stype = ktl::api::structure_type::v_descriptor_get_info_ext;
-    const void *                  pnext = {};
-    ktl::api::descriptor_type     type;
-    ktl::api::descriptor_data_ext data;
-};
 union acceleration_structure_motion_instance_data_nv
 {
     ktl::api::acceleration_structure_instance_khr              static_instance;
     ktl::api::acceleration_structure_matrix_motion_instance_nv matrix_motion_instance;
     ktl::api::acceleration_structure_srt_motion_instance_nv    srt_motion_instance;
 };
-struct device_tensor_memory_requirements_arm
+struct descriptor_set_and_binding_mapping_ext
 {
-    ktl::api::structure_type                 stype = ktl::api::structure_type::v_device_tensor_memory_requirements_arm;
-    const void *                             pnext = {};
-    const ktl::api::tensor_create_info_arm * p_create_info;
+    ktl::api::structure_type                stype = ktl::api::structure_type::v_descriptor_set_and_binding_mapping_ext;
+    const void *                            pnext = {};
+    ktl::u32                                descriptor_set;
+    ktl::u32                                first_binding;
+    ktl::u32                                binding_count;
+    ktl::api::spirv_resource_type_flags_ext resource_mask;
+    ktl::api::descriptor_mapping_source_ext source;
+    ktl::api::descriptor_mapping_source_data_ext source_data;
 };
 struct texel_buffer_descriptor_info_ext
 {
@@ -10587,47 +10871,11 @@ struct bind_heap_info_ext
     ktl::api::dvsize                   reserved_range_offset;
     ktl::api::dvsize                   reserved_range_size;
 };
-struct copy_device_memory_info_khr
-{
-    ktl::api::structure_type                 stype = ktl::api::structure_type::v_copy_device_memory_info_khr;
-    const void *                             pnext = {};
-    ktl::u32                                 region_count;
-    const ktl::api::device_memory_copy_khr * p_regions;
-};
-struct copy_device_memory_image_info_khr
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_copy_device_memory_image_info_khr;
-    const void *             pnext = {};
-    ktl::api::image          image;
-    ktl::u32                 region_count;
-    const ktl::api::device_memory_image_copy_khr * p_regions;
-};
-struct memory_range_barriers_info_khr
-{
-    ktl::api::structure_type                   stype = ktl::api::structure_type::v_memory_range_barriers_info_khr;
-    const void *                               pnext = {};
-    ktl::u32                                   memory_range_barrier_count = {};
-    const ktl::api::memory_range_barrier_khr * p_memory_range_barriers;
-};
-struct render_pass_stripe_begin_info_arm
-{
-    ktl::api::structure_type                      stype = ktl::api::structure_type::v_render_pass_stripe_begin_info_arm;
-    const void *                                  pnext = {};
-    ktl::u32                                      stripe_info_count;
-    const ktl::api::render_pass_stripe_info_arm * p_stripe_infos;
-};
 struct display_mode_properties_2_khr
 {
     ktl::api::structure_type              stype = ktl::api::structure_type::v_display_mode_properties_2_khr;
     void *                                pnext = {};
     ktl::api::display_mode_properties_khr display_mode_properties;
-};
-struct present_regions_khr
-{
-    ktl::api::structure_type             stype = ktl::api::structure_type::v_present_regions_khr;
-    const void *                         pnext = {};
-    ktl::u32                             swapchain_count;
-    const ktl::api::present_region_khr * p_regions = {};
 };
 struct sparse_image_memory_requirements_2
 {
@@ -10635,183 +10883,11 @@ struct sparse_image_memory_requirements_2
     void *                                     pnext = {};
     ktl::api::sparse_image_memory_requirements memory_requirements;
 };
-struct image_constraints_info_fuchsia
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_image_constraints_info_fuchsia;
-    const void *             pnext = {};
-    ktl::u32                 format_constraints_count;
-    const ktl::api::image_format_constraints_info_fuchsia * p_format_constraints;
-    ktl::api::buffer_collection_constraints_info_fuchsia    buffer_collection_constraints;
-    ktl::api::image_constraints_info_flags_fuchsia          flags = {};
-};
-struct bind_sparse_info
-{
-    ktl::api::structure_type                               stype = ktl::api::structure_type::v_bind_sparse_info;
-    const void *                                           pnext = {};
-    ktl::u32                                               wait_semaphore_count = {};
-    const ktl::api::semaphore *                            p_wait_semaphores;
-    ktl::u32                                               buffer_bind_count = {};
-    const ktl::api::sparse_buffer_memory_bind_info *       p_buffer_binds;
-    ktl::u32                                               image_opaque_bind_count = {};
-    const ktl::api::sparse_image_opaque_memory_bind_info * p_image_opaque_binds;
-    ktl::u32                                               image_bind_count = {};
-    const ktl::api::sparse_image_memory_bind_info *        p_image_binds;
-    ktl::u32                                               signal_semaphore_count = {};
-    const ktl::api::semaphore *                            p_signal_semaphores;
-};
-struct compute_pipeline_create_info
-{
-    ktl::api::structure_type                    stype = ktl::api::structure_type::v_compute_pipeline_create_info;
-    const void *                                pnext = {};
-    ktl::api::pipeline_create_flags             flags = {};
-    ktl::api::pipeline_shader_stage_create_info stage;
-    ktl::api::pipeline_layout                   layout               = {};
-    ktl::api::pipeline                          base_pipeline_handle = {};
-    ktl::i32                                    base_pipeline_index;
-};
-struct graphics_pipeline_create_info
-{
-    ktl::api::structure_type        stype       = ktl::api::structure_type::v_graphics_pipeline_create_info;
-    const void *                    pnext       = {};
-    ktl::api::pipeline_create_flags flags       = {};
-    ktl::u32                        stage_count = {};
-    const ktl::api::pipeline_shader_stage_create_info *         p_stages               = {};
-    const ktl::api::pipeline_vertex_input_state_create_info *   p_vertex_input_state   = {};
-    const ktl::api::pipeline_input_assembly_state_create_info * p_input_assembly_state = {};
-    const ktl::api::pipeline_tessellation_state_create_info *   p_tessellation_state   = {};
-    const ktl::api::pipeline_viewport_state_create_info *       p_viewport_state       = {};
-    const ktl::api::pipeline_rasterization_state_create_info *  p_rasterization_state  = {};
-    const ktl::api::pipeline_multisample_state_create_info *    p_multisample_state    = {};
-    const ktl::api::pipeline_depth_stencil_state_create_info *  p_depth_stencil_state  = {};
-    const ktl::api::pipeline_color_blend_state_create_info *    p_color_blend_state    = {};
-    const ktl::api::pipeline_dynamic_state_create_info *        p_dynamic_state        = {};
-    ktl::api::pipeline_layout                                   layout                 = {};
-    ktl::api::render_pass                                       render_pass            = {};
-    ktl::u32                                                    subpass;
-    ktl::api::pipeline                                          base_pipeline_handle = {};
-    ktl::i32                                                    base_pipeline_index;
-};
-struct graphics_shader_group_create_info_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_graphics_shader_group_create_info_nv;
-    const void *             pnext = {};
-    ktl::u32                 stage_count;
-    const ktl::api::pipeline_shader_stage_create_info *       p_stages;
-    const ktl::api::pipeline_vertex_input_state_create_info * p_vertex_input_state = {};
-    const ktl::api::pipeline_tessellation_state_create_info * p_tessellation_state = {};
-};
-struct ray_tracing_pipeline_create_info_nv
-{
-    ktl::api::structure_type        stype = ktl::api::structure_type::v_ray_tracing_pipeline_create_info_nv;
-    const void *                    pnext = {};
-    ktl::api::pipeline_create_flags flags = {};
-    ktl::u32                        stage_count;
-    const ktl::api::pipeline_shader_stage_create_info *       p_stages;
-    ktl::u32                                                  group_count;
-    const ktl::api::ray_tracing_shader_group_create_info_nv * p_groups;
-    ktl::u32                                                  max_recursion_depth;
-    ktl::api::pipeline_layout                                 layout               = {};
-    ktl::api::pipeline                                        base_pipeline_handle = {};
-    ktl::i32                                                  base_pipeline_index;
-};
-struct ray_tracing_pipeline_create_info_khr
-{
-    ktl::api::structure_type        stype       = ktl::api::structure_type::v_ray_tracing_pipeline_create_info_khr;
-    const void *                    pnext       = {};
-    ktl::api::pipeline_create_flags flags       = {};
-    ktl::u32                        stage_count = {};
-    const ktl::api::pipeline_shader_stage_create_info *              p_stages;
-    ktl::u32                                                         group_count = {};
-    const ktl::api::ray_tracing_shader_group_create_info_khr *       p_groups;
-    ktl::u32                                                         max_pipeline_ray_recursion_depth;
-    const ktl::api::pipeline_library_create_info_khr *               p_library_info       = {};
-    const ktl::api::ray_tracing_pipeline_interface_create_info_khr * p_library_interface  = {};
-    const ktl::api::pipeline_dynamic_state_create_info *             p_dynamic_state      = {};
-    ktl::api::pipeline_layout                                        layout               = {};
-    ktl::api::pipeline                                               base_pipeline_handle = {};
-    ktl::i32                                                         base_pipeline_index;
-};
-struct execution_graph_pipeline_create_info_amdx
-{
-    ktl::api::structure_type        stype       = ktl::api::structure_type::v_execution_graph_pipeline_create_info_amdx;
-    const void *                    pnext       = {};
-    ktl::api::pipeline_create_flags flags       = {};
-    ktl::u32                        stage_count = {};
-    const ktl::api::pipeline_shader_stage_create_info * p_stages             = {};
-    const ktl::api::pipeline_library_create_info_khr *  p_library_info       = {};
-    ktl::api::pipeline_layout                           layout               = {};
-    ktl::api::pipeline                                  base_pipeline_handle = {};
-    ktl::i32                                            base_pipeline_index;
-};
-struct indirect_commands_layout_token_ext
-{
-    ktl::api::structure_type                   stype = ktl::api::structure_type::v_indirect_commands_layout_token_ext;
-    const void *                               pnext = {};
-    ktl::api::indirect_commands_token_type_ext type;
-    ktl::api::indirect_commands_token_data_ext data;
-    ktl::u32                                   offset;
-};
-struct descriptor_set_and_binding_mapping_ext
-{
-    ktl::api::structure_type                stype = ktl::api::structure_type::v_descriptor_set_and_binding_mapping_ext;
-    const void *                            pnext = {};
-    ktl::u32                                descriptor_set;
-    ktl::u32                                first_binding;
-    ktl::u32                                binding_count;
-    ktl::api::spirv_resource_type_flags_ext resource_mask;
-    ktl::api::descriptor_mapping_source_ext source;
-    ktl::api::descriptor_mapping_source_data_ext source_data;
-};
-struct rendering_info
-{
-    ktl::api::structure_type                    stype = ktl::api::structure_type::v_rendering_info;
-    const void *                                pnext = {};
-    ktl::api::rendering_flags                   flags = {};
-    ktl::api::rect_2d                           render_area;
-    ktl::u32                                    layer_count;
-    ktl::u32                                    view_mask;
-    ktl::u32                                    color_attachment_count = {};
-    const ktl::api::rendering_attachment_info * p_color_attachments;
-    const ktl::api::rendering_attachment_info * p_depth_attachment   = {};
-    const ktl::api::rendering_attachment_info * p_stencil_attachment = {};
-};
 struct physical_device_layered_api_vulkan_properties_khr
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_layered_api_vulkan_properties_khr;
     void *                   pnext = {};
     ktl::api::physical_device_properties_2 properties;
-};
-struct cluster_acceleration_structure_commands_info_nv
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_cluster_acceleration_structure_commands_info_nv;
-    void *                   pnext = {};
-    ktl::api::cluster_acceleration_structure_input_info_nv               input;
-    ktl::api::dvaddr                                                     dst_implicit_data = {};
-    ktl::api::dvaddr                                                     scratch_data;
-    ktl::api::strided_device_address_region_khr                          dst_addresses_array;
-    ktl::api::strided_device_address_region_khr                          dst_sizes_array;
-    ktl::api::strided_device_address_region_khr                          src_infos_array;
-    ktl::api::dvaddr                                                     src_infos_count          = {};
-    ktl::api::cluster_acceleration_structure_address_resolution_flags_nv address_resolution_flags = {};
-};
-struct render_pass_sample_locations_begin_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_render_pass_sample_locations_begin_info_ext;
-    const void *             pnext = {};
-    ktl::u32                 attachment_initial_sample_locations_count = {};
-    const ktl::api::attachment_sample_locations_ext * p_attachment_initial_sample_locations;
-    ktl::u32                                          post_subpass_sample_locations_count = {};
-    const ktl::api::subpass_sample_locations_ext *    p_post_subpass_sample_locations;
-};
-struct acceleration_structure_info_nv
-{
-    ktl::api::structure_type                         stype = ktl::api::structure_type::v_acceleration_structure_info_nv;
-    const void *                                     pnext = {};
-    ktl::api::acceleration_structure_type_nv         type;
-    ktl::api::build_acceleration_structure_flags_khr flags          = {};
-    ktl::u32                                         instance_count = {};
-    ktl::u32                                         geometry_count = {};
-    const ktl::api::geometry_nv *                    p_geometries;
 };
 struct acceleration_structure_geometry_khr
 {
@@ -10821,87 +10897,11 @@ struct acceleration_structure_geometry_khr
     ktl::api::acceleration_structure_geometry_data_khr geometry;
     ktl::api::geometry_flags_khr                       flags = {};
 };
-struct indirect_execution_set_create_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_indirect_execution_set_create_info_ext;
-    const void *             pnext = {};
-    ktl::api::indirect_execution_set_info_type_ext type;
-    ktl::api::indirect_execution_set_info_ext      info;
-};
 struct acceleration_structure_motion_instance_nv
 {
     ktl::api::acceleration_structure_motion_instance_type_nv  type;
     ktl::api::acceleration_structure_motion_instance_flags_nv flags = {};
     ktl::api::acceleration_structure_motion_instance_data_nv  data;
-};
-union resource_descriptor_data_ext
-{
-    const ktl::api::image_descriptor_info_ext *        p_image;
-    const ktl::api::texel_buffer_descriptor_info_ext * p_texel_buffer;
-    const ktl::api::device_address_range_ext *         p_address_range;
-    const ktl::api::tensor_view_create_info_arm *      p_tensor_arm;
-};
-struct command_buffer_inheritance_descriptor_heap_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_command_buffer_inheritance_descriptor_heap_info_ext;
-    const void *             pnext = {};
-    const ktl::api::bind_heap_info_ext * p_sampler_heap_bind_info  = {};
-    const ktl::api::bind_heap_info_ext * p_resource_heap_bind_info = {};
-};
-struct graphics_pipeline_shader_groups_create_info_nv
-{
-    ktl::api::structure_type stype       = ktl::api::structure_type::v_graphics_pipeline_shader_groups_create_info_nv;
-    const void *             pnext       = {};
-    ktl::u32                 group_count = {};
-    const ktl::api::graphics_shader_group_create_info_nv * p_groups;
-    ktl::u32                                               pipeline_count = {};
-    const ktl::api::pipeline *                             p_pipelines;
-};
-struct indirect_commands_layout_create_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_indirect_commands_layout_create_info_ext;
-    const void *             pnext = {};
-    ktl::api::indirect_commands_layout_usage_flags_ext   flags = {};
-    ktl::api::shader_stage_flags                         shader_stages;
-    ktl::u32                                             indirect_stride;
-    ktl::api::pipeline_layout                            pipeline_layout = {};
-    ktl::u32                                             token_count;
-    const ktl::api::indirect_commands_layout_token_ext * p_tokens;
-};
-struct shader_descriptor_set_and_binding_mapping_info_ext
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_shader_descriptor_set_and_binding_mapping_info_ext;
-    const void *             pnext = {};
-    ktl::u32                 mapping_count = {};
-    const ktl::api::descriptor_set_and_binding_mapping_ext * p_mappings;
-};
-struct acceleration_structure_create_info_nv
-{
-    ktl::api::structure_type                 stype = ktl::api::structure_type::v_acceleration_structure_create_info_nv;
-    const void *                             pnext = {};
-    ktl::api::dvsize                         compacted_size;
-    ktl::api::acceleration_structure_info_nv info;
-};
-struct acceleration_structure_build_geometry_info_khr
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_acceleration_structure_build_geometry_info_khr;
-    const void *             pnext = {};
-    ktl::api::acceleration_structure_type_khr                     type;
-    ktl::api::build_acceleration_structure_flags_khr              flags = {};
-    ktl::api::build_acceleration_structure_mode_khr               mode;
-    ktl::api::acceleration_structure_khr                          src_acceleration_structure = {};
-    ktl::api::acceleration_structure_khr                          dst_acceleration_structure = {};
-    ktl::u32                                                      geometry_count             = {};
-    const ktl::api::acceleration_structure_geometry_khr *         p_geometries               = {};
-    const ktl::api::acceleration_structure_geometry_khr * const * pp_geometries;
-    ktl::api::device_or_host_address_khr                          scratch_data;
-};
-struct resource_descriptor_info_ext
-{
-    ktl::api::structure_type               stype = ktl::api::structure_type::v_resource_descriptor_info_ext;
-    const void *                           pnext = {};
-    ktl::api::descriptor_type              type;
-    ktl::api::resource_descriptor_data_ext data;
 };
 } // namespace ktl::api
 

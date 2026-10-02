@@ -3,7 +3,8 @@ from decl import make_declaration
 from naming import FIXED_TYPES, make_field_name
 
 # vulkan part of vk.xml: every entity by its C name in the order of vk.xml.
-# load reads the entities, their own names are C++ already, references to other entities are C names;
+# load reads the entities, their own names are C++ already, references to other entities are C names
+# (a feature keeps the C++ name of the struct it is made of, it is not a reference to resolve);
 # resolve checks every reference and completes what depends on other entities;
 # write_* print C++ only, names of references are made by naming
 
@@ -67,7 +68,7 @@ class Struct:
 @dataclass
 class Feature:
     name: str
-    struct: str                # C++ name of the struct of the feature
+    struct: str                # C++ name of the struct the feature is made of
     stype: str | None          # C name of the sType value, None for VkPhysicalDeviceFeatures
 
 
@@ -155,7 +156,7 @@ class Model:
     types: dict[str, str] = field(default_factory=dict)  # resolve_types: C type -> its C++ spelling
     _value_names: dict[str, set[str]] = field(default_factory=dict, repr=False)
 
-    def find(self, _table: dict, _name: str | None, _what: str, _where: str):
+    def find[T](self, _table: dict[str, T], _name: str | None, _what: str, _where: str) -> T:
         if _name not in _table:
             raise ValueError(f"{_where} refers to unknown {_what} {_name}")
         return _table[_name]

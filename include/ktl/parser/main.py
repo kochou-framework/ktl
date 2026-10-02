@@ -8,7 +8,7 @@ import handles
 import structs
 import bitmasks
 import formats
-import pointers
+import funcpointers
 import commands
 import features
 import extensions
@@ -17,7 +17,7 @@ from model import Model
 from api_filter import vulkan_versions
 
 
-def main(_root):
+def main(_root) -> None:
     model = Model(vulkan_versions(_root), features.vulkan_vendors(_root))
 
     # load: vulkan entities of vk.xml, references between them are C names
@@ -28,7 +28,7 @@ def main(_root):
     features.load(model)
     bitmasks.load(_root, model)
     formats.load(_root, model)
-    pointers.load(_root, model)
+    funcpointers.load(_root, model)
     commands.load(_root, model)
     extensions.load(_root, model)
     versions.load(_root, model)
@@ -40,7 +40,7 @@ def main(_root):
     structs.resolve(model)
     bitmasks.resolve(model)
     formats.resolve(model)
-    pointers.resolve(model)
+    funcpointers.resolve(model)
     commands.resolve(model)
     extensions.resolve(model)
     versions.resolve(model)
