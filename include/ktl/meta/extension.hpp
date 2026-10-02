@@ -5015,8 +5015,8 @@ struct extension< ktl::api::extension::ext_directfb_surface >
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 2 > commands = {
-        ktl::api::command::create_direct_fb_surface_ext,
-        ktl::api::command::get_physical_device_direct_fb_presentation_support_ext};
+        ktl::api::command::create_directfb_surface_ext,
+        ktl::api::command::get_physical_device_directfb_presentation_support_ext};
 
     static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_surface};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};

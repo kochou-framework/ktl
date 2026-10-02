@@ -210,8 +210,8 @@ enum class command : ktl::u32
     get_physical_device_xlib_presentation_support_khr                            = 191,
     create_xcb_surface_khr                                                       = 192,
     get_physical_device_xcb_presentation_support_khr                             = 193,
-    create_direct_fb_surface_ext                                                 = 194,
-    get_physical_device_direct_fb_presentation_support_ext                       = 195,
+    create_directfb_surface_ext                                                  = 194,
+    get_physical_device_directfb_presentation_support_ext                        = 195,
     create_imagepipe_surface_fuchsia                                             = 196,
     create_stream_descriptor_surface_ggp                                         = 197,
     create_screen_surface_qnx                                                    = 198,
@@ -3638,34 +3638,34 @@ get_physical_device_xcb_presentation_support_khr(ktl::api::physical_device _phys
 }
 
 inline ktl::api::result
-create_direct_fb_surface_ext(ktl::api::instance                                  _instance,
-                             const ktl::api::direct_fb_surface_create_info_ext * _p_create_info,
-                             const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
+create_directfb_surface_ext(ktl::api::instance                                 _instance,
+                            const ktl::api::directfb_surface_create_info_ext * _p_create_info,
+                            const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
     ktl::loader::proc_type ptr =
-        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_direct_fb_surface_ext)]
+        ptable != nullptr ? (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_directfb_surface_ext)]
                           : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_create_direct_fb_surface_ext)ptr)(_instance, _p_create_info, _p_allocator, _p_surface);
+    return ((pfn_create_directfb_surface_ext)ptr)(_instance, _p_create_info, _p_allocator, _p_surface);
 }
 
 inline ktl::api::bool32
-get_physical_device_direct_fb_presentation_support_ext(ktl::api::physical_device _physical_device,
-                                                       ktl::u32 _queue_family_index, ktl::api::directfb * _dfb)
+get_physical_device_directfb_presentation_support_ext(ktl::api::physical_device _physical_device,
+                                                      ktl::u32 _queue_family_index, ktl::api::directfb * _dfb)
 {
     ktl::loader::proc_type ptr = ptable != nullptr
                                      ? (*ptable)[static_cast< ktl::u32 >(
-                                           ktl::api::command::get_physical_device_direct_fb_presentation_support_ext)]
+                                           ktl::api::command::get_physical_device_directfb_presentation_support_ext)]
                                      : ktl::loader::proc_null;
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_direct_fb_presentation_support_ext)ptr)(_physical_device, _queue_family_index,
-                                                                             _dfb);
+    return ((pfn_get_physical_device_directfb_presentation_support_ext)ptr)(_physical_device, _queue_family_index,
+                                                                            _dfb);
 }
 
 inline ktl::api::result

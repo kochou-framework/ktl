@@ -800,7 +800,7 @@ struct ubm_surface_create_info_sec;
 struct win32_surface_create_info_khr;
 struct xlib_surface_create_info_khr;
 struct xcb_surface_create_info_khr;
-struct direct_fb_surface_create_info_ext;
+struct directfb_surface_create_info_ext;
 struct imagepipe_surface_create_info_fuchsia;
 struct stream_descriptor_surface_create_info_ggp;
 struct screen_surface_create_info_qnx;
@@ -2457,7 +2457,7 @@ using ubm_surface_create_flags_sec                               = ktl::api::fla
 using win32_surface_create_flags_khr                             = ktl::api::flag32;
 using xlib_surface_create_flags_khr                              = ktl::api::flag32;
 using xcb_surface_create_flags_khr                               = ktl::api::flag32;
-using direct_fb_surface_create_flags_ext                         = ktl::api::flag32;
+using directfb_surface_create_flags_ext                          = ktl::api::flag32;
 using ios_surface_create_flags_mvk                               = ktl::api::flag32;
 using macos_surface_create_flags_mvk                             = ktl::api::flag32;
 using metal_surface_create_flags_ext                             = ktl::api::flag32;
@@ -3117,10 +3117,10 @@ using pfn_create_xcb_surface_khr = ktl::api::result (*)(ktl::api::instance      
 using pfn_get_physical_device_xcb_presentation_support_khr =
     ktl::api::bool32 (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index,
                          ktl::api::xcb_connection * _connection, ktl::api::xcb_visual_id _visual_id);
-using pfn_create_direct_fb_surface_ext = ktl::api::result (*)(
-    ktl::api::instance _instance, const ktl::api::direct_fb_surface_create_info_ext * _p_create_info,
+using pfn_create_directfb_surface_ext = ktl::api::result (*)(
+    ktl::api::instance _instance, const ktl::api::directfb_surface_create_info_ext * _p_create_info,
     const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_get_physical_device_direct_fb_presentation_support_ext = ktl::api::bool32 (*)(
+using pfn_get_physical_device_directfb_presentation_support_ext = ktl::api::bool32 (*)(
     ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, ktl::api::directfb * _dfb);
 using pfn_create_imagepipe_surface_fuchsia = ktl::api::result (*)(
     ktl::api::instance _instance, const ktl::api::imagepipe_surface_create_info_fuchsia * _p_create_info,

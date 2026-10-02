@@ -7,6 +7,7 @@
 #include "api/command.hpp"
 #include "api/feature.hpp"
 #include "api/extension.hpp"
+#include "api/version.hpp"
 #include "api/layer.hpp"
 
 #endif

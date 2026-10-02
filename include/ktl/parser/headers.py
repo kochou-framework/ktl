@@ -276,6 +276,7 @@ def fill_api(_filename,
              _commands_include,
              _features_include,
              _extensions_include,
+             _version_include,
              _layers_include) -> None:
     header_guard = make_header_guard(_filename)
 
@@ -290,6 +291,7 @@ def fill_api(_filename,
 #include "{_commands_include}"
 #include "{_features_include}"
 #include "{_extensions_include}"
+#include "{_version_include}"
 #include "{_layers_include}"
 
 #endif

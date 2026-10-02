@@ -95,6 +95,7 @@ def main(_root):
                      API_COMMANDS_HEADER_FILE,
                      API_FEATURES_HEADER_FILE,
                      API_EXTENSIONS_HEADER_FILE,
+                     API_VERSION_HEADER_FILE,
                      API_LAYERS_HEADER_FILE)
     headers.fill_meta(META_HEADER_FILE,
                       META_EXTENSIONS_HEADER_FILE,

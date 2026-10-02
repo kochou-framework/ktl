@@ -401,9 +401,9 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCreateXcbSurfaceKHR";
     case ktl::api::command::get_physical_device_xcb_presentation_support_khr:
         return "vkGetPhysicalDeviceXcbPresentationSupportKHR";
-    case ktl::api::command::create_direct_fb_surface_ext:
+    case ktl::api::command::create_directfb_surface_ext:
         return "vkCreateDirectFBSurfaceEXT";
-    case ktl::api::command::get_physical_device_direct_fb_presentation_support_ext:
+    case ktl::api::command::get_physical_device_directfb_presentation_support_ext:
         return "vkGetPhysicalDeviceDirectFBPresentationSupportEXT";
     case ktl::api::command::create_imagepipe_surface_fuchsia:
         return "vkCreateImagePipeSurfaceFUCHSIA";
@@ -1704,7 +1704,7 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::create_win32_surface_khr:
     case ktl::api::command::create_xlib_surface_khr:
     case ktl::api::command::create_xcb_surface_khr:
-    case ktl::api::command::create_direct_fb_surface_ext:
+    case ktl::api::command::create_directfb_surface_ext:
     case ktl::api::command::create_imagepipe_surface_fuchsia:
     case ktl::api::command::create_stream_descriptor_surface_ggp:
     case ktl::api::command::create_screen_surface_qnx:
@@ -1746,7 +1746,7 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_physical_device_win32_presentation_support_khr:
     case ktl::api::command::get_physical_device_xlib_presentation_support_khr:
     case ktl::api::command::get_physical_device_xcb_presentation_support_khr:
-    case ktl::api::command::get_physical_device_direct_fb_presentation_support_ext:
+    case ktl::api::command::get_physical_device_directfb_presentation_support_ext:
     case ktl::api::command::get_physical_device_screen_presentation_support_qnx:
     case ktl::api::command::get_physical_device_external_image_format_properties_nv:
     case ktl::api::command::get_physical_device_features_2:

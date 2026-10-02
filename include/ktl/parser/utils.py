@@ -9,8 +9,9 @@ import re
 # except the special words, leading lowercase word is a member name
 _SPECIAL_WORDS = ("16Bit", "2D", "3D", "8Bit", "AABB", "ASTC", "D3D12", "Float16", "Bfloat16", "Float8", "ImagePipe",
                   "Int64", "Int8", "MacOS", "RGBA10X6", "Uint8", "Win32")
-# ktl additions for member and command names, Khronos does not build anything from them
-_EXTRA_SPECIAL_WORDS = ("Rgba10x6", "YCbCr", "RandR")
+# ktl additions: DirectFB is the subpattern _DIRECT_FB_ -> _DIRECTFB_ of the same Khronos script,
+# the others are in member and command names, Khronos does not build anything from them
+_EXTRA_SPECIAL_WORDS = ("DirectFB", "Rgba10x6", "YCbCr", "RandR")
 _WORD = re.compile("|".join([
     r"[A-Z]{2,}s(?![a-z])",                                # plural of an acronym: numAABBs -> aabbs
     r"(?:B?[Ff]loat|U?[Ii]nt)(?:4|6|8|16|32|64)(?![0-9])", # bit width stays with its type: shaderInt16 -> int16

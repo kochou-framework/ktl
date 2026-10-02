@@ -883,13 +883,13 @@ struct xcb_surface_create_info_khr
     ktl::api::xcb_connection *             connection;
     ktl::api::xcb_window                   window;
 };
-struct direct_fb_surface_create_info_ext
+struct directfb_surface_create_info_ext
 {
-    ktl::api::structure_type                     stype = ktl::api::structure_type::v_directfb_surface_create_info_ext;
-    const void *                                 pnext = {};
-    ktl::api::direct_fb_surface_create_flags_ext flags = {};
-    ktl::api::directfb *                         dfb;
-    ktl::api::directfb_surface *                 surface;
+    ktl::api::structure_type                    stype = ktl::api::structure_type::v_directfb_surface_create_info_ext;
+    const void *                                pnext = {};
+    ktl::api::directfb_surface_create_flags_ext flags = {};
+    ktl::api::directfb *                        dfb;
+    ktl::api::directfb_surface *                surface;
 };
 struct imagepipe_surface_create_info_fuchsia
 {
