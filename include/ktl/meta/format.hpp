@@ -42,6 +42,8 @@ struct format< ktl::api::format::v_undefined >
     static constexpr component              g                = {};
     static constexpr component              b                = {};
     static constexpr component              a                = {};
+    static constexpr component              d                = {};
+    static constexpr component              s                = {};
     static constexpr ktl::u32               planes_amount    = {};
     static constexpr std::array< plane, 3 > planes           = {};
 };
@@ -61,6 +63,8 @@ struct any_format
     component              g;
     component              b;
     component              a;
+    component              d; // depth
+    component              s; // stencil
     ktl::u32               planes_amount;
     std::array< plane, 3 > planes;
 };
@@ -83,6 +87,8 @@ format_cast() noexcept
             format::g,
             format::b,
             format::a,
+            format::d,
+            format::s,
             format::planes_amount,
             format::planes};
 }
@@ -103,6 +109,8 @@ struct format< ktl::api::format::v_r_4g_4unorm_pack_8 >
     static constexpr component              g                = {4, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -125,6 +133,8 @@ struct format< ktl::api::format::v_r_4g_4b_4a_4unorm_pack_16 >
     static constexpr component              g                = {4, false, 0, true};
     static constexpr component              b                = {4, false, 0, true};
     static constexpr component              a                = {4, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -147,6 +157,8 @@ struct format< ktl::api::format::v_b_4g_4r_4a_4unorm_pack_16 >
     static constexpr component              g                = {4, false, 0, true};
     static constexpr component              b                = {4, false, 0, true};
     static constexpr component              a                = {4, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -169,6 +181,8 @@ struct format< ktl::api::format::v_r_5g_6b_5unorm_pack_16 >
     static constexpr component              g                = {6, false, 0, true};
     static constexpr component              b                = {5, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -191,6 +205,8 @@ struct format< ktl::api::format::v_b_5g_6r_5unorm_pack_16 >
     static constexpr component              g                = {6, false, 0, true};
     static constexpr component              b                = {5, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -213,6 +229,8 @@ struct format< ktl::api::format::v_r_5g_5b_5a_1unorm_pack_16 >
     static constexpr component              g                = {5, false, 0, true};
     static constexpr component              b                = {5, false, 0, true};
     static constexpr component              a                = {1, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -235,6 +253,8 @@ struct format< ktl::api::format::v_b_5g_5r_5a_1unorm_pack_16 >
     static constexpr component              g                = {5, false, 0, true};
     static constexpr component              b                = {5, false, 0, true};
     static constexpr component              a                = {1, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -257,6 +277,8 @@ struct format< ktl::api::format::v_a_1r_5g_5b_5unorm_pack_16 >
     static constexpr component              g                = {5, false, 0, true};
     static constexpr component              b                = {5, false, 0, true};
     static constexpr component              a                = {1, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -279,6 +301,8 @@ struct format< ktl::api::format::v_a_1b_5g_5r_5unorm_pack_16 >
     static constexpr component              g                = {5, false, 0, true};
     static constexpr component              b                = {5, false, 0, true};
     static constexpr component              a                = {1, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -301,6 +325,8 @@ struct format< ktl::api::format::v_a_8unorm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -323,6 +349,8 @@ struct format< ktl::api::format::v_r_8unorm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -345,6 +373,8 @@ struct format< ktl::api::format::v_r_8snorm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -367,6 +397,8 @@ struct format< ktl::api::format::v_r_8uscaled >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -389,6 +421,8 @@ struct format< ktl::api::format::v_r_8sscaled >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -411,6 +445,8 @@ struct format< ktl::api::format::v_r_8uint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -433,6 +469,8 @@ struct format< ktl::api::format::v_r_8sint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -455,6 +493,8 @@ struct format< ktl::api::format::v_r_8srgb >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -477,6 +517,8 @@ struct format< ktl::api::format::v_r_8g_8unorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -499,6 +541,8 @@ struct format< ktl::api::format::v_r_8g_8snorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -521,6 +565,8 @@ struct format< ktl::api::format::v_r_8g_8uscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -543,6 +589,8 @@ struct format< ktl::api::format::v_r_8g_8sscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -565,6 +613,8 @@ struct format< ktl::api::format::v_r_8g_8uint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -587,6 +637,8 @@ struct format< ktl::api::format::v_r_8g_8sint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -609,6 +661,8 @@ struct format< ktl::api::format::v_r_8g_8srgb >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -631,6 +685,8 @@ struct format< ktl::api::format::v_r_8g_8b_8unorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -653,6 +709,8 @@ struct format< ktl::api::format::v_r_8g_8b_8snorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -675,6 +733,8 @@ struct format< ktl::api::format::v_r_8g_8b_8uscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -697,6 +757,8 @@ struct format< ktl::api::format::v_r_8g_8b_8sscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -719,6 +781,8 @@ struct format< ktl::api::format::v_r_8g_8b_8uint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -741,6 +805,8 @@ struct format< ktl::api::format::v_r_8g_8b_8sint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -763,6 +829,8 @@ struct format< ktl::api::format::v_r_8g_8b_8srgb >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -785,6 +853,8 @@ struct format< ktl::api::format::v_b_8g_8r_8unorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -807,6 +877,8 @@ struct format< ktl::api::format::v_b_8g_8r_8snorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -829,6 +901,8 @@ struct format< ktl::api::format::v_b_8g_8r_8uscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -851,6 +925,8 @@ struct format< ktl::api::format::v_b_8g_8r_8sscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -873,6 +949,8 @@ struct format< ktl::api::format::v_b_8g_8r_8uint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -895,6 +973,8 @@ struct format< ktl::api::format::v_b_8g_8r_8sint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -917,6 +997,8 @@ struct format< ktl::api::format::v_b_8g_8r_8srgb >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -939,6 +1021,8 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8unorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -961,6 +1045,8 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8snorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -983,6 +1069,8 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8uscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1005,6 +1093,8 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8sscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1027,6 +1117,8 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8uint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1049,6 +1141,8 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8sint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1071,6 +1165,8 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8srgb >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1093,6 +1189,8 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8unorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1115,6 +1213,8 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8snorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1137,6 +1237,8 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8uscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1159,6 +1261,8 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8sscaled >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1181,6 +1285,8 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8uint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1203,6 +1309,8 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8sint >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1225,6 +1333,8 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8srgb >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1247,6 +1357,8 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8unorm_pack_32 >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1269,6 +1381,8 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8snorm_pack_32 >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1291,6 +1405,8 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8uscaled_pack_32 >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1313,6 +1429,8 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8sscaled_pack_32 >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1335,6 +1453,8 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8uint_pack_32 >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1357,6 +1477,8 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8sint_pack_32 >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1379,6 +1501,8 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8srgb_pack_32 >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {8, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1401,6 +1525,8 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10unorm_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1423,6 +1549,8 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10snorm_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1445,6 +1573,8 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10uscaled_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1467,6 +1597,8 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10sscaled_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1489,6 +1621,8 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10uint_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1511,6 +1645,8 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10sint_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1533,6 +1669,8 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10unorm_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1555,6 +1693,8 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10snorm_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1577,6 +1717,8 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10uscaled_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1599,6 +1741,8 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10sscaled_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1621,6 +1765,8 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10uint_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1643,6 +1789,8 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10sint_pack_32 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {2, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1665,6 +1813,8 @@ struct format< ktl::api::format::v_r_16unorm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1687,6 +1837,8 @@ struct format< ktl::api::format::v_r_16snorm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1709,6 +1861,8 @@ struct format< ktl::api::format::v_r_16uscaled >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1731,6 +1885,8 @@ struct format< ktl::api::format::v_r_16sscaled >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1753,6 +1909,8 @@ struct format< ktl::api::format::v_r_16uint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1775,6 +1933,8 @@ struct format< ktl::api::format::v_r_16sint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1797,6 +1957,8 @@ struct format< ktl::api::format::v_r_16sfloat >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1819,6 +1981,8 @@ struct format< ktl::api::format::v_r_16g_16unorm >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1841,6 +2005,8 @@ struct format< ktl::api::format::v_r_16g_16snorm >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1863,6 +2029,8 @@ struct format< ktl::api::format::v_r_16g_16uscaled >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1885,6 +2053,8 @@ struct format< ktl::api::format::v_r_16g_16sscaled >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1907,6 +2077,8 @@ struct format< ktl::api::format::v_r_16g_16uint >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1929,6 +2101,8 @@ struct format< ktl::api::format::v_r_16g_16sint >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1951,6 +2125,8 @@ struct format< ktl::api::format::v_r_16g_16sfloat >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1973,6 +2149,8 @@ struct format< ktl::api::format::v_r_16g_16b_16unorm >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -1995,6 +2173,8 @@ struct format< ktl::api::format::v_r_16g_16b_16snorm >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2017,6 +2197,8 @@ struct format< ktl::api::format::v_r_16g_16b_16uscaled >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2039,6 +2221,8 @@ struct format< ktl::api::format::v_r_16g_16b_16sscaled >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2061,6 +2245,8 @@ struct format< ktl::api::format::v_r_16g_16b_16uint >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2083,6 +2269,8 @@ struct format< ktl::api::format::v_r_16g_16b_16sint >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2105,6 +2293,8 @@ struct format< ktl::api::format::v_r_16g_16b_16sfloat >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2127,6 +2317,8 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16unorm >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {16, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2149,6 +2341,8 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16snorm >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {16, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2171,6 +2365,8 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16uscaled >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {16, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2193,6 +2389,8 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16sscaled >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {16, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2215,6 +2413,8 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16uint >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {16, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2237,6 +2437,8 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16sint >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {16, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2259,6 +2461,8 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16sfloat >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {16, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2281,6 +2485,8 @@ struct format< ktl::api::format::v_r_32uint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2303,6 +2509,8 @@ struct format< ktl::api::format::v_r_32sint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2325,6 +2533,8 @@ struct format< ktl::api::format::v_r_32sfloat >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2347,6 +2557,8 @@ struct format< ktl::api::format::v_r_32g_32uint >
     static constexpr component              g                = {32, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2369,6 +2581,8 @@ struct format< ktl::api::format::v_r_32g_32sint >
     static constexpr component              g                = {32, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2391,6 +2605,8 @@ struct format< ktl::api::format::v_r_32g_32sfloat >
     static constexpr component              g                = {32, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2413,6 +2629,8 @@ struct format< ktl::api::format::v_r_32g_32b_32uint >
     static constexpr component              g                = {32, false, 0, true};
     static constexpr component              b                = {32, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2435,6 +2653,8 @@ struct format< ktl::api::format::v_r_32g_32b_32sint >
     static constexpr component              g                = {32, false, 0, true};
     static constexpr component              b                = {32, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2457,6 +2677,8 @@ struct format< ktl::api::format::v_r_32g_32b_32sfloat >
     static constexpr component              g                = {32, false, 0, true};
     static constexpr component              b                = {32, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2479,6 +2701,8 @@ struct format< ktl::api::format::v_r_32g_32b_32a_32uint >
     static constexpr component              g                = {32, false, 0, true};
     static constexpr component              b                = {32, false, 0, true};
     static constexpr component              a                = {32, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2501,6 +2725,8 @@ struct format< ktl::api::format::v_r_32g_32b_32a_32sint >
     static constexpr component              g                = {32, false, 0, true};
     static constexpr component              b                = {32, false, 0, true};
     static constexpr component              a                = {32, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2523,6 +2749,8 @@ struct format< ktl::api::format::v_r_32g_32b_32a_32sfloat >
     static constexpr component              g                = {32, false, 0, true};
     static constexpr component              b                = {32, false, 0, true};
     static constexpr component              a                = {32, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2545,6 +2773,8 @@ struct format< ktl::api::format::v_r_64uint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2567,6 +2797,8 @@ struct format< ktl::api::format::v_r_64sint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2589,6 +2821,8 @@ struct format< ktl::api::format::v_r_64sfloat >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2611,6 +2845,8 @@ struct format< ktl::api::format::v_r_64g_64uint >
     static constexpr component              g                = {64, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2633,6 +2869,8 @@ struct format< ktl::api::format::v_r_64g_64sint >
     static constexpr component              g                = {64, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2655,6 +2893,8 @@ struct format< ktl::api::format::v_r_64g_64sfloat >
     static constexpr component              g                = {64, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2677,6 +2917,8 @@ struct format< ktl::api::format::v_r_64g_64b_64uint >
     static constexpr component              g                = {64, false, 0, true};
     static constexpr component              b                = {64, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2699,6 +2941,8 @@ struct format< ktl::api::format::v_r_64g_64b_64sint >
     static constexpr component              g                = {64, false, 0, true};
     static constexpr component              b                = {64, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2721,6 +2965,8 @@ struct format< ktl::api::format::v_r_64g_64b_64sfloat >
     static constexpr component              g                = {64, false, 0, true};
     static constexpr component              b                = {64, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2743,6 +2989,8 @@ struct format< ktl::api::format::v_r_64g_64b_64a_64uint >
     static constexpr component              g                = {64, false, 0, true};
     static constexpr component              b                = {64, false, 0, true};
     static constexpr component              a                = {64, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2765,6 +3013,8 @@ struct format< ktl::api::format::v_r_64g_64b_64a_64sint >
     static constexpr component              g                = {64, false, 0, true};
     static constexpr component              b                = {64, false, 0, true};
     static constexpr component              a                = {64, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2787,6 +3037,8 @@ struct format< ktl::api::format::v_r_64g_64b_64a_64sfloat >
     static constexpr component              g                = {64, false, 0, true};
     static constexpr component              b                = {64, false, 0, true};
     static constexpr component              a                = {64, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2809,6 +3061,8 @@ struct format< ktl::api::format::v_b_10g_11r_11ufloat_pack_32 >
     static constexpr component              g                = {11, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2831,6 +3085,8 @@ struct format< ktl::api::format::v_e_5b_9g_9r_9ufloat_pack_32 >
     static constexpr component              g                = {9, false, 0, true};
     static constexpr component              b                = {9, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2853,6 +3109,8 @@ struct format< ktl::api::format::v_d_16unorm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {16, false, 0, true};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2875,6 +3133,8 @@ struct format< ktl::api::format::v_x_8d_24unorm_pack_32 >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {24, false, 0, true};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2897,6 +3157,8 @@ struct format< ktl::api::format::v_d_32sfloat >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {32, false, 0, true};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2919,6 +3181,8 @@ struct format< ktl::api::format::v_s_8uint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {8, false, 0, true};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2941,6 +3205,8 @@ struct format< ktl::api::format::v_d_16unorm_s_8uint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {16, false, 0, true};
+    static constexpr component              s                = {8, false, 0, true};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2963,6 +3229,8 @@ struct format< ktl::api::format::v_d_24unorm_s_8uint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {24, false, 0, true};
+    static constexpr component              s                = {8, false, 0, true};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -2985,6 +3253,8 @@ struct format< ktl::api::format::v_d_32sfloat_s_8uint >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {32, false, 0, true};
+    static constexpr component              s                = {8, false, 0, true};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3007,6 +3277,8 @@ struct format< ktl::api::format::v_bc_1rgb_unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3029,6 +3301,8 @@ struct format< ktl::api::format::v_bc_1rgb_srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3051,6 +3325,8 @@ struct format< ktl::api::format::v_bc_1rgba_unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3073,6 +3349,8 @@ struct format< ktl::api::format::v_bc_1rgba_srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3095,6 +3373,8 @@ struct format< ktl::api::format::v_bc_2unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3117,6 +3397,8 @@ struct format< ktl::api::format::v_bc_2srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3139,6 +3421,8 @@ struct format< ktl::api::format::v_bc_3unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3161,6 +3445,8 @@ struct format< ktl::api::format::v_bc_3srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3183,6 +3469,8 @@ struct format< ktl::api::format::v_bc_4unorm_block >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3205,6 +3493,8 @@ struct format< ktl::api::format::v_bc_4snorm_block >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3227,6 +3517,8 @@ struct format< ktl::api::format::v_bc_5unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3249,6 +3541,8 @@ struct format< ktl::api::format::v_bc_5snorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3271,6 +3565,8 @@ struct format< ktl::api::format::v_bc_6h_ufloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3293,6 +3589,8 @@ struct format< ktl::api::format::v_bc_6h_sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3315,6 +3613,8 @@ struct format< ktl::api::format::v_bc_7unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3337,6 +3637,8 @@ struct format< ktl::api::format::v_bc_7srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3359,6 +3661,8 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3381,6 +3685,8 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3403,6 +3709,8 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8a_1unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3425,6 +3733,8 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8a_1srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3447,6 +3757,8 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8a_8unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3469,6 +3781,8 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8a_8srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3491,6 +3805,8 @@ struct format< ktl::api::format::v_eac_r_11unorm_block >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3513,6 +3829,8 @@ struct format< ktl::api::format::v_eac_r_11snorm_block >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3535,6 +3853,8 @@ struct format< ktl::api::format::v_eac_r_11g_11unorm_block >
     static constexpr component              g                = {11, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3557,6 +3877,8 @@ struct format< ktl::api::format::v_eac_r_11g_11snorm_block >
     static constexpr component              g                = {11, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3579,6 +3901,8 @@ struct format< ktl::api::format::v_astc_4x_4unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3601,6 +3925,8 @@ struct format< ktl::api::format::v_astc_4x_4srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3623,6 +3949,8 @@ struct format< ktl::api::format::v_astc_5x_4unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3645,6 +3973,8 @@ struct format< ktl::api::format::v_astc_5x_4srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3667,6 +3997,8 @@ struct format< ktl::api::format::v_astc_5x_5unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3689,6 +4021,8 @@ struct format< ktl::api::format::v_astc_5x_5srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3711,6 +4045,8 @@ struct format< ktl::api::format::v_astc_6x_5unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3733,6 +4069,8 @@ struct format< ktl::api::format::v_astc_6x_5srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3755,6 +4093,8 @@ struct format< ktl::api::format::v_astc_6x_6unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3777,6 +4117,8 @@ struct format< ktl::api::format::v_astc_6x_6srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3799,6 +4141,8 @@ struct format< ktl::api::format::v_astc_8x_5unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3821,6 +4165,8 @@ struct format< ktl::api::format::v_astc_8x_5srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3843,6 +4189,8 @@ struct format< ktl::api::format::v_astc_8x_6unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3865,6 +4213,8 @@ struct format< ktl::api::format::v_astc_8x_6srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3887,6 +4237,8 @@ struct format< ktl::api::format::v_astc_8x_8unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3909,6 +4261,8 @@ struct format< ktl::api::format::v_astc_8x_8srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3931,6 +4285,8 @@ struct format< ktl::api::format::v_astc_10x_5unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3953,6 +4309,8 @@ struct format< ktl::api::format::v_astc_10x_5srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3975,6 +4333,8 @@ struct format< ktl::api::format::v_astc_10x_6unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -3997,6 +4357,8 @@ struct format< ktl::api::format::v_astc_10x_6srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4019,6 +4381,8 @@ struct format< ktl::api::format::v_astc_10x_8unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4041,6 +4405,8 @@ struct format< ktl::api::format::v_astc_10x_8srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4063,6 +4429,8 @@ struct format< ktl::api::format::v_astc_10x_10unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4085,6 +4453,8 @@ struct format< ktl::api::format::v_astc_10x_10srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4107,6 +4477,8 @@ struct format< ktl::api::format::v_astc_12x_10unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4129,6 +4501,8 @@ struct format< ktl::api::format::v_astc_12x_10srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4151,6 +4525,8 @@ struct format< ktl::api::format::v_astc_12x_12unorm_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4173,6 +4549,8 @@ struct format< ktl::api::format::v_astc_12x_12srgb_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4195,6 +4573,8 @@ struct format< ktl::api::format::v_g_8b_8g_8r_8422unorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4217,6 +4597,8 @@ struct format< ktl::api::format::v_b_8g_8r_8g_8422unorm >
     static constexpr component              g                = {8, false, 0, true};
     static constexpr component              b                = {8, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4239,6 +4621,8 @@ struct format< ktl::api::format::v_g_8b_8r_83plane_420unorm >
     static constexpr component              g                = {8, true, 0, true};
     static constexpr component              b                = {8, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
                                                                 plane{2, 2, ktl::api::format::v_r_8unorm},
@@ -4261,6 +4645,8 @@ struct format< ktl::api::format::v_g_8b_8r_82plane_420unorm >
     static constexpr component              g                = {8, true, 0, true};
     static constexpr component              b                = {8, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
                                                                 plane{2, 2, ktl::api::format::v_r_8g_8unorm},
@@ -4283,6 +4669,8 @@ struct format< ktl::api::format::v_g_8b_8r_83plane_422unorm >
     static constexpr component              g                = {8, true, 0, true};
     static constexpr component              b                = {8, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
                                                                 plane{2, 1, ktl::api::format::v_r_8unorm},
@@ -4305,6 +4693,8 @@ struct format< ktl::api::format::v_g_8b_8r_82plane_422unorm >
     static constexpr component              g                = {8, true, 0, true};
     static constexpr component              b                = {8, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
                                                                 plane{2, 1, ktl::api::format::v_r_8g_8unorm},
@@ -4327,6 +4717,8 @@ struct format< ktl::api::format::v_g_8b_8r_83plane_444unorm >
     static constexpr component              g                = {8, true, 0, true};
     static constexpr component              b                = {8, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
                                                                 plane{1, 1, ktl::api::format::v_r_8unorm},
@@ -4349,6 +4741,8 @@ struct format< ktl::api::format::v_r_10x_6unorm_pack_16 >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4371,6 +4765,8 @@ struct format< ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4393,6 +4789,8 @@ struct format< ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6unorm_4pack_16 >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {10, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4415,6 +4813,8 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6g_10x_6r_10x_6422unorm_4pack_16
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4437,6 +4837,8 @@ struct format< ktl::api::format::v_b_10x_6g_10x_6r_10x_6g_10x_6422unorm_4pack_16
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4459,6 +4861,8 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_420unorm_3pack_16
     static constexpr component              g                = {10, true, 0, true};
     static constexpr component              b                = {10, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
                                                                 plane{2, 2, ktl::api::format::v_r_10x_6unorm_pack_16},
@@ -4481,6 +4885,8 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_420unorm_3pack_16
     static constexpr component              g                = {10, true, 0, true};
     static constexpr component              b                = {10, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
                                                                 plane{2, 2, ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16},
@@ -4503,6 +4909,8 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_422unorm_3pack_16
     static constexpr component              g                = {10, true, 0, true};
     static constexpr component              b                = {10, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
                                                                 plane{2, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
@@ -4525,6 +4933,8 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_422unorm_3pack_16
     static constexpr component              g                = {10, true, 0, true};
     static constexpr component              b                = {10, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
                                                                 plane{2, 1, ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16},
@@ -4547,6 +4957,8 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_444unorm_3pack_16
     static constexpr component              g                = {10, true, 0, true};
     static constexpr component              b                = {10, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
                                                                 plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
@@ -4569,6 +4981,8 @@ struct format< ktl::api::format::v_r_12x_4unorm_pack_16 >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4591,6 +5005,8 @@ struct format< ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16 >
     static constexpr component              g                = {12, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4613,6 +5029,8 @@ struct format< ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4unorm_4pack_16 >
     static constexpr component              g                = {12, false, 0, true};
     static constexpr component              b                = {12, false, 0, true};
     static constexpr component              a                = {12, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4635,6 +5053,8 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4g_12x_4r_12x_4422unorm_4pack_16
     static constexpr component              g                = {12, false, 0, true};
     static constexpr component              b                = {12, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4657,6 +5077,8 @@ struct format< ktl::api::format::v_b_12x_4g_12x_4r_12x_4g_12x_4422unorm_4pack_16
     static constexpr component              g                = {12, false, 0, true};
     static constexpr component              b                = {12, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4679,6 +5101,8 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_420unorm_3pack_16
     static constexpr component              g                = {12, true, 0, true};
     static constexpr component              b                = {12, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
                                                                 plane{2, 2, ktl::api::format::v_r_12x_4unorm_pack_16},
@@ -4701,6 +5125,8 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_420unorm_3pack_16
     static constexpr component              g                = {12, true, 0, true};
     static constexpr component              b                = {12, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
                                                                 plane{2, 2, ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16},
@@ -4723,6 +5149,8 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_422unorm_3pack_16
     static constexpr component              g                = {12, true, 0, true};
     static constexpr component              b                = {12, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
                                                                 plane{2, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
@@ -4745,6 +5173,8 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_422unorm_3pack_16
     static constexpr component              g                = {12, true, 0, true};
     static constexpr component              b                = {12, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
                                                                 plane{2, 1, ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16},
@@ -4767,6 +5197,8 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_444unorm_3pack_16
     static constexpr component              g                = {12, true, 0, true};
     static constexpr component              b                = {12, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
                                                                 plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
@@ -4789,6 +5221,8 @@ struct format< ktl::api::format::v_g_16b_16g_16r_16422unorm >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4811,6 +5245,8 @@ struct format< ktl::api::format::v_b_16g_16r_16g_16422unorm >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {16, false, 0, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4833,6 +5269,8 @@ struct format< ktl::api::format::v_g_16b_16r_163plane_420unorm >
     static constexpr component              g                = {16, true, 0, true};
     static constexpr component              b                = {16, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
                                                                 plane{2, 2, ktl::api::format::v_r_16unorm},
@@ -4855,6 +5293,8 @@ struct format< ktl::api::format::v_g_16b_16r_162plane_420unorm >
     static constexpr component              g                = {16, true, 0, true};
     static constexpr component              b                = {16, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
                                                                 plane{2, 2, ktl::api::format::v_r_16g_16unorm},
@@ -4877,6 +5317,8 @@ struct format< ktl::api::format::v_g_16b_16r_163plane_422unorm >
     static constexpr component              g                = {16, true, 0, true};
     static constexpr component              b                = {16, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
                                                                 plane{2, 1, ktl::api::format::v_r_16unorm},
@@ -4899,6 +5341,8 @@ struct format< ktl::api::format::v_g_16b_16r_162plane_422unorm >
     static constexpr component              g                = {16, true, 0, true};
     static constexpr component              b                = {16, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
                                                                 plane{2, 1, ktl::api::format::v_r_16g_16unorm},
@@ -4921,6 +5365,8 @@ struct format< ktl::api::format::v_g_16b_16r_163plane_444unorm >
     static constexpr component              g                = {16, true, 0, true};
     static constexpr component              b                = {16, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
                                                                 plane{1, 1, ktl::api::format::v_r_16unorm},
@@ -4943,6 +5389,8 @@ struct format< ktl::api::format::v_pvrtc_12bpp_unorm_block_img >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4965,6 +5413,8 @@ struct format< ktl::api::format::v_pvrtc_14bpp_unorm_block_img >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -4987,6 +5437,8 @@ struct format< ktl::api::format::v_pvrtc_22bpp_unorm_block_img >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5009,6 +5461,8 @@ struct format< ktl::api::format::v_pvrtc_24bpp_unorm_block_img >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5031,6 +5485,8 @@ struct format< ktl::api::format::v_pvrtc_12bpp_srgb_block_img >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5053,6 +5509,8 @@ struct format< ktl::api::format::v_pvrtc_14bpp_srgb_block_img >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5075,6 +5533,8 @@ struct format< ktl::api::format::v_pvrtc_22bpp_srgb_block_img >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5097,6 +5557,8 @@ struct format< ktl::api::format::v_pvrtc_24bpp_srgb_block_img >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5119,6 +5581,8 @@ struct format< ktl::api::format::v_astc_4x_4sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5141,6 +5605,8 @@ struct format< ktl::api::format::v_astc_5x_4sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5163,6 +5629,8 @@ struct format< ktl::api::format::v_astc_5x_5sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5185,6 +5653,8 @@ struct format< ktl::api::format::v_astc_6x_5sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5207,6 +5677,8 @@ struct format< ktl::api::format::v_astc_6x_6sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5229,6 +5701,8 @@ struct format< ktl::api::format::v_astc_8x_5sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5251,6 +5725,8 @@ struct format< ktl::api::format::v_astc_8x_6sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5273,6 +5749,8 @@ struct format< ktl::api::format::v_astc_8x_8sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5295,6 +5773,8 @@ struct format< ktl::api::format::v_astc_10x_5sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5317,6 +5797,8 @@ struct format< ktl::api::format::v_astc_10x_6sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5339,6 +5821,8 @@ struct format< ktl::api::format::v_astc_10x_8sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5361,6 +5845,8 @@ struct format< ktl::api::format::v_astc_10x_10sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5383,6 +5869,8 @@ struct format< ktl::api::format::v_astc_12x_10sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5405,6 +5893,8 @@ struct format< ktl::api::format::v_astc_12x_12sfloat_block >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5427,6 +5917,8 @@ struct format< ktl::api::format::v_astc_3x_3x_3unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5449,6 +5941,8 @@ struct format< ktl::api::format::v_astc_3x_3x_3srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5471,6 +5965,8 @@ struct format< ktl::api::format::v_astc_3x_3x_3sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5493,6 +5989,8 @@ struct format< ktl::api::format::v_astc_4x_3x_3unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5515,6 +6013,8 @@ struct format< ktl::api::format::v_astc_4x_3x_3srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5537,6 +6037,8 @@ struct format< ktl::api::format::v_astc_4x_3x_3sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5559,6 +6061,8 @@ struct format< ktl::api::format::v_astc_4x_4x_3unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5581,6 +6085,8 @@ struct format< ktl::api::format::v_astc_4x_4x_3srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5603,6 +6109,8 @@ struct format< ktl::api::format::v_astc_4x_4x_3sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5625,6 +6133,8 @@ struct format< ktl::api::format::v_astc_4x_4x_4unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5647,6 +6157,8 @@ struct format< ktl::api::format::v_astc_4x_4x_4srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5669,6 +6181,8 @@ struct format< ktl::api::format::v_astc_4x_4x_4sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5691,6 +6205,8 @@ struct format< ktl::api::format::v_astc_5x_4x_4unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5713,6 +6229,8 @@ struct format< ktl::api::format::v_astc_5x_4x_4srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5735,6 +6253,8 @@ struct format< ktl::api::format::v_astc_5x_4x_4sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5757,6 +6277,8 @@ struct format< ktl::api::format::v_astc_5x_5x_4unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5779,6 +6301,8 @@ struct format< ktl::api::format::v_astc_5x_5x_4srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5801,6 +6325,8 @@ struct format< ktl::api::format::v_astc_5x_5x_4sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5823,6 +6349,8 @@ struct format< ktl::api::format::v_astc_5x_5x_5unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5845,6 +6373,8 @@ struct format< ktl::api::format::v_astc_5x_5x_5srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5867,6 +6397,8 @@ struct format< ktl::api::format::v_astc_5x_5x_5sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5889,6 +6421,8 @@ struct format< ktl::api::format::v_astc_6x_5x_5unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5911,6 +6445,8 @@ struct format< ktl::api::format::v_astc_6x_5x_5srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5933,6 +6469,8 @@ struct format< ktl::api::format::v_astc_6x_5x_5sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5955,6 +6493,8 @@ struct format< ktl::api::format::v_astc_6x_6x_5unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5977,6 +6517,8 @@ struct format< ktl::api::format::v_astc_6x_6x_5srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -5999,6 +6541,8 @@ struct format< ktl::api::format::v_astc_6x_6x_5sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6021,6 +6565,8 @@ struct format< ktl::api::format::v_astc_6x_6x_6unorm_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6043,6 +6589,8 @@ struct format< ktl::api::format::v_astc_6x_6x_6srgb_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6065,6 +6613,8 @@ struct format< ktl::api::format::v_astc_6x_6x_6sfloat_block_ext >
     static constexpr component              g                = {0, false, 0, true};
     static constexpr component              b                = {0, false, 0, true};
     static constexpr component              a                = {0, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6087,6 +6637,8 @@ struct format< ktl::api::format::v_g_8b_8r_82plane_444unorm >
     static constexpr component              g                = {8, true, 0, true};
     static constexpr component              b                = {8, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
                                                                 plane{1, 1, ktl::api::format::v_r_8g_8unorm},
@@ -6109,6 +6661,8 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_444unorm_3pack_16
     static constexpr component              g                = {10, true, 0, true};
     static constexpr component              b                = {10, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
                                                                 plane{1, 1, ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16},
@@ -6131,6 +6685,8 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_444unorm_3pack_16
     static constexpr component              g                = {12, true, 0, true};
     static constexpr component              b                = {12, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
                                                                 plane{1, 1, ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16},
@@ -6153,6 +6709,8 @@ struct format< ktl::api::format::v_g_16b_16r_162plane_444unorm >
     static constexpr component              g                = {16, true, 0, true};
     static constexpr component              b                = {16, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
                                                                 plane{1, 1, ktl::api::format::v_r_16g_16unorm},
@@ -6175,6 +6733,8 @@ struct format< ktl::api::format::v_a_4r_4g_4b_4unorm_pack_16 >
     static constexpr component              g                = {4, false, 0, true};
     static constexpr component              b                = {4, false, 0, true};
     static constexpr component              a                = {4, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6197,6 +6757,8 @@ struct format< ktl::api::format::v_a_4b_4g_4r_4unorm_pack_16 >
     static constexpr component              g                = {4, false, 0, true};
     static constexpr component              b                = {4, false, 0, true};
     static constexpr component              a                = {4, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6219,6 +6781,8 @@ struct format< ktl::api::format::v_r_16g_16sfixed_5nv >
     static constexpr component              g                = {16, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6241,6 +6805,8 @@ struct format< ktl::api::format::v_r_10x_6uint_pack_16arm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6263,6 +6829,8 @@ struct format< ktl::api::format::v_r_10x_6g_10x_6uint_2pack_16arm >
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6285,6 +6853,8 @@ struct format< ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6uint_4pack_16arm 
     static constexpr component              g                = {10, false, 0, true};
     static constexpr component              b                = {10, false, 0, true};
     static constexpr component              a                = {10, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6307,6 +6877,8 @@ struct format< ktl::api::format::v_r_12x_4uint_pack_16arm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6329,6 +6901,8 @@ struct format< ktl::api::format::v_r_12x_4g_12x_4uint_2pack_16arm >
     static constexpr component              g                = {12, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6351,6 +6925,8 @@ struct format< ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4uint_4pack_16arm 
     static constexpr component              g                = {12, false, 0, true};
     static constexpr component              b                = {12, false, 0, true};
     static constexpr component              a                = {12, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6373,6 +6949,8 @@ struct format< ktl::api::format::v_r_14x_2uint_pack_16arm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6395,6 +6973,8 @@ struct format< ktl::api::format::v_r_14x_2g_14x_2uint_2pack_16arm >
     static constexpr component              g                = {14, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6417,6 +6997,8 @@ struct format< ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2uint_4pack_16arm 
     static constexpr component              g                = {14, false, 0, true};
     static constexpr component              b                = {14, false, 0, true};
     static constexpr component              a                = {14, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6439,6 +7021,8 @@ struct format< ktl::api::format::v_r_14x_2unorm_pack_16arm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6461,6 +7045,8 @@ struct format< ktl::api::format::v_r_14x_2g_14x_2unorm_2pack_16arm >
     static constexpr component              g                = {14, false, 0, true};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6483,6 +7069,8 @@ struct format< ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2unorm_4pack_16arm
     static constexpr component              g                = {14, false, 0, true};
     static constexpr component              b                = {14, false, 0, true};
     static constexpr component              a                = {14, false, 0, true};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6505,6 +7093,8 @@ struct format< ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_420unorm_3pack_16
     static constexpr component              g                = {14, true, 0, true};
     static constexpr component              b                = {14, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes = {plane{1, 1, ktl::api::format::v_r_14x_2unorm_pack_16arm},
                                                       plane{2, 2, ktl::api::format::v_r_14x_2g_14x_2unorm_2pack_16arm},
@@ -6527,6 +7117,8 @@ struct format< ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_422unorm_3pack_16
     static constexpr component              g                = {14, true, 0, true};
     static constexpr component              b                = {14, true, 1, true};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
     static constexpr std::array< plane, 3 > planes = {plane{1, 1, ktl::api::format::v_r_14x_2unorm_pack_16arm},
                                                       plane{2, 1, ktl::api::format::v_r_14x_2g_14x_2unorm_2pack_16arm},
@@ -6549,6 +7141,8 @@ struct format< ktl::api::format::v_r_8bool_arm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6571,6 +7165,8 @@ struct format< ktl::api::format::v_r_16sfloat_fpencoding_bfloat_16arm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6593,6 +7189,8 @@ struct format< ktl::api::format::v_r_8sfloat_fpencoding_float_8e_4m_3arm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},
@@ -6615,6 +7213,8 @@ struct format< ktl::api::format::v_r_8sfloat_fpencoding_float_8e_5m_2arm >
     static constexpr component              g                = {0, false, 0, false};
     static constexpr component              b                = {0, false, 0, false};
     static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 0;
     static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
                                                                 plane{0, 0, ktl::api::format::v_undefined},

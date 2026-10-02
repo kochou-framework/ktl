@@ -45,6 +45,8 @@ struct format< ktl::api::format::v_undefined >
     static constexpr component              g                = {};
     static constexpr component              b                = {};
     static constexpr component              a                = {};
+    static constexpr component              d                = {};
+    static constexpr component              s                = {};
     static constexpr ktl::u32               planes_amount    = {};
     static constexpr std::array< plane, 3 > planes           = {};
 };
@@ -64,6 +66,8 @@ struct any_format
     component              g;
     component              b;
     component              a;
+    component              d; // depth
+    component              s; // stencil
     ktl::u32               planes_amount;
     std::array< plane, 3 > planes;
 };
@@ -86,6 +90,8 @@ format_cast() noexcept
             format::g,
             format::b,
             format::a,
+            format::d,
+            format::s,
             format::planes_amount,
             format::planes};
 }"""

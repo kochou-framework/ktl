@@ -66,6 +66,8 @@ class VkFormat:
     g: VkFormatComponent
     b: VkFormatComponent
     a: VkFormatComponent
+    d: VkFormatComponent # depth
+    s: VkFormatComponent # stencil
     planes_amount: str
     planes: list[VkFormatPlane]
 

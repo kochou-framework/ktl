@@ -17,34 +17,18 @@ def extract_format_impl(_root) -> VkFormat:
     is_3d = "true" if int(block_depth) > 1 else "false"
     # compressed="BC|ETC2|EAC|ASTC..." is set for every compressed format, components of EAC still have numeric bits
     is_compressed = "true" if _root.get("compressed") else "false"
-    r = None
-    g = None
-    b = None
-    a = None
     planes_amount = 0
     planes = [None, None, None]
 
+    # R, G, B, A, depth D and stencil S; a repeated component (G of 422 formats) keeps the last one
+    components = {}
     for component in _root.findall("component"):
-        name = component.get("name")
         bits = component.get("bits")
         bits = "0" if bits == "compressed" else bits
         plane = component.get("planeIndex")
-        if name == "R":
-            r = VkFormatComponent(bits, "true" if plane else "false", plane if plane else "0", "true")
-        if name == "G":
-            g = VkFormatComponent(bits, "true" if plane else "false", plane if plane else "0", "true")
-        if name == "B":
-            b = VkFormatComponent(bits, "true" if plane else "false", plane if plane else "0", "true")
-        if name == "A":
-            a = VkFormatComponent(bits, "true" if plane else "false", plane if plane else "0", "true")
-    if not r:
-        r = VkFormatComponent("0", "false", "0", "false")
-    if not g:
-        g = VkFormatComponent("0", "false", "0", "false")
-    if not b:
-        b = VkFormatComponent("0", "false", "0", "false")
-    if not a:
-        a = VkFormatComponent("0", "false", "0", "false")
+        components[component.get("name")] = VkFormatComponent(bits, "true" if plane else "false", plane if plane else "0", "true")
+    absent = VkFormatComponent("0", "false", "0", "false")
+    r, g, b, a, d, s = (components.get(name, absent) for name in "RGBADS")
 
     for plane in _root.findall("plane"):
         index = plane.get("index")
@@ -68,7 +52,7 @@ def extract_format_impl(_root) -> VkFormat:
                     block_depth,
                     is_3d,
                     is_compressed,
-                    r, g, b, a,
+                    r, g, b, a, d, s,
                     planes_amount,
                     planes)
 
@@ -123,6 +107,18 @@ struct format< {format.name} >
         {format.a.has_plane},
         {format.a.plane_index},
         {format.a.is_present}
+    }};
+    static constexpr component d = {{
+        {format.d.bits},
+        {format.d.has_plane},
+        {format.d.plane_index},
+        {format.d.is_present}
+    }};
+    static constexpr component s = {{
+        {format.s.bits},
+        {format.s.has_plane},
+        {format.s.plane_index},
+        {format.s.is_present}
     }};
     static constexpr ktl::u32 planes_amount = {format.planes_amount};
     static constexpr std::array< plane, 3 > planes = {{
