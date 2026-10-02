@@ -24,7 +24,44 @@ def make_params(_fields: list) -> str:
     return ", ".join(make_declaration(field.tppe, field.const, field.name, field.array) for field in _fields)
 
 
-def extract_command_impl(_root) -> VkFunction | None:
+COMMAND_LEVELS = ("global", "instance", "physical_device", "device")
+
+
+def extract_dispatchable_levels(_root) -> dict:
+    # VkInstance -> instance, VkPhysicalDevice -> physical_device, VkDevice and its children -> device
+    roots = {"VkInstance": "instance", "VkPhysicalDevice": "physical_device", "VkDevice": "device"}
+    parents = {}
+    dispatchable = []
+    for src in _root.find("types").findall("type[@category='handle']"):
+        name = src.find("name")
+        if name is None: # alias
+            continue
+        parents[name.text] = src.get("parent")
+        if src.find("type").text == "VK_DEFINE_HANDLE":
+            dispatchable.append(name.text)
+
+    levels = {}
+    for handle in dispatchable:
+        current = handle
+        while current not in roots:
+            current = parents.get(current)
+            if current is None:
+                raise ValueError(f"dispatchable handle {handle} has no VkInstance, VkPhysicalDevice or VkDevice parent")
+        levels[handle] = roots[current]
+    return levels
+
+
+def extract_command_level_impl(_root, _levels: dict) -> str:
+    # level is the one of the dispatchable object passed by value as the first parameter, otherwise command is global
+    params = [param for param in _root.findall("param") if param.get("api") != "vulkansc"]
+    if params:
+        decl = parse_decl(params[0])
+        if decl.pointer_count == 0 and decl.tppe in _levels:
+            return _levels[decl.tppe]
+    return "global"
+
+
+def extract_command_impl(_root, _levels: dict) -> VkFunction | None:
     alias_name = make_cpp_name(_root.get("name"))
     raw_alias = _root.get("alias")
     pfn_alias = make_cpp_name(raw_alias)
@@ -41,7 +78,8 @@ def extract_command_impl(_root) -> VkFunction | None:
         return None
 
     fields = extract_command_fields_impl(_root)
-    return VkFunction(f"pfn_{make_cpp_name(name)}", name, tppe, fields, None)
+    level = extract_command_level_impl(_root, _levels)
+    return VkFunction(f"pfn_{make_cpp_name(name)}", name, tppe, fields, None, level)
 
 
 def fill_definition(_file: TextIO, _commands: list) -> None:
@@ -152,17 +190,47 @@ raw_command(ktl::api::command _command) noexcept
     for command in _commands:
         _file.write(f"case ktl::api::command::{command.pfn[4:]}:\n")
         _file.write(f'return "{command.name}";\n')
-    _file.write("}}}")
+    # value outside of the enum, falling off a non-void function is UB
+    _file.write("}\nstd::abort();\n}\n")
+
+    # vkGetDeviceProcAddr returns only device commands, physical_device commands of device extensions
+    # come from vkGetInstanceProcAddr even before the device is created
+    _file.write("""
+// level of the dispatchable object in the first parameter:
+// global commands are loaded with vkGetInstanceProcAddr(NULL), instance and physical_device commands
+// with vkGetInstanceProcAddr(instance), device commands with vkGetDeviceProcAddr(device);
+// vkGetDeviceProcAddr itself is a device command, it is loaded with vkGetInstanceProcAddr(instance) first
+enum class command_level : ktl::u32
+{
+    global,
+    instance,
+    physical_device,
+    device
+};
+
+inline constexpr command_level
+get_command_level(ktl::api::command _command) noexcept
+{
+    switch (_command)
+    {
+""")
+    for level in COMMAND_LEVELS:
+        for command in _commands:
+            if command.level == level:
+                _file.write(f"case ktl::api::command::{command.pfn[4:]}:\n")
+        _file.write(f"return ktl::meta::command_level::{level};\n")
+    _file.write("}\nstd::abort();\n}\n}")
 
 
 def extract(_root) -> list:
     commands = []
+    levels = extract_dispatchable_levels(_root)
 
     root = _root.find("commands")
     for command in root.findall("command"):
         if command.get("api") == "vulkansc":
             continue
-        if result := extract_command_impl(command):
+        if result := extract_command_impl(command, levels):
             commands.append(result)
 
     targets = {command.pfn: command for command in commands if not command.alias}
@@ -172,6 +240,7 @@ def extract(_root) -> list:
                 raise ValueError(f"alias {command.name} of unknown command {command.alias}")
             command.tppe = targets[command.alias].tppe
             command.fields = targets[command.alias].fields
+            command.level = targets[command.alias].level
 
     return commands
 

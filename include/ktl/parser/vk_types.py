@@ -31,6 +31,7 @@ class VkFunction:
     tppe: str
     fields: list[VkFunctionField]
     alias: str | None
+    level: str | None = None # global, instance, physical_device or device; commands only
 
 
 @dataclass

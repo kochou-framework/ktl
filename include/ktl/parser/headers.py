@@ -180,6 +180,7 @@ def fill_commands(_api_include: str,
         file.write(f"""#ifndef {header_guard}
 #define {header_guard}
 
+#include <cstdlib>
 #include <string_view>
 
 #include <ktl/{_api_include}>
