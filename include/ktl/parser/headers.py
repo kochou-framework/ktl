@@ -13,9 +13,9 @@ import platforms
 from cpp_meta import VERSION_META, VERSION_STD
 
 
-def make_header_guard(_filename: str) -> str | None:
+def make_header_guard(_filename: str) -> str:
     if not _filename:
-        return None
+        raise ValueError("header file name is empty")
     return f"KTL_{_filename.replace('.', '_').replace('/', '_').upper()}"
 
 
@@ -28,9 +28,6 @@ def fill_common(_filename: str,
                 _pointers: list,
                 _commands: list) -> None:
     header_guard = make_header_guard(_filename)
-    if not header_guard:
-        print("headers.fill_common header_guard is None")
-        return
 
     with open(_filename, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
@@ -56,9 +53,6 @@ def fill_enums(_common_include: str,
                _filename: str,
                _enums: list) -> None:
     header_guard = make_header_guard(_filename)
-    if not header_guard:
-        print("headers.fill_enums header_guard is None")
-        return
 
     with open(_filename, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
@@ -76,9 +70,6 @@ def fill_handles(_api_include: str,
                  _handles: list) -> None:
     # meta
     header_guard = make_header_guard(_filename)
-    if not header_guard:
-        print("headers.fill_handles header_guard is None")
-        return
 
     with open(_filename, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
@@ -100,9 +91,6 @@ def fill_structs(_common_include: str,
                  _filename: str,
                  _structs: list) -> None:
     header_guard = make_header_guard(_filename)
-    if not header_guard:
-        print("headers.fill_structs header_guard is None")
-        return
 
     with open(_filename, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
@@ -120,9 +108,6 @@ def fill_formats(_api: str,
                  _meta_file: str,
                  _formats: list) -> None:
     header_guard = make_header_guard(_meta_file)
-    if not header_guard:
-        print("headers.fill_formats header_guard is None")
-        return
 
     with open(_meta_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
@@ -142,9 +127,6 @@ def fill_commands(_api_include: str,
                   _meta_file: str,
                   _commands: list) -> None:
     header_guard = make_header_guard(_api_file)
-    if not header_guard:
-        print("headers.fill_commands header_guard is None")
-        return
     
     with open(_api_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
@@ -161,9 +143,6 @@ def fill_commands(_api_include: str,
         file.write("\n#endif\n")
 
     header_guard = make_header_guard(_meta_file)
-    if not header_guard:
-        print("headers.fill_commands header_guard is None")
-        return
     
     with open(_meta_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
@@ -184,9 +163,6 @@ def fill_features(_api_include: str,
                   _meta_file: str,
                   _features: list) -> None:
     header_guard = make_header_guard(_api_file)
-    if not header_guard:
-        print("headers.fill_features header_guard is None")
-        return
 
     with open(_api_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
@@ -199,9 +175,6 @@ def fill_features(_api_include: str,
         file.write("\n#endif\n")
 
     header_guard = make_header_guard(_meta_file)
-    if not header_guard:
-        print("headers.fill_features header_guard is None")
-        return
 
     with open(_meta_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {header_guard}
@@ -221,9 +194,6 @@ def fill_extensions(_api_include: str,
                     _meta_file: str,
                     _extensions: list) -> None:
     api_header_guard = make_header_guard(_api_file)
-    if not api_header_guard:
-        print("headers.fill_extensions api_header_guard is None")
-        return
     with open(_api_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {api_header_guard}
 #define {api_header_guard}
@@ -235,9 +205,6 @@ def fill_extensions(_api_include: str,
         file.write("\n#endif\n")
 
     meta_header_guard = make_header_guard(_meta_file)
-    if not meta_header_guard:
-        print("headers.fill_extensions meta_header_guard is None")
-        return
     with open(_meta_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {meta_header_guard}
 #define {meta_header_guard}
@@ -287,9 +254,6 @@ namespace ktl::api
 """)
 
     meta_header_guard = make_header_guard(_meta_file)
-    if not meta_header_guard:
-        print("headers.fill_extensions meta_header_guard is None")
-        return
     with open(_meta_file, "w", encoding="utf-8") as file:
         file.write(f"""#ifndef {meta_header_guard}
 #define {meta_header_guard}
@@ -314,9 +278,6 @@ def fill_api(_filename,
              _extensions_include,
              _layers_include) -> None:
     header_guard = make_header_guard(_filename)
-    if not header_guard:
-        print("headers.fill_extensions header_guard is None")
-        return
 
     # layer.hpp is written by hand, the generator only includes it
     with open(_filename, "w", encoding="utf-8") as file:
@@ -339,14 +300,10 @@ def fill_meta(_filename: str,
               _meta_feature: str,
               _meta_format: str,
               _meta_handle: str,
-              _meta_enum: str,
               _meta_command: str,
               _meta_version: str,
               _meta_layer: str) -> None:
     header_guard = make_header_guard(_filename)
-    if not header_guard:
-        print("headers.fill_extensions header_guard is None")
-        return
 
     # layer.hpp is written by hand, the generator only includes it
     with open(_filename, "w", encoding="utf-8") as file:
@@ -357,7 +314,6 @@ def fill_meta(_filename: str,
 #include "{_meta_feature}"
 #include "{_meta_format}"
 #include "{_meta_handle}"
-// #include "{_meta_enum}"
 #include "{_meta_command}"
 #include "{_meta_version}"
 #include "{_meta_layer}"

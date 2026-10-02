@@ -25,9 +25,8 @@ API_FEATURES_HEADER_FILE   = f"{API_DIR}feature.hpp"
 API_EXTENSIONS_HEADER_FILE = f"{API_DIR}extension.hpp"
 API_LAYERS_HEADER_FILE     = f"{API_DIR}layer.hpp"
 API_VERSION_HEADER_FILE    = f"{API_DIR}version.hpp"
-API_HEADER_FILE        = "api.hpp"
+API_HEADER_FILE            = "api.hpp"
 
-META_ENUMS_HEADER_FILE      = f"{META_DIR}enum.hpp"
 META_HANDLES_HEADER_FILE    = f"{META_DIR}handle.hpp"
 META_FORMATS_HEADER_FILE    = f"{META_DIR}format.hpp"
 META_COMMANDS_HEADER_FILE   = f"{META_DIR}command.hpp"
@@ -102,7 +101,6 @@ def main(_root):
                       META_FEATURES_HEADER_FILE,
                       META_FORMATS_HEADER_FILE,
                       META_HANDLES_HEADER_FILE,
-                      META_ENUMS_HEADER_FILE,
                       META_COMMANDS_HEADER_FILE,
                       META_VERSION_HEADER_FILE,
                       META_LAYERS_HEADER_FILE)
