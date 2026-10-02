@@ -5175,12 +5175,6 @@ struct physical_device_pipeline_protected_access_features
     void *                   pnext = {};
     ktl::api::bool32         pipeline_protected_access;
 };
-struct queue_family_query_result_status_properties_khr
-{
-    ktl::api::structure_type stype = ktl::api::structure_type::v_queue_family_query_result_status_properties_khr;
-    void *                   pnext = {};
-    ktl::api::bool32         query_result_status_support;
-};
 struct physical_device_inherited_viewport_scissor_features_nv
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_inherited_viewport_scissor_features_nv;

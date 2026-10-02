@@ -22,7 +22,7 @@ def c_name_to_cpp(name: str) -> str:
     return result
 
 def is_vulkan_video(name: str) -> bool: # vulkan-video is not supported now
-    return "video" in name.lower() and "video_queue" not in name.lower()
+    return "video" in name.lower()
 
 
 def make_vulkan_value(_number: str, _offset: str, _direction: str | None = None) -> str:

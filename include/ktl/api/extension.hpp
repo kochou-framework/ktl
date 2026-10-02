@@ -25,7 +25,6 @@ enum class extension : ktl::u32
     amd_shader_trinary_minmax,
     amd_shader_explicit_vertex_parameter,
     ext_debug_marker,
-    khr_video_queue,
     amd_gcn_shader,
     nv_dedicated_allocation,
     ext_transform_feedback,

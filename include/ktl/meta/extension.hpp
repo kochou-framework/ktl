@@ -356,23 +356,6 @@ struct extension< ktl::api::extension::ext_debug_marker >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_video_queue >
-{
-    static constexpr std::string_view      raw_name    = "VK_KHR_video_queue";
-    static constexpr bool                  is_instance = false;
-    static constexpr ktl::meta::dependency promoted    = {};
-
-    static constexpr std::array< ktl::api::command, 0 > commands = {};
-
-    static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::version_1_1, ktl::api::extension::khr_synchronization_2, ktl::api::version_1_3};
-    static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
-                                                                               std::span{dependencies}.subspan(2, 1)};
-    static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
-    static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
-};
-
-template <>
 struct extension< ktl::api::extension::amd_gcn_shader >
 {
     static constexpr std::string_view      raw_name    = "VK_AMD_gcn_shader";
@@ -8566,10 +8549,6 @@ extension_from_raw(std::string_view _extension)
     {
         return ktl::api::extension::ext_debug_marker;
     }
-    if (_extension == "VK_KHR_video_queue")
-    {
-        return ktl::api::extension::khr_video_queue;
-    }
     if (_extension == "VK_AMD_gcn_shader")
     {
         return ktl::api::extension::amd_gcn_shader;
@@ -10419,10 +10398,6 @@ extension_cast(ktl::api::extension _extension)
     if (_extension == ktl::api::extension::ext_debug_marker)
     {
         return extension_cast< ktl::api::extension::ext_debug_marker >();
-    }
-    if (_extension == ktl::api::extension::khr_video_queue)
-    {
-        return extension_cast< ktl::api::extension::khr_video_queue >();
     }
     if (_extension == ktl::api::extension::amd_gcn_shader)
     {

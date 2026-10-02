@@ -127,7 +127,6 @@ enum class query_type : ktl::u32
     v_occlusion                                                      = 0,
     v_pipeline_statistics                                            = 1,
     v_timestamp                                                      = 2,
-    v_result_status_only_khr                                         = 1000023000,
     v_transform_feedback_stream_ext                                  = 1000028004,
     v_performance_query_khr                                          = 1000116000,
     v_acceleration_structure_compacted_size_khr                      = 1000150000,
@@ -1025,23 +1024,6 @@ enum class structure_type : ktl::u32
     v_debug_marker_object_name_info_ext                                           = 1000022000,
     v_debug_marker_object_tag_info_ext                                            = 1000022001,
     v_debug_marker_marker_info_ext                                                = 1000022002,
-    v_video_profile_info_khr                                                      = 1000023000,
-    v_video_capabilities_khr                                                      = 1000023001,
-    v_video_picture_resource_info_khr                                             = 1000023002,
-    v_video_session_memory_requirements_khr                                       = 1000023003,
-    v_bind_video_session_memory_info_khr                                          = 1000023004,
-    v_video_session_create_info_khr                                               = 1000023005,
-    v_video_session_parameters_create_info_khr                                    = 1000023006,
-    v_video_session_parameters_update_info_khr                                    = 1000023007,
-    v_video_begin_coding_info_khr                                                 = 1000023008,
-    v_video_end_coding_info_khr                                                   = 1000023009,
-    v_video_coding_control_info_khr                                               = 1000023010,
-    v_video_reference_slot_info_khr                                               = 1000023011,
-    v_queue_family_video_properties_khr                                           = 1000023012,
-    v_video_profile_list_info_khr                                                 = 1000023013,
-    v_physical_device_video_format_info_khr                                       = 1000023014,
-    v_video_format_properties_khr                                                 = 1000023015,
-    v_queue_family_query_result_status_properties_khr                             = 1000023016,
     v_dedicated_allocation_image_create_info_nv                                   = 1000026000,
     v_dedicated_allocation_buffer_create_info_nv                                  = 1000026001,
     v_dedicated_allocation_memory_allocate_info_nv                                = 1000026002,
@@ -2210,12 +2192,6 @@ enum class result : ktl::i32
     v_error_out_of_date_khr                               = -1000001004,
     v_error_incompatible_display_khr                      = -1000003001,
     v_error_invalid_shader_nv                             = -1000012000,
-    v_error_image_usage_not_supported_khr                 = -1000023000,
-    v_error_video_picture_layout_not_supported_khr        = -1000023001,
-    v_error_video_profile_operation_not_supported_khr     = -1000023002,
-    v_error_video_profile_format_not_supported_khr        = -1000023003,
-    v_error_video_profile_codec_not_supported_khr         = -1000023004,
-    v_error_video_std_version_not_supported_khr           = -1000023005,
     v_error_invalid_drm_format_modifier_plane_layout_ext  = -1000158000,
     v_error_present_timing_queue_full_ext                 = -1000208000,
     v_error_full_screen_exclusive_mode_lost_ext           = -1000255000,
@@ -2375,8 +2351,6 @@ enum class object_type : ktl::u32
     v_display_khr                     = 1000002000,
     v_display_mode_khr                = 1000002001,
     v_debug_report_callback_ext       = 1000011000,
-    v_video_session_khr               = 1000023000,
-    v_video_session_parameters_khr    = 1000023001,
     v_cu_module_nvx                   = 1000029000,
     v_cu_function_nvx                 = 1000029001,
     v_debug_utils_messenger_ext       = 1000128000,
@@ -2934,8 +2908,7 @@ enum class query_result_flag_bits : ktl::u32
     v_64bit                 = (1U << 0),
     v_wait_bit              = (1U << 1),
     v_with_availability_bit = (1U << 2),
-    v_partial_bit           = (1U << 3),
-    v_with_status_bit_khr   = (1U << 4)
+    v_partial_bit           = (1U << 3)
 };
 enum class command_buffer_usage_flag_bits : ktl::u32
 {
@@ -4407,12 +4380,6 @@ enum class present_timing_info_flag_bits_ext : ktl::u32
 {
     v_present_at_relative_time_bit_ext         = (1U << 0),
     v_present_at_nearest_refresh_cycle_bit_ext = (1U << 1)
-};
-enum class query_result_status_khr : ktl::i32
-{
-    v_error_khr     = -1,
-    v_not_ready_khr = 0,
-    v_complete_khr  = 1
 };
 enum class cooperative_matrix_flag_bits_ext : ktl::u32
 {
