@@ -132,7 +132,8 @@ def make_requirements(_depends: str | None) -> list[list[str]]:
                 version = max(version, dependency.get_version_tuple())
             elif dependency.extension not in extensions:
                 extensions.append(dependency.extension)
-        if (version, extensions) not in requirements:
+        # same extensions in another order are the same requirement, otherwise both would absorb each other
+        if not any(version == other[0] and set(extensions) == set(other[1]) for other in requirements):
             requirements.append((version, extensions))
 
     def is_weaker(_lhs, _rhs) -> bool:
