@@ -35,10 +35,6 @@
 #ifdef KTL_USE_PLATFORM_SCREEN
 #include <screen/screen.h>
 #endif
-#ifdef KTL_USE_PLATFORM_SCI
-#include <nvscibuf.h>
-#include <nvscisync.h>
-#endif
 
 namespace ktl::api
 {
@@ -123,19 +119,6 @@ using screen_buffer  = ::_screen_buffer;
 struct screen_context;
 struct screen_window;
 struct screen_buffer;
-#endif
-#ifdef KTL_USE_PLATFORM_SCI
-using nvsci_sync_attr_list = ::NvSciSyncAttrList;
-using nvsci_sync_obj       = ::NvSciSyncObj;
-using nvsci_sync_fence     = ::NvSciSyncFence;
-using nvsci_buf_attr_list  = ::NvSciBufAttrList;
-using nvsci_buf_obj        = ::NvSciBufObj;
-#else
-using nvsci_sync_attr_list = struct nvsci_sync_attr_list_rec *;
-using nvsci_sync_obj       = struct nvsci_sync_obj_rec *;
-struct nvsci_sync_fence;
-using nvsci_buf_attr_list = struct nvsci_buf_attr_list_rec *;
-using nvsci_buf_obj       = struct nvsci_buf_obj_rec *;
 #endif
 } // namespace ktl::api
 #define KTL_API_COMPUTE_OCCUPANCY_PRIORITY_NORMAL_NV 0.50f

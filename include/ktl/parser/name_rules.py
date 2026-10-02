@@ -69,7 +69,3 @@ def make_constant(src: str) -> str | None:
     if src is None or not src.startswith("VK_"):
         return None
     return "KTL_API" + src[2:]
-
-
-def make_handle(src: str) -> str | None:
-    pass

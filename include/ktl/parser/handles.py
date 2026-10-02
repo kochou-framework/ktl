@@ -1,6 +1,5 @@
 from vk_types import VkHandle
 from name_rules import *
-from utils import is_vulkan_video
 from api_filter import is_vulkan_type
 from typing import TextIO
 from cpp_meta import HANDLE_META
@@ -121,12 +120,8 @@ def extract(_root) -> list:
             continue
         alias = make_cpp_name(src.get("alias"))
         if alias:
-            name = make_cpp_name(src.get("name"))
-            if not is_vulkan_video(name):
-                handles.append(VkHandle(name, None, None, None, None, alias))
+            handles.append(VkHandle(make_cpp_name(src.get("name")), None, None, None, None, alias))
         else:
-            name = extract_handle_name_impl(src)
-            if not is_vulkan_video(name):
-                handles.append(extract_handle_impl(src, name))
+            handles.append(extract_handle_impl(src, extract_handle_name_impl(src)))
 
     return handles

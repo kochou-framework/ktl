@@ -1,9 +1,9 @@
-from vk_types import VkEnumField, VkEntension, VkDependency
+from vk_types import VkExtension
 from name_rules import *
-from utils import is_vulkan_video, make_vulkan_value
 from typing import TextIO
 from cpp_meta import EXTENSION_META
-from api_filter import is_vulkan_api, vulkan_extensions, vulkan_requires
+from api_filter import vulkan_extensions, vulkan_requires
+import enums
 
 
 from dataclasses import dataclass
@@ -60,8 +60,7 @@ def parse_depends(_depends: str) -> DepNode:
         elif "::" in name: # feature boolean: VkPhysicalDevice...Features::member
             return VkDependency(feature=name)
         else:
-            cpp_name = f"ktl::api::extension::{make_cpp_name(name)}" if 'make_cpp_name' in globals() else name
-            return VkDependency(extension=cpp_name)
+            return VkDependency(extension=f"ktl::api::extension::{make_cpp_name(name)}")
 
     def parse_term() -> DepNode:
         if pos[0] >= len(s):
@@ -233,14 +232,11 @@ extension_cast(ktl::api::extension _extension)
     _file.write("}\n")
 
 
-def extract(root, enums) -> list:
+def extract(root, _enums) -> list:
     extensions = []
 
     for extension in vulkan_extensions(root):
         name = extension.get("name")
-        if is_vulkan_video(name):
-            continue
-
         number = extension.get("number")
         tppe = extension.get("type")
         depends = make_requirements(extension.get("depends"))
@@ -248,39 +244,9 @@ def extract(root, enums) -> list:
         conditions = {} # command from <require depends="..."> -> depends of every such block
 
         for require in vulkan_requires(extension):
-            # enums
-            for enum in require.findall("enum"):
-                extend = enum.get("extends")
-                if extend and is_vulkan_api(enum):
-                    target = next((e for e in enums if e.name == make_cpp_name(extend)), None)
-                    if not target:
-                        continue
-                    offset = enum.get("offset")
-                    value = enum.get("value")
-                    direction = enum.get("dir")
-                    bitpos = enum.get("bitpos")
-                    alias = make_field_name(enum.get("alias"), target.name)
-                    deprecated = bool(enum.get("deprecated"))
-                    if offset:
-                        field_name = make_field_name(enum.get("name"), target.name)
-                        field_value = make_vulkan_value(enum.get("extnumber") or number, offset, direction)
-                        target.fields.append(VkEnumField(field_name, field_value, False, deprecated))
-                    if value:
-                        if direction:
-                            value =f"-{value}"
-                        field_name = make_field_name(enum.get("name"), target.name)
-                        target.fields.append(VkEnumField(field_name, value, False, deprecated))
-                    if bitpos:
-                        field_name = make_field_name(enum.get("name"), target.name)
-                        bitvalue = make_bitpos(bitpos, target.underling_type)
-                        target.fields.append(VkEnumField(field_name, bitvalue, False, deprecated))
-                    if alias:
-                        field_name = make_field_name(enum.get("name"), target.name)
-                        target.fields.append(VkEnumField(field_name, alias, True, deprecated))
+            enums.add_require_values(require, _enums, number)
             # commands
             for command in require.findall("command"):
-                if is_vulkan_video(command.get("name")):
-                    continue
                 command_name = f"ktl::api::command::{make_cpp_name(command.get("name"))}"
                 if require.get("depends"):
                     conditions.setdefault(command_name, []).append(require.get("depends"))
@@ -299,9 +265,8 @@ def extract(root, enums) -> list:
         else:
             promoted = f"ktl::api::extension::{make_cpp_name(promoted)}"
 
-        extensions.append(VkEntension(make_cpp_name(name),
+        extensions.append(VkExtension(make_cpp_name(name),
                                       name,
-                                      "ktl::api::version_1_0",
                                       True if tppe == "instance" else False,
                                       promoted,
                                       depends,

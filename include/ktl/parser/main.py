@@ -18,9 +18,7 @@ META_DIR = "meta/"
 
 API_COMMON_HEADER_FILE     = f"{API_DIR}common.hpp"
 API_ENUMS_HEADER_FILE      = f"{API_DIR}enum.hpp"
-API_HANDLES_HEADER_FILE    = f"{API_DIR}handle.hpp"
 API_STRUCTS_HEADER_FILE    = f"{API_DIR}struct.hpp"
-API_FORMATS_HEADER_FILE    = f"{API_DIR}format.hpp"
 API_COMMANDS_HEADER_FILE   = f"{API_DIR}command.hpp"
 API_FEATURES_HEADER_FILE   = f"{API_DIR}feature.hpp"
 API_EXTENSIONS_HEADER_FILE = f"{API_DIR}extension.hpp"
@@ -29,7 +27,6 @@ API_HEADER_FILE        = "api.hpp"
 
 META_ENUMS_HEADER_FILE      = f"{META_DIR}enum.hpp"
 META_HANDLES_HEADER_FILE    = f"{META_DIR}handle.hpp"
-META_STRUCTS_HEADER_FILE    = f"{META_DIR}struct.hpp"
 META_FORMATS_HEADER_FILE    = f"{META_DIR}format.hpp"
 META_COMMANDS_HEADER_FILE   = f"{META_DIR}command.hpp"
 META_FEATURES_HEADER_FILE   = f"{META_DIR}feature.hpp"
@@ -46,11 +43,11 @@ def main(_root):
     STRUCTS, FEATURES = structs.extract(_root)
     BITMASKS          = bitmasks.extract(_root)
     FORMATS           = formats.extract(_root)
-    POINTERS          = pointers.extract(_root) 
+    POINTERS          = pointers.extract(_root)
     COMMANDS          = commands.extract(_root)
-    _          = features.extract(_root, ENUMS, COMMANDS)
+    features.add_core_enum_values(_root, ENUMS)
     EXTENSIONS        = extensions.extract(_root, ENUMS)
-    VERSION_COMMANDS  = commands.extract_version_commands(_root);
+    VERSION_COMMANDS  = commands.extract_version_commands(_root)
 
     headers.fill_common(API_COMMON_HEADER_FILE,
                         CONSTANTS,
@@ -60,20 +57,17 @@ def main(_root):
                         BITMASKS,
                         POINTERS,
                         COMMANDS)
-    headers.fill_enums(API_HEADER_FILE,
-                       API_COMMON_HEADER_FILE,
+    headers.fill_enums(API_COMMON_HEADER_FILE,
                        API_ENUMS_HEADER_FILE,
                        ENUMS)
     headers.fill_handles(API_HEADER_FILE,
                          META_HANDLES_HEADER_FILE,
                          HANDLES)
-    headers.fill_structs(API_HEADER_FILE,
-                         API_COMMON_HEADER_FILE,
+    headers.fill_structs(API_COMMON_HEADER_FILE,
                          API_ENUMS_HEADER_FILE,
                          API_STRUCTS_HEADER_FILE,
                          STRUCTS)
     headers.fill_formats(API_HEADER_FILE,
-                         API_FORMATS_HEADER_FILE,
                          META_FORMATS_HEADER_FILE,
                          FORMATS)
     headers.fill_commands(API_HEADER_FILE,

@@ -97,29 +97,6 @@ format_cast() noexcept
 }"""
 
 
-ENUM_META = """"""
-
-
-STRUCT_META = """"""
-
-
-COMMAND_META = """template < ktl::u32 >
-struct command
-{
-    static constexpr ktl::api::version                    version     = {};
-    static constexpr std::array< ktl::api::extension, 0 > extensions  = {};
-    static constexpr bool                                 is_instance = {};
-    static constexpr std::string_view                     raw_name    = {};
-
-    static constexpr bool     conditionalrendering = {};
-    static constexpr bool     allow_no_queues      = {};
-    static constexpr ktl::u32 queues               = {};
-    static constexpr ktl::u32 renderpass           = {};
-    static constexpr ktl::u32 cmdbufferlevel       = {};
-    static constexpr ktl::u32 tasks                = {};
-};"""
-
-
 FEATURE_META = """template < ktl::api::feature >
 struct feature
 {

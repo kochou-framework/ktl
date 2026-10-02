@@ -55,13 +55,6 @@ PLATFORMS = [
         ("_screen_window",  "screen_window",  None),
         ("_screen_buffer",  "screen_buffer",  None),
     ]),
-    ("SCI", ["nvscisync.h", "nvscibuf.h"], [
-        ("NvSciSyncAttrList", "nvsci_sync_attr_list", "struct nvsci_sync_attr_list_rec *"),
-        ("NvSciSyncObj",      "nvsci_sync_obj",       "struct nvsci_sync_obj_rec *"),
-        ("NvSciSyncFence",    "nvsci_sync_fence",     None),
-        ("NvSciBufAttrList",  "nvsci_buf_attr_list",  "struct nvsci_buf_attr_list_rec *"),
-        ("NvSciBufObj",       "nvsci_buf_obj",        "struct nvsci_buf_obj_rec *"),
-    ]),
 ]
 
 PLATFORM_TYPES = {native: f"ktl::api::{name}" for _, _, types in PLATFORMS for native, name, _ in types}

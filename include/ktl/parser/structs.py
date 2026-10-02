@@ -1,6 +1,5 @@
 from vk_types import VkStruct, VkStructField, VkFeature
 from name_rules import *
-from utils import is_vulkan_video
 from typing import TextIO
 from decl import parse_decl, make_decl_type, make_declaration
 from utils import sort_by_dependencies
@@ -72,9 +71,6 @@ def extract_struct_field_impl(_root, _name, _is_feature) -> VkStructField:
 
 def extract_struct_impl(_root) -> tuple:
     name = make_cpp_name(_root.get("name"))
-    if is_vulkan_video(name):
-        return None, None
-
     is_feature = is_feature_struct(_root)
     feature_names = []
     fields = []
@@ -143,9 +139,7 @@ def extract(_root) -> tuple:
             continue
         if src.get("category") == "struct":
             if alias := make_cpp_name(src.get("alias")):
-                name = make_cpp_name(src.get("name"))
-                if not is_vulkan_video(name):
-                    structs.append(VkStruct(name, [], False, alias))
+                structs.append(VkStruct(make_cpp_name(src.get("name")), [], False, alias))
             else:
                 result, ff = extract_struct_impl(src)
                 if result:

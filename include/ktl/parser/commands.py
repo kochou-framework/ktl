@@ -1,6 +1,5 @@
 from vk_types import VkFunction, VkFunctionField
 from name_rules import *
-from utils import is_vulkan_video
 from typing import TextIO
 from decl import parse_decl, make_decl_type, make_declaration
 from api_filter import is_vulkan_api, excluded_names, vulkan_features, vulkan_requires
@@ -67,17 +66,12 @@ def extract_command_impl(_root, _levels: dict) -> VkFunction | None:
     raw_alias = _root.get("alias")
     pfn_alias = make_cpp_name(raw_alias)
     if alias_name and raw_alias:
-        # alias is filtered together with its target, signature is taken from the target in extract()
-        if is_vulkan_video(raw_alias):
-            return None
+        # signature is taken from the target in extract()
         return VkFunction(f"pfn_{alias_name}", _root.get("name"), None, None, f"pfn_{pfn_alias}")
 
     proto = _root.find("proto")
     tppe = extract_return_type_impl(proto)
     name = proto.find("name").text.strip()
-    if is_vulkan_video(name):
-        return None
-
     fields = extract_command_fields_impl(_root)
     level = extract_command_level_impl(_root, _levels)
     return VkFunction(f"pfn_{make_cpp_name(name)}", name, tppe, fields, None, level)

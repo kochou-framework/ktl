@@ -10,10 +10,8 @@ def extract_format_impl(_root) -> VkFormat:
     texels_per_block = _root.get("texelsPerBlock")
     packed = _root.get("packed") or "0"
     chroma = _root.get("chroma") or "0"
-    block_extent = _root.get("blockExtent")
-    block_width = eval(f"[{block_extent}]")[0] if block_extent else "0"
-    block_height = eval(f"[{block_extent}]")[1] if block_extent else "0"
-    block_depth = eval(f"[{block_extent}]")[2] if block_extent else "0"
+    block_extent = _root.get("blockExtent") # "width,height,depth"
+    block_width, block_height, block_depth = (v.strip() for v in block_extent.split(",")) if block_extent else ("0", "0", "0")
     is_3d = "true" if int(block_depth) > 1 else "false"
     # compressed="BC|ETC2|EAC|ASTC..." is set for every compressed format, components of EAC still have numeric bits
     is_compressed = "true" if _root.get("compressed") else "false"

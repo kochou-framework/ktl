@@ -51,17 +51,12 @@ def fill_common(_filename: str,
         file.write("\n#endif\n")
 
 
-def fill_enums(_api_include: str,
-               _common_include: str,
+def fill_enums(_common_include: str,
                _filename: str,
                _enums: list) -> None:
     header_guard = make_header_guard(_filename)
     if not header_guard:
         print("headers.fill_enums header_guard is None")
-        return
-    api_guard = make_header_guard(_api_include)
-    if not api_guard:
-        print("headers.fill_enums api_guard is None")
         return
 
     with open(_filename, "w", encoding="utf-8") as file:
@@ -99,8 +94,7 @@ def fill_handles(_api_include: str,
         file.write("\n#endif\n")
 
 
-def fill_structs(_api_include: str,
-                 _common_include: str,
+def fill_structs(_common_include: str,
                  _enums_include: str,
                  _filename: str,
                  _structs: list) -> None:
@@ -122,18 +116,11 @@ def fill_structs(_api_include: str,
 
 
 def fill_formats(_api: str,
-                 _api_file: str,
                  _meta_file: str,
                  _formats: list) -> None:
-    # api
-    # meta
     header_guard = make_header_guard(_meta_file)
     if not header_guard:
         print("headers.fill_formats header_guard is None")
-        return
-    api_guard = make_header_guard(_meta_file)
-    if not api_guard:
-        print("headers.fill_formats api_guard is None")
         return
 
     with open(_meta_file, "w", encoding="utf-8") as file:

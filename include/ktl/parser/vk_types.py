@@ -11,8 +11,8 @@ class VkConstant:
         return hash(self.name)
 
     def __eq__(self, other) -> bool:
-        if not isinstance(other, VkEnumField):
-            return True
+        if not isinstance(other, VkConstant):
+            return NotImplemented
         return self.name == other.name
 
 
@@ -123,14 +123,14 @@ class VkEnumField:
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, VkEnumField):
-            return True
+            return NotImplemented
         return self.name == other.name
 
 
 @dataclass
 class VkEnum:
     name: str
-    fields: dict
+    fields: list
     underling_type: str
     alias : str | None
 
@@ -143,32 +143,9 @@ class VkFeature:
 
 
 @dataclass
-class VkDependency:
-    """Представление зависимости: одно из полей будет заполнено."""
-    feature: str | None
-    extension: str | None
-    version: str | None
-    
-    def is_version(self) -> bool:
-        return self.version is not None
-    
-    def get_version_tuple(self):
-        if not self.version:
-            return None
-        # "VK_VERSION_1_2" -> (1, 2)
-        parts = self.version.replace("VK_VERSION_", "").split("_")
-        return (int(parts[0]), int(parts[1]))
-    
-    def get_name(self):
-        """Возвращает имя расширения или версии для отображения."""
-        return self.extension or self.version or self.feature or ""
-
-
-@dataclass
-class VkEntension:
+class VkExtension:
     name: str
     raw: str
-    version: str
     is_instance: bool
     promoted: str | None
     depends: list[list[str]] # any of the requirements, every dependency of a requirement

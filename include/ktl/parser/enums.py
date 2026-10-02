@@ -1,9 +1,8 @@
 from vk_types import VkEnum, VkEnumField
 from name_rules import *
-from utils import is_vulkan_video
+from utils import make_vulkan_value
 from api_filter import is_vulkan_api, is_vulkan_type, excluded_names
 from typing import TextIO
-from cpp_meta import ENUM_META
 
 
 def extract_field_impl(_root, _name, _underling_type: str) -> tuple:
@@ -26,9 +25,6 @@ def extract_field_impl(_root, _name, _underling_type: str) -> tuple:
 
 def extract_enum_impl(_root) -> VkEnum | None:
     name = make_cpp_name(_root.get("name"))
-    if is_vulkan_video(name):
-        return None
-
     bitwidth       = _root.get("bitwidth")
     direction      = True
     underling_type = make_underling_type(bitwidth, direction)
@@ -58,8 +54,8 @@ def fill_definition(_file: TextIO, _enums: list) -> None:
 
 
 def fill_implementation(_file: TextIO, _enums: list) -> None:
-    _file.write(f"""namespace ktl::api
-{{
+    _file.write("""namespace ktl::api
+{
 """)
     for enum in _enums:
         if enum.alias:
@@ -79,11 +75,34 @@ def fill_implementation(_file: TextIO, _enums: list) -> None:
     _file.write("}\n")
 
 
-def fill_meta(_file: TextIO, _enums: list) -> None:
-    _file.write(f"""namespace ktl::meta
-{{
-{ENUM_META}
-""")
+def add_require_values(_require, _enums: list, _number: str | None = None) -> None:
+    # values that features and extensions add to existing enums: <require><enum extends="..."/>
+    # _number is the extension number, used when the value has no extnumber of its own
+    for enum in _require.findall("enum"):
+        extend = enum.get("extends")
+        if not extend or not is_vulkan_api(enum):
+            continue
+        target = next((e for e in _enums if e.name == make_cpp_name(extend)), None)
+        if not target:
+            continue
+        offset = enum.get("offset")
+        value = enum.get("value")
+        direction = enum.get("dir")
+        bitpos = enum.get("bitpos")
+        alias = make_field_name(enum.get("alias"), target.name)
+        deprecated = bool(enum.get("deprecated"))
+        field_name = make_field_name(enum.get("name"), target.name)
+        if offset:
+            field_value = make_vulkan_value(enum.get("extnumber") or _number, offset, direction)
+            target.fields.append(VkEnumField(field_name, field_value, False, deprecated))
+        if value:
+            if direction:
+                value = f"-{value}"
+            target.fields.append(VkEnumField(field_name, value, False, deprecated))
+        if bitpos:
+            target.fields.append(VkEnumField(field_name, make_bitpos(bitpos, target.underling_type), False, deprecated))
+        if alias:
+            target.fields.append(VkEnumField(field_name, alias, True, deprecated))
 
 
 def extract(root) -> list:
