@@ -26,7 +26,8 @@ def make_cpp_name(src: str) -> str | None:
     if src.startswith("PFN_"):
         return c_name_to_cpp(src[6:])
     if src.startswith("VK_"):
-        return c_name_to_cpp(src[3:])
+        # extension names are snake case already, Khronos spelling is kept: VK_KHR_maintenance5 -> khr_maintenance5
+        return src[3:].lower()
     return c_name_to_cpp(src)
 
 
@@ -44,11 +45,12 @@ def make_field_name(src: str, cmp: str) -> str | None:
 
         # VK_ACCESS_2_NONE + access_flag_bits_2 -> none: values of FlagBits2 have no FLAG_BITS words,
         # but FLAG can be a part of the prefix (VK_DEVICE_FAULT_FLAG_VENDOR_KHR), so the longest match wins;
-        # digits are split from glued words: image_usage_flag_bits_2khr -> image, usage, flag, bits, 2, khr
+        # digits glued to a word of the enum name (special words of c_name_to_cpp) are compared as words of their own
         prefix = re.findall(r"[a-z]+|\d+", cmp)
         common = max(match(prefix), match([word for word in prefix if word not in ("flag", "bits")]))
         words = words[common:] or words
-    return make_cpp_name(f"v_{'_'.join(words)}")
+    # value names keep Khronos spelling: VK_FORMAT_R8G8B8A8_UNORM -> v_r8g8b8a8_unorm
+    return f"v_{'_'.join(words)}"
 
 
 def make_underling_type(_src: str, _direction: bool) -> str | None:

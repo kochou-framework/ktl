@@ -266,9 +266,9 @@ enum class buffer_usage_flag_bits_2 : ktl::u64;
 enum class buffer_create_flag_bits : ktl::u32;
 enum class shader_stage_flag_bits : ktl::u32;
 enum class image_usage_flag_bits : ktl::u32;
-enum class image_usage_flag_bits_2khr : ktl::u64;
+enum class image_usage_flag_bits_2_khr : ktl::u64;
 enum class image_create_flag_bits : ktl::u32;
-enum class image_create_flag_bits_2khr : ktl::u64;
+enum class image_create_flag_bits_2_khr : ktl::u64;
 enum class image_view_create_flag_bits : ktl::u32;
 enum class sampler_create_flag_bits : ktl::u32;
 enum class pipeline_create_flag_bits : ktl::u32;
@@ -437,7 +437,7 @@ enum class partitioned_acceleration_structure_instance_flag_bits_nv : ktl::u32;
 enum class image_format_constraints_flag_bits_fuchsia : ktl::u32;
 enum class image_constraints_info_flag_bits_fuchsia : ktl::u32;
 enum class format_feature_flag_bits_2 : ktl::u64;
-enum class format_feature_flag_bits_4khr : ktl::u64;
+enum class format_feature_flag_bits_4_khr : ktl::u64;
 enum class rendering_flag_bits : ktl::u32;
 enum class export_metal_object_type_flag_bits_ext : ktl::u32;
 enum class instance_create_flag_bits : ktl::u32;
@@ -482,7 +482,7 @@ enum class memory_unmap_flag_bits : ktl::u32;
 enum class compressed_triangle_format_amdx : ktl::u32;
 enum class wayland_surface_create_flag_bits_khr : ktl::u32;
 enum class depth_clamp_mode_ext : ktl::u32;
-enum class access_flag_bits_3khr : ktl::u64;
+enum class access_flag_bits_3_khr : ktl::u64;
 enum class tile_shading_render_pass_flag_bits_qcom : ktl::u32;
 enum class cooperative_vector_matrix_layout_nv : ktl::u32;
 enum class address_copy_flag_bits_khr : ktl::u32;
@@ -541,10 +541,10 @@ using semaphore_wait_flag_bits_khr                  = semaphore_wait_flag_bits;
 using line_rasterization_mode_khr                   = line_rasterization_mode;
 using line_rasterization_mode_ext                   = line_rasterization_mode;
 using tool_purpose_flag_bits_ext                    = tool_purpose_flag_bits;
-using access_flag_bits_2khr                         = access_flag_bits_2;
-using pipeline_stage_flag_bits_2khr                 = pipeline_stage_flag_bits_2;
+using access_flag_bits_2_khr                        = access_flag_bits_2;
+using pipeline_stage_flag_bits_2_khr                = pipeline_stage_flag_bits_2;
 using host_image_copy_flag_bits_ext                 = host_image_copy_flag_bits;
-using format_feature_flag_bits_2khr                 = format_feature_flag_bits_2;
+using format_feature_flag_bits_2_khr                = format_feature_flag_bits_2;
 using rendering_flag_bits_khr                       = rendering_flag_bits;
 using pipeline_robustness_buffer_behavior_ext       = pipeline_robustness_buffer_behavior;
 using pipeline_robustness_image_behavior_ext        = pipeline_robustness_image_behavior;
@@ -552,8 +552,8 @@ using opacity_micromap_format_ext                   = opacity_micromap_format_kh
 using opacity_micromap_special_index_ext            = opacity_micromap_special_index_khr;
 using device_fault_vendor_binary_header_version_ext = device_fault_vendor_binary_header_version_khr;
 using memory_decompression_method_flag_bits_nv      = memory_decompression_method_flag_bits_ext;
-using pipeline_create_flag_bits_2khr                = pipeline_create_flag_bits_2;
-using buffer_usage_flag_bits_2khr                   = buffer_usage_flag_bits_2;
+using pipeline_create_flag_bits_2_khr               = pipeline_create_flag_bits_2;
+using buffer_usage_flag_bits_2_khr                  = buffer_usage_flag_bits_2;
 using scope_nv                                      = scope_khr;
 using component_type_nv                             = component_type_khr;
 using external_memory_handle_type_flag_bits_khr     = external_memory_handle_type_flag_bits;
@@ -726,7 +726,7 @@ struct format_properties;
 struct descriptor_buffer_info;
 struct descriptor_image_info;
 struct copy_descriptor_set;
-struct buffer_usage_flags_2create_info;
+struct buffer_usage_flags_2_create_info;
 struct buffer_create_info;
 struct buffer_view_create_info;
 struct image_subresource;
@@ -734,8 +734,8 @@ struct image_subresource_layers;
 struct image_subresource_range;
 struct memory_barrier;
 struct buffer_memory_barrier;
-struct image_create_flags_2create_info_khr;
-struct image_usage_flags_2create_info_khr;
+struct image_create_flags_2_create_info_khr;
+struct image_usage_flags_2_create_info_khr;
 struct subresource_layout;
 struct buffer_copy;
 struct sparse_memory_bind;
@@ -747,7 +747,7 @@ struct descriptor_pool_size;
 struct descriptor_set_allocate_info;
 struct specialization_map_entry;
 struct compute_pipeline_indirect_buffer_info_nv;
-struct pipeline_create_flags_2create_info;
+struct pipeline_create_flags_2_create_info;
 struct vertex_input_binding_description;
 struct vertex_input_attribute_description;
 struct pipeline_input_assembly_state_create_info;
@@ -797,11 +797,11 @@ struct android_surface_create_info_khr;
 struct vi_surface_create_info_nn;
 struct wayland_surface_create_info_khr;
 struct ubm_surface_create_info_sec;
-struct win_32surface_create_info_khr;
+struct win32_surface_create_info_khr;
 struct xlib_surface_create_info_khr;
 struct xcb_surface_create_info_khr;
 struct direct_fb_surface_create_info_ext;
-struct image_pipe_surface_create_info_fuchsia;
+struct imagepipe_surface_create_info_fuchsia;
 struct stream_descriptor_surface_create_info_ggp;
 struct screen_surface_create_info_qnx;
 struct surface_format_khr;
@@ -819,9 +819,9 @@ struct dedicated_allocation_buffer_create_info_nv;
 struct dedicated_allocation_memory_allocate_info_nv;
 struct external_memory_image_create_info_nv;
 struct export_memory_allocate_info_nv;
-struct import_memory_win_32handle_info_nv;
-struct export_memory_win_32handle_info_nv;
-struct win_32keyed_mutex_acquire_release_info_nv;
+struct import_memory_win32_handle_info_nv;
+struct export_memory_win32_handle_info_nv;
+struct win32_keyed_mutex_acquire_release_info_nv;
 struct physical_device_device_generated_commands_features_nv;
 struct push_constant_bank_info_nv;
 struct physical_device_push_constant_bank_features_nv;
@@ -865,27 +865,27 @@ struct physical_device_id_properties;
 struct external_memory_image_create_info;
 struct external_memory_buffer_create_info;
 struct export_memory_allocate_info;
-struct import_memory_win_32handle_info_khr;
-struct export_memory_win_32handle_info_khr;
+struct import_memory_win32_handle_info_khr;
+struct export_memory_win32_handle_info_khr;
 struct import_memory_zircon_handle_info_fuchsia;
 struct memory_zircon_handle_properties_fuchsia;
 struct memory_get_zircon_handle_info_fuchsia;
-struct memory_win_32handle_properties_khr;
-struct memory_get_win_32handle_info_khr;
+struct memory_win32_handle_properties_khr;
+struct memory_get_win32_handle_info_khr;
 struct import_memory_fd_info_khr;
 struct memory_fd_properties_khr;
 struct memory_get_fd_info_khr;
-struct win_32keyed_mutex_acquire_release_info_khr;
+struct win32_keyed_mutex_acquire_release_info_khr;
 struct import_memory_metal_handle_info_ext;
 struct memory_metal_handle_properties_ext;
 struct memory_get_metal_handle_info_ext;
 struct physical_device_external_semaphore_info;
 struct external_semaphore_properties;
 struct export_semaphore_create_info;
-struct import_semaphore_win_32handle_info_khr;
-struct export_semaphore_win_32handle_info_khr;
-struct d_3d_12fence_submit_info_khr;
-struct semaphore_get_win_32handle_info_khr;
+struct import_semaphore_win32_handle_info_khr;
+struct export_semaphore_win32_handle_info_khr;
+struct d3d12_fence_submit_info_khr;
+struct semaphore_get_win32_handle_info_khr;
 struct import_semaphore_fd_info_khr;
 struct semaphore_get_fd_info_khr;
 struct import_semaphore_zircon_handle_info_fuchsia;
@@ -893,9 +893,9 @@ struct semaphore_get_zircon_handle_info_fuchsia;
 struct physical_device_external_fence_info;
 struct external_fence_properties;
 struct export_fence_create_info;
-struct import_fence_win_32handle_info_khr;
-struct export_fence_win_32handle_info_khr;
-struct fence_get_win_32handle_info_khr;
+struct import_fence_win32_handle_info_khr;
+struct export_fence_win32_handle_info_khr;
+struct fence_get_win32_handle_info_khr;
 struct import_fence_fd_info_khr;
 struct fence_get_fd_info_khr;
 struct physical_device_multiview_features;
@@ -924,11 +924,11 @@ struct descriptor_update_template_entry;
 struct xy_color_ext;
 struct physical_device_present_id_features_khr;
 struct present_id_khr;
-struct physical_device_present_id_2features_khr;
-struct present_id_2khr;
-struct present_wait_2info_khr;
+struct physical_device_present_id_2_features_khr;
+struct present_id_2_khr;
+struct present_wait_2_info_khr;
 struct physical_device_present_wait_features_khr;
-struct physical_device_present_wait_2features_khr;
+struct physical_device_present_wait_2_features_khr;
 struct physical_device_present_timing_features_ext;
 struct present_timing_surface_capabilities_ext;
 struct swapchain_timing_properties_ext;
@@ -944,19 +944,19 @@ struct refresh_cycle_duration_google;
 struct past_presentation_timing_google;
 struct present_time_google;
 struct ios_surface_create_info_mvk;
-struct mac_os_surface_create_info_mvk;
+struct macos_surface_create_info_mvk;
 struct metal_surface_create_info_ext;
 struct viewport_w_scaling_nv;
 struct viewport_swizzle_nv;
 struct physical_device_discard_rectangle_properties_ext;
 struct physical_device_multiview_per_view_attributes_properties_nvx;
 struct input_attachment_aspect_reference;
-struct physical_device_surface_info_2khr;
+struct physical_device_surface_info_2_khr;
 struct display_mode_stereo_properties_nv;
-struct display_plane_info_2khr;
+struct display_plane_info_2_khr;
 struct shared_present_surface_capabilities_khr;
 struct swapchain_flags_surface_capabilities_ext;
-struct shared_present_surface_capabilities_2khr;
+struct shared_present_surface_capabilities_2_khr;
 struct physical_device_16bit_storage_features;
 struct physical_device_subgroup_properties;
 struct physical_device_shader_subgroup_extended_types_features;
@@ -967,7 +967,7 @@ struct physical_device_point_clipping_properties;
 struct memory_dedicated_requirements;
 struct memory_dedicated_allocate_info;
 struct image_view_usage_create_info;
-struct image_view_usage_2create_info_khr;
+struct image_view_usage_2_create_info_khr;
 struct image_view_sliced_create_info_ext;
 struct pipeline_tessellation_domain_origin_state_create_info;
 struct sampler_ycbcr_conversion_info;
@@ -997,27 +997,27 @@ struct pipeline_coverage_modulation_state_create_info_nv;
 struct image_format_list_create_info;
 struct validation_cache_create_info_ext;
 struct shader_module_validation_cache_create_info_ext;
-struct physical_device_maintenance_3properties;
-struct physical_device_maintenance_4features;
-struct physical_device_maintenance_4properties;
-struct physical_device_maintenance_5features;
-struct physical_device_maintenance_5properties;
-struct physical_device_maintenance_6features;
-struct physical_device_maintenance_6properties;
-struct physical_device_maintenance_7features_khr;
-struct physical_device_maintenance_7properties_khr;
+struct physical_device_maintenance_3_properties;
+struct physical_device_maintenance_4_features;
+struct physical_device_maintenance_4_properties;
+struct physical_device_maintenance_5_features;
+struct physical_device_maintenance_5_properties;
+struct physical_device_maintenance_6_features;
+struct physical_device_maintenance_6_properties;
+struct physical_device_maintenance_7_features_khr;
+struct physical_device_maintenance_7_properties_khr;
 struct physical_device_layered_api_properties_khr;
-struct physical_device_maintenance_8features_khr;
-struct physical_device_maintenance_9features_khr;
-struct physical_device_maintenance_9properties_khr;
-struct physical_device_maintenance_11features_khr;
-struct physical_device_maintenance_10properties_khr;
-struct physical_device_maintenance_10features_khr;
+struct physical_device_maintenance_8_features_khr;
+struct physical_device_maintenance_9_features_khr;
+struct physical_device_maintenance_9_properties_khr;
+struct physical_device_maintenance_11_features_khr;
+struct physical_device_maintenance_10_properties_khr;
+struct physical_device_maintenance_10_features_khr;
 struct queue_family_ownership_transfer_properties_khr;
 struct rendering_area_info;
 struct descriptor_set_layout_support;
 struct physical_device_shader_draw_parameters_features;
-struct physical_device_shader_float_16int_8features;
+struct physical_device_shader_float16_int8_features;
 struct physical_device_float_controls_properties;
 struct physical_device_host_query_reset_features;
 struct shader_resource_usage_amd;
@@ -1038,7 +1038,7 @@ struct physical_device_external_memory_host_properties_ext;
 struct physical_device_conservative_rasterization_properties_ext;
 struct calibrated_timestamp_info_khr;
 struct physical_device_shader_core_properties_amd;
-struct physical_device_shader_core_properties_2amd;
+struct physical_device_shader_core_properties_2_amd;
 struct pipeline_rasterization_conservative_state_create_info_ext;
 struct physical_device_descriptor_indexing_features;
 struct physical_device_descriptor_indexing_properties;
@@ -1069,9 +1069,9 @@ struct external_format_android;
 struct physical_device_8bit_storage_features;
 struct physical_device_conditional_rendering_features_ext;
 struct physical_device_vulkan_memory_model_features;
-struct physical_device_shader_atomic_int_64features;
+struct physical_device_shader_atomic_int64_features;
 struct physical_device_shader_atomic_float_features_ext;
-struct physical_device_shader_atomic_float_2features_ext;
+struct physical_device_shader_atomic_float_2_features_ext;
 struct physical_device_vertex_attribute_divisor_features;
 struct queue_family_checkpoint_properties_nv;
 struct checkpoint_data_nv;
@@ -1107,7 +1107,7 @@ struct draw_mesh_tasks_indirect_command_ext;
 struct ray_tracing_shader_group_create_info_nv;
 struct ray_tracing_shader_group_create_info_khr;
 struct geometry_triangles_nv;
-struct geometry_aabbnv;
+struct geometry_aabb_nv;
 struct bind_acceleration_structure_memory_info_nv;
 struct write_descriptor_set_acceleration_structure_khr;
 struct write_descriptor_set_acceleration_structure_nv;
@@ -1120,19 +1120,19 @@ struct physical_device_ray_tracing_pipeline_properties_khr;
 struct physical_device_ray_tracing_properties_nv;
 struct strided_device_address_region_khr;
 struct trace_rays_indirect_command_khr;
-struct trace_rays_indirect_command_2khr;
-struct physical_device_ray_tracing_maintenance_1features_khr;
+struct trace_rays_indirect_command_2_khr;
+struct physical_device_ray_tracing_maintenance_1_features_khr;
 struct drm_format_modifier_properties_ext;
 struct physical_device_image_drm_format_modifier_info_ext;
 struct image_drm_format_modifier_list_create_info_ext;
 struct image_drm_format_modifier_properties_ext;
 struct image_stencil_usage_create_info;
-struct image_stencil_usage_2create_info_khr;
+struct image_stencil_usage_2_create_info_khr;
 struct device_memory_overallocation_create_info_amd;
 struct physical_device_fragment_density_map_features_ext;
-struct physical_device_fragment_density_map_2features_ext;
+struct physical_device_fragment_density_map_2_features_ext;
 struct physical_device_fragment_density_map_offset_features_ext;
-struct physical_device_fragment_density_map_2properties_ext;
+struct physical_device_fragment_density_map_2_properties_ext;
 struct physical_device_scalar_block_layout_features;
 struct surface_protected_capabilities_khr;
 struct physical_device_uniform_buffer_standard_layout_features;
@@ -1152,7 +1152,7 @@ struct filter_cubic_image_view_image_format_properties_ext;
 struct physical_device_imageless_framebuffer_features;
 struct framebuffer_attachment_image_info;
 struct render_pass_attachment_begin_info;
-struct physical_device_texture_compression_astchdr_features;
+struct physical_device_texture_compression_astc_hdr_features;
 struct physical_device_cooperative_matrix_features_nv;
 struct physical_device_cooperative_matrix_properties_nv;
 struct cooperative_matrix_properties_nv;
@@ -1162,7 +1162,7 @@ struct image_view_address_properties_nvx;
 struct present_frame_token_ggp;
 struct pipeline_creation_feedback;
 struct surface_full_screen_exclusive_info_ext;
-struct surface_full_screen_exclusive_win_32info_ext;
+struct surface_full_screen_exclusive_win32_info_ext;
 struct surface_capabilities_full_screen_exclusive_ext;
 struct physical_device_present_barrier_features_nv;
 struct surface_capabilities_present_barrier_nv;
@@ -1179,7 +1179,7 @@ struct headless_surface_create_info_ext;
 struct physical_device_coverage_reduction_mode_features_nv;
 struct pipeline_coverage_reduction_state_create_info_nv;
 struct framebuffer_mixed_samples_combination_nv;
-struct physical_device_shader_integer_functions_2features_intel;
+struct physical_device_shader_integer_functions_2_features_intel;
 union performance_value_data_intel;
 struct initialize_performance_api_info_intel;
 struct query_pool_performance_query_create_info_intel;
@@ -1188,7 +1188,7 @@ struct performance_stream_marker_info_intel;
 struct performance_override_info_intel;
 struct performance_configuration_acquire_info_intel;
 struct physical_device_shader_clock_features_khr;
-struct physical_device_index_type_uint_8features;
+struct physical_device_index_type_uint8_features;
 struct physical_device_shader_sm_builtins_properties_nv;
 struct physical_device_shader_sm_builtins_features_nv;
 struct physical_device_fragment_shader_interlock_features_ext;
@@ -1217,18 +1217,18 @@ struct physical_device_line_rasterization_features;
 struct physical_device_line_rasterization_properties;
 struct pipeline_rasterization_line_state_create_info;
 struct physical_device_pipeline_creation_cache_control_features;
-struct physical_device_vulkan_11features;
-struct physical_device_vulkan_11properties;
-struct physical_device_vulkan_12features;
-struct physical_device_vulkan_13features;
-struct physical_device_vulkan_13properties;
-struct physical_device_vulkan_14features;
-struct physical_device_vulkan_14properties;
+struct physical_device_vulkan_1_1_features;
+struct physical_device_vulkan_1_1_properties;
+struct physical_device_vulkan_1_2_features;
+struct physical_device_vulkan_1_3_features;
+struct physical_device_vulkan_1_3_properties;
+struct physical_device_vulkan_1_4_features;
+struct physical_device_vulkan_1_4_properties;
 struct pipeline_compiler_control_create_info_amd;
 struct physical_device_coherent_memory_features_amd;
 struct gpa_perf_block_properties_amd;
 struct physical_device_gpa_features_amd;
-struct physical_device_gpa_properties_2amd;
+struct physical_device_gpa_properties_2_amd;
 struct gpa_perf_counter_amd;
 struct gpa_device_clock_mode_info_amd;
 struct gpa_device_get_clock_info_amd;
@@ -1250,9 +1250,9 @@ struct copy_acceleration_structure_info_khr;
 struct ray_tracing_pipeline_interface_create_info_khr;
 struct pipeline_library_create_info_khr;
 struct physical_device_extended_dynamic_state_features_ext;
-struct physical_device_extended_dynamic_state_2features_ext;
-struct physical_device_extended_dynamic_state_3features_ext;
-struct physical_device_extended_dynamic_state_3properties_ext;
+struct physical_device_extended_dynamic_state_2_features_ext;
+struct physical_device_extended_dynamic_state_3_features_ext;
+struct physical_device_extended_dynamic_state_3_properties_ext;
 struct physical_device_extended_flags_features_khr;
 struct color_blend_equation_ext;
 struct color_blend_advanced_ext;
@@ -1269,18 +1269,18 @@ struct physical_device_diagnostics_config_features_nv;
 struct device_diagnostics_config_create_info_nv;
 struct physical_device_zero_initialize_workgroup_memory_features;
 struct physical_device_shader_subgroup_uniform_control_flow_features_khr;
-struct physical_device_robustness_2features_khr;
-struct physical_device_robustness_2properties_khr;
+struct physical_device_robustness_2_features_khr;
+struct physical_device_robustness_2_properties_khr;
 struct physical_device_image_robustness_features;
 struct physical_device_workgroup_memory_explicit_layout_features_khr;
 struct physical_device_portability_subset_features_khr;
 struct physical_device_portability_subset_properties_khr;
-struct physical_device_4444formats_features_ext;
+struct physical_device_4444_formats_features_ext;
 struct physical_device_subpass_shading_features_huawei;
 struct physical_device_cluster_culling_shader_features_huawei;
 struct physical_device_cluster_culling_shader_vrs_features_huawei;
 struct buffer_copy_2;
-struct physical_device_shader_image_atomic_int_64features_ext;
+struct physical_device_shader_image_atomic_int64_features_ext;
 struct physical_device_fragment_shading_rate_features_khr;
 struct physical_device_shader_terminate_invocation_features;
 struct physical_device_fragment_shading_rate_enums_features_nv;
@@ -1320,18 +1320,18 @@ struct physical_device_depth_clamp_control_features_ext;
 struct physical_device_vertex_input_dynamic_state_features_ext;
 struct physical_device_external_memory_rdma_features_nv;
 struct physical_device_shader_relaxed_extended_instruction_features_khr;
-struct vertex_input_binding_description_2ext;
-struct vertex_input_attribute_description_2ext;
+struct vertex_input_binding_description_2_ext;
+struct vertex_input_attribute_description_2_ext;
 struct physical_device_color_write_enable_features_ext;
 struct pipeline_color_write_create_info_ext;
 struct memory_barrier_2;
 struct buffer_memory_barrier_2;
-struct memory_barrier_access_flags_3khr;
+struct memory_barrier_access_flags_3_khr;
 struct semaphore_submit_info;
 struct command_buffer_submit_info;
-struct queue_family_checkpoint_properties_2nv;
-struct checkpoint_data_2nv;
-struct physical_device_synchronization_2features;
+struct queue_family_checkpoint_properties_2_nv;
+struct checkpoint_data_2_nv;
+struct physical_device_synchronization_2_features;
 struct physical_device_unified_image_layouts_features_khr;
 struct physical_device_host_image_copy_features;
 struct physical_device_host_image_copy_properties;
@@ -1340,14 +1340,14 @@ struct host_image_copy_device_performance_query;
 struct physical_device_primitives_generated_query_features_ext;
 struct physical_device_legacy_dithering_features_ext;
 struct physical_device_multisampled_render_to_single_sampled_features_ext;
-struct surface_capabilities_present_id_2khr;
-struct surface_capabilities_present_wait_2khr;
+struct surface_capabilities_present_id_2_khr;
+struct surface_capabilities_present_wait_2_khr;
 struct subpass_resolve_performance_query_ext;
 struct multisampled_render_to_single_sampled_info_ext;
 struct physical_device_multisampled_render_to_swapchain_features_ext;
 struct physical_device_pipeline_protected_access_features;
 struct physical_device_inherited_viewport_scissor_features_nv;
-struct physical_device_ycbcr_2plane_444formats_features_ext;
+struct physical_device_ycbcr_2_plane_444_formats_features_ext;
 struct physical_device_provoking_vertex_features_ext;
 struct physical_device_provoking_vertex_properties_ext;
 struct pipeline_rasterization_provoking_vertex_state_create_info_ext;
@@ -1388,10 +1388,10 @@ struct buffer_collection_constraints_info_fuchsia;
 struct cuda_module_create_info_nv;
 struct cuda_function_create_info_nv;
 struct cuda_launch_info_nv;
-struct physical_device_rgba_10x_6formats_features_ext;
+struct physical_device_rgba10x6_formats_features_ext;
 struct format_properties_3;
-struct format_properties_4khr;
-struct drm_format_modifier_properties_2ext;
+struct format_properties_4_khr;
+struct drm_format_modifier_properties_2_ext;
 struct pipeline_rendering_create_info;
 struct rendering_end_info_khr;
 struct rendering_fragment_density_map_attachment_info_ext;
@@ -1505,7 +1505,7 @@ struct physical_device_dynamic_rendering_unused_attachments_features_ext;
 struct physical_device_internally_synchronized_queues_features_khr;
 struct surface_present_mode_khr;
 struct surface_present_mode_compatibility_khr;
-struct physical_device_swapchain_maintenance_1features_khr;
+struct physical_device_swapchain_maintenance_1_features_khr;
 struct swapchain_present_fence_info_khr;
 struct swapchain_present_modes_create_info_khr;
 struct swapchain_present_mode_info_khr;
@@ -1536,8 +1536,8 @@ struct external_format_qnx;
 struct physical_device_external_memory_screen_buffer_features_qnx;
 struct physical_device_cooperative_matrix_features_khr;
 struct cooperative_matrix_properties_khr;
-struct physical_device_cooperative_matrix_info_2ext;
-struct cooperative_matrix_properties_2ext;
+struct physical_device_cooperative_matrix_info_2_ext;
+struct cooperative_matrix_properties_2_ext;
 struct physical_device_cooperative_matrix_properties_khr;
 struct physical_device_cooperative_matrix_conversion_features_qcom;
 struct physical_device_shader_enqueue_properties_amdx;
@@ -1562,8 +1562,8 @@ struct sampler_ycbcr_conversion_ycbcr_degamma_create_info_qcom;
 struct physical_device_cubic_weights_features_qcom;
 struct sampler_cubic_weights_create_info_qcom;
 struct blit_image_cubic_weights_info_qcom;
-struct physical_device_image_processing_2features_qcom;
-struct physical_device_image_processing_3features_qcom;
+struct physical_device_image_processing_2_features_qcom;
+struct physical_device_image_processing_3_features_qcom;
 struct physical_device_descriptor_pool_overallocation_features_nv;
 struct physical_device_layered_driver_properties_msft;
 struct physical_device_per_stage_descriptor_set_features_nv;
@@ -1591,16 +1591,16 @@ struct physical_device_pipeline_opacity_micromap_features_arm;
 struct physical_device_shader_maximal_reconvergence_features_khr;
 struct physical_device_shader_subgroup_rotate_features;
 struct physical_device_shader_expect_assume_features;
-struct physical_device_shader_float_controls_2features;
+struct physical_device_shader_float_controls_2_features;
 struct physical_device_dynamic_rendering_local_read_features;
 struct rendering_attachment_location_info;
 struct rendering_input_attachment_index_info;
 struct physical_device_shader_quad_control_features_khr;
-struct physical_device_shader_atomic_float_16vector_features_nv;
+struct physical_device_shader_atomic_float16_vector_features_nv;
 struct physical_device_map_memory_placed_features_ext;
 struct physical_device_map_memory_placed_properties_ext;
 struct memory_map_placed_info_ext;
-struct physical_device_shader_bfloat_16features_khr;
+struct physical_device_shader_bfloat16_features_khr;
 struct physical_device_raw_access_chains_features_nv;
 struct physical_device_command_buffer_inheritance_features_nv;
 struct physical_device_image_alignment_control_features_mesa;
@@ -1609,8 +1609,8 @@ struct image_alignment_control_create_info_mesa;
 struct physical_device_shader_replicated_composites_features_ext;
 struct physical_device_present_mode_fifo_latest_ready_features_khr;
 struct depth_clamp_range_ext;
-struct physical_device_cooperative_matrix_2features_nv;
-struct physical_device_cooperative_matrix_2properties_nv;
+struct physical_device_cooperative_matrix_2_features_nv;
+struct physical_device_cooperative_matrix_2_properties_nv;
 struct cooperative_matrix_flexible_dimensions_properties_nv;
 struct physical_device_cooperative_matrix_decode_vector_features_nv;
 struct physical_device_hdr_vivid_features_huawei;
@@ -1657,7 +1657,7 @@ struct tensor_view_capture_descriptor_data_info_arm;
 struct descriptor_get_tensor_info_arm;
 struct frame_boundary_tensors_arm;
 struct external_memory_tensor_create_info_arm;
-struct physical_device_shader_float_8features_ext;
+struct physical_device_shader_float8_features_ext;
 struct surface_create_info_ohos;
 struct physical_device_data_graph_features_arm;
 struct data_graph_pipeline_constant_tensor_semi_structured_sparsity_info_arm;
@@ -1681,7 +1681,7 @@ struct queue_family_data_graph_processing_engine_properties_arm;
 struct physical_device_pipeline_cache_incremental_mode_features_sec;
 struct physical_device_data_graph_model_features_qcom;
 struct physical_device_shader_untyped_pointers_features_khr;
-struct physical_device_shader_64bit_indexing_features_ext;
+struct physical_device_shader_64_bit_indexing_features_ext;
 struct native_buffer_usage_ohos;
 struct native_buffer_properties_ohos;
 struct import_native_buffer_info_ohos;
@@ -1734,7 +1734,7 @@ struct data_graph_pipeline_optical_flow_dispatch_info_arm;
 struct physical_device_image_tiling_control_features_ext;
 struct image_tiling_control_create_info_ext;
 struct physical_device_shader_ocp_microscaling_types_features_ext;
-struct physical_device_cooperative_matrix_maintenance_1features_ext;
+struct physical_device_cooperative_matrix_maintenance_1_features_ext;
 struct physical_device_buffer_device_address_allocation_alignment_features_valve;
 struct physical_device_buffer_device_address_allocation_alignment_properties_valve;
 struct buffer_device_address_alignment_allocate_info_valve;
@@ -1748,7 +1748,7 @@ struct display_surface_create_info_khr;
 struct surface_capabilities_khr;
 struct swapchain_create_info_khr;
 struct rect_layer_khr;
-struct surface_capabilities_2ext;
+struct surface_capabilities_2_ext;
 struct physical_device_sample_locations_properties_ext;
 struct multisample_properties_ext;
 struct physical_device_shading_rate_image_properties_nv;
@@ -1761,7 +1761,7 @@ struct rendering_fragment_shading_rate_attachment_info_khr;
 struct image_view_sample_weight_create_info_qcom;
 struct physical_device_image_processing_properties_qcom;
 struct surface_present_scaling_capabilities_khr;
-struct physical_device_image_processing_2properties_qcom;
+struct physical_device_image_processing_2_properties_qcom;
 struct sampler_block_match_window_create_info_qcom;
 struct physical_device_render_pass_striped_properties_arm;
 struct physical_device_tile_shading_properties_qcom;
@@ -1777,7 +1777,7 @@ struct command_buffer_inheritance_viewport_scissor_info_nv;
 struct sampler_ycbcr_conversion_create_info;
 struct android_hardware_buffer_format_properties_android;
 struct sampler_border_color_component_mapping_create_info_ext;
-struct android_hardware_buffer_format_properties_2android;
+struct android_hardware_buffer_format_properties_2_android;
 struct screen_buffer_format_properties_qnx;
 struct native_buffer_format_properties_ohos;
 struct instance_create_info;
@@ -1785,7 +1785,7 @@ struct memory_requirements_2;
 struct physical_device_memory_properties;
 struct format_properties_2;
 struct write_descriptor_set;
-using buffer_usage_flags_2create_info_khr = buffer_usage_flags_2create_info;
+using buffer_usage_flags_2_create_info_khr = buffer_usage_flags_2_create_info;
 struct device_buffer_memory_requirements;
 struct sparse_image_memory_bind;
 struct image_subresource_2;
@@ -1810,13 +1810,13 @@ struct sparse_buffer_memory_bind_info;
 struct sparse_image_opaque_memory_bind_info;
 struct copy_memory_indirect_info_khr;
 struct copy_memory_to_image_indirect_info_khr;
-struct bind_vertex_buffer_3info_khr;
-struct draw_indirect_2info_khr;
+struct bind_vertex_buffer_3_info_khr;
+struct draw_indirect_2_info_khr;
 using copy_memory_indirect_command_nv = copy_memory_indirect_command_khr;
 struct descriptor_set_layout_create_info;
 struct descriptor_pool_create_info;
 struct specialization_info;
-using pipeline_create_flags_2create_info_khr = pipeline_create_flags_2create_info;
+using pipeline_create_flags_2_create_info_khr = pipeline_create_flags_2_create_info;
 struct pipeline_vertex_input_state_create_info;
 struct pipeline_color_blend_state_create_info;
 struct pipeline_depth_stencil_state_create_info;
@@ -1836,8 +1836,8 @@ struct render_pass_fragment_density_map_create_info_ext;
 struct device_create_info;
 struct physical_device_features_2;
 struct physical_device_properties;
-struct display_plane_properties_2khr;
-struct surface_format_2khr;
+struct display_plane_properties_2_khr;
+struct surface_format_2_khr;
 struct layer_settings_create_info_ext;
 using device_private_data_create_info_ext       = device_private_data_create_info;
 using private_data_slot_create_info_ext         = private_data_slot_create_info;
@@ -1849,12 +1849,12 @@ struct cluster_acceleration_structure_build_triangle_cluster_template_info_nv;
 union cluster_acceleration_structure_op_input_nv;
 struct generated_commands_info_nv;
 struct indirect_commands_layout_create_info_nv;
-using physical_device_image_format_info_2khr         = physical_device_image_format_info_2;
-using physical_device_sparse_image_format_info_2khr  = physical_device_sparse_image_format_info_2;
+using physical_device_image_format_info_2_khr        = physical_device_image_format_info_2;
+using physical_device_sparse_image_format_info_2_khr = physical_device_sparse_image_format_info_2;
 using physical_device_push_descriptor_properties_khr = physical_device_push_descriptor_properties;
 using conformance_version_khr                        = conformance_version;
 struct physical_device_driver_properties;
-struct physical_device_vulkan_12properties;
+struct physical_device_vulkan_1_2_properties;
 using physical_device_variable_pointers_features_khr = physical_device_variable_pointers_features;
 using physical_device_variable_pointer_features_khr  = physical_device_variable_pointers_features;
 using physical_device_variable_pointer_features      = physical_device_variable_pointers_features;
@@ -1899,9 +1899,9 @@ struct render_pass_input_attachment_aspect_create_info;
 using physical_device_16bit_storage_features_khr = physical_device_16bit_storage_features;
 using physical_device_shader_subgroup_extended_types_features_khr =
     physical_device_shader_subgroup_extended_types_features;
-using buffer_memory_requirements_info_2khr                      = buffer_memory_requirements_info_2;
-using image_memory_requirements_info_2khr                       = image_memory_requirements_info_2;
-using image_sparse_memory_requirements_info_2khr                = image_sparse_memory_requirements_info_2;
+using buffer_memory_requirements_info_2_khr                     = buffer_memory_requirements_info_2;
+using image_memory_requirements_info_2_khr                      = image_memory_requirements_info_2;
+using image_sparse_memory_requirements_info_2_khr               = image_sparse_memory_requirements_info_2;
 using physical_device_point_clipping_properties_khr             = physical_device_point_clipping_properties;
 using memory_dedicated_requirements_khr                         = memory_dedicated_requirements;
 using memory_dedicated_allocate_info_khr                        = memory_dedicated_allocate_info;
@@ -1920,19 +1920,19 @@ using physical_device_inline_uniform_block_properties_ext  = physical_device_inl
 using write_descriptor_set_inline_uniform_block_ext        = write_descriptor_set_inline_uniform_block;
 using descriptor_pool_inline_uniform_block_create_info_ext = descriptor_pool_inline_uniform_block_create_info;
 using image_format_list_create_info_khr                    = image_format_list_create_info;
-using physical_device_maintenance_3properties_khr          = physical_device_maintenance_3properties;
-using physical_device_maintenance_4features_khr            = physical_device_maintenance_4features;
-using physical_device_maintenance_4properties_khr          = physical_device_maintenance_4properties;
-using physical_device_maintenance_5features_khr            = physical_device_maintenance_5features;
-using physical_device_maintenance_5properties_khr          = physical_device_maintenance_5properties;
-using physical_device_maintenance_6features_khr            = physical_device_maintenance_6features;
-using physical_device_maintenance_6properties_khr          = physical_device_maintenance_6properties;
+using physical_device_maintenance_3_properties_khr         = physical_device_maintenance_3_properties;
+using physical_device_maintenance_4_features_khr           = physical_device_maintenance_4_features;
+using physical_device_maintenance_4_properties_khr         = physical_device_maintenance_4_properties;
+using physical_device_maintenance_5_features_khr           = physical_device_maintenance_5_features;
+using physical_device_maintenance_5_properties_khr         = physical_device_maintenance_5_properties;
+using physical_device_maintenance_6_features_khr           = physical_device_maintenance_6_features;
+using physical_device_maintenance_6_properties_khr         = physical_device_maintenance_6_properties;
 struct physical_device_layered_api_properties_list_khr;
 using rendering_area_info_khr                          = rendering_area_info;
 using descriptor_set_layout_support_khr                = descriptor_set_layout_support;
 using physical_device_shader_draw_parameter_features   = physical_device_shader_draw_parameters_features;
-using physical_device_shader_float_16int_8features_khr = physical_device_shader_float_16int_8features;
-using physical_device_float_16int_8features_khr        = physical_device_shader_float_16int_8features;
+using physical_device_shader_float16_int8_features_khr = physical_device_shader_float16_int8_features;
+using physical_device_float16_int8_features_khr        = physical_device_shader_float16_int8_features;
 using physical_device_float_controls_properties_khr    = physical_device_float_controls_properties;
 using physical_device_host_query_reset_features_ext    = physical_device_host_query_reset_features;
 struct shader_statistics_info_amd;
@@ -1951,12 +1951,12 @@ using descriptor_set_variable_descriptor_count_allocate_info_ext =
     descriptor_set_variable_descriptor_count_allocate_info;
 using descriptor_set_variable_descriptor_count_layout_support_ext =
     descriptor_set_variable_descriptor_count_layout_support;
-using attachment_description_2khr = attachment_description_2;
-using attachment_reference_2khr   = attachment_reference_2;
+using attachment_description_2_khr = attachment_description_2;
+using attachment_reference_2_khr   = attachment_reference_2;
 struct subpass_description_2;
 struct subpass_description_depth_stencil_resolve;
 struct fragment_shading_rate_attachment_info_khr;
-using subpass_dependency_2khr                           = subpass_dependency_2;
+using subpass_dependency_2_khr                          = subpass_dependency_2;
 using subpass_begin_info_khr                            = subpass_begin_info;
 using subpass_end_info_khr                              = subpass_end_info;
 using physical_device_timeline_semaphore_features_khr   = physical_device_timeline_semaphore_features;
@@ -1971,7 +1971,7 @@ struct pipeline_vertex_input_divisor_state_create_info;
 using physical_device_vertex_attribute_divisor_properties_khr = physical_device_vertex_attribute_divisor_properties;
 using physical_device_8bit_storage_features_khr               = physical_device_8bit_storage_features;
 using physical_device_vulkan_memory_model_features_khr        = physical_device_vulkan_memory_model_features;
-using physical_device_shader_atomic_int_64features_khr        = physical_device_shader_atomic_int_64features;
+using physical_device_shader_atomic_int64_features_khr        = physical_device_shader_atomic_int64_features;
 using physical_device_vertex_attribute_divisor_features_khr   = physical_device_vertex_attribute_divisor_features;
 using physical_device_vertex_attribute_divisor_features_ext   = physical_device_vertex_attribute_divisor_features;
 using physical_device_depth_stencil_resolve_properties_khr    = physical_device_depth_stencil_resolve_properties;
@@ -1996,15 +1996,15 @@ using buffer_device_address_info_ext                     = buffer_device_address
 using buffer_opaque_capture_address_create_info_khr      = buffer_opaque_capture_address_create_info;
 using physical_device_imageless_framebuffer_features_khr = physical_device_imageless_framebuffer_features;
 struct framebuffer_attachments_create_info;
-using framebuffer_attachment_image_info_khr                    = framebuffer_attachment_image_info;
-using render_pass_attachment_begin_info_khr                    = render_pass_attachment_begin_info;
-using physical_device_texture_compression_astchdr_features_ext = physical_device_texture_compression_astchdr_features;
-using pipeline_creation_feedback_ext                           = pipeline_creation_feedback;
+using framebuffer_attachment_image_info_khr                     = framebuffer_attachment_image_info;
+using render_pass_attachment_begin_info_khr                     = render_pass_attachment_begin_info;
+using physical_device_texture_compression_astc_hdr_features_ext = physical_device_texture_compression_astc_hdr_features;
+using pipeline_creation_feedback_ext                            = pipeline_creation_feedback;
 struct pipeline_creation_feedback_create_info;
 struct performance_value_intel;
 using query_pool_create_info_intel                  = query_pool_performance_query_create_info_intel;
-using physical_device_index_type_uint_8features_khr = physical_device_index_type_uint_8features;
-using physical_device_index_type_uint_8features_ext = physical_device_index_type_uint_8features;
+using physical_device_index_type_uint8_features_khr = physical_device_index_type_uint8_features;
+using physical_device_index_type_uint8_features_ext = physical_device_index_type_uint8_features;
 using physical_device_separate_depth_stencil_layouts_features_khr =
     physical_device_separate_depth_stencil_layouts_features;
 using attachment_reference_stencil_layout_khr   = attachment_reference_stencil_layout;
@@ -2054,23 +2054,23 @@ struct acceleration_structure_matrix_motion_instance_nv;
 struct build_partitioned_acceleration_structure_info_nv;
 using physical_device_zero_initialize_workgroup_memory_features_khr =
     physical_device_zero_initialize_workgroup_memory_features;
-using physical_device_robustness_2features_ext      = physical_device_robustness_2features_khr;
-using physical_device_robustness_2properties_ext    = physical_device_robustness_2properties_khr;
+using physical_device_robustness_2_features_ext     = physical_device_robustness_2_features_khr;
+using physical_device_robustness_2_properties_ext   = physical_device_robustness_2_properties_khr;
 using physical_device_image_robustness_features_ext = physical_device_image_robustness_features;
-using buffer_copy_2khr                              = buffer_copy_2;
+using buffer_copy_2_khr                             = buffer_copy_2;
 struct copy_buffer_info_2;
 using physical_device_shader_terminate_invocation_features_khr = physical_device_shader_terminate_invocation_features;
 using physical_device_mutable_descriptor_type_features_valve   = physical_device_mutable_descriptor_type_features_ext;
 using mutable_descriptor_type_list_valve                       = mutable_descriptor_type_list_ext;
 struct mutable_descriptor_type_create_info_ext;
 struct indirect_execution_set_shader_info_ext;
-using memory_barrier_2khr        = memory_barrier_2;
-using buffer_memory_barrier_2khr = buffer_memory_barrier_2;
-using semaphore_submit_info_khr  = semaphore_submit_info;
+using memory_barrier_2_khr        = memory_barrier_2;
+using buffer_memory_barrier_2_khr = buffer_memory_barrier_2;
+using semaphore_submit_info_khr   = semaphore_submit_info;
 struct render_pass_stripe_submit_info_arm;
 using command_buffer_submit_info_khr = command_buffer_submit_info;
 struct submit_info_2;
-using physical_device_synchronization_2features_khr          = physical_device_synchronization_2features;
+using physical_device_synchronization_2_features_khr         = physical_device_synchronization_2_features;
 using physical_device_host_image_copy_features_ext           = physical_device_host_image_copy_features;
 using physical_device_host_image_copy_properties_ext         = physical_device_host_image_copy_properties;
 using subresource_host_memcpy_size_ext                       = subresource_host_memcpy_size;
@@ -2084,8 +2084,8 @@ using physical_device_fragment_shader_barycentric_features_nv =
 struct acceleration_structure_srt_motion_instance_nv;
 struct buffer_collection_properties_fuchsia;
 struct buffer_constraints_info_fuchsia;
-using format_properties_3khr = format_properties_3;
-struct drm_format_modifier_properties_list_2ext;
+using format_properties_3_khr = format_properties_3;
+struct drm_format_modifier_properties_list_2_ext;
 using pipeline_rendering_create_info_khr             = pipeline_rendering_create_info;
 using rendering_end_info_ext                         = rendering_end_info_khr;
 using physical_device_dynamic_rendering_features_khr = physical_device_dynamic_rendering_features;
@@ -2111,14 +2111,14 @@ using device_fault_vendor_binary_header_version_one_ext = device_fault_vendor_bi
 using physical_device_pipeline_library_group_handles_features_ext =
     physical_device_pipeline_library_group_handles_features_khr;
 struct decompress_memory_info_ext;
-using surface_present_mode_ext                            = surface_present_mode_khr;
-using surface_present_mode_compatibility_ext              = surface_present_mode_compatibility_khr;
-using physical_device_swapchain_maintenance_1features_ext = physical_device_swapchain_maintenance_1features_khr;
-using swapchain_present_fence_info_ext                    = swapchain_present_fence_info_khr;
-using swapchain_present_modes_create_info_ext             = swapchain_present_modes_create_info_khr;
-using swapchain_present_mode_info_ext                     = swapchain_present_mode_info_khr;
-using swapchain_present_scaling_create_info_ext           = swapchain_present_scaling_create_info_khr;
-using release_swapchain_images_info_ext                   = release_swapchain_images_info_khr;
+using surface_present_mode_ext                             = surface_present_mode_khr;
+using surface_present_mode_compatibility_ext               = surface_present_mode_compatibility_khr;
+using physical_device_swapchain_maintenance_1_features_ext = physical_device_swapchain_maintenance_1_features_khr;
+using swapchain_present_fence_info_ext                     = swapchain_present_fence_info_khr;
+using swapchain_present_modes_create_info_ext              = swapchain_present_modes_create_info_khr;
+using swapchain_present_mode_info_ext                      = swapchain_present_mode_info_khr;
+using swapchain_present_scaling_create_info_ext            = swapchain_present_scaling_create_info_khr;
+using release_swapchain_images_info_ext                    = release_swapchain_images_info_khr;
 struct direct_driver_loading_list_lunarg;
 using memory_map_info_khr   = memory_map_info;
 using memory_unmap_info_khr = memory_unmap_info;
@@ -2130,7 +2130,7 @@ using push_descriptor_set_with_template_info_khr = push_descriptor_set_with_temp
 struct get_latency_marker_info_nv;
 using physical_device_shader_subgroup_rotate_features_khr       = physical_device_shader_subgroup_rotate_features;
 using physical_device_shader_expect_assume_features_khr         = physical_device_shader_expect_assume_features;
-using physical_device_shader_float_controls_2features_khr       = physical_device_shader_float_controls_2features;
+using physical_device_shader_float_controls_2_features_khr      = physical_device_shader_float_controls_2_features;
 using physical_device_dynamic_rendering_local_read_features_khr = physical_device_dynamic_rendering_local_read_features;
 using rendering_attachment_location_info_khr                    = rendering_attachment_location_info;
 using rendering_input_attachment_index_info_khr                 = rendering_input_attachment_index_info;
@@ -2152,12 +2152,12 @@ using device_address_range_ext = device_address_range_khr;
 struct device_memory_copy_khr;
 struct device_memory_image_copy_khr;
 struct memory_range_barrier_khr;
-struct conditional_rendering_begin_info_2ext;
-struct acceleration_structure_create_info_2khr;
-struct bind_index_buffer_3info_khr;
-struct draw_indirect_count_2info_khr;
-struct dispatch_indirect_2info_khr;
-struct bind_transform_feedback_buffer_2info_ext;
+struct conditional_rendering_begin_info_2_ext;
+struct acceleration_structure_create_info_2_khr;
+struct bind_index_buffer_3_info_khr;
+struct draw_indirect_count_2_info_khr;
+struct dispatch_indirect_2_info_khr;
+struct bind_transform_feedback_buffer_2_info_ext;
 struct memory_marker_info_amd;
 struct queue_family_data_graph_tosa_properties_arm;
 struct data_graph_pipeline_single_node_create_info_arm;
@@ -2173,11 +2173,11 @@ struct command_buffer_inheritance_render_pass_transform_info_qcom;
 struct optical_flow_execute_info_nv;
 struct multiview_per_view_render_areas_render_pass_begin_info_qcom;
 struct render_pass_stripe_info_arm;
-struct display_properties_2khr;
+struct display_properties_2_khr;
 struct display_mode_properties_khr;
 struct display_mode_create_info_khr;
-struct display_plane_capabilities_2khr;
-struct surface_capabilities_2khr;
+struct display_plane_capabilities_2_khr;
+struct surface_capabilities_2_khr;
 struct present_region_khr;
 using physical_device_fragment_density_map_offset_properties_qcom =
     physical_device_fragment_density_map_offset_properties_ext;
@@ -2190,36 +2190,36 @@ struct image_format_properties_2;
 struct device_image_memory_requirements;
 struct image_format_constraints_info_fuchsia;
 using sampler_ycbcr_conversion_create_info_khr = sampler_ycbcr_conversion_create_info;
-using memory_requirements_2khr                 = memory_requirements_2;
+using memory_requirements_2_khr                = memory_requirements_2;
 struct physical_device_memory_properties_2;
-using format_properties_2khr = format_properties_2;
+using format_properties_2_khr = format_properties_2;
 struct push_descriptor_set_info;
 using device_buffer_memory_requirements_khr = device_buffer_memory_requirements;
 struct sparse_image_memory_bind_info;
-using image_subresource_2khr = image_subresource_2;
-using image_subresource_2ext = image_subresource_2;
+using image_subresource_2_khr = image_subresource_2;
+using image_subresource_2_ext = image_subresource_2;
 struct device_image_subresource_info;
 using copy_memory_to_image_indirect_command_nv = copy_memory_to_image_indirect_command_khr;
-using image_copy_2khr                          = image_copy_2;
+using image_copy_2_khr                         = image_copy_2;
 struct copy_image_info_2;
 struct copy_image_to_image_info;
-using image_blit_2khr = image_blit_2;
+using image_blit_2_khr = image_blit_2;
 struct blit_image_info_2;
-using buffer_image_copy_2khr = buffer_image_copy_2;
+using buffer_image_copy_2_khr = buffer_image_copy_2;
 struct copy_buffer_to_image_info_2;
 struct copy_image_to_buffer_info_2;
-using image_resolve_2khr = image_resolve_2;
+using image_resolve_2_khr = image_resolve_2;
 struct resolve_image_info_2;
 using memory_to_image_copy_ext = memory_to_image_copy;
 struct copy_memory_to_image_info;
 using image_to_memory_copy_ext = image_to_memory_copy;
 struct copy_image_to_memory_info;
 struct image_descriptor_info_ext;
-using image_memory_barrier_2khr = image_memory_barrier_2;
+using image_memory_barrier_2_khr = image_memory_barrier_2;
 struct dependency_info;
 using host_image_layout_transition_info_ext = host_image_layout_transition_info;
-using subresource_layout_2khr               = subresource_layout_2;
-using subresource_layout_2ext               = subresource_layout_2;
+using subresource_layout_2_khr              = subresource_layout_2;
+using subresource_layout_2_ext              = subresource_layout_2;
 struct pipeline_shader_stage_create_info;
 struct shader_create_info_ext;
 struct data_graph_pipeline_shader_module_create_info_arm;
@@ -2230,7 +2230,7 @@ struct render_pass_begin_info;
 struct clear_attachment;
 struct rendering_attachment_info;
 struct render_pass_create_info;
-using physical_device_features_2khr = physical_device_features_2;
+using physical_device_features_2_khr = physical_device_features_2;
 struct physical_device_properties_2;
 struct cluster_acceleration_structure_input_info_nv;
 using physical_device_driver_properties_khr      = physical_device_driver_properties;
@@ -2242,7 +2242,7 @@ using render_pass_input_attachment_aspect_create_info_khr = render_pass_input_at
 struct attachment_sample_locations_ext;
 struct subpass_sample_locations_ext;
 struct pipeline_sample_locations_state_create_info_ext;
-using subpass_description_2khr = subpass_description_2;
+using subpass_description_2_khr = subpass_description_2;
 struct render_pass_create_info_2;
 using subpass_description_depth_stencil_resolve_khr       = subpass_description_depth_stencil_resolve;
 using pipeline_vertex_input_divisor_state_create_info_khr = pipeline_vertex_input_divisor_state_create_info;
@@ -2253,10 +2253,10 @@ using framebuffer_attachments_create_info_khr    = framebuffer_attachments_creat
 using pipeline_creation_feedback_create_info_ext = pipeline_creation_feedback_create_info;
 union acceleration_structure_geometry_data_khr;
 using acceleration_structure_instance_nv        = acceleration_structure_instance_khr;
-using copy_buffer_info_2khr                     = copy_buffer_info_2;
+using copy_buffer_info_2_khr                    = copy_buffer_info_2;
 using mutable_descriptor_type_create_info_valve = mutable_descriptor_type_create_info_ext;
 union indirect_execution_set_info_ext;
-using submit_info_2khr = submit_info_2;
+using submit_info_2_khr = submit_info_2;
 struct descriptor_get_info_ext;
 union acceleration_structure_motion_instance_data_nv;
 struct device_tensor_memory_requirements_arm;
@@ -2268,24 +2268,24 @@ struct memory_range_barriers_info_khr;
 using bind_image_memory_device_group_info_khr = bind_image_memory_device_group_info;
 using device_group_render_pass_begin_info_khr = device_group_render_pass_begin_info;
 struct render_pass_stripe_begin_info_arm;
-struct display_mode_properties_2khr;
+struct display_mode_properties_2_khr;
 struct present_regions_khr;
-using queue_family_properties_2khr = queue_family_properties_2;
+using queue_family_properties_2_khr = queue_family_properties_2;
 struct sparse_image_memory_requirements_2;
-using sparse_image_format_properties_2khr  = sparse_image_format_properties_2;
-using image_format_properties_2khr         = image_format_properties_2;
+using sparse_image_format_properties_2_khr = sparse_image_format_properties_2;
+using image_format_properties_2_khr        = image_format_properties_2;
 using device_image_memory_requirements_khr = device_image_memory_requirements;
 struct image_constraints_info_fuchsia;
-using physical_device_memory_properties_2khr = physical_device_memory_properties_2;
-using push_descriptor_set_info_khr           = push_descriptor_set_info;
+using physical_device_memory_properties_2_khr = physical_device_memory_properties_2;
+using push_descriptor_set_info_khr            = push_descriptor_set_info;
 struct bind_sparse_info;
 using device_image_subresource_info_khr = device_image_subresource_info;
-using copy_image_info_2khr              = copy_image_info_2;
+using copy_image_info_2_khr             = copy_image_info_2;
 using copy_image_to_image_info_ext      = copy_image_to_image_info;
-using blit_image_info_2khr              = blit_image_info_2;
-using copy_buffer_to_image_info_2khr    = copy_buffer_to_image_info_2;
-using copy_image_to_buffer_info_2khr    = copy_image_to_buffer_info_2;
-using resolve_image_info_2khr           = resolve_image_info_2;
+using blit_image_info_2_khr             = blit_image_info_2;
+using copy_buffer_to_image_info_2_khr   = copy_buffer_to_image_info_2;
+using copy_image_to_buffer_info_2_khr   = copy_image_to_buffer_info_2;
+using resolve_image_info_2_khr          = resolve_image_info_2;
 using copy_memory_to_image_info_ext     = copy_memory_to_image_info;
 using copy_image_to_memory_info_ext     = copy_image_to_memory_info;
 using dependency_info_khr               = dependency_info;
@@ -2298,19 +2298,19 @@ struct execution_graph_pipeline_create_info_amdx;
 struct indirect_commands_layout_token_ext;
 struct descriptor_set_and_binding_mapping_ext;
 struct rendering_info;
-using rendering_attachment_info_khr   = rendering_attachment_info;
-using physical_device_properties_2khr = physical_device_properties_2;
+using rendering_attachment_info_khr    = rendering_attachment_info;
+using physical_device_properties_2_khr = physical_device_properties_2;
 struct physical_device_layered_api_vulkan_properties_khr;
 struct cluster_acceleration_structure_commands_info_nv;
 struct render_pass_sample_locations_begin_info_ext;
-using render_pass_create_info_2khr = render_pass_create_info_2;
+using render_pass_create_info_2_khr = render_pass_create_info_2;
 struct acceleration_structure_info_nv;
 struct acceleration_structure_geometry_khr;
 struct indirect_execution_set_create_info_ext;
 struct acceleration_structure_motion_instance_nv;
 union resource_descriptor_data_ext;
 struct command_buffer_inheritance_descriptor_heap_info_ext;
-using sparse_image_memory_requirements_2khr = sparse_image_memory_requirements_2;
+using sparse_image_memory_requirements_2_khr = sparse_image_memory_requirements_2;
 struct graphics_pipeline_shader_groups_create_info_nv;
 struct indirect_commands_layout_create_info_ext;
 struct shader_descriptor_set_and_binding_mapping_info_ext;
@@ -2409,14 +2409,14 @@ using pipeline_compiler_control_flags_amd                        = ktl::api::fla
 using shader_core_properties_flags_amd                           = ktl::api::flag32;
 using device_diagnostics_config_flags_nv                         = ktl::api::flag32;
 using access_flags_2                                             = ktl::api::flag64;
-using access_flags_2khr                                          = ktl::api::flag64;
+using access_flags_2_khr                                         = ktl::api::flag64;
 using pipeline_stage_flags_2                                     = ktl::api::flag64;
-using pipeline_stage_flags_2khr                                  = ktl::api::flag64;
+using pipeline_stage_flags_2_khr                                 = ktl::api::flag64;
 using acceleration_structure_motion_info_flags_nv                = ktl::api::flag32;
 using acceleration_structure_motion_instance_flags_nv            = ktl::api::flag32;
 using format_feature_flags_2                                     = ktl::api::flag64;
-using format_feature_flags_2khr                                  = ktl::api::flag64;
-using format_feature_flags_4khr                                  = ktl::api::flag64;
+using format_feature_flags_2_khr                                 = ktl::api::flag64;
+using format_feature_flags_4_khr                                 = ktl::api::flag64;
 using rendering_flags                                            = ktl::api::flag32;
 using memory_decompression_method_flags_ext                      = ktl::api::flag64;
 using memory_decompression_method_flags_nv                       = ktl::api::flag64;
@@ -2428,11 +2428,11 @@ using indirect_commands_layout_usage_flags_ext                   = ktl::api::fla
 using indirect_commands_input_mode_flags_ext                     = ktl::api::flag32;
 using direct_driver_loading_flags_lunarg                         = ktl::api::flag32;
 using pipeline_create_flags_2                                    = ktl::api::flag64;
-using pipeline_create_flags_2khr                                 = ktl::api::flag64;
+using pipeline_create_flags_2_khr                                = ktl::api::flag64;
 using buffer_usage_flags_2                                       = ktl::api::flag64;
-using buffer_usage_flags_2khr                                    = ktl::api::flag64;
-using image_usage_flags_2khr                                     = ktl::api::flag64;
-using image_create_flags_2khr                                    = ktl::api::flag64;
+using buffer_usage_flags_2_khr                                   = ktl::api::flag64;
+using image_usage_flags_2_khr                                    = ktl::api::flag64;
+using image_create_flags_2_khr                                   = ktl::api::flag64;
 using address_copy_flags_khr                                     = ktl::api::flag32;
 using tensor_create_flags_arm                                    = ktl::api::flag64;
 using tensor_usage_flags_arm                                     = ktl::api::flag64;
@@ -2454,14 +2454,14 @@ using android_surface_create_flags_khr                           = ktl::api::fla
 using vi_surface_create_flags_nn                                 = ktl::api::flag32;
 using wayland_surface_create_flags_khr                           = ktl::api::flag32;
 using ubm_surface_create_flags_sec                               = ktl::api::flag32;
-using win_32surface_create_flags_khr                             = ktl::api::flag32;
+using win32_surface_create_flags_khr                             = ktl::api::flag32;
 using xlib_surface_create_flags_khr                              = ktl::api::flag32;
 using xcb_surface_create_flags_khr                               = ktl::api::flag32;
 using direct_fb_surface_create_flags_ext                         = ktl::api::flag32;
 using ios_surface_create_flags_mvk                               = ktl::api::flag32;
-using mac_os_surface_create_flags_mvk                            = ktl::api::flag32;
+using macos_surface_create_flags_mvk                             = ktl::api::flag32;
 using metal_surface_create_flags_ext                             = ktl::api::flag32;
-using image_pipe_surface_create_flags_fuchsia                    = ktl::api::flag32;
+using imagepipe_surface_create_flags_fuchsia                     = ktl::api::flag32;
 using stream_descriptor_surface_create_flags_ggp                 = ktl::api::flag32;
 using headless_surface_create_flags_ext                          = ktl::api::flag32;
 using screen_surface_create_flags_qnx                            = ktl::api::flag32;
@@ -2551,7 +2551,7 @@ using data_graph_optical_flow_grid_size_flags_arm                = ktl::api::fla
 using data_graph_optical_flow_image_usage_flags_arm              = ktl::api::flag32;
 using data_graph_optical_flow_create_flags_arm                   = ktl::api::flag32;
 using data_graph_optical_flow_execute_flags_arm                  = ktl::api::flag32;
-using access_flags_3khr                                          = ktl::api::flag64;
+using access_flags_3_khr                                         = ktl::api::flag64;
 using cooperative_matrix_flags_ext                               = ktl::api::flag32;
 } // namespace ktl::api
 
@@ -3098,10 +3098,10 @@ using pfn_create_ubm_surface_sec = ktl::api::result (*)(ktl::api::instance      
                                                         ktl::api::surface_khr *                       _p_surface);
 using pfn_get_physical_device_ubm_presentation_support_sec = ktl::api::bool32 (*)(
     ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, ktl::api::ubm_device * _device);
-using pfn_create_win_32surface_khr =
-    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::win_32surface_create_info_khr * _p_create_info,
+using pfn_create_win32_surface_khr =
+    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::win32_surface_create_info_khr * _p_create_info,
                          const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
-using pfn_get_physical_device_win_32presentation_support_khr =
+using pfn_get_physical_device_win32_presentation_support_khr =
     ktl::api::bool32 (*)(ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index);
 using pfn_create_xlib_surface_khr = ktl::api::result (*)(ktl::api::instance                             _instance,
                                                          const ktl::api::xlib_surface_create_info_khr * _p_create_info,
@@ -3122,8 +3122,8 @@ using pfn_create_direct_fb_surface_ext = ktl::api::result (*)(
     const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
 using pfn_get_physical_device_direct_fb_presentation_support_ext = ktl::api::bool32 (*)(
     ktl::api::physical_device _physical_device, ktl::u32 _queue_family_index, ktl::api::directfb * _dfb);
-using pfn_create_image_pipe_surface_fuchsia = ktl::api::result (*)(
-    ktl::api::instance _instance, const ktl::api::image_pipe_surface_create_info_fuchsia * _p_create_info,
+using pfn_create_imagepipe_surface_fuchsia = ktl::api::result (*)(
+    ktl::api::instance _instance, const ktl::api::imagepipe_surface_create_info_fuchsia * _p_create_info,
     const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
 using pfn_create_stream_descriptor_surface_ggp = ktl::api::result (*)(
     ktl::api::instance _instance, const ktl::api::stream_descriptor_surface_create_info_ggp * _p_create_info,
@@ -3157,7 +3157,7 @@ using pfn_get_physical_device_external_image_format_properties_nv = ktl::api::re
     ktl::api::image_tiling _tiling, ktl::api::image_usage_flags _usage, ktl::api::image_create_flags _flags,
     ktl::api::external_memory_handle_type_flags_nv  _external_handle_type,
     ktl::api::external_image_format_properties_nv * _p_external_image_format_properties);
-using pfn_get_memory_win_32handle_nv = ktl::api::result (*)(ktl::api::device _device, ktl::api::device_memory _memory,
+using pfn_get_memory_win32_handle_nv = ktl::api::result (*)(ktl::api::device _device, ktl::api::device_memory _memory,
                                                             ktl::api::external_memory_handle_type_flags_nv _handle_type,
                                                             ktl::api::win32_handle *                       _p_handle);
 using pfn_cmd_execute_generated_commands_nv =
@@ -3211,31 +3211,31 @@ using pfn_update_indirect_execution_set_shader_ext =
              const ktl::api::write_indirect_execution_set_shader_ext * _p_execution_set_writes);
 using pfn_get_physical_device_features_2          = void (*)(ktl::api::physical_device              _physical_device,
                                                     ktl::api::physical_device_features_2 * _p_features);
-using pfn_get_physical_device_features_2khr       = pfn_get_physical_device_features_2;
+using pfn_get_physical_device_features_2_khr      = pfn_get_physical_device_features_2;
 using pfn_get_physical_device_properties_2        = void (*)(ktl::api::physical_device                _physical_device,
                                                       ktl::api::physical_device_properties_2 * _p_properties);
-using pfn_get_physical_device_properties_2khr     = pfn_get_physical_device_properties_2;
+using pfn_get_physical_device_properties_2_khr    = pfn_get_physical_device_properties_2;
 using pfn_get_physical_device_format_properties_2 = void (*)(ktl::api::physical_device       _physical_device,
                                                              ktl::api::format                _format,
                                                              ktl::api::format_properties_2 * _p_format_properties);
-using pfn_get_physical_device_format_properties_2khr = pfn_get_physical_device_format_properties_2;
+using pfn_get_physical_device_format_properties_2_khr = pfn_get_physical_device_format_properties_2;
 using pfn_get_physical_device_image_format_properties_2 =
     ktl::api::result (*)(ktl::api::physical_device                             _physical_device,
                          const ktl::api::physical_device_image_format_info_2 * _p_image_format_info,
                          ktl::api::image_format_properties_2 *                 _p_image_format_properties);
-using pfn_get_physical_device_image_format_properties_2khr = pfn_get_physical_device_image_format_properties_2;
+using pfn_get_physical_device_image_format_properties_2_khr = pfn_get_physical_device_image_format_properties_2;
 using pfn_get_physical_device_queue_family_properties_2 =
     void (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_queue_family_property_count,
              ktl::api::queue_family_properties_2 * _p_queue_family_properties);
-using pfn_get_physical_device_queue_family_properties_2khr = pfn_get_physical_device_queue_family_properties_2;
-using pfn_get_physical_device_memory_properties_2          = void (*)(
+using pfn_get_physical_device_queue_family_properties_2_khr = pfn_get_physical_device_queue_family_properties_2;
+using pfn_get_physical_device_memory_properties_2           = void (*)(
     ktl::api::physical_device _physical_device, ktl::api::physical_device_memory_properties_2 * _p_memory_properties);
-using pfn_get_physical_device_memory_properties_2khr = pfn_get_physical_device_memory_properties_2;
+using pfn_get_physical_device_memory_properties_2_khr = pfn_get_physical_device_memory_properties_2;
 using pfn_get_physical_device_sparse_image_format_properties_2 =
     void (*)(ktl::api::physical_device                                    _physical_device,
              const ktl::api::physical_device_sparse_image_format_info_2 * _p_format_info, ktl::u32 * _p_property_count,
              ktl::api::sparse_image_format_properties_2 * _p_properties);
-using pfn_get_physical_device_sparse_image_format_properties_2khr =
+using pfn_get_physical_device_sparse_image_format_properties_2_khr =
     pfn_get_physical_device_sparse_image_format_properties_2;
 using pfn_cmd_push_descriptor_set     = void (*)(ktl::api::command_buffer      _command_buffer,
                                              ktl::api::pipeline_bind_point _pipeline_bind_point,
@@ -3251,12 +3251,12 @@ using pfn_get_physical_device_external_buffer_properties =
              const ktl::api::physical_device_external_buffer_info * _p_external_buffer_info,
              ktl::api::external_buffer_properties *                 _p_external_buffer_properties);
 using pfn_get_physical_device_external_buffer_properties_khr = pfn_get_physical_device_external_buffer_properties;
-using pfn_get_memory_win_32handle_khr                        = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::memory_get_win_32handle_info_khr * _p_get_win_32handle_info,
+using pfn_get_memory_win32_handle_khr                        = ktl::api::result (*)(
+    ktl::api::device _device, const ktl::api::memory_get_win32_handle_info_khr * _p_get_win32_handle_info,
     ktl::api::win32_handle * _p_handle);
-using pfn_get_memory_win_32handle_properties_khr = ktl::api::result (*)(
+using pfn_get_memory_win32_handle_properties_khr = ktl::api::result (*)(
     ktl::api::device _device, ktl::api::external_memory_handle_type_flag_bits _handle_type,
-    ktl::api::win32_handle _handle, ktl::api::memory_win_32handle_properties_khr * _p_memory_win_32handle_properties);
+    ktl::api::win32_handle _handle, ktl::api::memory_win32_handle_properties_khr * _p_memory_win32_handle_properties);
 using pfn_get_memory_fd_khr = ktl::api::result (*)(ktl::api::device                         _device,
                                                    const ktl::api::memory_get_fd_info_khr * _p_get_fd_info,
                                                    int *                                    _p_fd);
@@ -3278,12 +3278,12 @@ using pfn_get_physical_device_external_semaphore_properties =
              const ktl::api::physical_device_external_semaphore_info * _p_external_semaphore_info,
              ktl::api::external_semaphore_properties *                 _p_external_semaphore_properties);
 using pfn_get_physical_device_external_semaphore_properties_khr = pfn_get_physical_device_external_semaphore_properties;
-using pfn_get_semaphore_win_32handle_khr                        = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::semaphore_get_win_32handle_info_khr * _p_get_win_32handle_info,
+using pfn_get_semaphore_win32_handle_khr                        = ktl::api::result (*)(
+    ktl::api::device _device, const ktl::api::semaphore_get_win32_handle_info_khr * _p_get_win32_handle_info,
     ktl::api::win32_handle * _p_handle);
-using pfn_import_semaphore_win_32handle_khr = ktl::api::result (*)(
+using pfn_import_semaphore_win32_handle_khr = ktl::api::result (*)(
     ktl::api::device                                         _device,
-    const ktl::api::import_semaphore_win_32handle_info_khr * _p_import_semaphore_win_32handle_info);
+    const ktl::api::import_semaphore_win32_handle_info_khr * _p_import_semaphore_win32_handle_info);
 using pfn_get_semaphore_fd_khr    = ktl::api::result (*)(ktl::api::device                            _device,
                                                       const ktl::api::semaphore_get_fd_info_khr * _p_get_fd_info,
                                                       int *                                       _p_fd);
@@ -3300,27 +3300,27 @@ using pfn_get_physical_device_external_fence_properties =
              const ktl::api::physical_device_external_fence_info * _p_external_fence_info,
              ktl::api::external_fence_properties *                 _p_external_fence_properties);
 using pfn_get_physical_device_external_fence_properties_khr = pfn_get_physical_device_external_fence_properties;
-using pfn_get_fence_win_32handle_khr                        = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::fence_get_win_32handle_info_khr * _p_get_win_32handle_info,
+using pfn_get_fence_win32_handle_khr                        = ktl::api::result (*)(
+    ktl::api::device _device, const ktl::api::fence_get_win32_handle_info_khr * _p_get_win32_handle_info,
     ktl::api::win32_handle * _p_handle);
-using pfn_import_fence_win_32handle_khr = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::import_fence_win_32handle_info_khr * _p_import_fence_win_32handle_info);
+using pfn_import_fence_win32_handle_khr = ktl::api::result (*)(
+    ktl::api::device _device, const ktl::api::import_fence_win32_handle_info_khr * _p_import_fence_win32_handle_info);
 using pfn_get_fence_fd_khr = ktl::api::result (*)(ktl::api::device                        _device,
                                                   const ktl::api::fence_get_fd_info_khr * _p_get_fd_info, int * _p_fd);
 using pfn_import_fence_fd_khr =
     ktl::api::result (*)(ktl::api::device _device, const ktl::api::import_fence_fd_info_khr * _p_import_fence_fd_info);
-using pfn_release_display_ext           = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+using pfn_release_display_ext          = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                      ktl::api::display_khr     _display);
-using pfn_acquire_xlib_display_ext      = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+using pfn_acquire_xlib_display_ext     = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                           ktl::api::xlib_display *  _dpy,
                                                           ktl::api::display_khr     _display);
-using pfn_get_rand_r_output_display_ext = ktl::api::result (*)(ktl::api::physical_device _physical_device,
-                                                               ktl::api::xlib_display *  _dpy,
-                                                               ktl::api::xlib_rr_output  _rr_output,
-                                                               ktl::api::display_khr *   _p_display);
-using pfn_acquire_winrt_display_nv      = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+using pfn_get_randr_output_display_ext = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+                                                              ktl::api::xlib_display *  _dpy,
+                                                              ktl::api::xlib_rr_output  _rr_output,
+                                                              ktl::api::display_khr *   _p_display);
+using pfn_acquire_winrt_display_nv     = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                           ktl::api::display_khr     _display);
-using pfn_get_winrt_display_nv          = ktl::api::result (*)(ktl::api::physical_device _physical_device,
+using pfn_get_winrt_display_nv         = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                       ktl::u32 _device_relative_id, ktl::api::display_khr * _p_display);
 using pfn_display_power_control_ext =
     ktl::api::result (*)(ktl::api::device _device, ktl::api::display_khr _display,
@@ -3336,9 +3336,9 @@ using pfn_register_display_event_ext =
 using pfn_get_swapchain_counter_ext = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                                                            ktl::api::surface_counter_flag_bits_ext _counter,
                                                            ktl::u64 *                              _p_counter_value);
-using pfn_get_physical_device_surface_capabilities_2ext =
+using pfn_get_physical_device_surface_capabilities_2_ext =
     ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::api::surface_khr _surface,
-                         ktl::api::surface_capabilities_2ext * _p_surface_capabilities);
+                         ktl::api::surface_capabilities_2_ext * _p_surface_capabilities);
 using pfn_enumerate_physical_device_groups =
     ktl::api::result (*)(ktl::api::instance _instance, ktl::u32 * _p_physical_device_group_count,
                          ktl::api::physical_device_group_properties * _p_physical_device_group_properties);
@@ -3347,25 +3347,25 @@ using pfn_get_device_group_peer_memory_features =
     void (*)(ktl::api::device _device, ktl::u32 _heap_index, ktl::u32 _local_device_index,
              ktl::u32 _remote_device_index, ktl::api::peer_memory_feature_flags * _p_peer_memory_features);
 using pfn_get_device_group_peer_memory_features_khr = pfn_get_device_group_peer_memory_features;
-using pfn_bind_buffer_memory_2    = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _bind_info_count,
+using pfn_bind_buffer_memory_2     = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _bind_info_count,
                                                       const ktl::api::bind_buffer_memory_info * _p_bind_infos);
-using pfn_bind_buffer_memory_2khr = pfn_bind_buffer_memory_2;
-using pfn_bind_image_memory_2     = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _bind_info_count,
+using pfn_bind_buffer_memory_2_khr = pfn_bind_buffer_memory_2;
+using pfn_bind_image_memory_2      = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _bind_info_count,
                                                      const ktl::api::bind_image_memory_info * _p_bind_infos);
-using pfn_bind_image_memory_2khr  = pfn_bind_image_memory_2;
-using pfn_cmd_set_device_mask     = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _device_mask);
-using pfn_cmd_set_device_mask_khr = pfn_cmd_set_device_mask;
+using pfn_bind_image_memory_2_khr  = pfn_bind_image_memory_2;
+using pfn_cmd_set_device_mask      = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _device_mask);
+using pfn_cmd_set_device_mask_khr  = pfn_cmd_set_device_mask;
 using pfn_get_device_group_present_capabilities_khr = ktl::api::result (*)(
     ktl::api::device _device, ktl::api::device_group_present_capabilities_khr * _p_device_group_present_capabilities);
 using pfn_get_device_group_surface_present_modes_khr = ktl::api::result (*)(
     ktl::api::device _device, ktl::api::surface_khr _surface, ktl::api::device_group_present_mode_flags_khr * _p_modes);
-using pfn_acquire_next_image_2khr = ktl::api::result (*)(ktl::api::device                              _device,
-                                                         const ktl::api::acquire_next_image_info_khr * _p_acquire_info,
-                                                         ktl::u32 *                                    _p_image_index);
-using pfn_cmd_dispatch_base       = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _base_group_x,
+using pfn_acquire_next_image_2_khr = ktl::api::result (*)(ktl::api::device                              _device,
+                                                          const ktl::api::acquire_next_image_info_khr * _p_acquire_info,
+                                                          ktl::u32 *                                    _p_image_index);
+using pfn_cmd_dispatch_base        = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _base_group_x,
                                        ktl::u32 _base_group_y, ktl::u32 _base_group_z, ktl::u32 _group_count_x,
                                        ktl::u32 _group_count_y, ktl::u32 _group_count_z);
-using pfn_cmd_dispatch_base_khr   = pfn_cmd_dispatch_base;
+using pfn_cmd_dispatch_base_khr    = pfn_cmd_dispatch_base;
 using pfn_get_physical_device_present_rectangles_khr = ktl::api::result (*)(ktl::api::physical_device _physical_device,
                                                                             ktl::api::surface_khr     _surface,
                                                                             ktl::u32 *                _p_rect_count,
@@ -3401,8 +3401,8 @@ using pfn_create_ios_surface_mvk = ktl::api::result (*)(ktl::api::instance      
                                                         const ktl::api::ios_surface_create_info_mvk * _p_create_info,
                                                         const ktl::api::allocation_callbacks *        _p_allocator,
                                                         ktl::api::surface_khr *                       _p_surface);
-using pfn_create_mac_os_surface_mvk =
-    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::mac_os_surface_create_info_mvk * _p_create_info,
+using pfn_create_macos_surface_mvk =
+    ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::macos_surface_create_info_mvk * _p_create_info,
                          const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface);
 using pfn_create_metal_surface_ext =
     ktl::api::result (*)(ktl::api::instance _instance, const ktl::api::metal_surface_create_info_ext * _p_create_info,
@@ -3422,37 +3422,37 @@ using pfn_cmd_set_sample_locations_ext         = void (*)(ktl::api::command_buff
 using pfn_get_physical_device_multisample_properties_ext =
     void (*)(ktl::api::physical_device _physical_device, ktl::api::sample_count_flag_bits _samples,
              ktl::api::multisample_properties_ext * _p_multisample_properties);
-using pfn_get_physical_device_surface_capabilities_2khr = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-    ktl::api::surface_capabilities_2khr * _p_surface_capabilities);
-using pfn_get_physical_device_surface_formats_2khr = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-    ktl::u32 * _p_surface_format_count, ktl::api::surface_format_2khr * _p_surface_formats);
-using pfn_get_physical_device_display_properties_2khr =
+using pfn_get_physical_device_surface_capabilities_2_khr = ktl::api::result (*)(
+    ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2_khr * _p_surface_info,
+    ktl::api::surface_capabilities_2_khr * _p_surface_capabilities);
+using pfn_get_physical_device_surface_formats_2_khr = ktl::api::result (*)(
+    ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2_khr * _p_surface_info,
+    ktl::u32 * _p_surface_format_count, ktl::api::surface_format_2_khr * _p_surface_formats);
+using pfn_get_physical_device_display_properties_2_khr =
     ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::display_properties_2khr * _p_properties);
-using pfn_get_physical_device_display_plane_properties_2khr =
+                         ktl::api::display_properties_2_khr * _p_properties);
+using pfn_get_physical_device_display_plane_properties_2_khr =
     ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                         ktl::api::display_plane_properties_2khr * _p_properties);
-using pfn_get_display_mode_properties_2khr =
+                         ktl::api::display_plane_properties_2_khr * _p_properties);
+using pfn_get_display_mode_properties_2_khr =
     ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::api::display_khr _display,
-                         ktl::u32 * _p_property_count, ktl::api::display_mode_properties_2khr * _p_properties);
-using pfn_get_display_plane_capabilities_2khr = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, const ktl::api::display_plane_info_2khr * _p_display_plane_info,
-    ktl::api::display_plane_capabilities_2khr * _p_capabilities);
-using pfn_get_buffer_memory_requirements_2    = void (*)(ktl::api::device                                    _device,
+                         ktl::u32 * _p_property_count, ktl::api::display_mode_properties_2_khr * _p_properties);
+using pfn_get_display_plane_capabilities_2_khr = ktl::api::result (*)(
+    ktl::api::physical_device _physical_device, const ktl::api::display_plane_info_2_khr * _p_display_plane_info,
+    ktl::api::display_plane_capabilities_2_khr * _p_capabilities);
+using pfn_get_buffer_memory_requirements_2     = void (*)(ktl::api::device                                    _device,
                                                       const ktl::api::buffer_memory_requirements_info_2 * _p_info,
                                                       ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_get_buffer_memory_requirements_2khr = pfn_get_buffer_memory_requirements_2;
-using pfn_get_image_memory_requirements_2     = void (*)(ktl::api::device                                   _device,
+using pfn_get_buffer_memory_requirements_2_khr = pfn_get_buffer_memory_requirements_2;
+using pfn_get_image_memory_requirements_2      = void (*)(ktl::api::device                                   _device,
                                                      const ktl::api::image_memory_requirements_info_2 * _p_info,
                                                      ktl::api::memory_requirements_2 * _p_memory_requirements);
-using pfn_get_image_memory_requirements_2khr  = pfn_get_image_memory_requirements_2;
+using pfn_get_image_memory_requirements_2_khr  = pfn_get_image_memory_requirements_2;
 using pfn_get_image_sparse_memory_requirements_2 =
     void (*)(ktl::api::device _device, const ktl::api::image_sparse_memory_requirements_info_2 * _p_info,
              ktl::u32 *                                     _p_sparse_memory_requirement_count,
              ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements);
-using pfn_get_image_sparse_memory_requirements_2khr = pfn_get_image_sparse_memory_requirements_2;
+using pfn_get_image_sparse_memory_requirements_2_khr = pfn_get_image_sparse_memory_requirements_2;
 using pfn_get_device_buffer_memory_requirements = void (*)(ktl::api::device                                    _device,
                                                            const ktl::api::device_buffer_memory_requirements * _p_info,
                                                            ktl::api::memory_requirements_2 * _p_memory_requirements);
@@ -3543,18 +3543,18 @@ using pfn_create_render_pass_2        = ktl::api::result (*)(ktl::api::device   
                                                       const ktl::api::render_pass_create_info_2 * _p_create_info,
                                                       const ktl::api::allocation_callbacks *      _p_allocator,
                                                       ktl::api::render_pass *                     _p_render_pass);
-using pfn_create_render_pass_2khr     = pfn_create_render_pass_2;
+using pfn_create_render_pass_2_khr    = pfn_create_render_pass_2;
 using pfn_cmd_begin_render_pass_2     = void (*)(ktl::api::command_buffer                 _command_buffer,
                                              const ktl::api::render_pass_begin_info * _p_render_pass_begin,
                                              const ktl::api::subpass_begin_info *     _p_subpass_begin_info);
-using pfn_cmd_begin_render_pass_2khr  = pfn_cmd_begin_render_pass_2;
+using pfn_cmd_begin_render_pass_2_khr = pfn_cmd_begin_render_pass_2;
 using pfn_cmd_next_subpass_2          = void (*)(ktl::api::command_buffer             _command_buffer,
                                         const ktl::api::subpass_begin_info * _p_subpass_begin_info,
                                         const ktl::api::subpass_end_info *   _p_subpass_end_info);
-using pfn_cmd_next_subpass_2khr       = pfn_cmd_next_subpass_2;
+using pfn_cmd_next_subpass_2_khr      = pfn_cmd_next_subpass_2;
 using pfn_cmd_end_render_pass_2       = void (*)(ktl::api::command_buffer           _command_buffer,
                                            const ktl::api::subpass_end_info * _p_subpass_end_info);
-using pfn_cmd_end_render_pass_2khr    = pfn_cmd_end_render_pass_2;
+using pfn_cmd_end_render_pass_2_khr   = pfn_cmd_end_render_pass_2;
 using pfn_get_semaphore_counter_value = ktl::api::result (*)(ktl::api::device _device, ktl::api::semaphore _semaphore,
                                                              ktl::u64 * _p_value);
 using pfn_get_semaphore_counter_value_khr = pfn_get_semaphore_counter_value;
@@ -3747,8 +3747,8 @@ using pfn_cmd_trace_rays_indirect_khr =
              const ktl::api::strided_device_address_region_khr * _p_hit_shader_binding_table,
              const ktl::api::strided_device_address_region_khr * _p_callable_shader_binding_table,
              ktl::api::dvaddr                                    _indirect_device_address);
-using pfn_cmd_trace_rays_indirect_2khr = void (*)(ktl::api::command_buffer _command_buffer,
-                                                  ktl::api::dvaddr         _indirect_device_address);
+using pfn_cmd_trace_rays_indirect_2_khr = void (*)(ktl::api::command_buffer _command_buffer,
+                                                   ktl::api::dvaddr         _indirect_device_address);
 using pfn_get_cluster_acceleration_structure_build_sizes_nv =
     void (*)(ktl::api::device _device, const ktl::api::cluster_acceleration_structure_input_info_nv * _p_info,
              ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info);
@@ -3763,21 +3763,21 @@ using pfn_get_ray_tracing_shader_group_stack_size_khr =
                          ktl::api::shader_group_shader_khr _group_shader);
 using pfn_cmd_set_ray_tracing_pipeline_stack_size_khr = void (*)(ktl::api::command_buffer _command_buffer,
                                                                  ktl::u32                 _pipeline_stack_size);
-using pfn_get_image_view_handle_nvx   = ktl::u32 (*)(ktl::api::device                             _device,
+using pfn_get_image_view_handle_nvx    = ktl::u32 (*)(ktl::api::device                             _device,
                                                    const ktl::api::image_view_handle_info_nvx * _p_info);
-using pfn_get_image_view_handle_64nvx = ktl::u64 (*)(ktl::api::device                             _device,
-                                                     const ktl::api::image_view_handle_info_nvx * _p_info);
+using pfn_get_image_view_handle_64_nvx = ktl::u64 (*)(ktl::api::device                             _device,
+                                                      const ktl::api::image_view_handle_info_nvx * _p_info);
 using pfn_get_image_view_address_nvx =
     ktl::api::result (*)(ktl::api::device _device, ktl::api::image_view _image_view,
                          ktl::api::image_view_address_properties_nvx * _p_properties);
-using pfn_get_device_combined_image_sampler_index_nvx    = ktl::u64 (*)(ktl::api::device _device,
+using pfn_get_device_combined_image_sampler_index_nvx     = ktl::u64 (*)(ktl::api::device _device,
                                                                      ktl::u64         _image_view_index,
                                                                      ktl::u64         _sampler_index);
-using pfn_get_physical_device_surface_present_modes_2ext = ktl::api::result (*)(
-    ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
+using pfn_get_physical_device_surface_present_modes_2_ext = ktl::api::result (*)(
+    ktl::api::physical_device _physical_device, const ktl::api::physical_device_surface_info_2_khr * _p_surface_info,
     ktl::u32 * _p_present_mode_count, ktl::api::present_mode_khr * _p_present_modes);
-using pfn_get_device_group_surface_present_modes_2ext =
-    ktl::api::result (*)(ktl::api::device _device, const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
+using pfn_get_device_group_surface_present_modes_2_ext =
+    ktl::api::result (*)(ktl::api::device _device, const ktl::api::physical_device_surface_info_2_khr * _p_surface_info,
                          ktl::api::device_group_present_mode_flags_khr * _p_modes);
 using pfn_acquire_full_screen_exclusive_mode_ext = ktl::api::result (*)(ktl::api::device        _device,
                                                                         ktl::api::swapchain_khr _swapchain);
@@ -3903,12 +3903,12 @@ using pfn_cmd_set_scissor_with_count_ext  = pfn_cmd_set_scissor_with_count;
 using pfn_cmd_bind_index_buffer_2         = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
                                              ktl::api::dvsize _offset, ktl::api::dvsize _size,
                                              ktl::api::index_type _index_type);
-using pfn_cmd_bind_index_buffer_2khr      = pfn_cmd_bind_index_buffer_2;
+using pfn_cmd_bind_index_buffer_2_khr     = pfn_cmd_bind_index_buffer_2;
 using pfn_cmd_bind_vertex_buffers_2       = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
                                                ktl::u32 _binding_count, const ktl::api::buffer * _p_buffers,
                                                const ktl::api::dvsize * _p_offsets, const ktl::api::dvsize * _p_sizes,
                                                const ktl::api::dvsize * _p_strides);
-using pfn_cmd_bind_vertex_buffers_2ext    = pfn_cmd_bind_vertex_buffers_2;
+using pfn_cmd_bind_vertex_buffers_2_ext   = pfn_cmd_bind_vertex_buffers_2;
 using pfn_cmd_set_depth_test_enable       = void (*)(ktl::api::command_buffer _command_buffer,
                                                ktl::api::bool32         _depth_test_enable);
 using pfn_cmd_set_depth_test_enable_ext   = pfn_cmd_set_depth_test_enable;
@@ -4018,34 +4018,34 @@ using pfn_create_private_data_slot_ext = pfn_create_private_data_slot;
 using pfn_destroy_private_data_slot = void (*)(ktl::api::device _device, ktl::api::private_data_slot _private_data_slot,
                                                const ktl::api::allocation_callbacks * _p_allocator);
 using pfn_destroy_private_data_slot_ext = pfn_destroy_private_data_slot;
-using pfn_set_private_data     = ktl::api::result (*)(ktl::api::device _device, ktl::api::object_type _object_type,
+using pfn_set_private_data      = ktl::api::result (*)(ktl::api::device _device, ktl::api::object_type _object_type,
                                                   ktl::u64                    _object_handle,
                                                   ktl::api::private_data_slot _private_data_slot, ktl::u64 _data);
-using pfn_set_private_data_ext = pfn_set_private_data;
-using pfn_get_private_data     = void (*)(ktl::api::device _device, ktl::api::object_type _object_type,
+using pfn_set_private_data_ext  = pfn_set_private_data;
+using pfn_get_private_data      = void (*)(ktl::api::device _device, ktl::api::object_type _object_type,
                                       ktl::u64 _object_handle, ktl::api::private_data_slot _private_data_slot,
                                       ktl::u64 * _p_data);
-using pfn_get_private_data_ext = pfn_get_private_data;
-using pfn_cmd_copy_buffer_2    = void (*)(ktl::api::command_buffer             _command_buffer,
+using pfn_get_private_data_ext  = pfn_get_private_data;
+using pfn_cmd_copy_buffer_2     = void (*)(ktl::api::command_buffer             _command_buffer,
                                        const ktl::api::copy_buffer_info_2 * _p_copy_buffer_info);
-using pfn_cmd_copy_buffer_2khr = pfn_cmd_copy_buffer_2;
-using pfn_cmd_copy_image_2     = void (*)(ktl::api::command_buffer            _command_buffer,
+using pfn_cmd_copy_buffer_2_khr = pfn_cmd_copy_buffer_2;
+using pfn_cmd_copy_image_2      = void (*)(ktl::api::command_buffer            _command_buffer,
                                       const ktl::api::copy_image_info_2 * _p_copy_image_info);
-using pfn_cmd_copy_image_2khr  = pfn_cmd_copy_image_2;
-using pfn_cmd_blit_image_2     = void (*)(ktl::api::command_buffer            _command_buffer,
+using pfn_cmd_copy_image_2_khr  = pfn_cmd_copy_image_2;
+using pfn_cmd_blit_image_2      = void (*)(ktl::api::command_buffer            _command_buffer,
                                       const ktl::api::blit_image_info_2 * _p_blit_image_info);
-using pfn_cmd_blit_image_2khr  = pfn_cmd_blit_image_2;
+using pfn_cmd_blit_image_2_khr  = pfn_cmd_blit_image_2;
 using pfn_cmd_copy_buffer_to_image_2 =
     void (*)(ktl::api::command_buffer                      _command_buffer,
              const ktl::api::copy_buffer_to_image_info_2 * _p_copy_buffer_to_image_info);
-using pfn_cmd_copy_buffer_to_image_2khr = pfn_cmd_copy_buffer_to_image_2;
+using pfn_cmd_copy_buffer_to_image_2_khr = pfn_cmd_copy_buffer_to_image_2;
 using pfn_cmd_copy_image_to_buffer_2 =
     void (*)(ktl::api::command_buffer                      _command_buffer,
              const ktl::api::copy_image_to_buffer_info_2 * _p_copy_image_to_buffer_info);
-using pfn_cmd_copy_image_to_buffer_2khr = pfn_cmd_copy_image_to_buffer_2;
-using pfn_cmd_resolve_image_2           = void (*)(ktl::api::command_buffer               _command_buffer,
+using pfn_cmd_copy_image_to_buffer_2_khr = pfn_cmd_copy_image_to_buffer_2;
+using pfn_cmd_resolve_image_2            = void (*)(ktl::api::command_buffer               _command_buffer,
                                          const ktl::api::resolve_image_info_2 * _p_resolve_image_info);
-using pfn_cmd_resolve_image_2khr        = pfn_cmd_resolve_image_2;
+using pfn_cmd_resolve_image_2_khr        = pfn_cmd_resolve_image_2;
 using pfn_cmd_set_fragment_shading_rate_khr =
     void (*)(ktl::api::command_buffer _command_buffer, const ktl::api::extent_2d * _p_fragment_size,
              const ktl::api::fragment_shading_rate_combiner_op_khr _combiner_ops[2]);
@@ -4061,37 +4061,38 @@ using pfn_get_acceleration_structure_build_sizes_khr = void (*)(
     const ktl::u32 * _p_max_primitive_counts, ktl::api::acceleration_structure_build_sizes_info_khr * _p_size_info);
 using pfn_cmd_set_vertex_input_ext =
     void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _vertex_binding_description_count,
-             const ktl::api::vertex_input_binding_description_2ext *   _p_vertex_binding_descriptions,
-             ktl::u32                                                  _vertex_attribute_description_count,
-             const ktl::api::vertex_input_attribute_description_2ext * _p_vertex_attribute_descriptions);
+             const ktl::api::vertex_input_binding_description_2_ext *   _p_vertex_binding_descriptions,
+             ktl::u32                                                   _vertex_attribute_description_count,
+             const ktl::api::vertex_input_attribute_description_2_ext * _p_vertex_attribute_descriptions);
 using pfn_cmd_set_color_write_enable_ext = void (*)(ktl::api::command_buffer _command_buffer,
                                                     ktl::u32                 _attachment_count,
                                                     const ktl::api::bool32 * _p_color_write_enables);
 using pfn_cmd_set_event_2                = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
                                      const ktl::api::dependency_info * _p_dependency_info);
-using pfn_cmd_set_event_2khr             = pfn_cmd_set_event_2;
+using pfn_cmd_set_event_2_khr            = pfn_cmd_set_event_2;
 using pfn_cmd_reset_event_2              = void (*)(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
                                        ktl::api::pipeline_stage_flags_2 _stage_mask);
-using pfn_cmd_reset_event_2khr           = pfn_cmd_reset_event_2;
+using pfn_cmd_reset_event_2_khr          = pfn_cmd_reset_event_2;
 using pfn_cmd_wait_events_2              = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count,
                                        const ktl::api::event *           _p_events,
                                        const ktl::api::dependency_info * _p_dependency_infos);
-using pfn_cmd_wait_events_2khr           = pfn_cmd_wait_events_2;
+using pfn_cmd_wait_events_2_khr          = pfn_cmd_wait_events_2;
 using pfn_cmd_pipeline_barrier_2         = void (*)(ktl::api::command_buffer          _command_buffer,
                                             const ktl::api::dependency_info * _p_dependency_info);
-using pfn_cmd_pipeline_barrier_2khr      = pfn_cmd_pipeline_barrier_2;
+using pfn_cmd_pipeline_barrier_2_khr     = pfn_cmd_pipeline_barrier_2;
 using pfn_queue_submit_2                 = ktl::api::result (*)(ktl::api::queue _queue, ktl::u32 _submit_count,
                                                 const ktl::api::submit_info_2 * _p_submits, ktl::api::fence _fence);
-using pfn_queue_submit_2khr              = pfn_queue_submit_2;
+using pfn_queue_submit_2_khr             = pfn_queue_submit_2;
 using pfn_cmd_write_timestamp_2          = void (*)(ktl::api::command_buffer         _command_buffer,
                                            ktl::api::pipeline_stage_flags_2 _stage, ktl::api::query_pool _query_pool,
                                            ktl::u32 _query);
-using pfn_cmd_write_timestamp_2khr       = pfn_cmd_write_timestamp_2;
-using pfn_cmd_write_buffer_marker_2amd   = void (*)(ktl::api::command_buffer         _command_buffer,
-                                                  ktl::api::pipeline_stage_flags_2 _stage, ktl::api::buffer _dst_buffer,
-                                                  ktl::api::dvsize _dst_offset, ktl::u32 _marker);
-using pfn_get_queue_checkpoint_data_2nv  = void (*)(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count,
-                                                   ktl::api::checkpoint_data_2nv * _p_checkpoint_data);
+using pfn_cmd_write_timestamp_2_khr      = pfn_cmd_write_timestamp_2;
+using pfn_cmd_write_buffer_marker_2_amd  = void (*)(ktl::api::command_buffer         _command_buffer,
+                                                   ktl::api::pipeline_stage_flags_2 _stage,
+                                                   ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset,
+                                                   ktl::u32 _marker);
+using pfn_get_queue_checkpoint_data_2_nv = void (*)(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count,
+                                                    ktl::api::checkpoint_data_2_nv * _p_checkpoint_data);
 using pfn_copy_memory_to_image           = ktl::api::result (*)(
     ktl::api::device _device, const ktl::api::copy_memory_to_image_info * _p_copy_memory_to_image_info);
 using pfn_copy_memory_to_image_ext = pfn_copy_memory_to_image;
@@ -4176,9 +4177,10 @@ using pfn_acquire_drm_display_ext = ktl::api::result (*)(ktl::api::physical_devi
                                                          ktl::api::display_khr _display);
 using pfn_get_drm_display_ext     = ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::i32 _drm_fd,
                                                      ktl::u32 _connector_id, ktl::api::display_khr * _display);
-using pfn_wait_for_present_2khr   = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                                                       const ktl::api::present_wait_2info_khr * _p_present_wait_2info);
-using pfn_wait_for_present_khr    = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
+using pfn_wait_for_present_2_khr =
+    ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
+                         const ktl::api::present_wait_2_info_khr * _p_present_wait_2_info);
+using pfn_wait_for_present_khr = ktl::api::result (*)(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
                                                       ktl::u64 _present_id, ktl::u64 _timeout);
 using pfn_create_buffer_collection_fuchsia = ktl::api::result (*)(
     ktl::api::device _device, const ktl::api::buffer_collection_create_info_fuchsia * _p_create_info,
@@ -4215,9 +4217,9 @@ using pfn_cmd_begin_rendering       = void (*)(ktl::api::command_buffer         
                                          const ktl::api::rendering_info * _p_rendering_info);
 using pfn_cmd_begin_rendering_khr   = pfn_cmd_begin_rendering;
 using pfn_cmd_end_rendering         = void (*)(ktl::api::command_buffer _command_buffer);
-using pfn_cmd_end_rendering_2khr    = void (*)(ktl::api::command_buffer                 _command_buffer,
-                                            const ktl::api::rendering_end_info_khr * _p_rendering_end_info);
-using pfn_cmd_end_rendering_2ext    = pfn_cmd_end_rendering_2khr;
+using pfn_cmd_end_rendering_2_khr   = void (*)(ktl::api::command_buffer                 _command_buffer,
+                                             const ktl::api::rendering_end_info_khr * _p_rendering_end_info);
+using pfn_cmd_end_rendering_2_ext   = pfn_cmd_end_rendering_2_khr;
 using pfn_cmd_end_rendering_khr     = pfn_cmd_end_rendering;
 using pfn_get_descriptor_set_layout_host_mapping_info_valve =
     void (*)(ktl::api::device _device, const ktl::api::descriptor_set_binding_reference_valve * _p_binding_reference,
@@ -4275,8 +4277,8 @@ using pfn_get_shader_module_create_info_identifier_ext =
 using pfn_get_image_subresource_layout_2       = void (*)(ktl::api::device _device, ktl::api::image _image,
                                                     const ktl::api::image_subresource_2 * _p_subresource,
                                                     ktl::api::subresource_layout_2 *      _p_layout);
-using pfn_get_image_subresource_layout_2khr    = pfn_get_image_subresource_layout_2;
-using pfn_get_image_subresource_layout_2ext    = pfn_get_image_subresource_layout_2;
+using pfn_get_image_subresource_layout_2_khr   = pfn_get_image_subresource_layout_2;
+using pfn_get_image_subresource_layout_2_ext   = pfn_get_image_subresource_layout_2;
 using pfn_get_pipeline_properties_ext          = ktl::api::result (*)(ktl::api::device                    _device,
                                                              const ktl::api::pipeline_info_khr * _p_pipeline_info,
                                                              ktl::api::base_out_structure * _p_pipeline_properties);
@@ -4316,8 +4318,8 @@ using pfn_get_device_fault_reports_khr    = ktl::api::result (*)(ktl::api::devic
                                                               ktl::api::device_fault_info_khr * _p_fault_info);
 using pfn_get_device_fault_debug_info_khr = ktl::api::result (*)(ktl::api::device                        _device,
                                                                  ktl::api::device_fault_debug_info_khr * _p_debug_info);
-using pfn_cmd_set_depth_bias_2ext         = void (*)(ktl::api::command_buffer              _command_buffer,
-                                             const ktl::api::depth_bias_info_ext * _p_depth_bias_info);
+using pfn_cmd_set_depth_bias_2_ext        = void (*)(ktl::api::command_buffer              _command_buffer,
+                                              const ktl::api::depth_bias_info_ext * _p_depth_bias_info);
 using pfn_release_swapchain_images_khr =
     ktl::api::result (*)(ktl::api::device _device, const ktl::api::release_swapchain_images_info_khr * _p_release_info);
 using pfn_release_swapchain_images_ext            = pfn_release_swapchain_images_khr;
@@ -4327,10 +4329,10 @@ using pfn_get_device_image_subresource_layout     = void (*)(ktl::api::device   
 using pfn_get_device_image_subresource_layout_khr = pfn_get_device_image_subresource_layout;
 using pfn_map_memory_2                            = ktl::api::result (*)(ktl::api::device                  _device,
                                               const ktl::api::memory_map_info * _p_memory_map_info, void ** _pp_data);
-using pfn_map_memory_2khr                         = pfn_map_memory_2;
+using pfn_map_memory_2_khr                        = pfn_map_memory_2;
 using pfn_unmap_memory_2                          = ktl::api::result (*)(ktl::api::device                    _device,
                                                 const ktl::api::memory_unmap_info * _p_memory_unmap_info);
-using pfn_unmap_memory_2khr                       = pfn_unmap_memory_2;
+using pfn_unmap_memory_2_khr                      = pfn_unmap_memory_2;
 using pfn_create_shaders_ext         = ktl::api::result (*)(ktl::api::device _device, ktl::u32 _create_info_count,
                                                     const ktl::api::shader_create_info_ext * _p_create_infos,
                                                     const ktl::api::allocation_callbacks *   _p_allocator,
@@ -4362,10 +4364,10 @@ using pfn_get_screen_buffer_properties_qnx =
 using pfn_get_physical_device_cooperative_matrix_properties_khr =
     ktl::api::result (*)(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
                          ktl::api::cooperative_matrix_properties_khr * _p_properties);
-using pfn_get_physical_device_cooperative_matrix_properties_2ext =
-    ktl::api::result (*)(ktl::api::physical_device                                      _physical_device,
-                         const ktl::api::physical_device_cooperative_matrix_info_2ext * _p_cooperative_matrix_info,
-                         ktl::u32 * _p_property_count, ktl::api::cooperative_matrix_properties_2ext * _p_properties);
+using pfn_get_physical_device_cooperative_matrix_properties_2_ext =
+    ktl::api::result (*)(ktl::api::physical_device                                       _physical_device,
+                         const ktl::api::physical_device_cooperative_matrix_info_2_ext * _p_cooperative_matrix_info,
+                         ktl::u32 * _p_property_count, ktl::api::cooperative_matrix_properties_2_ext * _p_properties);
 using pfn_get_execution_graph_pipeline_scratch_size_amdx =
     ktl::api::result (*)(ktl::api::device _device, ktl::api::pipeline _execution_graph,
                          ktl::api::execution_graph_pipeline_scratch_size_amdx * _p_size_info);
@@ -4420,21 +4422,21 @@ using pfn_cmd_copy_gpa_session_results_amd = void (*)(ktl::api::command_buffer  
                                                       ktl::api::gpa_session_amd _gpa_session);
 using pfn_cmd_bind_descriptor_sets_2       = void (*)(
     ktl::api::command_buffer _command_buffer, const ktl::api::bind_descriptor_sets_info * _p_bind_descriptor_sets_info);
-using pfn_cmd_bind_descriptor_sets_2khr = pfn_cmd_bind_descriptor_sets_2;
-using pfn_cmd_push_constants_2          = void (*)(ktl::api::command_buffer              _command_buffer,
+using pfn_cmd_bind_descriptor_sets_2_khr = pfn_cmd_bind_descriptor_sets_2;
+using pfn_cmd_push_constants_2           = void (*)(ktl::api::command_buffer              _command_buffer,
                                           const ktl::api::push_constants_info * _p_push_constants_info);
-using pfn_cmd_push_constants_2khr       = pfn_cmd_push_constants_2;
-using pfn_cmd_push_descriptor_set_2     = void (*)(ktl::api::command_buffer                   _command_buffer,
+using pfn_cmd_push_constants_2_khr       = pfn_cmd_push_constants_2;
+using pfn_cmd_push_descriptor_set_2      = void (*)(ktl::api::command_buffer                   _command_buffer,
                                                const ktl::api::push_descriptor_set_info * _p_push_descriptor_set_info);
-using pfn_cmd_push_descriptor_set_2khr  = pfn_cmd_push_descriptor_set_2;
+using pfn_cmd_push_descriptor_set_2_khr  = pfn_cmd_push_descriptor_set_2;
 using pfn_cmd_push_descriptor_set_with_template_2 =
     void (*)(ktl::api::command_buffer                                 _command_buffer,
              const ktl::api::push_descriptor_set_with_template_info * _p_push_descriptor_set_with_template_info);
-using pfn_cmd_push_descriptor_set_with_template_2khr = pfn_cmd_push_descriptor_set_with_template_2;
-using pfn_cmd_set_descriptor_buffer_offsets_2ext =
+using pfn_cmd_push_descriptor_set_with_template_2_khr = pfn_cmd_push_descriptor_set_with_template_2;
+using pfn_cmd_set_descriptor_buffer_offsets_2_ext =
     void (*)(ktl::api::command_buffer                                 _command_buffer,
              const ktl::api::set_descriptor_buffer_offsets_info_ext * _p_set_descriptor_buffer_offsets_info);
-using pfn_cmd_bind_descriptor_buffer_embedded_samplers_2ext = void (*)(
+using pfn_cmd_bind_descriptor_buffer_embedded_samplers_2_ext = void (*)(
     ktl::api::command_buffer _command_buffer, const ktl::api::bind_descriptor_buffer_embedded_samplers_info_ext *
                                                   _p_bind_descriptor_buffer_embedded_samplers_info);
 using pfn_set_latency_sleep_mode_nv =
@@ -4641,45 +4643,45 @@ using pfn_cmd_copy_query_pool_results_to_memory_khr =
     void (*)(ktl::api::command_buffer _command_buffer, ktl::api::query_pool _query_pool, ktl::u32 _first_query,
              ktl::u32 _query_count, const ktl::api::strided_device_address_range_khr * _p_dst_range,
              ktl::api::address_command_flags_khr _dst_flags, ktl::api::query_result_flags _query_result_flags);
-using pfn_cmd_begin_conditional_rendering_2ext =
-    void (*)(ktl::api::command_buffer                                _command_buffer,
-             const ktl::api::conditional_rendering_begin_info_2ext * _p_conditional_rendering_begin);
-using pfn_cmd_bind_transform_feedback_buffers_2ext =
+using pfn_cmd_begin_conditional_rendering_2_ext =
+    void (*)(ktl::api::command_buffer                                 _command_buffer,
+             const ktl::api::conditional_rendering_begin_info_2_ext * _p_conditional_rendering_begin);
+using pfn_cmd_bind_transform_feedback_buffers_2_ext =
     void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count,
-             const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_binding_infos);
-using pfn_cmd_begin_transform_feedback_2ext =
+             const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_binding_infos);
+using pfn_cmd_begin_transform_feedback_2_ext =
     void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range, ktl::u32 _counter_range_count,
-             const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_infos);
-using pfn_cmd_end_transform_feedback_2ext =
+             const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_counter_infos);
+using pfn_cmd_end_transform_feedback_2_ext =
     void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range, ktl::u32 _counter_range_count,
-             const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_infos);
-using pfn_cmd_draw_indirect_byte_count_2ext =
+             const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_counter_infos);
+using pfn_cmd_draw_indirect_byte_count_2_ext =
     void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _instance_count, ktl::u32 _first_instance,
-             const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_info, ktl::u32 _counter_offset,
+             const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_counter_info, ktl::u32 _counter_offset,
              ktl::u32 _vertex_stride);
-using pfn_cmd_write_marker_to_memory_amd = void (*)(ktl::api::command_buffer                 _command_buffer,
+using pfn_cmd_write_marker_to_memory_amd  = void (*)(ktl::api::command_buffer                 _command_buffer,
                                                     const ktl::api::memory_marker_info_amd * _p_info);
-using pfn_cmd_bind_index_buffer_3khr     = void (*)(ktl::api::command_buffer                      _command_buffer,
-                                                const ktl::api::bind_index_buffer_3info_khr * _p_info);
-using pfn_cmd_bind_vertex_buffers_3khr   = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
-                                                  ktl::u32                                       _binding_count,
-                                                  const ktl::api::bind_vertex_buffer_3info_khr * _p_binding_infos);
-using pfn_cmd_draw_indirect_2khr         = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                            const ktl::api::draw_indirect_2info_khr * _p_info);
-using pfn_cmd_draw_indexed_indirect_2khr = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                                    const ktl::api::draw_indirect_2info_khr * _p_info);
-using pfn_cmd_draw_indirect_count_2khr   = void (*)(ktl::api::command_buffer                        _command_buffer,
-                                                  const ktl::api::draw_indirect_count_2info_khr * _p_info);
-using pfn_cmd_draw_indexed_indirect_count_2khr    = void (*)(ktl::api::command_buffer _command_buffer,
-                                                          const ktl::api::draw_indirect_count_2info_khr * _p_info);
-using pfn_cmd_draw_mesh_tasks_indirect_2ext       = void (*)(ktl::api::command_buffer                  _command_buffer,
-                                                       const ktl::api::draw_indirect_2info_khr * _p_info);
-using pfn_cmd_draw_mesh_tasks_indirect_count_2ext = void (*)(ktl::api::command_buffer _command_buffer,
-                                                             const ktl::api::draw_indirect_count_2info_khr * _p_info);
-using pfn_cmd_dispatch_indirect_2khr         = void (*)(ktl::api::command_buffer                      _command_buffer,
-                                                const ktl::api::dispatch_indirect_2info_khr * _p_info);
-using pfn_create_acceleration_structure_2khr = ktl::api::result (*)(
-    ktl::api::device _device, const ktl::api::acceleration_structure_create_info_2khr * _p_create_info,
+using pfn_cmd_bind_index_buffer_3_khr     = void (*)(ktl::api::command_buffer                       _command_buffer,
+                                                 const ktl::api::bind_index_buffer_3_info_khr * _p_info);
+using pfn_cmd_bind_vertex_buffers_3_khr   = void (*)(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
+                                                   ktl::u32                                        _binding_count,
+                                                   const ktl::api::bind_vertex_buffer_3_info_khr * _p_binding_infos);
+using pfn_cmd_draw_indirect_2_khr         = void (*)(ktl::api::command_buffer                   _command_buffer,
+                                             const ktl::api::draw_indirect_2_info_khr * _p_info);
+using pfn_cmd_draw_indexed_indirect_2_khr = void (*)(ktl::api::command_buffer                   _command_buffer,
+                                                     const ktl::api::draw_indirect_2_info_khr * _p_info);
+using pfn_cmd_draw_indirect_count_2_khr   = void (*)(ktl::api::command_buffer                         _command_buffer,
+                                                   const ktl::api::draw_indirect_count_2_info_khr * _p_info);
+using pfn_cmd_draw_indexed_indirect_count_2_khr = void (*)(ktl::api::command_buffer _command_buffer,
+                                                           const ktl::api::draw_indirect_count_2_info_khr * _p_info);
+using pfn_cmd_draw_mesh_tasks_indirect_2_ext    = void (*)(ktl::api::command_buffer                   _command_buffer,
+                                                        const ktl::api::draw_indirect_2_info_khr * _p_info);
+using pfn_cmd_draw_mesh_tasks_indirect_count_2_ext = void (*)(ktl::api::command_buffer _command_buffer,
+                                                              const ktl::api::draw_indirect_count_2_info_khr * _p_info);
+using pfn_cmd_dispatch_indirect_2_khr         = void (*)(ktl::api::command_buffer                       _command_buffer,
+                                                 const ktl::api::dispatch_indirect_2_info_khr * _p_info);
+using pfn_create_acceleration_structure_2_khr = ktl::api::result (*)(
+    ktl::api::device _device, const ktl::api::acceleration_structure_create_info_2_khr * _p_create_info,
     const ktl::api::allocation_callbacks * _p_allocator,
     ktl::api::acceleration_structure_khr * _p_acceleration_structure);
 using pfn_get_physical_device_queue_family_data_graph_engine_operation_properties_arm =

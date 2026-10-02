@@ -31,8 +31,8 @@ def is_feature_struct(_root) -> bool:
 
 
 def is_core_features(source_snake: str) -> bool:
-    # physical_device_vulkan_11features ... physical_device_vulkan_14features
-    return re.search(r"vulkan_\d+features$", source_snake) is not None
+    # physical_device_vulkan_1_1_features ... physical_device_vulkan_1_4_features
+    return re.search(r"vulkan_\d+_\d+_features$", source_snake) is not None
 
 
 def make_feature_enum_name(field_snake: str, source_snake: str) -> str:
@@ -48,7 +48,7 @@ def make_feature_enum_name(field_snake: str, source_snake: str) -> str:
     
     if extra_nums: result += f"_{extra_nums[0]}"
     if vendor and not result.endswith(vendor): result += vendor
-    return make_cpp_name(result)
+    return result
 
 
 def extract_struct_field_impl(_root, _name, _is_feature) -> VkStructField:

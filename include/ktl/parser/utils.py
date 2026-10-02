@@ -4,22 +4,38 @@ from collections import defaultdict, deque
 
 import re
 
+# words of a camel case name as Khronos splits them to build VK_STRUCTURE_TYPE_* from a struct name
+# (SPECIAL_WORDS and MAIN_RE of Vulkan-Docs scripts/vkconventions.py): a number is a word of its own
+# except the special words, leading lowercase word is a member name
+_SPECIAL_WORDS = ("16Bit", "2D", "3D", "8Bit", "AABB", "ASTC", "D3D12", "Float16", "Bfloat16", "Float8", "ImagePipe",
+                  "Int64", "Int8", "MacOS", "RGBA10X6", "Uint8", "Win32")
+# ktl additions for member and command names, Khronos does not build anything from them
+_EXTRA_SPECIAL_WORDS = ("Rgba10x6", "YCbCr", "RandR")
+_WORD = re.compile("|".join([
+    r"[A-Z]{2,}s(?![a-z])",                                # plural of an acronym: numAABBs -> aabbs
+    r"(?:B?[Ff]loat|U?[Ii]nt)(?:4|6|8|16|32|64)(?![0-9])", # bit width stays with its type: shaderInt16 -> int16
+    *(re.escape(word) for word in sorted(_SPECIAL_WORDS + _EXTRA_SPECIAL_WORDS)),
+    # after the special words, otherwise D3D12 is split
+    r"(?:[RGBA][0-9]+){2,}", r"E[0-9]+M[0-9]+",            # formats as in their value names: A4R4G4B4, E8M0
+    r"[0-9]+x[0-9]+(?:Bit)?", r"[0-9]+D(?![a-z])",         # 4x8Bit, 1D as 2D and 3D
+    r"[0-9]+k(?![a-z])", r"[A-Z][0-9]+(?=[A-Z]|$)",        # 64k, L1, T0
+    r"[0-9]+", r"[A-Z][a-z]+", r"[A-Z][A-Z]*(?![a-z])", r"[a-z]+"]))
+
+
 def c_name_to_cpp(name: str) -> str:
     if name in ("sType", "pNext"):
         return name.lower()
+    if not re.search(r"[A-Z]", name): # already snake case
+        return name
 
-    # 1. Расставляем разделители
-    s = re.sub(r'([a-z0-9])([A-Z])', r'\1_\2', name)
-    s = re.sub(r'([A-Z]+)([A-Z][a-z])', r'\1_\2', s)
-    s = re.sub(r'([a-zA-Z])(\d)', r'\1_\2', s)
-    s = re.sub(r'(\d)([a-zA-Z])', r'\1_\2', s)
-
-    result = s.lower()
-
-    # 2. Убираем _ ПОСЛЕ цифры (как просили)
-    result = re.sub(r'(\d)_', r'\1', result)
-
-    return result
+    words = []
+    for part in name.split("_"): # textureCompressionASTC_LDR
+        part_words = _WORD.findall(part)
+        if "".join(part_words) != part:
+            raise ValueError(f"unexpected character in name {name!r}")
+        words += part_words
+    # PhysicalDeviceVulkan11Features -> physical_device_vulkan_1_1_features as VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_VULKAN_1_1_FEATURES
+    return re.sub(r"(^|_)vulkan_(\d)(\d)(_|$)", r"\1vulkan_\2_\3\4", "_".join(word.lower() for word in words))
 
 def is_vulkan_video(name: str) -> bool: # vulkan-video is not supported now
     return "video" in name.lower()

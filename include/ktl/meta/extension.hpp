@@ -91,7 +91,7 @@ struct extension< ktl::api::extension::khr_swapchain >
                                        std::span{requirements}.subspan(1, 1)},
         ktl::meta::conditional_command{ktl::api::command::get_physical_device_present_rectangles_khr,
                                        std::span{requirements}.subspan(1, 1)},
-        ktl::meta::conditional_command{ktl::api::command::acquire_next_image_2khr,
+        ktl::meta::conditional_command{ktl::api::command::acquire_next_image_2_khr,
                                        std::span{requirements}.subspan(1, 1)}};
 };
 
@@ -199,15 +199,15 @@ struct extension< ktl::api::extension::khr_android_surface >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_win_32surface >
+struct extension< ktl::api::extension::khr_win32_surface >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_win32_surface";
     static constexpr bool                  is_instance = true;
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 2 > commands = {
-        ktl::api::command::create_win_32surface_khr,
-        ktl::api::command::get_physical_device_win_32presentation_support_khr};
+        ktl::api::command::create_win32_surface_khr,
+        ktl::api::command::get_physical_device_win32_presentation_support_khr};
 
     static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_surface};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
@@ -401,7 +401,7 @@ struct extension< ktl::api::extension::ext_transform_feedback >
         ktl::api::command::cmd_draw_indirect_byte_count_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -434,7 +434,7 @@ struct extension< ktl::api::extension::nvx_image_view_handle >
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 4 > commands = {
-        ktl::api::command::get_image_view_handle_nvx, ktl::api::command::get_image_view_handle_64nvx,
+        ktl::api::command::get_image_view_handle_nvx, ktl::api::command::get_image_view_handle_64_nvx,
         ktl::api::command::get_image_view_address_nvx, ktl::api::command::get_device_combined_image_sampler_index_nvx};
 
     static constexpr std::array< ktl::meta::dependency, 0 >          dependencies = {};
@@ -514,7 +514,7 @@ struct extension< ktl::api::extension::amd_texture_gather_bias_lod >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -547,7 +547,7 @@ struct extension< ktl::api::extension::khr_dynamic_rendering >
                                                                     ktl::api::command::cmd_end_rendering_khr};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_depth_stencil_resolve,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_depth_stencil_resolve,
         ktl::api::version_1_1, ktl::api::extension::khr_depth_stencil_resolve, ktl::api::version_1_2};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
@@ -597,7 +597,7 @@ struct extension< ktl::api::extension::nv_corner_sampled_image >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -614,7 +614,7 @@ struct extension< ktl::api::extension::khr_multiview >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -669,13 +669,13 @@ struct extension< ktl::api::extension::nv_external_memory >
 };
 
 template <>
-struct extension< ktl::api::extension::nv_external_memory_win_32 >
+struct extension< ktl::api::extension::nv_external_memory_win32 >
 {
     static constexpr std::string_view      raw_name    = "VK_NV_external_memory_win32";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {};
 
-    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::get_memory_win_32handle_nv};
+    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::get_memory_win32_handle_nv};
 
     static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::nv_external_memory};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
@@ -684,36 +684,36 @@ struct extension< ktl::api::extension::nv_external_memory_win_32 >
 };
 
 template <>
-struct extension< ktl::api::extension::nv_win_32keyed_mutex >
+struct extension< ktl::api::extension::nv_win32_keyed_mutex >
 {
     static constexpr std::string_view      raw_name    = "VK_NV_win32_keyed_mutex";
     static constexpr bool                  is_instance = false;
-    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_win_32keyed_mutex};
+    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_win32_keyed_mutex};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 1 > dependencies = {
-        ktl::api::extension::nv_external_memory_win_32};
+        ktl::api::extension::nv_external_memory_win32};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
 };
 
 template <>
-struct extension< ktl::api::extension::khr_get_physical_device_properties_2 >
+struct extension< ktl::api::extension::khr_get_physical_device_properties2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_get_physical_device_properties2";
     static constexpr bool                  is_instance = true;
     static constexpr ktl::meta::dependency promoted    = {ktl::api::version_1_1};
 
     static constexpr std::array< ktl::api::command, 7 > commands = {
-        ktl::api::command::get_physical_device_features_2khr,
-        ktl::api::command::get_physical_device_properties_2khr,
-        ktl::api::command::get_physical_device_format_properties_2khr,
-        ktl::api::command::get_physical_device_image_format_properties_2khr,
-        ktl::api::command::get_physical_device_queue_family_properties_2khr,
-        ktl::api::command::get_physical_device_memory_properties_2khr,
-        ktl::api::command::get_physical_device_sparse_image_format_properties_2khr};
+        ktl::api::command::get_physical_device_features_2_khr,
+        ktl::api::command::get_physical_device_properties_2_khr,
+        ktl::api::command::get_physical_device_format_properties_2_khr,
+        ktl::api::command::get_physical_device_image_format_properties_2_khr,
+        ktl::api::command::get_physical_device_queue_family_properties_2_khr,
+        ktl::api::command::get_physical_device_memory_properties_2_khr,
+        ktl::api::command::get_physical_device_sparse_image_format_properties_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 0 >          dependencies = {};
     static constexpr std::array< ktl::meta::requirement, 1 >         requirements = {ktl::meta::requirement{}};
@@ -746,7 +746,7 @@ struct extension< ktl::api::extension::khr_device_group >
                                        std::span{requirements}.subspan(1, 1)},
         ktl::meta::conditional_command{ktl::api::command::get_physical_device_present_rectangles_khr,
                                        std::span{requirements}.subspan(1, 1)},
-        ktl::meta::conditional_command{ktl::api::command::acquire_next_image_2khr,
+        ktl::meta::conditional_command{ktl::api::command::acquire_next_image_2_khr,
                                        std::span{requirements}.subspan(2, 1)}};
 };
 
@@ -835,7 +835,7 @@ struct extension< ktl::api::extension::ext_texture_compression_astc_hdr >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -852,7 +852,7 @@ struct extension< ktl::api::extension::ext_astc_decode_mode >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -869,7 +869,7 @@ struct extension< ktl::api::extension::ext_pipeline_robustness >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -877,7 +877,7 @@ struct extension< ktl::api::extension::ext_pipeline_robustness >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_1 >
+struct extension< ktl::api::extension::khr_maintenance1 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance1";
     static constexpr bool                  is_instance = false;
@@ -918,7 +918,7 @@ struct extension< ktl::api::extension::khr_external_memory_capabilities >
         ktl::api::command::get_physical_device_external_buffer_properties_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -943,14 +943,14 @@ struct extension< ktl::api::extension::khr_external_memory >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_external_memory_win_32 >
+struct extension< ktl::api::extension::khr_external_memory_win32 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_external_memory_win32";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 2 > commands = {
-        ktl::api::command::get_memory_win_32handle_khr, ktl::api::command::get_memory_win_32handle_properties_khr};
+        ktl::api::command::get_memory_win32_handle_khr, ktl::api::command::get_memory_win32_handle_properties_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 >    dependencies = {ktl::api::extension::khr_external_memory,
                                                                                ktl::api::version_1_1};
@@ -979,7 +979,7 @@ struct extension< ktl::api::extension::khr_external_memory_fd >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_win_32keyed_mutex >
+struct extension< ktl::api::extension::khr_win32_keyed_mutex >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_win32_keyed_mutex";
     static constexpr bool                  is_instance = false;
@@ -988,7 +988,7 @@ struct extension< ktl::api::extension::khr_win_32keyed_mutex >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 1 > dependencies = {
-        ktl::api::extension::khr_external_memory_win_32};
+        ktl::api::extension::khr_external_memory_win32};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
@@ -1005,7 +1005,7 @@ struct extension< ktl::api::extension::khr_external_semaphore_capabilities >
         ktl::api::command::get_physical_device_external_semaphore_properties_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1029,14 +1029,14 @@ struct extension< ktl::api::extension::khr_external_semaphore >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_external_semaphore_win_32 >
+struct extension< ktl::api::extension::khr_external_semaphore_win32 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_external_semaphore_win32";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 2 > commands = {
-        ktl::api::command::import_semaphore_win_32handle_khr, ktl::api::command::get_semaphore_win_32handle_khr};
+        ktl::api::command::import_semaphore_win32_handle_khr, ktl::api::command::get_semaphore_win32_handle_khr};
 
     static constexpr std::array< ktl::meta::dependency, 1 > dependencies = {
         ktl::api::extension::khr_external_semaphore};
@@ -1073,7 +1073,7 @@ struct extension< ktl::api::extension::khr_push_descriptor >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_push_descriptor_set_khr};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1, ktl::api::version_1_1,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1, ktl::api::version_1_1,
         ktl::api::extension::khr_descriptor_update_template};
     static constexpr std::array< ktl::meta::requirement, 4 > requirements = {
         std::span{dependencies}.subspan(0, 1), std::span{dependencies}.subspan(1, 1),
@@ -1095,7 +1095,7 @@ struct extension< ktl::api::extension::ext_conditional_rendering >
         ktl::api::command::cmd_begin_conditional_rendering_ext, ktl::api::command::cmd_end_conditional_rendering_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1103,7 +1103,7 @@ struct extension< ktl::api::extension::ext_conditional_rendering >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_shader_float_16int_8 >
+struct extension< ktl::api::extension::khr_shader_float16_int8 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_shader_float16_int8";
     static constexpr bool                  is_instance = false;
@@ -1112,7 +1112,7 @@ struct extension< ktl::api::extension::khr_shader_float_16int_8 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1129,8 +1129,8 @@ struct extension< ktl::api::extension::khr_16bit_storage >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
-        ktl::api::extension::khr_storage_buffer_storage_class, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_storage_buffer_storage_class,
+        ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1211,7 +1211,7 @@ struct extension< ktl::api::extension::ext_acquire_xlib_display >
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 2 > commands = {ktl::api::command::acquire_xlib_display_ext,
-                                                                    ktl::api::command::get_rand_r_output_display_ext};
+                                                                    ktl::api::command::get_randr_output_display_ext};
 
     static constexpr std::array< ktl::meta::dependency, 1 > dependencies = {
         ktl::api::extension::ext_direct_mode_display};
@@ -1228,7 +1228,7 @@ struct extension< ktl::api::extension::ext_display_surface_counter >
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 1 > commands = {
-        ktl::api::command::get_physical_device_surface_capabilities_2ext};
+        ktl::api::command::get_physical_device_surface_capabilities_2_ext};
 
     static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_display};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
@@ -1301,7 +1301,7 @@ struct extension< ktl::api::extension::nv_geometry_shader_passthrough >
 };
 
 template <>
-struct extension< ktl::api::extension::nv_viewport_array_2 >
+struct extension< ktl::api::extension::nv_viewport_array2 >
 {
     static constexpr std::string_view      raw_name    = "VK_NV_viewport_array2";
     static constexpr bool                  is_instance = false;
@@ -1359,7 +1359,7 @@ struct extension< ktl::api::extension::ext_discard_rectangles >
         ktl::api::command::cmd_set_discard_rectangle_mode_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1376,7 +1376,7 @@ struct extension< ktl::api::extension::ext_conservative_rasterization >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1393,7 +1393,7 @@ struct extension< ktl::api::extension::ext_depth_clip_enable >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1440,8 +1440,8 @@ struct extension< ktl::api::extension::khr_imageless_framebuffer >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 6 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
-        ktl::api::extension::khr_maintenance_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
+        ktl::api::extension::khr_maintenance2,
         ktl::api::extension::khr_image_format_list,
         ktl::api::version_1_1,
         ktl::api::extension::khr_image_format_list,
@@ -1454,18 +1454,18 @@ struct extension< ktl::api::extension::khr_imageless_framebuffer >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_create_renderpass_2 >
+struct extension< ktl::api::extension::khr_create_renderpass2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_create_renderpass2";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {ktl::api::version_1_2};
 
     static constexpr std::array< ktl::api::command, 4 > commands = {
-        ktl::api::command::create_render_pass_2khr, ktl::api::command::cmd_begin_render_pass_2khr,
-        ktl::api::command::cmd_next_subpass_2khr, ktl::api::command::cmd_end_render_pass_2khr};
+        ktl::api::command::create_render_pass_2_khr, ktl::api::command::cmd_begin_render_pass_2_khr,
+        ktl::api::command::cmd_next_subpass_2_khr, ktl::api::command::cmd_end_render_pass_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_multiview, ktl::api::extension::khr_maintenance_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_multiview, ktl::api::extension::khr_maintenance2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1482,7 +1482,7 @@ struct extension< ktl::api::extension::img_relaxed_line_rasterization >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1500,11 +1500,11 @@ struct extension< ktl::api::extension::khr_shared_presentable_image >
 
     static constexpr std::array< ktl::meta::dependency, 6 > dependencies = {
         ktl::api::extension::khr_swapchain,
-        ktl::api::extension::khr_get_surface_capabilities_2,
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_surface_capabilities2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1,
         ktl::api::extension::khr_swapchain,
-        ktl::api::extension::khr_get_surface_capabilities_2};
+        ktl::api::extension::khr_get_surface_capabilities2};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 3),
                                                                                std::span{dependencies}.subspan(3, 3)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1522,7 +1522,7 @@ struct extension< ktl::api::extension::khr_external_fence_capabilities >
         ktl::api::command::get_physical_device_external_fence_properties_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1546,14 +1546,14 @@ struct extension< ktl::api::extension::khr_external_fence >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_external_fence_win_32 >
+struct extension< ktl::api::extension::khr_external_fence_win32 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_external_fence_win32";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {};
 
-    static constexpr std::array< ktl::api::command, 2 > commands = {ktl::api::command::import_fence_win_32handle_khr,
-                                                                    ktl::api::command::get_fence_win_32handle_khr};
+    static constexpr std::array< ktl::api::command, 2 > commands = {ktl::api::command::import_fence_win32_handle_khr,
+                                                                    ktl::api::command::get_fence_win32_handle_khr};
 
     static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_external_fence};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
@@ -1592,7 +1592,7 @@ struct extension< ktl::api::extension::khr_performance_query >
         ktl::api::command::acquire_profiling_lock_khr, ktl::api::command::release_profiling_lock_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1600,7 +1600,7 @@ struct extension< ktl::api::extension::khr_performance_query >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_2 >
+struct extension< ktl::api::extension::khr_maintenance2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance2";
     static constexpr bool                  is_instance = false;
@@ -1615,15 +1615,15 @@ struct extension< ktl::api::extension::khr_maintenance_2 >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_get_surface_capabilities_2 >
+struct extension< ktl::api::extension::khr_get_surface_capabilities2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_get_surface_capabilities2";
     static constexpr bool                  is_instance = true;
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 2 > commands = {
-        ktl::api::command::get_physical_device_surface_capabilities_2khr,
-        ktl::api::command::get_physical_device_surface_formats_2khr};
+        ktl::api::command::get_physical_device_surface_capabilities_2_khr,
+        ktl::api::command::get_physical_device_surface_formats_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_surface};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
@@ -1641,8 +1641,8 @@ struct extension< ktl::api::extension::khr_variable_pointers >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
-        ktl::api::extension::khr_storage_buffer_storage_class, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_storage_buffer_storage_class,
+        ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1650,16 +1650,16 @@ struct extension< ktl::api::extension::khr_variable_pointers >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_get_display_properties_2 >
+struct extension< ktl::api::extension::khr_get_display_properties2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_get_display_properties2";
     static constexpr bool                  is_instance = true;
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 4 > commands = {
-        ktl::api::command::get_physical_device_display_properties_2khr,
-        ktl::api::command::get_physical_device_display_plane_properties_2khr,
-        ktl::api::command::get_display_mode_properties_2khr, ktl::api::command::get_display_plane_capabilities_2khr};
+        ktl::api::command::get_physical_device_display_properties_2_khr,
+        ktl::api::command::get_physical_device_display_plane_properties_2_khr,
+        ktl::api::command::get_display_mode_properties_2_khr, ktl::api::command::get_display_plane_capabilities_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_display};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
@@ -1689,7 +1689,7 @@ struct extension< ktl::api::extension::mvk_macos_surface >
     static constexpr bool                  is_instance = true;
     static constexpr ktl::meta::dependency promoted    = {};
 
-    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::create_mac_os_surface_mvk};
+    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::create_macos_surface_mvk};
 
     static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_surface};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
@@ -1740,7 +1740,7 @@ struct extension< ktl::api::extension::khr_dedicated_allocation >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_memory_requirements_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_memory_requirements2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1802,7 +1802,7 @@ struct extension< ktl::api::extension::ext_sampler_filter_minmax >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1825,7 +1825,7 @@ struct extension< ktl::api::extension::khr_storage_buffer_storage_class >
 };
 
 template <>
-struct extension< ktl::api::extension::amd_gpu_shader_int_16 >
+struct extension< ktl::api::extension::amd_gpu_shader_int16 >
 {
     static constexpr std::string_view      raw_name    = "VK_AMD_gpu_shader_int16";
     static constexpr bool                  is_instance = false;
@@ -1855,7 +1855,7 @@ struct extension< ktl::api::extension::amd_gpa_interface >
         ktl::api::command::reset_gpa_session_amd,         ktl::api::command::cmd_copy_gpa_session_results_amd};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1879,10 +1879,10 @@ struct extension< ktl::api::extension::amdx_shader_enqueue >
         ktl::api::command::cmd_dispatch_graph_indirect_count_amdx};
 
     static constexpr std::array< ktl::meta::dependency, 8 > dependencies = {
-        ktl::api::extension::khr_synchronization_2,      ktl::api::extension::khr_spirv_14,
-        ktl::api::extension::ext_extended_dynamic_state, ktl::api::extension::khr_maintenance_5,
+        ktl::api::extension::khr_synchronization2,       ktl::api::extension::khr_spirv_1_4,
+        ktl::api::extension::ext_extended_dynamic_state, ktl::api::extension::khr_maintenance5,
         ktl::api::extension::khr_pipeline_library,       ktl::api::version_1_3,
-        ktl::api::extension::khr_maintenance_5,          ktl::api::extension::khr_pipeline_library};
+        ktl::api::extension::khr_maintenance5,           ktl::api::extension::khr_pipeline_library};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 5),
                                                                                std::span{dependencies}.subspan(5, 3)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -1910,10 +1910,10 @@ struct extension< ktl::api::extension::ext_descriptor_heap >
         ktl::api::extension::khr_buffer_device_address,
         ktl::api::version_1_2,
         ktl::api::extension::khr_extended_flags,
-        ktl::api::extension::khr_maintenance_5,
+        ktl::api::extension::khr_maintenance5,
         ktl::api::extension::khr_buffer_device_address,
         ktl::api::version_1_2,
-        ktl::api::extension::khr_maintenance_5,
+        ktl::api::extension::khr_maintenance5,
         ktl::api::version_1_4,
         ktl::api::extension::ext_custom_border_color,
         ktl::api::extension::arm_tensors};
@@ -1972,7 +1972,7 @@ struct extension< ktl::api::extension::ext_inline_uniform_block >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_maintenance_1,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_maintenance1,
         ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -1996,7 +1996,7 @@ struct extension< ktl::api::extension::ext_shader_stencil_export >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_shader_bfloat_16 >
+struct extension< ktl::api::extension::khr_shader_bfloat16 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_shader_bfloat16";
     static constexpr bool                  is_instance = false;
@@ -2005,7 +2005,7 @@ struct extension< ktl::api::extension::khr_shader_bfloat_16 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2024,7 +2024,7 @@ struct extension< ktl::api::extension::ext_sample_locations >
         ktl::api::command::get_physical_device_multisample_properties_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2047,15 +2047,15 @@ struct extension< ktl::api::extension::khr_relaxed_block_layout >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_get_memory_requirements_2 >
+struct extension< ktl::api::extension::khr_get_memory_requirements2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_get_memory_requirements2";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {ktl::api::version_1_1};
 
     static constexpr std::array< ktl::api::command, 3 > commands = {
-        ktl::api::command::get_image_memory_requirements_2khr, ktl::api::command::get_buffer_memory_requirements_2khr,
-        ktl::api::command::get_image_sparse_memory_requirements_2khr};
+        ktl::api::command::get_image_memory_requirements_2_khr, ktl::api::command::get_buffer_memory_requirements_2_khr,
+        ktl::api::command::get_image_sparse_memory_requirements_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 0 >          dependencies = {};
     static constexpr std::array< ktl::meta::requirement, 1 >         requirements = {ktl::meta::requirement{}};
@@ -2088,7 +2088,7 @@ struct extension< ktl::api::extension::ext_blend_operation_advanced >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2165,7 +2165,7 @@ struct extension< ktl::api::extension::khr_ray_tracing_pipeline >
         ktl::api::command::cmd_set_ray_tracing_pipeline_stack_size_khr};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_spirv_14, ktl::api::extension::khr_acceleration_structure, ktl::api::version_1_2,
+        ktl::api::extension::khr_spirv_1_4, ktl::api::extension::khr_acceleration_structure, ktl::api::version_1_2,
         ktl::api::extension::khr_acceleration_structure};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
@@ -2183,7 +2183,7 @@ struct extension< ktl::api::extension::khr_ray_query >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_spirv_14, ktl::api::extension::khr_acceleration_structure, ktl::api::version_1_2,
+        ktl::api::extension::khr_spirv_1_4, ktl::api::extension::khr_acceleration_structure, ktl::api::version_1_2,
         ktl::api::extension::khr_acceleration_structure};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
@@ -2263,8 +2263,8 @@ struct extension< ktl::api::extension::khr_sampler_ycbcr_conversion >
         ktl::api::command::destroy_sampler_ycbcr_conversion_khr};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_maintenance_1, ktl::api::extension::khr_bind_memory_2,
-        ktl::api::extension::khr_get_memory_requirements_2, ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_maintenance1, ktl::api::extension::khr_bind_memory2,
+        ktl::api::extension::khr_get_memory_requirements2, ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 4),
                                                                                std::span{dependencies}.subspan(4, 1)};
@@ -2273,14 +2273,14 @@ struct extension< ktl::api::extension::khr_sampler_ycbcr_conversion >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_bind_memory_2 >
+struct extension< ktl::api::extension::khr_bind_memory2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_bind_memory2";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {ktl::api::version_1_1};
 
-    static constexpr std::array< ktl::api::command, 2 > commands = {ktl::api::command::bind_buffer_memory_2khr,
-                                                                    ktl::api::command::bind_image_memory_2khr};
+    static constexpr std::array< ktl::api::command, 2 > commands = {ktl::api::command::bind_buffer_memory_2_khr,
+                                                                    ktl::api::command::bind_image_memory_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 0 >          dependencies = {};
     static constexpr std::array< ktl::meta::requirement, 1 >         requirements = {ktl::meta::requirement{}};
@@ -2299,8 +2299,8 @@ struct extension< ktl::api::extension::ext_image_drm_format_modifier >
         ktl::api::command::get_image_drm_format_modifier_properties_ext};
 
     static constexpr std::array< ktl::meta::dependency, 7 > dependencies = {
-        ktl::api::extension::khr_bind_memory_2,
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_bind_memory2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::khr_sampler_ycbcr_conversion,
         ktl::api::extension::khr_image_format_list,
         ktl::api::version_1_1,
@@ -2340,7 +2340,7 @@ struct extension< ktl::api::extension::ext_descriptor_indexing >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_maintenance_3,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_maintenance3,
         ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -2373,7 +2373,7 @@ struct extension< ktl::api::extension::khr_portability_subset >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2392,7 +2392,7 @@ struct extension< ktl::api::extension::nv_shading_rate_image >
         ktl::api::command::cmd_set_coarse_sample_order_nv};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2421,7 +2421,7 @@ struct extension< ktl::api::extension::nv_ray_tracing >
         ktl::api::command::compile_deferred_nv};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_get_memory_requirements_2,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_get_memory_requirements2,
         ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -2439,7 +2439,7 @@ struct extension< ktl::api::extension::nv_representative_fragment_test >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2447,7 +2447,7 @@ struct extension< ktl::api::extension::nv_representative_fragment_test >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_3 >
+struct extension< ktl::api::extension::khr_maintenance3 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance3";
     static constexpr bool                  is_instance = false;
@@ -2457,7 +2457,7 @@ struct extension< ktl::api::extension::khr_maintenance_3 >
         ktl::api::command::get_descriptor_set_layout_support_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2536,7 +2536,7 @@ struct extension< ktl::api::extension::qcom_elapsed_timer_query >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2583,8 +2583,8 @@ struct extension< ktl::api::extension::khr_8bit_storage >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
-        ktl::api::extension::khr_storage_buffer_storage_class, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_storage_buffer_storage_class,
+        ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2619,17 +2619,17 @@ struct extension< ktl::api::extension::amd_buffer_marker >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_write_buffer_marker_amd};
 
     static constexpr std::array< ktl::meta::dependency, 2 >  dependencies = {ktl::api::version_1_3,
-                                                                             ktl::api::extension::khr_synchronization_2};
+                                                                             ktl::api::extension::khr_synchronization2};
     static constexpr std::array< ktl::meta::requirement, 3 > requirements = {
         ktl::meta::requirement{}, std::span{dependencies}.subspan(0, 1), std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const >       depends = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 1 > conditional_commands = {
-        ktl::meta::conditional_command{ktl::api::command::cmd_write_buffer_marker_2amd,
+        ktl::meta::conditional_command{ktl::api::command::cmd_write_buffer_marker_2_amd,
                                        std::span{requirements}.subspan(1, 2)}};
 };
 
 template <>
-struct extension< ktl::api::extension::khr_shader_atomic_int_64 >
+struct extension< ktl::api::extension::khr_shader_atomic_int64 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_shader_atomic_int64";
     static constexpr bool                  is_instance = false;
@@ -2638,7 +2638,7 @@ struct extension< ktl::api::extension::khr_shader_atomic_int_64 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2655,7 +2655,7 @@ struct extension< ktl::api::extension::khr_shader_clock >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2689,7 +2689,7 @@ struct extension< ktl::api::extension::ext_calibrated_timestamps >
         ktl::api::command::get_calibrated_timestamps_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2706,7 +2706,7 @@ struct extension< ktl::api::extension::amd_shader_core_properties >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2723,7 +2723,7 @@ struct extension< ktl::api::extension::khr_global_priority >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2755,7 +2755,7 @@ struct extension< ktl::api::extension::ext_vertex_attribute_divisor >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2803,7 +2803,7 @@ struct extension< ktl::api::extension::khr_driver_properties >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2820,7 +2820,7 @@ struct extension< ktl::api::extension::khr_shader_float_controls >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2851,8 +2851,8 @@ struct extension< ktl::api::extension::khr_depth_stencil_resolve >
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
-    static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_create_renderpass_2, ktl::api::version_1_2};
+    static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {ktl::api::extension::khr_create_renderpass2,
+                                                                            ktl::api::version_1_2};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2869,7 +2869,7 @@ struct extension< ktl::api::extension::khr_swapchain_mutable_format >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 8 >    dependencies = {ktl::api::extension::khr_swapchain,
-                                                                               ktl::api::extension::khr_maintenance_2,
+                                                                               ktl::api::extension::khr_maintenance2,
                                                                                ktl::api::extension::khr_image_format_list,
                                                                                ktl::api::version_1_1,
                                                                                ktl::api::extension::khr_swapchain,
@@ -2893,7 +2893,7 @@ struct extension< ktl::api::extension::nv_compute_shader_derivatives >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2911,7 +2911,7 @@ struct extension< ktl::api::extension::nv_mesh_shader >
                                                                     ktl::api::command::cmd_draw_mesh_tasks_indirect_nv};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1, ktl::api::version_1_2,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1, ktl::api::version_1_2,
         ktl::api::extension::khr_draw_indirect_count, ktl::api::extension::amd_draw_indirect_count};
     static constexpr std::array< ktl::meta::requirement, 5 > requirements = {
         std::span{dependencies}.subspan(0, 1), std::span{dependencies}.subspan(1, 1),
@@ -2933,7 +2933,7 @@ struct extension< ktl::api::extension::nv_fragment_shader_barycentric >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2950,7 +2950,7 @@ struct extension< ktl::api::extension::nv_shader_image_footprint >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2968,7 +2968,7 @@ struct extension< ktl::api::extension::nv_scissor_exclusive >
         ktl::api::command::cmd_set_exclusive_scissor_enable_nv, ktl::api::command::cmd_set_exclusive_scissor_nv};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -2986,14 +2986,14 @@ struct extension< ktl::api::extension::nv_device_diagnostic_checkpoints >
                                                                     ktl::api::command::get_queue_checkpoint_data_nv};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1, ktl::api::version_1_3,
-        ktl::api::extension::khr_synchronization_2};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1, ktl::api::version_1_3,
+        ktl::api::extension::khr_synchronization2};
     static constexpr std::array< ktl::meta::requirement, 4 > requirements = {
         std::span{dependencies}.subspan(0, 1), std::span{dependencies}.subspan(1, 1),
         std::span{dependencies}.subspan(2, 1), std::span{dependencies}.subspan(3, 1)};
     static constexpr std::span< ktl::meta::requirement const >       depends = std::span{requirements}.subspan(0, 2);
     static constexpr std::array< ktl::meta::conditional_command, 1 > conditional_commands = {
-        ktl::meta::conditional_command{ktl::api::command::get_queue_checkpoint_data_2nv,
+        ktl::meta::conditional_command{ktl::api::command::get_queue_checkpoint_data_2_nv,
                                        std::span{requirements}.subspan(2, 2)}};
 };
 
@@ -3009,7 +3009,7 @@ struct extension< ktl::api::extension::khr_timeline_semaphore >
                                                                     ktl::api::command::signal_semaphore_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3030,15 +3030,15 @@ struct extension< ktl::api::extension::ext_present_timing >
         ktl::api::command::get_past_presentation_timing_ext};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_swapchain, ktl::api::extension::khr_present_id_2,
-        ktl::api::extension::khr_get_surface_capabilities_2, ktl::api::extension::khr_calibrated_timestamps};
+        ktl::api::extension::khr_swapchain, ktl::api::extension::khr_present_id2,
+        ktl::api::extension::khr_get_surface_capabilities2, ktl::api::extension::khr_calibrated_timestamps};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 4)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
 };
 
 template <>
-struct extension< ktl::api::extension::intel_shader_integer_functions_2 >
+struct extension< ktl::api::extension::intel_shader_integer_functions2 >
 {
     static constexpr std::string_view      raw_name    = "VK_INTEL_shader_integer_functions2";
     static constexpr bool                  is_instance = false;
@@ -3047,7 +3047,7 @@ struct extension< ktl::api::extension::intel_shader_integer_functions_2 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3088,7 +3088,7 @@ struct extension< ktl::api::extension::khr_vulkan_memory_model >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3105,7 +3105,7 @@ struct extension< ktl::api::extension::ext_pci_bus_info >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3122,11 +3122,11 @@ struct extension< ktl::api::extension::amd_display_native_hdr >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::set_local_dimming_amd};
 
     static constexpr std::array< ktl::meta::dependency, 6 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
-        ktl::api::extension::khr_get_surface_capabilities_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
+        ktl::api::extension::khr_get_surface_capabilities2,
         ktl::api::extension::khr_swapchain,
         ktl::api::version_1_1,
-        ktl::api::extension::khr_get_surface_capabilities_2,
+        ktl::api::extension::khr_get_surface_capabilities2,
         ktl::api::extension::khr_swapchain};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 3),
                                                                                std::span{dependencies}.subspan(3, 3)};
@@ -3142,7 +3142,7 @@ struct extension< ktl::api::extension::fuchsia_imagepipe_surface >
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 1 > commands = {
-        ktl::api::command::create_image_pipe_surface_fuchsia};
+        ktl::api::command::create_imagepipe_surface_fuchsia};
 
     static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_surface};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
@@ -3160,7 +3160,7 @@ struct extension< ktl::api::extension::khr_shader_terminate_invocation >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3192,7 +3192,7 @@ struct extension< ktl::api::extension::ext_fragment_density_map >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3209,7 +3209,7 @@ struct extension< ktl::api::extension::ext_scalar_block_layout >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3217,7 +3217,7 @@ struct extension< ktl::api::extension::ext_scalar_block_layout >
 };
 
 template <>
-struct extension< ktl::api::extension::google_hlsl_functionality_1 >
+struct extension< ktl::api::extension::google_hlsl_functionality1 >
 {
     static constexpr std::string_view      raw_name    = "VK_GOOGLE_hlsl_functionality1";
     static constexpr bool                  is_instance = false;
@@ -3273,8 +3273,8 @@ struct extension< ktl::api::extension::khr_fragment_shading_rate >
         ktl::api::command::cmd_set_fragment_shading_rate_khr};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_create_renderpass_2,
-        ktl::api::version_1_1, ktl::api::extension::khr_create_renderpass_2, ktl::api::version_1_2};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_create_renderpass2,
+        ktl::api::version_1_1, ktl::api::extension::khr_create_renderpass2, ktl::api::version_1_2};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
                                                                                std::span{dependencies}.subspan(4, 1)};
@@ -3283,7 +3283,7 @@ struct extension< ktl::api::extension::khr_fragment_shading_rate >
 };
 
 template <>
-struct extension< ktl::api::extension::amd_shader_core_properties_2 >
+struct extension< ktl::api::extension::amd_shader_core_properties2 >
 {
     static constexpr std::string_view      raw_name    = "VK_AMD_shader_core_properties2";
     static constexpr bool                  is_instance = false;
@@ -3308,7 +3308,7 @@ struct extension< ktl::api::extension::amd_device_coherent_memory >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3325,7 +3325,7 @@ struct extension< ktl::api::extension::khr_shader_constant_data >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3368,7 +3368,7 @@ struct extension< ktl::api::extension::khr_shader_abort >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_shader_image_atomic_int_64 >
+struct extension< ktl::api::extension::ext_shader_image_atomic_int64 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_shader_image_atomic_int64";
     static constexpr bool                  is_instance = false;
@@ -3377,7 +3377,7 @@ struct extension< ktl::api::extension::ext_shader_image_atomic_int_64 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3404,7 +3404,7 @@ struct extension< ktl::api::extension::khr_shader_quad_control >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_spirv_14 >
+struct extension< ktl::api::extension::khr_spirv_1_4 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_spirv_1_4";
     static constexpr bool                  is_instance = false;
@@ -3429,7 +3429,7 @@ struct extension< ktl::api::extension::ext_memory_budget >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3446,7 +3446,7 @@ struct extension< ktl::api::extension::ext_memory_priority >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3463,7 +3463,7 @@ struct extension< ktl::api::extension::khr_surface_protected_capabilities >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::version_1_1, ktl::api::extension::khr_get_surface_capabilities_2};
+        ktl::api::version_1_1, ktl::api::extension::khr_get_surface_capabilities2};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 2)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
@@ -3479,7 +3479,7 @@ struct extension< ktl::api::extension::nv_dedicated_allocation_image_aliasing >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_dedicated_allocation, ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_dedicated_allocation, ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -3497,8 +3497,8 @@ struct extension< ktl::api::extension::khr_separate_depth_stencil_layouts >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_create_renderpass_2,
-        ktl::api::version_1_1, ktl::api::extension::khr_create_renderpass_2, ktl::api::version_1_2};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_create_renderpass2,
+        ktl::api::version_1_1, ktl::api::extension::khr_create_renderpass2, ktl::api::version_1_2};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
                                                                                std::span{dependencies}.subspan(4, 1)};
@@ -3516,7 +3516,7 @@ struct extension< ktl::api::extension::ext_buffer_device_address >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::get_buffer_device_address_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3596,7 +3596,7 @@ struct extension< ktl::api::extension::nv_cooperative_matrix >
         ktl::api::command::get_physical_device_cooperative_matrix_properties_nv};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3614,7 +3614,7 @@ struct extension< ktl::api::extension::nv_coverage_reduction_mode >
         ktl::api::command::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::nv_framebuffer_mixed_samples, ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::nv_framebuffer_mixed_samples, ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1, ktl::api::extension::nv_framebuffer_mixed_samples};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
@@ -3632,7 +3632,7 @@ struct extension< ktl::api::extension::ext_fragment_shader_interlock >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3666,7 +3666,7 @@ struct extension< ktl::api::extension::khr_uniform_buffer_standard_layout >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3683,7 +3683,7 @@ struct extension< ktl::api::extension::ext_provoking_vertex >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3698,18 +3698,18 @@ struct extension< ktl::api::extension::ext_full_screen_exclusive >
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 3 > commands = {
-        ktl::api::command::get_physical_device_surface_present_modes_2ext,
+        ktl::api::command::get_physical_device_surface_present_modes_2_ext,
         ktl::api::command::acquire_full_screen_exclusive_mode_ext,
         ktl::api::command::release_full_screen_exclusive_mode_ext};
 
     static constexpr std::array< ktl::meta::dependency, 10 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::khr_surface,
-        ktl::api::extension::khr_get_surface_capabilities_2,
+        ktl::api::extension::khr_get_surface_capabilities2,
         ktl::api::extension::khr_swapchain,
         ktl::api::version_1_1,
         ktl::api::extension::khr_surface,
-        ktl::api::extension::khr_get_surface_capabilities_2,
+        ktl::api::extension::khr_get_surface_capabilities2,
         ktl::api::extension::khr_swapchain,
         ktl::api::extension::khr_device_group,
         ktl::api::version_1_1};
@@ -3718,7 +3718,7 @@ struct extension< ktl::api::extension::ext_full_screen_exclusive >
         std::span{dependencies}.subspan(8, 1), std::span{dependencies}.subspan(9, 1)};
     static constexpr std::span< ktl::meta::requirement const >       depends = std::span{requirements}.subspan(0, 2);
     static constexpr std::array< ktl::meta::conditional_command, 1 > conditional_commands = {
-        ktl::meta::conditional_command{ktl::api::command::get_device_group_surface_present_modes_2ext,
+        ktl::meta::conditional_command{ktl::api::command::get_device_group_surface_present_modes_2_ext,
                                        std::span{requirements}.subspan(2, 2)}};
 };
 
@@ -3749,7 +3749,7 @@ struct extension< ktl::api::extension::khr_buffer_device_address >
         ktl::api::command::get_device_memory_opaque_capture_address_khr};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_device_group,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_device_group,
         ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -3767,7 +3767,7 @@ struct extension< ktl::api::extension::ext_line_rasterization >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_set_line_stipple_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3784,7 +3784,7 @@ struct extension< ktl::api::extension::ext_shader_atomic_float >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3801,7 +3801,7 @@ struct extension< ktl::api::extension::ext_host_query_reset >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::reset_query_pool_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3809,16 +3809,16 @@ struct extension< ktl::api::extension::ext_host_query_reset >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_index_type_uint_8 >
+struct extension< ktl::api::extension::ext_index_type_uint8 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_index_type_uint8";
     static constexpr bool                  is_instance = false;
-    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_index_type_uint_8};
+    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_index_type_uint8};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3835,13 +3835,13 @@ struct extension< ktl::api::extension::ext_extended_dynamic_state >
     static constexpr std::array< ktl::api::command, 12 > commands = {
         ktl::api::command::cmd_set_cull_mode_ext,           ktl::api::command::cmd_set_front_face_ext,
         ktl::api::command::cmd_set_primitive_topology_ext,  ktl::api::command::cmd_set_viewport_with_count_ext,
-        ktl::api::command::cmd_set_scissor_with_count_ext,  ktl::api::command::cmd_bind_vertex_buffers_2ext,
+        ktl::api::command::cmd_set_scissor_with_count_ext,  ktl::api::command::cmd_bind_vertex_buffers_2_ext,
         ktl::api::command::cmd_set_depth_test_enable_ext,   ktl::api::command::cmd_set_depth_write_enable_ext,
         ktl::api::command::cmd_set_depth_compare_op_ext,    ktl::api::command::cmd_set_depth_bounds_test_enable_ext,
         ktl::api::command::cmd_set_stencil_test_enable_ext, ktl::api::command::cmd_set_stencil_op_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3879,7 +3879,7 @@ struct extension< ktl::api::extension::khr_pipeline_executable_properties >
         ktl::api::command::get_pipeline_executable_internal_representations_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -3896,15 +3896,15 @@ struct extension< ktl::api::extension::ext_host_image_copy >
     static constexpr std::array< ktl::api::command, 5 > commands = {
         ktl::api::command::copy_memory_to_image_ext, ktl::api::command::copy_image_to_memory_ext,
         ktl::api::command::copy_image_to_image_ext, ktl::api::command::transition_image_layout_ext,
-        ktl::api::command::get_image_subresource_layout_2ext};
+        ktl::api::command::get_image_subresource_layout_2_ext};
 
     static constexpr std::array< ktl::meta::dependency, 7 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
-        ktl::api::extension::khr_copy_commands_2,
-        ktl::api::extension::khr_format_feature_flags_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
+        ktl::api::extension::khr_copy_commands2,
+        ktl::api::extension::khr_format_feature_flags2,
         ktl::api::version_1_1,
-        ktl::api::extension::khr_copy_commands_2,
-        ktl::api::extension::khr_format_feature_flags_2,
+        ktl::api::extension::khr_copy_commands2,
+        ktl::api::extension::khr_format_feature_flags2,
         ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 3),
                                                                                std::span{dependencies}.subspan(3, 3),
@@ -3914,14 +3914,14 @@ struct extension< ktl::api::extension::ext_host_image_copy >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_map_memory_2 >
+struct extension< ktl::api::extension::khr_map_memory2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_map_memory2";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {ktl::api::version_1_4};
 
-    static constexpr std::array< ktl::api::command, 2 > commands = {ktl::api::command::map_memory_2khr,
-                                                                    ktl::api::command::unmap_memory_2khr};
+    static constexpr std::array< ktl::api::command, 2 > commands = {ktl::api::command::map_memory_2_khr,
+                                                                    ktl::api::command::unmap_memory_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 0 >          dependencies = {};
     static constexpr std::array< ktl::meta::requirement, 1 >         requirements = {ktl::meta::requirement{}};
@@ -3938,7 +3938,7 @@ struct extension< ktl::api::extension::ext_map_memory_placed >
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
-    static constexpr std::array< ktl::meta::dependency, 2 >    dependencies = {ktl::api::extension::khr_map_memory_2,
+    static constexpr std::array< ktl::meta::dependency, 2 >    dependencies = {ktl::api::extension::khr_map_memory2,
                                                                                ktl::api::version_1_4};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
@@ -3947,7 +3947,7 @@ struct extension< ktl::api::extension::ext_map_memory_placed >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_shader_atomic_float_2 >
+struct extension< ktl::api::extension::ext_shader_atomic_float2 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_shader_atomic_float2";
     static constexpr bool                  is_instance = false;
@@ -3963,37 +3963,37 @@ struct extension< ktl::api::extension::ext_shader_atomic_float_2 >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_surface_maintenance_1 >
+struct extension< ktl::api::extension::ext_surface_maintenance1 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_surface_maintenance1";
     static constexpr bool                  is_instance = true;
-    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_surface_maintenance_1};
+    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_surface_maintenance1};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_surface, ktl::api::extension::khr_get_surface_capabilities_2};
+        ktl::api::extension::khr_surface, ktl::api::extension::khr_get_surface_capabilities2};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 2)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
 };
 
 template <>
-struct extension< ktl::api::extension::ext_swapchain_maintenance_1 >
+struct extension< ktl::api::extension::ext_swapchain_maintenance1 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_swapchain_maintenance1";
     static constexpr bool                  is_instance = false;
-    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_swapchain_maintenance_1};
+    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_swapchain_maintenance1};
 
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::release_swapchain_images_ext};
 
     static constexpr std::array< ktl::meta::dependency, 6 > dependencies = {
         ktl::api::extension::khr_swapchain,
-        ktl::api::extension::ext_surface_maintenance_1,
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::ext_surface_maintenance1,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1,
         ktl::api::extension::khr_swapchain,
-        ktl::api::extension::ext_surface_maintenance_1};
+        ktl::api::extension::ext_surface_maintenance1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 3),
                                                                                std::span{dependencies}.subspan(3, 3)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4010,7 +4010,7 @@ struct extension< ktl::api::extension::ext_shader_demote_to_helper_invocation >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4050,7 +4050,7 @@ struct extension< ktl::api::extension::nv_inherited_viewport_scissor >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4067,7 +4067,7 @@ struct extension< ktl::api::extension::khr_shader_integer_dot_product >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4084,7 +4084,7 @@ struct extension< ktl::api::extension::ext_texel_buffer_alignment >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4113,10 +4113,10 @@ struct extension< ktl::api::extension::ext_depth_bias_control >
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {};
 
-    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_set_depth_bias_2ext};
+    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_set_depth_bias_2_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4133,7 +4133,7 @@ struct extension< ktl::api::extension::ext_device_memory_report >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4158,16 +4158,16 @@ struct extension< ktl::api::extension::ext_acquire_drm_display >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_robustness_2 >
+struct extension< ktl::api::extension::ext_robustness2 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_robustness2";
     static constexpr bool                  is_instance = false;
-    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_robustness_2};
+    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_robustness2};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4184,7 +4184,7 @@ struct extension< ktl::api::extension::ext_custom_border_color >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4201,7 +4201,7 @@ struct extension< ktl::api::extension::ext_texture_compression_astc_3d >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4248,13 +4248,13 @@ struct extension< ktl::api::extension::nv_present_barrier >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 8 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::khr_surface,
-        ktl::api::extension::khr_get_surface_capabilities_2,
+        ktl::api::extension::khr_get_surface_capabilities2,
         ktl::api::extension::khr_swapchain,
         ktl::api::version_1_1,
         ktl::api::extension::khr_surface,
-        ktl::api::extension::khr_get_surface_capabilities_2,
+        ktl::api::extension::khr_get_surface_capabilities2,
         ktl::api::extension::khr_swapchain};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 4),
                                                                                std::span{dependencies}.subspan(4, 4)};
@@ -4287,7 +4287,7 @@ struct extension< ktl::api::extension::khr_present_id >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_swapchain, ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_swapchain, ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1, ktl::api::extension::khr_swapchain};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
@@ -4307,7 +4307,7 @@ struct extension< ktl::api::extension::ext_private_data >
         ktl::api::command::set_private_data_ext, ktl::api::command::get_private_data_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4324,7 +4324,7 @@ struct extension< ktl::api::extension::ext_pipeline_creation_cache_control >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4341,7 +4341,7 @@ struct extension< ktl::api::extension::nv_device_diagnostics_config >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4373,7 +4373,7 @@ struct extension< ktl::api::extension::qcom_queue_perf_hint >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::queue_set_perf_hint_qcom};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4381,7 +4381,7 @@ struct extension< ktl::api::extension::qcom_queue_perf_hint >
 };
 
 template <>
-struct extension< ktl::api::extension::qcom_image_processing_3 >
+struct extension< ktl::api::extension::qcom_image_processing3 >
 {
     static constexpr std::string_view      raw_name    = "VK_QCOM_image_processing3";
     static constexpr bool                  is_instance = false;
@@ -4390,7 +4390,7 @@ struct extension< ktl::api::extension::qcom_image_processing_3 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4407,7 +4407,7 @@ struct extension< ktl::api::extension::qcom_shader_multiple_wait_queues >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4424,7 +4424,7 @@ struct extension< ktl::api::extension::ext_shader_split_barrier >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4444,7 +4444,7 @@ struct extension< ktl::api::extension::nv_cuda_kernel_launch >
         ktl::api::command::destroy_cuda_function_nv, ktl::api::command::cmd_cuda_launch_kernel_nv};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4503,19 +4503,19 @@ struct extension< ktl::api::extension::ext_metal_objects >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_synchronization_2 >
+struct extension< ktl::api::extension::khr_synchronization2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_synchronization2";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {ktl::api::version_1_3};
 
     static constexpr std::array< ktl::api::command, 6 > commands = {
-        ktl::api::command::cmd_set_event_2khr,       ktl::api::command::cmd_reset_event_2khr,
-        ktl::api::command::cmd_wait_events_2khr,     ktl::api::command::cmd_pipeline_barrier_2khr,
-        ktl::api::command::cmd_write_timestamp_2khr, ktl::api::command::queue_submit_2khr};
+        ktl::api::command::cmd_set_event_2_khr,       ktl::api::command::cmd_reset_event_2_khr,
+        ktl::api::command::cmd_wait_events_2_khr,     ktl::api::command::cmd_pipeline_barrier_2_khr,
+        ktl::api::command::cmd_write_timestamp_2_khr, ktl::api::command::queue_submit_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4542,16 +4542,16 @@ struct extension< ktl::api::extension::ext_descriptor_buffer >
         ktl::api::command::get_sampler_opaque_capture_descriptor_data_ext};
 
     static constexpr std::array< ktl::meta::dependency, 13 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::khr_buffer_device_address,
         ktl::api::extension::ext_descriptor_indexing,
-        ktl::api::extension::khr_synchronization_2,
+        ktl::api::extension::khr_synchronization2,
         ktl::api::version_1_1,
         ktl::api::extension::khr_buffer_device_address,
         ktl::api::extension::ext_descriptor_indexing,
-        ktl::api::extension::khr_synchronization_2,
+        ktl::api::extension::khr_synchronization2,
         ktl::api::version_1_2,
-        ktl::api::extension::khr_synchronization_2,
+        ktl::api::extension::khr_synchronization2,
         ktl::api::version_1_3,
         ktl::api::extension::khr_acceleration_structure,
         ktl::api::extension::nv_ray_tracing};
@@ -4573,11 +4573,11 @@ struct extension< ktl::api::extension::khr_device_address_commands >
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 11 > commands = {
-        ktl::api::command::cmd_bind_index_buffer_3khr,
-        ktl::api::command::cmd_bind_vertex_buffers_3khr,
-        ktl::api::command::cmd_draw_indirect_2khr,
-        ktl::api::command::cmd_draw_indexed_indirect_2khr,
-        ktl::api::command::cmd_dispatch_indirect_2khr,
+        ktl::api::command::cmd_bind_index_buffer_3_khr,
+        ktl::api::command::cmd_bind_vertex_buffers_3_khr,
+        ktl::api::command::cmd_draw_indirect_2_khr,
+        ktl::api::command::cmd_draw_indexed_indirect_2_khr,
+        ktl::api::command::cmd_dispatch_indirect_2_khr,
         ktl::api::command::cmd_copy_memory_khr,
         ktl::api::command::cmd_copy_memory_to_image_khr,
         ktl::api::command::cmd_copy_image_to_memory_khr,
@@ -4586,16 +4586,16 @@ struct extension< ktl::api::extension::khr_device_address_commands >
         ktl::api::command::cmd_copy_query_pool_results_to_memory_khr};
 
     static constexpr std::array< ktl::meta::dependency, 23 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::khr_buffer_device_address,
-        ktl::api::extension::khr_synchronization_2,
+        ktl::api::extension::khr_synchronization2,
         ktl::api::extension::ext_extended_dynamic_state,
         ktl::api::version_1_1,
         ktl::api::extension::khr_buffer_device_address,
-        ktl::api::extension::khr_synchronization_2,
+        ktl::api::extension::khr_synchronization2,
         ktl::api::extension::ext_extended_dynamic_state,
         ktl::api::version_1_2,
-        ktl::api::extension::khr_synchronization_2,
+        ktl::api::extension::khr_synchronization2,
         ktl::api::extension::ext_extended_dynamic_state,
         ktl::api::version_1_3,
         ktl::api::extension::khr_draw_indirect_count,
@@ -4619,27 +4619,27 @@ struct extension< ktl::api::extension::khr_device_address_commands >
         std::span{dependencies}.subspan(22, 1)};
     static constexpr std::span< ktl::meta::requirement const >        depends = std::span{requirements}.subspan(0, 4);
     static constexpr std::array< ktl::meta::conditional_command, 11 > conditional_commands = {
-        ktl::meta::conditional_command{ktl::api::command::cmd_draw_indirect_count_2khr,
+        ktl::meta::conditional_command{ktl::api::command::cmd_draw_indirect_count_2_khr,
                                        std::span{requirements}.subspan(4, 2)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_draw_indexed_indirect_count_2khr,
+        ktl::meta::conditional_command{ktl::api::command::cmd_draw_indexed_indirect_count_2_khr,
                                        std::span{requirements}.subspan(4, 2)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_begin_conditional_rendering_2ext,
+        ktl::meta::conditional_command{ktl::api::command::cmd_begin_conditional_rendering_2_ext,
                                        std::span{requirements}.subspan(6, 1)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_bind_transform_feedback_buffers_2ext,
+        ktl::meta::conditional_command{ktl::api::command::cmd_bind_transform_feedback_buffers_2_ext,
                                        std::span{requirements}.subspan(7, 1)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_begin_transform_feedback_2ext,
+        ktl::meta::conditional_command{ktl::api::command::cmd_begin_transform_feedback_2_ext,
                                        std::span{requirements}.subspan(7, 1)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_end_transform_feedback_2ext,
+        ktl::meta::conditional_command{ktl::api::command::cmd_end_transform_feedback_2_ext,
                                        std::span{requirements}.subspan(7, 1)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_draw_indirect_byte_count_2ext,
+        ktl::meta::conditional_command{ktl::api::command::cmd_draw_indirect_byte_count_2_ext,
                                        std::span{requirements}.subspan(7, 1)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_draw_mesh_tasks_indirect_2ext,
+        ktl::meta::conditional_command{ktl::api::command::cmd_draw_mesh_tasks_indirect_2_ext,
                                        std::span{requirements}.subspan(8, 1)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2ext,
+        ktl::meta::conditional_command{ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2_ext,
                                        std::span{requirements}.subspan(9, 2)},
         ktl::meta::conditional_command{ktl::api::command::cmd_write_marker_to_memory_amd,
                                        std::span{requirements}.subspan(11, 1)},
-        ktl::meta::conditional_command{ktl::api::command::create_acceleration_structure_2khr,
+        ktl::meta::conditional_command{ktl::api::command::create_acceleration_structure_2_khr,
                                        std::span{requirements}.subspan(12, 1)}};
 };
 
@@ -4653,7 +4653,7 @@ struct extension< ktl::api::extension::ext_graphics_pipeline_library >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_pipeline_library,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_pipeline_library,
         ktl::api::version_1_1, ktl::api::extension::khr_pipeline_library};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
@@ -4671,7 +4671,7 @@ struct extension< ktl::api::extension::amd_shader_early_and_late_fragment_tests 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4688,7 +4688,7 @@ struct extension< ktl::api::extension::khr_fragment_shader_barycentric >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4720,7 +4720,7 @@ struct extension< ktl::api::extension::khr_zero_initialize_workgroup_memory >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4771,7 +4771,7 @@ struct extension< ktl::api::extension::ext_mesh_shader >
         ktl::api::command::cmd_draw_mesh_tasks_ext, ktl::api::command::cmd_draw_mesh_tasks_indirect_ext};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_spirv_14, ktl::api::version_1_2, ktl::api::version_1_2,
+        ktl::api::extension::khr_spirv_1_4, ktl::api::version_1_2, ktl::api::version_1_2,
         ktl::api::extension::khr_draw_indirect_count, ktl::api::extension::amd_draw_indirect_count};
     static constexpr std::array< ktl::meta::requirement, 5 > requirements = {
         std::span{dependencies}.subspan(0, 1), std::span{dependencies}.subspan(1, 1),
@@ -4784,7 +4784,7 @@ struct extension< ktl::api::extension::ext_mesh_shader >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_ycbcr_2plane_444formats >
+struct extension< ktl::api::extension::ext_ycbcr_2plane_444_formats >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_ycbcr_2plane_444_formats";
     static constexpr bool                  is_instance = false;
@@ -4801,7 +4801,7 @@ struct extension< ktl::api::extension::ext_ycbcr_2plane_444formats >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_fragment_density_map_2 >
+struct extension< ktl::api::extension::ext_fragment_density_map2 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_fragment_density_map2";
     static constexpr bool                  is_instance = false;
@@ -4825,7 +4825,7 @@ struct extension< ktl::api::extension::qcom_rotated_copy_commands >
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
-    static constexpr std::array< ktl::meta::dependency, 2 >    dependencies = {ktl::api::extension::khr_copy_commands_2,
+    static constexpr std::array< ktl::meta::dependency, 2 >    dependencies = {ktl::api::extension::khr_copy_commands2,
                                                                                ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
@@ -4843,7 +4843,7 @@ struct extension< ktl::api::extension::ext_image_robustness >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4860,7 +4860,7 @@ struct extension< ktl::api::extension::khr_workgroup_memory_explicit_layout >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4868,19 +4868,19 @@ struct extension< ktl::api::extension::khr_workgroup_memory_explicit_layout >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_copy_commands_2 >
+struct extension< ktl::api::extension::khr_copy_commands2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_copy_commands2";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {ktl::api::version_1_3};
 
     static constexpr std::array< ktl::api::command, 6 > commands = {
-        ktl::api::command::cmd_copy_buffer_2khr,          ktl::api::command::cmd_copy_image_2khr,
-        ktl::api::command::cmd_copy_buffer_to_image_2khr, ktl::api::command::cmd_copy_image_to_buffer_2khr,
-        ktl::api::command::cmd_blit_image_2khr,           ktl::api::command::cmd_resolve_image_2khr};
+        ktl::api::command::cmd_copy_buffer_2_khr,          ktl::api::command::cmd_copy_image_2_khr,
+        ktl::api::command::cmd_copy_buffer_to_image_2_khr, ktl::api::command::cmd_copy_image_to_buffer_2_khr,
+        ktl::api::command::cmd_blit_image_2_khr,           ktl::api::command::cmd_resolve_image_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4895,10 +4895,10 @@ struct extension< ktl::api::extension::ext_image_compression_control >
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 1 > commands = {
-        ktl::api::command::get_image_subresource_layout_2ext};
+        ktl::api::command::get_image_subresource_layout_2_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4915,7 +4915,7 @@ struct extension< ktl::api::extension::ext_attachment_feedback_loop_layout >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4923,7 +4923,7 @@ struct extension< ktl::api::extension::ext_attachment_feedback_loop_layout >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_4444formats >
+struct extension< ktl::api::extension::ext_4444_formats >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_4444_formats";
     static constexpr bool                  is_instance = false;
@@ -4932,7 +4932,7 @@ struct extension< ktl::api::extension::ext_4444formats >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4949,7 +4949,7 @@ struct extension< ktl::api::extension::ext_device_fault >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::get_device_fault_info_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4966,7 +4966,7 @@ struct extension< ktl::api::extension::arm_rasterization_order_attachment_access
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -4974,7 +4974,7 @@ struct extension< ktl::api::extension::arm_rasterization_order_attachment_access
 };
 
 template <>
-struct extension< ktl::api::extension::ext_rgba_10x_6formats >
+struct extension< ktl::api::extension::ext_rgba10x6_formats >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_rgba10x6_formats";
     static constexpr bool                  is_instance = false;
@@ -5033,7 +5033,7 @@ struct extension< ktl::api::extension::valve_mutable_descriptor_type >
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
-    static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_maintenance_3};
+    static constexpr std::array< ktl::meta::dependency, 1 >    dependencies = {ktl::api::extension::khr_maintenance3};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
@@ -5049,7 +5049,7 @@ struct extension< ktl::api::extension::ext_vertex_input_dynamic_state >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_set_vertex_input_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5066,7 +5066,7 @@ struct extension< ktl::api::extension::ext_physical_device_drm >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5083,7 +5083,7 @@ struct extension< ktl::api::extension::ext_device_address_binding_report >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::ext_debug_utils,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::ext_debug_utils,
         ktl::api::version_1_1, ktl::api::extension::ext_debug_utils};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
@@ -5101,7 +5101,7 @@ struct extension< ktl::api::extension::ext_depth_clip_control >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5118,7 +5118,7 @@ struct extension< ktl::api::extension::ext_primitive_topology_list_restart >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5126,7 +5126,7 @@ struct extension< ktl::api::extension::ext_primitive_topology_list_restart >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_format_feature_flags_2 >
+struct extension< ktl::api::extension::khr_format_feature_flags2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_format_feature_flags2";
     static constexpr bool                  is_instance = false;
@@ -5135,7 +5135,7 @@ struct extension< ktl::api::extension::khr_format_feature_flags_2 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5230,8 +5230,8 @@ struct extension< ktl::api::extension::huawei_subpass_shading >
         ktl::api::command::cmd_subpass_shading_huawei};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_create_renderpass_2, ktl::api::extension::khr_synchronization_2, ktl::api::version_1_2,
-        ktl::api::extension::khr_synchronization_2, ktl::api::version_1_3};
+        ktl::api::extension::khr_create_renderpass2, ktl::api::extension::khr_synchronization2, ktl::api::version_1_2,
+        ktl::api::extension::khr_synchronization2, ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
                                                                                std::span{dependencies}.subspan(4, 1)};
@@ -5249,8 +5249,8 @@ struct extension< ktl::api::extension::huawei_invocation_mask >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_bind_invocation_mask_huawei};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_ray_tracing_pipeline, ktl::api::extension::khr_synchronization_2,
-        ktl::api::version_1_3, ktl::api::extension::khr_ray_tracing_pipeline};
+        ktl::api::extension::khr_ray_tracing_pipeline, ktl::api::extension::khr_synchronization2, ktl::api::version_1_3,
+        ktl::api::extension::khr_ray_tracing_pipeline};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5284,7 +5284,7 @@ struct extension< ktl::api::extension::ext_pipeline_properties >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::get_pipeline_properties_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5301,7 +5301,7 @@ struct extension< ktl::api::extension::ext_frame_boundary >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5318,7 +5318,7 @@ struct extension< ktl::api::extension::ext_multisampled_render_to_single_sampled
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_create_renderpass_2, ktl::api::extension::khr_depth_stencil_resolve,
+        ktl::api::extension::khr_create_renderpass2, ktl::api::extension::khr_depth_stencil_resolve,
         ktl::api::version_1_2};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -5327,7 +5327,7 @@ struct extension< ktl::api::extension::ext_multisampled_render_to_single_sampled
 };
 
 template <>
-struct extension< ktl::api::extension::ext_extended_dynamic_state_2 >
+struct extension< ktl::api::extension::ext_extended_dynamic_state2 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_extended_dynamic_state2";
     static constexpr bool                  is_instance = false;
@@ -5339,7 +5339,7 @@ struct extension< ktl::api::extension::ext_extended_dynamic_state_2 >
         ktl::api::command::cmd_set_primitive_restart_enable_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5373,7 +5373,7 @@ struct extension< ktl::api::extension::ext_color_write_enable >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_set_color_write_enable_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5397,7 +5397,7 @@ struct extension< ktl::api::extension::ext_primitives_generated_query >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_ray_tracing_maintenance_1 >
+struct extension< ktl::api::extension::khr_ray_tracing_maintenance1 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_ray_tracing_maintenance1";
     static constexpr bool                  is_instance = false;
@@ -5411,7 +5411,7 @@ struct extension< ktl::api::extension::khr_ray_tracing_maintenance_1 >
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 1 > conditional_commands = {
-        ktl::meta::conditional_command{ktl::api::command::cmd_trace_rays_indirect_2khr,
+        ktl::meta::conditional_command{ktl::api::command::cmd_trace_rays_indirect_2_khr,
                                        std::span{requirements}.subspan(1, 1)}};
 };
 
@@ -5425,7 +5425,7 @@ struct extension< ktl::api::extension::khr_shader_untyped_pointers >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 1 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2};
+        ktl::api::extension::khr_get_physical_device_properties2};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
@@ -5441,7 +5441,7 @@ struct extension< ktl::api::extension::ext_global_priority_query >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::ext_global_priority, ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::ext_global_priority, ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1, ktl::api::extension::ext_global_priority};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
@@ -5459,7 +5459,7 @@ struct extension< ktl::api::extension::ext_image_view_min_lod >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5477,7 +5477,7 @@ struct extension< ktl::api::extension::ext_multi_draw >
                                                                     ktl::api::command::cmd_draw_multi_indexed_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5494,7 +5494,7 @@ struct extension< ktl::api::extension::ext_image_2d_view_of_3d >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_maintenance_1, ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_maintenance1, ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -5556,7 +5556,7 @@ struct extension< ktl::api::extension::ext_opacity_micromap >
         ktl::api::command::get_micromap_build_sizes_ext};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_acceleration_structure, ktl::api::extension::khr_synchronization_2,
+        ktl::api::extension::khr_acceleration_structure, ktl::api::extension::khr_synchronization2,
         ktl::api::version_1_3, ktl::api::extension::khr_acceleration_structure};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
@@ -5605,7 +5605,7 @@ struct extension< ktl::api::extension::huawei_cluster_culling_shader >
         ktl::api::command::cmd_draw_cluster_huawei, ktl::api::command::cmd_draw_cluster_indirect_huawei};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5644,7 +5644,7 @@ struct extension< ktl::api::extension::ext_pageable_device_local_memory >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_4 >
+struct extension< ktl::api::extension::khr_maintenance4 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance4";
     static constexpr bool                  is_instance = false;
@@ -5686,7 +5686,7 @@ struct extension< ktl::api::extension::khr_shader_subgroup_rotate >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5719,7 +5719,7 @@ struct extension< ktl::api::extension::ext_image_sliced_view_of_3d >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_maintenance_1, ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_maintenance1, ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -5739,7 +5739,7 @@ struct extension< ktl::api::extension::valve_descriptor_set_host_mapping >
         ktl::api::command::get_descriptor_set_host_mapping_valve};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5756,7 +5756,7 @@ struct extension< ktl::api::extension::ext_depth_clamp_zero_one >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5773,7 +5773,7 @@ struct extension< ktl::api::extension::ext_non_seamless_cube_map >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5790,8 +5790,8 @@ struct extension< ktl::api::extension::arm_render_pass_striped >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_synchronization_2,
-        ktl::api::version_1_1, ktl::api::extension::khr_synchronization_2, ktl::api::version_1_3};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_synchronization2,
+        ktl::api::version_1_1, ktl::api::extension::khr_synchronization2, ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
                                                                                std::span{dependencies}.subspan(4, 1)};
@@ -5809,7 +5809,7 @@ struct extension< ktl::api::extension::qcom_fragment_density_map_offset >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::ext_fragment_density_map,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::ext_fragment_density_map,
         ktl::api::version_1_1, ktl::api::extension::ext_fragment_density_map};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2)};
@@ -5828,7 +5828,7 @@ struct extension< ktl::api::extension::nv_copy_memory_indirect >
         ktl::api::command::cmd_copy_memory_indirect_nv, ktl::api::command::cmd_copy_memory_to_image_indirect_nv};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_buffer_device_address,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_buffer_device_address,
         ktl::api::version_1_1, ktl::api::extension::khr_buffer_device_address, ktl::api::version_1_2};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
@@ -5848,7 +5848,7 @@ struct extension< ktl::api::extension::nv_memory_decompression >
         ktl::api::command::cmd_decompress_memory_nv, ktl::api::command::cmd_decompress_memory_indirect_count_nv};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_buffer_device_address,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_buffer_device_address,
         ktl::api::version_1_1, ktl::api::extension::khr_buffer_device_address, ktl::api::version_1_2};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
@@ -5902,7 +5902,7 @@ struct extension< ktl::api::extension::nv_linear_color_attachment >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5965,7 +5965,7 @@ struct extension< ktl::api::extension::qcom_image_processing >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_format_feature_flags_2, ktl::api::version_1_3};
+        ktl::api::extension::khr_format_feature_flags2, ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -5982,7 +5982,7 @@ struct extension< ktl::api::extension::ext_nested_command_buffer >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6030,7 +6030,7 @@ struct extension< ktl::api::extension::ext_external_memory_acquire_unmodified >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_extended_dynamic_state_3 >
+struct extension< ktl::api::extension::ext_extended_dynamic_state3 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_extended_dynamic_state3";
     static constexpr bool                  is_instance = false;
@@ -6044,9 +6044,9 @@ struct extension< ktl::api::extension::ext_extended_dynamic_state_3 >
         ktl::api::command::cmd_set_color_blend_equation_ext,     ktl::api::command::cmd_set_color_write_mask_ext};
 
     static constexpr std::array< ktl::meta::dependency, 21 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1,
-        ktl::api::extension::khr_maintenance_2,
+        ktl::api::extension::khr_maintenance2,
         ktl::api::version_1_1,
         ktl::api::extension::ext_transform_feedback,
         ktl::api::extension::ext_conservative_rasterization,
@@ -6133,7 +6133,7 @@ struct extension< ktl::api::extension::ext_subpass_merge_feedback >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6197,7 +6197,7 @@ struct extension< ktl::api::extension::ext_shader_module_identifier >
         ktl::api::command::get_shader_module_create_info_identifier_ext};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::ext_pipeline_creation_cache_control, ktl::api::version_1_1,
         ktl::api::extension::ext_pipeline_creation_cache_control, ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
@@ -6217,7 +6217,7 @@ struct extension< ktl::api::extension::ext_rasterization_order_attachment_access
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6237,12 +6237,12 @@ struct extension< ktl::api::extension::nv_optical_flow >
         ktl::api::command::bind_optical_flow_session_image_nv, ktl::api::command::cmd_optical_flow_execute_nv};
 
     static constexpr std::array< ktl::meta::dependency, 7 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
-        ktl::api::extension::khr_format_feature_flags_2,
-        ktl::api::extension::khr_synchronization_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
+        ktl::api::extension::khr_format_feature_flags2,
+        ktl::api::extension::khr_synchronization2,
         ktl::api::version_1_1,
-        ktl::api::extension::khr_format_feature_flags_2,
-        ktl::api::extension::khr_synchronization_2,
+        ktl::api::extension::khr_format_feature_flags2,
+        ktl::api::extension::khr_synchronization2,
         ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 3),
                                                                                std::span{dependencies}.subspan(3, 3),
@@ -6261,7 +6261,7 @@ struct extension< ktl::api::extension::ext_legacy_dithering >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6278,7 +6278,7 @@ struct extension< ktl::api::extension::ext_pipeline_protected_access >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6302,16 +6302,16 @@ struct extension< ktl::api::extension::android_external_format_resolve >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_5 >
+struct extension< ktl::api::extension::khr_maintenance5 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance5";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {ktl::api::version_1_4};
 
     static constexpr std::array< ktl::api::command, 4 > commands = {
-        ktl::api::command::cmd_bind_index_buffer_2khr, ktl::api::command::get_rendering_area_granularity_khr,
+        ktl::api::command::cmd_bind_index_buffer_2_khr, ktl::api::command::get_rendering_area_granularity_khr,
         ktl::api::command::get_device_image_subresource_layout_khr,
-        ktl::api::command::get_image_subresource_layout_2khr};
+        ktl::api::command::get_image_subresource_layout_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
         ktl::api::version_1_1, ktl::api::extension::khr_dynamic_rendering, ktl::api::version_1_3};
@@ -6331,7 +6331,7 @@ struct extension< ktl::api::extension::amd_anti_lag >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::anti_lag_update_amd};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6353,7 +6353,7 @@ struct extension< ktl::api::extension::amdx_dense_geometry_format >
         ktl::api::extension::khr_acceleration_structure,
         ktl::api::extension::khr_extended_flags,
         ktl::api::extension::khr_acceleration_structure,
-        ktl::api::extension::khr_maintenance_5};
+        ktl::api::extension::khr_maintenance5};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
                                                                                std::span{dependencies}.subspan(4, 2)};
@@ -6362,7 +6362,7 @@ struct extension< ktl::api::extension::amdx_dense_geometry_format >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_present_id_2 >
+struct extension< ktl::api::extension::khr_present_id2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_present_id2";
     static constexpr bool                  is_instance = false;
@@ -6371,7 +6371,7 @@ struct extension< ktl::api::extension::khr_present_id_2 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_surface_capabilities_2, ktl::api::extension::khr_surface,
+        ktl::api::extension::khr_get_surface_capabilities2, ktl::api::extension::khr_surface,
         ktl::api::extension::khr_swapchain};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 3)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
@@ -6379,17 +6379,17 @@ struct extension< ktl::api::extension::khr_present_id_2 >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_present_wait_2 >
+struct extension< ktl::api::extension::khr_present_wait2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_present_wait2";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {};
 
-    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::wait_for_present_2khr};
+    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::wait_for_present_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_get_surface_capabilities_2, ktl::api::extension::khr_surface,
-        ktl::api::extension::khr_swapchain, ktl::api::extension::khr_present_id_2};
+        ktl::api::extension::khr_get_surface_capabilities2, ktl::api::extension::khr_surface,
+        ktl::api::extension::khr_swapchain, ktl::api::extension::khr_present_id2};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 4)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
@@ -6428,7 +6428,7 @@ struct extension< ktl::api::extension::ext_shader_object >
         ktl::api::command::cmd_set_primitive_topology_ext,
         ktl::api::command::cmd_set_viewport_with_count_ext,
         ktl::api::command::cmd_set_scissor_with_count_ext,
-        ktl::api::command::cmd_bind_vertex_buffers_2ext,
+        ktl::api::command::cmd_bind_vertex_buffers_2_ext,
         ktl::api::command::cmd_set_depth_test_enable_ext,
         ktl::api::command::cmd_set_depth_write_enable_ext,
         ktl::api::command::cmd_set_depth_compare_op_ext,
@@ -6454,7 +6454,7 @@ struct extension< ktl::api::extension::ext_shader_object >
         ktl::api::command::cmd_set_color_write_mask_ext};
 
     static constexpr std::array< ktl::meta::dependency, 23 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::khr_dynamic_rendering,
         ktl::api::version_1_1,
         ktl::api::extension::khr_dynamic_rendering,
@@ -6548,7 +6548,7 @@ struct extension< ktl::api::extension::khr_pipeline_binary >
         ktl::api::command::release_captured_pipeline_data_khr};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::version_1_4, ktl::api::extension::khr_extended_flags, ktl::api::extension::khr_maintenance_5};
+        ktl::api::version_1_4, ktl::api::extension::khr_extended_flags, ktl::api::extension::khr_maintenance5};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -6568,7 +6568,7 @@ struct extension< ktl::api::extension::qcom_tile_properties >
         ktl::api::command::get_dynamic_rendering_tile_properties_qcom};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6585,7 +6585,7 @@ struct extension< ktl::api::extension::sec_amigo_profiling >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6593,7 +6593,7 @@ struct extension< ktl::api::extension::sec_amigo_profiling >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_surface_maintenance_1 >
+struct extension< ktl::api::extension::khr_surface_maintenance1 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_surface_maintenance1";
     static constexpr bool                  is_instance = true;
@@ -6602,14 +6602,14 @@ struct extension< ktl::api::extension::khr_surface_maintenance_1 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_surface, ktl::api::extension::khr_get_surface_capabilities_2};
+        ktl::api::extension::khr_surface, ktl::api::extension::khr_get_surface_capabilities2};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 2)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
 };
 
 template <>
-struct extension< ktl::api::extension::khr_swapchain_maintenance_1 >
+struct extension< ktl::api::extension::khr_swapchain_maintenance1 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_swapchain_maintenance1";
     static constexpr bool                  is_instance = false;
@@ -6619,11 +6619,11 @@ struct extension< ktl::api::extension::khr_swapchain_maintenance_1 >
 
     static constexpr std::array< ktl::meta::dependency, 6 > dependencies = {
         ktl::api::extension::khr_swapchain,
-        ktl::api::extension::khr_surface_maintenance_1,
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_surface_maintenance1,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1,
         ktl::api::extension::khr_swapchain,
-        ktl::api::extension::khr_surface_maintenance_1};
+        ktl::api::extension::khr_surface_maintenance1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 3),
                                                                                std::span{dependencies}.subspan(3, 3)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6640,7 +6640,7 @@ struct extension< ktl::api::extension::qcom_multiview_per_view_viewports >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6676,7 +6676,7 @@ struct extension< ktl::api::extension::nv_cooperative_vector >
         ktl::api::command::cmd_convert_cooperative_vector_matrix_nv};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6693,7 +6693,7 @@ struct extension< ktl::api::extension::nv_extended_sparse_address_space >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6709,7 +6709,7 @@ struct extension< ktl::api::extension::ext_mutable_descriptor_type >
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
-    static constexpr std::array< ktl::meta::dependency, 2 >    dependencies = {ktl::api::extension::khr_maintenance_3,
+    static constexpr std::array< ktl::meta::dependency, 2 >    dependencies = {ktl::api::extension::khr_maintenance3,
                                                                                ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
@@ -6758,7 +6758,7 @@ struct extension< ktl::api::extension::arm_shader_core_builtins >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6791,7 +6791,7 @@ struct extension< ktl::api::extension::ext_dynamic_rendering_unused_attachments 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_dynamic_rendering,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_dynamic_rendering,
         ktl::api::version_1_1, ktl::api::extension::khr_dynamic_rendering, ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
@@ -6816,7 +6816,7 @@ struct extension< ktl::api::extension::khr_internally_synchronized_queues >
 };
 
 template <>
-struct extension< ktl::api::extension::nv_low_latency_2 >
+struct extension< ktl::api::extension::nv_low_latency2 >
 {
     static constexpr std::string_view      raw_name    = "VK_NV_low_latency2";
     static constexpr bool                  is_instance = false;
@@ -6830,11 +6830,11 @@ struct extension< ktl::api::extension::nv_low_latency_2 >
     static constexpr std::array< ktl::meta::dependency, 8 >  dependencies = {ktl::api::version_1_2,
                                                                              ktl::api::extension::khr_present_id,
                                                                              ktl::api::version_1_2,
-                                                                             ktl::api::extension::khr_present_id_2,
+                                                                             ktl::api::extension::khr_present_id2,
                                                                              ktl::api::extension::khr_timeline_semaphore,
                                                                              ktl::api::extension::khr_present_id,
                                                                              ktl::api::extension::khr_timeline_semaphore,
-                                                                             ktl::api::extension::khr_present_id_2};
+                                                                             ktl::api::extension::khr_present_id2};
     static constexpr std::array< ktl::meta::requirement, 4 > requirements = {
         std::span{dependencies}.subspan(0, 2), std::span{dependencies}.subspan(2, 2),
         std::span{dependencies}.subspan(4, 2), std::span{dependencies}.subspan(6, 2)};
@@ -6853,7 +6853,7 @@ struct extension< ktl::api::extension::khr_cooperative_matrix >
         ktl::api::command::get_physical_device_cooperative_matrix_properties_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6885,7 +6885,7 @@ struct extension< ktl::api::extension::arm_data_graph >
         ktl::api::extension::khr_extended_flags,
         ktl::api::extension::khr_deferred_host_operations,
         ktl::api::version_1_3,
-        ktl::api::extension::khr_maintenance_5,
+        ktl::api::extension::khr_maintenance5,
         ktl::api::extension::khr_deferred_host_operations};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 3),
                                                                                std::span{dependencies}.subspan(3, 3)};
@@ -6919,7 +6919,7 @@ struct extension< ktl::api::extension::qcom_multiview_per_view_render_areas >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6936,7 +6936,7 @@ struct extension< ktl::api::extension::khr_compute_shader_derivatives >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -6952,7 +6952,7 @@ struct extension< ktl::api::extension::nv_per_stage_descriptor_set >
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
-    static constexpr std::array< ktl::meta::dependency, 2 >    dependencies = {ktl::api::extension::khr_maintenance_6,
+    static constexpr std::array< ktl::meta::dependency, 2 >    dependencies = {ktl::api::extension::khr_maintenance6,
                                                                                ktl::api::version_1_4};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
@@ -6961,7 +6961,7 @@ struct extension< ktl::api::extension::nv_per_stage_descriptor_set >
 };
 
 template <>
-struct extension< ktl::api::extension::qcom_image_processing_2 >
+struct extension< ktl::api::extension::qcom_image_processing2 >
 {
     static constexpr std::string_view      raw_name    = "VK_QCOM_image_processing2";
     static constexpr bool                  is_instance = false;
@@ -7000,7 +7000,7 @@ struct extension< ktl::api::extension::qcom_ycbcr_degamma >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7036,7 +7036,7 @@ struct extension< ktl::api::extension::ext_attachment_feedback_loop_dynamic_stat
         ktl::api::command::cmd_set_attachment_feedback_loop_enable_ext};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::ext_attachment_feedback_loop_layout, ktl::api::version_1_1,
         ktl::api::extension::ext_attachment_feedback_loop_layout};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
@@ -7055,7 +7055,7 @@ struct extension< ktl::api::extension::khr_vertex_attribute_divisor >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7087,7 +7087,7 @@ struct extension< ktl::api::extension::khr_unified_image_layouts >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7095,7 +7095,7 @@ struct extension< ktl::api::extension::khr_unified_image_layouts >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_shader_float_controls_2 >
+struct extension< ktl::api::extension::khr_shader_float_controls2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_shader_float_controls2";
     static constexpr bool                  is_instance = false;
@@ -7143,7 +7143,7 @@ struct extension< ktl::api::extension::msft_layered_driver >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7151,7 +7151,7 @@ struct extension< ktl::api::extension::msft_layered_driver >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_index_type_uint_8 >
+struct extension< ktl::api::extension::khr_index_type_uint8 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_index_type_uint8";
     static constexpr bool                  is_instance = false;
@@ -7160,7 +7160,7 @@ struct extension< ktl::api::extension::khr_index_type_uint_8 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7177,7 +7177,7 @@ struct extension< ktl::api::extension::khr_line_rasterization >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_set_line_stipple_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7196,7 +7196,7 @@ struct extension< ktl::api::extension::khr_calibrated_timestamps >
         ktl::api::command::get_calibrated_timestamps_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7213,7 +7213,7 @@ struct extension< ktl::api::extension::khr_shader_expect_assume >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7221,14 +7221,14 @@ struct extension< ktl::api::extension::khr_shader_expect_assume >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_6 >
+struct extension< ktl::api::extension::khr_maintenance6 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance6";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {ktl::api::version_1_4};
 
-    static constexpr std::array< ktl::api::command, 2 > commands = {ktl::api::command::cmd_bind_descriptor_sets_2khr,
-                                                                    ktl::api::command::cmd_push_constants_2khr};
+    static constexpr std::array< ktl::api::command, 2 > commands = {ktl::api::command::cmd_bind_descriptor_sets_2_khr,
+                                                                    ktl::api::command::cmd_push_constants_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
         ktl::api::version_1_1, ktl::api::extension::khr_push_descriptor, ktl::api::extension::ext_descriptor_buffer};
@@ -7237,13 +7237,13 @@ struct extension< ktl::api::extension::khr_maintenance_6 >
                                                                                std::span{dependencies}.subspan(2, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 4 > conditional_commands = {
-        ktl::meta::conditional_command{ktl::api::command::cmd_push_descriptor_set_2khr,
+        ktl::meta::conditional_command{ktl::api::command::cmd_push_descriptor_set_2_khr,
                                        std::span{requirements}.subspan(1, 1)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_push_descriptor_set_with_template_2khr,
+        ktl::meta::conditional_command{ktl::api::command::cmd_push_descriptor_set_with_template_2_khr,
                                        std::span{requirements}.subspan(1, 1)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_set_descriptor_buffer_offsets_2ext,
+        ktl::meta::conditional_command{ktl::api::command::cmd_set_descriptor_buffer_offsets_2_ext,
                                        std::span{requirements}.subspan(2, 1)},
-        ktl::meta::conditional_command{ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2ext,
+        ktl::meta::conditional_command{ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2_ext,
                                        std::span{requirements}.subspan(2, 1)}};
 };
 
@@ -7272,7 +7272,7 @@ struct extension< ktl::api::extension::qcom_tile_memory_heap >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_bind_tile_memory_qcom};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_memory_requirements_2, ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_memory_requirements2, ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -7291,7 +7291,7 @@ struct extension< ktl::api::extension::khr_copy_memory_indirect >
         ktl::api::command::cmd_copy_memory_indirect_khr, ktl::api::command::cmd_copy_memory_to_image_indirect_khr};
 
     static constexpr std::array< ktl::meta::dependency, 3 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_buffer_device_address,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_buffer_device_address,
         ktl::api::version_1_2};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 1)};
@@ -7310,7 +7310,7 @@ struct extension< ktl::api::extension::ext_memory_decompression >
         ktl::api::command::cmd_decompress_memory_ext, ktl::api::command::cmd_decompress_memory_indirect_count_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_buffer_device_address};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_buffer_device_address};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 2)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
@@ -7326,7 +7326,7 @@ struct extension< ktl::api::extension::nv_display_stereo >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_display, ktl::api::extension::khr_get_display_properties_2};
+        ktl::api::extension::khr_display, ktl::api::extension::khr_get_display_properties2};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 2)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
@@ -7342,7 +7342,7 @@ struct extension< ktl::api::extension::nv_raw_access_chains >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7376,7 +7376,7 @@ struct extension< ktl::api::extension::khr_shader_relaxed_extended_instruction >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7393,7 +7393,7 @@ struct extension< ktl::api::extension::nv_command_buffer_inheritance >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7401,7 +7401,7 @@ struct extension< ktl::api::extension::nv_command_buffer_inheritance >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_7 >
+struct extension< ktl::api::extension::khr_maintenance7 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance7";
     static constexpr bool                  is_instance = false;
@@ -7416,7 +7416,7 @@ struct extension< ktl::api::extension::khr_maintenance_7 >
 };
 
 template <>
-struct extension< ktl::api::extension::nv_shader_atomic_float_16vector >
+struct extension< ktl::api::extension::nv_shader_atomic_float16_vector >
 {
     static constexpr std::string_view      raw_name    = "VK_NV_shader_atomic_float16_vector";
     static constexpr bool                  is_instance = false;
@@ -7425,7 +7425,7 @@ struct extension< ktl::api::extension::nv_shader_atomic_float_16vector >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7442,7 +7442,7 @@ struct extension< ktl::api::extension::ext_shader_replicated_composites >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7465,7 +7465,7 @@ struct extension< ktl::api::extension::arm_tensor_controls >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_shader_float_8 >
+struct extension< ktl::api::extension::ext_shader_float8 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_shader_float8";
     static constexpr bool                  is_instance = false;
@@ -7474,7 +7474,7 @@ struct extension< ktl::api::extension::ext_shader_float_8 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7491,7 +7491,7 @@ struct extension< ktl::api::extension::nv_ray_tracing_validation >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7556,11 +7556,11 @@ struct extension< ktl::api::extension::ext_device_generated_commands >
         ktl::api::extension::khr_buffer_device_address,
         ktl::api::extension::khr_extended_flags,
         ktl::api::extension::khr_buffer_device_address,
-        ktl::api::extension::khr_maintenance_5,
+        ktl::api::extension::khr_maintenance5,
         ktl::api::version_1_2,
         ktl::api::extension::khr_extended_flags,
         ktl::api::version_1_2,
-        ktl::api::extension::khr_maintenance_5,
+        ktl::api::extension::khr_maintenance5,
         ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 5 > requirements = {
         std::span{dependencies}.subspan(0, 2), std::span{dependencies}.subspan(2, 2),
@@ -7581,7 +7581,7 @@ struct extension< ktl::api::extension::khr_device_fault >
                                                                     ktl::api::command::get_device_fault_debug_info_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7589,7 +7589,7 @@ struct extension< ktl::api::extension::khr_device_fault >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_8 >
+struct extension< ktl::api::extension::khr_maintenance8 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance8";
     static constexpr bool                  is_instance = false;
@@ -7613,7 +7613,7 @@ struct extension< ktl::api::extension::mesa_image_alignment_control >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7630,7 +7630,7 @@ struct extension< ktl::api::extension::khr_shader_fma >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7678,7 +7678,7 @@ struct extension< ktl::api::extension::ext_depth_clamp_control >
     static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_set_depth_clamp_range_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7686,7 +7686,7 @@ struct extension< ktl::api::extension::ext_depth_clamp_control >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_9 >
+struct extension< ktl::api::extension::khr_maintenance9 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance9";
     static constexpr bool                  is_instance = false;
@@ -7695,7 +7695,7 @@ struct extension< ktl::api::extension::khr_maintenance_9 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7727,7 +7727,7 @@ struct extension< ktl::api::extension::huawei_hdr_vivid >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 6 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::khr_swapchain,
         ktl::api::extension::ext_hdr_metadata,
         ktl::api::version_1_1,
@@ -7740,7 +7740,7 @@ struct extension< ktl::api::extension::huawei_hdr_vivid >
 };
 
 template <>
-struct extension< ktl::api::extension::nv_cooperative_matrix_2 >
+struct extension< ktl::api::extension::nv_cooperative_matrix2 >
 {
     static constexpr std::string_view      raw_name    = "VK_NV_cooperative_matrix2";
     static constexpr bool                  is_instance = false;
@@ -7781,7 +7781,7 @@ struct extension< ktl::api::extension::img_filter_linear_2d >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_format_feature_flags_2, ktl::api::version_1_3};
+        ktl::api::extension::khr_format_feature_flags2, ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7816,7 +7816,7 @@ struct extension< ktl::api::extension::khr_depth_clamp_zero_one >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7834,7 +7834,7 @@ struct extension< ktl::api::extension::arm_performance_counters_by_region >
         ktl::api::command::enumerate_physical_device_queue_family_performance_counters_by_region_arm};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7858,7 +7858,7 @@ struct extension< ktl::api::extension::arm_shader_instrumentation >
         ktl::api::command::clear_shader_instrumentation_metrics_arm};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7870,12 +7870,12 @@ struct extension< ktl::api::extension::ext_vertex_attribute_robustness >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_vertex_attribute_robustness";
     static constexpr bool                  is_instance = false;
-    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_maintenance_9};
+    static constexpr ktl::meta::dependency promoted    = {ktl::api::extension::khr_maintenance9};
 
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7892,7 +7892,7 @@ struct extension< ktl::api::extension::arm_format_pack >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7913,7 +7913,7 @@ struct extension< ktl::api::extension::valve_fragment_density_map_layered >
         ktl::api::extension::ext_fragment_density_map,
         ktl::api::extension::khr_extended_flags,
         ktl::api::extension::ext_fragment_density_map,
-        ktl::api::extension::khr_maintenance_5,
+        ktl::api::extension::khr_maintenance5,
         ktl::api::extension::ext_fragment_density_map};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
@@ -7923,7 +7923,7 @@ struct extension< ktl::api::extension::valve_fragment_density_map_layered >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_robustness_2 >
+struct extension< ktl::api::extension::khr_robustness2 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_robustness2";
     static constexpr bool                  is_instance = false;
@@ -7932,7 +7932,7 @@ struct extension< ktl::api::extension::khr_robustness_2 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7949,7 +7949,7 @@ struct extension< ktl::api::extension::nv_present_metering >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -7979,16 +7979,16 @@ struct extension< ktl::api::extension::ext_fragment_density_map_offset >
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {};
 
-    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_end_rendering_2ext};
+    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_end_rendering_2_ext};
 
     static constexpr std::array< ktl::meta::dependency, 13 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2,
+        ktl::api::extension::khr_get_physical_device_properties2,
         ktl::api::extension::ext_fragment_density_map,
-        ktl::api::extension::khr_create_renderpass_2,
+        ktl::api::extension::khr_create_renderpass2,
         ktl::api::extension::khr_dynamic_rendering,
         ktl::api::version_1_1,
         ktl::api::extension::ext_fragment_density_map,
-        ktl::api::extension::khr_create_renderpass_2,
+        ktl::api::extension::khr_create_renderpass2,
         ktl::api::extension::khr_dynamic_rendering,
         ktl::api::version_1_3,
         ktl::api::extension::ext_fragment_density_map,
@@ -8012,7 +8012,7 @@ struct extension< ktl::api::extension::ext_zero_initialize_device_memory >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8060,7 +8060,7 @@ struct extension< ktl::api::extension::ext_shader_64bit_indexing >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8077,7 +8077,7 @@ struct extension< ktl::api::extension::ext_custom_resolve >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 4 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1,
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1,
         ktl::api::extension::khr_dynamic_rendering, ktl::api::version_1_3};
     static constexpr std::array< ktl::meta::requirement, 4 > requirements = {
         std::span{dependencies}.subspan(0, 1), std::span{dependencies}.subspan(1, 1),
@@ -8104,16 +8104,16 @@ struct extension< ktl::api::extension::qcom_data_graph_model >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_10 >
+struct extension< ktl::api::extension::khr_maintenance10 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance10";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {};
 
-    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_end_rendering_2khr};
+    static constexpr std::array< ktl::api::command, 1 > commands = {ktl::api::command::cmd_end_rendering_2_khr};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8162,7 +8162,7 @@ struct extension< ktl::api::extension::sec_pipeline_cache_incremental_mode >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8179,7 +8179,7 @@ struct extension< ktl::api::extension::ext_shader_uniform_buffer_unsized_array >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8197,7 +8197,7 @@ struct extension< ktl::api::extension::nv_compute_occupancy_priority >
         ktl::api::command::cmd_set_compute_occupancy_priority_nv};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8221,7 +8221,7 @@ struct extension< ktl::api::extension::khr_pipeline_library_group_handles >
 };
 
 template <>
-struct extension< ktl::api::extension::khr_maintenance_11 >
+struct extension< ktl::api::extension::khr_maintenance11 >
 {
     static constexpr std::string_view      raw_name    = "VK_KHR_maintenance11";
     static constexpr bool                  is_instance = false;
@@ -8230,7 +8230,7 @@ struct extension< ktl::api::extension::khr_maintenance_11 >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8238,14 +8238,14 @@ struct extension< ktl::api::extension::khr_maintenance_11 >
 };
 
 template <>
-struct extension< ktl::api::extension::ext_cooperative_matrix_maintenance_1 >
+struct extension< ktl::api::extension::ext_cooperative_matrix_maintenance1 >
 {
     static constexpr std::string_view      raw_name    = "VK_EXT_cooperative_matrix_maintenance1";
     static constexpr bool                  is_instance = false;
     static constexpr ktl::meta::dependency promoted    = {};
 
     static constexpr std::array< ktl::api::command, 1 > commands = {
-        ktl::api::command::get_physical_device_cooperative_matrix_properties_2ext};
+        ktl::api::command::get_physical_device_cooperative_matrix_properties_2_ext};
 
     static constexpr std::array< ktl::meta::dependency, 1 > dependencies = {
         ktl::api::extension::khr_cooperative_matrix};
@@ -8264,7 +8264,7 @@ struct extension< ktl::api::extension::ext_shader_subgroup_partitioned >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8297,7 +8297,7 @@ struct extension< ktl::api::extension::khr_extended_flags >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8314,7 +8314,7 @@ struct extension< ktl::api::extension::ext_shader_ocp_microscaling_types >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8331,8 +8331,8 @@ struct extension< ktl::api::extension::valve_shader_mixed_float_dot_product >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 5 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::extension::khr_shader_float_16int_8,
-        ktl::api::version_1_1, ktl::api::extension::khr_shader_float_16int_8, ktl::api::version_1_2};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::extension::khr_shader_float16_int8,
+        ktl::api::version_1_1, ktl::api::extension::khr_shader_float16_int8, ktl::api::version_1_2};
     static constexpr std::array< ktl::meta::requirement, 3 >   requirements = {std::span{dependencies}.subspan(0, 2),
                                                                                std::span{dependencies}.subspan(2, 2),
                                                                                std::span{dependencies}.subspan(4, 1)};
@@ -8365,7 +8365,7 @@ struct extension< ktl::api::extension::arm_data_graph_neural_accelerator_statist
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8383,7 +8383,7 @@ struct extension< ktl::api::extension::ext_primitive_restart_index >
         ktl::api::command::cmd_set_primitive_restart_index_ext};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8400,7 +8400,7 @@ struct extension< ktl::api::extension::ext_image_tiling_control >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8417,7 +8417,7 @@ struct extension< ktl::api::extension::nv_cooperative_matrix_decode_vector >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 1 > dependencies = {
-        ktl::api::extension::nv_cooperative_matrix_2};
+        ktl::api::extension::nv_cooperative_matrix2};
     static constexpr std::array< ktl::meta::requirement, 1 >   requirements = {std::span{dependencies}.subspan(0, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 1);
     static constexpr std::array< ktl::meta::conditional_command, 0 > conditional_commands = {};
@@ -8450,7 +8450,7 @@ struct extension< ktl::api::extension::intel_device_info >
     static constexpr std::array< ktl::api::command, 0 > commands = {};
 
     static constexpr std::array< ktl::meta::dependency, 2 > dependencies = {
-        ktl::api::extension::khr_get_physical_device_properties_2, ktl::api::version_1_1};
+        ktl::api::extension::khr_get_physical_device_properties2, ktl::api::version_1_1};
     static constexpr std::array< ktl::meta::requirement, 2 >   requirements = {std::span{dependencies}.subspan(0, 1),
                                                                                std::span{dependencies}.subspan(1, 1)};
     static constexpr std::span< ktl::meta::requirement const > depends      = std::span{requirements}.subspan(0, 2);
@@ -8511,7 +8511,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_win32_surface")
     {
-        return ktl::api::extension::khr_win_32surface;
+        return ktl::api::extension::khr_win32_surface;
     }
     if (_extension == "VK_EXT_debug_report")
     {
@@ -8627,15 +8627,15 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_NV_external_memory_win32")
     {
-        return ktl::api::extension::nv_external_memory_win_32;
+        return ktl::api::extension::nv_external_memory_win32;
     }
     if (_extension == "VK_NV_win32_keyed_mutex")
     {
-        return ktl::api::extension::nv_win_32keyed_mutex;
+        return ktl::api::extension::nv_win32_keyed_mutex;
     }
     if (_extension == "VK_KHR_get_physical_device_properties2")
     {
-        return ktl::api::extension::khr_get_physical_device_properties_2;
+        return ktl::api::extension::khr_get_physical_device_properties2;
     }
     if (_extension == "VK_KHR_device_group")
     {
@@ -8675,7 +8675,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance1")
     {
-        return ktl::api::extension::khr_maintenance_1;
+        return ktl::api::extension::khr_maintenance1;
     }
     if (_extension == "VK_KHR_device_group_creation")
     {
@@ -8691,7 +8691,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_external_memory_win32")
     {
-        return ktl::api::extension::khr_external_memory_win_32;
+        return ktl::api::extension::khr_external_memory_win32;
     }
     if (_extension == "VK_KHR_external_memory_fd")
     {
@@ -8699,7 +8699,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_win32_keyed_mutex")
     {
-        return ktl::api::extension::khr_win_32keyed_mutex;
+        return ktl::api::extension::khr_win32_keyed_mutex;
     }
     if (_extension == "VK_KHR_external_semaphore_capabilities")
     {
@@ -8711,7 +8711,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_external_semaphore_win32")
     {
-        return ktl::api::extension::khr_external_semaphore_win_32;
+        return ktl::api::extension::khr_external_semaphore_win32;
     }
     if (_extension == "VK_KHR_external_semaphore_fd")
     {
@@ -8727,7 +8727,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_shader_float16_int8")
     {
-        return ktl::api::extension::khr_shader_float_16int_8;
+        return ktl::api::extension::khr_shader_float16_int8;
     }
     if (_extension == "VK_KHR_16bit_storage")
     {
@@ -8775,7 +8775,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_NV_viewport_array2")
     {
-        return ktl::api::extension::nv_viewport_array_2;
+        return ktl::api::extension::nv_viewport_array2;
     }
     if (_extension == "VK_NVX_multiview_per_view_attributes")
     {
@@ -8811,7 +8811,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_create_renderpass2")
     {
-        return ktl::api::extension::khr_create_renderpass_2;
+        return ktl::api::extension::khr_create_renderpass2;
     }
     if (_extension == "VK_IMG_relaxed_line_rasterization")
     {
@@ -8831,7 +8831,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_external_fence_win32")
     {
-        return ktl::api::extension::khr_external_fence_win_32;
+        return ktl::api::extension::khr_external_fence_win32;
     }
     if (_extension == "VK_KHR_external_fence_fd")
     {
@@ -8843,11 +8843,11 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance2")
     {
-        return ktl::api::extension::khr_maintenance_2;
+        return ktl::api::extension::khr_maintenance2;
     }
     if (_extension == "VK_KHR_get_surface_capabilities2")
     {
-        return ktl::api::extension::khr_get_surface_capabilities_2;
+        return ktl::api::extension::khr_get_surface_capabilities2;
     }
     if (_extension == "VK_KHR_variable_pointers")
     {
@@ -8855,7 +8855,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_get_display_properties2")
     {
-        return ktl::api::extension::khr_get_display_properties_2;
+        return ktl::api::extension::khr_get_display_properties2;
     }
     if (_extension == "VK_MVK_ios_surface")
     {
@@ -8895,7 +8895,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_AMD_gpu_shader_int16")
     {
-        return ktl::api::extension::amd_gpu_shader_int_16;
+        return ktl::api::extension::amd_gpu_shader_int16;
     }
     if (_extension == "VK_AMD_gpa_interface")
     {
@@ -8927,7 +8927,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_shader_bfloat16")
     {
-        return ktl::api::extension::khr_shader_bfloat_16;
+        return ktl::api::extension::khr_shader_bfloat16;
     }
     if (_extension == "VK_EXT_sample_locations")
     {
@@ -8939,7 +8939,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_get_memory_requirements2")
     {
-        return ktl::api::extension::khr_get_memory_requirements_2;
+        return ktl::api::extension::khr_get_memory_requirements2;
     }
     if (_extension == "VK_KHR_image_format_list")
     {
@@ -8987,7 +8987,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_bind_memory2")
     {
-        return ktl::api::extension::khr_bind_memory_2;
+        return ktl::api::extension::khr_bind_memory2;
     }
     if (_extension == "VK_EXT_image_drm_format_modifier")
     {
@@ -9023,7 +9023,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance3")
     {
-        return ktl::api::extension::khr_maintenance_3;
+        return ktl::api::extension::khr_maintenance3;
     }
     if (_extension == "VK_KHR_draw_indirect_count")
     {
@@ -9067,7 +9067,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_shader_atomic_int64")
     {
-        return ktl::api::extension::khr_shader_atomic_int_64;
+        return ktl::api::extension::khr_shader_atomic_int64;
     }
     if (_extension == "VK_KHR_shader_clock")
     {
@@ -9159,7 +9159,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_INTEL_shader_integer_functions2")
     {
-        return ktl::api::extension::intel_shader_integer_functions_2;
+        return ktl::api::extension::intel_shader_integer_functions2;
     }
     if (_extension == "VK_INTEL_performance_query")
     {
@@ -9199,7 +9199,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_GOOGLE_hlsl_functionality1")
     {
-        return ktl::api::extension::google_hlsl_functionality_1;
+        return ktl::api::extension::google_hlsl_functionality1;
     }
     if (_extension == "VK_GOOGLE_decorate_string")
     {
@@ -9215,7 +9215,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_AMD_shader_core_properties2")
     {
-        return ktl::api::extension::amd_shader_core_properties_2;
+        return ktl::api::extension::amd_shader_core_properties2;
     }
     if (_extension == "VK_AMD_device_coherent_memory")
     {
@@ -9235,7 +9235,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_shader_image_atomic_int64")
     {
-        return ktl::api::extension::ext_shader_image_atomic_int_64;
+        return ktl::api::extension::ext_shader_image_atomic_int64;
     }
     if (_extension == "VK_KHR_shader_quad_control")
     {
@@ -9243,7 +9243,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_spirv_1_4")
     {
-        return ktl::api::extension::khr_spirv_14;
+        return ktl::api::extension::khr_spirv_1_4;
     }
     if (_extension == "VK_EXT_memory_budget")
     {
@@ -9335,7 +9335,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_index_type_uint8")
     {
-        return ktl::api::extension::ext_index_type_uint_8;
+        return ktl::api::extension::ext_index_type_uint8;
     }
     if (_extension == "VK_EXT_extended_dynamic_state")
     {
@@ -9355,7 +9355,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_map_memory2")
     {
-        return ktl::api::extension::khr_map_memory_2;
+        return ktl::api::extension::khr_map_memory2;
     }
     if (_extension == "VK_EXT_map_memory_placed")
     {
@@ -9363,15 +9363,15 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_shader_atomic_float2")
     {
-        return ktl::api::extension::ext_shader_atomic_float_2;
+        return ktl::api::extension::ext_shader_atomic_float2;
     }
     if (_extension == "VK_EXT_surface_maintenance1")
     {
-        return ktl::api::extension::ext_surface_maintenance_1;
+        return ktl::api::extension::ext_surface_maintenance1;
     }
     if (_extension == "VK_EXT_swapchain_maintenance1")
     {
-        return ktl::api::extension::ext_swapchain_maintenance_1;
+        return ktl::api::extension::ext_swapchain_maintenance1;
     }
     if (_extension == "VK_EXT_shader_demote_to_helper_invocation")
     {
@@ -9411,7 +9411,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_robustness2")
     {
-        return ktl::api::extension::ext_robustness_2;
+        return ktl::api::extension::ext_robustness2;
     }
     if (_extension == "VK_EXT_custom_border_color")
     {
@@ -9463,7 +9463,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_QCOM_image_processing3")
     {
-        return ktl::api::extension::qcom_image_processing_3;
+        return ktl::api::extension::qcom_image_processing3;
     }
     if (_extension == "VK_QCOM_shader_multiple_wait_queues")
     {
@@ -9491,7 +9491,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_synchronization2")
     {
-        return ktl::api::extension::khr_synchronization_2;
+        return ktl::api::extension::khr_synchronization2;
     }
     if (_extension == "VK_EXT_descriptor_buffer")
     {
@@ -9535,11 +9535,11 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_ycbcr_2plane_444_formats")
     {
-        return ktl::api::extension::ext_ycbcr_2plane_444formats;
+        return ktl::api::extension::ext_ycbcr_2plane_444_formats;
     }
     if (_extension == "VK_EXT_fragment_density_map2")
     {
-        return ktl::api::extension::ext_fragment_density_map_2;
+        return ktl::api::extension::ext_fragment_density_map2;
     }
     if (_extension == "VK_QCOM_rotated_copy_commands")
     {
@@ -9555,7 +9555,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_copy_commands2")
     {
-        return ktl::api::extension::khr_copy_commands_2;
+        return ktl::api::extension::khr_copy_commands2;
     }
     if (_extension == "VK_EXT_image_compression_control")
     {
@@ -9567,7 +9567,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_4444_formats")
     {
-        return ktl::api::extension::ext_4444formats;
+        return ktl::api::extension::ext_4444_formats;
     }
     if (_extension == "VK_EXT_device_fault")
     {
@@ -9579,7 +9579,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_rgba10x6_formats")
     {
-        return ktl::api::extension::ext_rgba_10x_6formats;
+        return ktl::api::extension::ext_rgba10x6_formats;
     }
     if (_extension == "VK_NV_acquire_winrt_display")
     {
@@ -9615,7 +9615,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_format_feature_flags2")
     {
-        return ktl::api::extension::khr_format_feature_flags_2;
+        return ktl::api::extension::khr_format_feature_flags2;
     }
     if (_extension == "VK_EXT_present_mode_fifo_latest_ready")
     {
@@ -9659,7 +9659,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_extended_dynamic_state2")
     {
-        return ktl::api::extension::ext_extended_dynamic_state_2;
+        return ktl::api::extension::ext_extended_dynamic_state2;
     }
     if (_extension == "VK_QNX_screen_surface")
     {
@@ -9675,7 +9675,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_ray_tracing_maintenance1")
     {
-        return ktl::api::extension::khr_ray_tracing_maintenance_1;
+        return ktl::api::extension::khr_ray_tracing_maintenance1;
     }
     if (_extension == "VK_KHR_shader_untyped_pointers")
     {
@@ -9731,7 +9731,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance4")
     {
-        return ktl::api::extension::khr_maintenance_4;
+        return ktl::api::extension::khr_maintenance4;
     }
     if (_extension == "VK_ARM_shader_core_properties")
     {
@@ -9819,7 +9819,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_extended_dynamic_state3")
     {
-        return ktl::api::extension::ext_extended_dynamic_state_3;
+        return ktl::api::extension::ext_extended_dynamic_state3;
     }
     if (_extension == "VK_EXT_subpass_merge_feedback")
     {
@@ -9859,7 +9859,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance5")
     {
-        return ktl::api::extension::khr_maintenance_5;
+        return ktl::api::extension::khr_maintenance5;
     }
     if (_extension == "VK_AMD_anti_lag")
     {
@@ -9871,11 +9871,11 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_present_id2")
     {
-        return ktl::api::extension::khr_present_id_2;
+        return ktl::api::extension::khr_present_id2;
     }
     if (_extension == "VK_KHR_present_wait2")
     {
-        return ktl::api::extension::khr_present_wait_2;
+        return ktl::api::extension::khr_present_wait2;
     }
     if (_extension == "VK_KHR_ray_tracing_position_fetch")
     {
@@ -9899,11 +9899,11 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_surface_maintenance1")
     {
-        return ktl::api::extension::khr_surface_maintenance_1;
+        return ktl::api::extension::khr_surface_maintenance1;
     }
     if (_extension == "VK_KHR_swapchain_maintenance1")
     {
-        return ktl::api::extension::khr_swapchain_maintenance_1;
+        return ktl::api::extension::khr_swapchain_maintenance1;
     }
     if (_extension == "VK_QCOM_multiview_per_view_viewports")
     {
@@ -9951,7 +9951,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_NV_low_latency2")
     {
-        return ktl::api::extension::nv_low_latency_2;
+        return ktl::api::extension::nv_low_latency2;
     }
     if (_extension == "VK_KHR_cooperative_matrix")
     {
@@ -9979,7 +9979,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_QCOM_image_processing2")
     {
-        return ktl::api::extension::qcom_image_processing_2;
+        return ktl::api::extension::qcom_image_processing2;
     }
     if (_extension == "VK_QCOM_filter_cubic_weights")
     {
@@ -10011,7 +10011,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_shader_float_controls2")
     {
-        return ktl::api::extension::khr_shader_float_controls_2;
+        return ktl::api::extension::khr_shader_float_controls2;
     }
     if (_extension == "VK_QNX_external_memory_screen_buffer")
     {
@@ -10023,7 +10023,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_index_type_uint8")
     {
-        return ktl::api::extension::khr_index_type_uint_8;
+        return ktl::api::extension::khr_index_type_uint8;
     }
     if (_extension == "VK_KHR_line_rasterization")
     {
@@ -10039,7 +10039,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance6")
     {
-        return ktl::api::extension::khr_maintenance_6;
+        return ktl::api::extension::khr_maintenance6;
     }
     if (_extension == "VK_NV_descriptor_pool_overallocation")
     {
@@ -10079,11 +10079,11 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance7")
     {
-        return ktl::api::extension::khr_maintenance_7;
+        return ktl::api::extension::khr_maintenance7;
     }
     if (_extension == "VK_NV_shader_atomic_float16_vector")
     {
-        return ktl::api::extension::nv_shader_atomic_float_16vector;
+        return ktl::api::extension::nv_shader_atomic_float16_vector;
     }
     if (_extension == "VK_EXT_shader_replicated_composites")
     {
@@ -10095,7 +10095,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_EXT_shader_float8")
     {
-        return ktl::api::extension::ext_shader_float_8;
+        return ktl::api::extension::ext_shader_float8;
     }
     if (_extension == "VK_NV_ray_tracing_validation")
     {
@@ -10119,7 +10119,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance8")
     {
-        return ktl::api::extension::khr_maintenance_8;
+        return ktl::api::extension::khr_maintenance8;
     }
     if (_extension == "VK_MESA_image_alignment_control")
     {
@@ -10143,7 +10143,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance9")
     {
-        return ktl::api::extension::khr_maintenance_9;
+        return ktl::api::extension::khr_maintenance9;
     }
     if (_extension == "VK_OHOS_surface")
     {
@@ -10155,7 +10155,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_NV_cooperative_matrix2")
     {
-        return ktl::api::extension::nv_cooperative_matrix_2;
+        return ktl::api::extension::nv_cooperative_matrix2;
     }
     if (_extension == "VK_ARM_pipeline_opacity_micromap")
     {
@@ -10195,7 +10195,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_robustness2")
     {
-        return ktl::api::extension::khr_robustness_2;
+        return ktl::api::extension::khr_robustness2;
     }
     if (_extension == "VK_NV_present_metering")
     {
@@ -10235,7 +10235,7 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance10")
     {
-        return ktl::api::extension::khr_maintenance_10;
+        return ktl::api::extension::khr_maintenance10;
     }
     if (_extension == "VK_ARM_data_graph_optical_flow")
     {
@@ -10263,11 +10263,11 @@ extension_from_raw(std::string_view _extension)
     }
     if (_extension == "VK_KHR_maintenance11")
     {
-        return ktl::api::extension::khr_maintenance_11;
+        return ktl::api::extension::khr_maintenance11;
     }
     if (_extension == "VK_EXT_cooperative_matrix_maintenance1")
     {
-        return ktl::api::extension::ext_cooperative_matrix_maintenance_1;
+        return ktl::api::extension::ext_cooperative_matrix_maintenance1;
     }
     if (_extension == "VK_EXT_shader_subgroup_partitioned")
     {
@@ -10359,9 +10359,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_android_surface >();
     }
-    if (_extension == ktl::api::extension::khr_win_32surface)
+    if (_extension == ktl::api::extension::khr_win32_surface)
     {
-        return extension_cast< ktl::api::extension::khr_win_32surface >();
+        return extension_cast< ktl::api::extension::khr_win32_surface >();
     }
     if (_extension == ktl::api::extension::ext_debug_report)
     {
@@ -10475,17 +10475,17 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::nv_external_memory >();
     }
-    if (_extension == ktl::api::extension::nv_external_memory_win_32)
+    if (_extension == ktl::api::extension::nv_external_memory_win32)
     {
-        return extension_cast< ktl::api::extension::nv_external_memory_win_32 >();
+        return extension_cast< ktl::api::extension::nv_external_memory_win32 >();
     }
-    if (_extension == ktl::api::extension::nv_win_32keyed_mutex)
+    if (_extension == ktl::api::extension::nv_win32_keyed_mutex)
     {
-        return extension_cast< ktl::api::extension::nv_win_32keyed_mutex >();
+        return extension_cast< ktl::api::extension::nv_win32_keyed_mutex >();
     }
-    if (_extension == ktl::api::extension::khr_get_physical_device_properties_2)
+    if (_extension == ktl::api::extension::khr_get_physical_device_properties2)
     {
-        return extension_cast< ktl::api::extension::khr_get_physical_device_properties_2 >();
+        return extension_cast< ktl::api::extension::khr_get_physical_device_properties2 >();
     }
     if (_extension == ktl::api::extension::khr_device_group)
     {
@@ -10523,9 +10523,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_pipeline_robustness >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_1)
+    if (_extension == ktl::api::extension::khr_maintenance1)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_1 >();
+        return extension_cast< ktl::api::extension::khr_maintenance1 >();
     }
     if (_extension == ktl::api::extension::khr_device_group_creation)
     {
@@ -10539,17 +10539,17 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_external_memory >();
     }
-    if (_extension == ktl::api::extension::khr_external_memory_win_32)
+    if (_extension == ktl::api::extension::khr_external_memory_win32)
     {
-        return extension_cast< ktl::api::extension::khr_external_memory_win_32 >();
+        return extension_cast< ktl::api::extension::khr_external_memory_win32 >();
     }
     if (_extension == ktl::api::extension::khr_external_memory_fd)
     {
         return extension_cast< ktl::api::extension::khr_external_memory_fd >();
     }
-    if (_extension == ktl::api::extension::khr_win_32keyed_mutex)
+    if (_extension == ktl::api::extension::khr_win32_keyed_mutex)
     {
-        return extension_cast< ktl::api::extension::khr_win_32keyed_mutex >();
+        return extension_cast< ktl::api::extension::khr_win32_keyed_mutex >();
     }
     if (_extension == ktl::api::extension::khr_external_semaphore_capabilities)
     {
@@ -10559,9 +10559,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_external_semaphore >();
     }
-    if (_extension == ktl::api::extension::khr_external_semaphore_win_32)
+    if (_extension == ktl::api::extension::khr_external_semaphore_win32)
     {
-        return extension_cast< ktl::api::extension::khr_external_semaphore_win_32 >();
+        return extension_cast< ktl::api::extension::khr_external_semaphore_win32 >();
     }
     if (_extension == ktl::api::extension::khr_external_semaphore_fd)
     {
@@ -10575,9 +10575,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_conditional_rendering >();
     }
-    if (_extension == ktl::api::extension::khr_shader_float_16int_8)
+    if (_extension == ktl::api::extension::khr_shader_float16_int8)
     {
-        return extension_cast< ktl::api::extension::khr_shader_float_16int_8 >();
+        return extension_cast< ktl::api::extension::khr_shader_float16_int8 >();
     }
     if (_extension == ktl::api::extension::khr_16bit_storage)
     {
@@ -10623,9 +10623,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::nv_geometry_shader_passthrough >();
     }
-    if (_extension == ktl::api::extension::nv_viewport_array_2)
+    if (_extension == ktl::api::extension::nv_viewport_array2)
     {
-        return extension_cast< ktl::api::extension::nv_viewport_array_2 >();
+        return extension_cast< ktl::api::extension::nv_viewport_array2 >();
     }
     if (_extension == ktl::api::extension::nvx_multiview_per_view_attributes)
     {
@@ -10659,9 +10659,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_imageless_framebuffer >();
     }
-    if (_extension == ktl::api::extension::khr_create_renderpass_2)
+    if (_extension == ktl::api::extension::khr_create_renderpass2)
     {
-        return extension_cast< ktl::api::extension::khr_create_renderpass_2 >();
+        return extension_cast< ktl::api::extension::khr_create_renderpass2 >();
     }
     if (_extension == ktl::api::extension::img_relaxed_line_rasterization)
     {
@@ -10679,9 +10679,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_external_fence >();
     }
-    if (_extension == ktl::api::extension::khr_external_fence_win_32)
+    if (_extension == ktl::api::extension::khr_external_fence_win32)
     {
-        return extension_cast< ktl::api::extension::khr_external_fence_win_32 >();
+        return extension_cast< ktl::api::extension::khr_external_fence_win32 >();
     }
     if (_extension == ktl::api::extension::khr_external_fence_fd)
     {
@@ -10691,21 +10691,21 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_performance_query >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_2)
+    if (_extension == ktl::api::extension::khr_maintenance2)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_2 >();
+        return extension_cast< ktl::api::extension::khr_maintenance2 >();
     }
-    if (_extension == ktl::api::extension::khr_get_surface_capabilities_2)
+    if (_extension == ktl::api::extension::khr_get_surface_capabilities2)
     {
-        return extension_cast< ktl::api::extension::khr_get_surface_capabilities_2 >();
+        return extension_cast< ktl::api::extension::khr_get_surface_capabilities2 >();
     }
     if (_extension == ktl::api::extension::khr_variable_pointers)
     {
         return extension_cast< ktl::api::extension::khr_variable_pointers >();
     }
-    if (_extension == ktl::api::extension::khr_get_display_properties_2)
+    if (_extension == ktl::api::extension::khr_get_display_properties2)
     {
-        return extension_cast< ktl::api::extension::khr_get_display_properties_2 >();
+        return extension_cast< ktl::api::extension::khr_get_display_properties2 >();
     }
     if (_extension == ktl::api::extension::mvk_ios_surface)
     {
@@ -10743,9 +10743,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_storage_buffer_storage_class >();
     }
-    if (_extension == ktl::api::extension::amd_gpu_shader_int_16)
+    if (_extension == ktl::api::extension::amd_gpu_shader_int16)
     {
-        return extension_cast< ktl::api::extension::amd_gpu_shader_int_16 >();
+        return extension_cast< ktl::api::extension::amd_gpu_shader_int16 >();
     }
     if (_extension == ktl::api::extension::amd_gpa_interface)
     {
@@ -10775,9 +10775,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_shader_stencil_export >();
     }
-    if (_extension == ktl::api::extension::khr_shader_bfloat_16)
+    if (_extension == ktl::api::extension::khr_shader_bfloat16)
     {
-        return extension_cast< ktl::api::extension::khr_shader_bfloat_16 >();
+        return extension_cast< ktl::api::extension::khr_shader_bfloat16 >();
     }
     if (_extension == ktl::api::extension::ext_sample_locations)
     {
@@ -10787,9 +10787,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_relaxed_block_layout >();
     }
-    if (_extension == ktl::api::extension::khr_get_memory_requirements_2)
+    if (_extension == ktl::api::extension::khr_get_memory_requirements2)
     {
-        return extension_cast< ktl::api::extension::khr_get_memory_requirements_2 >();
+        return extension_cast< ktl::api::extension::khr_get_memory_requirements2 >();
     }
     if (_extension == ktl::api::extension::khr_image_format_list)
     {
@@ -10835,9 +10835,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_sampler_ycbcr_conversion >();
     }
-    if (_extension == ktl::api::extension::khr_bind_memory_2)
+    if (_extension == ktl::api::extension::khr_bind_memory2)
     {
-        return extension_cast< ktl::api::extension::khr_bind_memory_2 >();
+        return extension_cast< ktl::api::extension::khr_bind_memory2 >();
     }
     if (_extension == ktl::api::extension::ext_image_drm_format_modifier)
     {
@@ -10871,9 +10871,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::nv_representative_fragment_test >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_3)
+    if (_extension == ktl::api::extension::khr_maintenance3)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_3 >();
+        return extension_cast< ktl::api::extension::khr_maintenance3 >();
     }
     if (_extension == ktl::api::extension::khr_draw_indirect_count)
     {
@@ -10915,9 +10915,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::amd_buffer_marker >();
     }
-    if (_extension == ktl::api::extension::khr_shader_atomic_int_64)
+    if (_extension == ktl::api::extension::khr_shader_atomic_int64)
     {
-        return extension_cast< ktl::api::extension::khr_shader_atomic_int_64 >();
+        return extension_cast< ktl::api::extension::khr_shader_atomic_int64 >();
     }
     if (_extension == ktl::api::extension::khr_shader_clock)
     {
@@ -11007,9 +11007,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_present_timing >();
     }
-    if (_extension == ktl::api::extension::intel_shader_integer_functions_2)
+    if (_extension == ktl::api::extension::intel_shader_integer_functions2)
     {
-        return extension_cast< ktl::api::extension::intel_shader_integer_functions_2 >();
+        return extension_cast< ktl::api::extension::intel_shader_integer_functions2 >();
     }
     if (_extension == ktl::api::extension::intel_performance_query)
     {
@@ -11047,9 +11047,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_scalar_block_layout >();
     }
-    if (_extension == ktl::api::extension::google_hlsl_functionality_1)
+    if (_extension == ktl::api::extension::google_hlsl_functionality1)
     {
-        return extension_cast< ktl::api::extension::google_hlsl_functionality_1 >();
+        return extension_cast< ktl::api::extension::google_hlsl_functionality1 >();
     }
     if (_extension == ktl::api::extension::google_decorate_string)
     {
@@ -11063,9 +11063,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_fragment_shading_rate >();
     }
-    if (_extension == ktl::api::extension::amd_shader_core_properties_2)
+    if (_extension == ktl::api::extension::amd_shader_core_properties2)
     {
-        return extension_cast< ktl::api::extension::amd_shader_core_properties_2 >();
+        return extension_cast< ktl::api::extension::amd_shader_core_properties2 >();
     }
     if (_extension == ktl::api::extension::amd_device_coherent_memory)
     {
@@ -11083,17 +11083,17 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_shader_abort >();
     }
-    if (_extension == ktl::api::extension::ext_shader_image_atomic_int_64)
+    if (_extension == ktl::api::extension::ext_shader_image_atomic_int64)
     {
-        return extension_cast< ktl::api::extension::ext_shader_image_atomic_int_64 >();
+        return extension_cast< ktl::api::extension::ext_shader_image_atomic_int64 >();
     }
     if (_extension == ktl::api::extension::khr_shader_quad_control)
     {
         return extension_cast< ktl::api::extension::khr_shader_quad_control >();
     }
-    if (_extension == ktl::api::extension::khr_spirv_14)
+    if (_extension == ktl::api::extension::khr_spirv_1_4)
     {
-        return extension_cast< ktl::api::extension::khr_spirv_14 >();
+        return extension_cast< ktl::api::extension::khr_spirv_1_4 >();
     }
     if (_extension == ktl::api::extension::ext_memory_budget)
     {
@@ -11183,9 +11183,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_host_query_reset >();
     }
-    if (_extension == ktl::api::extension::ext_index_type_uint_8)
+    if (_extension == ktl::api::extension::ext_index_type_uint8)
     {
-        return extension_cast< ktl::api::extension::ext_index_type_uint_8 >();
+        return extension_cast< ktl::api::extension::ext_index_type_uint8 >();
     }
     if (_extension == ktl::api::extension::ext_extended_dynamic_state)
     {
@@ -11203,25 +11203,25 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_host_image_copy >();
     }
-    if (_extension == ktl::api::extension::khr_map_memory_2)
+    if (_extension == ktl::api::extension::khr_map_memory2)
     {
-        return extension_cast< ktl::api::extension::khr_map_memory_2 >();
+        return extension_cast< ktl::api::extension::khr_map_memory2 >();
     }
     if (_extension == ktl::api::extension::ext_map_memory_placed)
     {
         return extension_cast< ktl::api::extension::ext_map_memory_placed >();
     }
-    if (_extension == ktl::api::extension::ext_shader_atomic_float_2)
+    if (_extension == ktl::api::extension::ext_shader_atomic_float2)
     {
-        return extension_cast< ktl::api::extension::ext_shader_atomic_float_2 >();
+        return extension_cast< ktl::api::extension::ext_shader_atomic_float2 >();
     }
-    if (_extension == ktl::api::extension::ext_surface_maintenance_1)
+    if (_extension == ktl::api::extension::ext_surface_maintenance1)
     {
-        return extension_cast< ktl::api::extension::ext_surface_maintenance_1 >();
+        return extension_cast< ktl::api::extension::ext_surface_maintenance1 >();
     }
-    if (_extension == ktl::api::extension::ext_swapchain_maintenance_1)
+    if (_extension == ktl::api::extension::ext_swapchain_maintenance1)
     {
-        return extension_cast< ktl::api::extension::ext_swapchain_maintenance_1 >();
+        return extension_cast< ktl::api::extension::ext_swapchain_maintenance1 >();
     }
     if (_extension == ktl::api::extension::ext_shader_demote_to_helper_invocation)
     {
@@ -11259,9 +11259,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_acquire_drm_display >();
     }
-    if (_extension == ktl::api::extension::ext_robustness_2)
+    if (_extension == ktl::api::extension::ext_robustness2)
     {
-        return extension_cast< ktl::api::extension::ext_robustness_2 >();
+        return extension_cast< ktl::api::extension::ext_robustness2 >();
     }
     if (_extension == ktl::api::extension::ext_custom_border_color)
     {
@@ -11311,9 +11311,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::qcom_queue_perf_hint >();
     }
-    if (_extension == ktl::api::extension::qcom_image_processing_3)
+    if (_extension == ktl::api::extension::qcom_image_processing3)
     {
-        return extension_cast< ktl::api::extension::qcom_image_processing_3 >();
+        return extension_cast< ktl::api::extension::qcom_image_processing3 >();
     }
     if (_extension == ktl::api::extension::qcom_shader_multiple_wait_queues)
     {
@@ -11339,9 +11339,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_metal_objects >();
     }
-    if (_extension == ktl::api::extension::khr_synchronization_2)
+    if (_extension == ktl::api::extension::khr_synchronization2)
     {
-        return extension_cast< ktl::api::extension::khr_synchronization_2 >();
+        return extension_cast< ktl::api::extension::khr_synchronization2 >();
     }
     if (_extension == ktl::api::extension::ext_descriptor_buffer)
     {
@@ -11383,13 +11383,13 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_mesh_shader >();
     }
-    if (_extension == ktl::api::extension::ext_ycbcr_2plane_444formats)
+    if (_extension == ktl::api::extension::ext_ycbcr_2plane_444_formats)
     {
-        return extension_cast< ktl::api::extension::ext_ycbcr_2plane_444formats >();
+        return extension_cast< ktl::api::extension::ext_ycbcr_2plane_444_formats >();
     }
-    if (_extension == ktl::api::extension::ext_fragment_density_map_2)
+    if (_extension == ktl::api::extension::ext_fragment_density_map2)
     {
-        return extension_cast< ktl::api::extension::ext_fragment_density_map_2 >();
+        return extension_cast< ktl::api::extension::ext_fragment_density_map2 >();
     }
     if (_extension == ktl::api::extension::qcom_rotated_copy_commands)
     {
@@ -11403,9 +11403,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_workgroup_memory_explicit_layout >();
     }
-    if (_extension == ktl::api::extension::khr_copy_commands_2)
+    if (_extension == ktl::api::extension::khr_copy_commands2)
     {
-        return extension_cast< ktl::api::extension::khr_copy_commands_2 >();
+        return extension_cast< ktl::api::extension::khr_copy_commands2 >();
     }
     if (_extension == ktl::api::extension::ext_image_compression_control)
     {
@@ -11415,9 +11415,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_attachment_feedback_loop_layout >();
     }
-    if (_extension == ktl::api::extension::ext_4444formats)
+    if (_extension == ktl::api::extension::ext_4444_formats)
     {
-        return extension_cast< ktl::api::extension::ext_4444formats >();
+        return extension_cast< ktl::api::extension::ext_4444_formats >();
     }
     if (_extension == ktl::api::extension::ext_device_fault)
     {
@@ -11427,9 +11427,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::arm_rasterization_order_attachment_access >();
     }
-    if (_extension == ktl::api::extension::ext_rgba_10x_6formats)
+    if (_extension == ktl::api::extension::ext_rgba10x6_formats)
     {
-        return extension_cast< ktl::api::extension::ext_rgba_10x_6formats >();
+        return extension_cast< ktl::api::extension::ext_rgba10x6_formats >();
     }
     if (_extension == ktl::api::extension::nv_acquire_winrt_display)
     {
@@ -11463,9 +11463,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_primitive_topology_list_restart >();
     }
-    if (_extension == ktl::api::extension::khr_format_feature_flags_2)
+    if (_extension == ktl::api::extension::khr_format_feature_flags2)
     {
-        return extension_cast< ktl::api::extension::khr_format_feature_flags_2 >();
+        return extension_cast< ktl::api::extension::khr_format_feature_flags2 >();
     }
     if (_extension == ktl::api::extension::ext_present_mode_fifo_latest_ready)
     {
@@ -11507,9 +11507,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_multisampled_render_to_single_sampled >();
     }
-    if (_extension == ktl::api::extension::ext_extended_dynamic_state_2)
+    if (_extension == ktl::api::extension::ext_extended_dynamic_state2)
     {
-        return extension_cast< ktl::api::extension::ext_extended_dynamic_state_2 >();
+        return extension_cast< ktl::api::extension::ext_extended_dynamic_state2 >();
     }
     if (_extension == ktl::api::extension::qnx_screen_surface)
     {
@@ -11523,9 +11523,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_primitives_generated_query >();
     }
-    if (_extension == ktl::api::extension::khr_ray_tracing_maintenance_1)
+    if (_extension == ktl::api::extension::khr_ray_tracing_maintenance1)
     {
-        return extension_cast< ktl::api::extension::khr_ray_tracing_maintenance_1 >();
+        return extension_cast< ktl::api::extension::khr_ray_tracing_maintenance1 >();
     }
     if (_extension == ktl::api::extension::khr_shader_untyped_pointers)
     {
@@ -11579,9 +11579,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_pageable_device_local_memory >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_4)
+    if (_extension == ktl::api::extension::khr_maintenance4)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_4 >();
+        return extension_cast< ktl::api::extension::khr_maintenance4 >();
     }
     if (_extension == ktl::api::extension::arm_shader_core_properties)
     {
@@ -11667,9 +11667,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_external_memory_acquire_unmodified >();
     }
-    if (_extension == ktl::api::extension::ext_extended_dynamic_state_3)
+    if (_extension == ktl::api::extension::ext_extended_dynamic_state3)
     {
-        return extension_cast< ktl::api::extension::ext_extended_dynamic_state_3 >();
+        return extension_cast< ktl::api::extension::ext_extended_dynamic_state3 >();
     }
     if (_extension == ktl::api::extension::ext_subpass_merge_feedback)
     {
@@ -11707,9 +11707,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::android_external_format_resolve >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_5)
+    if (_extension == ktl::api::extension::khr_maintenance5)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_5 >();
+        return extension_cast< ktl::api::extension::khr_maintenance5 >();
     }
     if (_extension == ktl::api::extension::amd_anti_lag)
     {
@@ -11719,13 +11719,13 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::amdx_dense_geometry_format >();
     }
-    if (_extension == ktl::api::extension::khr_present_id_2)
+    if (_extension == ktl::api::extension::khr_present_id2)
     {
-        return extension_cast< ktl::api::extension::khr_present_id_2 >();
+        return extension_cast< ktl::api::extension::khr_present_id2 >();
     }
-    if (_extension == ktl::api::extension::khr_present_wait_2)
+    if (_extension == ktl::api::extension::khr_present_wait2)
     {
-        return extension_cast< ktl::api::extension::khr_present_wait_2 >();
+        return extension_cast< ktl::api::extension::khr_present_wait2 >();
     }
     if (_extension == ktl::api::extension::khr_ray_tracing_position_fetch)
     {
@@ -11747,13 +11747,13 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::sec_amigo_profiling >();
     }
-    if (_extension == ktl::api::extension::khr_surface_maintenance_1)
+    if (_extension == ktl::api::extension::khr_surface_maintenance1)
     {
-        return extension_cast< ktl::api::extension::khr_surface_maintenance_1 >();
+        return extension_cast< ktl::api::extension::khr_surface_maintenance1 >();
     }
-    if (_extension == ktl::api::extension::khr_swapchain_maintenance_1)
+    if (_extension == ktl::api::extension::khr_swapchain_maintenance1)
     {
-        return extension_cast< ktl::api::extension::khr_swapchain_maintenance_1 >();
+        return extension_cast< ktl::api::extension::khr_swapchain_maintenance1 >();
     }
     if (_extension == ktl::api::extension::qcom_multiview_per_view_viewports)
     {
@@ -11799,9 +11799,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_internally_synchronized_queues >();
     }
-    if (_extension == ktl::api::extension::nv_low_latency_2)
+    if (_extension == ktl::api::extension::nv_low_latency2)
     {
-        return extension_cast< ktl::api::extension::nv_low_latency_2 >();
+        return extension_cast< ktl::api::extension::nv_low_latency2 >();
     }
     if (_extension == ktl::api::extension::khr_cooperative_matrix)
     {
@@ -11827,9 +11827,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::nv_per_stage_descriptor_set >();
     }
-    if (_extension == ktl::api::extension::qcom_image_processing_2)
+    if (_extension == ktl::api::extension::qcom_image_processing2)
     {
-        return extension_cast< ktl::api::extension::qcom_image_processing_2 >();
+        return extension_cast< ktl::api::extension::qcom_image_processing2 >();
     }
     if (_extension == ktl::api::extension::qcom_filter_cubic_weights)
     {
@@ -11859,9 +11859,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_unified_image_layouts >();
     }
-    if (_extension == ktl::api::extension::khr_shader_float_controls_2)
+    if (_extension == ktl::api::extension::khr_shader_float_controls2)
     {
-        return extension_cast< ktl::api::extension::khr_shader_float_controls_2 >();
+        return extension_cast< ktl::api::extension::khr_shader_float_controls2 >();
     }
     if (_extension == ktl::api::extension::qnx_external_memory_screen_buffer)
     {
@@ -11871,9 +11871,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::msft_layered_driver >();
     }
-    if (_extension == ktl::api::extension::khr_index_type_uint_8)
+    if (_extension == ktl::api::extension::khr_index_type_uint8)
     {
-        return extension_cast< ktl::api::extension::khr_index_type_uint_8 >();
+        return extension_cast< ktl::api::extension::khr_index_type_uint8 >();
     }
     if (_extension == ktl::api::extension::khr_line_rasterization)
     {
@@ -11887,9 +11887,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_shader_expect_assume >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_6)
+    if (_extension == ktl::api::extension::khr_maintenance6)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_6 >();
+        return extension_cast< ktl::api::extension::khr_maintenance6 >();
     }
     if (_extension == ktl::api::extension::nv_descriptor_pool_overallocation)
     {
@@ -11927,13 +11927,13 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::nv_command_buffer_inheritance >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_7)
+    if (_extension == ktl::api::extension::khr_maintenance7)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_7 >();
+        return extension_cast< ktl::api::extension::khr_maintenance7 >();
     }
-    if (_extension == ktl::api::extension::nv_shader_atomic_float_16vector)
+    if (_extension == ktl::api::extension::nv_shader_atomic_float16_vector)
     {
-        return extension_cast< ktl::api::extension::nv_shader_atomic_float_16vector >();
+        return extension_cast< ktl::api::extension::nv_shader_atomic_float16_vector >();
     }
     if (_extension == ktl::api::extension::ext_shader_replicated_composites)
     {
@@ -11943,9 +11943,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::arm_tensor_controls >();
     }
-    if (_extension == ktl::api::extension::ext_shader_float_8)
+    if (_extension == ktl::api::extension::ext_shader_float8)
     {
-        return extension_cast< ktl::api::extension::ext_shader_float_8 >();
+        return extension_cast< ktl::api::extension::ext_shader_float8 >();
     }
     if (_extension == ktl::api::extension::nv_ray_tracing_validation)
     {
@@ -11967,9 +11967,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_device_fault >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_8)
+    if (_extension == ktl::api::extension::khr_maintenance8)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_8 >();
+        return extension_cast< ktl::api::extension::khr_maintenance8 >();
     }
     if (_extension == ktl::api::extension::mesa_image_alignment_control)
     {
@@ -11991,9 +11991,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::ext_depth_clamp_control >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_9)
+    if (_extension == ktl::api::extension::khr_maintenance9)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_9 >();
+        return extension_cast< ktl::api::extension::khr_maintenance9 >();
     }
     if (_extension == ktl::api::extension::ohos_surface)
     {
@@ -12003,9 +12003,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::huawei_hdr_vivid >();
     }
-    if (_extension == ktl::api::extension::nv_cooperative_matrix_2)
+    if (_extension == ktl::api::extension::nv_cooperative_matrix2)
     {
-        return extension_cast< ktl::api::extension::nv_cooperative_matrix_2 >();
+        return extension_cast< ktl::api::extension::nv_cooperative_matrix2 >();
     }
     if (_extension == ktl::api::extension::arm_pipeline_opacity_micromap)
     {
@@ -12043,9 +12043,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::valve_fragment_density_map_layered >();
     }
-    if (_extension == ktl::api::extension::khr_robustness_2)
+    if (_extension == ktl::api::extension::khr_robustness2)
     {
-        return extension_cast< ktl::api::extension::khr_robustness_2 >();
+        return extension_cast< ktl::api::extension::khr_robustness2 >();
     }
     if (_extension == ktl::api::extension::nv_present_metering)
     {
@@ -12083,9 +12083,9 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::qcom_data_graph_model >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_10)
+    if (_extension == ktl::api::extension::khr_maintenance10)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_10 >();
+        return extension_cast< ktl::api::extension::khr_maintenance10 >();
     }
     if (_extension == ktl::api::extension::arm_data_graph_optical_flow)
     {
@@ -12111,13 +12111,13 @@ extension_cast(ktl::api::extension _extension)
     {
         return extension_cast< ktl::api::extension::khr_pipeline_library_group_handles >();
     }
-    if (_extension == ktl::api::extension::khr_maintenance_11)
+    if (_extension == ktl::api::extension::khr_maintenance11)
     {
-        return extension_cast< ktl::api::extension::khr_maintenance_11 >();
+        return extension_cast< ktl::api::extension::khr_maintenance11 >();
     }
-    if (_extension == ktl::api::extension::ext_cooperative_matrix_maintenance_1)
+    if (_extension == ktl::api::extension::ext_cooperative_matrix_maintenance1)
     {
-        return extension_cast< ktl::api::extension::ext_cooperative_matrix_maintenance_1 >();
+        return extension_cast< ktl::api::extension::ext_cooperative_matrix_maintenance1 >();
     }
     if (_extension == ktl::api::extension::ext_shader_subgroup_partitioned)
     {

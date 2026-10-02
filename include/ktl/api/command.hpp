@@ -203,15 +203,15 @@ enum class command : ktl::u32
     get_physical_device_wayland_presentation_support_khr                         = 185,
     create_ubm_surface_sec                                                       = 186,
     get_physical_device_ubm_presentation_support_sec                             = 187,
-    create_win_32surface_khr                                                     = 188,
-    get_physical_device_win_32presentation_support_khr                           = 189,
+    create_win32_surface_khr                                                     = 188,
+    get_physical_device_win32_presentation_support_khr                           = 189,
     create_xlib_surface_khr                                                      = 190,
     get_physical_device_xlib_presentation_support_khr                            = 191,
     create_xcb_surface_khr                                                       = 192,
     get_physical_device_xcb_presentation_support_khr                             = 193,
     create_direct_fb_surface_ext                                                 = 194,
     get_physical_device_direct_fb_presentation_support_ext                       = 195,
-    create_image_pipe_surface_fuchsia                                            = 196,
+    create_imagepipe_surface_fuchsia                                             = 196,
     create_stream_descriptor_surface_ggp                                         = 197,
     create_screen_surface_qnx                                                    = 198,
     get_physical_device_screen_presentation_support_qnx                          = 199,
@@ -224,7 +224,7 @@ enum class command : ktl::u32
     cmd_debug_marker_end_ext                                                     = 206,
     cmd_debug_marker_insert_ext                                                  = 207,
     get_physical_device_external_image_format_properties_nv                      = 208,
-    get_memory_win_32handle_nv                                                   = 209,
+    get_memory_win32_handle_nv                                                   = 209,
     cmd_execute_generated_commands_nv                                            = 210,
     cmd_preprocess_generated_commands_nv                                         = 211,
     cmd_bind_pipeline_shader_group_nv                                            = 212,
@@ -241,27 +241,27 @@ enum class command : ktl::u32
     update_indirect_execution_set_pipeline_ext                                   = 223,
     update_indirect_execution_set_shader_ext                                     = 224,
     get_physical_device_features_2                                               = 225,
-    get_physical_device_features_2khr                                            = 226,
+    get_physical_device_features_2_khr                                           = 226,
     get_physical_device_properties_2                                             = 227,
-    get_physical_device_properties_2khr                                          = 228,
+    get_physical_device_properties_2_khr                                         = 228,
     get_physical_device_format_properties_2                                      = 229,
-    get_physical_device_format_properties_2khr                                   = 230,
+    get_physical_device_format_properties_2_khr                                  = 230,
     get_physical_device_image_format_properties_2                                = 231,
-    get_physical_device_image_format_properties_2khr                             = 232,
+    get_physical_device_image_format_properties_2_khr                            = 232,
     get_physical_device_queue_family_properties_2                                = 233,
-    get_physical_device_queue_family_properties_2khr                             = 234,
+    get_physical_device_queue_family_properties_2_khr                            = 234,
     get_physical_device_memory_properties_2                                      = 235,
-    get_physical_device_memory_properties_2khr                                   = 236,
+    get_physical_device_memory_properties_2_khr                                  = 236,
     get_physical_device_sparse_image_format_properties_2                         = 237,
-    get_physical_device_sparse_image_format_properties_2khr                      = 238,
+    get_physical_device_sparse_image_format_properties_2_khr                     = 238,
     cmd_push_descriptor_set                                                      = 239,
     cmd_push_descriptor_set_khr                                                  = 240,
     trim_command_pool                                                            = 241,
     trim_command_pool_khr                                                        = 242,
     get_physical_device_external_buffer_properties                               = 243,
     get_physical_device_external_buffer_properties_khr                           = 244,
-    get_memory_win_32handle_khr                                                  = 245,
-    get_memory_win_32handle_properties_khr                                       = 246,
+    get_memory_win32_handle_khr                                                  = 245,
+    get_memory_win32_handle_properties_khr                                       = 246,
     get_memory_fd_khr                                                            = 247,
     get_memory_fd_properties_khr                                                 = 248,
     get_memory_zircon_handle_fuchsia                                             = 249,
@@ -269,41 +269,41 @@ enum class command : ktl::u32
     get_memory_remote_address_nv                                                 = 251,
     get_physical_device_external_semaphore_properties                            = 252,
     get_physical_device_external_semaphore_properties_khr                        = 253,
-    get_semaphore_win_32handle_khr                                               = 254,
-    import_semaphore_win_32handle_khr                                            = 255,
+    get_semaphore_win32_handle_khr                                               = 254,
+    import_semaphore_win32_handle_khr                                            = 255,
     get_semaphore_fd_khr                                                         = 256,
     import_semaphore_fd_khr                                                      = 257,
     get_semaphore_zircon_handle_fuchsia                                          = 258,
     import_semaphore_zircon_handle_fuchsia                                       = 259,
     get_physical_device_external_fence_properties                                = 260,
     get_physical_device_external_fence_properties_khr                            = 261,
-    get_fence_win_32handle_khr                                                   = 262,
-    import_fence_win_32handle_khr                                                = 263,
+    get_fence_win32_handle_khr                                                   = 262,
+    import_fence_win32_handle_khr                                                = 263,
     get_fence_fd_khr                                                             = 264,
     import_fence_fd_khr                                                          = 265,
     release_display_ext                                                          = 266,
     acquire_xlib_display_ext                                                     = 267,
-    get_rand_r_output_display_ext                                                = 268,
+    get_randr_output_display_ext                                                 = 268,
     acquire_winrt_display_nv                                                     = 269,
     get_winrt_display_nv                                                         = 270,
     display_power_control_ext                                                    = 271,
     register_device_event_ext                                                    = 272,
     register_display_event_ext                                                   = 273,
     get_swapchain_counter_ext                                                    = 274,
-    get_physical_device_surface_capabilities_2ext                                = 275,
+    get_physical_device_surface_capabilities_2_ext                               = 275,
     enumerate_physical_device_groups                                             = 276,
     enumerate_physical_device_groups_khr                                         = 277,
     get_device_group_peer_memory_features                                        = 278,
     get_device_group_peer_memory_features_khr                                    = 279,
     bind_buffer_memory_2                                                         = 280,
-    bind_buffer_memory_2khr                                                      = 281,
+    bind_buffer_memory_2_khr                                                     = 281,
     bind_image_memory_2                                                          = 282,
-    bind_image_memory_2khr                                                       = 283,
+    bind_image_memory_2_khr                                                      = 283,
     cmd_set_device_mask                                                          = 284,
     cmd_set_device_mask_khr                                                      = 285,
     get_device_group_present_capabilities_khr                                    = 286,
     get_device_group_surface_present_modes_khr                                   = 287,
-    acquire_next_image_2khr                                                      = 288,
+    acquire_next_image_2_khr                                                     = 288,
     cmd_dispatch_base                                                            = 289,
     cmd_dispatch_base_khr                                                        = 290,
     get_physical_device_present_rectangles_khr                                   = 291,
@@ -320,7 +320,7 @@ enum class command : ktl::u32
     get_refresh_cycle_duration_google                                            = 302,
     get_past_presentation_timing_google                                          = 303,
     create_ios_surface_mvk                                                       = 304,
-    create_mac_os_surface_mvk                                                    = 305,
+    create_macos_surface_mvk                                                     = 305,
     create_metal_surface_ext                                                     = 306,
     cmd_set_viewport_w_scaling_nv                                                = 307,
     cmd_set_discard_rectangle_ext                                                = 308,
@@ -328,18 +328,18 @@ enum class command : ktl::u32
     cmd_set_discard_rectangle_mode_ext                                           = 310,
     cmd_set_sample_locations_ext                                                 = 311,
     get_physical_device_multisample_properties_ext                               = 312,
-    get_physical_device_surface_capabilities_2khr                                = 313,
-    get_physical_device_surface_formats_2khr                                     = 314,
-    get_physical_device_display_properties_2khr                                  = 315,
-    get_physical_device_display_plane_properties_2khr                            = 316,
-    get_display_mode_properties_2khr                                             = 317,
-    get_display_plane_capabilities_2khr                                          = 318,
+    get_physical_device_surface_capabilities_2_khr                               = 313,
+    get_physical_device_surface_formats_2_khr                                    = 314,
+    get_physical_device_display_properties_2_khr                                 = 315,
+    get_physical_device_display_plane_properties_2_khr                           = 316,
+    get_display_mode_properties_2_khr                                            = 317,
+    get_display_plane_capabilities_2_khr                                         = 318,
     get_buffer_memory_requirements_2                                             = 319,
-    get_buffer_memory_requirements_2khr                                          = 320,
+    get_buffer_memory_requirements_2_khr                                         = 320,
     get_image_memory_requirements_2                                              = 321,
-    get_image_memory_requirements_2khr                                           = 322,
+    get_image_memory_requirements_2_khr                                          = 322,
     get_image_sparse_memory_requirements_2                                       = 323,
-    get_image_sparse_memory_requirements_2khr                                    = 324,
+    get_image_sparse_memory_requirements_2_khr                                   = 324,
     get_device_buffer_memory_requirements                                        = 325,
     get_device_buffer_memory_requirements_khr                                    = 326,
     get_device_image_memory_requirements                                         = 327,
@@ -377,13 +377,13 @@ enum class command : ktl::u32
     get_memory_host_pointer_properties_ext                                       = 359,
     cmd_write_buffer_marker_amd                                                  = 360,
     create_render_pass_2                                                         = 361,
-    create_render_pass_2khr                                                      = 362,
+    create_render_pass_2_khr                                                     = 362,
     cmd_begin_render_pass_2                                                      = 363,
-    cmd_begin_render_pass_2khr                                                   = 364,
+    cmd_begin_render_pass_2_khr                                                  = 364,
     cmd_next_subpass_2                                                           = 365,
-    cmd_next_subpass_2khr                                                        = 366,
+    cmd_next_subpass_2_khr                                                       = 366,
     cmd_end_render_pass_2                                                        = 367,
-    cmd_end_render_pass_2khr                                                     = 368,
+    cmd_end_render_pass_2_khr                                                    = 368,
     get_semaphore_counter_value                                                  = 369,
     get_semaphore_counter_value_khr                                              = 370,
     wait_semaphores                                                              = 371,
@@ -445,18 +445,18 @@ enum class command : ktl::u32
     create_ray_tracing_pipelines_khr                                             = 427,
     get_physical_device_cooperative_matrix_properties_nv                         = 428,
     cmd_trace_rays_indirect_khr                                                  = 429,
-    cmd_trace_rays_indirect_2khr                                                 = 430,
+    cmd_trace_rays_indirect_2_khr                                                = 430,
     get_cluster_acceleration_structure_build_sizes_nv                            = 431,
     cmd_build_cluster_acceleration_structure_indirect_nv                         = 432,
     get_device_acceleration_structure_compatibility_khr                          = 433,
     get_ray_tracing_shader_group_stack_size_khr                                  = 434,
     cmd_set_ray_tracing_pipeline_stack_size_khr                                  = 435,
     get_image_view_handle_nvx                                                    = 436,
-    get_image_view_handle_64nvx                                                  = 437,
+    get_image_view_handle_64_nvx                                                 = 437,
     get_image_view_address_nvx                                                   = 438,
     get_device_combined_image_sampler_index_nvx                                  = 439,
-    get_physical_device_surface_present_modes_2ext                               = 440,
-    get_device_group_surface_present_modes_2ext                                  = 441,
+    get_physical_device_surface_present_modes_2_ext                              = 440,
+    get_device_group_surface_present_modes_2_ext                                 = 441,
     acquire_full_screen_exclusive_mode_ext                                       = 442,
     release_full_screen_exclusive_mode_ext                                       = 443,
     enumerate_physical_device_queue_family_performance_query_counters_khr        = 444,
@@ -514,9 +514,9 @@ enum class command : ktl::u32
     cmd_set_scissor_with_count                                                   = 496,
     cmd_set_scissor_with_count_ext                                               = 497,
     cmd_bind_index_buffer_2                                                      = 498,
-    cmd_bind_index_buffer_2khr                                                   = 499,
+    cmd_bind_index_buffer_2_khr                                                  = 499,
     cmd_bind_vertex_buffers_2                                                    = 500,
-    cmd_bind_vertex_buffers_2ext                                                 = 501,
+    cmd_bind_vertex_buffers_2_ext                                                = 501,
     cmd_set_depth_test_enable                                                    = 502,
     cmd_set_depth_test_enable_ext                                                = 503,
     cmd_set_depth_write_enable                                                   = 504,
@@ -577,17 +577,17 @@ enum class command : ktl::u32
     get_private_data                                                             = 559,
     get_private_data_ext                                                         = 560,
     cmd_copy_buffer_2                                                            = 561,
-    cmd_copy_buffer_2khr                                                         = 562,
+    cmd_copy_buffer_2_khr                                                        = 562,
     cmd_copy_image_2                                                             = 563,
-    cmd_copy_image_2khr                                                          = 564,
+    cmd_copy_image_2_khr                                                         = 564,
     cmd_blit_image_2                                                             = 565,
-    cmd_blit_image_2khr                                                          = 566,
+    cmd_blit_image_2_khr                                                         = 566,
     cmd_copy_buffer_to_image_2                                                   = 567,
-    cmd_copy_buffer_to_image_2khr                                                = 568,
+    cmd_copy_buffer_to_image_2_khr                                               = 568,
     cmd_copy_image_to_buffer_2                                                   = 569,
-    cmd_copy_image_to_buffer_2khr                                                = 570,
+    cmd_copy_image_to_buffer_2_khr                                               = 570,
     cmd_resolve_image_2                                                          = 571,
-    cmd_resolve_image_2khr                                                       = 572,
+    cmd_resolve_image_2_khr                                                      = 572,
     cmd_set_fragment_shading_rate_khr                                            = 573,
     get_physical_device_fragment_shading_rates_khr                               = 574,
     cmd_set_fragment_shading_rate_enum_nv                                        = 575,
@@ -595,19 +595,19 @@ enum class command : ktl::u32
     cmd_set_vertex_input_ext                                                     = 577,
     cmd_set_color_write_enable_ext                                               = 578,
     cmd_set_event_2                                                              = 579,
-    cmd_set_event_2khr                                                           = 580,
+    cmd_set_event_2_khr                                                          = 580,
     cmd_reset_event_2                                                            = 581,
-    cmd_reset_event_2khr                                                         = 582,
+    cmd_reset_event_2_khr                                                        = 582,
     cmd_wait_events_2                                                            = 583,
-    cmd_wait_events_2khr                                                         = 584,
+    cmd_wait_events_2_khr                                                        = 584,
     cmd_pipeline_barrier_2                                                       = 585,
-    cmd_pipeline_barrier_2khr                                                    = 586,
+    cmd_pipeline_barrier_2_khr                                                   = 586,
     queue_submit_2                                                               = 587,
-    queue_submit_2khr                                                            = 588,
+    queue_submit_2_khr                                                           = 588,
     cmd_write_timestamp_2                                                        = 589,
-    cmd_write_timestamp_2khr                                                     = 590,
-    cmd_write_buffer_marker_2amd                                                 = 591,
-    get_queue_checkpoint_data_2nv                                                = 592,
+    cmd_write_timestamp_2_khr                                                    = 590,
+    cmd_write_buffer_marker_2_amd                                                = 591,
+    get_queue_checkpoint_data_2_nv                                               = 592,
     copy_memory_to_image                                                         = 593,
     copy_memory_to_image_ext                                                     = 594,
     copy_image_to_memory                                                         = 595,
@@ -641,7 +641,7 @@ enum class command : ktl::u32
     set_device_memory_priority_ext                                               = 623,
     acquire_drm_display_ext                                                      = 624,
     get_drm_display_ext                                                          = 625,
-    wait_for_present_2khr                                                        = 626,
+    wait_for_present_2_khr                                                       = 626,
     wait_for_present_khr                                                         = 627,
     create_buffer_collection_fuchsia                                             = 628,
     set_buffer_collection_buffer_constraints_fuchsia                             = 629,
@@ -657,8 +657,8 @@ enum class command : ktl::u32
     cmd_begin_rendering                                                          = 639,
     cmd_begin_rendering_khr                                                      = 640,
     cmd_end_rendering                                                            = 641,
-    cmd_end_rendering_2khr                                                       = 642,
-    cmd_end_rendering_2ext                                                       = 643,
+    cmd_end_rendering_2_khr                                                      = 642,
+    cmd_end_rendering_2_ext                                                      = 643,
     cmd_end_rendering_khr                                                        = 644,
     get_descriptor_set_layout_host_mapping_info_valve                            = 645,
     get_descriptor_set_host_mapping_valve                                        = 646,
@@ -679,8 +679,8 @@ enum class command : ktl::u32
     get_shader_module_identifier_ext                                             = 661,
     get_shader_module_create_info_identifier_ext                                 = 662,
     get_image_subresource_layout_2                                               = 663,
-    get_image_subresource_layout_2khr                                            = 664,
-    get_image_subresource_layout_2ext                                            = 665,
+    get_image_subresource_layout_2_khr                                           = 664,
+    get_image_subresource_layout_2_ext                                           = 665,
     get_pipeline_properties_ext                                                  = 666,
     export_metal_objects_ext                                                     = 667,
     cmd_bind_tile_memory_qcom                                                    = 668,
@@ -694,15 +694,15 @@ enum class command : ktl::u32
     get_device_fault_info_ext                                                    = 676,
     get_device_fault_reports_khr                                                 = 677,
     get_device_fault_debug_info_khr                                              = 678,
-    cmd_set_depth_bias_2ext                                                      = 679,
+    cmd_set_depth_bias_2_ext                                                     = 679,
     release_swapchain_images_khr                                                 = 680,
     release_swapchain_images_ext                                                 = 681,
     get_device_image_subresource_layout                                          = 682,
     get_device_image_subresource_layout_khr                                      = 683,
     map_memory_2                                                                 = 684,
-    map_memory_2khr                                                              = 685,
+    map_memory_2_khr                                                             = 685,
     unmap_memory_2                                                               = 686,
-    unmap_memory_2khr                                                            = 687,
+    unmap_memory_2_khr                                                           = 687,
     create_shaders_ext                                                           = 688,
     destroy_shader_ext                                                           = 689,
     get_shader_binary_data_ext                                                   = 690,
@@ -713,7 +713,7 @@ enum class command : ktl::u32
     get_past_presentation_timing_ext                                             = 695,
     get_screen_buffer_properties_qnx                                             = 696,
     get_physical_device_cooperative_matrix_properties_khr                        = 697,
-    get_physical_device_cooperative_matrix_properties_2ext                       = 698,
+    get_physical_device_cooperative_matrix_properties_2_ext                      = 698,
     get_execution_graph_pipeline_scratch_size_amdx                               = 699,
     get_execution_graph_pipeline_node_index_amdx                                 = 700,
     create_execution_graph_pipelines_amdx                                        = 701,
@@ -734,15 +734,15 @@ enum class command : ktl::u32
     reset_gpa_session_amd                                                        = 716,
     cmd_copy_gpa_session_results_amd                                             = 717,
     cmd_bind_descriptor_sets_2                                                   = 718,
-    cmd_bind_descriptor_sets_2khr                                                = 719,
+    cmd_bind_descriptor_sets_2_khr                                               = 719,
     cmd_push_constants_2                                                         = 720,
-    cmd_push_constants_2khr                                                      = 721,
+    cmd_push_constants_2_khr                                                     = 721,
     cmd_push_descriptor_set_2                                                    = 722,
-    cmd_push_descriptor_set_2khr                                                 = 723,
+    cmd_push_descriptor_set_2_khr                                                = 723,
     cmd_push_descriptor_set_with_template_2                                      = 724,
-    cmd_push_descriptor_set_with_template_2khr                                   = 725,
-    cmd_set_descriptor_buffer_offsets_2ext                                       = 726,
-    cmd_bind_descriptor_buffer_embedded_samplers_2ext                            = 727,
+    cmd_push_descriptor_set_with_template_2_khr                                  = 725,
+    cmd_set_descriptor_buffer_offsets_2_ext                                      = 726,
+    cmd_bind_descriptor_buffer_embedded_samplers_2_ext                           = 727,
     set_latency_sleep_mode_nv                                                    = 728,
     latency_sleep_nv                                                             = 729,
     set_latency_marker_nv                                                        = 730,
@@ -822,22 +822,22 @@ enum class command : ktl::u32
     cmd_update_memory_khr                                                        = 804,
     cmd_fill_memory_khr                                                          = 805,
     cmd_copy_query_pool_results_to_memory_khr                                    = 806,
-    cmd_begin_conditional_rendering_2ext                                         = 807,
-    cmd_bind_transform_feedback_buffers_2ext                                     = 808,
-    cmd_begin_transform_feedback_2ext                                            = 809,
-    cmd_end_transform_feedback_2ext                                              = 810,
-    cmd_draw_indirect_byte_count_2ext                                            = 811,
+    cmd_begin_conditional_rendering_2_ext                                        = 807,
+    cmd_bind_transform_feedback_buffers_2_ext                                    = 808,
+    cmd_begin_transform_feedback_2_ext                                           = 809,
+    cmd_end_transform_feedback_2_ext                                             = 810,
+    cmd_draw_indirect_byte_count_2_ext                                           = 811,
     cmd_write_marker_to_memory_amd                                               = 812,
-    cmd_bind_index_buffer_3khr                                                   = 813,
-    cmd_bind_vertex_buffers_3khr                                                 = 814,
-    cmd_draw_indirect_2khr                                                       = 815,
-    cmd_draw_indexed_indirect_2khr                                               = 816,
-    cmd_draw_indirect_count_2khr                                                 = 817,
-    cmd_draw_indexed_indirect_count_2khr                                         = 818,
-    cmd_draw_mesh_tasks_indirect_2ext                                            = 819,
-    cmd_draw_mesh_tasks_indirect_count_2ext                                      = 820,
-    cmd_dispatch_indirect_2khr                                                   = 821,
-    create_acceleration_structure_2khr                                           = 822,
+    cmd_bind_index_buffer_3_khr                                                  = 813,
+    cmd_bind_vertex_buffers_3_khr                                                = 814,
+    cmd_draw_indirect_2_khr                                                      = 815,
+    cmd_draw_indexed_indirect_2_khr                                              = 816,
+    cmd_draw_indirect_count_2_khr                                                = 817,
+    cmd_draw_indexed_indirect_count_2_khr                                        = 818,
+    cmd_draw_mesh_tasks_indirect_2_ext                                           = 819,
+    cmd_draw_mesh_tasks_indirect_count_2_ext                                     = 820,
+    cmd_dispatch_indirect_2_khr                                                  = 821,
+    create_acceleration_structure_2_khr                                          = 822,
     get_physical_device_queue_family_data_graph_engine_operation_properties_arm  = 823,
     cmd_set_dispatch_parameters_arm                                              = 824,
     get_physical_device_queue_family_data_graph_optical_flow_image_formats_arm   = 825,
@@ -3198,28 +3198,28 @@ get_physical_device_ubm_presentation_support_sec(ktl::api::physical_device _phys
 }
 
 inline ktl::api::result
-create_win_32surface_khr(ktl::api::instance _instance, const ktl::api::win_32surface_create_info_khr * _p_create_info,
+create_win32_surface_khr(ktl::api::instance _instance, const ktl::api::win32_surface_create_info_khr * _p_create_info,
                          const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_win_32surface_khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_win32_surface_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_create_win_32surface_khr)ptr)(_instance, _p_create_info, _p_allocator, _p_surface);
+    return ((pfn_create_win32_surface_khr)ptr)(_instance, _p_create_info, _p_allocator, _p_surface);
 }
 
 inline ktl::api::bool32
-get_physical_device_win_32presentation_support_khr(ktl::api::physical_device _physical_device,
+get_physical_device_win32_presentation_support_khr(ktl::api::physical_device _physical_device,
                                                    ktl::u32                  _queue_family_index)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_win_32presentation_support_khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_win32_presentation_support_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_win_32presentation_support_khr)ptr)(_physical_device, _queue_family_index);
+    return ((pfn_get_physical_device_win32_presentation_support_khr)ptr)(_physical_device, _queue_family_index);
 }
 
 inline ktl::api::result
@@ -3304,18 +3304,18 @@ get_physical_device_direct_fb_presentation_support_ext(ktl::api::physical_device
 }
 
 inline ktl::api::result
-create_image_pipe_surface_fuchsia(ktl::api::instance                                       _instance,
-                                  const ktl::api::image_pipe_surface_create_info_fuchsia * _p_create_info,
-                                  const ktl::api::allocation_callbacks *                   _p_allocator,
-                                  ktl::api::surface_khr *                                  _p_surface)
+create_imagepipe_surface_fuchsia(ktl::api::instance                                      _instance,
+                                 const ktl::api::imagepipe_surface_create_info_fuchsia * _p_create_info,
+                                 const ktl::api::allocation_callbacks *                  _p_allocator,
+                                 ktl::api::surface_khr *                                 _p_surface)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_image_pipe_surface_fuchsia)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_imagepipe_surface_fuchsia)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_create_image_pipe_surface_fuchsia)ptr)(_instance, _p_create_info, _p_allocator, _p_surface);
+    return ((pfn_create_imagepipe_surface_fuchsia)ptr)(_instance, _p_create_info, _p_allocator, _p_surface);
 }
 
 inline ktl::api::result
@@ -3480,16 +3480,16 @@ get_physical_device_external_image_format_properties_nv(
 }
 
 inline ktl::api::result
-get_memory_win_32handle_nv(ktl::api::device _device, ktl::api::device_memory _memory,
+get_memory_win32_handle_nv(ktl::api::device _device, ktl::api::device_memory _memory,
                            ktl::api::external_memory_handle_type_flags_nv _handle_type,
                            ktl::api::win32_handle *                       _p_handle)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win_32handle_nv)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win32_handle_nv)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_memory_win_32handle_nv)ptr)(_device, _memory, _handle_type, _p_handle);
+    return ((pfn_get_memory_win32_handle_nv)ptr)(_device, _memory, _handle_type, _p_handle);
 }
 
 inline void
@@ -3723,16 +3723,16 @@ get_physical_device_features_2(ktl::api::physical_device              _physical_
 }
 
 inline void
-get_physical_device_features_2khr(ktl::api::physical_device              _physical_device,
-                                  ktl::api::physical_device_features_2 * _p_features)
+get_physical_device_features_2_khr(ktl::api::physical_device              _physical_device,
+                                   ktl::api::physical_device_features_2 * _p_features)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_features_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_features_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_features_2khr)ptr)(_physical_device, _p_features);
+    return ((pfn_get_physical_device_features_2_khr)ptr)(_physical_device, _p_features);
 }
 
 inline void
@@ -3749,16 +3749,16 @@ get_physical_device_properties_2(ktl::api::physical_device                _physi
 }
 
 inline void
-get_physical_device_properties_2khr(ktl::api::physical_device                _physical_device,
-                                    ktl::api::physical_device_properties_2 * _p_properties)
+get_physical_device_properties_2_khr(ktl::api::physical_device                _physical_device,
+                                     ktl::api::physical_device_properties_2 * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_properties_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_properties_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_properties_2khr)ptr)(_physical_device, _p_properties);
+    return ((pfn_get_physical_device_properties_2_khr)ptr)(_physical_device, _p_properties);
 }
 
 inline void
@@ -3775,16 +3775,16 @@ get_physical_device_format_properties_2(ktl::api::physical_device _physical_devi
 }
 
 inline void
-get_physical_device_format_properties_2khr(ktl::api::physical_device _physical_device, ktl::api::format _format,
-                                           ktl::api::format_properties_2 * _p_format_properties)
+get_physical_device_format_properties_2_khr(ktl::api::physical_device _physical_device, ktl::api::format _format,
+                                            ktl::api::format_properties_2 * _p_format_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_format_properties_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_format_properties_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_format_properties_2khr)ptr)(_physical_device, _format, _p_format_properties);
+    return ((pfn_get_physical_device_format_properties_2_khr)ptr)(_physical_device, _format, _p_format_properties);
 }
 
 inline ktl::api::result
@@ -3804,19 +3804,19 @@ get_physical_device_image_format_properties_2(
 }
 
 inline ktl::api::result
-get_physical_device_image_format_properties_2khr(
+get_physical_device_image_format_properties_2_khr(
     ktl::api::physical_device                             _physical_device,
     const ktl::api::physical_device_image_format_info_2 * _p_image_format_info,
     ktl::api::image_format_properties_2 *                 _p_image_format_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_image_format_properties_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_image_format_properties_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_image_format_properties_2khr)ptr)(_physical_device, _p_image_format_info,
-                                                                       _p_image_format_properties);
+    return ((pfn_get_physical_device_image_format_properties_2_khr)ptr)(_physical_device, _p_image_format_info,
+                                                                        _p_image_format_properties);
 }
 
 inline void
@@ -3835,18 +3835,18 @@ get_physical_device_queue_family_properties_2(ktl::api::physical_device         
 }
 
 inline void
-get_physical_device_queue_family_properties_2khr(ktl::api::physical_device             _physical_device,
-                                                 ktl::u32 *                            _p_queue_family_property_count,
-                                                 ktl::api::queue_family_properties_2 * _p_queue_family_properties)
+get_physical_device_queue_family_properties_2_khr(ktl::api::physical_device             _physical_device,
+                                                  ktl::u32 *                            _p_queue_family_property_count,
+                                                  ktl::api::queue_family_properties_2 * _p_queue_family_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_queue_family_properties_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_queue_family_properties_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_queue_family_properties_2khr)ptr)(_physical_device, _p_queue_family_property_count,
-                                                                       _p_queue_family_properties);
+    return ((pfn_get_physical_device_queue_family_properties_2_khr)ptr)(
+        _physical_device, _p_queue_family_property_count, _p_queue_family_properties);
 }
 
 inline void
@@ -3863,16 +3863,16 @@ get_physical_device_memory_properties_2(ktl::api::physical_device               
 }
 
 inline void
-get_physical_device_memory_properties_2khr(ktl::api::physical_device                       _physical_device,
-                                           ktl::api::physical_device_memory_properties_2 * _p_memory_properties)
+get_physical_device_memory_properties_2_khr(ktl::api::physical_device                       _physical_device,
+                                            ktl::api::physical_device_memory_properties_2 * _p_memory_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_memory_properties_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_memory_properties_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_memory_properties_2khr)ptr)(_physical_device, _p_memory_properties);
+    return ((pfn_get_physical_device_memory_properties_2_khr)ptr)(_physical_device, _p_memory_properties);
 }
 
 inline void
@@ -3892,19 +3892,19 @@ get_physical_device_sparse_image_format_properties_2(
 }
 
 inline void
-get_physical_device_sparse_image_format_properties_2khr(
+get_physical_device_sparse_image_format_properties_2_khr(
     ktl::api::physical_device                                    _physical_device,
     const ktl::api::physical_device_sparse_image_format_info_2 * _p_format_info, ktl::u32 * _p_property_count,
     ktl::api::sparse_image_format_properties_2 * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sparse_image_format_properties_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_sparse_image_format_properties_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_sparse_image_format_properties_2khr)ptr)(_physical_device, _p_format_info,
-                                                                              _p_property_count, _p_properties);
+    return ((pfn_get_physical_device_sparse_image_format_properties_2_khr)ptr)(_physical_device, _p_format_info,
+                                                                               _p_property_count, _p_properties);
 }
 
 inline void
@@ -3993,32 +3993,32 @@ get_physical_device_external_buffer_properties_khr(
 }
 
 inline ktl::api::result
-get_memory_win_32handle_khr(ktl::api::device                                   _device,
-                            const ktl::api::memory_get_win_32handle_info_khr * _p_get_win_32handle_info,
+get_memory_win32_handle_khr(ktl::api::device                                   _device,
+                            const ktl::api::memory_get_win32_handle_info_khr * _p_get_win32_handle_info,
                             ktl::api::win32_handle *                           _p_handle)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win_32handle_khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win32_handle_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_memory_win_32handle_khr)ptr)(_device, _p_get_win_32handle_info, _p_handle);
+    return ((pfn_get_memory_win32_handle_khr)ptr)(_device, _p_get_win32_handle_info, _p_handle);
 }
 
 inline ktl::api::result
-get_memory_win_32handle_properties_khr(ktl::api::device                                _device,
+get_memory_win32_handle_properties_khr(ktl::api::device                                _device,
                                        ktl::api::external_memory_handle_type_flag_bits _handle_type,
                                        ktl::api::win32_handle                          _handle,
-                                       ktl::api::memory_win_32handle_properties_khr * _p_memory_win_32handle_properties)
+                                       ktl::api::memory_win32_handle_properties_khr * _p_memory_win32_handle_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win_32handle_properties_khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_memory_win32_handle_properties_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_memory_win_32handle_properties_khr)ptr)(_device, _handle_type, _handle,
-                                                             _p_memory_win_32handle_properties);
+    return ((pfn_get_memory_win32_handle_properties_khr)ptr)(_device, _handle_type, _handle,
+                                                             _p_memory_win32_handle_properties);
 }
 
 inline ktl::api::result
@@ -4120,30 +4120,30 @@ get_physical_device_external_semaphore_properties_khr(
 }
 
 inline ktl::api::result
-get_semaphore_win_32handle_khr(ktl::api::device                                      _device,
-                               const ktl::api::semaphore_get_win_32handle_info_khr * _p_get_win_32handle_info,
+get_semaphore_win32_handle_khr(ktl::api::device                                      _device,
+                               const ktl::api::semaphore_get_win32_handle_info_khr * _p_get_win32_handle_info,
                                ktl::api::win32_handle *                              _p_handle)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_win_32handle_khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_semaphore_win32_handle_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_semaphore_win_32handle_khr)ptr)(_device, _p_get_win_32handle_info, _p_handle);
+    return ((pfn_get_semaphore_win32_handle_khr)ptr)(_device, _p_get_win32_handle_info, _p_handle);
 }
 
 inline ktl::api::result
-import_semaphore_win_32handle_khr(
+import_semaphore_win32_handle_khr(
     ktl::api::device                                         _device,
-    const ktl::api::import_semaphore_win_32handle_info_khr * _p_import_semaphore_win_32handle_info)
+    const ktl::api::import_semaphore_win32_handle_info_khr * _p_import_semaphore_win32_handle_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_semaphore_win_32handle_khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_semaphore_win32_handle_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_import_semaphore_win_32handle_khr)ptr)(_device, _p_import_semaphore_win_32handle_info);
+    return ((pfn_import_semaphore_win32_handle_khr)ptr)(_device, _p_import_semaphore_win32_handle_info);
 }
 
 inline ktl::api::result
@@ -4230,28 +4230,28 @@ get_physical_device_external_fence_properties_khr(
 }
 
 inline ktl::api::result
-get_fence_win_32handle_khr(ktl::api::device                                  _device,
-                           const ktl::api::fence_get_win_32handle_info_khr * _p_get_win_32handle_info,
+get_fence_win32_handle_khr(ktl::api::device                                  _device,
+                           const ktl::api::fence_get_win32_handle_info_khr * _p_get_win32_handle_info,
                            ktl::api::win32_handle *                          _p_handle)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_win_32handle_khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_fence_win32_handle_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_fence_win_32handle_khr)ptr)(_device, _p_get_win_32handle_info, _p_handle);
+    return ((pfn_get_fence_win32_handle_khr)ptr)(_device, _p_get_win32_handle_info, _p_handle);
 }
 
 inline ktl::api::result
-import_fence_win_32handle_khr(ktl::api::device                                     _device,
-                              const ktl::api::import_fence_win_32handle_info_khr * _p_import_fence_win_32handle_info)
+import_fence_win32_handle_khr(ktl::api::device                                     _device,
+                              const ktl::api::import_fence_win32_handle_info_khr * _p_import_fence_win32_handle_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_fence_win_32handle_khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::import_fence_win32_handle_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_import_fence_win_32handle_khr)ptr)(_device, _p_import_fence_win_32handle_info);
+    return ((pfn_import_fence_win32_handle_khr)ptr)(_device, _p_import_fence_win32_handle_info);
 }
 
 inline ktl::api::result
@@ -4300,15 +4300,15 @@ acquire_xlib_display_ext(ktl::api::physical_device _physical_device, ktl::api::x
 }
 
 inline ktl::api::result
-get_rand_r_output_display_ext(ktl::api::physical_device _physical_device, ktl::api::xlib_display * _dpy,
-                              ktl::api::xlib_rr_output _rr_output, ktl::api::display_khr * _p_display)
+get_randr_output_display_ext(ktl::api::physical_device _physical_device, ktl::api::xlib_display * _dpy,
+                             ktl::api::xlib_rr_output _rr_output, ktl::api::display_khr * _p_display)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_rand_r_output_display_ext)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_randr_output_display_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_rand_r_output_display_ext)ptr)(_physical_device, _dpy, _rr_output, _p_display);
+    return ((pfn_get_randr_output_display_ext)ptr)(_physical_device, _dpy, _rr_output, _p_display);
 }
 
 inline ktl::api::result
@@ -4384,18 +4384,18 @@ get_swapchain_counter_ext(ktl::api::device _device, ktl::api::swapchain_khr _swa
 }
 
 inline ktl::api::result
-get_physical_device_surface_capabilities_2ext(ktl::api::physical_device             _physical_device,
-                                              ktl::api::surface_khr                 _surface,
-                                              ktl::api::surface_capabilities_2ext * _p_surface_capabilities)
+get_physical_device_surface_capabilities_2_ext(ktl::api::physical_device              _physical_device,
+                                               ktl::api::surface_khr                  _surface,
+                                               ktl::api::surface_capabilities_2_ext * _p_surface_capabilities)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_surface_capabilities_2ext)ptr)(_physical_device, _surface,
-                                                                    _p_surface_capabilities);
+    return ((pfn_get_physical_device_surface_capabilities_2_ext)ptr)(_physical_device, _surface,
+                                                                     _p_surface_capabilities);
 }
 
 inline ktl::api::result
@@ -4469,15 +4469,15 @@ bind_buffer_memory_2(ktl::api::device _device, ktl::u32 _bind_info_count,
 }
 
 inline ktl::api::result
-bind_buffer_memory_2khr(ktl::api::device _device, ktl::u32 _bind_info_count,
-                        const ktl::api::bind_buffer_memory_info * _p_bind_infos)
+bind_buffer_memory_2_khr(ktl::api::device _device, ktl::u32 _bind_info_count,
+                         const ktl::api::bind_buffer_memory_info * _p_bind_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_buffer_memory_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_buffer_memory_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_bind_buffer_memory_2khr)ptr)(_device, _bind_info_count, _p_bind_infos);
+    return ((pfn_bind_buffer_memory_2_khr)ptr)(_device, _bind_info_count, _p_bind_infos);
 }
 
 inline ktl::api::result
@@ -4493,15 +4493,15 @@ bind_image_memory_2(ktl::api::device _device, ktl::u32 _bind_info_count,
 }
 
 inline ktl::api::result
-bind_image_memory_2khr(ktl::api::device _device, ktl::u32 _bind_info_count,
-                       const ktl::api::bind_image_memory_info * _p_bind_infos)
+bind_image_memory_2_khr(ktl::api::device _device, ktl::u32 _bind_info_count,
+                        const ktl::api::bind_image_memory_info * _p_bind_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_image_memory_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::bind_image_memory_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_bind_image_memory_2khr)ptr)(_device, _bind_info_count, _p_bind_infos);
+    return ((pfn_bind_image_memory_2_khr)ptr)(_device, _bind_info_count, _p_bind_infos);
 }
 
 inline void
@@ -4553,15 +4553,15 @@ get_device_group_surface_present_modes_khr(ktl::api::device _device, ktl::api::s
 }
 
 inline ktl::api::result
-acquire_next_image_2khr(ktl::api::device _device, const ktl::api::acquire_next_image_info_khr * _p_acquire_info,
-                        ktl::u32 * _p_image_index)
+acquire_next_image_2_khr(ktl::api::device _device, const ktl::api::acquire_next_image_info_khr * _p_acquire_info,
+                         ktl::u32 * _p_image_index)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_next_image_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::acquire_next_image_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_acquire_next_image_2khr)ptr)(_device, _p_acquire_info, _p_image_index);
+    return ((pfn_acquire_next_image_2_khr)ptr)(_device, _p_acquire_info, _p_image_index);
 }
 
 inline void
@@ -4787,15 +4787,15 @@ create_ios_surface_mvk(ktl::api::instance _instance, const ktl::api::ios_surface
 }
 
 inline ktl::api::result
-create_mac_os_surface_mvk(ktl::api::instance _instance, const ktl::api::mac_os_surface_create_info_mvk * _p_create_info,
-                          const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
+create_macos_surface_mvk(ktl::api::instance _instance, const ktl::api::macos_surface_create_info_mvk * _p_create_info,
+                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::surface_khr * _p_surface)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_mac_os_surface_mvk)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_macos_surface_mvk)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_create_mac_os_surface_mvk)ptr)(_instance, _p_create_info, _p_allocator, _p_surface);
+    return ((pfn_create_macos_surface_mvk)ptr)(_instance, _p_create_info, _p_allocator, _p_surface);
 }
 
 inline ktl::api::result
@@ -4890,89 +4890,89 @@ get_physical_device_multisample_properties_ext(ktl::api::physical_device        
 }
 
 inline ktl::api::result
-get_physical_device_surface_capabilities_2khr(ktl::api::physical_device                           _physical_device,
-                                              const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-                                              ktl::api::surface_capabilities_2khr * _p_surface_capabilities)
+get_physical_device_surface_capabilities_2_khr(ktl::api::physical_device                            _physical_device,
+                                               const ktl::api::physical_device_surface_info_2_khr * _p_surface_info,
+                                               ktl::api::surface_capabilities_2_khr * _p_surface_capabilities)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_capabilities_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_surface_capabilities_2khr)ptr)(_physical_device, _p_surface_info,
-                                                                    _p_surface_capabilities);
+    return ((pfn_get_physical_device_surface_capabilities_2_khr)ptr)(_physical_device, _p_surface_info,
+                                                                     _p_surface_capabilities);
 }
 
 inline ktl::api::result
-get_physical_device_surface_formats_2khr(ktl::api::physical_device                           _physical_device,
-                                         const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-                                         ktl::u32 *                                          _p_surface_format_count,
-                                         ktl::api::surface_format_2khr *                     _p_surface_formats)
+get_physical_device_surface_formats_2_khr(ktl::api::physical_device                            _physical_device,
+                                          const ktl::api::physical_device_surface_info_2_khr * _p_surface_info,
+                                          ktl::u32 *                                           _p_surface_format_count,
+                                          ktl::api::surface_format_2_khr *                     _p_surface_formats)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_formats_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_formats_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_surface_formats_2khr)ptr)(_physical_device, _p_surface_info,
-                                                               _p_surface_format_count, _p_surface_formats);
+    return ((pfn_get_physical_device_surface_formats_2_khr)ptr)(_physical_device, _p_surface_info,
+                                                                _p_surface_format_count, _p_surface_formats);
 }
 
 inline ktl::api::result
-get_physical_device_display_properties_2khr(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
-                                            ktl::api::display_properties_2khr * _p_properties)
+get_physical_device_display_properties_2_khr(ktl::api::physical_device _physical_device, ktl::u32 * _p_property_count,
+                                             ktl::api::display_properties_2_khr * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_properties_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_properties_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_display_properties_2khr)ptr)(_physical_device, _p_property_count, _p_properties);
+    return ((pfn_get_physical_device_display_properties_2_khr)ptr)(_physical_device, _p_property_count, _p_properties);
 }
 
 inline ktl::api::result
-get_physical_device_display_plane_properties_2khr(ktl::api::physical_device                 _physical_device,
-                                                  ktl::u32 *                                _p_property_count,
-                                                  ktl::api::display_plane_properties_2khr * _p_properties)
+get_physical_device_display_plane_properties_2_khr(ktl::api::physical_device                  _physical_device,
+                                                   ktl::u32 *                                 _p_property_count,
+                                                   ktl::api::display_plane_properties_2_khr * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_plane_properties_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_display_plane_properties_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_display_plane_properties_2khr)ptr)(_physical_device, _p_property_count,
-                                                                        _p_properties);
+    return ((pfn_get_physical_device_display_plane_properties_2_khr)ptr)(_physical_device, _p_property_count,
+                                                                         _p_properties);
 }
 
 inline ktl::api::result
-get_display_mode_properties_2khr(ktl::api::physical_device _physical_device, ktl::api::display_khr _display,
-                                 ktl::u32 * _p_property_count, ktl::api::display_mode_properties_2khr * _p_properties)
+get_display_mode_properties_2_khr(ktl::api::physical_device _physical_device, ktl::api::display_khr _display,
+                                  ktl::u32 * _p_property_count, ktl::api::display_mode_properties_2_khr * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_mode_properties_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_mode_properties_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_display_mode_properties_2khr)ptr)(_physical_device, _display, _p_property_count, _p_properties);
+    return ((pfn_get_display_mode_properties_2_khr)ptr)(_physical_device, _display, _p_property_count, _p_properties);
 }
 
 inline ktl::api::result
-get_display_plane_capabilities_2khr(ktl::api::physical_device                   _physical_device,
-                                    const ktl::api::display_plane_info_2khr *   _p_display_plane_info,
-                                    ktl::api::display_plane_capabilities_2khr * _p_capabilities)
+get_display_plane_capabilities_2_khr(ktl::api::physical_device                    _physical_device,
+                                     const ktl::api::display_plane_info_2_khr *   _p_display_plane_info,
+                                     ktl::api::display_plane_capabilities_2_khr * _p_capabilities)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_plane_capabilities_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_display_plane_capabilities_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_display_plane_capabilities_2khr)ptr)(_physical_device, _p_display_plane_info, _p_capabilities);
+    return ((pfn_get_display_plane_capabilities_2_khr)ptr)(_physical_device, _p_display_plane_info, _p_capabilities);
 }
 
 inline void
@@ -4989,17 +4989,17 @@ get_buffer_memory_requirements_2(ktl::api::device _device, const ktl::api::buffe
 }
 
 inline void
-get_buffer_memory_requirements_2khr(ktl::api::device                                    _device,
-                                    const ktl::api::buffer_memory_requirements_info_2 * _p_info,
-                                    ktl::api::memory_requirements_2 *                   _p_memory_requirements)
+get_buffer_memory_requirements_2_khr(ktl::api::device                                    _device,
+                                     const ktl::api::buffer_memory_requirements_info_2 * _p_info,
+                                     ktl::api::memory_requirements_2 *                   _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_memory_requirements_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_buffer_memory_requirements_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_buffer_memory_requirements_2khr)ptr)(_device, _p_info, _p_memory_requirements);
+    return ((pfn_get_buffer_memory_requirements_2_khr)ptr)(_device, _p_info, _p_memory_requirements);
 }
 
 inline void
@@ -5015,16 +5015,17 @@ get_image_memory_requirements_2(ktl::api::device _device, const ktl::api::image_
 }
 
 inline void
-get_image_memory_requirements_2khr(ktl::api::device _device, const ktl::api::image_memory_requirements_info_2 * _p_info,
-                                   ktl::api::memory_requirements_2 * _p_memory_requirements)
+get_image_memory_requirements_2_khr(ktl::api::device                                   _device,
+                                    const ktl::api::image_memory_requirements_info_2 * _p_info,
+                                    ktl::api::memory_requirements_2 *                  _p_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_memory_requirements_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_memory_requirements_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_image_memory_requirements_2khr)ptr)(_device, _p_info, _p_memory_requirements);
+    return ((pfn_get_image_memory_requirements_2_khr)ptr)(_device, _p_info, _p_memory_requirements);
 }
 
 inline void
@@ -5044,19 +5045,19 @@ get_image_sparse_memory_requirements_2(ktl::api::device                         
 }
 
 inline void
-get_image_sparse_memory_requirements_2khr(ktl::api::device                                          _device,
-                                          const ktl::api::image_sparse_memory_requirements_info_2 * _p_info,
-                                          ktl::u32 * _p_sparse_memory_requirement_count,
-                                          ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements)
+get_image_sparse_memory_requirements_2_khr(ktl::api::device                                          _device,
+                                           const ktl::api::image_sparse_memory_requirements_info_2 * _p_info,
+                                           ktl::u32 * _p_sparse_memory_requirement_count,
+                                           ktl::api::sparse_image_memory_requirements_2 * _p_sparse_memory_requirements)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_sparse_memory_requirements_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_sparse_memory_requirements_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_image_sparse_memory_requirements_2khr)ptr)(_device, _p_info, _p_sparse_memory_requirement_count,
-                                                                _p_sparse_memory_requirements);
+    return ((pfn_get_image_sparse_memory_requirements_2_khr)ptr)(_device, _p_info, _p_sparse_memory_requirement_count,
+                                                                 _p_sparse_memory_requirements);
 }
 
 inline void
@@ -5552,15 +5553,15 @@ create_render_pass_2(ktl::api::device _device, const ktl::api::render_pass_creat
 }
 
 inline ktl::api::result
-create_render_pass_2khr(ktl::api::device _device, const ktl::api::render_pass_create_info_2 * _p_create_info,
-                        const ktl::api::allocation_callbacks * _p_allocator, ktl::api::render_pass * _p_render_pass)
+create_render_pass_2_khr(ktl::api::device _device, const ktl::api::render_pass_create_info_2 * _p_create_info,
+                         const ktl::api::allocation_callbacks * _p_allocator, ktl::api::render_pass * _p_render_pass)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_render_pass_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_render_pass_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_create_render_pass_2khr)ptr)(_device, _p_create_info, _p_allocator, _p_render_pass);
+    return ((pfn_create_render_pass_2_khr)ptr)(_device, _p_create_info, _p_allocator, _p_render_pass);
 }
 
 inline void
@@ -5577,16 +5578,16 @@ cmd_begin_render_pass_2(ktl::api::command_buffer                 _command_buffer
 }
 
 inline void
-cmd_begin_render_pass_2khr(ktl::api::command_buffer                 _command_buffer,
-                           const ktl::api::render_pass_begin_info * _p_render_pass_begin,
-                           const ktl::api::subpass_begin_info *     _p_subpass_begin_info)
+cmd_begin_render_pass_2_khr(ktl::api::command_buffer                 _command_buffer,
+                            const ktl::api::render_pass_begin_info * _p_render_pass_begin,
+                            const ktl::api::subpass_begin_info *     _p_subpass_begin_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_render_pass_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_render_pass_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_begin_render_pass_2khr)ptr)(_command_buffer, _p_render_pass_begin, _p_subpass_begin_info);
+    return ((pfn_cmd_begin_render_pass_2_khr)ptr)(_command_buffer, _p_render_pass_begin, _p_subpass_begin_info);
 }
 
 inline void
@@ -5602,16 +5603,16 @@ cmd_next_subpass_2(ktl::api::command_buffer _command_buffer, const ktl::api::sub
 }
 
 inline void
-cmd_next_subpass_2khr(ktl::api::command_buffer             _command_buffer,
-                      const ktl::api::subpass_begin_info * _p_subpass_begin_info,
-                      const ktl::api::subpass_end_info *   _p_subpass_end_info)
+cmd_next_subpass_2_khr(ktl::api::command_buffer             _command_buffer,
+                       const ktl::api::subpass_begin_info * _p_subpass_begin_info,
+                       const ktl::api::subpass_end_info *   _p_subpass_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_next_subpass_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_next_subpass_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_next_subpass_2khr)ptr)(_command_buffer, _p_subpass_begin_info, _p_subpass_end_info);
+    return ((pfn_cmd_next_subpass_2_khr)ptr)(_command_buffer, _p_subpass_begin_info, _p_subpass_end_info);
 }
 
 inline void
@@ -5626,15 +5627,15 @@ cmd_end_render_pass_2(ktl::api::command_buffer _command_buffer, const ktl::api::
 }
 
 inline void
-cmd_end_render_pass_2khr(ktl::api::command_buffer           _command_buffer,
-                         const ktl::api::subpass_end_info * _p_subpass_end_info)
+cmd_end_render_pass_2_khr(ktl::api::command_buffer           _command_buffer,
+                          const ktl::api::subpass_end_info * _p_subpass_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_render_pass_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_end_render_pass_2khr)ptr)(_command_buffer, _p_subpass_end_info);
+    return ((pfn_cmd_end_render_pass_2_khr)ptr)(_command_buffer, _p_subpass_end_info);
 }
 
 inline ktl::api::result
@@ -6490,14 +6491,14 @@ cmd_trace_rays_indirect_khr(ktl::api::command_buffer                            
 }
 
 inline void
-cmd_trace_rays_indirect_2khr(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _indirect_device_address)
+cmd_trace_rays_indirect_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::dvaddr _indirect_device_address)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_indirect_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_trace_rays_indirect_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_trace_rays_indirect_2khr)ptr)(_command_buffer, _indirect_device_address);
+    return ((pfn_cmd_trace_rays_indirect_2_khr)ptr)(_command_buffer, _indirect_device_address);
 }
 
 inline void
@@ -6579,14 +6580,14 @@ get_image_view_handle_nvx(ktl::api::device _device, const ktl::api::image_view_h
 }
 
 inline ktl::u64
-get_image_view_handle_64nvx(ktl::api::device _device, const ktl::api::image_view_handle_info_nvx * _p_info)
+get_image_view_handle_64_nvx(ktl::api::device _device, const ktl::api::image_view_handle_info_nvx * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_handle_64nvx)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_view_handle_64_nvx)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_image_view_handle_64nvx)ptr)(_device, _p_info);
+    return ((pfn_get_image_view_handle_64_nvx)ptr)(_device, _p_info);
 }
 
 inline ktl::api::result
@@ -6615,33 +6616,33 @@ get_device_combined_image_sampler_index_nvx(ktl::api::device _device, ktl::u64 _
 }
 
 inline ktl::api::result
-get_physical_device_surface_present_modes_2ext(ktl::api::physical_device                           _physical_device,
-                                               const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-                                               ktl::u32 *                   _p_present_mode_count,
-                                               ktl::api::present_mode_khr * _p_present_modes)
+get_physical_device_surface_present_modes_2_ext(ktl::api::physical_device                            _physical_device,
+                                                const ktl::api::physical_device_surface_info_2_khr * _p_surface_info,
+                                                ktl::u32 *                   _p_present_mode_count,
+                                                ktl::api::present_mode_khr * _p_present_modes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_present_modes_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_surface_present_modes_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_surface_present_modes_2ext)ptr)(_physical_device, _p_surface_info,
-                                                                     _p_present_mode_count, _p_present_modes);
+    return ((pfn_get_physical_device_surface_present_modes_2_ext)ptr)(_physical_device, _p_surface_info,
+                                                                      _p_present_mode_count, _p_present_modes);
 }
 
 inline ktl::api::result
-get_device_group_surface_present_modes_2ext(ktl::api::device                                    _device,
-                                            const ktl::api::physical_device_surface_info_2khr * _p_surface_info,
-                                            ktl::api::device_group_present_mode_flags_khr *     _p_modes)
+get_device_group_surface_present_modes_2_ext(ktl::api::device                                     _device,
+                                             const ktl::api::physical_device_surface_info_2_khr * _p_surface_info,
+                                             ktl::api::device_group_present_mode_flags_khr *      _p_modes)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_surface_present_modes_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_device_group_surface_present_modes_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_device_group_surface_present_modes_2ext)ptr)(_device, _p_surface_info, _p_modes);
+    return ((pfn_get_device_group_surface_present_modes_2_ext)ptr)(_device, _p_surface_info, _p_modes);
 }
 
 inline ktl::api::result
@@ -7374,15 +7375,15 @@ cmd_bind_index_buffer_2(ktl::api::command_buffer _command_buffer, ktl::api::buff
 }
 
 inline void
-cmd_bind_index_buffer_2khr(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer, ktl::api::dvsize _offset,
-                           ktl::api::dvsize _size, ktl::api::index_type _index_type)
+cmd_bind_index_buffer_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::buffer _buffer,
+                            ktl::api::dvsize _offset, ktl::api::dvsize _size, ktl::api::index_type _index_type)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_bind_index_buffer_2khr)ptr)(_command_buffer, _buffer, _offset, _size, _index_type);
+    return ((pfn_cmd_bind_index_buffer_2_khr)ptr)(_command_buffer, _buffer, _offset, _size, _index_type);
 }
 
 inline void
@@ -7400,17 +7401,18 @@ cmd_bind_vertex_buffers_2(ktl::api::command_buffer _command_buffer, ktl::u32 _fi
 }
 
 inline void
-cmd_bind_vertex_buffers_2ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count,
-                             const ktl::api::buffer * _p_buffers, const ktl::api::dvsize * _p_offsets,
-                             const ktl::api::dvsize * _p_sizes, const ktl::api::dvsize * _p_strides)
+cmd_bind_vertex_buffers_2_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
+                              ktl::u32 _binding_count, const ktl::api::buffer * _p_buffers,
+                              const ktl::api::dvsize * _p_offsets, const ktl::api::dvsize * _p_sizes,
+                              const ktl::api::dvsize * _p_strides)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_2ext)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_bind_vertex_buffers_2ext)ptr)(_command_buffer, _first_binding, _binding_count, _p_buffers,
-                                                   _p_offsets, _p_sizes, _p_strides);
+    return ((pfn_cmd_bind_vertex_buffers_2_ext)ptr)(_command_buffer, _first_binding, _binding_count, _p_buffers,
+                                                    _p_offsets, _p_sizes, _p_strides);
 }
 
 inline void
@@ -8154,14 +8156,15 @@ cmd_copy_buffer_2(ktl::api::command_buffer _command_buffer, const ktl::api::copy
 }
 
 inline void
-cmd_copy_buffer_2khr(ktl::api::command_buffer _command_buffer, const ktl::api::copy_buffer_info_2 * _p_copy_buffer_info)
+cmd_copy_buffer_2_khr(ktl::api::command_buffer             _command_buffer,
+                      const ktl::api::copy_buffer_info_2 * _p_copy_buffer_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_copy_buffer_2khr)ptr)(_command_buffer, _p_copy_buffer_info);
+    return ((pfn_cmd_copy_buffer_2_khr)ptr)(_command_buffer, _p_copy_buffer_info);
 }
 
 inline void
@@ -8176,14 +8179,14 @@ cmd_copy_image_2(ktl::api::command_buffer _command_buffer, const ktl::api::copy_
 }
 
 inline void
-cmd_copy_image_2khr(ktl::api::command_buffer _command_buffer, const ktl::api::copy_image_info_2 * _p_copy_image_info)
+cmd_copy_image_2_khr(ktl::api::command_buffer _command_buffer, const ktl::api::copy_image_info_2 * _p_copy_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_copy_image_2khr)ptr)(_command_buffer, _p_copy_image_info);
+    return ((pfn_cmd_copy_image_2_khr)ptr)(_command_buffer, _p_copy_image_info);
 }
 
 inline void
@@ -8198,14 +8201,14 @@ cmd_blit_image_2(ktl::api::command_buffer _command_buffer, const ktl::api::blit_
 }
 
 inline void
-cmd_blit_image_2khr(ktl::api::command_buffer _command_buffer, const ktl::api::blit_image_info_2 * _p_blit_image_info)
+cmd_blit_image_2_khr(ktl::api::command_buffer _command_buffer, const ktl::api::blit_image_info_2 * _p_blit_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_blit_image_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_blit_image_2khr)ptr)(_command_buffer, _p_blit_image_info);
+    return ((pfn_cmd_blit_image_2_khr)ptr)(_command_buffer, _p_blit_image_info);
 }
 
 inline void
@@ -8221,15 +8224,15 @@ cmd_copy_buffer_to_image_2(ktl::api::command_buffer                      _comman
 }
 
 inline void
-cmd_copy_buffer_to_image_2khr(ktl::api::command_buffer                      _command_buffer,
-                              const ktl::api::copy_buffer_to_image_info_2 * _p_copy_buffer_to_image_info)
+cmd_copy_buffer_to_image_2_khr(ktl::api::command_buffer                      _command_buffer,
+                               const ktl::api::copy_buffer_to_image_info_2 * _p_copy_buffer_to_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_to_image_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_buffer_to_image_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_copy_buffer_to_image_2khr)ptr)(_command_buffer, _p_copy_buffer_to_image_info);
+    return ((pfn_cmd_copy_buffer_to_image_2_khr)ptr)(_command_buffer, _p_copy_buffer_to_image_info);
 }
 
 inline void
@@ -8245,15 +8248,15 @@ cmd_copy_image_to_buffer_2(ktl::api::command_buffer                      _comman
 }
 
 inline void
-cmd_copy_image_to_buffer_2khr(ktl::api::command_buffer                      _command_buffer,
-                              const ktl::api::copy_image_to_buffer_info_2 * _p_copy_image_to_buffer_info)
+cmd_copy_image_to_buffer_2_khr(ktl::api::command_buffer                      _command_buffer,
+                               const ktl::api::copy_image_to_buffer_info_2 * _p_copy_image_to_buffer_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_buffer_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_copy_image_to_buffer_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_copy_image_to_buffer_2khr)ptr)(_command_buffer, _p_copy_image_to_buffer_info);
+    return ((pfn_cmd_copy_image_to_buffer_2_khr)ptr)(_command_buffer, _p_copy_image_to_buffer_info);
 }
 
 inline void
@@ -8269,15 +8272,15 @@ cmd_resolve_image_2(ktl::api::command_buffer               _command_buffer,
 }
 
 inline void
-cmd_resolve_image_2khr(ktl::api::command_buffer               _command_buffer,
-                       const ktl::api::resolve_image_info_2 * _p_resolve_image_info)
+cmd_resolve_image_2_khr(ktl::api::command_buffer               _command_buffer,
+                        const ktl::api::resolve_image_info_2 * _p_resolve_image_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_resolve_image_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_resolve_image_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_resolve_image_2khr)ptr)(_command_buffer, _p_resolve_image_info);
+    return ((pfn_cmd_resolve_image_2_khr)ptr)(_command_buffer, _p_resolve_image_info);
 }
 
 inline void
@@ -8341,9 +8344,9 @@ get_acceleration_structure_build_sizes_khr(
 
 inline void
 cmd_set_vertex_input_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _vertex_binding_description_count,
-                         const ktl::api::vertex_input_binding_description_2ext *   _p_vertex_binding_descriptions,
-                         ktl::u32                                                  _vertex_attribute_description_count,
-                         const ktl::api::vertex_input_attribute_description_2ext * _p_vertex_attribute_descriptions)
+                         const ktl::api::vertex_input_binding_description_2_ext *   _p_vertex_binding_descriptions,
+                         ktl::u32                                                   _vertex_attribute_description_count,
+                         const ktl::api::vertex_input_attribute_description_2_ext * _p_vertex_attribute_descriptions)
 {
     ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_vertex_input_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
@@ -8380,15 +8383,15 @@ cmd_set_event_2(ktl::api::command_buffer _command_buffer, ktl::api::event _event
 }
 
 inline void
-cmd_set_event_2khr(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
-                   const ktl::api::dependency_info * _p_dependency_info)
+cmd_set_event_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
+                    const ktl::api::dependency_info * _p_dependency_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_event_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_event_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_set_event_2khr)ptr)(_command_buffer, _event, _p_dependency_info);
+    return ((pfn_cmd_set_event_2_khr)ptr)(_command_buffer, _event, _p_dependency_info);
 }
 
 inline void
@@ -8404,15 +8407,15 @@ cmd_reset_event_2(ktl::api::command_buffer _command_buffer, ktl::api::event _eve
 }
 
 inline void
-cmd_reset_event_2khr(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
-                     ktl::api::pipeline_stage_flags_2 _stage_mask)
+cmd_reset_event_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::event _event,
+                      ktl::api::pipeline_stage_flags_2 _stage_mask)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_event_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_reset_event_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_reset_event_2khr)ptr)(_command_buffer, _event, _stage_mask);
+    return ((pfn_cmd_reset_event_2_khr)ptr)(_command_buffer, _event, _stage_mask);
 }
 
 inline void
@@ -8428,15 +8431,15 @@ cmd_wait_events_2(ktl::api::command_buffer _command_buffer, ktl::u32 _event_coun
 }
 
 inline void
-cmd_wait_events_2khr(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count, const ktl::api::event * _p_events,
-                     const ktl::api::dependency_info * _p_dependency_infos)
+cmd_wait_events_2_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _event_count,
+                      const ktl::api::event * _p_events, const ktl::api::dependency_info * _p_dependency_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_wait_events_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_wait_events_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_wait_events_2khr)ptr)(_command_buffer, _event_count, _p_events, _p_dependency_infos);
+    return ((pfn_cmd_wait_events_2_khr)ptr)(_command_buffer, _event_count, _p_events, _p_dependency_infos);
 }
 
 inline void
@@ -8451,15 +8454,15 @@ cmd_pipeline_barrier_2(ktl::api::command_buffer _command_buffer, const ktl::api:
 }
 
 inline void
-cmd_pipeline_barrier_2khr(ktl::api::command_buffer          _command_buffer,
-                          const ktl::api::dependency_info * _p_dependency_info)
+cmd_pipeline_barrier_2_khr(ktl::api::command_buffer          _command_buffer,
+                           const ktl::api::dependency_info * _p_dependency_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_pipeline_barrier_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_pipeline_barrier_2khr)ptr)(_command_buffer, _p_dependency_info);
+    return ((pfn_cmd_pipeline_barrier_2_khr)ptr)(_command_buffer, _p_dependency_info);
 }
 
 inline ktl::api::result
@@ -8475,15 +8478,15 @@ queue_submit_2(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::s
 }
 
 inline ktl::api::result
-queue_submit_2khr(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::submit_info_2 * _p_submits,
-                  ktl::api::fence _fence)
+queue_submit_2_khr(ktl::api::queue _queue, ktl::u32 _submit_count, const ktl::api::submit_info_2 * _p_submits,
+                   ktl::api::fence _fence)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_submit_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::queue_submit_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_queue_submit_2khr)ptr)(_queue, _submit_count, _p_submits, _fence);
+    return ((pfn_queue_submit_2_khr)ptr)(_queue, _submit_count, _p_submits, _fence);
 }
 
 inline void
@@ -8499,39 +8502,39 @@ cmd_write_timestamp_2(ktl::api::command_buffer _command_buffer, ktl::api::pipeli
 }
 
 inline void
-cmd_write_timestamp_2khr(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage,
-                         ktl::api::query_pool _query_pool, ktl::u32 _query)
+cmd_write_timestamp_2_khr(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage,
+                          ktl::api::query_pool _query_pool, ktl::u32 _query)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_timestamp_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_timestamp_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_write_timestamp_2khr)ptr)(_command_buffer, _stage, _query_pool, _query);
+    return ((pfn_cmd_write_timestamp_2_khr)ptr)(_command_buffer, _stage, _query_pool, _query);
 }
 
 inline void
-cmd_write_buffer_marker_2amd(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage,
-                             ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset, ktl::u32 _marker)
+cmd_write_buffer_marker_2_amd(ktl::api::command_buffer _command_buffer, ktl::api::pipeline_stage_flags_2 _stage,
+                              ktl::api::buffer _dst_buffer, ktl::api::dvsize _dst_offset, ktl::u32 _marker)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_buffer_marker_2amd)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_write_buffer_marker_2_amd)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_write_buffer_marker_2amd)ptr)(_command_buffer, _stage, _dst_buffer, _dst_offset, _marker);
+    return ((pfn_cmd_write_buffer_marker_2_amd)ptr)(_command_buffer, _stage, _dst_buffer, _dst_offset, _marker);
 }
 
 inline void
-get_queue_checkpoint_data_2nv(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count,
-                              ktl::api::checkpoint_data_2nv * _p_checkpoint_data)
+get_queue_checkpoint_data_2_nv(ktl::api::queue _queue, ktl::u32 * _p_checkpoint_data_count,
+                               ktl::api::checkpoint_data_2_nv * _p_checkpoint_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_queue_checkpoint_data_2nv)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_queue_checkpoint_data_2_nv)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_queue_checkpoint_data_2nv)ptr)(_queue, _p_checkpoint_data_count, _p_checkpoint_data);
+    return ((pfn_get_queue_checkpoint_data_2_nv)ptr)(_queue, _p_checkpoint_data_count, _p_checkpoint_data);
 }
 
 inline ktl::api::result
@@ -8957,15 +8960,15 @@ get_drm_display_ext(ktl::api::physical_device _physical_device, ktl::i32 _drm_fd
 }
 
 inline ktl::api::result
-wait_for_present_2khr(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
-                      const ktl::api::present_wait_2info_khr * _p_present_wait_2info)
+wait_for_present_2_khr(ktl::api::device _device, ktl::api::swapchain_khr _swapchain,
+                       const ktl::api::present_wait_2_info_khr * _p_present_wait_2_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_for_present_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::wait_for_present_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_wait_for_present_2khr)ptr)(_device, _swapchain, _p_present_wait_2info);
+    return ((pfn_wait_for_present_2_khr)ptr)(_device, _swapchain, _p_present_wait_2_info);
 }
 
 inline ktl::api::result
@@ -9156,27 +9159,27 @@ cmd_end_rendering(ktl::api::command_buffer _command_buffer)
 }
 
 inline void
-cmd_end_rendering_2khr(ktl::api::command_buffer                 _command_buffer,
-                       const ktl::api::rendering_end_info_khr * _p_rendering_end_info)
+cmd_end_rendering_2_khr(ktl::api::command_buffer                 _command_buffer,
+                        const ktl::api::rendering_end_info_khr * _p_rendering_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_end_rendering_2khr)ptr)(_command_buffer, _p_rendering_end_info);
+    return ((pfn_cmd_end_rendering_2_khr)ptr)(_command_buffer, _p_rendering_end_info);
 }
 
 inline void
-cmd_end_rendering_2ext(ktl::api::command_buffer                 _command_buffer,
-                       const ktl::api::rendering_end_info_khr * _p_rendering_end_info)
+cmd_end_rendering_2_ext(ktl::api::command_buffer                 _command_buffer,
+                        const ktl::api::rendering_end_info_khr * _p_rendering_end_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_2ext)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_rendering_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_end_rendering_2ext)ptr)(_command_buffer, _p_rendering_end_info);
+    return ((pfn_cmd_end_rendering_2_ext)ptr)(_command_buffer, _p_rendering_end_info);
 }
 
 inline void
@@ -9433,31 +9436,31 @@ get_image_subresource_layout_2(ktl::api::device _device, ktl::api::image _image,
 }
 
 inline void
-get_image_subresource_layout_2khr(ktl::api::device _device, ktl::api::image _image,
-                                  const ktl::api::image_subresource_2 * _p_subresource,
-                                  ktl::api::subresource_layout_2 *      _p_layout)
+get_image_subresource_layout_2_khr(ktl::api::device _device, ktl::api::image _image,
+                                   const ktl::api::image_subresource_2 * _p_subresource,
+                                   ktl::api::subresource_layout_2 *      _p_layout)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_image_subresource_layout_2khr)ptr)(_device, _image, _p_subresource, _p_layout);
+    return ((pfn_get_image_subresource_layout_2_khr)ptr)(_device, _image, _p_subresource, _p_layout);
 }
 
 inline void
-get_image_subresource_layout_2ext(ktl::api::device _device, ktl::api::image _image,
-                                  const ktl::api::image_subresource_2 * _p_subresource,
-                                  ktl::api::subresource_layout_2 *      _p_layout)
+get_image_subresource_layout_2_ext(ktl::api::device _device, ktl::api::image _image,
+                                   const ktl::api::image_subresource_2 * _p_subresource,
+                                   ktl::api::subresource_layout_2 *      _p_layout)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_image_subresource_layout_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_image_subresource_layout_2ext)ptr)(_device, _image, _p_subresource, _p_layout);
+    return ((pfn_get_image_subresource_layout_2_ext)ptr)(_device, _image, _p_subresource, _p_layout);
 }
 
 inline ktl::api::result
@@ -9625,15 +9628,15 @@ get_device_fault_debug_info_khr(ktl::api::device _device, ktl::api::device_fault
 }
 
 inline void
-cmd_set_depth_bias_2ext(ktl::api::command_buffer              _command_buffer,
-                        const ktl::api::depth_bias_info_ext * _p_depth_bias_info)
+cmd_set_depth_bias_2_ext(ktl::api::command_buffer              _command_buffer,
+                         const ktl::api::depth_bias_info_ext * _p_depth_bias_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_2ext)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_depth_bias_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_set_depth_bias_2ext)ptr)(_command_buffer, _p_depth_bias_info);
+    return ((pfn_cmd_set_depth_bias_2_ext)ptr)(_command_buffer, _p_depth_bias_info);
 }
 
 inline ktl::api::result
@@ -9699,14 +9702,14 @@ map_memory_2(ktl::api::device _device, const ktl::api::memory_map_info * _p_memo
 }
 
 inline ktl::api::result
-map_memory_2khr(ktl::api::device _device, const ktl::api::memory_map_info * _p_memory_map_info, void ** _pp_data)
+map_memory_2_khr(ktl::api::device _device, const ktl::api::memory_map_info * _p_memory_map_info, void ** _pp_data)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::map_memory_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_map_memory_2khr)ptr)(_device, _p_memory_map_info, _pp_data);
+    return ((pfn_map_memory_2_khr)ptr)(_device, _p_memory_map_info, _pp_data);
 }
 
 inline ktl::api::result
@@ -9721,14 +9724,14 @@ unmap_memory_2(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_
 }
 
 inline ktl::api::result
-unmap_memory_2khr(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_memory_unmap_info)
+unmap_memory_2_khr(ktl::api::device _device, const ktl::api::memory_unmap_info * _p_memory_unmap_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::unmap_memory_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_unmap_memory_2khr)ptr)(_device, _p_memory_unmap_info);
+    return ((pfn_unmap_memory_2_khr)ptr)(_device, _p_memory_unmap_info);
 }
 
 inline ktl::api::result
@@ -9868,18 +9871,18 @@ get_physical_device_cooperative_matrix_properties_khr(ktl::api::physical_device 
 }
 
 inline ktl::api::result
-get_physical_device_cooperative_matrix_properties_2ext(
-    ktl::api::physical_device                                      _physical_device,
-    const ktl::api::physical_device_cooperative_matrix_info_2ext * _p_cooperative_matrix_info,
-    ktl::u32 * _p_property_count, ktl::api::cooperative_matrix_properties_2ext * _p_properties)
+get_physical_device_cooperative_matrix_properties_2_ext(
+    ktl::api::physical_device                                       _physical_device,
+    const ktl::api::physical_device_cooperative_matrix_info_2_ext * _p_cooperative_matrix_info,
+    ktl::u32 * _p_property_count, ktl::api::cooperative_matrix_properties_2_ext * _p_properties)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_cooperative_matrix_properties_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::get_physical_device_cooperative_matrix_properties_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_get_physical_device_cooperative_matrix_properties_2ext)ptr)(
+    return ((pfn_get_physical_device_cooperative_matrix_properties_2_ext)ptr)(
         _physical_device, _p_cooperative_matrix_info, _p_property_count, _p_properties);
 }
 
@@ -10132,15 +10135,15 @@ cmd_bind_descriptor_sets_2(ktl::api::command_buffer                    _command_
 }
 
 inline void
-cmd_bind_descriptor_sets_2khr(ktl::api::command_buffer                    _command_buffer,
-                              const ktl::api::bind_descriptor_sets_info * _p_bind_descriptor_sets_info)
+cmd_bind_descriptor_sets_2_khr(ktl::api::command_buffer                    _command_buffer,
+                               const ktl::api::bind_descriptor_sets_info * _p_bind_descriptor_sets_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_sets_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_sets_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_bind_descriptor_sets_2khr)ptr)(_command_buffer, _p_bind_descriptor_sets_info);
+    return ((pfn_cmd_bind_descriptor_sets_2_khr)ptr)(_command_buffer, _p_bind_descriptor_sets_info);
 }
 
 inline void
@@ -10156,15 +10159,15 @@ cmd_push_constants_2(ktl::api::command_buffer              _command_buffer,
 }
 
 inline void
-cmd_push_constants_2khr(ktl::api::command_buffer              _command_buffer,
-                        const ktl::api::push_constants_info * _p_push_constants_info)
+cmd_push_constants_2_khr(ktl::api::command_buffer              _command_buffer,
+                         const ktl::api::push_constants_info * _p_push_constants_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_constants_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_constants_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_push_constants_2khr)ptr)(_command_buffer, _p_push_constants_info);
+    return ((pfn_cmd_push_constants_2_khr)ptr)(_command_buffer, _p_push_constants_info);
 }
 
 inline void
@@ -10180,15 +10183,15 @@ cmd_push_descriptor_set_2(ktl::api::command_buffer                   _command_bu
 }
 
 inline void
-cmd_push_descriptor_set_2khr(ktl::api::command_buffer                   _command_buffer,
-                             const ktl::api::push_descriptor_set_info * _p_push_descriptor_set_info)
+cmd_push_descriptor_set_2_khr(ktl::api::command_buffer                   _command_buffer,
+                              const ktl::api::push_descriptor_set_info * _p_push_descriptor_set_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_push_descriptor_set_2khr)ptr)(_command_buffer, _p_push_descriptor_set_info);
+    return ((pfn_cmd_push_descriptor_set_2_khr)ptr)(_command_buffer, _p_push_descriptor_set_info);
 }
 
 inline void
@@ -10207,46 +10210,46 @@ cmd_push_descriptor_set_with_template_2(
 }
 
 inline void
-cmd_push_descriptor_set_with_template_2khr(
+cmd_push_descriptor_set_with_template_2_khr(
     ktl::api::command_buffer                                 _command_buffer,
     const ktl::api::push_descriptor_set_with_template_info * _p_push_descriptor_set_with_template_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_push_descriptor_set_with_template_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_push_descriptor_set_with_template_2khr)ptr)(_command_buffer,
-                                                                 _p_push_descriptor_set_with_template_info);
+    return ((pfn_cmd_push_descriptor_set_with_template_2_khr)ptr)(_command_buffer,
+                                                                  _p_push_descriptor_set_with_template_info);
 }
 
 inline void
-cmd_set_descriptor_buffer_offsets_2ext(
+cmd_set_descriptor_buffer_offsets_2_ext(
     ktl::api::command_buffer                                 _command_buffer,
     const ktl::api::set_descriptor_buffer_offsets_info_ext * _p_set_descriptor_buffer_offsets_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_descriptor_buffer_offsets_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_set_descriptor_buffer_offsets_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_set_descriptor_buffer_offsets_2ext)ptr)(_command_buffer, _p_set_descriptor_buffer_offsets_info);
+    return ((pfn_cmd_set_descriptor_buffer_offsets_2_ext)ptr)(_command_buffer, _p_set_descriptor_buffer_offsets_info);
 }
 
 inline void
-cmd_bind_descriptor_buffer_embedded_samplers_2ext(ktl::api::command_buffer _command_buffer,
-                                                  const ktl::api::bind_descriptor_buffer_embedded_samplers_info_ext *
-                                                      _p_bind_descriptor_buffer_embedded_samplers_info)
+cmd_bind_descriptor_buffer_embedded_samplers_2_ext(ktl::api::command_buffer _command_buffer,
+                                                   const ktl::api::bind_descriptor_buffer_embedded_samplers_info_ext *
+                                                       _p_bind_descriptor_buffer_embedded_samplers_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_bind_descriptor_buffer_embedded_samplers_2ext)ptr)(
+    return ((pfn_cmd_bind_descriptor_buffer_embedded_samplers_2_ext)ptr)(
         _command_buffer, _p_bind_descriptor_buffer_embedded_samplers_info);
 }
 
@@ -11295,77 +11298,78 @@ cmd_copy_query_pool_results_to_memory_khr(ktl::api::command_buffer _command_buff
 }
 
 inline void
-cmd_begin_conditional_rendering_2ext(
-    ktl::api::command_buffer                                _command_buffer,
-    const ktl::api::conditional_rendering_begin_info_2ext * _p_conditional_rendering_begin)
+cmd_begin_conditional_rendering_2_ext(
+    ktl::api::command_buffer                                 _command_buffer,
+    const ktl::api::conditional_rendering_begin_info_2_ext * _p_conditional_rendering_begin)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_conditional_rendering_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_conditional_rendering_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_begin_conditional_rendering_2ext)ptr)(_command_buffer, _p_conditional_rendering_begin);
+    return ((pfn_cmd_begin_conditional_rendering_2_ext)ptr)(_command_buffer, _p_conditional_rendering_begin);
 }
 
 inline void
-cmd_bind_transform_feedback_buffers_2ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
-                                         ktl::u32                                                   _binding_count,
-                                         const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_binding_infos)
+cmd_bind_transform_feedback_buffers_2_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
+                                          ktl::u32                                                    _binding_count,
+                                          const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_binding_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_transform_feedback_buffers_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_transform_feedback_buffers_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_bind_transform_feedback_buffers_2ext)ptr)(_command_buffer, _first_binding, _binding_count,
-                                                               _p_binding_infos);
+    return ((pfn_cmd_bind_transform_feedback_buffers_2_ext)ptr)(_command_buffer, _first_binding, _binding_count,
+                                                                _p_binding_infos);
 }
 
 inline void
-cmd_begin_transform_feedback_2ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range,
-                                  ktl::u32                                                   _counter_range_count,
-                                  const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_infos)
+cmd_begin_transform_feedback_2_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range,
+                                   ktl::u32                                                    _counter_range_count,
+                                   const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_counter_infos)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_transform_feedback_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_begin_transform_feedback_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_begin_transform_feedback_2ext)ptr)(_command_buffer, _first_counter_range, _counter_range_count,
-                                                        _p_counter_infos);
+    return ((pfn_cmd_begin_transform_feedback_2_ext)ptr)(_command_buffer, _first_counter_range, _counter_range_count,
+                                                         _p_counter_infos);
 }
 
 inline void
-cmd_end_transform_feedback_2ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range,
-                                ktl::u32                                                   _counter_range_count,
-                                const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_infos)
+cmd_end_transform_feedback_2_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _first_counter_range,
+                                 ktl::u32                                                    _counter_range_count,
+                                 const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_counter_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_transform_feedback_2ext)];
+    ktl::loader::proc_type ptr =
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_end_transform_feedback_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_end_transform_feedback_2ext)ptr)(_command_buffer, _first_counter_range, _counter_range_count,
-                                                      _p_counter_infos);
+    return ((pfn_cmd_end_transform_feedback_2_ext)ptr)(_command_buffer, _first_counter_range, _counter_range_count,
+                                                       _p_counter_infos);
 }
 
 inline void
-cmd_draw_indirect_byte_count_2ext(ktl::api::command_buffer _command_buffer, ktl::u32 _instance_count,
-                                  ktl::u32                                                   _first_instance,
-                                  const ktl::api::bind_transform_feedback_buffer_2info_ext * _p_counter_info,
-                                  ktl::u32 _counter_offset, ktl::u32 _vertex_stride)
+cmd_draw_indirect_byte_count_2_ext(ktl::api::command_buffer _command_buffer, ktl::u32 _instance_count,
+                                   ktl::u32                                                    _first_instance,
+                                   const ktl::api::bind_transform_feedback_buffer_2_info_ext * _p_counter_info,
+                                   ktl::u32 _counter_offset, ktl::u32 _vertex_stride)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_byte_count_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_byte_count_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_draw_indirect_byte_count_2ext)ptr)(_command_buffer, _instance_count, _first_instance,
-                                                        _p_counter_info, _counter_offset, _vertex_stride);
+    return ((pfn_cmd_draw_indirect_byte_count_2_ext)ptr)(_command_buffer, _instance_count, _first_instance,
+                                                         _p_counter_info, _counter_offset, _vertex_stride);
 }
 
 inline void
@@ -11381,129 +11385,129 @@ cmd_write_marker_to_memory_amd(ktl::api::command_buffer                 _command
 }
 
 inline void
-cmd_bind_index_buffer_3khr(ktl::api::command_buffer                      _command_buffer,
-                           const ktl::api::bind_index_buffer_3info_khr * _p_info)
+cmd_bind_index_buffer_3_khr(ktl::api::command_buffer                       _command_buffer,
+                            const ktl::api::bind_index_buffer_3_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_3khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_index_buffer_3_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_bind_index_buffer_3khr)ptr)(_command_buffer, _p_info);
+    return ((pfn_cmd_bind_index_buffer_3_khr)ptr)(_command_buffer, _p_info);
 }
 
 inline void
-cmd_bind_vertex_buffers_3khr(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding, ktl::u32 _binding_count,
-                             const ktl::api::bind_vertex_buffer_3info_khr * _p_binding_infos)
+cmd_bind_vertex_buffers_3_khr(ktl::api::command_buffer _command_buffer, ktl::u32 _first_binding,
+                              ktl::u32 _binding_count, const ktl::api::bind_vertex_buffer_3_info_khr * _p_binding_infos)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_3khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_bind_vertex_buffers_3_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_bind_vertex_buffers_3khr)ptr)(_command_buffer, _first_binding, _binding_count, _p_binding_infos);
+    return ((pfn_cmd_bind_vertex_buffers_3_khr)ptr)(_command_buffer, _first_binding, _binding_count, _p_binding_infos);
 }
 
 inline void
-cmd_draw_indirect_2khr(ktl::api::command_buffer _command_buffer, const ktl::api::draw_indirect_2info_khr * _p_info)
+cmd_draw_indirect_2_khr(ktl::api::command_buffer _command_buffer, const ktl::api::draw_indirect_2_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_draw_indirect_2khr)ptr)(_command_buffer, _p_info);
+    return ((pfn_cmd_draw_indirect_2_khr)ptr)(_command_buffer, _p_info);
 }
 
 inline void
-cmd_draw_indexed_indirect_2khr(ktl::api::command_buffer                  _command_buffer,
-                               const ktl::api::draw_indirect_2info_khr * _p_info)
+cmd_draw_indexed_indirect_2_khr(ktl::api::command_buffer                   _command_buffer,
+                                const ktl::api::draw_indirect_2_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_draw_indexed_indirect_2khr)ptr)(_command_buffer, _p_info);
+    return ((pfn_cmd_draw_indexed_indirect_2_khr)ptr)(_command_buffer, _p_info);
 }
 
 inline void
-cmd_draw_indirect_count_2khr(ktl::api::command_buffer                        _command_buffer,
-                             const ktl::api::draw_indirect_count_2info_khr * _p_info)
+cmd_draw_indirect_count_2_khr(ktl::api::command_buffer                         _command_buffer,
+                              const ktl::api::draw_indirect_count_2_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indirect_count_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_draw_indirect_count_2khr)ptr)(_command_buffer, _p_info);
+    return ((pfn_cmd_draw_indirect_count_2_khr)ptr)(_command_buffer, _p_info);
 }
 
 inline void
-cmd_draw_indexed_indirect_count_2khr(ktl::api::command_buffer                        _command_buffer,
-                                     const ktl::api::draw_indirect_count_2info_khr * _p_info)
+cmd_draw_indexed_indirect_count_2_khr(ktl::api::command_buffer                         _command_buffer,
+                                      const ktl::api::draw_indirect_count_2_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_indexed_indirect_count_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_draw_indexed_indirect_count_2khr)ptr)(_command_buffer, _p_info);
+    return ((pfn_cmd_draw_indexed_indirect_count_2_khr)ptr)(_command_buffer, _p_info);
 }
 
 inline void
-cmd_draw_mesh_tasks_indirect_2ext(ktl::api::command_buffer                  _command_buffer,
-                                  const ktl::api::draw_indirect_2info_khr * _p_info)
+cmd_draw_mesh_tasks_indirect_2_ext(ktl::api::command_buffer                   _command_buffer,
+                                   const ktl::api::draw_indirect_2_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_draw_mesh_tasks_indirect_2ext)ptr)(_command_buffer, _p_info);
+    return ((pfn_cmd_draw_mesh_tasks_indirect_2_ext)ptr)(_command_buffer, _p_info);
 }
 
 inline void
-cmd_draw_mesh_tasks_indirect_count_2ext(ktl::api::command_buffer                        _command_buffer,
-                                        const ktl::api::draw_indirect_count_2info_khr * _p_info)
+cmd_draw_mesh_tasks_indirect_count_2_ext(ktl::api::command_buffer                         _command_buffer,
+                                         const ktl::api::draw_indirect_count_2_info_khr * _p_info)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2ext)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2_ext)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_draw_mesh_tasks_indirect_count_2ext)ptr)(_command_buffer, _p_info);
+    return ((pfn_cmd_draw_mesh_tasks_indirect_count_2_ext)ptr)(_command_buffer, _p_info);
 }
 
 inline void
-cmd_dispatch_indirect_2khr(ktl::api::command_buffer                      _command_buffer,
-                           const ktl::api::dispatch_indirect_2info_khr * _p_info)
+cmd_dispatch_indirect_2_khr(ktl::api::command_buffer                       _command_buffer,
+                            const ktl::api::dispatch_indirect_2_info_khr * _p_info)
 {
-    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_indirect_2khr)];
+    ktl::loader::proc_type ptr = (*ptable)[static_cast< ktl::u32 >(ktl::api::command::cmd_dispatch_indirect_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_cmd_dispatch_indirect_2khr)ptr)(_command_buffer, _p_info);
+    return ((pfn_cmd_dispatch_indirect_2_khr)ptr)(_command_buffer, _p_info);
 }
 
 inline ktl::api::result
-create_acceleration_structure_2khr(ktl::api::device                                          _device,
-                                   const ktl::api::acceleration_structure_create_info_2khr * _p_create_info,
-                                   const ktl::api::allocation_callbacks *                    _p_allocator,
-                                   ktl::api::acceleration_structure_khr *                    _p_acceleration_structure)
+create_acceleration_structure_2_khr(ktl::api::device                                           _device,
+                                    const ktl::api::acceleration_structure_create_info_2_khr * _p_create_info,
+                                    const ktl::api::allocation_callbacks *                     _p_allocator,
+                                    ktl::api::acceleration_structure_khr * _p_acceleration_structure)
 {
     ktl::loader::proc_type ptr =
-        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_acceleration_structure_2khr)];
+        (*ptable)[static_cast< ktl::u32 >(ktl::api::command::create_acceleration_structure_2_khr)];
     if (ptr == ktl::loader::proc_null) [[unlikely]]
     {
         std::abort();
     }
-    return ((pfn_create_acceleration_structure_2khr)ptr)(_device, _p_create_info, _p_allocator,
-                                                         _p_acceleration_structure);
+    return ((pfn_create_acceleration_structure_2_khr)ptr)(_device, _p_create_info, _p_allocator,
+                                                          _p_acceleration_structure);
 }
 
 inline ktl::api::result

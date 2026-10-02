@@ -389,9 +389,9 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCreateUbmSurfaceSEC";
     case ktl::api::command::get_physical_device_ubm_presentation_support_sec:
         return "vkGetPhysicalDeviceUbmPresentationSupportSEC";
-    case ktl::api::command::create_win_32surface_khr:
+    case ktl::api::command::create_win32_surface_khr:
         return "vkCreateWin32SurfaceKHR";
-    case ktl::api::command::get_physical_device_win_32presentation_support_khr:
+    case ktl::api::command::get_physical_device_win32_presentation_support_khr:
         return "vkGetPhysicalDeviceWin32PresentationSupportKHR";
     case ktl::api::command::create_xlib_surface_khr:
         return "vkCreateXlibSurfaceKHR";
@@ -405,7 +405,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCreateDirectFBSurfaceEXT";
     case ktl::api::command::get_physical_device_direct_fb_presentation_support_ext:
         return "vkGetPhysicalDeviceDirectFBPresentationSupportEXT";
-    case ktl::api::command::create_image_pipe_surface_fuchsia:
+    case ktl::api::command::create_imagepipe_surface_fuchsia:
         return "vkCreateImagePipeSurfaceFUCHSIA";
     case ktl::api::command::create_stream_descriptor_surface_ggp:
         return "vkCreateStreamDescriptorSurfaceGGP";
@@ -431,7 +431,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdDebugMarkerInsertEXT";
     case ktl::api::command::get_physical_device_external_image_format_properties_nv:
         return "vkGetPhysicalDeviceExternalImageFormatPropertiesNV";
-    case ktl::api::command::get_memory_win_32handle_nv:
+    case ktl::api::command::get_memory_win32_handle_nv:
         return "vkGetMemoryWin32HandleNV";
     case ktl::api::command::cmd_execute_generated_commands_nv:
         return "vkCmdExecuteGeneratedCommandsNV";
@@ -465,31 +465,31 @@ raw_command(ktl::api::command _command) noexcept
         return "vkUpdateIndirectExecutionSetShaderEXT";
     case ktl::api::command::get_physical_device_features_2:
         return "vkGetPhysicalDeviceFeatures2";
-    case ktl::api::command::get_physical_device_features_2khr:
+    case ktl::api::command::get_physical_device_features_2_khr:
         return "vkGetPhysicalDeviceFeatures2KHR";
     case ktl::api::command::get_physical_device_properties_2:
         return "vkGetPhysicalDeviceProperties2";
-    case ktl::api::command::get_physical_device_properties_2khr:
+    case ktl::api::command::get_physical_device_properties_2_khr:
         return "vkGetPhysicalDeviceProperties2KHR";
     case ktl::api::command::get_physical_device_format_properties_2:
         return "vkGetPhysicalDeviceFormatProperties2";
-    case ktl::api::command::get_physical_device_format_properties_2khr:
+    case ktl::api::command::get_physical_device_format_properties_2_khr:
         return "vkGetPhysicalDeviceFormatProperties2KHR";
     case ktl::api::command::get_physical_device_image_format_properties_2:
         return "vkGetPhysicalDeviceImageFormatProperties2";
-    case ktl::api::command::get_physical_device_image_format_properties_2khr:
+    case ktl::api::command::get_physical_device_image_format_properties_2_khr:
         return "vkGetPhysicalDeviceImageFormatProperties2KHR";
     case ktl::api::command::get_physical_device_queue_family_properties_2:
         return "vkGetPhysicalDeviceQueueFamilyProperties2";
-    case ktl::api::command::get_physical_device_queue_family_properties_2khr:
+    case ktl::api::command::get_physical_device_queue_family_properties_2_khr:
         return "vkGetPhysicalDeviceQueueFamilyProperties2KHR";
     case ktl::api::command::get_physical_device_memory_properties_2:
         return "vkGetPhysicalDeviceMemoryProperties2";
-    case ktl::api::command::get_physical_device_memory_properties_2khr:
+    case ktl::api::command::get_physical_device_memory_properties_2_khr:
         return "vkGetPhysicalDeviceMemoryProperties2KHR";
     case ktl::api::command::get_physical_device_sparse_image_format_properties_2:
         return "vkGetPhysicalDeviceSparseImageFormatProperties2";
-    case ktl::api::command::get_physical_device_sparse_image_format_properties_2khr:
+    case ktl::api::command::get_physical_device_sparse_image_format_properties_2_khr:
         return "vkGetPhysicalDeviceSparseImageFormatProperties2KHR";
     case ktl::api::command::cmd_push_descriptor_set:
         return "vkCmdPushDescriptorSet";
@@ -503,9 +503,9 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetPhysicalDeviceExternalBufferProperties";
     case ktl::api::command::get_physical_device_external_buffer_properties_khr:
         return "vkGetPhysicalDeviceExternalBufferPropertiesKHR";
-    case ktl::api::command::get_memory_win_32handle_khr:
+    case ktl::api::command::get_memory_win32_handle_khr:
         return "vkGetMemoryWin32HandleKHR";
-    case ktl::api::command::get_memory_win_32handle_properties_khr:
+    case ktl::api::command::get_memory_win32_handle_properties_khr:
         return "vkGetMemoryWin32HandlePropertiesKHR";
     case ktl::api::command::get_memory_fd_khr:
         return "vkGetMemoryFdKHR";
@@ -521,9 +521,9 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetPhysicalDeviceExternalSemaphoreProperties";
     case ktl::api::command::get_physical_device_external_semaphore_properties_khr:
         return "vkGetPhysicalDeviceExternalSemaphorePropertiesKHR";
-    case ktl::api::command::get_semaphore_win_32handle_khr:
+    case ktl::api::command::get_semaphore_win32_handle_khr:
         return "vkGetSemaphoreWin32HandleKHR";
-    case ktl::api::command::import_semaphore_win_32handle_khr:
+    case ktl::api::command::import_semaphore_win32_handle_khr:
         return "vkImportSemaphoreWin32HandleKHR";
     case ktl::api::command::get_semaphore_fd_khr:
         return "vkGetSemaphoreFdKHR";
@@ -537,9 +537,9 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetPhysicalDeviceExternalFenceProperties";
     case ktl::api::command::get_physical_device_external_fence_properties_khr:
         return "vkGetPhysicalDeviceExternalFencePropertiesKHR";
-    case ktl::api::command::get_fence_win_32handle_khr:
+    case ktl::api::command::get_fence_win32_handle_khr:
         return "vkGetFenceWin32HandleKHR";
-    case ktl::api::command::import_fence_win_32handle_khr:
+    case ktl::api::command::import_fence_win32_handle_khr:
         return "vkImportFenceWin32HandleKHR";
     case ktl::api::command::get_fence_fd_khr:
         return "vkGetFenceFdKHR";
@@ -549,7 +549,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkReleaseDisplayEXT";
     case ktl::api::command::acquire_xlib_display_ext:
         return "vkAcquireXlibDisplayEXT";
-    case ktl::api::command::get_rand_r_output_display_ext:
+    case ktl::api::command::get_randr_output_display_ext:
         return "vkGetRandROutputDisplayEXT";
     case ktl::api::command::acquire_winrt_display_nv:
         return "vkAcquireWinrtDisplayNV";
@@ -563,7 +563,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkRegisterDisplayEventEXT";
     case ktl::api::command::get_swapchain_counter_ext:
         return "vkGetSwapchainCounterEXT";
-    case ktl::api::command::get_physical_device_surface_capabilities_2ext:
+    case ktl::api::command::get_physical_device_surface_capabilities_2_ext:
         return "vkGetPhysicalDeviceSurfaceCapabilities2EXT";
     case ktl::api::command::enumerate_physical_device_groups:
         return "vkEnumeratePhysicalDeviceGroups";
@@ -575,11 +575,11 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetDeviceGroupPeerMemoryFeaturesKHR";
     case ktl::api::command::bind_buffer_memory_2:
         return "vkBindBufferMemory2";
-    case ktl::api::command::bind_buffer_memory_2khr:
+    case ktl::api::command::bind_buffer_memory_2_khr:
         return "vkBindBufferMemory2KHR";
     case ktl::api::command::bind_image_memory_2:
         return "vkBindImageMemory2";
-    case ktl::api::command::bind_image_memory_2khr:
+    case ktl::api::command::bind_image_memory_2_khr:
         return "vkBindImageMemory2KHR";
     case ktl::api::command::cmd_set_device_mask:
         return "vkCmdSetDeviceMask";
@@ -589,7 +589,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetDeviceGroupPresentCapabilitiesKHR";
     case ktl::api::command::get_device_group_surface_present_modes_khr:
         return "vkGetDeviceGroupSurfacePresentModesKHR";
-    case ktl::api::command::acquire_next_image_2khr:
+    case ktl::api::command::acquire_next_image_2_khr:
         return "vkAcquireNextImage2KHR";
     case ktl::api::command::cmd_dispatch_base:
         return "vkCmdDispatchBase";
@@ -623,7 +623,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetPastPresentationTimingGOOGLE";
     case ktl::api::command::create_ios_surface_mvk:
         return "vkCreateIOSSurfaceMVK";
-    case ktl::api::command::create_mac_os_surface_mvk:
+    case ktl::api::command::create_macos_surface_mvk:
         return "vkCreateMacOSSurfaceMVK";
     case ktl::api::command::create_metal_surface_ext:
         return "vkCreateMetalSurfaceEXT";
@@ -639,29 +639,29 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdSetSampleLocationsEXT";
     case ktl::api::command::get_physical_device_multisample_properties_ext:
         return "vkGetPhysicalDeviceMultisamplePropertiesEXT";
-    case ktl::api::command::get_physical_device_surface_capabilities_2khr:
+    case ktl::api::command::get_physical_device_surface_capabilities_2_khr:
         return "vkGetPhysicalDeviceSurfaceCapabilities2KHR";
-    case ktl::api::command::get_physical_device_surface_formats_2khr:
+    case ktl::api::command::get_physical_device_surface_formats_2_khr:
         return "vkGetPhysicalDeviceSurfaceFormats2KHR";
-    case ktl::api::command::get_physical_device_display_properties_2khr:
+    case ktl::api::command::get_physical_device_display_properties_2_khr:
         return "vkGetPhysicalDeviceDisplayProperties2KHR";
-    case ktl::api::command::get_physical_device_display_plane_properties_2khr:
+    case ktl::api::command::get_physical_device_display_plane_properties_2_khr:
         return "vkGetPhysicalDeviceDisplayPlaneProperties2KHR";
-    case ktl::api::command::get_display_mode_properties_2khr:
+    case ktl::api::command::get_display_mode_properties_2_khr:
         return "vkGetDisplayModeProperties2KHR";
-    case ktl::api::command::get_display_plane_capabilities_2khr:
+    case ktl::api::command::get_display_plane_capabilities_2_khr:
         return "vkGetDisplayPlaneCapabilities2KHR";
     case ktl::api::command::get_buffer_memory_requirements_2:
         return "vkGetBufferMemoryRequirements2";
-    case ktl::api::command::get_buffer_memory_requirements_2khr:
+    case ktl::api::command::get_buffer_memory_requirements_2_khr:
         return "vkGetBufferMemoryRequirements2KHR";
     case ktl::api::command::get_image_memory_requirements_2:
         return "vkGetImageMemoryRequirements2";
-    case ktl::api::command::get_image_memory_requirements_2khr:
+    case ktl::api::command::get_image_memory_requirements_2_khr:
         return "vkGetImageMemoryRequirements2KHR";
     case ktl::api::command::get_image_sparse_memory_requirements_2:
         return "vkGetImageSparseMemoryRequirements2";
-    case ktl::api::command::get_image_sparse_memory_requirements_2khr:
+    case ktl::api::command::get_image_sparse_memory_requirements_2_khr:
         return "vkGetImageSparseMemoryRequirements2KHR";
     case ktl::api::command::get_device_buffer_memory_requirements:
         return "vkGetDeviceBufferMemoryRequirements";
@@ -737,19 +737,19 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdWriteBufferMarkerAMD";
     case ktl::api::command::create_render_pass_2:
         return "vkCreateRenderPass2";
-    case ktl::api::command::create_render_pass_2khr:
+    case ktl::api::command::create_render_pass_2_khr:
         return "vkCreateRenderPass2KHR";
     case ktl::api::command::cmd_begin_render_pass_2:
         return "vkCmdBeginRenderPass2";
-    case ktl::api::command::cmd_begin_render_pass_2khr:
+    case ktl::api::command::cmd_begin_render_pass_2_khr:
         return "vkCmdBeginRenderPass2KHR";
     case ktl::api::command::cmd_next_subpass_2:
         return "vkCmdNextSubpass2";
-    case ktl::api::command::cmd_next_subpass_2khr:
+    case ktl::api::command::cmd_next_subpass_2_khr:
         return "vkCmdNextSubpass2KHR";
     case ktl::api::command::cmd_end_render_pass_2:
         return "vkCmdEndRenderPass2";
-    case ktl::api::command::cmd_end_render_pass_2khr:
+    case ktl::api::command::cmd_end_render_pass_2_khr:
         return "vkCmdEndRenderPass2KHR";
     case ktl::api::command::get_semaphore_counter_value:
         return "vkGetSemaphoreCounterValue";
@@ -873,7 +873,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetPhysicalDeviceCooperativeMatrixPropertiesNV";
     case ktl::api::command::cmd_trace_rays_indirect_khr:
         return "vkCmdTraceRaysIndirectKHR";
-    case ktl::api::command::cmd_trace_rays_indirect_2khr:
+    case ktl::api::command::cmd_trace_rays_indirect_2_khr:
         return "vkCmdTraceRaysIndirect2KHR";
     case ktl::api::command::get_cluster_acceleration_structure_build_sizes_nv:
         return "vkGetClusterAccelerationStructureBuildSizesNV";
@@ -887,15 +887,15 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdSetRayTracingPipelineStackSizeKHR";
     case ktl::api::command::get_image_view_handle_nvx:
         return "vkGetImageViewHandleNVX";
-    case ktl::api::command::get_image_view_handle_64nvx:
+    case ktl::api::command::get_image_view_handle_64_nvx:
         return "vkGetImageViewHandle64NVX";
     case ktl::api::command::get_image_view_address_nvx:
         return "vkGetImageViewAddressNVX";
     case ktl::api::command::get_device_combined_image_sampler_index_nvx:
         return "vkGetDeviceCombinedImageSamplerIndexNVX";
-    case ktl::api::command::get_physical_device_surface_present_modes_2ext:
+    case ktl::api::command::get_physical_device_surface_present_modes_2_ext:
         return "vkGetPhysicalDeviceSurfacePresentModes2EXT";
-    case ktl::api::command::get_device_group_surface_present_modes_2ext:
+    case ktl::api::command::get_device_group_surface_present_modes_2_ext:
         return "vkGetDeviceGroupSurfacePresentModes2EXT";
     case ktl::api::command::acquire_full_screen_exclusive_mode_ext:
         return "vkAcquireFullScreenExclusiveModeEXT";
@@ -1011,11 +1011,11 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdSetScissorWithCountEXT";
     case ktl::api::command::cmd_bind_index_buffer_2:
         return "vkCmdBindIndexBuffer2";
-    case ktl::api::command::cmd_bind_index_buffer_2khr:
+    case ktl::api::command::cmd_bind_index_buffer_2_khr:
         return "vkCmdBindIndexBuffer2KHR";
     case ktl::api::command::cmd_bind_vertex_buffers_2:
         return "vkCmdBindVertexBuffers2";
-    case ktl::api::command::cmd_bind_vertex_buffers_2ext:
+    case ktl::api::command::cmd_bind_vertex_buffers_2_ext:
         return "vkCmdBindVertexBuffers2EXT";
     case ktl::api::command::cmd_set_depth_test_enable:
         return "vkCmdSetDepthTestEnable";
@@ -1137,27 +1137,27 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetPrivateDataEXT";
     case ktl::api::command::cmd_copy_buffer_2:
         return "vkCmdCopyBuffer2";
-    case ktl::api::command::cmd_copy_buffer_2khr:
+    case ktl::api::command::cmd_copy_buffer_2_khr:
         return "vkCmdCopyBuffer2KHR";
     case ktl::api::command::cmd_copy_image_2:
         return "vkCmdCopyImage2";
-    case ktl::api::command::cmd_copy_image_2khr:
+    case ktl::api::command::cmd_copy_image_2_khr:
         return "vkCmdCopyImage2KHR";
     case ktl::api::command::cmd_blit_image_2:
         return "vkCmdBlitImage2";
-    case ktl::api::command::cmd_blit_image_2khr:
+    case ktl::api::command::cmd_blit_image_2_khr:
         return "vkCmdBlitImage2KHR";
     case ktl::api::command::cmd_copy_buffer_to_image_2:
         return "vkCmdCopyBufferToImage2";
-    case ktl::api::command::cmd_copy_buffer_to_image_2khr:
+    case ktl::api::command::cmd_copy_buffer_to_image_2_khr:
         return "vkCmdCopyBufferToImage2KHR";
     case ktl::api::command::cmd_copy_image_to_buffer_2:
         return "vkCmdCopyImageToBuffer2";
-    case ktl::api::command::cmd_copy_image_to_buffer_2khr:
+    case ktl::api::command::cmd_copy_image_to_buffer_2_khr:
         return "vkCmdCopyImageToBuffer2KHR";
     case ktl::api::command::cmd_resolve_image_2:
         return "vkCmdResolveImage2";
-    case ktl::api::command::cmd_resolve_image_2khr:
+    case ktl::api::command::cmd_resolve_image_2_khr:
         return "vkCmdResolveImage2KHR";
     case ktl::api::command::cmd_set_fragment_shading_rate_khr:
         return "vkCmdSetFragmentShadingRateKHR";
@@ -1173,31 +1173,31 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdSetColorWriteEnableEXT";
     case ktl::api::command::cmd_set_event_2:
         return "vkCmdSetEvent2";
-    case ktl::api::command::cmd_set_event_2khr:
+    case ktl::api::command::cmd_set_event_2_khr:
         return "vkCmdSetEvent2KHR";
     case ktl::api::command::cmd_reset_event_2:
         return "vkCmdResetEvent2";
-    case ktl::api::command::cmd_reset_event_2khr:
+    case ktl::api::command::cmd_reset_event_2_khr:
         return "vkCmdResetEvent2KHR";
     case ktl::api::command::cmd_wait_events_2:
         return "vkCmdWaitEvents2";
-    case ktl::api::command::cmd_wait_events_2khr:
+    case ktl::api::command::cmd_wait_events_2_khr:
         return "vkCmdWaitEvents2KHR";
     case ktl::api::command::cmd_pipeline_barrier_2:
         return "vkCmdPipelineBarrier2";
-    case ktl::api::command::cmd_pipeline_barrier_2khr:
+    case ktl::api::command::cmd_pipeline_barrier_2_khr:
         return "vkCmdPipelineBarrier2KHR";
     case ktl::api::command::queue_submit_2:
         return "vkQueueSubmit2";
-    case ktl::api::command::queue_submit_2khr:
+    case ktl::api::command::queue_submit_2_khr:
         return "vkQueueSubmit2KHR";
     case ktl::api::command::cmd_write_timestamp_2:
         return "vkCmdWriteTimestamp2";
-    case ktl::api::command::cmd_write_timestamp_2khr:
+    case ktl::api::command::cmd_write_timestamp_2_khr:
         return "vkCmdWriteTimestamp2KHR";
-    case ktl::api::command::cmd_write_buffer_marker_2amd:
+    case ktl::api::command::cmd_write_buffer_marker_2_amd:
         return "vkCmdWriteBufferMarker2AMD";
-    case ktl::api::command::get_queue_checkpoint_data_2nv:
+    case ktl::api::command::get_queue_checkpoint_data_2_nv:
         return "vkGetQueueCheckpointData2NV";
     case ktl::api::command::copy_memory_to_image:
         return "vkCopyMemoryToImage";
@@ -1265,7 +1265,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkAcquireDrmDisplayEXT";
     case ktl::api::command::get_drm_display_ext:
         return "vkGetDrmDisplayEXT";
-    case ktl::api::command::wait_for_present_2khr:
+    case ktl::api::command::wait_for_present_2_khr:
         return "vkWaitForPresent2KHR";
     case ktl::api::command::wait_for_present_khr:
         return "vkWaitForPresentKHR";
@@ -1297,9 +1297,9 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdBeginRenderingKHR";
     case ktl::api::command::cmd_end_rendering:
         return "vkCmdEndRendering";
-    case ktl::api::command::cmd_end_rendering_2khr:
+    case ktl::api::command::cmd_end_rendering_2_khr:
         return "vkCmdEndRendering2KHR";
-    case ktl::api::command::cmd_end_rendering_2ext:
+    case ktl::api::command::cmd_end_rendering_2_ext:
         return "vkCmdEndRendering2EXT";
     case ktl::api::command::cmd_end_rendering_khr:
         return "vkCmdEndRenderingKHR";
@@ -1341,9 +1341,9 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetShaderModuleCreateInfoIdentifierEXT";
     case ktl::api::command::get_image_subresource_layout_2:
         return "vkGetImageSubresourceLayout2";
-    case ktl::api::command::get_image_subresource_layout_2khr:
+    case ktl::api::command::get_image_subresource_layout_2_khr:
         return "vkGetImageSubresourceLayout2KHR";
-    case ktl::api::command::get_image_subresource_layout_2ext:
+    case ktl::api::command::get_image_subresource_layout_2_ext:
         return "vkGetImageSubresourceLayout2EXT";
     case ktl::api::command::get_pipeline_properties_ext:
         return "vkGetPipelinePropertiesEXT";
@@ -1371,7 +1371,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetDeviceFaultReportsKHR";
     case ktl::api::command::get_device_fault_debug_info_khr:
         return "vkGetDeviceFaultDebugInfoKHR";
-    case ktl::api::command::cmd_set_depth_bias_2ext:
+    case ktl::api::command::cmd_set_depth_bias_2_ext:
         return "vkCmdSetDepthBias2EXT";
     case ktl::api::command::release_swapchain_images_khr:
         return "vkReleaseSwapchainImagesKHR";
@@ -1383,11 +1383,11 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetDeviceImageSubresourceLayoutKHR";
     case ktl::api::command::map_memory_2:
         return "vkMapMemory2";
-    case ktl::api::command::map_memory_2khr:
+    case ktl::api::command::map_memory_2_khr:
         return "vkMapMemory2KHR";
     case ktl::api::command::unmap_memory_2:
         return "vkUnmapMemory2";
-    case ktl::api::command::unmap_memory_2khr:
+    case ktl::api::command::unmap_memory_2_khr:
         return "vkUnmapMemory2KHR";
     case ktl::api::command::create_shaders_ext:
         return "vkCreateShadersEXT";
@@ -1409,7 +1409,7 @@ raw_command(ktl::api::command _command) noexcept
         return "vkGetScreenBufferPropertiesQNX";
     case ktl::api::command::get_physical_device_cooperative_matrix_properties_khr:
         return "vkGetPhysicalDeviceCooperativeMatrixPropertiesKHR";
-    case ktl::api::command::get_physical_device_cooperative_matrix_properties_2ext:
+    case ktl::api::command::get_physical_device_cooperative_matrix_properties_2_ext:
         return "vkGetPhysicalDeviceCooperativeMatrixProperties2EXT";
     case ktl::api::command::get_execution_graph_pipeline_scratch_size_amdx:
         return "vkGetExecutionGraphPipelineScratchSizeAMDX";
@@ -1451,23 +1451,23 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdCopyGpaSessionResultsAMD";
     case ktl::api::command::cmd_bind_descriptor_sets_2:
         return "vkCmdBindDescriptorSets2";
-    case ktl::api::command::cmd_bind_descriptor_sets_2khr:
+    case ktl::api::command::cmd_bind_descriptor_sets_2_khr:
         return "vkCmdBindDescriptorSets2KHR";
     case ktl::api::command::cmd_push_constants_2:
         return "vkCmdPushConstants2";
-    case ktl::api::command::cmd_push_constants_2khr:
+    case ktl::api::command::cmd_push_constants_2_khr:
         return "vkCmdPushConstants2KHR";
     case ktl::api::command::cmd_push_descriptor_set_2:
         return "vkCmdPushDescriptorSet2";
-    case ktl::api::command::cmd_push_descriptor_set_2khr:
+    case ktl::api::command::cmd_push_descriptor_set_2_khr:
         return "vkCmdPushDescriptorSet2KHR";
     case ktl::api::command::cmd_push_descriptor_set_with_template_2:
         return "vkCmdPushDescriptorSetWithTemplate2";
-    case ktl::api::command::cmd_push_descriptor_set_with_template_2khr:
+    case ktl::api::command::cmd_push_descriptor_set_with_template_2_khr:
         return "vkCmdPushDescriptorSetWithTemplate2KHR";
-    case ktl::api::command::cmd_set_descriptor_buffer_offsets_2ext:
+    case ktl::api::command::cmd_set_descriptor_buffer_offsets_2_ext:
         return "vkCmdSetDescriptorBufferOffsets2EXT";
-    case ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2ext:
+    case ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2_ext:
         return "vkCmdBindDescriptorBufferEmbeddedSamplers2EXT";
     case ktl::api::command::set_latency_sleep_mode_nv:
         return "vkSetLatencySleepModeNV";
@@ -1627,37 +1627,37 @@ raw_command(ktl::api::command _command) noexcept
         return "vkCmdFillMemoryKHR";
     case ktl::api::command::cmd_copy_query_pool_results_to_memory_khr:
         return "vkCmdCopyQueryPoolResultsToMemoryKHR";
-    case ktl::api::command::cmd_begin_conditional_rendering_2ext:
+    case ktl::api::command::cmd_begin_conditional_rendering_2_ext:
         return "vkCmdBeginConditionalRendering2EXT";
-    case ktl::api::command::cmd_bind_transform_feedback_buffers_2ext:
+    case ktl::api::command::cmd_bind_transform_feedback_buffers_2_ext:
         return "vkCmdBindTransformFeedbackBuffers2EXT";
-    case ktl::api::command::cmd_begin_transform_feedback_2ext:
+    case ktl::api::command::cmd_begin_transform_feedback_2_ext:
         return "vkCmdBeginTransformFeedback2EXT";
-    case ktl::api::command::cmd_end_transform_feedback_2ext:
+    case ktl::api::command::cmd_end_transform_feedback_2_ext:
         return "vkCmdEndTransformFeedback2EXT";
-    case ktl::api::command::cmd_draw_indirect_byte_count_2ext:
+    case ktl::api::command::cmd_draw_indirect_byte_count_2_ext:
         return "vkCmdDrawIndirectByteCount2EXT";
     case ktl::api::command::cmd_write_marker_to_memory_amd:
         return "vkCmdWriteMarkerToMemoryAMD";
-    case ktl::api::command::cmd_bind_index_buffer_3khr:
+    case ktl::api::command::cmd_bind_index_buffer_3_khr:
         return "vkCmdBindIndexBuffer3KHR";
-    case ktl::api::command::cmd_bind_vertex_buffers_3khr:
+    case ktl::api::command::cmd_bind_vertex_buffers_3_khr:
         return "vkCmdBindVertexBuffers3KHR";
-    case ktl::api::command::cmd_draw_indirect_2khr:
+    case ktl::api::command::cmd_draw_indirect_2_khr:
         return "vkCmdDrawIndirect2KHR";
-    case ktl::api::command::cmd_draw_indexed_indirect_2khr:
+    case ktl::api::command::cmd_draw_indexed_indirect_2_khr:
         return "vkCmdDrawIndexedIndirect2KHR";
-    case ktl::api::command::cmd_draw_indirect_count_2khr:
+    case ktl::api::command::cmd_draw_indirect_count_2_khr:
         return "vkCmdDrawIndirectCount2KHR";
-    case ktl::api::command::cmd_draw_indexed_indirect_count_2khr:
+    case ktl::api::command::cmd_draw_indexed_indirect_count_2_khr:
         return "vkCmdDrawIndexedIndirectCount2KHR";
-    case ktl::api::command::cmd_draw_mesh_tasks_indirect_2ext:
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_2_ext:
         return "vkCmdDrawMeshTasksIndirect2EXT";
-    case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2ext:
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2_ext:
         return "vkCmdDrawMeshTasksIndirectCount2EXT";
-    case ktl::api::command::cmd_dispatch_indirect_2khr:
+    case ktl::api::command::cmd_dispatch_indirect_2_khr:
         return "vkCmdDispatchIndirect2KHR";
-    case ktl::api::command::create_acceleration_structure_2khr:
+    case ktl::api::command::create_acceleration_structure_2_khr:
         return "vkCreateAccelerationStructure2KHR";
     case ktl::api::command::get_physical_device_queue_family_data_graph_engine_operation_properties_arm:
         return "vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM";
@@ -1701,11 +1701,11 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::create_vi_surface_nn:
     case ktl::api::command::create_wayland_surface_khr:
     case ktl::api::command::create_ubm_surface_sec:
-    case ktl::api::command::create_win_32surface_khr:
+    case ktl::api::command::create_win32_surface_khr:
     case ktl::api::command::create_xlib_surface_khr:
     case ktl::api::command::create_xcb_surface_khr:
     case ktl::api::command::create_direct_fb_surface_ext:
-    case ktl::api::command::create_image_pipe_surface_fuchsia:
+    case ktl::api::command::create_imagepipe_surface_fuchsia:
     case ktl::api::command::create_stream_descriptor_surface_ggp:
     case ktl::api::command::create_screen_surface_qnx:
     case ktl::api::command::create_debug_report_callback_ext:
@@ -1714,7 +1714,7 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::enumerate_physical_device_groups:
     case ktl::api::command::enumerate_physical_device_groups_khr:
     case ktl::api::command::create_ios_surface_mvk:
-    case ktl::api::command::create_mac_os_surface_mvk:
+    case ktl::api::command::create_macos_surface_mvk:
     case ktl::api::command::create_metal_surface_ext:
     case ktl::api::command::create_debug_utils_messenger_ext:
     case ktl::api::command::destroy_debug_utils_messenger_ext:
@@ -1743,26 +1743,26 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_physical_device_surface_present_modes_khr:
     case ktl::api::command::get_physical_device_wayland_presentation_support_khr:
     case ktl::api::command::get_physical_device_ubm_presentation_support_sec:
-    case ktl::api::command::get_physical_device_win_32presentation_support_khr:
+    case ktl::api::command::get_physical_device_win32_presentation_support_khr:
     case ktl::api::command::get_physical_device_xlib_presentation_support_khr:
     case ktl::api::command::get_physical_device_xcb_presentation_support_khr:
     case ktl::api::command::get_physical_device_direct_fb_presentation_support_ext:
     case ktl::api::command::get_physical_device_screen_presentation_support_qnx:
     case ktl::api::command::get_physical_device_external_image_format_properties_nv:
     case ktl::api::command::get_physical_device_features_2:
-    case ktl::api::command::get_physical_device_features_2khr:
+    case ktl::api::command::get_physical_device_features_2_khr:
     case ktl::api::command::get_physical_device_properties_2:
-    case ktl::api::command::get_physical_device_properties_2khr:
+    case ktl::api::command::get_physical_device_properties_2_khr:
     case ktl::api::command::get_physical_device_format_properties_2:
-    case ktl::api::command::get_physical_device_format_properties_2khr:
+    case ktl::api::command::get_physical_device_format_properties_2_khr:
     case ktl::api::command::get_physical_device_image_format_properties_2:
-    case ktl::api::command::get_physical_device_image_format_properties_2khr:
+    case ktl::api::command::get_physical_device_image_format_properties_2_khr:
     case ktl::api::command::get_physical_device_queue_family_properties_2:
-    case ktl::api::command::get_physical_device_queue_family_properties_2khr:
+    case ktl::api::command::get_physical_device_queue_family_properties_2_khr:
     case ktl::api::command::get_physical_device_memory_properties_2:
-    case ktl::api::command::get_physical_device_memory_properties_2khr:
+    case ktl::api::command::get_physical_device_memory_properties_2_khr:
     case ktl::api::command::get_physical_device_sparse_image_format_properties_2:
-    case ktl::api::command::get_physical_device_sparse_image_format_properties_2khr:
+    case ktl::api::command::get_physical_device_sparse_image_format_properties_2_khr:
     case ktl::api::command::get_physical_device_external_buffer_properties:
     case ktl::api::command::get_physical_device_external_buffer_properties_khr:
     case ktl::api::command::get_physical_device_external_semaphore_properties:
@@ -1771,22 +1771,22 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_physical_device_external_fence_properties_khr:
     case ktl::api::command::release_display_ext:
     case ktl::api::command::acquire_xlib_display_ext:
-    case ktl::api::command::get_rand_r_output_display_ext:
+    case ktl::api::command::get_randr_output_display_ext:
     case ktl::api::command::acquire_winrt_display_nv:
     case ktl::api::command::get_winrt_display_nv:
-    case ktl::api::command::get_physical_device_surface_capabilities_2ext:
+    case ktl::api::command::get_physical_device_surface_capabilities_2_ext:
     case ktl::api::command::get_physical_device_present_rectangles_khr:
     case ktl::api::command::get_physical_device_multisample_properties_ext:
-    case ktl::api::command::get_physical_device_surface_capabilities_2khr:
-    case ktl::api::command::get_physical_device_surface_formats_2khr:
-    case ktl::api::command::get_physical_device_display_properties_2khr:
-    case ktl::api::command::get_physical_device_display_plane_properties_2khr:
-    case ktl::api::command::get_display_mode_properties_2khr:
-    case ktl::api::command::get_display_plane_capabilities_2khr:
+    case ktl::api::command::get_physical_device_surface_capabilities_2_khr:
+    case ktl::api::command::get_physical_device_surface_formats_2_khr:
+    case ktl::api::command::get_physical_device_display_properties_2_khr:
+    case ktl::api::command::get_physical_device_display_plane_properties_2_khr:
+    case ktl::api::command::get_display_mode_properties_2_khr:
+    case ktl::api::command::get_display_plane_capabilities_2_khr:
     case ktl::api::command::get_physical_device_calibrateable_time_domains_khr:
     case ktl::api::command::get_physical_device_calibrateable_time_domains_ext:
     case ktl::api::command::get_physical_device_cooperative_matrix_properties_nv:
-    case ktl::api::command::get_physical_device_surface_present_modes_2ext:
+    case ktl::api::command::get_physical_device_surface_present_modes_2_ext:
     case ktl::api::command::enumerate_physical_device_queue_family_performance_query_counters_khr:
     case ktl::api::command::get_physical_device_queue_family_performance_query_passes_khr:
     case ktl::api::command::get_physical_device_supported_framebuffer_mixed_samples_combinations_nv:
@@ -1797,7 +1797,7 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_drm_display_ext:
     case ktl::api::command::get_physical_device_optical_flow_image_formats_nv:
     case ktl::api::command::get_physical_device_cooperative_matrix_properties_khr:
-    case ktl::api::command::get_physical_device_cooperative_matrix_properties_2ext:
+    case ktl::api::command::get_physical_device_cooperative_matrix_properties_2_ext:
     case ktl::api::command::get_physical_device_cooperative_matrix_flexible_dimensions_properties_nv:
     case ktl::api::command::get_physical_device_cooperative_vector_properties_nv:
     case ktl::api::command::enumerate_physical_device_shader_instrumentation_metrics_arm:
@@ -1966,7 +1966,7 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::cmd_debug_marker_begin_ext:
     case ktl::api::command::cmd_debug_marker_end_ext:
     case ktl::api::command::cmd_debug_marker_insert_ext:
-    case ktl::api::command::get_memory_win_32handle_nv:
+    case ktl::api::command::get_memory_win32_handle_nv:
     case ktl::api::command::cmd_execute_generated_commands_nv:
     case ktl::api::command::cmd_preprocess_generated_commands_nv:
     case ktl::api::command::cmd_bind_pipeline_shader_group_nv:
@@ -1986,21 +1986,21 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::cmd_push_descriptor_set_khr:
     case ktl::api::command::trim_command_pool:
     case ktl::api::command::trim_command_pool_khr:
-    case ktl::api::command::get_memory_win_32handle_khr:
-    case ktl::api::command::get_memory_win_32handle_properties_khr:
+    case ktl::api::command::get_memory_win32_handle_khr:
+    case ktl::api::command::get_memory_win32_handle_properties_khr:
     case ktl::api::command::get_memory_fd_khr:
     case ktl::api::command::get_memory_fd_properties_khr:
     case ktl::api::command::get_memory_zircon_handle_fuchsia:
     case ktl::api::command::get_memory_zircon_handle_properties_fuchsia:
     case ktl::api::command::get_memory_remote_address_nv:
-    case ktl::api::command::get_semaphore_win_32handle_khr:
-    case ktl::api::command::import_semaphore_win_32handle_khr:
+    case ktl::api::command::get_semaphore_win32_handle_khr:
+    case ktl::api::command::import_semaphore_win32_handle_khr:
     case ktl::api::command::get_semaphore_fd_khr:
     case ktl::api::command::import_semaphore_fd_khr:
     case ktl::api::command::get_semaphore_zircon_handle_fuchsia:
     case ktl::api::command::import_semaphore_zircon_handle_fuchsia:
-    case ktl::api::command::get_fence_win_32handle_khr:
-    case ktl::api::command::import_fence_win_32handle_khr:
+    case ktl::api::command::get_fence_win32_handle_khr:
+    case ktl::api::command::import_fence_win32_handle_khr:
     case ktl::api::command::get_fence_fd_khr:
     case ktl::api::command::import_fence_fd_khr:
     case ktl::api::command::display_power_control_ext:
@@ -2010,14 +2010,14 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_device_group_peer_memory_features:
     case ktl::api::command::get_device_group_peer_memory_features_khr:
     case ktl::api::command::bind_buffer_memory_2:
-    case ktl::api::command::bind_buffer_memory_2khr:
+    case ktl::api::command::bind_buffer_memory_2_khr:
     case ktl::api::command::bind_image_memory_2:
-    case ktl::api::command::bind_image_memory_2khr:
+    case ktl::api::command::bind_image_memory_2_khr:
     case ktl::api::command::cmd_set_device_mask:
     case ktl::api::command::cmd_set_device_mask_khr:
     case ktl::api::command::get_device_group_present_capabilities_khr:
     case ktl::api::command::get_device_group_surface_present_modes_khr:
-    case ktl::api::command::acquire_next_image_2khr:
+    case ktl::api::command::acquire_next_image_2_khr:
     case ktl::api::command::cmd_dispatch_base:
     case ktl::api::command::cmd_dispatch_base_khr:
     case ktl::api::command::create_descriptor_update_template:
@@ -2038,11 +2038,11 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::cmd_set_discard_rectangle_mode_ext:
     case ktl::api::command::cmd_set_sample_locations_ext:
     case ktl::api::command::get_buffer_memory_requirements_2:
-    case ktl::api::command::get_buffer_memory_requirements_2khr:
+    case ktl::api::command::get_buffer_memory_requirements_2_khr:
     case ktl::api::command::get_image_memory_requirements_2:
-    case ktl::api::command::get_image_memory_requirements_2khr:
+    case ktl::api::command::get_image_memory_requirements_2_khr:
     case ktl::api::command::get_image_sparse_memory_requirements_2:
-    case ktl::api::command::get_image_sparse_memory_requirements_2khr:
+    case ktl::api::command::get_image_sparse_memory_requirements_2_khr:
     case ktl::api::command::get_device_buffer_memory_requirements:
     case ktl::api::command::get_device_buffer_memory_requirements_khr:
     case ktl::api::command::get_device_image_memory_requirements:
@@ -2075,13 +2075,13 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_memory_host_pointer_properties_ext:
     case ktl::api::command::cmd_write_buffer_marker_amd:
     case ktl::api::command::create_render_pass_2:
-    case ktl::api::command::create_render_pass_2khr:
+    case ktl::api::command::create_render_pass_2_khr:
     case ktl::api::command::cmd_begin_render_pass_2:
-    case ktl::api::command::cmd_begin_render_pass_2khr:
+    case ktl::api::command::cmd_begin_render_pass_2_khr:
     case ktl::api::command::cmd_next_subpass_2:
-    case ktl::api::command::cmd_next_subpass_2khr:
+    case ktl::api::command::cmd_next_subpass_2_khr:
     case ktl::api::command::cmd_end_render_pass_2:
-    case ktl::api::command::cmd_end_render_pass_2khr:
+    case ktl::api::command::cmd_end_render_pass_2_khr:
     case ktl::api::command::get_semaphore_counter_value:
     case ktl::api::command::get_semaphore_counter_value_khr:
     case ktl::api::command::wait_semaphores:
@@ -2142,17 +2142,17 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::create_ray_tracing_pipelines_nv:
     case ktl::api::command::create_ray_tracing_pipelines_khr:
     case ktl::api::command::cmd_trace_rays_indirect_khr:
-    case ktl::api::command::cmd_trace_rays_indirect_2khr:
+    case ktl::api::command::cmd_trace_rays_indirect_2_khr:
     case ktl::api::command::get_cluster_acceleration_structure_build_sizes_nv:
     case ktl::api::command::cmd_build_cluster_acceleration_structure_indirect_nv:
     case ktl::api::command::get_device_acceleration_structure_compatibility_khr:
     case ktl::api::command::get_ray_tracing_shader_group_stack_size_khr:
     case ktl::api::command::cmd_set_ray_tracing_pipeline_stack_size_khr:
     case ktl::api::command::get_image_view_handle_nvx:
-    case ktl::api::command::get_image_view_handle_64nvx:
+    case ktl::api::command::get_image_view_handle_64_nvx:
     case ktl::api::command::get_image_view_address_nvx:
     case ktl::api::command::get_device_combined_image_sampler_index_nvx:
-    case ktl::api::command::get_device_group_surface_present_modes_2ext:
+    case ktl::api::command::get_device_group_surface_present_modes_2_ext:
     case ktl::api::command::acquire_full_screen_exclusive_mode_ext:
     case ktl::api::command::release_full_screen_exclusive_mode_ext:
     case ktl::api::command::acquire_profiling_lock_khr:
@@ -2204,9 +2204,9 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::cmd_set_scissor_with_count:
     case ktl::api::command::cmd_set_scissor_with_count_ext:
     case ktl::api::command::cmd_bind_index_buffer_2:
-    case ktl::api::command::cmd_bind_index_buffer_2khr:
+    case ktl::api::command::cmd_bind_index_buffer_2_khr:
     case ktl::api::command::cmd_bind_vertex_buffers_2:
-    case ktl::api::command::cmd_bind_vertex_buffers_2ext:
+    case ktl::api::command::cmd_bind_vertex_buffers_2_ext:
     case ktl::api::command::cmd_set_depth_test_enable:
     case ktl::api::command::cmd_set_depth_test_enable_ext:
     case ktl::api::command::cmd_set_depth_write_enable:
@@ -2267,36 +2267,36 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_private_data:
     case ktl::api::command::get_private_data_ext:
     case ktl::api::command::cmd_copy_buffer_2:
-    case ktl::api::command::cmd_copy_buffer_2khr:
+    case ktl::api::command::cmd_copy_buffer_2_khr:
     case ktl::api::command::cmd_copy_image_2:
-    case ktl::api::command::cmd_copy_image_2khr:
+    case ktl::api::command::cmd_copy_image_2_khr:
     case ktl::api::command::cmd_blit_image_2:
-    case ktl::api::command::cmd_blit_image_2khr:
+    case ktl::api::command::cmd_blit_image_2_khr:
     case ktl::api::command::cmd_copy_buffer_to_image_2:
-    case ktl::api::command::cmd_copy_buffer_to_image_2khr:
+    case ktl::api::command::cmd_copy_buffer_to_image_2_khr:
     case ktl::api::command::cmd_copy_image_to_buffer_2:
-    case ktl::api::command::cmd_copy_image_to_buffer_2khr:
+    case ktl::api::command::cmd_copy_image_to_buffer_2_khr:
     case ktl::api::command::cmd_resolve_image_2:
-    case ktl::api::command::cmd_resolve_image_2khr:
+    case ktl::api::command::cmd_resolve_image_2_khr:
     case ktl::api::command::cmd_set_fragment_shading_rate_khr:
     case ktl::api::command::cmd_set_fragment_shading_rate_enum_nv:
     case ktl::api::command::get_acceleration_structure_build_sizes_khr:
     case ktl::api::command::cmd_set_vertex_input_ext:
     case ktl::api::command::cmd_set_color_write_enable_ext:
     case ktl::api::command::cmd_set_event_2:
-    case ktl::api::command::cmd_set_event_2khr:
+    case ktl::api::command::cmd_set_event_2_khr:
     case ktl::api::command::cmd_reset_event_2:
-    case ktl::api::command::cmd_reset_event_2khr:
+    case ktl::api::command::cmd_reset_event_2_khr:
     case ktl::api::command::cmd_wait_events_2:
-    case ktl::api::command::cmd_wait_events_2khr:
+    case ktl::api::command::cmd_wait_events_2_khr:
     case ktl::api::command::cmd_pipeline_barrier_2:
-    case ktl::api::command::cmd_pipeline_barrier_2khr:
+    case ktl::api::command::cmd_pipeline_barrier_2_khr:
     case ktl::api::command::queue_submit_2:
-    case ktl::api::command::queue_submit_2khr:
+    case ktl::api::command::queue_submit_2_khr:
     case ktl::api::command::cmd_write_timestamp_2:
-    case ktl::api::command::cmd_write_timestamp_2khr:
-    case ktl::api::command::cmd_write_buffer_marker_2amd:
-    case ktl::api::command::get_queue_checkpoint_data_2nv:
+    case ktl::api::command::cmd_write_timestamp_2_khr:
+    case ktl::api::command::cmd_write_buffer_marker_2_amd:
+    case ktl::api::command::get_queue_checkpoint_data_2_nv:
     case ktl::api::command::copy_memory_to_image:
     case ktl::api::command::copy_memory_to_image_ext:
     case ktl::api::command::copy_image_to_memory:
@@ -2328,7 +2328,7 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_sampler_opaque_capture_descriptor_data_ext:
     case ktl::api::command::get_acceleration_structure_opaque_capture_descriptor_data_ext:
     case ktl::api::command::set_device_memory_priority_ext:
-    case ktl::api::command::wait_for_present_2khr:
+    case ktl::api::command::wait_for_present_2_khr:
     case ktl::api::command::wait_for_present_khr:
     case ktl::api::command::create_buffer_collection_fuchsia:
     case ktl::api::command::set_buffer_collection_buffer_constraints_fuchsia:
@@ -2344,8 +2344,8 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::cmd_begin_rendering:
     case ktl::api::command::cmd_begin_rendering_khr:
     case ktl::api::command::cmd_end_rendering:
-    case ktl::api::command::cmd_end_rendering_2khr:
-    case ktl::api::command::cmd_end_rendering_2ext:
+    case ktl::api::command::cmd_end_rendering_2_khr:
+    case ktl::api::command::cmd_end_rendering_2_ext:
     case ktl::api::command::cmd_end_rendering_khr:
     case ktl::api::command::get_descriptor_set_layout_host_mapping_info_valve:
     case ktl::api::command::get_descriptor_set_host_mapping_valve:
@@ -2366,8 +2366,8 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_shader_module_identifier_ext:
     case ktl::api::command::get_shader_module_create_info_identifier_ext:
     case ktl::api::command::get_image_subresource_layout_2:
-    case ktl::api::command::get_image_subresource_layout_2khr:
-    case ktl::api::command::get_image_subresource_layout_2ext:
+    case ktl::api::command::get_image_subresource_layout_2_khr:
+    case ktl::api::command::get_image_subresource_layout_2_ext:
     case ktl::api::command::get_pipeline_properties_ext:
     case ktl::api::command::export_metal_objects_ext:
     case ktl::api::command::cmd_bind_tile_memory_qcom:
@@ -2380,15 +2380,15 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::get_device_fault_info_ext:
     case ktl::api::command::get_device_fault_reports_khr:
     case ktl::api::command::get_device_fault_debug_info_khr:
-    case ktl::api::command::cmd_set_depth_bias_2ext:
+    case ktl::api::command::cmd_set_depth_bias_2_ext:
     case ktl::api::command::release_swapchain_images_khr:
     case ktl::api::command::release_swapchain_images_ext:
     case ktl::api::command::get_device_image_subresource_layout:
     case ktl::api::command::get_device_image_subresource_layout_khr:
     case ktl::api::command::map_memory_2:
-    case ktl::api::command::map_memory_2khr:
+    case ktl::api::command::map_memory_2_khr:
     case ktl::api::command::unmap_memory_2:
-    case ktl::api::command::unmap_memory_2khr:
+    case ktl::api::command::unmap_memory_2_khr:
     case ktl::api::command::create_shaders_ext:
     case ktl::api::command::destroy_shader_ext:
     case ktl::api::command::get_shader_binary_data_ext:
@@ -2418,15 +2418,15 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::reset_gpa_session_amd:
     case ktl::api::command::cmd_copy_gpa_session_results_amd:
     case ktl::api::command::cmd_bind_descriptor_sets_2:
-    case ktl::api::command::cmd_bind_descriptor_sets_2khr:
+    case ktl::api::command::cmd_bind_descriptor_sets_2_khr:
     case ktl::api::command::cmd_push_constants_2:
-    case ktl::api::command::cmd_push_constants_2khr:
+    case ktl::api::command::cmd_push_constants_2_khr:
     case ktl::api::command::cmd_push_descriptor_set_2:
-    case ktl::api::command::cmd_push_descriptor_set_2khr:
+    case ktl::api::command::cmd_push_descriptor_set_2_khr:
     case ktl::api::command::cmd_push_descriptor_set_with_template_2:
-    case ktl::api::command::cmd_push_descriptor_set_with_template_2khr:
-    case ktl::api::command::cmd_set_descriptor_buffer_offsets_2ext:
-    case ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2ext:
+    case ktl::api::command::cmd_push_descriptor_set_with_template_2_khr:
+    case ktl::api::command::cmd_set_descriptor_buffer_offsets_2_ext:
+    case ktl::api::command::cmd_bind_descriptor_buffer_embedded_samplers_2_ext:
     case ktl::api::command::set_latency_sleep_mode_nv:
     case ktl::api::command::latency_sleep_nv:
     case ktl::api::command::set_latency_marker_nv:
@@ -2498,22 +2498,22 @@ get_command_level(ktl::api::command _command) noexcept
     case ktl::api::command::cmd_update_memory_khr:
     case ktl::api::command::cmd_fill_memory_khr:
     case ktl::api::command::cmd_copy_query_pool_results_to_memory_khr:
-    case ktl::api::command::cmd_begin_conditional_rendering_2ext:
-    case ktl::api::command::cmd_bind_transform_feedback_buffers_2ext:
-    case ktl::api::command::cmd_begin_transform_feedback_2ext:
-    case ktl::api::command::cmd_end_transform_feedback_2ext:
-    case ktl::api::command::cmd_draw_indirect_byte_count_2ext:
+    case ktl::api::command::cmd_begin_conditional_rendering_2_ext:
+    case ktl::api::command::cmd_bind_transform_feedback_buffers_2_ext:
+    case ktl::api::command::cmd_begin_transform_feedback_2_ext:
+    case ktl::api::command::cmd_end_transform_feedback_2_ext:
+    case ktl::api::command::cmd_draw_indirect_byte_count_2_ext:
     case ktl::api::command::cmd_write_marker_to_memory_amd:
-    case ktl::api::command::cmd_bind_index_buffer_3khr:
-    case ktl::api::command::cmd_bind_vertex_buffers_3khr:
-    case ktl::api::command::cmd_draw_indirect_2khr:
-    case ktl::api::command::cmd_draw_indexed_indirect_2khr:
-    case ktl::api::command::cmd_draw_indirect_count_2khr:
-    case ktl::api::command::cmd_draw_indexed_indirect_count_2khr:
-    case ktl::api::command::cmd_draw_mesh_tasks_indirect_2ext:
-    case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2ext:
-    case ktl::api::command::cmd_dispatch_indirect_2khr:
-    case ktl::api::command::create_acceleration_structure_2khr:
+    case ktl::api::command::cmd_bind_index_buffer_3_khr:
+    case ktl::api::command::cmd_bind_vertex_buffers_3_khr:
+    case ktl::api::command::cmd_draw_indirect_2_khr:
+    case ktl::api::command::cmd_draw_indexed_indirect_2_khr:
+    case ktl::api::command::cmd_draw_indirect_count_2_khr:
+    case ktl::api::command::cmd_draw_indexed_indirect_count_2_khr:
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_2_ext:
+    case ktl::api::command::cmd_draw_mesh_tasks_indirect_count_2_ext:
+    case ktl::api::command::cmd_dispatch_indirect_2_khr:
+    case ktl::api::command::create_acceleration_structure_2_khr:
     case ktl::api::command::cmd_set_dispatch_parameters_arm:
         return ktl::meta::command_level::device;
     }

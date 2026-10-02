@@ -94,7 +94,7 @@ format_cast() noexcept
 }
 
 template <>
-struct format< ktl::api::format::v_r_4g_4unorm_pack_8 >
+struct format< ktl::api::format::v_r4g4_unorm_pack8 >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -118,7 +118,7 @@ struct format< ktl::api::format::v_r_4g_4unorm_pack_8 >
 };
 
 template <>
-struct format< ktl::api::format::v_r_4g_4b_4a_4unorm_pack_16 >
+struct format< ktl::api::format::v_r4g4b4a4_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -142,7 +142,7 @@ struct format< ktl::api::format::v_r_4g_4b_4a_4unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_b_4g_4r_4a_4unorm_pack_16 >
+struct format< ktl::api::format::v_b4g4r4a4_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -166,7 +166,7 @@ struct format< ktl::api::format::v_b_4g_4r_4a_4unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_r_5g_6b_5unorm_pack_16 >
+struct format< ktl::api::format::v_r5g6b5_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -190,7 +190,7 @@ struct format< ktl::api::format::v_r_5g_6b_5unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_b_5g_6r_5unorm_pack_16 >
+struct format< ktl::api::format::v_b5g6r5_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -214,7 +214,7 @@ struct format< ktl::api::format::v_b_5g_6r_5unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_r_5g_5b_5a_1unorm_pack_16 >
+struct format< ktl::api::format::v_r5g5b5a1_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -238,7 +238,7 @@ struct format< ktl::api::format::v_r_5g_5b_5a_1unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_b_5g_5r_5a_1unorm_pack_16 >
+struct format< ktl::api::format::v_b5g5r5a1_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -262,7 +262,7 @@ struct format< ktl::api::format::v_b_5g_5r_5a_1unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_1r_5g_5b_5unorm_pack_16 >
+struct format< ktl::api::format::v_a1r5g5b5_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -286,7 +286,7 @@ struct format< ktl::api::format::v_a_1r_5g_5b_5unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_1b_5g_5r_5unorm_pack_16 >
+struct format< ktl::api::format::v_a1b5g5r5_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -310,7 +310,7 @@ struct format< ktl::api::format::v_a_1b_5g_5r_5unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_8unorm >
+struct format< ktl::api::format::v_a8_unorm >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -334,7 +334,7 @@ struct format< ktl::api::format::v_a_8unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8unorm >
+struct format< ktl::api::format::v_r8_unorm >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -358,7 +358,7 @@ struct format< ktl::api::format::v_r_8unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8snorm >
+struct format< ktl::api::format::v_r8_snorm >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -382,7 +382,7 @@ struct format< ktl::api::format::v_r_8snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8uscaled >
+struct format< ktl::api::format::v_r8_uscaled >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -406,7 +406,7 @@ struct format< ktl::api::format::v_r_8uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8sscaled >
+struct format< ktl::api::format::v_r8_sscaled >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -430,7 +430,7 @@ struct format< ktl::api::format::v_r_8sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8uint >
+struct format< ktl::api::format::v_r8_uint >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -454,7 +454,7 @@ struct format< ktl::api::format::v_r_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8sint >
+struct format< ktl::api::format::v_r8_sint >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -478,7 +478,7 @@ struct format< ktl::api::format::v_r_8sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8srgb >
+struct format< ktl::api::format::v_r8_srgb >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -502,7 +502,7 @@ struct format< ktl::api::format::v_r_8srgb >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8unorm >
+struct format< ktl::api::format::v_r8g8_unorm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -526,7 +526,7 @@ struct format< ktl::api::format::v_r_8g_8unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8snorm >
+struct format< ktl::api::format::v_r8g8_snorm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -550,7 +550,7 @@ struct format< ktl::api::format::v_r_8g_8snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8uscaled >
+struct format< ktl::api::format::v_r8g8_uscaled >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -574,7 +574,7 @@ struct format< ktl::api::format::v_r_8g_8uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8sscaled >
+struct format< ktl::api::format::v_r8g8_sscaled >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -598,7 +598,7 @@ struct format< ktl::api::format::v_r_8g_8sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8uint >
+struct format< ktl::api::format::v_r8g8_uint >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -622,7 +622,7 @@ struct format< ktl::api::format::v_r_8g_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8sint >
+struct format< ktl::api::format::v_r8g8_sint >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -646,7 +646,7 @@ struct format< ktl::api::format::v_r_8g_8sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8srgb >
+struct format< ktl::api::format::v_r8g8_srgb >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -670,7 +670,7 @@ struct format< ktl::api::format::v_r_8g_8srgb >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8unorm >
+struct format< ktl::api::format::v_r8g8b8_unorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -694,7 +694,7 @@ struct format< ktl::api::format::v_r_8g_8b_8unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8snorm >
+struct format< ktl::api::format::v_r8g8b8_snorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -718,7 +718,7 @@ struct format< ktl::api::format::v_r_8g_8b_8snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8uscaled >
+struct format< ktl::api::format::v_r8g8b8_uscaled >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -742,7 +742,7 @@ struct format< ktl::api::format::v_r_8g_8b_8uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8sscaled >
+struct format< ktl::api::format::v_r8g8b8_sscaled >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -766,7 +766,7 @@ struct format< ktl::api::format::v_r_8g_8b_8sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8uint >
+struct format< ktl::api::format::v_r8g8b8_uint >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -790,7 +790,7 @@ struct format< ktl::api::format::v_r_8g_8b_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8sint >
+struct format< ktl::api::format::v_r8g8b8_sint >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -814,7 +814,7 @@ struct format< ktl::api::format::v_r_8g_8b_8sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8srgb >
+struct format< ktl::api::format::v_r8g8b8_srgb >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -838,7 +838,7 @@ struct format< ktl::api::format::v_r_8g_8b_8srgb >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8unorm >
+struct format< ktl::api::format::v_b8g8r8_unorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -862,7 +862,7 @@ struct format< ktl::api::format::v_b_8g_8r_8unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8snorm >
+struct format< ktl::api::format::v_b8g8r8_snorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -886,7 +886,7 @@ struct format< ktl::api::format::v_b_8g_8r_8snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8uscaled >
+struct format< ktl::api::format::v_b8g8r8_uscaled >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -910,7 +910,7 @@ struct format< ktl::api::format::v_b_8g_8r_8uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8sscaled >
+struct format< ktl::api::format::v_b8g8r8_sscaled >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -934,7 +934,7 @@ struct format< ktl::api::format::v_b_8g_8r_8sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8uint >
+struct format< ktl::api::format::v_b8g8r8_uint >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -958,7 +958,7 @@ struct format< ktl::api::format::v_b_8g_8r_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8sint >
+struct format< ktl::api::format::v_b8g8r8_sint >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -982,7 +982,7 @@ struct format< ktl::api::format::v_b_8g_8r_8sint >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8srgb >
+struct format< ktl::api::format::v_b8g8r8_srgb >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1006,7 +1006,7 @@ struct format< ktl::api::format::v_b_8g_8r_8srgb >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8a_8unorm >
+struct format< ktl::api::format::v_r8g8b8a8_unorm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1030,7 +1030,7 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8a_8snorm >
+struct format< ktl::api::format::v_r8g8b8a8_snorm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1054,7 +1054,7 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8a_8uscaled >
+struct format< ktl::api::format::v_r8g8b8a8_uscaled >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1078,7 +1078,7 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8a_8sscaled >
+struct format< ktl::api::format::v_r8g8b8a8_sscaled >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1102,7 +1102,7 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8a_8uint >
+struct format< ktl::api::format::v_r8g8b8a8_uint >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1126,7 +1126,7 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8a_8sint >
+struct format< ktl::api::format::v_r8g8b8a8_sint >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1150,7 +1150,7 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8g_8b_8a_8srgb >
+struct format< ktl::api::format::v_r8g8b8a8_srgb >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1174,7 +1174,7 @@ struct format< ktl::api::format::v_r_8g_8b_8a_8srgb >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8a_8unorm >
+struct format< ktl::api::format::v_b8g8r8a8_unorm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1198,7 +1198,7 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8a_8snorm >
+struct format< ktl::api::format::v_b8g8r8a8_snorm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1222,7 +1222,7 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8a_8uscaled >
+struct format< ktl::api::format::v_b8g8r8a8_uscaled >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1246,7 +1246,7 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8a_8sscaled >
+struct format< ktl::api::format::v_b8g8r8a8_sscaled >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1270,7 +1270,7 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8a_8uint >
+struct format< ktl::api::format::v_b8g8r8a8_uint >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1294,7 +1294,7 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8a_8sint >
+struct format< ktl::api::format::v_b8g8r8a8_sint >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1318,7 +1318,7 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8sint >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8a_8srgb >
+struct format< ktl::api::format::v_b8g8r8a8_srgb >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1342,7 +1342,7 @@ struct format< ktl::api::format::v_b_8g_8r_8a_8srgb >
 };
 
 template <>
-struct format< ktl::api::format::v_a_8b_8g_8r_8unorm_pack_32 >
+struct format< ktl::api::format::v_a8b8g8r8_unorm_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1366,7 +1366,7 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8unorm_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_8b_8g_8r_8snorm_pack_32 >
+struct format< ktl::api::format::v_a8b8g8r8_snorm_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1390,7 +1390,7 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8snorm_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_8b_8g_8r_8uscaled_pack_32 >
+struct format< ktl::api::format::v_a8b8g8r8_uscaled_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1414,7 +1414,7 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8uscaled_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_8b_8g_8r_8sscaled_pack_32 >
+struct format< ktl::api::format::v_a8b8g8r8_sscaled_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1438,7 +1438,7 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8sscaled_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_8b_8g_8r_8uint_pack_32 >
+struct format< ktl::api::format::v_a8b8g8r8_uint_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1462,7 +1462,7 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8uint_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_8b_8g_8r_8sint_pack_32 >
+struct format< ktl::api::format::v_a8b8g8r8_sint_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1486,7 +1486,7 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8sint_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_8b_8g_8r_8srgb_pack_32 >
+struct format< ktl::api::format::v_a8b8g8r8_srgb_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1510,7 +1510,7 @@ struct format< ktl::api::format::v_a_8b_8g_8r_8srgb_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2r_10g_10b_10unorm_pack_32 >
+struct format< ktl::api::format::v_a2r10g10b10_unorm_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1534,7 +1534,7 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10unorm_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2r_10g_10b_10snorm_pack_32 >
+struct format< ktl::api::format::v_a2r10g10b10_snorm_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1558,7 +1558,7 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10snorm_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2r_10g_10b_10uscaled_pack_32 >
+struct format< ktl::api::format::v_a2r10g10b10_uscaled_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1582,7 +1582,7 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10uscaled_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2r_10g_10b_10sscaled_pack_32 >
+struct format< ktl::api::format::v_a2r10g10b10_sscaled_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1606,7 +1606,7 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10sscaled_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2r_10g_10b_10uint_pack_32 >
+struct format< ktl::api::format::v_a2r10g10b10_uint_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1630,7 +1630,7 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10uint_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2r_10g_10b_10sint_pack_32 >
+struct format< ktl::api::format::v_a2r10g10b10_sint_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1654,7 +1654,7 @@ struct format< ktl::api::format::v_a_2r_10g_10b_10sint_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2b_10g_10r_10unorm_pack_32 >
+struct format< ktl::api::format::v_a2b10g10r10_unorm_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1678,7 +1678,7 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10unorm_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2b_10g_10r_10snorm_pack_32 >
+struct format< ktl::api::format::v_a2b10g10r10_snorm_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1702,7 +1702,7 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10snorm_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2b_10g_10r_10uscaled_pack_32 >
+struct format< ktl::api::format::v_a2b10g10r10_uscaled_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1726,7 +1726,7 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10uscaled_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2b_10g_10r_10sscaled_pack_32 >
+struct format< ktl::api::format::v_a2b10g10r10_sscaled_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1750,7 +1750,7 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10sscaled_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2b_10g_10r_10uint_pack_32 >
+struct format< ktl::api::format::v_a2b10g10r10_uint_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1774,7 +1774,7 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10uint_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_2b_10g_10r_10sint_pack_32 >
+struct format< ktl::api::format::v_a2b10g10r10_sint_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1798,7 +1798,7 @@ struct format< ktl::api::format::v_a_2b_10g_10r_10sint_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16unorm >
+struct format< ktl::api::format::v_r16_unorm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1822,7 +1822,7 @@ struct format< ktl::api::format::v_r_16unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16snorm >
+struct format< ktl::api::format::v_r16_snorm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1846,7 +1846,7 @@ struct format< ktl::api::format::v_r_16snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16uscaled >
+struct format< ktl::api::format::v_r16_uscaled >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1870,7 +1870,7 @@ struct format< ktl::api::format::v_r_16uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16sscaled >
+struct format< ktl::api::format::v_r16_sscaled >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1894,7 +1894,7 @@ struct format< ktl::api::format::v_r_16sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16uint >
+struct format< ktl::api::format::v_r16_uint >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1918,7 +1918,7 @@ struct format< ktl::api::format::v_r_16uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16sint >
+struct format< ktl::api::format::v_r16_sint >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1942,7 +1942,7 @@ struct format< ktl::api::format::v_r_16sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16sfloat >
+struct format< ktl::api::format::v_r16_sfloat >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1966,7 +1966,7 @@ struct format< ktl::api::format::v_r_16sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16unorm >
+struct format< ktl::api::format::v_r16g16_unorm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -1990,7 +1990,7 @@ struct format< ktl::api::format::v_r_16g_16unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16snorm >
+struct format< ktl::api::format::v_r16g16_snorm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2014,7 +2014,7 @@ struct format< ktl::api::format::v_r_16g_16snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16uscaled >
+struct format< ktl::api::format::v_r16g16_uscaled >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2038,7 +2038,7 @@ struct format< ktl::api::format::v_r_16g_16uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16sscaled >
+struct format< ktl::api::format::v_r16g16_sscaled >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2062,7 +2062,7 @@ struct format< ktl::api::format::v_r_16g_16sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16uint >
+struct format< ktl::api::format::v_r16g16_uint >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2086,7 +2086,7 @@ struct format< ktl::api::format::v_r_16g_16uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16sint >
+struct format< ktl::api::format::v_r16g16_sint >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2110,7 +2110,7 @@ struct format< ktl::api::format::v_r_16g_16sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16sfloat >
+struct format< ktl::api::format::v_r16g16_sfloat >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2134,7 +2134,7 @@ struct format< ktl::api::format::v_r_16g_16sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16unorm >
+struct format< ktl::api::format::v_r16g16b16_unorm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2158,7 +2158,7 @@ struct format< ktl::api::format::v_r_16g_16b_16unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16snorm >
+struct format< ktl::api::format::v_r16g16b16_snorm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2182,7 +2182,7 @@ struct format< ktl::api::format::v_r_16g_16b_16snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16uscaled >
+struct format< ktl::api::format::v_r16g16b16_uscaled >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2206,7 +2206,7 @@ struct format< ktl::api::format::v_r_16g_16b_16uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16sscaled >
+struct format< ktl::api::format::v_r16g16b16_sscaled >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2230,7 +2230,7 @@ struct format< ktl::api::format::v_r_16g_16b_16sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16uint >
+struct format< ktl::api::format::v_r16g16b16_uint >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2254,7 +2254,7 @@ struct format< ktl::api::format::v_r_16g_16b_16uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16sint >
+struct format< ktl::api::format::v_r16g16b16_sint >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2278,7 +2278,7 @@ struct format< ktl::api::format::v_r_16g_16b_16sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16sfloat >
+struct format< ktl::api::format::v_r16g16b16_sfloat >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2302,7 +2302,7 @@ struct format< ktl::api::format::v_r_16g_16b_16sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16a_16unorm >
+struct format< ktl::api::format::v_r16g16b16a16_unorm >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2326,7 +2326,7 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16a_16snorm >
+struct format< ktl::api::format::v_r16g16b16a16_snorm >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2350,7 +2350,7 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16snorm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16a_16uscaled >
+struct format< ktl::api::format::v_r16g16b16a16_uscaled >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2374,7 +2374,7 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16uscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16a_16sscaled >
+struct format< ktl::api::format::v_r16g16b16a16_sscaled >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2398,7 +2398,7 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16sscaled >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16a_16uint >
+struct format< ktl::api::format::v_r16g16b16a16_uint >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2422,7 +2422,7 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16a_16sint >
+struct format< ktl::api::format::v_r16g16b16a16_sint >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2446,7 +2446,7 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16b_16a_16sfloat >
+struct format< ktl::api::format::v_r16g16b16a16_sfloat >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2470,7 +2470,7 @@ struct format< ktl::api::format::v_r_16g_16b_16a_16sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32uint >
+struct format< ktl::api::format::v_r32_uint >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2494,7 +2494,7 @@ struct format< ktl::api::format::v_r_32uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32sint >
+struct format< ktl::api::format::v_r32_sint >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2518,7 +2518,7 @@ struct format< ktl::api::format::v_r_32sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32sfloat >
+struct format< ktl::api::format::v_r32_sfloat >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2542,31 +2542,7 @@ struct format< ktl::api::format::v_r_32sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32g_32uint >
-{
-    static constexpr ktl::u32               block_size       = 8;
-    static constexpr ktl::u32               texels_per_block = 1;
-    static constexpr ktl::u32               packed           = 0;
-    static constexpr ktl::u32               chroma           = 0;
-    static constexpr ktl::u32               block_width      = 0;
-    static constexpr ktl::u32               block_height     = 0;
-    static constexpr ktl::u32               block_depth      = 0;
-    static constexpr bool                   is_3d            = false;
-    static constexpr bool                   is_compressed    = false;
-    static constexpr component              r                = {32, false, 0, true};
-    static constexpr component              g                = {32, false, 0, true};
-    static constexpr component              b                = {0, false, 0, false};
-    static constexpr component              a                = {0, false, 0, false};
-    static constexpr component              d                = {0, false, 0, false};
-    static constexpr component              s                = {0, false, 0, false};
-    static constexpr ktl::u32               planes_amount    = 0;
-    static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
-                                                                plane{0, 0, ktl::api::format::v_undefined},
-                                                                plane{0, 0, ktl::api::format::v_undefined}};
-};
-
-template <>
-struct format< ktl::api::format::v_r_32g_32sint >
+struct format< ktl::api::format::v_r32g32_uint >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2590,7 +2566,7 @@ struct format< ktl::api::format::v_r_32g_32sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32g_32sfloat >
+struct format< ktl::api::format::v_r32g32_sint >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2614,7 +2590,31 @@ struct format< ktl::api::format::v_r_32g_32sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32g_32b_32uint >
+struct format< ktl::api::format::v_r32g32_sfloat >
+{
+    static constexpr ktl::u32               block_size       = 8;
+    static constexpr ktl::u32               texels_per_block = 1;
+    static constexpr ktl::u32               packed           = 0;
+    static constexpr ktl::u32               chroma           = 0;
+    static constexpr ktl::u32               block_width      = 0;
+    static constexpr ktl::u32               block_height     = 0;
+    static constexpr ktl::u32               block_depth      = 0;
+    static constexpr bool                   is_3d            = false;
+    static constexpr bool                   is_compressed    = false;
+    static constexpr component              r                = {32, false, 0, true};
+    static constexpr component              g                = {32, false, 0, true};
+    static constexpr component              b                = {0, false, 0, false};
+    static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
+    static constexpr ktl::u32               planes_amount    = 0;
+    static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
+                                                                plane{0, 0, ktl::api::format::v_undefined},
+                                                                plane{0, 0, ktl::api::format::v_undefined}};
+};
+
+template <>
+struct format< ktl::api::format::v_r32g32b32_uint >
 {
     static constexpr ktl::u32               block_size       = 12;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2638,7 +2638,7 @@ struct format< ktl::api::format::v_r_32g_32b_32uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32g_32b_32sint >
+struct format< ktl::api::format::v_r32g32b32_sint >
 {
     static constexpr ktl::u32               block_size       = 12;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2662,7 +2662,7 @@ struct format< ktl::api::format::v_r_32g_32b_32sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32g_32b_32sfloat >
+struct format< ktl::api::format::v_r32g32b32_sfloat >
 {
     static constexpr ktl::u32               block_size       = 12;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2686,7 +2686,7 @@ struct format< ktl::api::format::v_r_32g_32b_32sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32g_32b_32a_32uint >
+struct format< ktl::api::format::v_r32g32b32a32_uint >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2710,7 +2710,7 @@ struct format< ktl::api::format::v_r_32g_32b_32a_32uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32g_32b_32a_32sint >
+struct format< ktl::api::format::v_r32g32b32a32_sint >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2734,7 +2734,7 @@ struct format< ktl::api::format::v_r_32g_32b_32a_32sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_32g_32b_32a_32sfloat >
+struct format< ktl::api::format::v_r32g32b32a32_sfloat >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2758,7 +2758,7 @@ struct format< ktl::api::format::v_r_32g_32b_32a_32sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64uint >
+struct format< ktl::api::format::v_r64_uint >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2782,7 +2782,7 @@ struct format< ktl::api::format::v_r_64uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64sint >
+struct format< ktl::api::format::v_r64_sint >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2806,7 +2806,7 @@ struct format< ktl::api::format::v_r_64sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64sfloat >
+struct format< ktl::api::format::v_r64_sfloat >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2830,7 +2830,7 @@ struct format< ktl::api::format::v_r_64sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64g_64uint >
+struct format< ktl::api::format::v_r64g64_uint >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2854,7 +2854,7 @@ struct format< ktl::api::format::v_r_64g_64uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64g_64sint >
+struct format< ktl::api::format::v_r64g64_sint >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2878,7 +2878,7 @@ struct format< ktl::api::format::v_r_64g_64sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64g_64sfloat >
+struct format< ktl::api::format::v_r64g64_sfloat >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2902,7 +2902,7 @@ struct format< ktl::api::format::v_r_64g_64sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64g_64b_64uint >
+struct format< ktl::api::format::v_r64g64b64_uint >
 {
     static constexpr ktl::u32               block_size       = 24;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2926,7 +2926,7 @@ struct format< ktl::api::format::v_r_64g_64b_64uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64g_64b_64sint >
+struct format< ktl::api::format::v_r64g64b64_sint >
 {
     static constexpr ktl::u32               block_size       = 24;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2950,7 +2950,7 @@ struct format< ktl::api::format::v_r_64g_64b_64sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64g_64b_64sfloat >
+struct format< ktl::api::format::v_r64g64b64_sfloat >
 {
     static constexpr ktl::u32               block_size       = 24;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2974,7 +2974,7 @@ struct format< ktl::api::format::v_r_64g_64b_64sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64g_64b_64a_64uint >
+struct format< ktl::api::format::v_r64g64b64a64_uint >
 {
     static constexpr ktl::u32               block_size       = 32;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -2998,7 +2998,7 @@ struct format< ktl::api::format::v_r_64g_64b_64a_64uint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64g_64b_64a_64sint >
+struct format< ktl::api::format::v_r64g64b64a64_sint >
 {
     static constexpr ktl::u32               block_size       = 32;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3022,7 +3022,7 @@ struct format< ktl::api::format::v_r_64g_64b_64a_64sint >
 };
 
 template <>
-struct format< ktl::api::format::v_r_64g_64b_64a_64sfloat >
+struct format< ktl::api::format::v_r64g64b64a64_sfloat >
 {
     static constexpr ktl::u32               block_size       = 32;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3046,7 +3046,7 @@ struct format< ktl::api::format::v_r_64g_64b_64a_64sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_b_10g_11r_11ufloat_pack_32 >
+struct format< ktl::api::format::v_b10g11r11_ufloat_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3070,7 +3070,7 @@ struct format< ktl::api::format::v_b_10g_11r_11ufloat_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_e_5b_9g_9r_9ufloat_pack_32 >
+struct format< ktl::api::format::v_e5b9g9r9_ufloat_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3094,7 +3094,7 @@ struct format< ktl::api::format::v_e_5b_9g_9r_9ufloat_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_d_16unorm >
+struct format< ktl::api::format::v_d16_unorm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3118,7 +3118,7 @@ struct format< ktl::api::format::v_d_16unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_x_8d_24unorm_pack_32 >
+struct format< ktl::api::format::v_x8_d24_unorm_pack32 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3142,7 +3142,7 @@ struct format< ktl::api::format::v_x_8d_24unorm_pack_32 >
 };
 
 template <>
-struct format< ktl::api::format::v_d_32sfloat >
+struct format< ktl::api::format::v_d32_sfloat >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3166,7 +3166,7 @@ struct format< ktl::api::format::v_d_32sfloat >
 };
 
 template <>
-struct format< ktl::api::format::v_s_8uint >
+struct format< ktl::api::format::v_s8_uint >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3190,7 +3190,7 @@ struct format< ktl::api::format::v_s_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_d_16unorm_s_8uint >
+struct format< ktl::api::format::v_d16_unorm_s8_uint >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3214,7 +3214,7 @@ struct format< ktl::api::format::v_d_16unorm_s_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_d_24unorm_s_8uint >
+struct format< ktl::api::format::v_d24_unorm_s8_uint >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3238,7 +3238,7 @@ struct format< ktl::api::format::v_d_24unorm_s_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_d_32sfloat_s_8uint >
+struct format< ktl::api::format::v_d32_sfloat_s8_uint >
 {
     static constexpr ktl::u32               block_size       = 5;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -3262,7 +3262,7 @@ struct format< ktl::api::format::v_d_32sfloat_s_8uint >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_1rgb_unorm_block >
+struct format< ktl::api::format::v_bc1_rgb_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3286,7 +3286,7 @@ struct format< ktl::api::format::v_bc_1rgb_unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_1rgb_srgb_block >
+struct format< ktl::api::format::v_bc1_rgb_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3310,7 +3310,7 @@ struct format< ktl::api::format::v_bc_1rgb_srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_1rgba_unorm_block >
+struct format< ktl::api::format::v_bc1_rgba_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3334,7 +3334,7 @@ struct format< ktl::api::format::v_bc_1rgba_unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_1rgba_srgb_block >
+struct format< ktl::api::format::v_bc1_rgba_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3358,7 +3358,7 @@ struct format< ktl::api::format::v_bc_1rgba_srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_2unorm_block >
+struct format< ktl::api::format::v_bc2_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3382,7 +3382,7 @@ struct format< ktl::api::format::v_bc_2unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_2srgb_block >
+struct format< ktl::api::format::v_bc2_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3406,7 +3406,7 @@ struct format< ktl::api::format::v_bc_2srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_3unorm_block >
+struct format< ktl::api::format::v_bc3_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3430,7 +3430,7 @@ struct format< ktl::api::format::v_bc_3unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_3srgb_block >
+struct format< ktl::api::format::v_bc3_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3454,31 +3454,7 @@ struct format< ktl::api::format::v_bc_3srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_4unorm_block >
-{
-    static constexpr ktl::u32               block_size       = 8;
-    static constexpr ktl::u32               texels_per_block = 16;
-    static constexpr ktl::u32               packed           = 0;
-    static constexpr ktl::u32               chroma           = 0;
-    static constexpr ktl::u32               block_width      = 4;
-    static constexpr ktl::u32               block_height     = 4;
-    static constexpr ktl::u32               block_depth      = 1;
-    static constexpr bool                   is_3d            = false;
-    static constexpr bool                   is_compressed    = true;
-    static constexpr component              r                = {0, false, 0, true};
-    static constexpr component              g                = {0, false, 0, false};
-    static constexpr component              b                = {0, false, 0, false};
-    static constexpr component              a                = {0, false, 0, false};
-    static constexpr component              d                = {0, false, 0, false};
-    static constexpr component              s                = {0, false, 0, false};
-    static constexpr ktl::u32               planes_amount    = 0;
-    static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
-                                                                plane{0, 0, ktl::api::format::v_undefined},
-                                                                plane{0, 0, ktl::api::format::v_undefined}};
-};
-
-template <>
-struct format< ktl::api::format::v_bc_4snorm_block >
+struct format< ktl::api::format::v_bc4_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3502,7 +3478,31 @@ struct format< ktl::api::format::v_bc_4snorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_5unorm_block >
+struct format< ktl::api::format::v_bc4_snorm_block >
+{
+    static constexpr ktl::u32               block_size       = 8;
+    static constexpr ktl::u32               texels_per_block = 16;
+    static constexpr ktl::u32               packed           = 0;
+    static constexpr ktl::u32               chroma           = 0;
+    static constexpr ktl::u32               block_width      = 4;
+    static constexpr ktl::u32               block_height     = 4;
+    static constexpr ktl::u32               block_depth      = 1;
+    static constexpr bool                   is_3d            = false;
+    static constexpr bool                   is_compressed    = true;
+    static constexpr component              r                = {0, false, 0, true};
+    static constexpr component              g                = {0, false, 0, false};
+    static constexpr component              b                = {0, false, 0, false};
+    static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
+    static constexpr ktl::u32               planes_amount    = 0;
+    static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
+                                                                plane{0, 0, ktl::api::format::v_undefined},
+                                                                plane{0, 0, ktl::api::format::v_undefined}};
+};
+
+template <>
+struct format< ktl::api::format::v_bc5_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3526,7 +3526,7 @@ struct format< ktl::api::format::v_bc_5unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_5snorm_block >
+struct format< ktl::api::format::v_bc5_snorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3550,7 +3550,7 @@ struct format< ktl::api::format::v_bc_5snorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_6h_ufloat_block >
+struct format< ktl::api::format::v_bc6h_ufloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3574,7 +3574,7 @@ struct format< ktl::api::format::v_bc_6h_ufloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_6h_sfloat_block >
+struct format< ktl::api::format::v_bc6h_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3598,7 +3598,7 @@ struct format< ktl::api::format::v_bc_6h_sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_7unorm_block >
+struct format< ktl::api::format::v_bc7_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3622,7 +3622,7 @@ struct format< ktl::api::format::v_bc_7unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_bc_7srgb_block >
+struct format< ktl::api::format::v_bc7_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3646,7 +3646,7 @@ struct format< ktl::api::format::v_bc_7srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_etc_2r_8g_8b_8unorm_block >
+struct format< ktl::api::format::v_etc2_r8g8b8_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3670,7 +3670,7 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_etc_2r_8g_8b_8srgb_block >
+struct format< ktl::api::format::v_etc2_r8g8b8_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3694,7 +3694,7 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_etc_2r_8g_8b_8a_1unorm_block >
+struct format< ktl::api::format::v_etc2_r8g8b8a1_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3718,7 +3718,7 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8a_1unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_etc_2r_8g_8b_8a_1srgb_block >
+struct format< ktl::api::format::v_etc2_r8g8b8a1_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3742,7 +3742,7 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8a_1srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_etc_2r_8g_8b_8a_8unorm_block >
+struct format< ktl::api::format::v_etc2_r8g8b8a8_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3766,7 +3766,7 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8a_8unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_etc_2r_8g_8b_8a_8srgb_block >
+struct format< ktl::api::format::v_etc2_r8g8b8a8_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3790,7 +3790,7 @@ struct format< ktl::api::format::v_etc_2r_8g_8b_8a_8srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_eac_r_11unorm_block >
+struct format< ktl::api::format::v_eac_r11_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3814,7 +3814,7 @@ struct format< ktl::api::format::v_eac_r_11unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_eac_r_11snorm_block >
+struct format< ktl::api::format::v_eac_r11_snorm_block >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3838,31 +3838,7 @@ struct format< ktl::api::format::v_eac_r_11snorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_eac_r_11g_11unorm_block >
-{
-    static constexpr ktl::u32               block_size       = 16;
-    static constexpr ktl::u32               texels_per_block = 16;
-    static constexpr ktl::u32               packed           = 0;
-    static constexpr ktl::u32               chroma           = 0;
-    static constexpr ktl::u32               block_width      = 4;
-    static constexpr ktl::u32               block_height     = 4;
-    static constexpr ktl::u32               block_depth      = 1;
-    static constexpr bool                   is_3d            = false;
-    static constexpr bool                   is_compressed    = true;
-    static constexpr component              r                = {11, false, 0, true};
-    static constexpr component              g                = {11, false, 0, true};
-    static constexpr component              b                = {0, false, 0, false};
-    static constexpr component              a                = {0, false, 0, false};
-    static constexpr component              d                = {0, false, 0, false};
-    static constexpr component              s                = {0, false, 0, false};
-    static constexpr ktl::u32               planes_amount    = 0;
-    static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
-                                                                plane{0, 0, ktl::api::format::v_undefined},
-                                                                plane{0, 0, ktl::api::format::v_undefined}};
-};
-
-template <>
-struct format< ktl::api::format::v_eac_r_11g_11snorm_block >
+struct format< ktl::api::format::v_eac_r11g11_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3886,7 +3862,31 @@ struct format< ktl::api::format::v_eac_r_11g_11snorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_4unorm_block >
+struct format< ktl::api::format::v_eac_r11g11_snorm_block >
+{
+    static constexpr ktl::u32               block_size       = 16;
+    static constexpr ktl::u32               texels_per_block = 16;
+    static constexpr ktl::u32               packed           = 0;
+    static constexpr ktl::u32               chroma           = 0;
+    static constexpr ktl::u32               block_width      = 4;
+    static constexpr ktl::u32               block_height     = 4;
+    static constexpr ktl::u32               block_depth      = 1;
+    static constexpr bool                   is_3d            = false;
+    static constexpr bool                   is_compressed    = true;
+    static constexpr component              r                = {11, false, 0, true};
+    static constexpr component              g                = {11, false, 0, true};
+    static constexpr component              b                = {0, false, 0, false};
+    static constexpr component              a                = {0, false, 0, false};
+    static constexpr component              d                = {0, false, 0, false};
+    static constexpr component              s                = {0, false, 0, false};
+    static constexpr ktl::u32               planes_amount    = 0;
+    static constexpr std::array< plane, 3 > planes           = {plane{0, 0, ktl::api::format::v_undefined},
+                                                                plane{0, 0, ktl::api::format::v_undefined},
+                                                                plane{0, 0, ktl::api::format::v_undefined}};
+};
+
+template <>
+struct format< ktl::api::format::v_astc_4x4_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3910,7 +3910,7 @@ struct format< ktl::api::format::v_astc_4x_4unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_4srgb_block >
+struct format< ktl::api::format::v_astc_4x4_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -3934,7 +3934,7 @@ struct format< ktl::api::format::v_astc_4x_4srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_4unorm_block >
+struct format< ktl::api::format::v_astc_5x4_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 20;
@@ -3958,7 +3958,7 @@ struct format< ktl::api::format::v_astc_5x_4unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_4srgb_block >
+struct format< ktl::api::format::v_astc_5x4_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 20;
@@ -3982,7 +3982,7 @@ struct format< ktl::api::format::v_astc_5x_4srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_5unorm_block >
+struct format< ktl::api::format::v_astc_5x5_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 25;
@@ -4006,7 +4006,7 @@ struct format< ktl::api::format::v_astc_5x_5unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_5srgb_block >
+struct format< ktl::api::format::v_astc_5x5_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 25;
@@ -4030,7 +4030,7 @@ struct format< ktl::api::format::v_astc_5x_5srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_5unorm_block >
+struct format< ktl::api::format::v_astc_6x5_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 30;
@@ -4054,7 +4054,7 @@ struct format< ktl::api::format::v_astc_6x_5unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_5srgb_block >
+struct format< ktl::api::format::v_astc_6x5_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 30;
@@ -4078,7 +4078,7 @@ struct format< ktl::api::format::v_astc_6x_5srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_6unorm_block >
+struct format< ktl::api::format::v_astc_6x6_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 36;
@@ -4102,7 +4102,7 @@ struct format< ktl::api::format::v_astc_6x_6unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_6srgb_block >
+struct format< ktl::api::format::v_astc_6x6_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 36;
@@ -4126,7 +4126,7 @@ struct format< ktl::api::format::v_astc_6x_6srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_8x_5unorm_block >
+struct format< ktl::api::format::v_astc_8x5_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 40;
@@ -4150,7 +4150,7 @@ struct format< ktl::api::format::v_astc_8x_5unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_8x_5srgb_block >
+struct format< ktl::api::format::v_astc_8x5_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 40;
@@ -4174,7 +4174,7 @@ struct format< ktl::api::format::v_astc_8x_5srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_8x_6unorm_block >
+struct format< ktl::api::format::v_astc_8x6_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 48;
@@ -4198,7 +4198,7 @@ struct format< ktl::api::format::v_astc_8x_6unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_8x_6srgb_block >
+struct format< ktl::api::format::v_astc_8x6_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 48;
@@ -4222,7 +4222,7 @@ struct format< ktl::api::format::v_astc_8x_6srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_8x_8unorm_block >
+struct format< ktl::api::format::v_astc_8x8_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 64;
@@ -4246,7 +4246,7 @@ struct format< ktl::api::format::v_astc_8x_8unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_8x_8srgb_block >
+struct format< ktl::api::format::v_astc_8x8_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 64;
@@ -4270,7 +4270,7 @@ struct format< ktl::api::format::v_astc_8x_8srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_5unorm_block >
+struct format< ktl::api::format::v_astc_10x5_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 50;
@@ -4294,7 +4294,7 @@ struct format< ktl::api::format::v_astc_10x_5unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_5srgb_block >
+struct format< ktl::api::format::v_astc_10x5_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 50;
@@ -4318,7 +4318,7 @@ struct format< ktl::api::format::v_astc_10x_5srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_6unorm_block >
+struct format< ktl::api::format::v_astc_10x6_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 60;
@@ -4342,7 +4342,7 @@ struct format< ktl::api::format::v_astc_10x_6unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_6srgb_block >
+struct format< ktl::api::format::v_astc_10x6_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 60;
@@ -4366,7 +4366,7 @@ struct format< ktl::api::format::v_astc_10x_6srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_8unorm_block >
+struct format< ktl::api::format::v_astc_10x8_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 80;
@@ -4390,7 +4390,7 @@ struct format< ktl::api::format::v_astc_10x_8unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_8srgb_block >
+struct format< ktl::api::format::v_astc_10x8_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 80;
@@ -4414,7 +4414,7 @@ struct format< ktl::api::format::v_astc_10x_8srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_10unorm_block >
+struct format< ktl::api::format::v_astc_10x10_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 100;
@@ -4438,7 +4438,7 @@ struct format< ktl::api::format::v_astc_10x_10unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_10srgb_block >
+struct format< ktl::api::format::v_astc_10x10_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 100;
@@ -4462,7 +4462,7 @@ struct format< ktl::api::format::v_astc_10x_10srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_12x_10unorm_block >
+struct format< ktl::api::format::v_astc_12x10_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 120;
@@ -4486,7 +4486,7 @@ struct format< ktl::api::format::v_astc_12x_10unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_12x_10srgb_block >
+struct format< ktl::api::format::v_astc_12x10_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 120;
@@ -4510,7 +4510,7 @@ struct format< ktl::api::format::v_astc_12x_10srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_12x_12unorm_block >
+struct format< ktl::api::format::v_astc_12x12_unorm_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 144;
@@ -4534,7 +4534,7 @@ struct format< ktl::api::format::v_astc_12x_12unorm_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_12x_12srgb_block >
+struct format< ktl::api::format::v_astc_12x12_srgb_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 144;
@@ -4558,7 +4558,7 @@ struct format< ktl::api::format::v_astc_12x_12srgb_block >
 };
 
 template <>
-struct format< ktl::api::format::v_g_8b_8g_8r_8422unorm >
+struct format< ktl::api::format::v_g8b8g8r8_422_unorm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4582,7 +4582,7 @@ struct format< ktl::api::format::v_g_8b_8g_8r_8422unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_b_8g_8r_8g_8422unorm >
+struct format< ktl::api::format::v_b8g8r8g8_422_unorm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4606,7 +4606,7 @@ struct format< ktl::api::format::v_b_8g_8r_8g_8422unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_g_8b_8r_83plane_420unorm >
+struct format< ktl::api::format::v_g8_b8_r8_3plane_420_unorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4624,13 +4624,13 @@ struct format< ktl::api::format::v_g_8b_8r_83plane_420unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
-                                                                plane{2, 2, ktl::api::format::v_r_8unorm},
-                                                                plane{2, 2, ktl::api::format::v_r_8unorm}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r8_unorm},
+                                                                plane{2, 2, ktl::api::format::v_r8_unorm},
+                                                                plane{2, 2, ktl::api::format::v_r8_unorm}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_8b_8r_82plane_420unorm >
+struct format< ktl::api::format::v_g8_b8r8_2plane_420_unorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4648,13 +4648,13 @@ struct format< ktl::api::format::v_g_8b_8r_82plane_420unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
-                                                                plane{2, 2, ktl::api::format::v_r_8g_8unorm},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r8_unorm},
+                                                                plane{2, 2, ktl::api::format::v_r8g8_unorm},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_8b_8r_83plane_422unorm >
+struct format< ktl::api::format::v_g8_b8_r8_3plane_422_unorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4672,13 +4672,13 @@ struct format< ktl::api::format::v_g_8b_8r_83plane_422unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
-                                                                plane{2, 1, ktl::api::format::v_r_8unorm},
-                                                                plane{2, 1, ktl::api::format::v_r_8unorm}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r8_unorm},
+                                                                plane{2, 1, ktl::api::format::v_r8_unorm},
+                                                                plane{2, 1, ktl::api::format::v_r8_unorm}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_8b_8r_82plane_422unorm >
+struct format< ktl::api::format::v_g8_b8r8_2plane_422_unorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4696,13 +4696,13 @@ struct format< ktl::api::format::v_g_8b_8r_82plane_422unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
-                                                                plane{2, 1, ktl::api::format::v_r_8g_8unorm},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r8_unorm},
+                                                                plane{2, 1, ktl::api::format::v_r8g8_unorm},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_8b_8r_83plane_444unorm >
+struct format< ktl::api::format::v_g8_b8_r8_3plane_444_unorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4720,13 +4720,13 @@ struct format< ktl::api::format::v_g_8b_8r_83plane_444unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
-                                                                plane{1, 1, ktl::api::format::v_r_8unorm},
-                                                                plane{1, 1, ktl::api::format::v_r_8unorm}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r8_unorm},
+                                                                plane{1, 1, ktl::api::format::v_r8_unorm},
+                                                                plane{1, 1, ktl::api::format::v_r8_unorm}};
 };
 
 template <>
-struct format< ktl::api::format::v_r_10x_6unorm_pack_16 >
+struct format< ktl::api::format::v_r10x6_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4750,7 +4750,7 @@ struct format< ktl::api::format::v_r_10x_6unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16 >
+struct format< ktl::api::format::v_r10x6g10x6_unorm_2pack16 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4774,7 +4774,7 @@ struct format< ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6unorm_4pack_16 >
+struct format< ktl::api::format::v_r10x6g10x6b10x6a10x6_unorm_4pack16 >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4798,7 +4798,7 @@ struct format< ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6unorm_4pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_g_10x_6b_10x_6g_10x_6r_10x_6422unorm_4pack_16 >
+struct format< ktl::api::format::v_g10x6b10x6g10x6r10x6_422_unorm_4pack16 >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4822,7 +4822,7 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6g_10x_6r_10x_6422unorm_4pack_16
 };
 
 template <>
-struct format< ktl::api::format::v_b_10x_6g_10x_6r_10x_6g_10x_6422unorm_4pack_16 >
+struct format< ktl::api::format::v_b10x6g10x6r10x6g10x6_422_unorm_4pack16 >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4846,7 +4846,7 @@ struct format< ktl::api::format::v_b_10x_6g_10x_6r_10x_6g_10x_6422unorm_4pack_16
 };
 
 template <>
-struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_420unorm_3pack_16 >
+struct format< ktl::api::format::v_g10x6_b10x6_r10x6_3plane_420_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4864,13 +4864,13 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_420unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
-                                                                plane{2, 2, ktl::api::format::v_r_10x_6unorm_pack_16},
-                                                                plane{2, 2, ktl::api::format::v_r_10x_6unorm_pack_16}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r10x6_unorm_pack16},
+                                                                plane{2, 2, ktl::api::format::v_r10x6_unorm_pack16},
+                                                                plane{2, 2, ktl::api::format::v_r10x6_unorm_pack16}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_420unorm_3pack_16 >
+struct format< ktl::api::format::v_g10x6_b10x6r10x6_2plane_420_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4888,13 +4888,13 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_420unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
-                                                                plane{2, 2, ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r10x6_unorm_pack16},
+                                                                plane{2, 2, ktl::api::format::v_r10x6g10x6_unorm_2pack16},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_422unorm_3pack_16 >
+struct format< ktl::api::format::v_g10x6_b10x6_r10x6_3plane_422_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4912,13 +4912,13 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_422unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
-                                                                plane{2, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
-                                                                plane{2, 1, ktl::api::format::v_r_10x_6unorm_pack_16}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r10x6_unorm_pack16},
+                                                                plane{2, 1, ktl::api::format::v_r10x6_unorm_pack16},
+                                                                plane{2, 1, ktl::api::format::v_r10x6_unorm_pack16}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_422unorm_3pack_16 >
+struct format< ktl::api::format::v_g10x6_b10x6r10x6_2plane_422_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4936,13 +4936,13 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_422unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
-                                                                plane{2, 1, ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r10x6_unorm_pack16},
+                                                                plane{2, 1, ktl::api::format::v_r10x6g10x6_unorm_2pack16},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_444unorm_3pack_16 >
+struct format< ktl::api::format::v_g10x6_b10x6_r10x6_3plane_444_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4960,13 +4960,13 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_444unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
-                                                                plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
-                                                                plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r10x6_unorm_pack16},
+                                                                plane{1, 1, ktl::api::format::v_r10x6_unorm_pack16},
+                                                                plane{1, 1, ktl::api::format::v_r10x6_unorm_pack16}};
 };
 
 template <>
-struct format< ktl::api::format::v_r_12x_4unorm_pack_16 >
+struct format< ktl::api::format::v_r12x4_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -4990,7 +4990,7 @@ struct format< ktl::api::format::v_r_12x_4unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16 >
+struct format< ktl::api::format::v_r12x4g12x4_unorm_2pack16 >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5014,7 +5014,7 @@ struct format< ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4unorm_4pack_16 >
+struct format< ktl::api::format::v_r12x4g12x4b12x4a12x4_unorm_4pack16 >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5038,7 +5038,7 @@ struct format< ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4unorm_4pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_g_12x_4b_12x_4g_12x_4r_12x_4422unorm_4pack_16 >
+struct format< ktl::api::format::v_g12x4b12x4g12x4r12x4_422_unorm_4pack16 >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5062,7 +5062,7 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4g_12x_4r_12x_4422unorm_4pack_16
 };
 
 template <>
-struct format< ktl::api::format::v_b_12x_4g_12x_4r_12x_4g_12x_4422unorm_4pack_16 >
+struct format< ktl::api::format::v_b12x4g12x4r12x4g12x4_422_unorm_4pack16 >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5086,7 +5086,7 @@ struct format< ktl::api::format::v_b_12x_4g_12x_4r_12x_4g_12x_4422unorm_4pack_16
 };
 
 template <>
-struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_420unorm_3pack_16 >
+struct format< ktl::api::format::v_g12x4_b12x4_r12x4_3plane_420_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5104,13 +5104,13 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_420unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
-                                                                plane{2, 2, ktl::api::format::v_r_12x_4unorm_pack_16},
-                                                                plane{2, 2, ktl::api::format::v_r_12x_4unorm_pack_16}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r12x4_unorm_pack16},
+                                                                plane{2, 2, ktl::api::format::v_r12x4_unorm_pack16},
+                                                                plane{2, 2, ktl::api::format::v_r12x4_unorm_pack16}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_420unorm_3pack_16 >
+struct format< ktl::api::format::v_g12x4_b12x4r12x4_2plane_420_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5128,13 +5128,13 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_420unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
-                                                                plane{2, 2, ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r12x4_unorm_pack16},
+                                                                plane{2, 2, ktl::api::format::v_r12x4g12x4_unorm_2pack16},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_422unorm_3pack_16 >
+struct format< ktl::api::format::v_g12x4_b12x4_r12x4_3plane_422_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5152,13 +5152,13 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_422unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
-                                                                plane{2, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
-                                                                plane{2, 1, ktl::api::format::v_r_12x_4unorm_pack_16}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r12x4_unorm_pack16},
+                                                                plane{2, 1, ktl::api::format::v_r12x4_unorm_pack16},
+                                                                plane{2, 1, ktl::api::format::v_r12x4_unorm_pack16}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_422unorm_3pack_16 >
+struct format< ktl::api::format::v_g12x4_b12x4r12x4_2plane_422_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5176,13 +5176,13 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_422unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
-                                                                plane{2, 1, ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r12x4_unorm_pack16},
+                                                                plane{2, 1, ktl::api::format::v_r12x4g12x4_unorm_2pack16},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_444unorm_3pack_16 >
+struct format< ktl::api::format::v_g12x4_b12x4_r12x4_3plane_444_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5200,13 +5200,13 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_444unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
-                                                                plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
-                                                                plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r12x4_unorm_pack16},
+                                                                plane{1, 1, ktl::api::format::v_r12x4_unorm_pack16},
+                                                                plane{1, 1, ktl::api::format::v_r12x4_unorm_pack16}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_16b_16g_16r_16422unorm >
+struct format< ktl::api::format::v_g16b16g16r16_422_unorm >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5230,7 +5230,7 @@ struct format< ktl::api::format::v_g_16b_16g_16r_16422unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_b_16g_16r_16g_16422unorm >
+struct format< ktl::api::format::v_b16g16r16g16_422_unorm >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5254,7 +5254,7 @@ struct format< ktl::api::format::v_b_16g_16r_16g_16422unorm >
 };
 
 template <>
-struct format< ktl::api::format::v_g_16b_16r_163plane_420unorm >
+struct format< ktl::api::format::v_g16_b16_r16_3plane_420_unorm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5272,13 +5272,13 @@ struct format< ktl::api::format::v_g_16b_16r_163plane_420unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
-                                                                plane{2, 2, ktl::api::format::v_r_16unorm},
-                                                                plane{2, 2, ktl::api::format::v_r_16unorm}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r16_unorm},
+                                                                plane{2, 2, ktl::api::format::v_r16_unorm},
+                                                                plane{2, 2, ktl::api::format::v_r16_unorm}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_16b_16r_162plane_420unorm >
+struct format< ktl::api::format::v_g16_b16r16_2plane_420_unorm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5296,13 +5296,13 @@ struct format< ktl::api::format::v_g_16b_16r_162plane_420unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
-                                                                plane{2, 2, ktl::api::format::v_r_16g_16unorm},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r16_unorm},
+                                                                plane{2, 2, ktl::api::format::v_r16g16_unorm},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_16b_16r_163plane_422unorm >
+struct format< ktl::api::format::v_g16_b16_r16_3plane_422_unorm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5320,13 +5320,13 @@ struct format< ktl::api::format::v_g_16b_16r_163plane_422unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
-                                                                plane{2, 1, ktl::api::format::v_r_16unorm},
-                                                                plane{2, 1, ktl::api::format::v_r_16unorm}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r16_unorm},
+                                                                plane{2, 1, ktl::api::format::v_r16_unorm},
+                                                                plane{2, 1, ktl::api::format::v_r16_unorm}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_16b_16r_162plane_422unorm >
+struct format< ktl::api::format::v_g16_b16r16_2plane_422_unorm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5344,13 +5344,13 @@ struct format< ktl::api::format::v_g_16b_16r_162plane_422unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
-                                                                plane{2, 1, ktl::api::format::v_r_16g_16unorm},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r16_unorm},
+                                                                plane{2, 1, ktl::api::format::v_r16g16_unorm},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_16b_16r_163plane_444unorm >
+struct format< ktl::api::format::v_g16_b16_r16_3plane_444_unorm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5368,13 +5368,13 @@ struct format< ktl::api::format::v_g_16b_16r_163plane_444unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 3;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
-                                                                plane{1, 1, ktl::api::format::v_r_16unorm},
-                                                                plane{1, 1, ktl::api::format::v_r_16unorm}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r16_unorm},
+                                                                plane{1, 1, ktl::api::format::v_r16_unorm},
+                                                                plane{1, 1, ktl::api::format::v_r16_unorm}};
 };
 
 template <>
-struct format< ktl::api::format::v_pvrtc_12bpp_unorm_block_img >
+struct format< ktl::api::format::v_pvrtc1_2bpp_unorm_block_img >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5398,7 +5398,7 @@ struct format< ktl::api::format::v_pvrtc_12bpp_unorm_block_img >
 };
 
 template <>
-struct format< ktl::api::format::v_pvrtc_14bpp_unorm_block_img >
+struct format< ktl::api::format::v_pvrtc1_4bpp_unorm_block_img >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5422,7 +5422,7 @@ struct format< ktl::api::format::v_pvrtc_14bpp_unorm_block_img >
 };
 
 template <>
-struct format< ktl::api::format::v_pvrtc_22bpp_unorm_block_img >
+struct format< ktl::api::format::v_pvrtc2_2bpp_unorm_block_img >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5446,7 +5446,7 @@ struct format< ktl::api::format::v_pvrtc_22bpp_unorm_block_img >
 };
 
 template <>
-struct format< ktl::api::format::v_pvrtc_24bpp_unorm_block_img >
+struct format< ktl::api::format::v_pvrtc2_4bpp_unorm_block_img >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5470,7 +5470,7 @@ struct format< ktl::api::format::v_pvrtc_24bpp_unorm_block_img >
 };
 
 template <>
-struct format< ktl::api::format::v_pvrtc_12bpp_srgb_block_img >
+struct format< ktl::api::format::v_pvrtc1_2bpp_srgb_block_img >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5494,7 +5494,7 @@ struct format< ktl::api::format::v_pvrtc_12bpp_srgb_block_img >
 };
 
 template <>
-struct format< ktl::api::format::v_pvrtc_14bpp_srgb_block_img >
+struct format< ktl::api::format::v_pvrtc1_4bpp_srgb_block_img >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5518,7 +5518,7 @@ struct format< ktl::api::format::v_pvrtc_14bpp_srgb_block_img >
 };
 
 template <>
-struct format< ktl::api::format::v_pvrtc_22bpp_srgb_block_img >
+struct format< ktl::api::format::v_pvrtc2_2bpp_srgb_block_img >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5542,7 +5542,7 @@ struct format< ktl::api::format::v_pvrtc_22bpp_srgb_block_img >
 };
 
 template <>
-struct format< ktl::api::format::v_pvrtc_24bpp_srgb_block_img >
+struct format< ktl::api::format::v_pvrtc2_4bpp_srgb_block_img >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -5566,7 +5566,7 @@ struct format< ktl::api::format::v_pvrtc_24bpp_srgb_block_img >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_4sfloat_block >
+struct format< ktl::api::format::v_astc_4x4_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 16;
@@ -5590,7 +5590,7 @@ struct format< ktl::api::format::v_astc_4x_4sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_4sfloat_block >
+struct format< ktl::api::format::v_astc_5x4_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 20;
@@ -5614,7 +5614,7 @@ struct format< ktl::api::format::v_astc_5x_4sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_5sfloat_block >
+struct format< ktl::api::format::v_astc_5x5_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 25;
@@ -5638,7 +5638,7 @@ struct format< ktl::api::format::v_astc_5x_5sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_5sfloat_block >
+struct format< ktl::api::format::v_astc_6x5_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 30;
@@ -5662,7 +5662,7 @@ struct format< ktl::api::format::v_astc_6x_5sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_6sfloat_block >
+struct format< ktl::api::format::v_astc_6x6_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 36;
@@ -5686,7 +5686,7 @@ struct format< ktl::api::format::v_astc_6x_6sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_8x_5sfloat_block >
+struct format< ktl::api::format::v_astc_8x5_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 40;
@@ -5710,7 +5710,7 @@ struct format< ktl::api::format::v_astc_8x_5sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_8x_6sfloat_block >
+struct format< ktl::api::format::v_astc_8x6_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 48;
@@ -5734,7 +5734,7 @@ struct format< ktl::api::format::v_astc_8x_6sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_8x_8sfloat_block >
+struct format< ktl::api::format::v_astc_8x8_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 64;
@@ -5758,7 +5758,7 @@ struct format< ktl::api::format::v_astc_8x_8sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_5sfloat_block >
+struct format< ktl::api::format::v_astc_10x5_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 50;
@@ -5782,7 +5782,7 @@ struct format< ktl::api::format::v_astc_10x_5sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_6sfloat_block >
+struct format< ktl::api::format::v_astc_10x6_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 60;
@@ -5806,7 +5806,7 @@ struct format< ktl::api::format::v_astc_10x_6sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_8sfloat_block >
+struct format< ktl::api::format::v_astc_10x8_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 80;
@@ -5830,7 +5830,7 @@ struct format< ktl::api::format::v_astc_10x_8sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_10x_10sfloat_block >
+struct format< ktl::api::format::v_astc_10x10_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 100;
@@ -5854,7 +5854,7 @@ struct format< ktl::api::format::v_astc_10x_10sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_12x_10sfloat_block >
+struct format< ktl::api::format::v_astc_12x10_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 120;
@@ -5878,7 +5878,7 @@ struct format< ktl::api::format::v_astc_12x_10sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_12x_12sfloat_block >
+struct format< ktl::api::format::v_astc_12x12_sfloat_block >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 144;
@@ -5902,7 +5902,7 @@ struct format< ktl::api::format::v_astc_12x_12sfloat_block >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_3x_3x_3unorm_block_ext >
+struct format< ktl::api::format::v_astc_3x3x3_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 27;
@@ -5926,7 +5926,7 @@ struct format< ktl::api::format::v_astc_3x_3x_3unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_3x_3x_3srgb_block_ext >
+struct format< ktl::api::format::v_astc_3x3x3_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 27;
@@ -5950,7 +5950,7 @@ struct format< ktl::api::format::v_astc_3x_3x_3srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_3x_3x_3sfloat_block_ext >
+struct format< ktl::api::format::v_astc_3x3x3_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 27;
@@ -5974,7 +5974,7 @@ struct format< ktl::api::format::v_astc_3x_3x_3sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_3x_3unorm_block_ext >
+struct format< ktl::api::format::v_astc_4x3x3_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 36;
@@ -5998,7 +5998,7 @@ struct format< ktl::api::format::v_astc_4x_3x_3unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_3x_3srgb_block_ext >
+struct format< ktl::api::format::v_astc_4x3x3_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 36;
@@ -6022,7 +6022,7 @@ struct format< ktl::api::format::v_astc_4x_3x_3srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_3x_3sfloat_block_ext >
+struct format< ktl::api::format::v_astc_4x3x3_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 36;
@@ -6046,7 +6046,7 @@ struct format< ktl::api::format::v_astc_4x_3x_3sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_4x_3unorm_block_ext >
+struct format< ktl::api::format::v_astc_4x4x3_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 48;
@@ -6070,7 +6070,7 @@ struct format< ktl::api::format::v_astc_4x_4x_3unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_4x_3srgb_block_ext >
+struct format< ktl::api::format::v_astc_4x4x3_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 48;
@@ -6094,7 +6094,7 @@ struct format< ktl::api::format::v_astc_4x_4x_3srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_4x_3sfloat_block_ext >
+struct format< ktl::api::format::v_astc_4x4x3_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 48;
@@ -6118,7 +6118,7 @@ struct format< ktl::api::format::v_astc_4x_4x_3sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_4x_4unorm_block_ext >
+struct format< ktl::api::format::v_astc_4x4x4_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 64;
@@ -6142,7 +6142,7 @@ struct format< ktl::api::format::v_astc_4x_4x_4unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_4x_4srgb_block_ext >
+struct format< ktl::api::format::v_astc_4x4x4_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 64;
@@ -6166,7 +6166,7 @@ struct format< ktl::api::format::v_astc_4x_4x_4srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_4x_4x_4sfloat_block_ext >
+struct format< ktl::api::format::v_astc_4x4x4_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 64;
@@ -6190,7 +6190,7 @@ struct format< ktl::api::format::v_astc_4x_4x_4sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_4x_4unorm_block_ext >
+struct format< ktl::api::format::v_astc_5x4x4_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 80;
@@ -6214,7 +6214,7 @@ struct format< ktl::api::format::v_astc_5x_4x_4unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_4x_4srgb_block_ext >
+struct format< ktl::api::format::v_astc_5x4x4_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 80;
@@ -6238,7 +6238,7 @@ struct format< ktl::api::format::v_astc_5x_4x_4srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_4x_4sfloat_block_ext >
+struct format< ktl::api::format::v_astc_5x4x4_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 80;
@@ -6262,7 +6262,7 @@ struct format< ktl::api::format::v_astc_5x_4x_4sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_5x_4unorm_block_ext >
+struct format< ktl::api::format::v_astc_5x5x4_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 100;
@@ -6286,7 +6286,7 @@ struct format< ktl::api::format::v_astc_5x_5x_4unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_5x_4srgb_block_ext >
+struct format< ktl::api::format::v_astc_5x5x4_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 100;
@@ -6310,7 +6310,7 @@ struct format< ktl::api::format::v_astc_5x_5x_4srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_5x_4sfloat_block_ext >
+struct format< ktl::api::format::v_astc_5x5x4_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 100;
@@ -6334,7 +6334,7 @@ struct format< ktl::api::format::v_astc_5x_5x_4sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_5x_5unorm_block_ext >
+struct format< ktl::api::format::v_astc_5x5x5_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 125;
@@ -6358,7 +6358,7 @@ struct format< ktl::api::format::v_astc_5x_5x_5unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_5x_5srgb_block_ext >
+struct format< ktl::api::format::v_astc_5x5x5_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 125;
@@ -6382,7 +6382,7 @@ struct format< ktl::api::format::v_astc_5x_5x_5srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_5x_5x_5sfloat_block_ext >
+struct format< ktl::api::format::v_astc_5x5x5_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 125;
@@ -6406,7 +6406,7 @@ struct format< ktl::api::format::v_astc_5x_5x_5sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_5x_5unorm_block_ext >
+struct format< ktl::api::format::v_astc_6x5x5_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 150;
@@ -6430,7 +6430,7 @@ struct format< ktl::api::format::v_astc_6x_5x_5unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_5x_5srgb_block_ext >
+struct format< ktl::api::format::v_astc_6x5x5_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 150;
@@ -6454,7 +6454,7 @@ struct format< ktl::api::format::v_astc_6x_5x_5srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_5x_5sfloat_block_ext >
+struct format< ktl::api::format::v_astc_6x5x5_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 150;
@@ -6478,7 +6478,7 @@ struct format< ktl::api::format::v_astc_6x_5x_5sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_6x_5unorm_block_ext >
+struct format< ktl::api::format::v_astc_6x6x5_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 180;
@@ -6502,7 +6502,7 @@ struct format< ktl::api::format::v_astc_6x_6x_5unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_6x_5srgb_block_ext >
+struct format< ktl::api::format::v_astc_6x6x5_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 180;
@@ -6526,7 +6526,7 @@ struct format< ktl::api::format::v_astc_6x_6x_5srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_6x_5sfloat_block_ext >
+struct format< ktl::api::format::v_astc_6x6x5_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 180;
@@ -6550,7 +6550,7 @@ struct format< ktl::api::format::v_astc_6x_6x_5sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_6x_6unorm_block_ext >
+struct format< ktl::api::format::v_astc_6x6x6_unorm_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 216;
@@ -6574,7 +6574,7 @@ struct format< ktl::api::format::v_astc_6x_6x_6unorm_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_6x_6srgb_block_ext >
+struct format< ktl::api::format::v_astc_6x6x6_srgb_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 216;
@@ -6598,7 +6598,7 @@ struct format< ktl::api::format::v_astc_6x_6x_6srgb_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_astc_6x_6x_6sfloat_block_ext >
+struct format< ktl::api::format::v_astc_6x6x6_sfloat_block_ext >
 {
     static constexpr ktl::u32               block_size       = 16;
     static constexpr ktl::u32               texels_per_block = 216;
@@ -6622,7 +6622,7 @@ struct format< ktl::api::format::v_astc_6x_6x_6sfloat_block_ext >
 };
 
 template <>
-struct format< ktl::api::format::v_g_8b_8r_82plane_444unorm >
+struct format< ktl::api::format::v_g8_b8r8_2plane_444_unorm >
 {
     static constexpr ktl::u32               block_size       = 3;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6640,13 +6640,13 @@ struct format< ktl::api::format::v_g_8b_8r_82plane_444unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_8unorm},
-                                                                plane{1, 1, ktl::api::format::v_r_8g_8unorm},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r8_unorm},
+                                                                plane{1, 1, ktl::api::format::v_r8g8_unorm},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_444unorm_3pack_16 >
+struct format< ktl::api::format::v_g10x6_b10x6r10x6_2plane_444_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6664,13 +6664,13 @@ struct format< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_444unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_10x_6unorm_pack_16},
-                                                                plane{1, 1, ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r10x6_unorm_pack16},
+                                                                plane{1, 1, ktl::api::format::v_r10x6g10x6_unorm_2pack16},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_444unorm_3pack_16 >
+struct format< ktl::api::format::v_g12x4_b12x4r12x4_2plane_444_unorm_3pack16 >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6688,13 +6688,13 @@ struct format< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_444unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_12x_4unorm_pack_16},
-                                                                plane{1, 1, ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r12x4_unorm_pack16},
+                                                                plane{1, 1, ktl::api::format::v_r12x4g12x4_unorm_2pack16},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_16b_16r_162plane_444unorm >
+struct format< ktl::api::format::v_g16_b16r16_2plane_444_unorm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6712,13 +6712,13 @@ struct format< ktl::api::format::v_g_16b_16r_162plane_444unorm >
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r_16unorm},
-                                                                plane{1, 1, ktl::api::format::v_r_16g_16unorm},
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r16_unorm},
+                                                                plane{1, 1, ktl::api::format::v_r16g16_unorm},
                                                                 plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_a_4r_4g_4b_4unorm_pack_16 >
+struct format< ktl::api::format::v_a4r4g4b4_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6742,7 +6742,7 @@ struct format< ktl::api::format::v_a_4r_4g_4b_4unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_a_4b_4g_4r_4unorm_pack_16 >
+struct format< ktl::api::format::v_a4b4g4r4_unorm_pack16 >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6766,7 +6766,7 @@ struct format< ktl::api::format::v_a_4b_4g_4r_4unorm_pack_16 >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16g_16sfixed_5nv >
+struct format< ktl::api::format::v_r16g16_sfixed5_nv >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6790,7 +6790,7 @@ struct format< ktl::api::format::v_r_16g_16sfixed_5nv >
 };
 
 template <>
-struct format< ktl::api::format::v_r_10x_6uint_pack_16arm >
+struct format< ktl::api::format::v_r10x6_uint_pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6814,7 +6814,7 @@ struct format< ktl::api::format::v_r_10x_6uint_pack_16arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_10x_6g_10x_6uint_2pack_16arm >
+struct format< ktl::api::format::v_r10x6g10x6_uint_2pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6838,7 +6838,7 @@ struct format< ktl::api::format::v_r_10x_6g_10x_6uint_2pack_16arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6uint_4pack_16arm >
+struct format< ktl::api::format::v_r10x6g10x6b10x6a10x6_uint_4pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6862,7 +6862,7 @@ struct format< ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6uint_4pack_16arm 
 };
 
 template <>
-struct format< ktl::api::format::v_r_12x_4uint_pack_16arm >
+struct format< ktl::api::format::v_r12x4_uint_pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6886,7 +6886,7 @@ struct format< ktl::api::format::v_r_12x_4uint_pack_16arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_12x_4g_12x_4uint_2pack_16arm >
+struct format< ktl::api::format::v_r12x4g12x4_uint_2pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6910,7 +6910,7 @@ struct format< ktl::api::format::v_r_12x_4g_12x_4uint_2pack_16arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4uint_4pack_16arm >
+struct format< ktl::api::format::v_r12x4g12x4b12x4a12x4_uint_4pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6934,7 +6934,7 @@ struct format< ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4uint_4pack_16arm 
 };
 
 template <>
-struct format< ktl::api::format::v_r_14x_2uint_pack_16arm >
+struct format< ktl::api::format::v_r14x2_uint_pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6958,7 +6958,7 @@ struct format< ktl::api::format::v_r_14x_2uint_pack_16arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_14x_2g_14x_2uint_2pack_16arm >
+struct format< ktl::api::format::v_r14x2g14x2_uint_2pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -6982,7 +6982,7 @@ struct format< ktl::api::format::v_r_14x_2g_14x_2uint_2pack_16arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2uint_4pack_16arm >
+struct format< ktl::api::format::v_r14x2g14x2b14x2a14x2_uint_4pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7006,7 +7006,7 @@ struct format< ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2uint_4pack_16arm 
 };
 
 template <>
-struct format< ktl::api::format::v_r_14x_2unorm_pack_16arm >
+struct format< ktl::api::format::v_r14x2_unorm_pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7030,7 +7030,7 @@ struct format< ktl::api::format::v_r_14x_2unorm_pack_16arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_14x_2g_14x_2unorm_2pack_16arm >
+struct format< ktl::api::format::v_r14x2g14x2_unorm_2pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 4;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7054,7 +7054,7 @@ struct format< ktl::api::format::v_r_14x_2g_14x_2unorm_2pack_16arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2unorm_4pack_16arm >
+struct format< ktl::api::format::v_r14x2g14x2b14x2a14x2_unorm_4pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 8;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7078,7 +7078,7 @@ struct format< ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2unorm_4pack_16arm
 };
 
 template <>
-struct format< ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_420unorm_3pack_16arm >
+struct format< ktl::api::format::v_g14x2_b14x2r14x2_2plane_420_unorm_3pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7096,13 +7096,13 @@ struct format< ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_420unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes = {plane{1, 1, ktl::api::format::v_r_14x_2unorm_pack_16arm},
-                                                      plane{2, 2, ktl::api::format::v_r_14x_2g_14x_2unorm_2pack_16arm},
-                                                      plane{0, 0, ktl::api::format::v_undefined}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r14x2_unorm_pack16_arm},
+                                                                plane{2, 2, ktl::api::format::v_r14x2g14x2_unorm_2pack16_arm},
+                                                                plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_422unorm_3pack_16arm >
+struct format< ktl::api::format::v_g14x2_b14x2r14x2_2plane_422_unorm_3pack16_arm >
 {
     static constexpr ktl::u32               block_size       = 6;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7120,13 +7120,13 @@ struct format< ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_422unorm_3pack_16
     static constexpr component              d                = {0, false, 0, false};
     static constexpr component              s                = {0, false, 0, false};
     static constexpr ktl::u32               planes_amount    = 2;
-    static constexpr std::array< plane, 3 > planes = {plane{1, 1, ktl::api::format::v_r_14x_2unorm_pack_16arm},
-                                                      plane{2, 1, ktl::api::format::v_r_14x_2g_14x_2unorm_2pack_16arm},
-                                                      plane{0, 0, ktl::api::format::v_undefined}};
+    static constexpr std::array< plane, 3 > planes           = {plane{1, 1, ktl::api::format::v_r14x2_unorm_pack16_arm},
+                                                                plane{2, 1, ktl::api::format::v_r14x2g14x2_unorm_2pack16_arm},
+                                                                plane{0, 0, ktl::api::format::v_undefined}};
 };
 
 template <>
-struct format< ktl::api::format::v_r_8bool_arm >
+struct format< ktl::api::format::v_r8_bool_arm >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7150,7 +7150,7 @@ struct format< ktl::api::format::v_r_8bool_arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_16sfloat_fpencoding_bfloat_16arm >
+struct format< ktl::api::format::v_r16_sfloat_fpencoding_bfloat16_arm >
 {
     static constexpr ktl::u32               block_size       = 2;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7174,7 +7174,7 @@ struct format< ktl::api::format::v_r_16sfloat_fpencoding_bfloat_16arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8sfloat_fpencoding_float_8e_4m_3arm >
+struct format< ktl::api::format::v_r8_sfloat_fpencoding_float8e4m3_arm >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7198,7 +7198,7 @@ struct format< ktl::api::format::v_r_8sfloat_fpencoding_float_8e_4m_3arm >
 };
 
 template <>
-struct format< ktl::api::format::v_r_8sfloat_fpencoding_float_8e_5m_2arm >
+struct format< ktl::api::format::v_r8_sfloat_fpencoding_float8e5m2_arm >
 {
     static constexpr ktl::u32               block_size       = 1;
     static constexpr ktl::u32               texels_per_block = 1;
@@ -7226,600 +7226,600 @@ match(ktl::api::format _format) noexcept
 {
     switch (_format)
     {
-    case ktl::api::format::v_r_4g_4unorm_pack_8:
-        return ktl::meta::format_cast< ktl::api::format::v_r_4g_4unorm_pack_8 >();
-    case ktl::api::format::v_r_4g_4b_4a_4unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_r_4g_4b_4a_4unorm_pack_16 >();
-    case ktl::api::format::v_b_4g_4r_4a_4unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_b_4g_4r_4a_4unorm_pack_16 >();
-    case ktl::api::format::v_r_5g_6b_5unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_r_5g_6b_5unorm_pack_16 >();
-    case ktl::api::format::v_b_5g_6r_5unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_b_5g_6r_5unorm_pack_16 >();
-    case ktl::api::format::v_r_5g_5b_5a_1unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_r_5g_5b_5a_1unorm_pack_16 >();
-    case ktl::api::format::v_b_5g_5r_5a_1unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_b_5g_5r_5a_1unorm_pack_16 >();
-    case ktl::api::format::v_a_1r_5g_5b_5unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_a_1r_5g_5b_5unorm_pack_16 >();
-    case ktl::api::format::v_a_1b_5g_5r_5unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_a_1b_5g_5r_5unorm_pack_16 >();
-    case ktl::api::format::v_a_8unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_a_8unorm >();
-    case ktl::api::format::v_r_8unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8unorm >();
-    case ktl::api::format::v_r_8snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8snorm >();
-    case ktl::api::format::v_r_8uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8uscaled >();
-    case ktl::api::format::v_r_8sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8sscaled >();
-    case ktl::api::format::v_r_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8uint >();
-    case ktl::api::format::v_r_8sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8sint >();
-    case ktl::api::format::v_r_8srgb:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8srgb >();
-    case ktl::api::format::v_r_8g_8unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8unorm >();
-    case ktl::api::format::v_r_8g_8snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8snorm >();
-    case ktl::api::format::v_r_8g_8uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8uscaled >();
-    case ktl::api::format::v_r_8g_8sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8sscaled >();
-    case ktl::api::format::v_r_8g_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8uint >();
-    case ktl::api::format::v_r_8g_8sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8sint >();
-    case ktl::api::format::v_r_8g_8srgb:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8srgb >();
-    case ktl::api::format::v_r_8g_8b_8unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8unorm >();
-    case ktl::api::format::v_r_8g_8b_8snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8snorm >();
-    case ktl::api::format::v_r_8g_8b_8uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8uscaled >();
-    case ktl::api::format::v_r_8g_8b_8sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8sscaled >();
-    case ktl::api::format::v_r_8g_8b_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8uint >();
-    case ktl::api::format::v_r_8g_8b_8sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8sint >();
-    case ktl::api::format::v_r_8g_8b_8srgb:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8srgb >();
-    case ktl::api::format::v_b_8g_8r_8unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8unorm >();
-    case ktl::api::format::v_b_8g_8r_8snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8snorm >();
-    case ktl::api::format::v_b_8g_8r_8uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8uscaled >();
-    case ktl::api::format::v_b_8g_8r_8sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8sscaled >();
-    case ktl::api::format::v_b_8g_8r_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8uint >();
-    case ktl::api::format::v_b_8g_8r_8sint:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8sint >();
-    case ktl::api::format::v_b_8g_8r_8srgb:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8srgb >();
-    case ktl::api::format::v_r_8g_8b_8a_8unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8a_8unorm >();
-    case ktl::api::format::v_r_8g_8b_8a_8snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8a_8snorm >();
-    case ktl::api::format::v_r_8g_8b_8a_8uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8a_8uscaled >();
-    case ktl::api::format::v_r_8g_8b_8a_8sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8a_8sscaled >();
-    case ktl::api::format::v_r_8g_8b_8a_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8a_8uint >();
-    case ktl::api::format::v_r_8g_8b_8a_8sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8a_8sint >();
-    case ktl::api::format::v_r_8g_8b_8a_8srgb:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8g_8b_8a_8srgb >();
-    case ktl::api::format::v_b_8g_8r_8a_8unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8a_8unorm >();
-    case ktl::api::format::v_b_8g_8r_8a_8snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8a_8snorm >();
-    case ktl::api::format::v_b_8g_8r_8a_8uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8a_8uscaled >();
-    case ktl::api::format::v_b_8g_8r_8a_8sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8a_8sscaled >();
-    case ktl::api::format::v_b_8g_8r_8a_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8a_8uint >();
-    case ktl::api::format::v_b_8g_8r_8a_8sint:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8a_8sint >();
-    case ktl::api::format::v_b_8g_8r_8a_8srgb:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8a_8srgb >();
-    case ktl::api::format::v_a_8b_8g_8r_8unorm_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_8b_8g_8r_8unorm_pack_32 >();
-    case ktl::api::format::v_a_8b_8g_8r_8snorm_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_8b_8g_8r_8snorm_pack_32 >();
-    case ktl::api::format::v_a_8b_8g_8r_8uscaled_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_8b_8g_8r_8uscaled_pack_32 >();
-    case ktl::api::format::v_a_8b_8g_8r_8sscaled_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_8b_8g_8r_8sscaled_pack_32 >();
-    case ktl::api::format::v_a_8b_8g_8r_8uint_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_8b_8g_8r_8uint_pack_32 >();
-    case ktl::api::format::v_a_8b_8g_8r_8sint_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_8b_8g_8r_8sint_pack_32 >();
-    case ktl::api::format::v_a_8b_8g_8r_8srgb_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_8b_8g_8r_8srgb_pack_32 >();
-    case ktl::api::format::v_a_2r_10g_10b_10unorm_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2r_10g_10b_10unorm_pack_32 >();
-    case ktl::api::format::v_a_2r_10g_10b_10snorm_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2r_10g_10b_10snorm_pack_32 >();
-    case ktl::api::format::v_a_2r_10g_10b_10uscaled_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2r_10g_10b_10uscaled_pack_32 >();
-    case ktl::api::format::v_a_2r_10g_10b_10sscaled_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2r_10g_10b_10sscaled_pack_32 >();
-    case ktl::api::format::v_a_2r_10g_10b_10uint_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2r_10g_10b_10uint_pack_32 >();
-    case ktl::api::format::v_a_2r_10g_10b_10sint_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2r_10g_10b_10sint_pack_32 >();
-    case ktl::api::format::v_a_2b_10g_10r_10unorm_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2b_10g_10r_10unorm_pack_32 >();
-    case ktl::api::format::v_a_2b_10g_10r_10snorm_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2b_10g_10r_10snorm_pack_32 >();
-    case ktl::api::format::v_a_2b_10g_10r_10uscaled_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2b_10g_10r_10uscaled_pack_32 >();
-    case ktl::api::format::v_a_2b_10g_10r_10sscaled_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2b_10g_10r_10sscaled_pack_32 >();
-    case ktl::api::format::v_a_2b_10g_10r_10uint_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2b_10g_10r_10uint_pack_32 >();
-    case ktl::api::format::v_a_2b_10g_10r_10sint_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_a_2b_10g_10r_10sint_pack_32 >();
-    case ktl::api::format::v_r_16unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16unorm >();
-    case ktl::api::format::v_r_16snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16snorm >();
-    case ktl::api::format::v_r_16uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16uscaled >();
-    case ktl::api::format::v_r_16sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16sscaled >();
-    case ktl::api::format::v_r_16uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16uint >();
-    case ktl::api::format::v_r_16sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16sint >();
-    case ktl::api::format::v_r_16sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16sfloat >();
-    case ktl::api::format::v_r_16g_16unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16unorm >();
-    case ktl::api::format::v_r_16g_16snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16snorm >();
-    case ktl::api::format::v_r_16g_16uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16uscaled >();
-    case ktl::api::format::v_r_16g_16sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16sscaled >();
-    case ktl::api::format::v_r_16g_16uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16uint >();
-    case ktl::api::format::v_r_16g_16sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16sint >();
-    case ktl::api::format::v_r_16g_16sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16sfloat >();
-    case ktl::api::format::v_r_16g_16b_16unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16unorm >();
-    case ktl::api::format::v_r_16g_16b_16snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16snorm >();
-    case ktl::api::format::v_r_16g_16b_16uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16uscaled >();
-    case ktl::api::format::v_r_16g_16b_16sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16sscaled >();
-    case ktl::api::format::v_r_16g_16b_16uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16uint >();
-    case ktl::api::format::v_r_16g_16b_16sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16sint >();
-    case ktl::api::format::v_r_16g_16b_16sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16sfloat >();
-    case ktl::api::format::v_r_16g_16b_16a_16unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16a_16unorm >();
-    case ktl::api::format::v_r_16g_16b_16a_16snorm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16a_16snorm >();
-    case ktl::api::format::v_r_16g_16b_16a_16uscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16a_16uscaled >();
-    case ktl::api::format::v_r_16g_16b_16a_16sscaled:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16a_16sscaled >();
-    case ktl::api::format::v_r_16g_16b_16a_16uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16a_16uint >();
-    case ktl::api::format::v_r_16g_16b_16a_16sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16a_16sint >();
-    case ktl::api::format::v_r_16g_16b_16a_16sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16b_16a_16sfloat >();
-    case ktl::api::format::v_r_32uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32uint >();
-    case ktl::api::format::v_r_32sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32sint >();
-    case ktl::api::format::v_r_32sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32sfloat >();
-    case ktl::api::format::v_r_32g_32uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32g_32uint >();
-    case ktl::api::format::v_r_32g_32sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32g_32sint >();
-    case ktl::api::format::v_r_32g_32sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32g_32sfloat >();
-    case ktl::api::format::v_r_32g_32b_32uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32g_32b_32uint >();
-    case ktl::api::format::v_r_32g_32b_32sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32g_32b_32sint >();
-    case ktl::api::format::v_r_32g_32b_32sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32g_32b_32sfloat >();
-    case ktl::api::format::v_r_32g_32b_32a_32uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32g_32b_32a_32uint >();
-    case ktl::api::format::v_r_32g_32b_32a_32sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32g_32b_32a_32sint >();
-    case ktl::api::format::v_r_32g_32b_32a_32sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_32g_32b_32a_32sfloat >();
-    case ktl::api::format::v_r_64uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64uint >();
-    case ktl::api::format::v_r_64sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64sint >();
-    case ktl::api::format::v_r_64sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64sfloat >();
-    case ktl::api::format::v_r_64g_64uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64g_64uint >();
-    case ktl::api::format::v_r_64g_64sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64g_64sint >();
-    case ktl::api::format::v_r_64g_64sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64g_64sfloat >();
-    case ktl::api::format::v_r_64g_64b_64uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64g_64b_64uint >();
-    case ktl::api::format::v_r_64g_64b_64sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64g_64b_64sint >();
-    case ktl::api::format::v_r_64g_64b_64sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64g_64b_64sfloat >();
-    case ktl::api::format::v_r_64g_64b_64a_64uint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64g_64b_64a_64uint >();
-    case ktl::api::format::v_r_64g_64b_64a_64sint:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64g_64b_64a_64sint >();
-    case ktl::api::format::v_r_64g_64b_64a_64sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_r_64g_64b_64a_64sfloat >();
-    case ktl::api::format::v_b_10g_11r_11ufloat_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_b_10g_11r_11ufloat_pack_32 >();
-    case ktl::api::format::v_e_5b_9g_9r_9ufloat_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_e_5b_9g_9r_9ufloat_pack_32 >();
-    case ktl::api::format::v_d_16unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_d_16unorm >();
-    case ktl::api::format::v_x_8d_24unorm_pack_32:
-        return ktl::meta::format_cast< ktl::api::format::v_x_8d_24unorm_pack_32 >();
-    case ktl::api::format::v_d_32sfloat:
-        return ktl::meta::format_cast< ktl::api::format::v_d_32sfloat >();
-    case ktl::api::format::v_s_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_s_8uint >();
-    case ktl::api::format::v_d_16unorm_s_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_d_16unorm_s_8uint >();
-    case ktl::api::format::v_d_24unorm_s_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_d_24unorm_s_8uint >();
-    case ktl::api::format::v_d_32sfloat_s_8uint:
-        return ktl::meta::format_cast< ktl::api::format::v_d_32sfloat_s_8uint >();
-    case ktl::api::format::v_bc_1rgb_unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_1rgb_unorm_block >();
-    case ktl::api::format::v_bc_1rgb_srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_1rgb_srgb_block >();
-    case ktl::api::format::v_bc_1rgba_unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_1rgba_unorm_block >();
-    case ktl::api::format::v_bc_1rgba_srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_1rgba_srgb_block >();
-    case ktl::api::format::v_bc_2unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_2unorm_block >();
-    case ktl::api::format::v_bc_2srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_2srgb_block >();
-    case ktl::api::format::v_bc_3unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_3unorm_block >();
-    case ktl::api::format::v_bc_3srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_3srgb_block >();
-    case ktl::api::format::v_bc_4unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_4unorm_block >();
-    case ktl::api::format::v_bc_4snorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_4snorm_block >();
-    case ktl::api::format::v_bc_5unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_5unorm_block >();
-    case ktl::api::format::v_bc_5snorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_5snorm_block >();
-    case ktl::api::format::v_bc_6h_ufloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_6h_ufloat_block >();
-    case ktl::api::format::v_bc_6h_sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_6h_sfloat_block >();
-    case ktl::api::format::v_bc_7unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_7unorm_block >();
-    case ktl::api::format::v_bc_7srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_bc_7srgb_block >();
-    case ktl::api::format::v_etc_2r_8g_8b_8unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_etc_2r_8g_8b_8unorm_block >();
-    case ktl::api::format::v_etc_2r_8g_8b_8srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_etc_2r_8g_8b_8srgb_block >();
-    case ktl::api::format::v_etc_2r_8g_8b_8a_1unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_etc_2r_8g_8b_8a_1unorm_block >();
-    case ktl::api::format::v_etc_2r_8g_8b_8a_1srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_etc_2r_8g_8b_8a_1srgb_block >();
-    case ktl::api::format::v_etc_2r_8g_8b_8a_8unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_etc_2r_8g_8b_8a_8unorm_block >();
-    case ktl::api::format::v_etc_2r_8g_8b_8a_8srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_etc_2r_8g_8b_8a_8srgb_block >();
-    case ktl::api::format::v_eac_r_11unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_eac_r_11unorm_block >();
-    case ktl::api::format::v_eac_r_11snorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_eac_r_11snorm_block >();
-    case ktl::api::format::v_eac_r_11g_11unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_eac_r_11g_11unorm_block >();
-    case ktl::api::format::v_eac_r_11g_11snorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_eac_r_11g_11snorm_block >();
-    case ktl::api::format::v_astc_4x_4unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_4unorm_block >();
-    case ktl::api::format::v_astc_4x_4srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_4srgb_block >();
-    case ktl::api::format::v_astc_5x_4unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_4unorm_block >();
-    case ktl::api::format::v_astc_5x_4srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_4srgb_block >();
-    case ktl::api::format::v_astc_5x_5unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_5unorm_block >();
-    case ktl::api::format::v_astc_5x_5srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_5srgb_block >();
-    case ktl::api::format::v_astc_6x_5unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_5unorm_block >();
-    case ktl::api::format::v_astc_6x_5srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_5srgb_block >();
-    case ktl::api::format::v_astc_6x_6unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_6unorm_block >();
-    case ktl::api::format::v_astc_6x_6srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_6srgb_block >();
-    case ktl::api::format::v_astc_8x_5unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_8x_5unorm_block >();
-    case ktl::api::format::v_astc_8x_5srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_8x_5srgb_block >();
-    case ktl::api::format::v_astc_8x_6unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_8x_6unorm_block >();
-    case ktl::api::format::v_astc_8x_6srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_8x_6srgb_block >();
-    case ktl::api::format::v_astc_8x_8unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_8x_8unorm_block >();
-    case ktl::api::format::v_astc_8x_8srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_8x_8srgb_block >();
-    case ktl::api::format::v_astc_10x_5unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_5unorm_block >();
-    case ktl::api::format::v_astc_10x_5srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_5srgb_block >();
-    case ktl::api::format::v_astc_10x_6unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_6unorm_block >();
-    case ktl::api::format::v_astc_10x_6srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_6srgb_block >();
-    case ktl::api::format::v_astc_10x_8unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_8unorm_block >();
-    case ktl::api::format::v_astc_10x_8srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_8srgb_block >();
-    case ktl::api::format::v_astc_10x_10unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_10unorm_block >();
-    case ktl::api::format::v_astc_10x_10srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_10srgb_block >();
-    case ktl::api::format::v_astc_12x_10unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_12x_10unorm_block >();
-    case ktl::api::format::v_astc_12x_10srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_12x_10srgb_block >();
-    case ktl::api::format::v_astc_12x_12unorm_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_12x_12unorm_block >();
-    case ktl::api::format::v_astc_12x_12srgb_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_12x_12srgb_block >();
-    case ktl::api::format::v_g_8b_8g_8r_8422unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_8b_8g_8r_8422unorm >();
-    case ktl::api::format::v_b_8g_8r_8g_8422unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_b_8g_8r_8g_8422unorm >();
-    case ktl::api::format::v_g_8b_8r_83plane_420unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_8b_8r_83plane_420unorm >();
-    case ktl::api::format::v_g_8b_8r_82plane_420unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_8b_8r_82plane_420unorm >();
-    case ktl::api::format::v_g_8b_8r_83plane_422unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_8b_8r_83plane_422unorm >();
-    case ktl::api::format::v_g_8b_8r_82plane_422unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_8b_8r_82plane_422unorm >();
-    case ktl::api::format::v_g_8b_8r_83plane_444unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_8b_8r_83plane_444unorm >();
-    case ktl::api::format::v_r_10x_6unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_r_10x_6unorm_pack_16 >();
-    case ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_r_10x_6g_10x_6unorm_2pack_16 >();
-    case ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6unorm_4pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6unorm_4pack_16 >();
-    case ktl::api::format::v_g_10x_6b_10x_6g_10x_6r_10x_6422unorm_4pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_10x_6b_10x_6g_10x_6r_10x_6422unorm_4pack_16 >();
-    case ktl::api::format::v_b_10x_6g_10x_6r_10x_6g_10x_6422unorm_4pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_b_10x_6g_10x_6r_10x_6g_10x_6422unorm_4pack_16 >();
-    case ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_420unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_420unorm_3pack_16 >();
-    case ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_420unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_420unorm_3pack_16 >();
-    case ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_422unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_422unorm_3pack_16 >();
-    case ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_422unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_422unorm_3pack_16 >();
-    case ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_444unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_10x_6b_10x_6r_10x_63plane_444unorm_3pack_16 >();
-    case ktl::api::format::v_r_12x_4unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_r_12x_4unorm_pack_16 >();
-    case ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_r_12x_4g_12x_4unorm_2pack_16 >();
-    case ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4unorm_4pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4unorm_4pack_16 >();
-    case ktl::api::format::v_g_12x_4b_12x_4g_12x_4r_12x_4422unorm_4pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_12x_4b_12x_4g_12x_4r_12x_4422unorm_4pack_16 >();
-    case ktl::api::format::v_b_12x_4g_12x_4r_12x_4g_12x_4422unorm_4pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_b_12x_4g_12x_4r_12x_4g_12x_4422unorm_4pack_16 >();
-    case ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_420unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_420unorm_3pack_16 >();
-    case ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_420unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_420unorm_3pack_16 >();
-    case ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_422unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_422unorm_3pack_16 >();
-    case ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_422unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_422unorm_3pack_16 >();
-    case ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_444unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_12x_4b_12x_4r_12x_43plane_444unorm_3pack_16 >();
-    case ktl::api::format::v_g_16b_16g_16r_16422unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_16b_16g_16r_16422unorm >();
-    case ktl::api::format::v_b_16g_16r_16g_16422unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_b_16g_16r_16g_16422unorm >();
-    case ktl::api::format::v_g_16b_16r_163plane_420unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_16b_16r_163plane_420unorm >();
-    case ktl::api::format::v_g_16b_16r_162plane_420unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_16b_16r_162plane_420unorm >();
-    case ktl::api::format::v_g_16b_16r_163plane_422unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_16b_16r_163plane_422unorm >();
-    case ktl::api::format::v_g_16b_16r_162plane_422unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_16b_16r_162plane_422unorm >();
-    case ktl::api::format::v_g_16b_16r_163plane_444unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_16b_16r_163plane_444unorm >();
-    case ktl::api::format::v_pvrtc_12bpp_unorm_block_img:
-        return ktl::meta::format_cast< ktl::api::format::v_pvrtc_12bpp_unorm_block_img >();
-    case ktl::api::format::v_pvrtc_14bpp_unorm_block_img:
-        return ktl::meta::format_cast< ktl::api::format::v_pvrtc_14bpp_unorm_block_img >();
-    case ktl::api::format::v_pvrtc_22bpp_unorm_block_img:
-        return ktl::meta::format_cast< ktl::api::format::v_pvrtc_22bpp_unorm_block_img >();
-    case ktl::api::format::v_pvrtc_24bpp_unorm_block_img:
-        return ktl::meta::format_cast< ktl::api::format::v_pvrtc_24bpp_unorm_block_img >();
-    case ktl::api::format::v_pvrtc_12bpp_srgb_block_img:
-        return ktl::meta::format_cast< ktl::api::format::v_pvrtc_12bpp_srgb_block_img >();
-    case ktl::api::format::v_pvrtc_14bpp_srgb_block_img:
-        return ktl::meta::format_cast< ktl::api::format::v_pvrtc_14bpp_srgb_block_img >();
-    case ktl::api::format::v_pvrtc_22bpp_srgb_block_img:
-        return ktl::meta::format_cast< ktl::api::format::v_pvrtc_22bpp_srgb_block_img >();
-    case ktl::api::format::v_pvrtc_24bpp_srgb_block_img:
-        return ktl::meta::format_cast< ktl::api::format::v_pvrtc_24bpp_srgb_block_img >();
-    case ktl::api::format::v_astc_4x_4sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_4sfloat_block >();
-    case ktl::api::format::v_astc_5x_4sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_4sfloat_block >();
-    case ktl::api::format::v_astc_5x_5sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_5sfloat_block >();
-    case ktl::api::format::v_astc_6x_5sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_5sfloat_block >();
-    case ktl::api::format::v_astc_6x_6sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_6sfloat_block >();
-    case ktl::api::format::v_astc_8x_5sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_8x_5sfloat_block >();
-    case ktl::api::format::v_astc_8x_6sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_8x_6sfloat_block >();
-    case ktl::api::format::v_astc_8x_8sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_8x_8sfloat_block >();
-    case ktl::api::format::v_astc_10x_5sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_5sfloat_block >();
-    case ktl::api::format::v_astc_10x_6sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_6sfloat_block >();
-    case ktl::api::format::v_astc_10x_8sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_8sfloat_block >();
-    case ktl::api::format::v_astc_10x_10sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_10x_10sfloat_block >();
-    case ktl::api::format::v_astc_12x_10sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_12x_10sfloat_block >();
-    case ktl::api::format::v_astc_12x_12sfloat_block:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_12x_12sfloat_block >();
-    case ktl::api::format::v_astc_3x_3x_3unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_3x_3x_3unorm_block_ext >();
-    case ktl::api::format::v_astc_3x_3x_3srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_3x_3x_3srgb_block_ext >();
-    case ktl::api::format::v_astc_3x_3x_3sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_3x_3x_3sfloat_block_ext >();
-    case ktl::api::format::v_astc_4x_3x_3unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_3x_3unorm_block_ext >();
-    case ktl::api::format::v_astc_4x_3x_3srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_3x_3srgb_block_ext >();
-    case ktl::api::format::v_astc_4x_3x_3sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_3x_3sfloat_block_ext >();
-    case ktl::api::format::v_astc_4x_4x_3unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_4x_3unorm_block_ext >();
-    case ktl::api::format::v_astc_4x_4x_3srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_4x_3srgb_block_ext >();
-    case ktl::api::format::v_astc_4x_4x_3sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_4x_3sfloat_block_ext >();
-    case ktl::api::format::v_astc_4x_4x_4unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_4x_4unorm_block_ext >();
-    case ktl::api::format::v_astc_4x_4x_4srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_4x_4srgb_block_ext >();
-    case ktl::api::format::v_astc_4x_4x_4sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_4x_4x_4sfloat_block_ext >();
-    case ktl::api::format::v_astc_5x_4x_4unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_4x_4unorm_block_ext >();
-    case ktl::api::format::v_astc_5x_4x_4srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_4x_4srgb_block_ext >();
-    case ktl::api::format::v_astc_5x_4x_4sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_4x_4sfloat_block_ext >();
-    case ktl::api::format::v_astc_5x_5x_4unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_5x_4unorm_block_ext >();
-    case ktl::api::format::v_astc_5x_5x_4srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_5x_4srgb_block_ext >();
-    case ktl::api::format::v_astc_5x_5x_4sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_5x_4sfloat_block_ext >();
-    case ktl::api::format::v_astc_5x_5x_5unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_5x_5unorm_block_ext >();
-    case ktl::api::format::v_astc_5x_5x_5srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_5x_5srgb_block_ext >();
-    case ktl::api::format::v_astc_5x_5x_5sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_5x_5x_5sfloat_block_ext >();
-    case ktl::api::format::v_astc_6x_5x_5unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_5x_5unorm_block_ext >();
-    case ktl::api::format::v_astc_6x_5x_5srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_5x_5srgb_block_ext >();
-    case ktl::api::format::v_astc_6x_5x_5sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_5x_5sfloat_block_ext >();
-    case ktl::api::format::v_astc_6x_6x_5unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_6x_5unorm_block_ext >();
-    case ktl::api::format::v_astc_6x_6x_5srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_6x_5srgb_block_ext >();
-    case ktl::api::format::v_astc_6x_6x_5sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_6x_5sfloat_block_ext >();
-    case ktl::api::format::v_astc_6x_6x_6unorm_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_6x_6unorm_block_ext >();
-    case ktl::api::format::v_astc_6x_6x_6srgb_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_6x_6srgb_block_ext >();
-    case ktl::api::format::v_astc_6x_6x_6sfloat_block_ext:
-        return ktl::meta::format_cast< ktl::api::format::v_astc_6x_6x_6sfloat_block_ext >();
-    case ktl::api::format::v_g_8b_8r_82plane_444unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_8b_8r_82plane_444unorm >();
-    case ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_444unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_10x_6b_10x_6r_10x_62plane_444unorm_3pack_16 >();
-    case ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_444unorm_3pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_g_12x_4b_12x_4r_12x_42plane_444unorm_3pack_16 >();
-    case ktl::api::format::v_g_16b_16r_162plane_444unorm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_16b_16r_162plane_444unorm >();
-    case ktl::api::format::v_a_4r_4g_4b_4unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_a_4r_4g_4b_4unorm_pack_16 >();
-    case ktl::api::format::v_a_4b_4g_4r_4unorm_pack_16:
-        return ktl::meta::format_cast< ktl::api::format::v_a_4b_4g_4r_4unorm_pack_16 >();
-    case ktl::api::format::v_r_16g_16sfixed_5nv:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16g_16sfixed_5nv >();
-    case ktl::api::format::v_r_10x_6uint_pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_10x_6uint_pack_16arm >();
-    case ktl::api::format::v_r_10x_6g_10x_6uint_2pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_10x_6g_10x_6uint_2pack_16arm >();
-    case ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6uint_4pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_10x_6g_10x_6b_10x_6a_10x_6uint_4pack_16arm >();
-    case ktl::api::format::v_r_12x_4uint_pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_12x_4uint_pack_16arm >();
-    case ktl::api::format::v_r_12x_4g_12x_4uint_2pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_12x_4g_12x_4uint_2pack_16arm >();
-    case ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4uint_4pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_12x_4g_12x_4b_12x_4a_12x_4uint_4pack_16arm >();
-    case ktl::api::format::v_r_14x_2uint_pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_14x_2uint_pack_16arm >();
-    case ktl::api::format::v_r_14x_2g_14x_2uint_2pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_14x_2g_14x_2uint_2pack_16arm >();
-    case ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2uint_4pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2uint_4pack_16arm >();
-    case ktl::api::format::v_r_14x_2unorm_pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_14x_2unorm_pack_16arm >();
-    case ktl::api::format::v_r_14x_2g_14x_2unorm_2pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_14x_2g_14x_2unorm_2pack_16arm >();
-    case ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2unorm_4pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_14x_2g_14x_2b_14x_2a_14x_2unorm_4pack_16arm >();
-    case ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_420unorm_3pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_420unorm_3pack_16arm >();
-    case ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_422unorm_3pack_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_g_14x_2b_14x_2r_14x_22plane_422unorm_3pack_16arm >();
-    case ktl::api::format::v_r_8bool_arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8bool_arm >();
-    case ktl::api::format::v_r_16sfloat_fpencoding_bfloat_16arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_16sfloat_fpencoding_bfloat_16arm >();
-    case ktl::api::format::v_r_8sfloat_fpencoding_float_8e_4m_3arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8sfloat_fpencoding_float_8e_4m_3arm >();
-    case ktl::api::format::v_r_8sfloat_fpencoding_float_8e_5m_2arm:
-        return ktl::meta::format_cast< ktl::api::format::v_r_8sfloat_fpencoding_float_8e_5m_2arm >();
+    case ktl::api::format::v_r4g4_unorm_pack8:
+        return ktl::meta::format_cast< ktl::api::format::v_r4g4_unorm_pack8 >();
+    case ktl::api::format::v_r4g4b4a4_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_r4g4b4a4_unorm_pack16 >();
+    case ktl::api::format::v_b4g4r4a4_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_b4g4r4a4_unorm_pack16 >();
+    case ktl::api::format::v_r5g6b5_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_r5g6b5_unorm_pack16 >();
+    case ktl::api::format::v_b5g6r5_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_b5g6r5_unorm_pack16 >();
+    case ktl::api::format::v_r5g5b5a1_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_r5g5b5a1_unorm_pack16 >();
+    case ktl::api::format::v_b5g5r5a1_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_b5g5r5a1_unorm_pack16 >();
+    case ktl::api::format::v_a1r5g5b5_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_a1r5g5b5_unorm_pack16 >();
+    case ktl::api::format::v_a1b5g5r5_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_a1b5g5r5_unorm_pack16 >();
+    case ktl::api::format::v_a8_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_a8_unorm >();
+    case ktl::api::format::v_r8_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_unorm >();
+    case ktl::api::format::v_r8_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_snorm >();
+    case ktl::api::format::v_r8_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_uscaled >();
+    case ktl::api::format::v_r8_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_sscaled >();
+    case ktl::api::format::v_r8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_uint >();
+    case ktl::api::format::v_r8_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_sint >();
+    case ktl::api::format::v_r8_srgb:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_srgb >();
+    case ktl::api::format::v_r8g8_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8_unorm >();
+    case ktl::api::format::v_r8g8_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8_snorm >();
+    case ktl::api::format::v_r8g8_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8_uscaled >();
+    case ktl::api::format::v_r8g8_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8_sscaled >();
+    case ktl::api::format::v_r8g8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8_uint >();
+    case ktl::api::format::v_r8g8_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8_sint >();
+    case ktl::api::format::v_r8g8_srgb:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8_srgb >();
+    case ktl::api::format::v_r8g8b8_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8_unorm >();
+    case ktl::api::format::v_r8g8b8_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8_snorm >();
+    case ktl::api::format::v_r8g8b8_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8_uscaled >();
+    case ktl::api::format::v_r8g8b8_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8_sscaled >();
+    case ktl::api::format::v_r8g8b8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8_uint >();
+    case ktl::api::format::v_r8g8b8_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8_sint >();
+    case ktl::api::format::v_r8g8b8_srgb:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8_srgb >();
+    case ktl::api::format::v_b8g8r8_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8_unorm >();
+    case ktl::api::format::v_b8g8r8_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8_snorm >();
+    case ktl::api::format::v_b8g8r8_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8_uscaled >();
+    case ktl::api::format::v_b8g8r8_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8_sscaled >();
+    case ktl::api::format::v_b8g8r8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8_uint >();
+    case ktl::api::format::v_b8g8r8_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8_sint >();
+    case ktl::api::format::v_b8g8r8_srgb:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8_srgb >();
+    case ktl::api::format::v_r8g8b8a8_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8a8_unorm >();
+    case ktl::api::format::v_r8g8b8a8_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8a8_snorm >();
+    case ktl::api::format::v_r8g8b8a8_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8a8_uscaled >();
+    case ktl::api::format::v_r8g8b8a8_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8a8_sscaled >();
+    case ktl::api::format::v_r8g8b8a8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8a8_uint >();
+    case ktl::api::format::v_r8g8b8a8_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8a8_sint >();
+    case ktl::api::format::v_r8g8b8a8_srgb:
+        return ktl::meta::format_cast< ktl::api::format::v_r8g8b8a8_srgb >();
+    case ktl::api::format::v_b8g8r8a8_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8a8_unorm >();
+    case ktl::api::format::v_b8g8r8a8_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8a8_snorm >();
+    case ktl::api::format::v_b8g8r8a8_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8a8_uscaled >();
+    case ktl::api::format::v_b8g8r8a8_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8a8_sscaled >();
+    case ktl::api::format::v_b8g8r8a8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8a8_uint >();
+    case ktl::api::format::v_b8g8r8a8_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8a8_sint >();
+    case ktl::api::format::v_b8g8r8a8_srgb:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8a8_srgb >();
+    case ktl::api::format::v_a8b8g8r8_unorm_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a8b8g8r8_unorm_pack32 >();
+    case ktl::api::format::v_a8b8g8r8_snorm_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a8b8g8r8_snorm_pack32 >();
+    case ktl::api::format::v_a8b8g8r8_uscaled_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a8b8g8r8_uscaled_pack32 >();
+    case ktl::api::format::v_a8b8g8r8_sscaled_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a8b8g8r8_sscaled_pack32 >();
+    case ktl::api::format::v_a8b8g8r8_uint_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a8b8g8r8_uint_pack32 >();
+    case ktl::api::format::v_a8b8g8r8_sint_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a8b8g8r8_sint_pack32 >();
+    case ktl::api::format::v_a8b8g8r8_srgb_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a8b8g8r8_srgb_pack32 >();
+    case ktl::api::format::v_a2r10g10b10_unorm_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2r10g10b10_unorm_pack32 >();
+    case ktl::api::format::v_a2r10g10b10_snorm_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2r10g10b10_snorm_pack32 >();
+    case ktl::api::format::v_a2r10g10b10_uscaled_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2r10g10b10_uscaled_pack32 >();
+    case ktl::api::format::v_a2r10g10b10_sscaled_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2r10g10b10_sscaled_pack32 >();
+    case ktl::api::format::v_a2r10g10b10_uint_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2r10g10b10_uint_pack32 >();
+    case ktl::api::format::v_a2r10g10b10_sint_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2r10g10b10_sint_pack32 >();
+    case ktl::api::format::v_a2b10g10r10_unorm_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2b10g10r10_unorm_pack32 >();
+    case ktl::api::format::v_a2b10g10r10_snorm_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2b10g10r10_snorm_pack32 >();
+    case ktl::api::format::v_a2b10g10r10_uscaled_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2b10g10r10_uscaled_pack32 >();
+    case ktl::api::format::v_a2b10g10r10_sscaled_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2b10g10r10_sscaled_pack32 >();
+    case ktl::api::format::v_a2b10g10r10_uint_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2b10g10r10_uint_pack32 >();
+    case ktl::api::format::v_a2b10g10r10_sint_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_a2b10g10r10_sint_pack32 >();
+    case ktl::api::format::v_r16_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r16_unorm >();
+    case ktl::api::format::v_r16_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r16_snorm >();
+    case ktl::api::format::v_r16_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r16_uscaled >();
+    case ktl::api::format::v_r16_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r16_sscaled >();
+    case ktl::api::format::v_r16_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r16_uint >();
+    case ktl::api::format::v_r16_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r16_sint >();
+    case ktl::api::format::v_r16_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r16_sfloat >();
+    case ktl::api::format::v_r16g16_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16_unorm >();
+    case ktl::api::format::v_r16g16_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16_snorm >();
+    case ktl::api::format::v_r16g16_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16_uscaled >();
+    case ktl::api::format::v_r16g16_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16_sscaled >();
+    case ktl::api::format::v_r16g16_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16_uint >();
+    case ktl::api::format::v_r16g16_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16_sint >();
+    case ktl::api::format::v_r16g16_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16_sfloat >();
+    case ktl::api::format::v_r16g16b16_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16_unorm >();
+    case ktl::api::format::v_r16g16b16_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16_snorm >();
+    case ktl::api::format::v_r16g16b16_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16_uscaled >();
+    case ktl::api::format::v_r16g16b16_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16_sscaled >();
+    case ktl::api::format::v_r16g16b16_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16_uint >();
+    case ktl::api::format::v_r16g16b16_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16_sint >();
+    case ktl::api::format::v_r16g16b16_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16_sfloat >();
+    case ktl::api::format::v_r16g16b16a16_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16a16_unorm >();
+    case ktl::api::format::v_r16g16b16a16_snorm:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16a16_snorm >();
+    case ktl::api::format::v_r16g16b16a16_uscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16a16_uscaled >();
+    case ktl::api::format::v_r16g16b16a16_sscaled:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16a16_sscaled >();
+    case ktl::api::format::v_r16g16b16a16_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16a16_uint >();
+    case ktl::api::format::v_r16g16b16a16_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16a16_sint >();
+    case ktl::api::format::v_r16g16b16a16_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16b16a16_sfloat >();
+    case ktl::api::format::v_r32_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r32_uint >();
+    case ktl::api::format::v_r32_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r32_sint >();
+    case ktl::api::format::v_r32_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r32_sfloat >();
+    case ktl::api::format::v_r32g32_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r32g32_uint >();
+    case ktl::api::format::v_r32g32_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r32g32_sint >();
+    case ktl::api::format::v_r32g32_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r32g32_sfloat >();
+    case ktl::api::format::v_r32g32b32_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r32g32b32_uint >();
+    case ktl::api::format::v_r32g32b32_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r32g32b32_sint >();
+    case ktl::api::format::v_r32g32b32_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r32g32b32_sfloat >();
+    case ktl::api::format::v_r32g32b32a32_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r32g32b32a32_uint >();
+    case ktl::api::format::v_r32g32b32a32_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r32g32b32a32_sint >();
+    case ktl::api::format::v_r32g32b32a32_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r32g32b32a32_sfloat >();
+    case ktl::api::format::v_r64_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r64_uint >();
+    case ktl::api::format::v_r64_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r64_sint >();
+    case ktl::api::format::v_r64_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r64_sfloat >();
+    case ktl::api::format::v_r64g64_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r64g64_uint >();
+    case ktl::api::format::v_r64g64_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r64g64_sint >();
+    case ktl::api::format::v_r64g64_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r64g64_sfloat >();
+    case ktl::api::format::v_r64g64b64_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r64g64b64_uint >();
+    case ktl::api::format::v_r64g64b64_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r64g64b64_sint >();
+    case ktl::api::format::v_r64g64b64_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r64g64b64_sfloat >();
+    case ktl::api::format::v_r64g64b64a64_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_r64g64b64a64_uint >();
+    case ktl::api::format::v_r64g64b64a64_sint:
+        return ktl::meta::format_cast< ktl::api::format::v_r64g64b64a64_sint >();
+    case ktl::api::format::v_r64g64b64a64_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_r64g64b64a64_sfloat >();
+    case ktl::api::format::v_b10g11r11_ufloat_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_b10g11r11_ufloat_pack32 >();
+    case ktl::api::format::v_e5b9g9r9_ufloat_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_e5b9g9r9_ufloat_pack32 >();
+    case ktl::api::format::v_d16_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_d16_unorm >();
+    case ktl::api::format::v_x8_d24_unorm_pack32:
+        return ktl::meta::format_cast< ktl::api::format::v_x8_d24_unorm_pack32 >();
+    case ktl::api::format::v_d32_sfloat:
+        return ktl::meta::format_cast< ktl::api::format::v_d32_sfloat >();
+    case ktl::api::format::v_s8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_s8_uint >();
+    case ktl::api::format::v_d16_unorm_s8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_d16_unorm_s8_uint >();
+    case ktl::api::format::v_d24_unorm_s8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_d24_unorm_s8_uint >();
+    case ktl::api::format::v_d32_sfloat_s8_uint:
+        return ktl::meta::format_cast< ktl::api::format::v_d32_sfloat_s8_uint >();
+    case ktl::api::format::v_bc1_rgb_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc1_rgb_unorm_block >();
+    case ktl::api::format::v_bc1_rgb_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc1_rgb_srgb_block >();
+    case ktl::api::format::v_bc1_rgba_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc1_rgba_unorm_block >();
+    case ktl::api::format::v_bc1_rgba_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc1_rgba_srgb_block >();
+    case ktl::api::format::v_bc2_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc2_unorm_block >();
+    case ktl::api::format::v_bc2_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc2_srgb_block >();
+    case ktl::api::format::v_bc3_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc3_unorm_block >();
+    case ktl::api::format::v_bc3_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc3_srgb_block >();
+    case ktl::api::format::v_bc4_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc4_unorm_block >();
+    case ktl::api::format::v_bc4_snorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc4_snorm_block >();
+    case ktl::api::format::v_bc5_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc5_unorm_block >();
+    case ktl::api::format::v_bc5_snorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc5_snorm_block >();
+    case ktl::api::format::v_bc6h_ufloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc6h_ufloat_block >();
+    case ktl::api::format::v_bc6h_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc6h_sfloat_block >();
+    case ktl::api::format::v_bc7_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc7_unorm_block >();
+    case ktl::api::format::v_bc7_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_bc7_srgb_block >();
+    case ktl::api::format::v_etc2_r8g8b8_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_etc2_r8g8b8_unorm_block >();
+    case ktl::api::format::v_etc2_r8g8b8_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_etc2_r8g8b8_srgb_block >();
+    case ktl::api::format::v_etc2_r8g8b8a1_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_etc2_r8g8b8a1_unorm_block >();
+    case ktl::api::format::v_etc2_r8g8b8a1_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_etc2_r8g8b8a1_srgb_block >();
+    case ktl::api::format::v_etc2_r8g8b8a8_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_etc2_r8g8b8a8_unorm_block >();
+    case ktl::api::format::v_etc2_r8g8b8a8_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_etc2_r8g8b8a8_srgb_block >();
+    case ktl::api::format::v_eac_r11_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_eac_r11_unorm_block >();
+    case ktl::api::format::v_eac_r11_snorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_eac_r11_snorm_block >();
+    case ktl::api::format::v_eac_r11g11_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_eac_r11g11_unorm_block >();
+    case ktl::api::format::v_eac_r11g11_snorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_eac_r11g11_snorm_block >();
+    case ktl::api::format::v_astc_4x4_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x4_unorm_block >();
+    case ktl::api::format::v_astc_4x4_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x4_srgb_block >();
+    case ktl::api::format::v_astc_5x4_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x4_unorm_block >();
+    case ktl::api::format::v_astc_5x4_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x4_srgb_block >();
+    case ktl::api::format::v_astc_5x5_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x5_unorm_block >();
+    case ktl::api::format::v_astc_5x5_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x5_srgb_block >();
+    case ktl::api::format::v_astc_6x5_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x5_unorm_block >();
+    case ktl::api::format::v_astc_6x5_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x5_srgb_block >();
+    case ktl::api::format::v_astc_6x6_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x6_unorm_block >();
+    case ktl::api::format::v_astc_6x6_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x6_srgb_block >();
+    case ktl::api::format::v_astc_8x5_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_8x5_unorm_block >();
+    case ktl::api::format::v_astc_8x5_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_8x5_srgb_block >();
+    case ktl::api::format::v_astc_8x6_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_8x6_unorm_block >();
+    case ktl::api::format::v_astc_8x6_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_8x6_srgb_block >();
+    case ktl::api::format::v_astc_8x8_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_8x8_unorm_block >();
+    case ktl::api::format::v_astc_8x8_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_8x8_srgb_block >();
+    case ktl::api::format::v_astc_10x5_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x5_unorm_block >();
+    case ktl::api::format::v_astc_10x5_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x5_srgb_block >();
+    case ktl::api::format::v_astc_10x6_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x6_unorm_block >();
+    case ktl::api::format::v_astc_10x6_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x6_srgb_block >();
+    case ktl::api::format::v_astc_10x8_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x8_unorm_block >();
+    case ktl::api::format::v_astc_10x8_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x8_srgb_block >();
+    case ktl::api::format::v_astc_10x10_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x10_unorm_block >();
+    case ktl::api::format::v_astc_10x10_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x10_srgb_block >();
+    case ktl::api::format::v_astc_12x10_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_12x10_unorm_block >();
+    case ktl::api::format::v_astc_12x10_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_12x10_srgb_block >();
+    case ktl::api::format::v_astc_12x12_unorm_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_12x12_unorm_block >();
+    case ktl::api::format::v_astc_12x12_srgb_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_12x12_srgb_block >();
+    case ktl::api::format::v_g8b8g8r8_422_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g8b8g8r8_422_unorm >();
+    case ktl::api::format::v_b8g8r8g8_422_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_b8g8r8g8_422_unorm >();
+    case ktl::api::format::v_g8_b8_r8_3plane_420_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g8_b8_r8_3plane_420_unorm >();
+    case ktl::api::format::v_g8_b8r8_2plane_420_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g8_b8r8_2plane_420_unorm >();
+    case ktl::api::format::v_g8_b8_r8_3plane_422_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g8_b8_r8_3plane_422_unorm >();
+    case ktl::api::format::v_g8_b8r8_2plane_422_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g8_b8r8_2plane_422_unorm >();
+    case ktl::api::format::v_g8_b8_r8_3plane_444_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g8_b8_r8_3plane_444_unorm >();
+    case ktl::api::format::v_r10x6_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_r10x6_unorm_pack16 >();
+    case ktl::api::format::v_r10x6g10x6_unorm_2pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_r10x6g10x6_unorm_2pack16 >();
+    case ktl::api::format::v_r10x6g10x6b10x6a10x6_unorm_4pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_r10x6g10x6b10x6a10x6_unorm_4pack16 >();
+    case ktl::api::format::v_g10x6b10x6g10x6r10x6_422_unorm_4pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g10x6b10x6g10x6r10x6_422_unorm_4pack16 >();
+    case ktl::api::format::v_b10x6g10x6r10x6g10x6_422_unorm_4pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_b10x6g10x6r10x6g10x6_422_unorm_4pack16 >();
+    case ktl::api::format::v_g10x6_b10x6_r10x6_3plane_420_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g10x6_b10x6_r10x6_3plane_420_unorm_3pack16 >();
+    case ktl::api::format::v_g10x6_b10x6r10x6_2plane_420_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g10x6_b10x6r10x6_2plane_420_unorm_3pack16 >();
+    case ktl::api::format::v_g10x6_b10x6_r10x6_3plane_422_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g10x6_b10x6_r10x6_3plane_422_unorm_3pack16 >();
+    case ktl::api::format::v_g10x6_b10x6r10x6_2plane_422_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g10x6_b10x6r10x6_2plane_422_unorm_3pack16 >();
+    case ktl::api::format::v_g10x6_b10x6_r10x6_3plane_444_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g10x6_b10x6_r10x6_3plane_444_unorm_3pack16 >();
+    case ktl::api::format::v_r12x4_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_r12x4_unorm_pack16 >();
+    case ktl::api::format::v_r12x4g12x4_unorm_2pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_r12x4g12x4_unorm_2pack16 >();
+    case ktl::api::format::v_r12x4g12x4b12x4a12x4_unorm_4pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_r12x4g12x4b12x4a12x4_unorm_4pack16 >();
+    case ktl::api::format::v_g12x4b12x4g12x4r12x4_422_unorm_4pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g12x4b12x4g12x4r12x4_422_unorm_4pack16 >();
+    case ktl::api::format::v_b12x4g12x4r12x4g12x4_422_unorm_4pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_b12x4g12x4r12x4g12x4_422_unorm_4pack16 >();
+    case ktl::api::format::v_g12x4_b12x4_r12x4_3plane_420_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g12x4_b12x4_r12x4_3plane_420_unorm_3pack16 >();
+    case ktl::api::format::v_g12x4_b12x4r12x4_2plane_420_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g12x4_b12x4r12x4_2plane_420_unorm_3pack16 >();
+    case ktl::api::format::v_g12x4_b12x4_r12x4_3plane_422_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g12x4_b12x4_r12x4_3plane_422_unorm_3pack16 >();
+    case ktl::api::format::v_g12x4_b12x4r12x4_2plane_422_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g12x4_b12x4r12x4_2plane_422_unorm_3pack16 >();
+    case ktl::api::format::v_g12x4_b12x4_r12x4_3plane_444_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g12x4_b12x4_r12x4_3plane_444_unorm_3pack16 >();
+    case ktl::api::format::v_g16b16g16r16_422_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g16b16g16r16_422_unorm >();
+    case ktl::api::format::v_b16g16r16g16_422_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_b16g16r16g16_422_unorm >();
+    case ktl::api::format::v_g16_b16_r16_3plane_420_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g16_b16_r16_3plane_420_unorm >();
+    case ktl::api::format::v_g16_b16r16_2plane_420_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g16_b16r16_2plane_420_unorm >();
+    case ktl::api::format::v_g16_b16_r16_3plane_422_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g16_b16_r16_3plane_422_unorm >();
+    case ktl::api::format::v_g16_b16r16_2plane_422_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g16_b16r16_2plane_422_unorm >();
+    case ktl::api::format::v_g16_b16_r16_3plane_444_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g16_b16_r16_3plane_444_unorm >();
+    case ktl::api::format::v_pvrtc1_2bpp_unorm_block_img:
+        return ktl::meta::format_cast< ktl::api::format::v_pvrtc1_2bpp_unorm_block_img >();
+    case ktl::api::format::v_pvrtc1_4bpp_unorm_block_img:
+        return ktl::meta::format_cast< ktl::api::format::v_pvrtc1_4bpp_unorm_block_img >();
+    case ktl::api::format::v_pvrtc2_2bpp_unorm_block_img:
+        return ktl::meta::format_cast< ktl::api::format::v_pvrtc2_2bpp_unorm_block_img >();
+    case ktl::api::format::v_pvrtc2_4bpp_unorm_block_img:
+        return ktl::meta::format_cast< ktl::api::format::v_pvrtc2_4bpp_unorm_block_img >();
+    case ktl::api::format::v_pvrtc1_2bpp_srgb_block_img:
+        return ktl::meta::format_cast< ktl::api::format::v_pvrtc1_2bpp_srgb_block_img >();
+    case ktl::api::format::v_pvrtc1_4bpp_srgb_block_img:
+        return ktl::meta::format_cast< ktl::api::format::v_pvrtc1_4bpp_srgb_block_img >();
+    case ktl::api::format::v_pvrtc2_2bpp_srgb_block_img:
+        return ktl::meta::format_cast< ktl::api::format::v_pvrtc2_2bpp_srgb_block_img >();
+    case ktl::api::format::v_pvrtc2_4bpp_srgb_block_img:
+        return ktl::meta::format_cast< ktl::api::format::v_pvrtc2_4bpp_srgb_block_img >();
+    case ktl::api::format::v_astc_4x4_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x4_sfloat_block >();
+    case ktl::api::format::v_astc_5x4_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x4_sfloat_block >();
+    case ktl::api::format::v_astc_5x5_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x5_sfloat_block >();
+    case ktl::api::format::v_astc_6x5_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x5_sfloat_block >();
+    case ktl::api::format::v_astc_6x6_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x6_sfloat_block >();
+    case ktl::api::format::v_astc_8x5_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_8x5_sfloat_block >();
+    case ktl::api::format::v_astc_8x6_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_8x6_sfloat_block >();
+    case ktl::api::format::v_astc_8x8_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_8x8_sfloat_block >();
+    case ktl::api::format::v_astc_10x5_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x5_sfloat_block >();
+    case ktl::api::format::v_astc_10x6_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x6_sfloat_block >();
+    case ktl::api::format::v_astc_10x8_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x8_sfloat_block >();
+    case ktl::api::format::v_astc_10x10_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_10x10_sfloat_block >();
+    case ktl::api::format::v_astc_12x10_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_12x10_sfloat_block >();
+    case ktl::api::format::v_astc_12x12_sfloat_block:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_12x12_sfloat_block >();
+    case ktl::api::format::v_astc_3x3x3_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_3x3x3_unorm_block_ext >();
+    case ktl::api::format::v_astc_3x3x3_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_3x3x3_srgb_block_ext >();
+    case ktl::api::format::v_astc_3x3x3_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_3x3x3_sfloat_block_ext >();
+    case ktl::api::format::v_astc_4x3x3_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x3x3_unorm_block_ext >();
+    case ktl::api::format::v_astc_4x3x3_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x3x3_srgb_block_ext >();
+    case ktl::api::format::v_astc_4x3x3_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x3x3_sfloat_block_ext >();
+    case ktl::api::format::v_astc_4x4x3_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x4x3_unorm_block_ext >();
+    case ktl::api::format::v_astc_4x4x3_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x4x3_srgb_block_ext >();
+    case ktl::api::format::v_astc_4x4x3_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x4x3_sfloat_block_ext >();
+    case ktl::api::format::v_astc_4x4x4_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x4x4_unorm_block_ext >();
+    case ktl::api::format::v_astc_4x4x4_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x4x4_srgb_block_ext >();
+    case ktl::api::format::v_astc_4x4x4_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_4x4x4_sfloat_block_ext >();
+    case ktl::api::format::v_astc_5x4x4_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x4x4_unorm_block_ext >();
+    case ktl::api::format::v_astc_5x4x4_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x4x4_srgb_block_ext >();
+    case ktl::api::format::v_astc_5x4x4_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x4x4_sfloat_block_ext >();
+    case ktl::api::format::v_astc_5x5x4_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x5x4_unorm_block_ext >();
+    case ktl::api::format::v_astc_5x5x4_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x5x4_srgb_block_ext >();
+    case ktl::api::format::v_astc_5x5x4_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x5x4_sfloat_block_ext >();
+    case ktl::api::format::v_astc_5x5x5_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x5x5_unorm_block_ext >();
+    case ktl::api::format::v_astc_5x5x5_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x5x5_srgb_block_ext >();
+    case ktl::api::format::v_astc_5x5x5_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_5x5x5_sfloat_block_ext >();
+    case ktl::api::format::v_astc_6x5x5_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x5x5_unorm_block_ext >();
+    case ktl::api::format::v_astc_6x5x5_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x5x5_srgb_block_ext >();
+    case ktl::api::format::v_astc_6x5x5_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x5x5_sfloat_block_ext >();
+    case ktl::api::format::v_astc_6x6x5_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x6x5_unorm_block_ext >();
+    case ktl::api::format::v_astc_6x6x5_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x6x5_srgb_block_ext >();
+    case ktl::api::format::v_astc_6x6x5_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x6x5_sfloat_block_ext >();
+    case ktl::api::format::v_astc_6x6x6_unorm_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x6x6_unorm_block_ext >();
+    case ktl::api::format::v_astc_6x6x6_srgb_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x6x6_srgb_block_ext >();
+    case ktl::api::format::v_astc_6x6x6_sfloat_block_ext:
+        return ktl::meta::format_cast< ktl::api::format::v_astc_6x6x6_sfloat_block_ext >();
+    case ktl::api::format::v_g8_b8r8_2plane_444_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g8_b8r8_2plane_444_unorm >();
+    case ktl::api::format::v_g10x6_b10x6r10x6_2plane_444_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g10x6_b10x6r10x6_2plane_444_unorm_3pack16 >();
+    case ktl::api::format::v_g12x4_b12x4r12x4_2plane_444_unorm_3pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_g12x4_b12x4r12x4_2plane_444_unorm_3pack16 >();
+    case ktl::api::format::v_g16_b16r16_2plane_444_unorm:
+        return ktl::meta::format_cast< ktl::api::format::v_g16_b16r16_2plane_444_unorm >();
+    case ktl::api::format::v_a4r4g4b4_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_a4r4g4b4_unorm_pack16 >();
+    case ktl::api::format::v_a4b4g4r4_unorm_pack16:
+        return ktl::meta::format_cast< ktl::api::format::v_a4b4g4r4_unorm_pack16 >();
+    case ktl::api::format::v_r16g16_sfixed5_nv:
+        return ktl::meta::format_cast< ktl::api::format::v_r16g16_sfixed5_nv >();
+    case ktl::api::format::v_r10x6_uint_pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r10x6_uint_pack16_arm >();
+    case ktl::api::format::v_r10x6g10x6_uint_2pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r10x6g10x6_uint_2pack16_arm >();
+    case ktl::api::format::v_r10x6g10x6b10x6a10x6_uint_4pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r10x6g10x6b10x6a10x6_uint_4pack16_arm >();
+    case ktl::api::format::v_r12x4_uint_pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r12x4_uint_pack16_arm >();
+    case ktl::api::format::v_r12x4g12x4_uint_2pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r12x4g12x4_uint_2pack16_arm >();
+    case ktl::api::format::v_r12x4g12x4b12x4a12x4_uint_4pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r12x4g12x4b12x4a12x4_uint_4pack16_arm >();
+    case ktl::api::format::v_r14x2_uint_pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r14x2_uint_pack16_arm >();
+    case ktl::api::format::v_r14x2g14x2_uint_2pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r14x2g14x2_uint_2pack16_arm >();
+    case ktl::api::format::v_r14x2g14x2b14x2a14x2_uint_4pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r14x2g14x2b14x2a14x2_uint_4pack16_arm >();
+    case ktl::api::format::v_r14x2_unorm_pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r14x2_unorm_pack16_arm >();
+    case ktl::api::format::v_r14x2g14x2_unorm_2pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r14x2g14x2_unorm_2pack16_arm >();
+    case ktl::api::format::v_r14x2g14x2b14x2a14x2_unorm_4pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r14x2g14x2b14x2a14x2_unorm_4pack16_arm >();
+    case ktl::api::format::v_g14x2_b14x2r14x2_2plane_420_unorm_3pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_g14x2_b14x2r14x2_2plane_420_unorm_3pack16_arm >();
+    case ktl::api::format::v_g14x2_b14x2r14x2_2plane_422_unorm_3pack16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_g14x2_b14x2r14x2_2plane_422_unorm_3pack16_arm >();
+    case ktl::api::format::v_r8_bool_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_bool_arm >();
+    case ktl::api::format::v_r16_sfloat_fpencoding_bfloat16_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r16_sfloat_fpencoding_bfloat16_arm >();
+    case ktl::api::format::v_r8_sfloat_fpencoding_float8e4m3_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_sfloat_fpencoding_float8e4m3_arm >();
+    case ktl::api::format::v_r8_sfloat_fpencoding_float8e5m2_arm:
+        return ktl::meta::format_cast< ktl::api::format::v_r8_sfloat_fpencoding_float8e5m2_arm >();
     default:
         return ktl::meta::format_cast< ktl::api::format::v_undefined >();
     }
