@@ -131,8 +131,6 @@ struct screen_buffer;
 #define KTL_API_COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_ALIGNMENT_AMDX 128
 #define KTL_API_COMPRESSED_TRIANGLE_FORMAT_DGF1_BYTE_STRIDE_AMDX 128
 #define KTL_API_DATA_GRAPH_MODEL_TOOLCHAIN_VERSION_LENGTH_QCOM 3
-#define KTL_API_MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR 7
-#define KTL_API_MAX_VIDEO_VP9_REFERENCES_PER_FRAME_KHR 3
 #define KTL_API_MAX_SHADER_MODULE_IDENTIFIER_SIZE_EXT 32
 #define KTL_API_MAX_DATA_GRAPH_TOSA_NAME_SIZE_ARM 128
 #define KTL_API_MAX_PIPELINE_BINARY_KEY_SIZE_KHR 32
@@ -276,7 +274,6 @@ enum class pipeline_create_flag_bits_2 : ktl::u64;
 enum class pipeline_shader_stage_create_flag_bits : ktl::u32;
 enum class color_component_flag_bits : ktl::u32;
 enum class fence_create_flag_bits : ktl::u32;
-enum class semaphore_create_flag_bits : ktl::u32;
 enum class format_feature_flag_bits : ktl::u32;
 enum class query_control_flag_bits : ktl::u32;
 enum class query_result_flag_bits : ktl::u32;
@@ -402,7 +399,6 @@ enum class performance_value_type_intel : ktl::u32;
 enum class shader_float_controls_independence : ktl::u32;
 enum class pipeline_executable_statistic_format_khr : ktl::u32;
 enum class line_rasterization_mode : ktl::u32;
-enum class shader_module_create_flag_bits : ktl::u32;
 enum class pipeline_compiler_control_flag_bits_amd : ktl::u32;
 enum class tool_purpose_flag_bits : ktl::u32;
 enum class fragment_shading_rate_combiner_op_khr : ktl::u32;
@@ -434,7 +430,6 @@ enum class cooperative_matrix_flag_bits_ext : ktl::u32;
 enum class host_image_copy_flag_bits : ktl::u32;
 enum class partitioned_acceleration_structure_op_type_nv : ktl::u32;
 enum class partitioned_acceleration_structure_instance_flag_bits_nv : ktl::u32;
-enum class image_format_constraints_flag_bits_fuchsia : ktl::u32;
 enum class image_constraints_info_flag_bits_fuchsia : ktl::u32;
 enum class format_feature_flag_bits_2 : ktl::u64;
 enum class format_feature_flag_bits_4_khr : ktl::u64;
@@ -480,7 +475,6 @@ enum class latency_marker_nv : ktl::u32;
 enum class out_of_band_queue_type_nv : ktl::u32;
 enum class memory_unmap_flag_bits : ktl::u32;
 enum class compressed_triangle_format_amdx : ktl::u32;
-enum class wayland_surface_create_flag_bits_khr : ktl::u32;
 enum class depth_clamp_mode_ext : ktl::u32;
 enum class access_flag_bits_3_khr : ktl::u64;
 enum class tile_shading_render_pass_flag_bits_qcom : ktl::u32;

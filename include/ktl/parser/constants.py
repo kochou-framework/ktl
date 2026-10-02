@@ -1,7 +1,7 @@
 from model import Constant
 from naming import FIXED_TYPES, make_constant
 from typing import TextIO
-from api_filter import is_vulkan_api, vulkan_features, vulkan_extensions, vulkan_requires
+from api_filter import is_vulkan_api, required_names, vulkan_features, vulkan_extensions, vulkan_requires
 
 
 def write_declarations(_file: TextIO, _model) -> None:
@@ -13,7 +13,7 @@ def write_declarations(_file: TextIO, _model) -> None:
 def load(_root, _model) -> None:
     for src in _root.findall("enums[@type='constants']"):
         for constant in src.findall("enum"):
-            if not is_vulkan_api(constant):
+            if not is_vulkan_api(constant) or constant.get("name") not in required_names(_root):
                 continue
             name = constant.get("name")
             if not make_constant(name) or constant.get("type") not in FIXED_TYPES:

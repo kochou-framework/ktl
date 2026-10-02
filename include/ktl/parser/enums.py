@@ -1,6 +1,6 @@
 from model import Enum, EnumValue
 from naming import make_cpp_name, make_field_name
-from api_filter import is_vulkan_api, is_vulkan_type, excluded_names, vulkan_features, vulkan_extensions, vulkan_requires
+from api_filter import is_vulkan_api, is_vulkan_type, required_names, vulkan_features, vulkan_extensions, vulkan_requires
 from typing import TextIO
 from dataclasses import replace
 
@@ -97,7 +97,7 @@ def write_definitions(_file: TextIO, _model) -> None:
 
 def load(_root, _model) -> None:
     for src in _root.findall("enums"):
-        if src.get("type") in ("enum", "bitmask") and src.get("name") not in excluded_names(_root):
+        if src.get("type") in ("enum", "bitmask") and src.get("name") in required_names(_root):
             enum = Enum(make_cpp_name(src.get("name")), [], make_underlying_type(src.get("bitwidth"), src.get("name")), None)
             enum.values = [make_value(value, enum) for value in src.findall("enum") if is_vulkan_api(value)]
             _model.enums[src.get("name")] = enum

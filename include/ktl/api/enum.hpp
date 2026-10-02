@@ -2853,9 +2853,6 @@ enum class fence_create_flag_bits : ktl::u32
 {
     v_signaled_bit = (1U << 0)
 };
-enum class semaphore_create_flag_bits : ktl::u32
-{
-};
 enum class format_feature_flag_bits : ktl::u32
 {
     v_sampled_image_bit                                                           = (1U << 0),
@@ -4050,9 +4047,6 @@ enum class line_rasterization_mode : ktl::u32
     v_bresenham_khr          = v_bresenham,
     v_rectangular_smooth_khr = v_rectangular_smooth
 };
-enum class shader_module_create_flag_bits : ktl::u32
-{
-};
 enum class pipeline_compiler_control_flag_bits_amd : ktl::u32
 {
 };
@@ -4406,9 +4400,6 @@ enum class partitioned_acceleration_structure_instance_flag_bits_nv : ktl::u32
     v_force_opaque_bit_nv                 = (1U << 2),
     v_force_no_opaque_bit_nv              = (1U << 3),
     v_enable_explicit_bounding_box_nv     = (1U << 4)
-};
-enum class image_format_constraints_flag_bits_fuchsia : ktl::u32
-{
 };
 enum class image_constraints_info_flag_bits_fuchsia : ktl::u32
 {
@@ -4890,9 +4881,6 @@ enum class memory_unmap_flag_bits : ktl::u32
 enum class compressed_triangle_format_amdx : ktl::u32
 {
     v_dgf1_amdx = 0
-};
-enum class wayland_surface_create_flag_bits_khr : ktl::u32
-{
 };
 enum class depth_clamp_mode_ext : ktl::u32
 {

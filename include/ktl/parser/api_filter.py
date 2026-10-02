@@ -41,21 +41,38 @@ def vulkan_requires(_block) -> list:
     return [require for require in _block.findall("require") if is_vulkan_api(require)]
 
 
+def definition_name(_definition) -> str:
+    # name is an attribute, a <name> child or, for funcpointer and command, <proto><name>
+    return _definition.get("name") or _definition.findtext("name") or _definition.findtext("proto/name")
+
+
 @functools.cache
-def excluded_names(_root) -> frozenset:
-    # types and commands required only by vulkansc features or by vulkansc / disabled extensions
-    vulkan = set()
-    other = set()
-    blocks = [(feature, is_vulkan_api(feature)) for feature in _root.findall("feature")]
-    blocks += [(extension, is_vulkan_extension(extension)) for extension in _root.find("extensions").findall("extension")]
-    for block, is_vulkan in blocks:
-        for require in block.findall("require"):
-            names = vulkan if is_vulkan and is_vulkan_api(require) else other
-            names.update(item.get("name") for item in require if item.tag in ("type", "command"))
-    return frozenset(other - vulkan)
+def required_names(_root) -> frozenset:
+    # types, commands and API constants that vulkan features and extensions require, with everything their definitions
+    # refer to, as Khronos generates the headers: what nothing requires is not generated (empty VkSemaphoreCreateFlagBits),
+    # the ones of vulkansc, disabled and video extensions neither (VK_MAX_VIDEO_AV1_REFERENCES_PER_FRAME_KHR)
+    definitions = {definition_name(definition): definition
+                   for definition in _root.find("types").findall("type") + _root.find("commands").findall("command")
+                   if is_vulkan_api(definition)}
+    names = set()
+    for block in vulkan_features(_root) + vulkan_extensions(_root):
+        for require in vulkan_requires(block):
+            names.update(item.get(attribute) for item in require if item.tag in ("type", "command", "enum")
+                         for attribute in ("name", "extends") if item.get(attribute))
+
+    # alias target, FlagBits of a bitmask, parent handle, types of members and parameters, constants of array sizes
+    unresolved = list(names)
+    while unresolved:
+        definition = definitions.get(unresolved.pop())
+        if definition is None:
+            continue
+        references = {definition.get(attribute) for attribute in ("alias", "requires", "bitvalues", "parent")}
+        references |= {child.text for child in definition.iter() if child is not definition and child.tag in ("type", "enum")}
+        for reference in references - names - {None}:
+            names.add(reference)
+            unresolved.append(reference)
+    return frozenset(names)
 
 
 def is_vulkan_type(_root, _type) -> bool:
-    # name is an attribute, a <name> child or, for funcpointer, <proto><name>
-    name = _type.get("name") or _type.findtext("name") or _type.findtext("proto/name")
-    return is_vulkan_api(_type) and name not in excluded_names(_root)
+    return is_vulkan_api(_type) and definition_name(_type) in required_names(_root)

@@ -2,7 +2,7 @@ from model import Function, Member
 from naming import make_cpp_name
 from typing import TextIO
 from decl import parse_decl
-from api_filter import is_vulkan_api, excluded_names
+from api_filter import is_vulkan_api, required_names
 
 
 def load_result(_proto) -> Member:
@@ -147,7 +147,7 @@ get_command_level(ktl::api::command _command) noexcept
 def load(_root, _model) -> None:
     for src in _root.find("commands").findall("command"):
         raw = src.get("name") or src.findtext("proto/name")
-        if not is_vulkan_api(src) or raw in excluded_names(_root):
+        if not is_vulkan_api(src) or raw not in required_names(_root):
             continue
         if src.get("alias"):
             # signature and level are the ones of the target: resolve()
