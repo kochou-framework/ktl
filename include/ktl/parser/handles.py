@@ -63,7 +63,8 @@ def fill_implementation() -> None:
     pass
 
 def fill_meta(_file: TextIO, _handles: list) -> None:
-    _file.write(f"""namespace ktl::api
+    # ktl::meta as the other meta, handle types are in ktl::api
+    _file.write(f"""namespace ktl::meta
 {{
 {HANDLE_META}
 """)
@@ -71,12 +72,13 @@ def fill_meta(_file: TextIO, _handles: list) -> None:
         if handle.alias:
             continue
         else:
+            parent = handle.parent if handle.parent == "void" else f"ktl::api::{handle.parent}"
             _file.write(f"""
 template <>
-struct handle_meta< {handle.pointer} >
+struct handle_meta< ktl::api::{handle.pointer} >
 {{
-    using parent = {handle.parent};
-    using type   = {handle.opaque};
+    using parent = {parent};
+    using type   = ktl::api::{handle.opaque};
     enum : std::underlying_type_t< ktl::api::object_type >
     {{
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::{handle.object})

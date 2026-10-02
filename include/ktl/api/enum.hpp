@@ -1949,7 +1949,7 @@ enum class structure_type : ktl::u32
     v_pipeline_tessellation_domain_origin_state_create_info_khr =
         v_pipeline_tessellation_domain_origin_state_create_info,
     v_physical_device_variable_pointers_features_khr        = v_physical_device_variable_pointers_features,
-    v_physical_device_variable_pointer_features_khr         = v_physical_device_variable_pointers_features_khr,
+    v_physical_device_variable_pointer_features_khr         = v_physical_device_variable_pointers_features,
     v_memory_dedicated_requirements_khr                     = v_memory_dedicated_requirements,
     v_memory_dedicated_allocate_info_khr                    = v_memory_dedicated_allocate_info,
     v_physical_device_sampler_filter_minmax_properties_ext  = v_physical_device_sampler_filter_minmax_properties,
@@ -3788,13 +3788,13 @@ enum class geometry_instance_flag_bits_khr : ktl::u32
     v_disable_opacity_micromaps_bit_khr                 = (1U << 5),
     v_triangle_front_counterclockwise_bit_khr           = v_triangle_flip_facing_bit_khr,
     v_triangle_cull_disable_bit_nv                      = v_triangle_facing_cull_disable_bit_khr,
-    v_triangle_front_counterclockwise_bit_nv            = v_triangle_front_counterclockwise_bit_khr,
+    v_triangle_front_counterclockwise_bit_nv            = v_triangle_flip_facing_bit_khr,
     v_force_opaque_bit_nv                               = v_force_opaque_bit_khr,
     v_force_no_opaque_bit_nv                            = v_force_no_opaque_bit_khr,
     v_force_opacity_micromap_2_state_bit_ext            = v_force_opacity_micromap_2_state_bit_khr,
-    v_force_opacity_micromap_2_state_ext [[deprecated]] = v_force_opacity_micromap_2_state_bit_ext,
+    v_force_opacity_micromap_2_state_ext [[deprecated]] = v_force_opacity_micromap_2_state_bit_khr,
     v_disable_opacity_micromaps_bit_ext                 = v_disable_opacity_micromaps_bit_khr,
-    v_disable_opacity_micromaps_ext [[deprecated]]      = v_disable_opacity_micromaps_bit_ext
+    v_disable_opacity_micromaps_ext [[deprecated]]      = v_disable_opacity_micromaps_bit_khr
 };
 enum class geometry_flag_bits_khr : ktl::u32
 {
@@ -3824,9 +3824,9 @@ enum class build_acceleration_structure_flag_bits_khr : ktl::u32
     v_prefer_fast_build_bit_nv                              = v_prefer_fast_build_bit_khr,
     v_low_memory_bit_nv                                     = v_low_memory_bit_khr,
     v_allow_opacity_micromap_update_bit_ext                 = v_allow_opacity_micromap_update_bit_khr,
-    v_allow_opacity_micromap_update_ext [[deprecated]]      = v_allow_opacity_micromap_update_bit_ext,
+    v_allow_opacity_micromap_update_ext [[deprecated]]      = v_allow_opacity_micromap_update_bit_khr,
     v_allow_disable_opacity_micromaps_bit_ext               = v_allow_disable_opacity_micromaps_bit_khr,
-    v_allow_disable_opacity_micromaps_ext [[deprecated]]    = v_allow_disable_opacity_micromaps_bit_ext,
+    v_allow_disable_opacity_micromaps_ext [[deprecated]]    = v_allow_disable_opacity_micromaps_bit_khr,
     v_allow_opacity_micromap_data_update_ext [[deprecated]] = v_allow_opacity_micromap_data_update_bit_ext,
     v_allow_displacement_micromap_update_nv [[deprecated]]  = v_allow_displacement_micromap_update_bit_nv,
     v_allow_data_access_khr [[deprecated]]                  = v_allow_data_access_bit_khr

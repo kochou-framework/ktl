@@ -3,42 +3,62 @@ from name_rules import *
 from utils import make_vulkan_value
 from api_filter import is_vulkan_api, is_vulkan_type, excluded_names
 from typing import TextIO
+from dataclasses import replace
 
 
-def extract_field_impl(_root, _name, _underling_type: str) -> tuple:
+def extract_field_impl(_root, _name, _underling_type: str) -> VkEnumField:
     name       = make_field_name(_root.get("name"), _name)
     alias      = make_field_name(_root.get("alias"), _name)
     value      = _root.get("value")
     bitpos     = _root.get("bitpos")
     deprecated = True if _root.get("deprecated") else False
-    direction  = False if _root.get("dir") else True
 
     if value:
-        if value.startswith("-"):
-            direction = False
-        return VkEnumField(name, value, False, deprecated), direction
+        return VkEnumField(name, value, False, deprecated)
     if bitpos:
-        return VkEnumField(name, make_bitpos(bitpos, _underling_type), False, deprecated), direction
+        return VkEnumField(name, make_bitpos(bitpos, _underling_type), False, deprecated)
     if alias:
-        return VkEnumField(name, alias, True, deprecated), direction
+        return VkEnumField(name, alias, True, deprecated)
+    raise ValueError(f"value {_root.get('name')} of {_name} has no value, bitpos or alias")
 
 
 def extract_enum_impl(_root) -> VkEnum | None:
     name = make_cpp_name(_root.get("name"))
-    bitwidth       = _root.get("bitwidth")
-    direction      = True
-    underling_type = make_underling_type(bitwidth, direction)
-
-    fields = []
-    for src in _root.findall("enum"):
-        if not is_vulkan_api(src):
-            continue
-        field, new_direction = extract_field_impl(src, name, underling_type)
-        direction = new_direction if direction else direction
-        fields.append(field)
-
-    underling_type = make_underling_type(bitwidth, direction)
+    # signed type depends on the values that features and extensions add as well: update_underlying_types()
+    underling_type = make_underling_type(_root.get("bitwidth"), True)
+    fields = [extract_field_impl(src, name, underling_type) for src in _root.findall("enum") if is_vulkan_api(src)]
     return VkEnum(name, fields, underling_type, None)
+
+
+_SIGNED_TYPES = {"ktl::u32": "ktl::i32", "ktl::u64": "ktl::i64"}
+
+
+def update_underlying_types(_enums: list) -> None:
+    # after every value is added: a negative value of a feature or an extension does not fit an unsigned type
+    for enum in _enums:
+        if not enum.alias and any(not field.is_alias and field.value.startswith("-") for field in enum.fields):
+            enum.underling_type = _SIGNED_TYPES.get(enum.underling_type, enum.underling_type)
+
+
+def make_fields(_enum: VkEnum) -> list:
+    # one field per name, values before aliases; an alias names the final value instead of another alias,
+    # so the order of aliases in vk.xml does not matter. A name is added again by several <require> blocks:
+    # every such field must mean the same value, otherwise the dropped one would be lost
+    fields = list(dict.fromkeys(sorted(_enum.fields, key=lambda field: field.is_alias)))
+    values = {field.name: field.value for field in fields if not field.is_alias}
+    targets = {field.name: field.value for field in fields if field.is_alias}
+
+    def final(_name: str, _chain: tuple = ()) -> str:
+        if _name in values:
+            return _name
+        if _name not in targets or _name in _chain:
+            raise ValueError(f"alias {_enum.name}::{(_chain + (_name,))[0]} has no value: {' -> '.join(_chain + (_name,))}")
+        return final(targets[_name], _chain + (_name,))
+
+    for field in _enum.fields:
+        if (values[final(field.value, (field.name,))] if field.is_alias else field.value) != values[final(field.name)]:
+            raise ValueError(f"{_enum.name}::{field.name} is added with different values")
+    return [replace(field, value=final(field.value, (field.name,))) if field.is_alias else field for field in fields]
 
 
 def fill_definition(_file: TextIO, _enums: list) -> None:
@@ -62,7 +82,7 @@ def fill_implementation(_file: TextIO, _enums: list) -> None:
             continue
         else:
             _file.write(f"enum class {enum.name} : {enum.underling_type}\n{{\n")
-            valid_fields = list(dict.fromkeys(sorted(enum.fields, key=lambda f: f.is_alias)))
+            valid_fields = make_fields(enum)
             for field in valid_fields:
                 if field.is_deprecated:
                     _file.write(f"{field.name} [[deprecated]] = {field.value}")

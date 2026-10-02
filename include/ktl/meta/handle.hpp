@@ -7,7 +7,7 @@
 
 #include <ktl/api.hpp>
 
-namespace ktl::api
+namespace ktl::meta
 {
 template < typename T >
 struct handle_meta
@@ -21,10 +21,10 @@ struct handle_meta
 };
 
 template <>
-struct handle_meta< instance >
+struct handle_meta< ktl::api::instance >
 {
     using parent = void;
-    using type   = opaque_instance;
+    using type   = ktl::api::opaque_instance;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_instance)
@@ -32,10 +32,10 @@ struct handle_meta< instance >
 };
 
 template <>
-struct handle_meta< physical_device >
+struct handle_meta< ktl::api::physical_device >
 {
-    using parent = opaque_instance;
-    using type   = opaque_physical_device;
+    using parent = ktl::api::opaque_instance;
+    using type   = ktl::api::opaque_physical_device;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_physical_device)
@@ -43,10 +43,10 @@ struct handle_meta< physical_device >
 };
 
 template <>
-struct handle_meta< device >
+struct handle_meta< ktl::api::device >
 {
-    using parent = opaque_physical_device;
-    using type   = opaque_device;
+    using parent = ktl::api::opaque_physical_device;
+    using type   = ktl::api::opaque_device;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_device)
@@ -54,10 +54,10 @@ struct handle_meta< device >
 };
 
 template <>
-struct handle_meta< queue >
+struct handle_meta< ktl::api::queue >
 {
-    using parent = opaque_device;
-    using type   = opaque_queue;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_queue;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_queue)
@@ -65,10 +65,10 @@ struct handle_meta< queue >
 };
 
 template <>
-struct handle_meta< command_buffer >
+struct handle_meta< ktl::api::command_buffer >
 {
-    using parent = opaque_command_pool;
-    using type   = opaque_command_buffer;
+    using parent = ktl::api::opaque_command_pool;
+    using type   = ktl::api::opaque_command_buffer;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_command_buffer)
@@ -76,10 +76,10 @@ struct handle_meta< command_buffer >
 };
 
 template <>
-struct handle_meta< device_memory >
+struct handle_meta< ktl::api::device_memory >
 {
-    using parent = opaque_device;
-    using type   = opaque_device_memory;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_device_memory;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_device_memory)
@@ -87,10 +87,10 @@ struct handle_meta< device_memory >
 };
 
 template <>
-struct handle_meta< command_pool >
+struct handle_meta< ktl::api::command_pool >
 {
-    using parent = opaque_device;
-    using type   = opaque_command_pool;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_command_pool;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_command_pool)
@@ -98,10 +98,10 @@ struct handle_meta< command_pool >
 };
 
 template <>
-struct handle_meta< buffer >
+struct handle_meta< ktl::api::buffer >
 {
-    using parent = opaque_device;
-    using type   = opaque_buffer;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_buffer;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_buffer)
@@ -109,10 +109,10 @@ struct handle_meta< buffer >
 };
 
 template <>
-struct handle_meta< buffer_view >
+struct handle_meta< ktl::api::buffer_view >
 {
-    using parent = opaque_device;
-    using type   = opaque_buffer_view;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_buffer_view;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_buffer_view)
@@ -120,10 +120,10 @@ struct handle_meta< buffer_view >
 };
 
 template <>
-struct handle_meta< image >
+struct handle_meta< ktl::api::image >
 {
-    using parent = opaque_device;
-    using type   = opaque_image;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_image;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_image)
@@ -131,10 +131,10 @@ struct handle_meta< image >
 };
 
 template <>
-struct handle_meta< image_view >
+struct handle_meta< ktl::api::image_view >
 {
-    using parent = opaque_device;
-    using type   = opaque_image_view;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_image_view;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_image_view)
@@ -142,10 +142,10 @@ struct handle_meta< image_view >
 };
 
 template <>
-struct handle_meta< shader_module >
+struct handle_meta< ktl::api::shader_module >
 {
-    using parent = opaque_device;
-    using type   = opaque_shader_module;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_shader_module;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_shader_module)
@@ -153,10 +153,10 @@ struct handle_meta< shader_module >
 };
 
 template <>
-struct handle_meta< pipeline >
+struct handle_meta< ktl::api::pipeline >
 {
-    using parent = opaque_device;
-    using type   = opaque_pipeline;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_pipeline;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_pipeline)
@@ -164,10 +164,10 @@ struct handle_meta< pipeline >
 };
 
 template <>
-struct handle_meta< pipeline_layout >
+struct handle_meta< ktl::api::pipeline_layout >
 {
-    using parent = opaque_device;
-    using type   = opaque_pipeline_layout;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_pipeline_layout;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_pipeline_layout)
@@ -175,10 +175,10 @@ struct handle_meta< pipeline_layout >
 };
 
 template <>
-struct handle_meta< sampler >
+struct handle_meta< ktl::api::sampler >
 {
-    using parent = opaque_device;
-    using type   = opaque_sampler;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_sampler;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_sampler)
@@ -186,10 +186,10 @@ struct handle_meta< sampler >
 };
 
 template <>
-struct handle_meta< descriptor_set >
+struct handle_meta< ktl::api::descriptor_set >
 {
-    using parent = opaque_descriptor_pool;
-    using type   = opaque_descriptor_set;
+    using parent = ktl::api::opaque_descriptor_pool;
+    using type   = ktl::api::opaque_descriptor_set;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_descriptor_set)
@@ -197,10 +197,10 @@ struct handle_meta< descriptor_set >
 };
 
 template <>
-struct handle_meta< descriptor_set_layout >
+struct handle_meta< ktl::api::descriptor_set_layout >
 {
-    using parent = opaque_device;
-    using type   = opaque_descriptor_set_layout;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_descriptor_set_layout;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_descriptor_set_layout)
@@ -208,10 +208,10 @@ struct handle_meta< descriptor_set_layout >
 };
 
 template <>
-struct handle_meta< descriptor_pool >
+struct handle_meta< ktl::api::descriptor_pool >
 {
-    using parent = opaque_device;
-    using type   = opaque_descriptor_pool;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_descriptor_pool;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_descriptor_pool)
@@ -219,10 +219,10 @@ struct handle_meta< descriptor_pool >
 };
 
 template <>
-struct handle_meta< fence >
+struct handle_meta< ktl::api::fence >
 {
-    using parent = opaque_device;
-    using type   = opaque_fence;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_fence;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_fence)
@@ -230,10 +230,10 @@ struct handle_meta< fence >
 };
 
 template <>
-struct handle_meta< semaphore >
+struct handle_meta< ktl::api::semaphore >
 {
-    using parent = opaque_device;
-    using type   = opaque_semaphore;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_semaphore;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_semaphore)
@@ -241,10 +241,10 @@ struct handle_meta< semaphore >
 };
 
 template <>
-struct handle_meta< event >
+struct handle_meta< ktl::api::event >
 {
-    using parent = opaque_device;
-    using type   = opaque_event;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_event;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_event)
@@ -252,10 +252,10 @@ struct handle_meta< event >
 };
 
 template <>
-struct handle_meta< query_pool >
+struct handle_meta< ktl::api::query_pool >
 {
-    using parent = opaque_device;
-    using type   = opaque_query_pool;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_query_pool;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_query_pool)
@@ -263,10 +263,10 @@ struct handle_meta< query_pool >
 };
 
 template <>
-struct handle_meta< framebuffer >
+struct handle_meta< ktl::api::framebuffer >
 {
-    using parent = opaque_device;
-    using type   = opaque_framebuffer;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_framebuffer;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_framebuffer)
@@ -274,10 +274,10 @@ struct handle_meta< framebuffer >
 };
 
 template <>
-struct handle_meta< render_pass >
+struct handle_meta< ktl::api::render_pass >
 {
-    using parent = opaque_device;
-    using type   = opaque_render_pass;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_render_pass;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_render_pass)
@@ -285,10 +285,10 @@ struct handle_meta< render_pass >
 };
 
 template <>
-struct handle_meta< pipeline_cache >
+struct handle_meta< ktl::api::pipeline_cache >
 {
-    using parent = opaque_device;
-    using type   = opaque_pipeline_cache;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_pipeline_cache;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_pipeline_cache)
@@ -296,10 +296,10 @@ struct handle_meta< pipeline_cache >
 };
 
 template <>
-struct handle_meta< pipeline_binary_khr >
+struct handle_meta< ktl::api::pipeline_binary_khr >
 {
-    using parent = opaque_device;
-    using type   = opaque_pipeline_binary_khr;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_pipeline_binary_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_pipeline_binary_khr)
@@ -307,10 +307,10 @@ struct handle_meta< pipeline_binary_khr >
 };
 
 template <>
-struct handle_meta< indirect_commands_layout_nv >
+struct handle_meta< ktl::api::indirect_commands_layout_nv >
 {
-    using parent = opaque_device;
-    using type   = opaque_indirect_commands_layout_nv;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_indirect_commands_layout_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_indirect_commands_layout_nv)
@@ -318,10 +318,10 @@ struct handle_meta< indirect_commands_layout_nv >
 };
 
 template <>
-struct handle_meta< indirect_commands_layout_ext >
+struct handle_meta< ktl::api::indirect_commands_layout_ext >
 {
-    using parent = opaque_device;
-    using type   = opaque_indirect_commands_layout_ext;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_indirect_commands_layout_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_indirect_commands_layout_ext)
@@ -329,10 +329,10 @@ struct handle_meta< indirect_commands_layout_ext >
 };
 
 template <>
-struct handle_meta< indirect_execution_set_ext >
+struct handle_meta< ktl::api::indirect_execution_set_ext >
 {
-    using parent = opaque_device;
-    using type   = opaque_indirect_execution_set_ext;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_indirect_execution_set_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_indirect_execution_set_ext)
@@ -340,10 +340,10 @@ struct handle_meta< indirect_execution_set_ext >
 };
 
 template <>
-struct handle_meta< descriptor_update_template >
+struct handle_meta< ktl::api::descriptor_update_template >
 {
-    using parent = opaque_device;
-    using type   = opaque_descriptor_update_template;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_descriptor_update_template;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_descriptor_update_template)
@@ -351,10 +351,10 @@ struct handle_meta< descriptor_update_template >
 };
 
 template <>
-struct handle_meta< sampler_ycbcr_conversion >
+struct handle_meta< ktl::api::sampler_ycbcr_conversion >
 {
-    using parent = opaque_device;
-    using type   = opaque_sampler_ycbcr_conversion;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_sampler_ycbcr_conversion;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_sampler_ycbcr_conversion)
@@ -362,10 +362,10 @@ struct handle_meta< sampler_ycbcr_conversion >
 };
 
 template <>
-struct handle_meta< validation_cache_ext >
+struct handle_meta< ktl::api::validation_cache_ext >
 {
-    using parent = opaque_device;
-    using type   = opaque_validation_cache_ext;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_validation_cache_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_validation_cache_ext)
@@ -373,10 +373,10 @@ struct handle_meta< validation_cache_ext >
 };
 
 template <>
-struct handle_meta< acceleration_structure_khr >
+struct handle_meta< ktl::api::acceleration_structure_khr >
 {
-    using parent = opaque_device;
-    using type   = opaque_acceleration_structure_khr;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_acceleration_structure_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_acceleration_structure_khr)
@@ -384,10 +384,10 @@ struct handle_meta< acceleration_structure_khr >
 };
 
 template <>
-struct handle_meta< acceleration_structure_nv >
+struct handle_meta< ktl::api::acceleration_structure_nv >
 {
-    using parent = opaque_device;
-    using type   = opaque_acceleration_structure_nv;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_acceleration_structure_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_acceleration_structure_nv)
@@ -395,10 +395,10 @@ struct handle_meta< acceleration_structure_nv >
 };
 
 template <>
-struct handle_meta< performance_configuration_intel >
+struct handle_meta< ktl::api::performance_configuration_intel >
 {
-    using parent = opaque_device;
-    using type   = opaque_performance_configuration_intel;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_performance_configuration_intel;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_performance_configuration_intel)
@@ -406,10 +406,10 @@ struct handle_meta< performance_configuration_intel >
 };
 
 template <>
-struct handle_meta< buffer_collection_fuchsia >
+struct handle_meta< ktl::api::buffer_collection_fuchsia >
 {
-    using parent = opaque_device;
-    using type   = opaque_buffer_collection_fuchsia;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_buffer_collection_fuchsia;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_buffer_collection_fuchsia)
@@ -417,10 +417,10 @@ struct handle_meta< buffer_collection_fuchsia >
 };
 
 template <>
-struct handle_meta< deferred_operation_khr >
+struct handle_meta< ktl::api::deferred_operation_khr >
 {
-    using parent = opaque_device;
-    using type   = opaque_deferred_operation_khr;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_deferred_operation_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_deferred_operation_khr)
@@ -428,10 +428,10 @@ struct handle_meta< deferred_operation_khr >
 };
 
 template <>
-struct handle_meta< private_data_slot >
+struct handle_meta< ktl::api::private_data_slot >
 {
-    using parent = opaque_device;
-    using type   = opaque_private_data_slot;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_private_data_slot;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_private_data_slot)
@@ -439,10 +439,10 @@ struct handle_meta< private_data_slot >
 };
 
 template <>
-struct handle_meta< cu_module_nvx >
+struct handle_meta< ktl::api::cu_module_nvx >
 {
-    using parent = opaque_device;
-    using type   = opaque_cu_module_nvx;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_cu_module_nvx;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_cu_module_nvx)
@@ -450,10 +450,10 @@ struct handle_meta< cu_module_nvx >
 };
 
 template <>
-struct handle_meta< cu_function_nvx >
+struct handle_meta< ktl::api::cu_function_nvx >
 {
-    using parent = opaque_device;
-    using type   = opaque_cu_function_nvx;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_cu_function_nvx;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_cu_function_nvx)
@@ -461,10 +461,10 @@ struct handle_meta< cu_function_nvx >
 };
 
 template <>
-struct handle_meta< optical_flow_session_nv >
+struct handle_meta< ktl::api::optical_flow_session_nv >
 {
-    using parent = opaque_device;
-    using type   = opaque_optical_flow_session_nv;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_optical_flow_session_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_optical_flow_session_nv)
@@ -472,10 +472,10 @@ struct handle_meta< optical_flow_session_nv >
 };
 
 template <>
-struct handle_meta< micromap_ext >
+struct handle_meta< ktl::api::micromap_ext >
 {
-    using parent = opaque_device;
-    using type   = opaque_micromap_ext;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_micromap_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_micromap_ext)
@@ -483,10 +483,10 @@ struct handle_meta< micromap_ext >
 };
 
 template <>
-struct handle_meta< shader_ext >
+struct handle_meta< ktl::api::shader_ext >
 {
-    using parent = opaque_device;
-    using type   = opaque_shader_ext;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_shader_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_shader_ext)
@@ -494,10 +494,10 @@ struct handle_meta< shader_ext >
 };
 
 template <>
-struct handle_meta< tensor_arm >
+struct handle_meta< ktl::api::tensor_arm >
 {
-    using parent = opaque_device;
-    using type   = opaque_tensor_arm;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_tensor_arm;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_tensor_arm)
@@ -505,10 +505,10 @@ struct handle_meta< tensor_arm >
 };
 
 template <>
-struct handle_meta< tensor_view_arm >
+struct handle_meta< ktl::api::tensor_view_arm >
 {
-    using parent = opaque_device;
-    using type   = opaque_tensor_view_arm;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_tensor_view_arm;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_tensor_view_arm)
@@ -516,10 +516,10 @@ struct handle_meta< tensor_view_arm >
 };
 
 template <>
-struct handle_meta< data_graph_pipeline_session_arm >
+struct handle_meta< ktl::api::data_graph_pipeline_session_arm >
 {
-    using parent = opaque_device;
-    using type   = opaque_data_graph_pipeline_session_arm;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_data_graph_pipeline_session_arm;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_data_graph_pipeline_session_arm)
@@ -527,10 +527,10 @@ struct handle_meta< data_graph_pipeline_session_arm >
 };
 
 template <>
-struct handle_meta< shader_instrumentation_arm >
+struct handle_meta< ktl::api::shader_instrumentation_arm >
 {
-    using parent = opaque_device;
-    using type   = opaque_shader_instrumentation_arm;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_shader_instrumentation_arm;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_shader_instrumentation_arm)
@@ -538,10 +538,10 @@ struct handle_meta< shader_instrumentation_arm >
 };
 
 template <>
-struct handle_meta< gpa_session_amd >
+struct handle_meta< ktl::api::gpa_session_amd >
 {
-    using parent = opaque_device;
-    using type   = opaque_gpa_session_amd;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_gpa_session_amd;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_gpa_session_amd)
@@ -549,10 +549,10 @@ struct handle_meta< gpa_session_amd >
 };
 
 template <>
-struct handle_meta< display_khr >
+struct handle_meta< ktl::api::display_khr >
 {
-    using parent = opaque_physical_device;
-    using type   = opaque_display_khr;
+    using parent = ktl::api::opaque_physical_device;
+    using type   = ktl::api::opaque_display_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_display_khr)
@@ -560,10 +560,10 @@ struct handle_meta< display_khr >
 };
 
 template <>
-struct handle_meta< display_mode_khr >
+struct handle_meta< ktl::api::display_mode_khr >
 {
-    using parent = opaque_display_khr;
-    using type   = opaque_display_mode_khr;
+    using parent = ktl::api::opaque_display_khr;
+    using type   = ktl::api::opaque_display_mode_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_display_mode_khr)
@@ -571,10 +571,10 @@ struct handle_meta< display_mode_khr >
 };
 
 template <>
-struct handle_meta< surface_khr >
+struct handle_meta< ktl::api::surface_khr >
 {
-    using parent = opaque_instance;
-    using type   = opaque_surface_khr;
+    using parent = ktl::api::opaque_instance;
+    using type   = ktl::api::opaque_surface_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_surface_khr)
@@ -582,10 +582,10 @@ struct handle_meta< surface_khr >
 };
 
 template <>
-struct handle_meta< swapchain_khr >
+struct handle_meta< ktl::api::swapchain_khr >
 {
-    using parent = opaque_device;
-    using type   = opaque_swapchain_khr;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_swapchain_khr;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_swapchain_khr)
@@ -593,10 +593,10 @@ struct handle_meta< swapchain_khr >
 };
 
 template <>
-struct handle_meta< debug_report_callback_ext >
+struct handle_meta< ktl::api::debug_report_callback_ext >
 {
-    using parent = opaque_instance;
-    using type   = opaque_debug_report_callback_ext;
+    using parent = ktl::api::opaque_instance;
+    using type   = ktl::api::opaque_debug_report_callback_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_debug_report_callback_ext)
@@ -604,10 +604,10 @@ struct handle_meta< debug_report_callback_ext >
 };
 
 template <>
-struct handle_meta< debug_utils_messenger_ext >
+struct handle_meta< ktl::api::debug_utils_messenger_ext >
 {
-    using parent = opaque_instance;
-    using type   = opaque_debug_utils_messenger_ext;
+    using parent = ktl::api::opaque_instance;
+    using type   = ktl::api::opaque_debug_utils_messenger_ext;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_debug_utils_messenger_ext)
@@ -615,10 +615,10 @@ struct handle_meta< debug_utils_messenger_ext >
 };
 
 template <>
-struct handle_meta< cuda_module_nv >
+struct handle_meta< ktl::api::cuda_module_nv >
 {
-    using parent = opaque_device;
-    using type   = opaque_cuda_module_nv;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_cuda_module_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_cuda_module_nv)
@@ -626,10 +626,10 @@ struct handle_meta< cuda_module_nv >
 };
 
 template <>
-struct handle_meta< cuda_function_nv >
+struct handle_meta< ktl::api::cuda_function_nv >
 {
-    using parent = opaque_device;
-    using type   = opaque_cuda_function_nv;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_cuda_function_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_cuda_function_nv)
@@ -637,10 +637,10 @@ struct handle_meta< cuda_function_nv >
 };
 
 template <>
-struct handle_meta< external_compute_queue_nv >
+struct handle_meta< ktl::api::external_compute_queue_nv >
 {
-    using parent = opaque_device;
-    using type   = opaque_external_compute_queue_nv;
+    using parent = ktl::api::opaque_device;
+    using type   = ktl::api::opaque_external_compute_queue_nv;
     enum : std::underlying_type_t< ktl::api::object_type >
     {
         object = static_cast< std::underlying_type_t< ktl::api::object_type > >(ktl::api::object_type::v_external_compute_queue_nv)

@@ -48,6 +48,7 @@ def main(_root):
     COMMANDS          = commands.extract(_root)
     features.add_core_enum_values(_root, ENUMS)
     EXTENSIONS        = extensions.extract(_root, ENUMS)
+    enums.update_underlying_types(ENUMS)
     VERSION_COMMANDS  = commands.extract_version_commands(_root)
     decl.check_types(ENUMS, STRUCTS, HANDLES, BITMASKS, POINTERS, COMMANDS)
 
