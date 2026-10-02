@@ -1,6 +1,8 @@
 import re
 from dataclasses import dataclass
 from name_rules import make_type, make_cpp_name, make_constant
+from basetypes import BASETYPES
+from platforms import PLATFORM_TYPES
 
 
 @dataclass
@@ -63,6 +65,24 @@ def make_decl_type(_src: str) -> str:
     if tppe := make_type(_src):
         return tppe
     return f"ktl::api::{make_cpp_name(_src)}"
+
+
+def check_types(_enums: list, _structs: list, _handles: list, _bitmasks: list, _pointers: list, _commands: list) -> None:
+    # make_decl_type guesses the name of a type unknown to cast_type, so every ktl::api type of fields, parameters
+    # and return types must be declared: otherwise a new vk.xml type breaks only the C++ compilation
+    declared = {enum.name for enum in _enums} | {struct.name for struct in _structs}
+    declared |= {handle.name for handle in _handles} | {handle.opaque for handle in _handles if handle.opaque}
+    declared |= {bitmask.name for bitmask in _bitmasks} | {function.pfn for function in _pointers + _commands}
+    declared |= {name for name, _ in BASETYPES} | {name.removeprefix("ktl::api::") for name in PLATFORM_TYPES.values()}
+
+    uses = [(field.tppe, f"{struct.name}::{field.name}") for struct in _structs for field in struct.fields]
+    for function in _pointers + _commands:
+        uses += [(field.tppe, f"{function.name}({field.name})") for field in function.fields]
+        uses.append((function.tppe, f"{function.name} return"))
+    for tppe, where in uses:
+        for name in re.findall(r"ktl::api::(\w+)", tppe):
+            if name not in declared:
+                raise ValueError(f"unknown type ktl::api::{name} of {where}")
 
 
 def make_array_size(_src: str) -> str:

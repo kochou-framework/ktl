@@ -1,4 +1,5 @@
 from platforms import cast_platform_type
+from utils import c_name_to_cpp
 
 DEFAULT_POSITIVE_TYPE = "ktl::u32"
 DEFAULT_NEGATIVE_TYPE = "ktl::i32"
@@ -101,28 +102,11 @@ def cast_type(_type : str) -> str | None:
         return "ktl::api::dvsize"
     if _type == "VkDeviceAddress":
         return "ktl::api::dvaddr"
+    if _type == "VkRemoteAddressNV":
+        return "ktl::api::remote_address_nv"
 
-    if _type == "PFN_vkInternalAllocationNotification":
-        return "ktl::api::pfn_internal_allocation_notification"
-    if _type == "PFN_vkInternalFreeNotification":
-        return "ktl::api::pfn_internal_free_notification"
-    if _type == "PFN_vkReallocationFunction":
-        return "ktl::api::pfn_reallocation_function"
-    if _type == "PFN_vkAllocationFunction":
-        return "ktl::api::pfn_allocation_function"
-    if _type == "PFN_vkFreeFunction":
-        return "ktl::api::pfn_free_function"
-    if _type == "PFN_vkVoidFunction":
-        return "ktl::api::pfn_void_function"
-    if _type == "PFN_vkDebugReportCallbackEXT":
-        return "ktl::api::pfn_debug_report_callback_ext"
-    if _type == "PFN_vkDebugUtilsMessengerCallbackEXT":
-        return "ktl::api::pfn_debug_utils_messenger_callback_ext"
-    if _type == "PFN_vkFaultCallbackFunction":
-        return "ktl::api::pfn_fault_callback_function"
-    if _type == "PFN_vkDeviceMemoryReportCallbackEXT":
-        return "ktl::api::pfn_device_memory_report_callback_ext"
-    if _type == "PFN_vkGetInstanceProcAddrLUNARG":
-        return "ktl::api::pfn_get_instance_proc_addr_lunarg"
+    # funcpointers are declared by pointers.py as pfn_*: PFN_vkAllocationFunction -> ktl::api::pfn_allocation_function
+    if _type.startswith("PFN_vk"):
+        return f"ktl::api::pfn_{c_name_to_cpp(_type[6:])}"
 
     return None

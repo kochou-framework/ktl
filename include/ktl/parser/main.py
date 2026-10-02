@@ -12,6 +12,7 @@ import pointers
 import commands
 import features
 import extensions
+import decl
 
 API_DIR = "api/"
 META_DIR = "meta/"
@@ -49,6 +50,7 @@ def main(_root):
     features.add_core_enum_values(_root, ENUMS)
     EXTENSIONS        = extensions.extract(_root, ENUMS)
     VERSION_COMMANDS  = commands.extract_version_commands(_root)
+    decl.check_types(ENUMS, STRUCTS, HANDLES, BITMASKS, POINTERS, COMMANDS)
 
     headers.fill_common(API_COMMON_HEADER_FILE,
                         CONSTANTS,

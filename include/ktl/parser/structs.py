@@ -7,19 +7,10 @@ from api_filter import is_vulkan_api, is_vulkan_type
 
 import re
 
-_VENDORS = (
-    "khr", "khx", "ext",
-    "amd", "amdx",
-    "nv", "nvx",
-    "intel", "img", "arm", "qcom", "viv", "vsi",
-    "android", "fuchsia", "ggp", "google", "chromium",
-    "tizen", "qnx", "ohos",
-    "fsl", "nxp", "brcm", "mesa", "lunarg", "nzxt",
-    "samsung", "sec", "renderdoc", "nn", "mvk",
-    "huawei", "valve", "juice", "fb", "rastergrid",
-    "msft", "shady", "fredemmott", "mtk", "openxr",
-    "kdab"
-)
+def vulkan_vendors(_root) -> tuple:
+    # vendor suffixes of names from <tags><tag name="KHR" .../>: a hand-written list misses new vendors
+    return tuple(tag.get("name").lower() for tag in _root.find("tags"))
+
 _BIT_WIDTHS = {"8", "16", "32", "64"}
 
 
@@ -35,12 +26,12 @@ def is_core_features(source_snake: str) -> bool:
     return re.search(r"vulkan_\d+_\d+_features$", source_snake) is not None
 
 
-def make_feature_enum_name(field_snake: str, source_snake: str) -> str:
+def make_feature_enum_name(field_snake: str, source_snake: str, _vendors: tuple) -> str:
     if source_snake == "physical_device_features" or is_core_features(source_snake):
         return field_snake
 
     result = field_snake
-    vendor = next((f"_{v}" for v in _VENDORS if source_snake.endswith(f"_{v}")), "")
+    vendor = next((f"_{v}" for v in _vendors if source_snake.endswith(f"_{v}")), "")
     base_for_nums = source_snake[:-len(vendor)] if vendor else source_snake
     src_nums = re.findall(r'\d+', base_for_nums)
     field_nums = set(re.findall(r'\d+', result))
@@ -51,12 +42,12 @@ def make_feature_enum_name(field_snake: str, source_snake: str) -> str:
     return result
 
 
-def extract_struct_field_impl(_root, _name, _is_feature) -> VkStructField:
+def extract_struct_field_impl(_root, _name, _is_feature, _vendors) -> VkStructField:
     decl = parse_decl(_root)
     type_res = make_decl_type(decl.tppe)
     name_str = make_cpp_name(decl.name)
     if type_res == "ktl::api::bool32" and _is_feature:
-        name_str = make_feature_enum_name(name_str, _name)
+        name_str = make_feature_enum_name(name_str, _name, _vendors)
 
     is_optional = _root.get("optional") == "true"
     default_value = _root.get("values")
@@ -69,14 +60,14 @@ def extract_struct_field_impl(_root, _name, _is_feature) -> VkStructField:
     return VkStructField(type_res, name_str, is_optional, decl.const, decl.array, decl.bitfield, default_value)
 
 
-def extract_struct_impl(_root) -> tuple:
+def extract_struct_impl(_root, _vendors) -> tuple:
     name = make_cpp_name(_root.get("name"))
     is_feature = is_feature_struct(_root)
     feature_names = []
     fields = []
     for field in _root.findall("member"):
         if is_vulkan_api(field):
-            result = extract_struct_field_impl(field, name, is_feature)
+            result = extract_struct_field_impl(field, name, is_feature, _vendors)
             fields.append(result)
             if result.tppe == "ktl::api::bool32" and is_feature:
                 feature_names.append(result.name)
@@ -132,6 +123,7 @@ def fill_implementation(_file: TextIO, _structs: list) -> None:
 def extract(_root) -> tuple:
     structs = []
     features = {}
+    vendors = vulkan_vendors(_root)
 
     types = _root.find("types")
     for src in types.findall("type"):
@@ -141,18 +133,21 @@ def extract(_root) -> tuple:
             if alias := make_cpp_name(src.get("alias")):
                 structs.append(VkStruct(make_cpp_name(src.get("name")), [], False, alias))
             else:
-                result, ff = extract_struct_impl(src)
+                result, ff = extract_struct_impl(src, vendors)
                 if result:
                     structs.append(result)
                     for feature in ff:
-                        # same feature is declared in physical_device_vulkan_XYfeatures and in its own struct:
+                        # same feature is declared in physical_device_vulkan_X_Y_features and in its own struct:
                         # own struct is valid both for core version and for extension
                         known = features.get(feature.name)
+                        if known and not is_core_features(known.struct) and not is_core_features(feature.struct):
+                            # one of them would be lost silently or bound to the other struct
+                            raise ValueError(f"feature {feature.name} is declared by {known.struct} and {feature.struct}")
                         if known is None or (is_core_features(known.struct) and not is_core_features(feature.struct)):
                             features[feature.name] = feature
 
         elif src.get("category") == "union":
-            result, _ = extract_struct_impl(src)
+            result, _ = extract_struct_impl(src, vendors)
             if result:
                 result.is_union = True
                 structs.append(result)

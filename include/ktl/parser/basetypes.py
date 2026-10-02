@@ -1,18 +1,25 @@
 from typing import TextIO
 
+# ktl::api names of vulkan base types (type_cast.cast_type maps VkBool32 and others to them), checked by decl.check_types
+BASETYPES = (
+    ("bool32", "ktl::u32"),
+    ("flag32", "ktl::u32"),
+    ("flag64", "ktl::u64"),
+    ("dvsize", "ktl::u64"),
+    ("dvaddr", "ktl::u64"),
+    ("spmask", "ktl::u32"),
+    ("remote_address_nv", "void *"),
+)
+
 
 def fill_definition(_file: TextIO,):
     _file.write("""
 namespace ktl::api
 {
-using bool32            = ktl::u32;
-using flag32            = ktl::u32;
-using flag64            = ktl::u64;
-using dvsize            = ktl::u64;
-using dvaddr            = ktl::u64;
-using spmask            = ktl::u32;
-using remote_address_nv = void *;
-}
+""")
+    for name, tppe in BASETYPES:
+        _file.write(f"using {name} = {tppe};\n")
+    _file.write("""}
 
 struct ANativeWindow;
 struct AHardwareBuffer;
