@@ -1,6 +1,7 @@
 #ifndef KTL_META_HANDLE_HPP
 #define KTL_META_HANDLE_HPP
 
+#include <cstdint>
 #include <format>
 #include <type_traits>
 

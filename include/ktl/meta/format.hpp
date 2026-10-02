@@ -66,7 +66,7 @@ struct any_format
 };
 
 template < ktl::api::format FORMAT >
-any_format
+constexpr any_format
 format_cast() noexcept
 {
     using format = ktl::meta::format< FORMAT >;

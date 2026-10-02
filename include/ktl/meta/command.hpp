@@ -8,7 +8,7 @@
 
 namespace ktl::meta
 {
-inline std::string_view
+inline constexpr std::string_view
 raw_command(ktl::api::command _command) noexcept
 {
     switch (_command)

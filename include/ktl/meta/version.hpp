@@ -45,7 +45,7 @@ struct version< ktl::api::version_1_4 >
     static constexpr std::array< ktl::api::command, 19 > commands = {
 ktl::api::command::map_memory_2,ktl::api::command::unmap_memory_2,ktl::api::command::get_device_image_subresource_layout,ktl::api::command::get_image_subresource_layout_2,ktl::api::command::copy_memory_to_image,ktl::api::command::copy_image_to_memory,ktl::api::command::copy_image_to_image,ktl::api::command::transition_image_layout,ktl::api::command::cmd_push_descriptor_set,ktl::api::command::cmd_push_descriptor_set_with_template,ktl::api::command::cmd_bind_descriptor_sets_2,ktl::api::command::cmd_push_constants_2,ktl::api::command::cmd_push_descriptor_set_2,ktl::api::command::cmd_push_descriptor_set_with_template_2,ktl::api::command::cmd_set_line_stipple,ktl::api::command::cmd_bind_index_buffer_2,ktl::api::command::get_rendering_area_granularity,ktl::api::command::cmd_set_rendering_attachment_locations,ktl::api::command::cmd_set_rendering_input_attachment_indices};};
 
-inline std::span< const ktl::api::command >
+inline constexpr std::span< const ktl::api::command >
 get_commands_by_version(ktl::api::version _version) noexcept
 {
     if (_version == ktl::api::version_1_0)

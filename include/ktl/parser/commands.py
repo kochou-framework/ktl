@@ -149,7 +149,7 @@ struct version< {version} >
         _file.write(st)
         _file.write("};};\n")
     _file.write("""
-inline std::span< const ktl::api::command >
+inline constexpr std::span< const ktl::api::command >
 get_commands_by_version(ktl::api::version _version) noexcept
 {
     if (_version == ktl::api::version_1_0)
@@ -182,7 +182,7 @@ def fill_match(_file: TextIO, _commands):
     _file.write("""
 namespace ktl::meta
 {
-inline std::string_view
+inline constexpr std::string_view
 raw_command(ktl::api::command _command) noexcept
 {
     switch (_command)

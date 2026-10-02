@@ -8264,7 +8264,7 @@ feature_cast() noexcept
             feature::offsetof_stype, feature::offsetof_pnext, feature::offsetof_field};
 }
 
-inline any_feature
+inline constexpr any_feature
 match(ktl::api::feature _feature) noexcept
 {
     switch (_feature)

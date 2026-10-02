@@ -1,7 +1,7 @@
 from vk_types import VkConstant
 from name_rules import *
 from typing import TextIO
-from api_filter import is_vulkan_api
+from api_filter import is_vulkan_api, vulkan_features, vulkan_extensions, vulkan_requires
 
 
 def fill_definition(_file: TextIO, _constants: list) -> None:
@@ -36,6 +36,17 @@ def extract(_root) -> list:
                 continue
             if result := extract_constant_impl(constant):
                 constants.append(result)
+
+    # aliases are declared by features and extensions: <enum name="VK_LUID_SIZE_KHR" alias="VK_LUID_SIZE"/>
+    known = {constant.name: constant for constant in constants}
+    for block in vulkan_features(_root) + vulkan_extensions(_root):
+        for require in vulkan_requires(block):
+            for enum in require.findall("enum"):
+                target = known.get(make_constant(enum.get("alias")))
+                name = make_constant(enum.get("name"))
+                if target and not enum.get("extends") and is_vulkan_api(enum) and name not in known:
+                    known[name] = VkConstant(name, target.tppe, target.name)
+                    constants.append(known[name])
 
     constants.sort(key=lambda c: len(c.name), reverse=True)
     return sorted(constants, key=lambda c: c.tppe)

@@ -112,7 +112,7 @@ feature_cast() noexcept
     }; 
 }
 
-inline any_feature
+inline constexpr any_feature
 match(ktl::api::feature _feature) noexcept
 {
     switch (_feature)

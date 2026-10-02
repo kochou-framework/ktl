@@ -88,6 +88,7 @@ def fill_handles(_api_include: str,
         file.write(f"""#ifndef {header_guard}
 #define {header_guard}
 
+#include <cstdint>
 #include <format>
 #include <type_traits>
 
