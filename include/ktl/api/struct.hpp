@@ -2928,18 +2928,18 @@ struct physical_device_shader_atomic_float_2_features_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_shader_atomic_float_2_features_ext;
     void *                   pnext = {};
-    ktl::api::bool32         shader_buffer_float16_atomics_2_ext;
-    ktl::api::bool32         shader_buffer_float16_atomic_add_2_ext;
-    ktl::api::bool32         shader_buffer_float16_atomic_min_max_2_ext;
-    ktl::api::bool32         shader_buffer_float32_atomic_min_max_2_ext;
-    ktl::api::bool32         shader_buffer_float64_atomic_min_max_2_ext;
-    ktl::api::bool32         shader_shared_float16_atomics_2_ext;
-    ktl::api::bool32         shader_shared_float16_atomic_add_2_ext;
-    ktl::api::bool32         shader_shared_float16_atomic_min_max_2_ext;
-    ktl::api::bool32         shader_shared_float32_atomic_min_max_2_ext;
-    ktl::api::bool32         shader_shared_float64_atomic_min_max_2_ext;
-    ktl::api::bool32         shader_image_float32_atomic_min_max_2_ext;
-    ktl::api::bool32         sparse_image_float32_atomic_min_max_2_ext;
+    ktl::api::bool32         shader_buffer_float16_atomics_ext;
+    ktl::api::bool32         shader_buffer_float16_atomic_add_ext;
+    ktl::api::bool32         shader_buffer_float16_atomic_min_max_ext;
+    ktl::api::bool32         shader_buffer_float32_atomic_min_max_ext;
+    ktl::api::bool32         shader_buffer_float64_atomic_min_max_ext;
+    ktl::api::bool32         shader_shared_float16_atomics_ext;
+    ktl::api::bool32         shader_shared_float16_atomic_add_ext;
+    ktl::api::bool32         shader_shared_float16_atomic_min_max_ext;
+    ktl::api::bool32         shader_shared_float32_atomic_min_max_ext;
+    ktl::api::bool32         shader_shared_float64_atomic_min_max_ext;
+    ktl::api::bool32         shader_image_float32_atomic_min_max_ext;
+    ktl::api::bool32         sparse_image_float32_atomic_min_max_ext;
 };
 struct physical_device_vertex_attribute_divisor_features
 {
@@ -3376,7 +3376,7 @@ struct physical_device_ray_tracing_maintenance_1_features_khr
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_ray_tracing_maintenance_1_features_khr;
     void *                   pnext = {};
     ktl::api::bool32         ray_tracing_maintenance_1_khr;
-    ktl::api::bool32         ray_tracing_pipeline_trace_rays_indirect_2_1_khr;
+    ktl::api::bool32         ray_tracing_pipeline_trace_rays_indirect_2_khr;
 };
 struct drm_format_modifier_properties_ext
 {
@@ -3436,7 +3436,7 @@ struct physical_device_fragment_density_map_2_features_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_fragment_density_map_2_features_ext;
     void *                   pnext = {};
-    ktl::api::bool32         fragment_density_map_deferred_2_ext;
+    ktl::api::bool32         fragment_density_map_deferred_ext;
 };
 struct physical_device_fragment_density_map_offset_features_ext
 {
@@ -4612,7 +4612,7 @@ struct physical_device_robustness_2_features_khr
     void *                   pnext = {};
     ktl::api::bool32         robust_buffer_access_2_khr;
     ktl::api::bool32         robust_image_access_2_khr;
-    ktl::api::bool32         null_descriptor_2_khr;
+    ktl::api::bool32         null_descriptor_khr;
 };
 struct physical_device_robustness_2_properties_khr
 {
@@ -4667,8 +4667,8 @@ struct physical_device_4444_formats_features_ext
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_4444_formats_features_ext;
     void *                   pnext = {};
-    ktl::api::bool32         format_a4r4g4b4_4444_ext;
-    ktl::api::bool32         format_a4b4g4r4_4444_ext;
+    ktl::api::bool32         format_a4r4g4b4_ext;
+    ktl::api::bool32         format_a4b4g4r4_ext;
 };
 struct physical_device_subpass_shading_features_huawei
 {
@@ -6850,9 +6850,9 @@ struct physical_device_image_processing_3_features_qcom
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_image_processing_3_features_qcom;
     void *                   pnext = {};
-    ktl::api::bool32         image_gather_linear_3_qcom;
-    ktl::api::bool32         image_gather_extended_modes_3_qcom;
-    ktl::api::bool32         block_match_extended_clamp_to_edge_3_qcom;
+    ktl::api::bool32         image_gather_linear_qcom;
+    ktl::api::bool32         image_gather_extended_modes_qcom;
+    ktl::api::bool32         block_match_extended_clamp_to_edge_qcom;
 };
 struct physical_device_descriptor_pool_overallocation_features_nv
 {
@@ -7173,13 +7173,13 @@ struct physical_device_cooperative_matrix_2_features_nv
 {
     ktl::api::structure_type stype = ktl::api::structure_type::v_physical_device_cooperative_matrix_2_features_nv;
     void *                   pnext = {};
-    ktl::api::bool32         cooperative_matrix_workgroup_scope_2_nv;
-    ktl::api::bool32         cooperative_matrix_flexible_dimensions_2_nv;
-    ktl::api::bool32         cooperative_matrix_reductions_2_nv;
-    ktl::api::bool32         cooperative_matrix_conversions_2_nv;
-    ktl::api::bool32         cooperative_matrix_per_element_operations_2_nv;
-    ktl::api::bool32         cooperative_matrix_tensor_addressing_2_nv;
-    ktl::api::bool32         cooperative_matrix_block_loads_2_nv;
+    ktl::api::bool32         cooperative_matrix_workgroup_scope_nv;
+    ktl::api::bool32         cooperative_matrix_flexible_dimensions_nv;
+    ktl::api::bool32         cooperative_matrix_reductions_nv;
+    ktl::api::bool32         cooperative_matrix_conversions_nv;
+    ktl::api::bool32         cooperative_matrix_per_element_operations_nv;
+    ktl::api::bool32         cooperative_matrix_tensor_addressing_nv;
+    ktl::api::bool32         cooperative_matrix_block_loads_nv;
 };
 struct physical_device_cooperative_matrix_2_properties_nv
 {
@@ -8097,11 +8097,11 @@ struct physical_device_cooperative_matrix_maintenance_1_features_ext
     ktl::api::structure_type stype =
         ktl::api::structure_type::v_physical_device_cooperative_matrix_maintenance_1_features_ext;
     void *           pnext = {};
-    ktl::api::bool32 cooperative_matrix_properties_2_1_ext;
-    ktl::api::bool32 cooperative_matrix_reductions_1_ext;
-    ktl::api::bool32 cooperative_matrix_conversions_1_ext;
-    ktl::api::bool32 cooperative_matrix_per_element_operations_1_ext;
-    ktl::api::bool32 cooperative_matrix_get_coordinate_1_ext;
+    ktl::api::bool32 cooperative_matrix_properties_2_ext;
+    ktl::api::bool32 cooperative_matrix_reductions_ext;
+    ktl::api::bool32 cooperative_matrix_conversions_ext;
+    ktl::api::bool32 cooperative_matrix_per_element_operations_ext;
+    ktl::api::bool32 cooperative_matrix_get_coordinate_ext;
 };
 struct physical_device_buffer_device_address_allocation_alignment_features_valve
 {

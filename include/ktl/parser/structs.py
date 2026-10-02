@@ -11,7 +11,6 @@ def vulkan_vendors(_root) -> tuple:
     # vendor suffixes of names from <tags><tag name="KHR" .../>: a hand-written list misses new vendors
     return tuple(tag.get("name").lower() for tag in _root.find("tags"))
 
-_BIT_WIDTHS = {"8", "16", "32", "64"}
 
 
 def is_feature_struct(_root) -> bool:
@@ -27,19 +26,12 @@ def is_core_features(source_snake: str) -> bool:
 
 
 def make_feature_enum_name(field_snake: str, source_snake: str, _vendors: tuple) -> str:
+    # a feature of an extension struct gets the vendor suffix of the struct: null_descriptor -> null_descriptor_khr,
+    # a number of the struct is not added, the same feature in two extension structs is an error in extract()
     if source_snake == "physical_device_features" or is_core_features(source_snake):
         return field_snake
-
-    result = field_snake
     vendor = next((f"_{v}" for v in _vendors if source_snake.endswith(f"_{v}")), "")
-    base_for_nums = source_snake[:-len(vendor)] if vendor else source_snake
-    src_nums = re.findall(r'\d+', base_for_nums)
-    field_nums = set(re.findall(r'\d+', result))
-    extra_nums = [n for n in src_nums if n not in field_nums and n not in _BIT_WIDTHS]
-    
-    if extra_nums: result += f"_{extra_nums[0]}"
-    if vendor and not result.endswith(vendor): result += vendor
-    return result
+    return field_snake if field_snake.endswith(vendor) else field_snake + vendor
 
 
 def extract_struct_field_impl(_root, _name, _is_feature, _vendors) -> VkStructField:
