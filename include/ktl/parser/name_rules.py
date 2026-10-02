@@ -1,3 +1,4 @@
+import re
 from utils import c_name_to_cpp
 from type_cast import cast_type, DEFAULT_NEGATIVE_TYPE, DEFAULT_POSITIVE_TYPE
 
@@ -35,10 +36,17 @@ def make_field_name(src: str, cmp: str) -> str | None:
     # strip common prefix by whole words: VK_CULL_MODE_FRONT_BIT + cull_mode_flag_bits -> front_bit
     words = src.lower()[3:].split('_')
     if cmp is not None:
-        prefix = cmp.split('_')
-        common = 0
-        while common < min(len(words), len(prefix)) and words[common] == prefix[common]:
-            common += 1
+        def match(_prefix: list[str]) -> int:
+            common = 0
+            while common < min(len(words), len(_prefix)) and words[common] == _prefix[common]:
+                common += 1
+            return common
+
+        # VK_ACCESS_2_NONE + access_flag_bits_2 -> none: values of FlagBits2 have no FLAG_BITS words,
+        # but FLAG can be a part of the prefix (VK_DEVICE_FAULT_FLAG_VENDOR_KHR), so the longest match wins;
+        # digits are split from glued words: image_usage_flag_bits_2khr -> image, usage, flag, bits, 2, khr
+        prefix = re.findall(r"[a-z]+|\d+", cmp)
+        common = max(match(prefix), match([word for word in prefix if word not in ("flag", "bits")]))
         words = words[common:] or words
     return make_cpp_name(f"v_{'_'.join(words)}")
 
