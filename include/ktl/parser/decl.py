@@ -11,10 +11,6 @@ class CDecl:
     array: list[str]      # array dimensions, e.g. ["3", "4"] or ["VK_UUID_SIZE"]
     bitfield: str | None  # bitfield width, e.g. "24"
 
-    @property
-    def pointer_count(self) -> int:
-        return len(self.const) - 1
-
 
 def parse_decl(_root) -> CDecl:
     """

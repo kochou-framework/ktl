@@ -29,6 +29,8 @@ def make_value(_root, _enum: Enum, _number: str | None = None) -> EnumValue:
     if len(kinds) != 1:
         raise ValueError(f"value {_root.get('name')} of {_enum.name} has {' and '.join(kinds) or 'no value'}")
     name = make_field_name(_root.get("name"), _enum.name)
+    if name is None:
+        raise ValueError(f"value {_root.get('name')} of {_enum.name} has no VK_ prefix")
     deprecated = bool(_root.get("deprecated"))
     match kinds[0]:
         case "value":

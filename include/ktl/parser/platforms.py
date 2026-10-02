@@ -60,10 +60,6 @@ PLATFORMS = [
 PLATFORM_TYPES = {native: f"ktl::api::{name}" for _, _, types in PLATFORMS for native, name, _ in types}
 
 
-def cast_platform_type(_type: str) -> str | None:
-    return PLATFORM_TYPES.get(_type)
-
-
 def write_declarations(_file: TextIO, _model) -> None:
     _file.write("""
 // platform types: ABI-compatible stand-ins by default,

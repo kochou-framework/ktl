@@ -36,8 +36,6 @@ META            = "meta.hpp"
 
 
 def make_header_guard(_filename: str) -> str:
-    if not _filename:
-        raise ValueError("header file name is empty")
     return f"KTL_{_filename.replace('.', '_').replace('/', '_').upper()}"
 
 
